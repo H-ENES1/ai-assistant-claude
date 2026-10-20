@@ -1,0 +1,450 @@
+{
+  "extName": {
+    "message": "Claude için Token Tahmini"
+  },
+  "extShortName": {
+    "message": "Token Tahmini"
+  },
+  "extDescription": {
+    "message": "Bir mesajın Claude kullanım limitinin ne kadarını kullanacağını göndermeden önce tahmin eder, uygun olduğunda daha ucuz bir model önerir ve limit bitmeden seni uyarır."
+  },
+  "popupTitle": {
+    "message": "Token Tahmini"
+  },
+  "sessionLimit": {
+    "message": "5 saatlik oturum"
+  },
+  "weeklyLimit": {
+    "message": "Haftalık limit"
+  },
+  "resetsAt": {
+    "message": "$TIME$ itibarıyla yenilenir",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "noData": {
+    "message": "Henüz kullanım verisi yok. Oturum açıkken claude.ai'yi aç."
+  },
+  "settings": {
+    "message": "Ayarlar"
+  },
+  "language": {
+    "message": "Dil"
+  },
+  "languageAuto": {
+    "message": "Tarayıcı varsayılanı"
+  },
+  "thresholds": {
+    "message": "Uyarı eşikleri"
+  },
+  "panelEstimate": {
+    "message": "Tahmini kullanım: oturumunun %$LOW$–%$HIGH$ kadarı",
+    "placeholders": {
+      "low": {
+        "content": "$1"
+      },
+      "high": {
+        "content": "$2"
+      }
+    }
+  },
+  "confidenceLow": {
+    "message": "güven: düşük"
+  },
+  "confidenceMedium": {
+    "message": "güven: orta"
+  },
+  "confidenceHigh": {
+    "message": "güven: yüksek"
+  },
+  "panelLoading": {
+    "message": "Tahmin ediliyor…"
+  },
+  "pct": {
+    "message": "%$1"
+  },
+  "resetsIn": {
+    "message": "$1 sonra yenilenir ($2)"
+  },
+  "durDH": {
+    "message": "$1 gün $2 sa"
+  },
+  "durHM": {
+    "message": "$1 sa $2 dk"
+  },
+  "durM": {
+    "message": "$1 dk"
+  },
+  "bottleneck": {
+    "message": "Önce bu limit dolacak"
+  },
+  "fetchError": {
+    "message": "Kullanım okunamadı. claude.ai'de oturumunun açık olduğundan emin ol."
+  },
+  "otherLimits": {
+    "message": "Diğer limitler"
+  },
+  "updatedJustNow": {
+    "message": "Az önce güncellendi"
+  },
+  "updatedAgo": {
+    "message": "$1 önce güncellendi"
+  },
+  "staleWarning": {
+    "message": "son yenileme başarısız"
+  },
+  "refresh": {
+    "message": "Yenile"
+  },
+  "dbgPrompt": {
+    "message": "Prompt"
+  },
+  "dbgHistory": {
+    "message": "Sohbet"
+  },
+  "dbgMessages": {
+    "message": "$1 mesaj"
+  },
+  "dbgNotFound": {
+    "message": "algılanamadı"
+  },
+  "dbgAttachments": {
+    "message": "Ekler"
+  },
+  "dbgTotal": {
+    "message": "Girdi toplamı"
+  },
+  "dbgTokens": {
+    "message": "token"
+  },
+  "dbgNoInput": {
+    "message": "Mesaj kutusu bulunamadı"
+  },
+  "dbgAnalyzing": {
+    "message": "inceleniyor…"
+  },
+  "dbgPasted": {
+    "message": "yapıştırılan metin"
+  },
+  "dbgPages": {
+    "message": "$1 sayfa"
+  },
+  "dbgConvAttachments": {
+    "message": "Bu sohbette gönderilen ekler ($1)"
+  },
+  "dbgContext": {
+    "message": "Bağlam penceresi ($1, $2)"
+  },
+  "dbgModelUnknown": {
+    "message": "model algılanamadı"
+  },
+  "ctxOver": {
+    "message": "Bu, Claude'un bağlam penceresine sığmaz. Sadece gereken kısımları gönder."
+  },
+  "ctxNear": {
+    "message": "Bu, Claude'un bağlam penceresine sığmayabilir. Bölmeyi ya da yeni sohbet açmayı düşün."
+  },
+  "pdfTextOnly": {
+    "message": "100 sayfadan uzun PDF: Claude sadece metni okur, görsel ve grafiklere bakmaz."
+  },
+  "pdfTooLarge": {
+    "message": "1000 sayfadan uzun PDF: claude.ai bunu kabul etmez."
+  },
+  "lessThan": {
+    "message": "$1 altı"
+  },
+  "warnNoFit": {
+    "message": "Bu mesaj büyük ihtimalle $1 limitine sığmaz (kalan $2)."
+  },
+  "warnMaybeFit": {
+    "message": "Bu mesaj $1 limitine sığmayabilir (kalan $2)."
+  },
+  "ctxWorkspace": {
+    "message": "Ücretli planlarda claude.ai çok büyük bir dosyayı bağlama koymak yerine çalışma alanına taşıyabilir; Claude onu bir kerede değil, kodla okur."
+  },
+  "warnCacheCold": {
+    "message": "Bu sohbete $1 dakikadır dokunmadın, önbellek süresi doldu: tüm geçmiş (~$2 token) yeniden sayılacak. Yeni bir sohbet çok daha ucuz olabilir."
+  },
+  "warnCacheUnknown": {
+    "message": "Bu sohbet bir saatten uzun süre kullanılmadıysa geçmişi (~$1 token) yeniden sayılır."
+  },
+  "tipNewChat": {
+    "message": "Bu sohbet çok uzadı (~$1 token). Kısa bir özetle yeni sohbet açmak cevapları hem daha isabetli hem daha ucuz yapar."
+  },
+  "warnPeak": {
+    "message": "Yoğun saatlerdesin (hafta içi $1–$2): planında 5 saatlik limit şu an daha hızlı doluyor."
+  },
+  "recDowngrade": {
+    "message": "$1 büyük ihtimalle yeterli ve limitinden yaklaşık %$2 daha az harcar."
+  },
+  "recUpgrade": {
+    "message": "Bu zorlu bir iş gibi görünüyor; $1 belirgin şekilde daha iyi cevap verebilir."
+  },
+  "rec_short_qa": {
+    "message": "Kısa bilgi sorularında büyük model nadiren fark yaratır."
+  },
+  "rec_translate": {
+    "message": "Hafif modeller çeviride iyi iş çıkarır."
+  },
+  "rec_rewrite": {
+    "message": "Verilen bir metni düzenlemek hafif bir iş."
+  },
+  "rec_summarize": {
+    "message": "Özetleme hafif modellerin güçlü olduğu bir iş."
+  },
+  "rec_explain": {
+    "message": "Açıklamaları orta boy modeller iyi yapar."
+  },
+  "rec_writing": {
+    "message": "Orta boy modeller iyi yazar."
+  },
+  "rec_data_analysis": {
+    "message": "Standart analiz orta boy bir modele uygun."
+  },
+  "rec_file_create": {
+    "message": "Doküman ve sunumlar orta boy modele uygun."
+  },
+  "rec_code_write": {
+    "message": "Günlük kodlama orta boy modele uygun."
+  },
+  "rec_code_fix": {
+    "message": "Çoğu hata ayıklama orta boy modele uygun."
+  },
+  "rec_research": {
+    "message": "Sıradan araştırma orta boy modele uygun."
+  },
+  "rec_math": {
+    "message": "Sıradan problemler orta boy modele uygun."
+  },
+  "rec_complex": {
+    "message": "İş karmaşık görünüyor."
+  },
+  "rec_hardest": {
+    "message": "Bu, en zor iş türlerinden biri."
+  },
+  "effLower": {
+    "message": "Bunun için düşük effort genellikle yeter; yüksek effort çoğunlukla gizli düşünme tokenı ekler."
+  },
+  "effRaise": {
+    "message": "Bu kadar zor bir problemde daha yüksek effort'a değebilir."
+  },
+  "type_short_qa": {
+    "message": "Kısa soru"
+  },
+  "type_explain": {
+    "message": "Açıklama"
+  },
+  "type_math": {
+    "message": "Problem çözme"
+  },
+  "type_code_write": {
+    "message": "Kod yazma"
+  },
+  "type_code_fix": {
+    "message": "Hata ayıklama / kod"
+  },
+  "type_translate": {
+    "message": "Çeviri"
+  },
+  "type_writing": {
+    "message": "Yazı yazma"
+  },
+  "type_rewrite": {
+    "message": "Metin düzenleme"
+  },
+  "type_summarize": {
+    "message": "Özet"
+  },
+  "type_data_analysis": {
+    "message": "Veri analizi"
+  },
+  "type_research": {
+    "message": "Araştırma"
+  },
+  "type_file_create": {
+    "message": "Dosya oluşturma"
+  },
+  "rowWeekly": {
+    "message": "Haftalık limit"
+  },
+  "rowType": {
+    "message": "İstek türü"
+  },
+  "rowModel": {
+    "message": "Model"
+  },
+  "modelName": {
+    "message": "$1"
+  },
+  "rowInput": {
+    "message": "Girdi (yeni)"
+  },
+  "rowOutput": {
+    "message": "Beklenen cevap"
+  },
+  "rowCache": {
+    "message": "Önbellek"
+  },
+  "rowContext": {
+    "message": "Bağlam penceresi"
+  },
+  "cache_none": {
+    "message": "yeni sohbet"
+  },
+  "cache_warm": {
+    "message": "aktif (geçmiş ücretsiz)"
+  },
+  "cache_cold": {
+    "message": "süresi dolmuş (geçmiş sayılır)"
+  },
+  "cache_unknown": {
+    "message": "bilinmiyor"
+  },
+  "effort_low": {
+    "message": "düşük effort"
+  },
+  "effort_medium": {
+    "message": "orta effort"
+  },
+  "effort_high": {
+    "message": "yüksek effort"
+  },
+  "effort_max": {
+    "message": "maksimum effort"
+  },
+  "effort_off": {
+    "message": "düşünme kapalı"
+  },
+  "effort_auto": {
+    "message": "otomatik"
+  },
+  "footCalibrated": {
+    "message": "$1 mesajından öğrendi · gerçek değerin %$2'si aralıkta kaldı."
+  },
+  "footLearning": {
+    "message": "Hâlâ öğreniyor: birkaç mesajdan sonra tahminler netleşir."
+  },
+  "pillIdle": {
+    "message": "Token Tahmini"
+  },
+  "pillUsed": {
+    "message": "5 sa: $1 dolu"
+  },
+  "pillSub": {
+    "message": "5 saatlik limitin"
+  },
+  "cardTitle": {
+    "message": "Bu mesaj harcayacak"
+  },
+  "cardSub": {
+    "message": "5 saatlik limitinin · olası aralık $1"
+  },
+  "cardIdleSub": {
+    "message": "5 saatlik limitin şu ana kadarki kullanımı. Tahmin için yazmaya başla."
+  },
+  "close": {
+    "message": "Kapat"
+  },
+  "notifResets": {
+    "message": "$1'de yenilenir."
+  },
+  "notifThresholdTitle": {
+    "message": "$1 %$2 doldu"
+  },
+  "notifThresholdBody": {
+    "message": "Büyük işleri göndermeden önce tahmine bakarak planla."
+  },
+  "notifThresholdBodyHigh": {
+    "message": "Neredeyse bitti: önce önemli işini tamamla."
+  },
+  "notifResetTitle": {
+    "message": "$1 yenilendi"
+  },
+  "notifResetBody": {
+    "message": "Kaldığın yerden devam edebilirsin."
+  },
+  "notifTestBody": {
+    "message": "Bildirimler çalışıyor."
+  },
+  "freePlanWait": {
+    "message": "Ücretsiz planda kullanım, claude.ai'de ilk mesajını gönderdikten sonra görünür."
+  },
+  "capTitle": {
+    "message": "Kalan limitinle"
+  },
+  "capSub": {
+    "message": "Yeni bir sohbette $1 ile kabaca bunlardan biri (temkinli tahmin)."
+  },
+  "cap_short_qa": {
+    "message": "kısa soru"
+  },
+  "cap_explain": {
+    "message": "açıklama"
+  },
+  "cap_code_fix": {
+    "message": "kod düzeltme"
+  },
+  "cap_writing": {
+    "message": "yazı"
+  },
+  "cap_summarize": {
+    "message": "belge özeti"
+  },
+  "cap_research": {
+    "message": "araştırma"
+  },
+  "calTitle": {
+    "message": "Kişisel kalibrasyon"
+  },
+  "calNone": {
+    "message": "Henüz ölçüm yok. Gönderdiğin her mesaj, eklentiye planının gerçekte nasıl davrandığını öğretir."
+  },
+  "calFew": {
+    "message": "Şimdiye kadar $1 ölçüm; birkaç tane daha olunca tahminler netleşir."
+  },
+  "calSome": {
+    "message": "$1 ölçüm · gerçek değerlerin %$2'si tahmin aralığında kaldı."
+  },
+  "setNotif": {
+    "message": "Bildirimler"
+  },
+  "setPanel": {
+    "message": "claude.ai'de tahmini göster"
+  },
+  "setMemory": {
+    "message": "Claude hafızası (bağlam boyutu)"
+  },
+  "memAuto": {
+    "message": "Açık varsay"
+  },
+  "memOn": {
+    "message": "Açık"
+  },
+  "memOff": {
+    "message": "Kapalı"
+  },
+  "btnTestNotif": {
+    "message": "Bildirimi dene"
+  },
+  "btnExport": {
+    "message": "Verimi dışa aktar"
+  },
+  "btnResetCal": {
+    "message": "Kalibrasyonu sıfırla"
+  },
+  "btnResetConfirm": {
+    "message": "Sıfırlamak için tekrar tıkla"
+  },
+  "privacyNote": {
+    "message": "Her şey tarayıcında hesaplanır. Mesaj metinlerin cihazından hiç çıkmaz."
+  },
+  "moreDetails": {
+    "message": "Ayrıntılar ve ayarlar"
+  },
+  "detailsTitle": {
+    "message": "Token Tahmini — ayrıntılar"
+  }
+}

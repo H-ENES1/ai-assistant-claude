@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <h1 id="title"></h1>
+    <button id="refresh" type="button" class="icon">↻</button>
+  </header>
+
+  <main>
+    <section id="limits" aria-live="polite"></section>
+
+    <section id="capacity" hidden>
+      <h2 id="capTitle"></h2>
+      <p id="capSub" class="muted small"></p>
+      <ul id="capList"></ul>
+    </section>
+
+    <section id="calib">
+      <h2 id="calTitle"></h2>
+      <p id="calText" class="small"></p>
+    </section>
+
+    <details id="settings">
+      <summary id="setTitle"></summary>
+      <label class="field"><span id="lblLang"></span>
+        <select id="lang"><option value="auto" id="optAuto"></option><option value="tr">Türkçe</option><option value="en">English</option></select>
+      </label>
+      <div class="field"><span id="lblTh"></span>
+        <div class="ths"><input id="th0" type="number" min="1" max="100"><input id="th1" type="number" min="1" max="100"><input id="th2" type="number" min="1" max="100"></div>
+      </div>
+      <label class="check"><input id="notif" type="checkbox"><span id="lblNotif"></span></label>
+      <label class="check"><input id="panel" type="checkbox"><span id="lblPanel"></span></label>
+      <label class="field"><span id="lblMem"></span>
+        <select id="memory"><option value="auto" id="memAuto"></option><option value="on" id="memOn"></option><option value="off" id="memOff"></option></select>
+      </label>
+      <div class="buttons">
+        <button id="testNotif" type="button"></button>
+        <button id="export" type="button"></button>
+        <button id="resetCal" type="button" class="danger"></button>
+      </div>
+      <p id="privacy" class="muted small"></p>
+    </details>
+  </main>
+  <footer id="meta" class="muted small"></footer>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
