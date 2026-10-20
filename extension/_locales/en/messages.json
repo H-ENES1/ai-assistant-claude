@@ -1,0 +1,450 @@
+{
+  "extName": {
+    "message": "Token Forecast for Claude"
+  },
+  "extShortName": {
+    "message": "Token Forecast"
+  },
+  "extDescription": {
+    "message": "Estimates how much of your Claude usage limit a message will use before you send it, suggests a cheaper model when one fits, and warns you before you run out."
+  },
+  "popupTitle": {
+    "message": "Token Forecast"
+  },
+  "sessionLimit": {
+    "message": "5-hour session"
+  },
+  "weeklyLimit": {
+    "message": "Weekly limit"
+  },
+  "resetsAt": {
+    "message": "Resets at $TIME$",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "noData": {
+    "message": "No usage data yet. Open claude.ai while signed in."
+  },
+  "settings": {
+    "message": "Settings"
+  },
+  "language": {
+    "message": "Language"
+  },
+  "languageAuto": {
+    "message": "Browser default"
+  },
+  "thresholds": {
+    "message": "Warning thresholds"
+  },
+  "panelEstimate": {
+    "message": "Estimated use: $LOW$–$HIGH$% of your session",
+    "placeholders": {
+      "low": {
+        "content": "$1"
+      },
+      "high": {
+        "content": "$2"
+      }
+    }
+  },
+  "confidenceLow": {
+    "message": "confidence: low"
+  },
+  "confidenceMedium": {
+    "message": "confidence: medium"
+  },
+  "confidenceHigh": {
+    "message": "confidence: high"
+  },
+  "panelLoading": {
+    "message": "Estimating…"
+  },
+  "pct": {
+    "message": "$1%"
+  },
+  "resetsIn": {
+    "message": "Resets in $1 ($2)"
+  },
+  "durDH": {
+    "message": "$1 d $2 h"
+  },
+  "durHM": {
+    "message": "$1 h $2 min"
+  },
+  "durM": {
+    "message": "$1 min"
+  },
+  "bottleneck": {
+    "message": "This limit will run out first"
+  },
+  "fetchError": {
+    "message": "Couldn't read usage. Make sure you're signed in to claude.ai."
+  },
+  "otherLimits": {
+    "message": "Other limits"
+  },
+  "updatedJustNow": {
+    "message": "Updated just now"
+  },
+  "updatedAgo": {
+    "message": "Updated $1 ago"
+  },
+  "staleWarning": {
+    "message": "latest refresh failed"
+  },
+  "refresh": {
+    "message": "Refresh"
+  },
+  "dbgPrompt": {
+    "message": "Prompt"
+  },
+  "dbgHistory": {
+    "message": "Conversation"
+  },
+  "dbgMessages": {
+    "message": "$1 messages"
+  },
+  "dbgNotFound": {
+    "message": "not detected"
+  },
+  "dbgAttachments": {
+    "message": "Attachments"
+  },
+  "dbgTotal": {
+    "message": "Input total"
+  },
+  "dbgTokens": {
+    "message": "tokens"
+  },
+  "dbgNoInput": {
+    "message": "Message box not found"
+  },
+  "dbgAnalyzing": {
+    "message": "analyzing…"
+  },
+  "dbgPasted": {
+    "message": "pasted text"
+  },
+  "dbgPages": {
+    "message": "$1 pages"
+  },
+  "dbgConvAttachments": {
+    "message": "Attachments sent in this chat ($1)"
+  },
+  "dbgContext": {
+    "message": "Context window ($1, $2)"
+  },
+  "dbgModelUnknown": {
+    "message": "model not detected"
+  },
+  "ctxOver": {
+    "message": "This won't fit in Claude's context window. Send only the parts you need."
+  },
+  "ctxNear": {
+    "message": "This may not fit in Claude's context window. Consider splitting it or starting a new chat."
+  },
+  "pdfTextOnly": {
+    "message": "PDF over 100 pages: Claude reads its text only, not images or charts."
+  },
+  "pdfTooLarge": {
+    "message": "PDF over 1000 pages: claude.ai won't accept it."
+  },
+  "lessThan": {
+    "message": "under $1"
+  },
+  "warnNoFit": {
+    "message": "This will likely not fit in your $1 ($2 left)."
+  },
+  "warnMaybeFit": {
+    "message": "This might not fit in your $1 ($2 left)."
+  },
+  "ctxWorkspace": {
+    "message": "On paid plans claude.ai may move a very large file into a workspace instead, where Claude reads it with code rather than all at once."
+  },
+  "warnCacheCold": {
+    "message": "You haven't used this chat for $1 min, so the cache has expired: the whole history (~$2 tokens) will count again. A new chat may be much cheaper."
+  },
+  "warnCacheUnknown": {
+    "message": "If this chat was idle for over an hour, its history (~$1 tokens) will count again."
+  },
+  "tipNewChat": {
+    "message": "This chat is long (~$1 tokens). Starting a new chat with a short summary keeps answers sharper and cheaper."
+  },
+  "warnPeak": {
+    "message": "Peak hours (weekdays $1–$2 your time): on your plan the 5-hour limit fills faster now."
+  },
+  "recDowngrade": {
+    "message": "$1 would likely be enough and use about $2% less of your limit."
+  },
+  "recUpgrade": {
+    "message": "This looks demanding; $1 may give a noticeably better answer."
+  },
+  "rec_short_qa": {
+    "message": "Short factual questions rarely need a large model."
+  },
+  "rec_translate": {
+    "message": "Light models translate well."
+  },
+  "rec_rewrite": {
+    "message": "Editing a given text is a light task."
+  },
+  "rec_summarize": {
+    "message": "Summaries are a strength of lighter models."
+  },
+  "rec_explain": {
+    "message": "Explanations are handled well by mid-size models."
+  },
+  "rec_writing": {
+    "message": "Mid-size models write well."
+  },
+  "rec_data_analysis": {
+    "message": "Standard analysis fits a mid-size model."
+  },
+  "rec_file_create": {
+    "message": "Documents and decks fit a mid-size model."
+  },
+  "rec_code_write": {
+    "message": "Everyday coding fits a mid-size model."
+  },
+  "rec_code_fix": {
+    "message": "Most debugging fits a mid-size model."
+  },
+  "rec_research": {
+    "message": "Routine research fits a mid-size model."
+  },
+  "rec_math": {
+    "message": "Routine problems fit a mid-size model."
+  },
+  "rec_complex": {
+    "message": "The task looks complex."
+  },
+  "rec_hardest": {
+    "message": "This is among the hardest kinds of task."
+  },
+  "effLower": {
+    "message": "Low effort is usually enough for this; high effort mostly adds hidden thinking tokens."
+  },
+  "effRaise": {
+    "message": "For a hard problem like this, higher effort may be worth it."
+  },
+  "type_short_qa": {
+    "message": "Short question"
+  },
+  "type_explain": {
+    "message": "Explanation"
+  },
+  "type_math": {
+    "message": "Problem solving"
+  },
+  "type_code_write": {
+    "message": "Writing code"
+  },
+  "type_code_fix": {
+    "message": "Debugging / code"
+  },
+  "type_translate": {
+    "message": "Translation"
+  },
+  "type_writing": {
+    "message": "Writing"
+  },
+  "type_rewrite": {
+    "message": "Editing text"
+  },
+  "type_summarize": {
+    "message": "Summary"
+  },
+  "type_data_analysis": {
+    "message": "Data analysis"
+  },
+  "type_research": {
+    "message": "Research"
+  },
+  "type_file_create": {
+    "message": "Creating a file"
+  },
+  "rowWeekly": {
+    "message": "Weekly limit"
+  },
+  "rowType": {
+    "message": "Request type"
+  },
+  "rowModel": {
+    "message": "Model"
+  },
+  "modelName": {
+    "message": "$1"
+  },
+  "rowInput": {
+    "message": "Input (new)"
+  },
+  "rowOutput": {
+    "message": "Expected answer"
+  },
+  "rowCache": {
+    "message": "Cache"
+  },
+  "rowContext": {
+    "message": "Context window"
+  },
+  "cache_none": {
+    "message": "new chat"
+  },
+  "cache_warm": {
+    "message": "active (history is free)"
+  },
+  "cache_cold": {
+    "message": "expired (history counts)"
+  },
+  "cache_unknown": {
+    "message": "unknown"
+  },
+  "effort_low": {
+    "message": "low effort"
+  },
+  "effort_medium": {
+    "message": "medium effort"
+  },
+  "effort_high": {
+    "message": "high effort"
+  },
+  "effort_max": {
+    "message": "max effort"
+  },
+  "effort_off": {
+    "message": "thinking off"
+  },
+  "effort_auto": {
+    "message": "auto"
+  },
+  "footCalibrated": {
+    "message": "Learned from $1 of your messages · $2% landed inside the range."
+  },
+  "footLearning": {
+    "message": "Still learning: estimates get sharper after a few messages."
+  },
+  "pillIdle": {
+    "message": "Token Forecast"
+  },
+  "pillUsed": {
+    "message": "5h: $1 used"
+  },
+  "pillSub": {
+    "message": "of 5-hour limit"
+  },
+  "cardTitle": {
+    "message": "This message will use"
+  },
+  "cardSub": {
+    "message": "of your 5-hour limit · likely range $1"
+  },
+  "cardIdleSub": {
+    "message": "5-hour limit used so far. Start typing to see an estimate."
+  },
+  "close": {
+    "message": "Close"
+  },
+  "notifResets": {
+    "message": "Resets at $1."
+  },
+  "notifThresholdTitle": {
+    "message": "$1 at $2%"
+  },
+  "notifThresholdBody": {
+    "message": "Plan bigger tasks with the forecast before sending."
+  },
+  "notifThresholdBodyHigh": {
+    "message": "Almost out: finish what's important first."
+  },
+  "notifResetTitle": {
+    "message": "$1 has reset"
+  },
+  "notifResetBody": {
+    "message": "You can continue where you left off."
+  },
+  "notifTestBody": {
+    "message": "Notifications are working."
+  },
+  "freePlanWait": {
+    "message": "On the free plan, usage appears after you send your first message in claude.ai."
+  },
+  "capTitle": {
+    "message": "With what you have left"
+  },
+  "capSub": {
+    "message": "Roughly one of these, in a new chat with $1 (cautious estimate)."
+  },
+  "cap_short_qa": {
+    "message": "short questions"
+  },
+  "cap_explain": {
+    "message": "explanations"
+  },
+  "cap_code_fix": {
+    "message": "code fixes"
+  },
+  "cap_writing": {
+    "message": "pieces of writing"
+  },
+  "cap_summarize": {
+    "message": "document summaries"
+  },
+  "cap_research": {
+    "message": "research tasks"
+  },
+  "calTitle": {
+    "message": "Personal calibration"
+  },
+  "calNone": {
+    "message": "No measurements yet. Each message you send teaches the extension how your plan really behaves."
+  },
+  "calFew": {
+    "message": "$1 measurements so far; a few more and estimates sharpen."
+  },
+  "calSome": {
+    "message": "$1 measurements · $2% of actual values fell inside the forecast range."
+  },
+  "setNotif": {
+    "message": "Notifications"
+  },
+  "setPanel": {
+    "message": "Show estimate on claude.ai"
+  },
+  "setMemory": {
+    "message": "Claude memory (context size)"
+  },
+  "memAuto": {
+    "message": "Assume on"
+  },
+  "memOn": {
+    "message": "On"
+  },
+  "memOff": {
+    "message": "Off"
+  },
+  "btnTestNotif": {
+    "message": "Test notification"
+  },
+  "btnExport": {
+    "message": "Export my data"
+  },
+  "btnResetCal": {
+    "message": "Reset calibration"
+  },
+  "btnResetConfirm": {
+    "message": "Click again to reset"
+  },
+  "privacyNote": {
+    "message": "Everything is computed in your browser. Message text never leaves your device."
+  },
+  "moreDetails": {
+    "message": "Details & settings"
+  },
+  "detailsTitle": {
+    "message": "Token Forecast — details"
+  }
+}
