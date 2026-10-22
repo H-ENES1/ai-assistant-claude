@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2026 Hayrettin Enes Karalı
 // Token tahmini: metni Türkçe / İngilizce / kod parçalarına ayırır ve her biri için
 // ayrı katsayılarla token sayısını tahmin eder.
 //
@@ -17,9 +19,20 @@ const W = {
 };
 
 export const CLAUDE_FACTOR = 1.4;
-const SPREAD = { tr: 0.22, en: 0.12, code: 0.18 };
+const SPREAD = { tr: 0.22, en: 0.12, code: 0.18, other: 0.22 };
 
-const TR_CHARS = /[çğıöşüÇĞİÖŞÜ]/;
+// Diğer diller (0.11.3). o200k tokenizer'ı ile ölçüldü (her dilde 6 örnek istem, ~700 harf):
+//   Latin harfli diller (de fr es it pt), İngilizce modeline göre 1,12–1,34 kat (ortalama ≈ 1,22)
+//   Kiril (ru)                                                          ≈ 1,54 kat
+//   Japonca, Çince (CJK karakterleri)                                   ≈ 0,73 token / karakter
+// Örnek sayısı küçük; kalibrasyon (k) kalan farkı emer ve aralık geniş tutulur.
+const OTHER_LATIN = 1.22, CYRILLIC = 1.54, CJK_PER_CHAR = 0.73;
+const CJK_RE = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/gu;
+const CYR_RE = /\p{Script=Cyrillic}/gu;
+
+const TR_CHARS = /[ğışĞİŞ]/;          // yalnızca Türkçeye özgü harfler (ç ö ü Almanca/Fransızca/Portekizcede de var)
+const TR_WEAK = /[çöüÇÖÜ]/;
+const TR_AMBIG = new Set(["de", "da", "ne", "mi", "o", "ya", "ki", "bir", "var", "ben", "bana", "sana", "ise", "ile", "gibi", "en", "her", "ama", "ve"]);
 const TR_WORDS = new Set(
   "ve bir bu şu için ile de da mi mı mu mü ne ama çok daha gibi olarak var yok nasıl neden niye ben sen o biz siz onlar bana sana beni seni benim senin lütfen yani ki eğer hem ya veya ise kadar sonra önce şimdi bunu şunu bunun şunun olan olur oldu değil yap yaz anlat açıkla bana bir şey her hiç en".split(" ")
 );
@@ -46,14 +59,50 @@ function applyWeights(f, w) {
 
 // Düz metnin Türkçe payı (0..1). Hiç ipucu yoksa `fallbackTr` kullanılır.
 export function turkishShare(text, fallbackTr = 0) {
-  let tr = 0, en = 0;
+  let tr = 0, trAmb = 0, en = 0, weak = 0;
   for (const m of text.matchAll(/\p{L}+/gu)) {
     const w = m[0];
-    if (TR_CHARS.test(w) || TR_WORDS.has(w.toLocaleLowerCase("tr"))) tr++;
+    const lw = w.toLocaleLowerCase("tr");
+    if (TR_CHARS.test(w)) tr++;
+    else if (TR_WORDS.has(lw)) { if (TR_AMBIG.has(lw)) trAmb++; else tr++; }
     else if (EN_WORDS.has(w.toLowerCase())) en++;
+    else if (TR_WEAK.test(w)) weak++;
   }
+  // "de", "da", "ne" gibi başka dillerde de olan sözcükler tek başına Türkçe sayılmaz;
+  // ç/ö/ü'lü sözcükler de yalnızca başka Türkçe kanıt varsa Türkçe sayılır
+  if (tr > 0) tr += weak + trAmb;
   if (tr + en === 0) return fallbackTr;
   return tr / (tr + en);
+}
+
+// Latin harfli diğer dillerin (de fr es it pt) sık, İngilizceyle çakışmayan işlev sözcükleri.
+const OTHER_WORDS = new Set((
+  "der die das und ist nicht ich du mit ein eine für auf von zu dem den des auch wie bitte wir sie " +
+  "le la les des est une un et pour dans avec je tu vous pas que qui sur ce cette sont nous " +
+  "el los las y es una para con por del se mi como pero muy " +
+  "il lo gli che per è non sono della nel più anche " +
+  "o os as uma não do da dos em um são mais também"
+).split(" "));
+// Metin diğer bir Latin dilinde mi? (İngilizce işlev sözcüklerinden belirgin biçimde daha çok eşleşme)
+function isOtherLatin(text) {
+  let n = 0, en = 0, ot = 0;
+  for (const m of text.matchAll(/\p{L}+/gu)) { n++; const w = m[0].toLowerCase(); if (EN_WORDS.has(w)) en++; else if (OTHER_WORDS.has(w)) ot++; }
+  return n >= 4 && ot >= 2 && ot / n >= 0.1 && ot > en * 1.5;
+}
+
+// Mesajın ağırlıklı dili: "tr", "en" ya da çözümlenemeyen "other" (de fr es it pt), "cyrillic", "cjk".
+// Metin çok kısaysa "en" döner (ayırt etmek için yeterli kanıt yok). Mesaj analizi (iş türü, model önerisi)
+// yalnızca Türkçe ve İngilizce için kurulu; diğer dillerde yalnızca token ve limit tahmini gösterilir.
+export function textLanguage(text) {
+  const t = String(text || "");
+  const letters = (t.match(/\p{L}/gu) || []).length;
+  if (letters < 8) return "en";
+  const cjk = (t.match(CJK_RE) || []).length;
+  if (cjk / letters > 0.3) return "cjk";
+  const cyr = (t.match(CYR_RE) || []).length;
+  if (cyr / letters > 0.5) return "cyrillic";
+  if (turkishShare(t, 0) > 0.35) return "tr";
+  return isOtherLatin(t) ? "other" : "en";
 }
 
 function looksLikeCode(line) {
@@ -106,12 +155,26 @@ export function estimateTokens(text, { fallbackTr = 0 } = {}) {
       const c = applyWeights(f, W.code) * CLAUDE_FACTOR;
       lang.code += c; low += c * (1 - SPREAD.code); high += c * (1 + SPREAD.code);
     } else {
-      const share = turkishShare(p.text, docTr);
-      const cTr = applyWeights(f, W.tr) * CLAUDE_FACTOR * share;
-      const cEn = applyWeights(f, W.en) * CLAUDE_FACTOR * (1 - share);
-      lang.tr += cTr; lang.en += cEn;
-      low += cTr * (1 - SPREAD.tr) + cEn * (1 - SPREAD.en);
-      high += cTr * (1 + SPREAD.tr) + cEn * (1 + SPREAD.en);
+      // CJK karakterleri ayrı sayılır (boşluksuz yazıldıkları için "sözcük" sayımına uymaz)
+      const cjk = (p.text.match(CJK_RE) || []).length;
+      const body = cjk ? p.text.replace(CJK_RE, " ") : p.text;
+      const fb = cjk ? countFeatures(body) : f;
+      const share = turkishShare(body, docTr);
+      const letters = fb.letter || 0, cyr = (body.match(CYR_RE) || []).length;
+      const trWords = share > 0.35;
+      // Türkçe ya da İngilizce değilse: Kiril → 1,54; diğer Latin harfli diller → 1,22 (İngilizce modeline göre)
+      let mult = 1;
+      if (!trWords && letters > 0) {
+        if (cyr / letters > 0.5) mult = CYRILLIC;
+        else if (isOtherLatin(body)) mult = OTHER_LATIN;
+      }
+      const cTr = applyWeights(fb, W.tr) * CLAUDE_FACTOR * share;
+      const cEn = applyWeights(fb, W.en) * CLAUDE_FACTOR * (1 - share) * mult;
+      const cCjk = cjk * CJK_PER_CHAR * CLAUDE_FACTOR;
+      lang.tr += cTr; lang.en += cEn + cCjk;
+      const spEn = mult !== 1 ? SPREAD.other : SPREAD.en;
+      low += cTr * (1 - SPREAD.tr) + cEn * (1 - spEn) + cCjk * (1 - SPREAD.other);
+      high += cTr * (1 + SPREAD.tr) + cEn * (1 + spEn) + cCjk * (1 + SPREAD.other);
     }
   }
   const mid = Math.round(lang.tr + lang.en + lang.code);

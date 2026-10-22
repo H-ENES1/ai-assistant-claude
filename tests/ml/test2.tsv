@@ -1,0 +1,120 @@
+short_qa	Nobel fizik ödülünü 2023'te kim aldı?
+short_qa	hocam avogadro sayısı kaçtı
+short_qa	bi saniye, türkiye'de asgari ücret kaç 2026 da
+short_qa	marmara denizi en derin noktası kaç metre
+short_qa	paris saat farkı kaç türkiye ile
+short_qa	ışığın güneşten dünyaya gelmesi kaç dakika
+short_qa	what's the capital of canada again
+short_qa	how many grams in a cup of flour
+short_qa	who directed interstellar?
+short_qa	is 1 a prime number
+explain	Elektromanyetik dalgalar boşlukta nasıl yayılıyor, ortama ihtiyaç yok mu?
+explain	hocam spin tam olarak ne, gerçekten dönme mi
+explain	bir uygulama sunucuda nasıl ölçekleniyor, yük dengeleyici ne işe yarar
+explain	kredi notu nasıl hesaplanıyor merak ettim
+explain	beynimiz uyurken neden rüya görüyor
+explain	vergi dilimi sistemi nasıl işliyor, maaşım artınca neden net az artıyor
+explain	can you walk me through how blockchain consensus works
+explain	why does time slow down near a black hole, intuitively
+explain	what's the point of index funds vs picking stocks
+explain	how does the immune system know what to attack
+math	∑ 1/n² toplamının π²/6 olduğunu göster
+math	bir dairenin çevresi 31.4 cm ise yarıçapı kaç
+math	hocam şu soruyu çözer misin: 5 kişiden 3 kişilik komite kaç şekilde seçilir
+math	sin(2x) = cos(x) denklemini 0-2π aralığında çöz
+math	ideal gaz için PV=nRT'den 2 mol gazın 300K ve 1 atm'de hacmini hesapla
+math	borcum 120 bin, yıllık %40 faiz, 2 yılda ne kadar olur bileşik
+math	solve x^3 - 6x^2 + 11x - 6 = 0
+math	what's the gradient of f(x,y) = x^2y + y^3
+math	if 3 coins are flipped, probability of exactly two heads?
+math	derive the kinetic energy formula from work
+code_write	Python ile klasördeki tüm PDF'leri birleştiren bir program yazar mısın
+code_write	sitem için iletişim formu kodla, js ile doğrulama olsun
+code_write	telegram botu yaz: her sabah hava durumunu göndersin
+code_write	excel'den veri okuyup veritabanına kaydeden script yaz
+code_write	arduino ile led şerit kontrol kodu, renkler yavaş yavaş değişsin
+code_write	c# ile basit bir hesap makinesi formu
+code_write	write a python class for a linked list with insert and reverse
+code_write	build me a minimal express server with jwt auth
+code_write	i need a shell script to batch resize images
+code_write	make a react component for a star rating input
+code_fix	ModuleNotFoundError: No module named 'numpy' ama yükledim, ne yapmalıyım
+code_fix	javascript'te setTimeout içinde this undefined oluyor neden
+code_fix	matlab kodum 'Index exceeds matrix dimensions' hatası veriyor
+code_fix	```cpp\nint main(){ int a[5]; for(int i=0;i<=5;i++) a[i]=i; }\n``` bu neden bazen çöküyor
+code_fix	vs code'da python yorumlayıcısı seçilmiyor
+code_fix	sitemdeki resimler yüklenmiyor 404 veriyor
+code_fix	my kubernetes pod is stuck in CrashLoopBackOff
+code_fix	why does this async function return a promise instead of the value
+code_fix	the button click handler fires twice, how do i fix it
+code_fix	my laravel app shows 419 page expired on form submit
+translate	bunu çince yazar mısın: hoş geldiniz
+translate	şu tabelayı türkçeye çevir: Keep out, private property
+translate	bu kelimenin ingilizce karşılığı nedir: gönül
+translate	yurtdışındaki arkadaşıma atacağım, ingilizceye çevir: seni çok özledim, ne zaman geliyorsun
+translate	portekizce bu cümleyi çevir: obrigado pela ajuda
+translate	makalemin özet kısmını ingilizceye çevirir misin akademik olsun
+translate	can you translate my dad's message from turkish: oğlum akşam yemeğe gel
+translate	what does 'schadenfreude' translate to
+translate	translate 'where is the train station' into italian
+translate	put this into japanese please: thank you for the gift
+writing	sevgilime özür mesajı yaz, kavga ettik
+writing	tübitak projesi için kısa bir proje özeti metni yaz
+writing	yeni açılan dükkanımız için google yorum yanıtı şablonu yaz
+writing	bir bilim kurgu kısa öyküsü: zaman yolcusu bir kedi
+writing	arkadaşımın düğünü için hediyeyle birlikte not yaz
+writing	mezunlar buluşması için davet e-postası hazırla
+writing	write a short poem about coffee and rain
+writing	draft a message asking my manager for a raise
+writing	give me ideas for a team building activity
+writing	write a funny birthday card for my brother
+rewrite	şu e-postayı daha resmi hale getir: selam ahmet bey dosyayı atar mısınız
+rewrite	bu paragraftaki gereksiz kelimeleri at
+rewrite	yazdığım hikayenin dilini daha edebi yap
+rewrite	bu metni daha kısa ve vurucu hale getir
+rewrite	şu cümleyi düzelt: ben ve arkadaşım dün sinemaya gittik ve çok eğlendik ve döndük
+rewrite	ödevimdeki anlatım bozukluklarını düzelt
+rewrite	make my email sound more polite: send me the files now
+rewrite	can you simplify this paragraph for a general audience
+rewrite	rewrite this tweet to sound more professional
+rewrite	improve the wording of my cover letter opening
+summarize	Bu makalenin ana bulgularını maddeler halinde çıkar
+summarize	toplantıda ne kararlar alındı, notlardan özetle
+summarize	bu ders videosunun özetini çıkar
+summarize	şu yazıyı 50 kelimeye indir, özet olsun
+summarize	sözleşmenin önemli noktaları neler kısaca
+summarize	uzun bir haber yapıştırdım, özetle
+summarize	summarize this research paper abstract in plain words
+summarize	what are the main points of the transcript below
+summarize	give me a quick summary of this long email
+summarize	extract the key decisions from these meeting notes
+data_analysis	bu excel'de hangi çalışan en çok satış yapmış, analiz et
+data_analysis	deney verilerim ekte, ortalama ve standart sapmayı bulup grafik çiz
+data_analysis	anket verisinde yaş grubuna göre memnuniyet farkı var mı
+data_analysis	bu tablodan aylık büyüme oranlarını hesapla
+data_analysis	csv'deki tarihlere göre trend analizi yap
+data_analysis	gelir gider tablomda tasarruf edebileceğim yerleri bul
+data_analysis	analyze this spreadsheet of website visits by country
+data_analysis	compute the correlation between price and rating in this data
+data_analysis	what's the median and IQR of this column
+data_analysis	run a quick regression on these two variables
+research	şu an en iyi fiyat performans ekran kartı hangisi
+research	türkiye'de güneş enerjisi teşvikleri güncel durum
+research	2026'da hangi programlama dilleri popüler, araştır
+research	bu yıl nobel ödüllerini kimler aldı
+research	almanya'ya çalışma vizesi için güncel şartlar neler
+research	son çıkan iphone ile samsung'u karşılaştır
+research	what are the latest findings about dark matter
+research	compare the top note-taking apps in 2026
+research	what's happening with the housing market right now
+research	find recent articles about ai regulation in the eu
+file_create	bitirme projem için sunum hazırla 12 slayt
+file_create	ders çalışma takvimi için excel tablosu yap
+file_create	şirket için aylık rapor şablonu oluştur
+file_create	cv'mi word formatında hazırla
+file_create	kulübümüz için etkinlik afişi pdf olarak hazırla
+file_create	stajyerler için eğitim sunumu oluştur
+file_create	create a budget tracker in excel with categories
+file_create	make a slide deck for my thesis defense
+file_create	create a meeting minutes template document
+file_create	build a simple one-page website for my photography

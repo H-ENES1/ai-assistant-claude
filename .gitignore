@@ -1,4 +1,5 @@
 node_modules/
+dist/
 tests/shots/
-*.zip
-.DS_Store
+*.bak
+site/standalone.html

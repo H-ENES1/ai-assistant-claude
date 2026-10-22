@@ -1,0 +1,600 @@
+short_qa	Türkiye'nin en kalabalık ikinci şehri hangisi?
+short_qa	Su kaç derecede kaynar?
+short_qa	Einstein Nobel'i hangi yıl aldı?
+short_qa	Ay'a ilk ayak basan kim?
+short_qa	Bir yılda kaç hafta var?
+short_qa	Japonya'nın para birimi ne?
+short_qa	Python'da liste uzunluğu hangi fonksiyonla bulunur?
+short_qa	İstanbul ile Ankara arası kaç kilometre?
+short_qa	Everest'in yüksekliği ne kadar?
+short_qa	Hangi gezegen güneşe en yakın?
+short_qa	Kafein kaç saatte vücuttan atılır, kısaca?
+short_qa	1 inç kaç santim?
+short_qa	DNA'nın açılımı ne?
+short_qa	Sezar şifresini kim buldu?
+short_qa	Bugün haftanın kaçıncı günü, pazartesi birinci sayılırsa çarşamba kaçıncı?
+short_qa	What is the capital of Australia?
+short_qa	How many bones are in the human body?
+short_qa	Who painted the Mona Lisa?
+short_qa	When did World War II end?
+short_qa	What's the boiling point of ethanol?
+short_qa	Which planet has the most moons?
+short_qa	Is a tomato a fruit or a vegetable? One word.
+short_qa	How many ounces in a pound?
+short_qa	What year was Python first released?
+short_qa	Who is the author of 1984?
+short_qa	What does HTTP stand for?
+short_qa	Is Pluto still a planet?
+short_qa	How long is a marathon in kilometers?
+short_qa	What is the chemical symbol for gold?
+short_qa	Does coffee contain more caffeine than tea?
+explain	Kuantum dolanıklık nedir, basitçe anlatır mısın?
+explain	Enflasyon neden olur, ekonomiye etkisi ne?
+explain	Fotosentez nasıl çalışır?
+explain	TCP ile UDP arasındaki fark ne?
+explain	Kara delikler nasıl oluşur, olay ufku ne demek?
+explain	Blockchain mantığını sezgisel olarak anlatır mısın?
+explain	Faiz oranları artınca döviz neden düşer?
+explain	Makine öğrenmesinde aşırı öğrenme ne demek, örnekle açıkla
+explain	Aşılar bağışıklık sistemini nasıl eğitir?
+explain	Entropi kavramını anlamadım, günlük hayattan örnekle anlatır mısın?
+explain	Rönesans neden İtalya'da başladı?
+explain	Git'te rebase ile merge farkı nedir?
+explain	Bu iş teklifini kabul etmeli miyim yoksa yüksek lisansa mı devam etmeliyim, artıları ve eksileri neler?
+explain	Elektrik akımı kablolarda nasıl ilerliyor, elektronlar gerçekten o kadar hızlı mı?
+explain	Psikolojide bilişsel çelişki ne demek?
+explain	Explain how neural networks learn, in simple terms.
+explain	What is the difference between a virus and a bacterium?
+explain	Why is the sky blue?
+explain	How does a refrigerator keep things cold?
+explain	Can you explain what a derivative means intuitively?
+explain	What are the pros and cons of renting versus buying a house?
+explain	How do vaccines work?
+explain	Help me understand how compound interest works
+explain	What is the meaning of 'opportunity cost'?
+explain	Why do we have seasons on Earth?
+explain	Tell me about the causes of the French Revolution.
+explain	How does HTTPS keep my data safe?
+explain	Should I learn Rust or Go first as a backend developer? Help me decide.
+explain	What's the intuition behind Bayes' theorem?
+explain	Explain the concept of recursion with an example.
+math	x^2 - 5x + 6 = 0 denklemini çöz
+math	∫ x e^x dx integralini hesapla
+math	Bir zarı 3 kez atınca en az bir 6 gelme olasılığı nedir, hesapla
+math	Bu matrisin özdeğerlerini bul: [[2,1],[1,2]]
+math	Basit harmonik osilatörün enerji özdeğerlerini türet
+math	lim x→0 sin(x)/x limitini kanıtla
+math	Bir aracın hızı v(t)=3t^2, 0-4 saniye arası aldığı yolu hesapla
+math	√2'nin irrasyonel olduğunu ispatla
+math	f(x)=ln(x^2+1) fonksiyonunun türevini al
+math	Yüzde 18 KDV dahil 2360 TL ise KDV hariç fiyat kaç, hesaplar mısın?
+math	Diferansiyel denklemi çöz: y'' + 4y = 0
+math	Griffiths 2.5 sorusunu adım adım çöz: sonsuz kuyuda başlangıç dalga fonksiyonu
+math	Kredi faizi aylık %3 ise 12 ayda toplam ne öderim, 50 bin TL için hesapla
+math	Bir üçgenin kenarları 3,4,5 ise alanı kaç?
+math	Pisagor teoremini kanıtla
+math	Solve for x: 3x + 7 = 22
+math	Calculate the derivative of sin(x)cos(x)
+math	Prove that there are infinitely many prime numbers.
+math	Find the eigenvalues of the matrix [[4,1],[2,3]]
+math	What is the probability of drawing two aces in a row from a deck without replacement? Compute it.
+math	Derive the formula for the period of a simple pendulum.
+math	Integrate 1/(x^2+1) from 0 to 1
+math	A train travels 300 km in 2.5 hours. Compute its average speed in m/s.
+math	Solve the system: 2x + y = 5, x - y = 1
+math	Show that the sum of the first n odd numbers is n^2.
+math	Compute the limit of (1 + 1/n)^n as n goes to infinity
+math	Find the Fourier series of a square wave
+math	If I invest $1000 at 5% compounded monthly, how much after 10 years? Calculate.
+math	Prove that the square root of 3 is irrational
+math	Evaluate the double integral of xy over the unit square
+code_write	Python'da bir dosyadaki kelimeleri sayan script yaz
+code_write	JavaScript ile basit bir yapılacaklar listesi uygulaması yap
+code_write	Arduino ile sıcaklık sensöründen okuyup LCD'ye yazan kod yazar mısın?
+code_write	Bir REST API yaz: kullanıcı ekle, sil, listele (Node.js + Express)
+code_write	SQL sorgusu yaz: son 30 günde en çok satan 10 ürün
+code_write	E-posta adresini doğrulayan bir regex yaz
+code_write	React ile karanlık mod düğmesi olan bir bileşen kodla
+code_write	Telegram için hava durumu botu yaz, Python kullan
+code_write	Fibonacci sayılarını döndüren bir fonksiyon yaz, memoization olsun
+code_write	CSV dosyasını okuyup grafik çizen bir Python programı yaz
+code_write	Bir mikroservis mimarisi tasarla: sipariş, ödeme, stok servisleri
+code_write	Bash ile her gece yedek alan bir betik yaz
+code_write	Chrome eklentisi yap: sayfadaki tüm linkleri listelesin
+code_write	MATLAB'da bir sinyalin FFT'sini çizdiren kod yaz
+code_write	Fonksiyon bir liste alıp tekrar edenleri silerek döndürsün, sırayı korusun
+code_write	Write a Python function that checks if a string is a palindrome.
+code_write	Implement a binary search tree in Java with insert and delete.
+code_write	Write a SQL query that returns the top 5 customers by revenue.
+code_write	Build a simple chat app with React and WebSockets.
+code_write	Create a script that renames all files in a folder by date.
+code_write	Write a regex that matches US phone numbers.
+code_write	Implement quicksort in C++.
+code_write	Write a bash script that monitors disk usage and sends an alert.
+code_write	Design a scalable URL shortener system and write the core API.
+code_write	The function should return the k most frequent elements. Example 1: nums = [1,1,1,2,2,3], k = 2
+code_write	Write me a Discord bot in Node.js that responds to /ping
+code_write	Create a Flask app with a login page.
+code_write	Write a unit test for this function using pytest
+code_write	Generate a TypeScript class for a bank account with deposit and withdraw
+code_write	Write a Rust program that reads a file and counts lines
+code_fix	Bu kod neden çalışmıyor? for i in range(len(a)+1): print(a[i])
+code_fix	TypeError: undefined is not a function hatası alıyorum, nasıl düzeltirim?
+code_fix	React uygulamam sürekli yeniden render oluyor, sorun ne olabilir?
+code_fix	Bu fonksiyonu daha hızlı çalışacak şekilde optimize et
+code_fix	Traceback (most recent call last): File "main.py", line 12, KeyError: 'id'
+code_fix	Kodum derlenmiyor: error: expected ';' before '}' token
+code_fix	Bu kod ne yapıyor, satır satır açıklar mısın? ```def f(x): return x and f(x[1:])```
+code_fix	Docker container başlarken exit code 137 veriyor
+code_fix	Arduino kodu yüklenmiyor, avrdude: stk500_recv() hatası
+code_fix	Bu SQL sorgusu çok yavaş, nasıl hızlandırırım?
+code_fix	Bu kodu refactor et, daha okunabilir olsun
+code_fix	npm install yapınca ERESOLVE hatası çıkıyor
+code_fix	Python'da liste kopyalayınca orijinali de değişiyor, neden?
+code_fix	Git push yaparken rejected hatası veriyor
+code_fix	Segmentation fault alıyorum, C'de pointer kullanıyorum
+code_fix	Why does this code throw a NullPointerException?
+code_fix	Fix this bug: my loop never ends ```while (i < 10) { console.log(i) }```
+code_fix	My Python script crashes with 'IndexError: list index out of range'
+code_fix	Explain this code to me: ```const x = arr.reduce((a,b)=>a+b,0)```
+code_fix	Refactor this function to be more readable
+code_fix	The page doesn't work on Safari but works on Chrome, what's wrong?
+code_fix	Getting CORS error when calling my API from the frontend
+code_fix	My React useEffect runs twice, why?
+code_fix	Optimize this query, it takes 30 seconds
+code_fix	This regex doesn't match what I expect, can you debug it?
+code_fix	error: cannot find module 'express' — how do I fix this?
+code_fix	Memory leak in my Node.js server, how do I find it?
+code_fix	What's wrong with this CSS? The div isn't centered.
+code_fix	Unit tests fail only on CI, locally they pass
+code_fix	Why is my pandas merge producing duplicate rows?
+translate	Bu cümleyi İngilizceye çevir: Yarın toplantıya katılamayacağım.
+translate	"Thank you for your patience" Türkçesi ne?
+translate	Şu paragrafı Almancaya tercüme eder misin?
+translate	Bu e-postayı resmi bir dille İngilizceye çevir
+translate	Menüyü Fransızcaya çevir: mercimek çorbası, kuru fasulye, pilav
+translate	"Break a leg" deyiminin Türkçe karşılığı nedir, çevir
+translate	Bu şarkı sözlerini Türkçeye çevirir misin? (kendi yazdığım)
+translate	Özgeçmişimi İngilizce olarak hazırla, aşağıdaki Türkçe metni çevir
+translate	İspanyolca şu cümle ne demek: ¿Dónde está la biblioteca?
+translate	Bu makalenin özetini İngilizceye çevir
+translate	Ürün açıklamalarını Arapçaya tercüme et
+translate	"Kolay gelsin" İngilizcede nasıl söylenir?
+translate	Bu teknik dokümanı Türkçeye çevir, terimleri koru
+translate	Japonca bu cümleyi çevir: ありがとうございます
+translate	Mesajımı Rusçaya çevirir misin, kibar olsun
+translate	Translate this sentence into Turkish: I will be late today.
+translate	How do you say 'good morning' in Japanese?
+translate	Translate the following paragraph into French.
+translate	Can you translate this email into German, keep it formal?
+translate	What does 'carpe diem' mean in English? Translate it.
+translate	Please translate these product names into Spanish.
+translate	Translate my CV summary into English from Turkish.
+translate	Translate this poem into Italian, keep the rhyme if possible.
+translate	Give me the English translation of this Turkish idiom: 'damlaya damlaya göl olur'
+translate	Translate the menu into Chinese.
+translate	Translate this to Turkish please: The meeting has been moved to Friday.
+translate	Translate the following technical text into Korean.
+translate	How would you say 'I miss you' in Portuguese?
+translate	Translate these subtitles from English to Turkish.
+translate	Translate this legal clause into plain English and then into German.
+writing	Patronuma izin istediğimi anlatan bir e-posta yaz
+writing	Doğum günü için arkadaşıma kısa bir tebrik mesajı yazar mısın?
+writing	Yapay zeka ve eğitim üzerine 800 kelimelik bir makale yaz
+writing	Bir uzay gemisinde geçen kısa bir hikaye yaz
+writing	LinkedIn için yeni işime başladığımı duyuran bir paylaşım yaz
+writing	Yüksek lisans başvurusu için motivasyon mektubu taslağı hazırla
+writing	Kafe açıyorum, isim öner
+writing	Annem için bir şiir yazar mısın, emekliliği için
+writing	Belediyeye çukurla ilgili bir dilekçe yaz
+writing	Öğrenci kulübümüz için etkinlik duyurusu hazırla
+writing	Blog yazısı yaz: evde kahve demlemenin 5 yolu
+writing	Bir startup için 10 slogan fikri ver
+writing	Sınava çalışmak için 7 ipucu listele
+writing	Kısa bir konuşma metni hazırla, mezuniyet töreni için
+writing	Ev arkadaşıma faturalarla ilgili kibar bir mesaj yaz
+writing	Write a cover letter for a junior data analyst position.
+writing	Draft an email to my landlord about a broken heater.
+writing	Write a short story about a robot who learns to paint.
+writing	Give me 10 ideas for a birthday party theme.
+writing	Write a LinkedIn post announcing my promotion.
+writing	Compose a poem about autumn in Istanbul.
+writing	Write a speech for my sister's wedding.
+writing	Brainstorm names for a podcast about science.
+writing	Write a blog post about remote work productivity.
+writing	Draft a polite reminder email to a client about an unpaid invoice.
+writing	List five ways to stay motivated while studying.
+writing	Write a product description for handmade soap.
+writing	Imagine you are a pirate and write a diary entry.
+writing	Write a tweet thread about why sleep matters.
+writing	Create a story for kids about a brave little turtle.
+rewrite	Bu paragrafı daha akademik bir dille yeniden yaz
+rewrite	E-postamı daha profesyonel yap: selam hocam ödevi yarın atsam olur mu
+rewrite	Şu metni sadeleştir, lise öğrencisi anlasın
+rewrite	Bu yazıdaki imla hatalarını düzelt
+rewrite	Metni kısalt, yarısı kadar olsun
+rewrite	Bu cümleyi daha akıcı hale getir
+rewrite	CV'mdeki şu kısmı iyileştir: Takım çalışmasına yatkınım, çalışkanım
+rewrite	Bu mektubu gözden geçir, dil bilgisi hatalarını düzelt
+rewrite	Şu metni resmi dile çevir (Türkçe kalsın)
+rewrite	Bu paragrafı baştan yaz, daha ikna edici olsun
+rewrite	Tezimin girişini toparla, tekrarları at
+rewrite	Bu duyuruyu daha samimi bir tonda yeniden yaz
+rewrite	Instagram açıklamamı düzenle, emoji ekle
+rewrite	Bu raporun özet kısmını daha net yaz
+rewrite	Şu cümledeki anlatım bozukluğunu düzelt
+rewrite	Rewrite this paragraph to sound more formal.
+rewrite	Proofread my essay and fix the grammar.
+rewrite	Make this email shorter and more polite.
+rewrite	Paraphrase this text so it doesn't sound copied.
+rewrite	Improve the flow of this paragraph.
+rewrite	Make my bio sound more professional.
+rewrite	Edit this text for clarity: The thing is that we basically need to do more stuff faster.
+rewrite	Rephrase this sentence in simpler words.
+rewrite	Polish this cover letter, keep the same content.
+rewrite	Change the tone of this message to be friendlier.
+rewrite	Make this product description more catchy.
+rewrite	Fix the punctuation in this paragraph.
+rewrite	Rewrite this in British English.
+rewrite	Condense this paragraph into two sentences but keep the meaning.
+rewrite	Make it sound less robotic.
+summarize	Bu makaleyi özetle
+summarize	Aşağıdaki metnin ana fikrini çıkar
+summarize	Toplantı notlarını maddeler halinde özetle
+summarize	Bu PDF'in özetini çıkarır mısın?
+summarize	Şu haberi 3 cümleyle özetle
+summarize	Kitabın bu bölümünü kısaca özetler misin?
+summarize	Bu sözleşmedeki önemli maddeleri özetle
+summarize	Yukarıdaki metne göre yazarın asıl iddiası ne?
+summarize	Ders notlarımın özetini çıkar, sınav için
+summarize	Bu videonun transkriptini özetle
+summarize	Raporun yönetici özeti için ana noktaları çıkar
+summarize	Şu e-posta zincirini özetle, kim ne istemiş
+summarize	Bu makaleden önemli bulguları çıkar
+summarize	Uzun metni tl;dr şeklinde özetle
+summarize	Aşağıdaki paragrafa göre tarihler neler, çıkar
+summarize	Summarize this article in five bullet points.
+summarize	Give me the key points of this report.
+summarize	TL;DR of this thread please
+summarize	Summarize the following meeting transcript.
+summarize	What is the main argument of this paper? Summarize briefly.
+summarize	Condense this chapter into a short summary.
+summarize	Extract the action items from these notes.
+summarize	Summarize this contract and highlight risks.
+summarize	Based on the passage above, what are the main findings?
+summarize	Give me a one-paragraph summary of this PDF.
+summarize	Summarize these customer reviews.
+summarize	What's the gist of this email?
+summarize	Summarize the plot of this book chapter I pasted.
+summarize	From the following text, extract all names and dates.
+summarize	Summarize the key takeaways of this lecture transcript.
+data_analysis	Bu Excel tablosundaki satışları analiz et, hangi ay en yüksek?
+data_analysis	CSV dosyasındaki sütunların ortalamasını ve standart sapmasını hesapla
+data_analysis	Bu verideki korelasyonu incele, yaş ile gelir arasında ilişki var mı?
+data_analysis	Anket sonuçlarını analiz et ve grafik çiz
+data_analysis	Tablodaki eksik verileri nasıl doldurmalıyım, veriyi incele
+data_analysis	Laboratuvar ölçümlerimden regresyon doğrusu çıkar
+data_analysis	Pivot tablo ile bölgelere göre satış özeti çıkar
+data_analysis	Bu veri setinde aykırı değerleri bul
+data_analysis	Excel'deki bu verilerden yıllık büyüme oranını hesapla ve yorumla
+data_analysis	Deney verilerimi analiz et, hata payı ne?
+data_analysis	Müşteri verisini segmentlere ayır
+data_analysis	Bu tablodaki trendleri yorumla
+data_analysis	İstatistiksel olarak anlamlı fark var mı, t-testi yap
+data_analysis	Satır satır kontrol et, tutarsız kayıtları bul
+data_analysis	Grafikteki verileri incele ve rapor için yorum yaz
+data_analysis	Analyze this dataset and tell me the trends.
+data_analysis	Calculate the mean, median and standard deviation of this column.
+data_analysis	Plot sales by month from this CSV.
+data_analysis	Is there a correlation between hours studied and exam score in this data?
+data_analysis	Run a linear regression on this spreadsheet.
+data_analysis	Find outliers in this table.
+data_analysis	Analyze my spreadsheet of expenses and categorize them.
+data_analysis	Which product has the highest growth rate? Here is the data.
+data_analysis	Clean this dataframe and remove duplicates with pandas.
+data_analysis	Compare the A/B test results and tell me if it is significant.
+data_analysis	Create a pivot of revenue by region and quarter.
+data_analysis	Look at this survey data and summarize the statistics.
+data_analysis	Analyze the distribution of these values.
+data_analysis	What insights can you get from this sales data?
+data_analysis	Do a cohort analysis on this user table.
+research	2026'da en iyi orta segment telefonlar hangileri, karşılaştır
+research	Güncel enflasyon oranı ne, son verileri araştır
+research	Bu konuda literatür tara, son 5 yılın önemli makaleleri
+research	Elektrikli araç pazarındaki son gelişmeleri araştır
+research	İstanbul'da kiralık daire fiyatları şu an ne durumda?
+research	Bu yıl hangi burslara başvurabilirim, araştır
+research	En iyi not alma uygulamalarını karşılaştır
+research	Kaynak bul: mikroplastiklerin sağlığa etkisi
+research	Bugün dolar kuru kaç, son haberler neler?
+research	Rakiplerimizin fiyatlarını araştır
+research	Avrupa'da yüksek lisans için en iyi fizik programlarını karşılaştır
+research	Son haberler: yapay zeka düzenlemeleri
+research	Bu ürünün piyasa fiyatı ne kadar, araştır
+research	Antalya'da yazılım şirketlerini araştır
+research	Güneş panellerinin 2026 verimliliği hakkında güncel bilgi bul
+research	What are the latest developments in fusion energy?
+research	Compare the best laptops for programming in 2026.
+research	Find sources on the effects of social media on teens.
+research	What's the current price of Bitcoin?
+research	Research the market size for plant-based meat.
+research	Look up recent news about the James Webb telescope.
+research	Do a literature review on transformer models in healthcare.
+research	Which is the best project management tool for small teams? Compare options.
+research	Search the web for reviews of the new iPhone.
+research	What are the current visa requirements for Japan?
+research	Find recent studies on intermittent fasting.
+research	Compare cloud providers' pricing for GPU instances this year.
+research	Research competitors of Notion and list their prices.
+research	What happened in the stock market today?
+research	Look up the latest Python release and what's new.
+file_create	Bu konuda 10 slaytlık bir sunum hazırla
+file_create	Aylık bütçe için Excel dosyası oluştur
+file_create	Proje raporu hazırla, Word dosyası olarak
+file_create	Satış verileri için bir dashboard oluştur
+file_create	Fatura şablonu hazırla
+file_create	Ders programım için bir tablo oluştur, PDF olsun
+file_create	Şirket için sunum yap: yeni ürün lansmanı
+file_create	Haftalık plan için bir şablon oluştur
+file_create	Staj raporumu oluştur, başlıklar ve içindekiler olsun
+file_create	Bir web sayfası yap: kişisel portfolyo
+file_create	Deney sonuçlarım için rapor oluştur, grafikler ekle
+file_create	Kulüp üyeleri için Excel dosyası hazırla
+file_create	Toplantı için slayt hazırla
+file_create	Yatırımcı sunumu oluştur
+file_create	Etkinlik bütçesi için tablo oluştur
+file_create	Create a presentation about climate change, 12 slides.
+file_create	Make a spreadsheet to track my workouts.
+file_create	Create a PDF report from these findings.
+file_create	Make a slide deck for our quarterly review.
+file_create	Create a Word document with a meeting agenda template.
+file_create	Build a dashboard for website traffic.
+file_create	Create a template for weekly status reports.
+file_create	Make a budget spreadsheet with formulas.
+file_create	Create a one-page resume in PDF.
+file_create	Make a report with charts from this data.
+file_create	Create an invoice template.
+file_create	Make a pitch deck for my startup.
+file_create	Create an Excel file with a loan amortization table.
+file_create	Generate slides summarizing our project.
+file_create	Create a lesson plan document for a physics class.
+short_qa	abi istanbulun nüfusu kaç milyon
+short_qa	yaa bu sene ramazan bayrami ne zaman
+short_qa	marsin yercekimi dunyanin kac kati
+short_qa	hocam planck sabiti değeri neydi
+short_qa	ankara kaç rakımda
+short_qa	bir futbol maçı kaç dakika sürer
+short_qa	elektronun kütlesi ne kadar
+short_qa	tolstoy savaş ve barışı ne zaman yazdı
+short_qa	quick one: how tall is the eiffel tower
+short_qa	hey what's the population of canada
+short_qa	who won the 2018 world cup
+short_qa	what time zone is tokyo in
+short_qa	how many calories in a banana roughly
+short_qa	is it safe to drink tap water in berlin
+short_qa	hangi element en hafif
+short_qa	ses ışıktan hızlı mı, tek kelimeyle
+short_qa	what's the atomic number of carbon
+short_qa	when does daylight saving end in europe
+short_qa	hocam bu dersin vize tarihi genelde ne zaman olur bilir misin
+short_qa	kac gun sonra yilbasi
+explain	reaktör nasıl çalışıyor, nükleer fisyon ne demek
+explain	bilgisayar işlemcisi tam olarak ne yapıyor anlatır mısın
+explain	internet nasıl işliyor, veriler nereden geçiyor
+explain	merkez bankası faizi neden artırıyor ya anlamadım
+explain	kuantum tünelleme mantığı ne, sezgisel olarak
+explain	bitkiler suyu köklerden yapraklara nasıl taşır
+explain	yapay sinir ağı nasıl öğreniyor basitçe
+explain	selam, termodinamiğin ikinci yasası ne anlatıyor
+explain	hisse senedi ile tahvil arasındaki fark ne
+explain	neden bazı insanlar laktoz intoleransı yaşar
+explain	hocam lagrangian mekaniği newton'dan neden daha kullanışlı
+explain	kariyer olarak veri bilimi mi yazılım mı daha mantıklı, nasıl düşünmeliyim
+explain	how does a nuclear reactor work in simple words
+explain	so why do planes not fall when the engine stops
+explain	what actually happens when i type a url in the browser
+explain	explain like im 5 how the stock market works
+explain	why is ice slippery
+explain	what's the deal with inflation, why does it happen
+explain	how do noise cancelling headphones work
+explain	whats the difference between machine learning and ai
+math	2x + 3 = 11 ise x kaç bulur musun
+math	bu soruyu çözemedim: bir işçi işi 6 günde, diğeri 3 günde bitiriyor, beraber kaç günde
+math	hocam fourier dönüşümünü al: f(t)=e^(-|t|)
+math	olasılık: 2 zar atıldığında toplamın 7 olma ihtimali
+math	türev al y = x^3 sin x
+math	maaşa %25 zam gelirse 32000 kaç olur
+math	gauss yasasıyla küresel yük dağılımının elektrik alanını bul
+math	bu denklemi sağlayan tüm x değerlerini bul: |x-3| < 5
+math	hocam momentum operatörünün hermitik olduğunu göster
+math	pls help with this: if f(x) = 2x^2 + 3, what is f(4)
+math	what's 15% tip on 84 dollars
+math	find the area under y = x^2 from 0 to 3
+math	i need the integral of ln(x) dx
+math	show that the eigenvalues of a hermitian matrix are real
+math	a ball is thrown up at 20 m/s, how high does it go
+math	expected value of a fair die roll?
+math	matris çarpımı yap: [[1,2],[3,4]] ile [[0,1],[1,0]]
+math	binom açılımıyla (1+x)^5 açılımını yaz
+math	kaç farklı şekilde 5 kişi sıraya dizilir
+math	convert 72 km/h to m/s and show the steps
+code_write	bana bir python botu lazım, twitter'dan hashtag takip etsin
+code_write	excel'i otomatik dolduran bir vba makrosu yaz
+code_write	java ile kütüphane yönetim sistemi kodlar mısın, sınıflar olsun
+code_write	arduino ile ultrasonik sensörle mesafe ölçüp buzzer çalan kod
+code_write	unity'de karakter hareket scripti yaz c#
+code_write	php ile iletişim formu yap, mail atsın
+code_write	kotlin ile basit bir android uygulaması, sayaç olsun
+code_write	go ile bir http sunucusu yaz, json dönsün
+code_write	raspberry pi ile kamera görüntüsünü kaydeden python scripti
+code_write	bir web scraper lazım haber başlıklarını toplasın
+code_write	need a react hook that fetches data and handles loading state
+code_write	write a python script to send emails from a csv list
+code_write	make a todo api with fastapi and sqlite
+code_write	can you code a tic tac toe game in javascript
+code_write	write a cron job that cleans old logs every week
+code_write	i want a chrome extension that blocks youtube shorts, write it
+code_write	create a dockerfile for a node app
+code_write	write a function that merges two sorted arrays
+code_write	generate a graphql schema for a blog
+code_write	write a jest test suite for a shopping cart module
+code_fix	python kodum ImportError veriyor, modül bulunamadı diyor
+code_fix	sayfam mobilde kayıyor, css'te nerede hata yapmışım
+code_fix	bu döngü yanlış sayıyor, bir eksik çıkıyor hep
+code_fix	android studio emulator açılmıyor, hata mesajı aşağıda
+code_fix	sql sorgum boş sonuç döndürüyor ama veri var, neden
+code_fix	excel formülüm #DEĞER! hatası veriyor
+code_fix	unity'de karakter duvardan geçiyor, collider sorunu mu
+code_fix	pip install yaparken permission denied alıyorum
+code_fix	bu kodu nasıl daha hızlı yaparım, 10 dakika sürüyor
+code_fix	yazdığım regex türkçe karakterlerde çalışmıyor
+code_fix	why does my flexbox not center vertically
+code_fix	my docker build keeps failing at npm ci
+code_fix	getting 'permission denied (publickey)' when pushing to github
+code_fix	this python function returns None instead of the list
+code_fix	tests are flaky, sometimes pass sometimes fail, any idea
+code_fix	my api returns 500 but no logs, how do i debug
+code_fix	why is my css not applying, the class is there
+code_fix	react state not updating after setState, why
+code_fix	ssl certificate error when calling requests.get
+code_fix	the app crashes on startup with no error message
+translate	bu mesajı ingilizceye çevir ama samimi olsun
+translate	şu yazıyı almancaya çevirebilir misin, iş başvurusu için
+translate	hocama atacağım maili ingilizce yaz: ödevimi teslim ettim, kontrol eder misiniz
+translate	bu kelime ingilizcede ne demek: hasret
+translate	fransızca bu cümle ne anlama geliyor: je ne sais pas
+translate	sunumumu ingilizceye çevir, slayt başlıkları dahil
+translate	italyanca menüyü türkçeye çevirir misin
+translate	bu yorumu ingilizce yaz: ürün çok güzel, hızlı kargo
+translate	korece selam nasıl yazılır
+translate	türkçe-ingilizce çeviri: kendine iyi bak
+translate	translate this text message to turkish for my grandma
+translate	what does 'merhaba nasılsın' mean in english
+translate	can you put this paragraph into spanish
+translate	need this in german asap: the package was delivered to the wrong address
+translate	how do i say 'nice to meet you' in korean
+translate	english to turkish: please find attached the report
+translate	translate these comments in the code from chinese to english
+translate	turn this english email into turkish for my coworker
+translate	what's the french word for 'bookshelf'
+translate	translate this greeting card text into polish
+writing	kız arkadaşıma doğum günü için uzun bir mesaj yaz
+writing	işten ayrılırken ekibime veda maili yazar mısın
+writing	instagram için kafemizin açılış duyurusunu yaz
+writing	bilimsel bir blog yazısı yaz: karadeliklerin sesi
+writing	sınıf temsilcisi seçimi için kısa bir konuşma hazırla
+writing	staj başvurusu için ön yazı yazar mısın
+writing	ev sahibine kira artışıyla ilgili kibar bir mesaj yaz
+writing	çocuklar için uyku öncesi masal yaz, kahramanı bir kedi olsun
+writing	youtube kanalım için video fikirleri ver
+writing	düğün davetiyesi için güzel bir metin yaz
+writing	write a heartfelt thank you note to my teacher
+writing	draft a resignation letter, keep it short and kind
+writing	write a short horror story set in a library
+writing	give me 5 catchy titles for my blog post about productivity
+writing	write a toast for my parents' anniversary
+writing	compose an email inviting the team to a friday lunch
+writing	write a limerick about a lazy cat
+writing	draft a complaint email to an airline about lost luggage
+writing	write a short motivational message for my study group
+writing	write an instagram caption for my beach photo
+rewrite	bu cümleler çok uzun olmuş, daha kısa ve net yaz
+rewrite	şu paragrafın anlatımını güzelleştir
+rewrite	mailimi biraz daha sıcak bir dille yeniden yazar mısın
+rewrite	metindeki tekrar eden kelimeleri temizle
+rewrite	bu yazıyı lise seviyesine indir, basit kelimeler kullan
+rewrite	şu açıklamayı daha ikna edici yap
+rewrite	cv'mdeki madde işaretlerini daha etkili yaz
+rewrite	bu cevabı daha kibar yaz: bilmiyorum sorma
+rewrite	yazım ve noktalama hatalarını düzelt lütfen
+rewrite	şu metni pasif cümlelerden kurtar
+rewrite	can you make this paragraph flow better
+rewrite	rewrite this so a 10 year old understands it
+rewrite	clean up the grammar in my message
+rewrite	make this sound more confident
+rewrite	shorten this to under 100 words
+rewrite	reword my linkedin summary to be less cheesy
+rewrite	make this email less formal
+rewrite	fix the typos in this text
+rewrite	rewrite this paragraph in active voice
+rewrite	smooth out the wording of this abstract
+summarize	bu yazının ana fikrini birkaç cümleyle söyle
+summarize	toplantı kaydının özetini çıkar, kararları listele
+summarize	şu haberde ne anlatılıyor kısaca
+summarize	bu kitabın özetini çıkar, karakterler ve olaylar
+summarize	makalenin sonuç kısmını özetle
+summarize	hocanın attığı slaytların önemli noktalarını çıkar
+summarize	şu podcast transkriptinde ne konuşulmuş
+summarize	bu yorumlardan genel kanıyı çıkar
+summarize	uzun maili özetle, benden ne istiyorlar
+summarize	yukarıdaki yazıdan önemli tarihleri ve isimleri çıkar
+summarize	give me the short version of this article
+summarize	what's this document about in 3 bullets
+summarize	summarize the chat log below
+summarize	key takeaways from this pdf please
+summarize	sum up these lecture notes for my exam
+summarize	what are the main points of this policy
+summarize	condense this report into an executive summary
+summarize	extract the action items from this email thread
+summarize	tldr this reddit post
+summarize	summarize the findings section of this paper
+data_analysis	bu tablodaki notların ortalamasını ve dağılımını çıkar
+data_analysis	satış verilerinden en karlı ürünü bul
+data_analysis	ölçümlerimde ölçüm hatası ne kadar, standart sapmayı hesapla
+data_analysis	excel dosyamdaki müşteri verilerini analiz et
+data_analysis	trafik verilerinde hangi saatler yoğun, grafikle göster
+data_analysis	bu csv'deki eksik ve hatalı değerleri bul
+data_analysis	laboratuvar verimden eğim ve kesişim değerlerini çıkar
+data_analysis	iki grubun ortalaması farklı mı, istatistiksel test yap
+data_analysis	harcama tablomu kategorilere ayırıp yüzdelerini çıkar
+data_analysis	veri setindeki değişkenler arası ilişkiyi incele
+data_analysis	look at this csv and tell me which region sells the most
+data_analysis	compute summary statistics for these sensor readings
+data_analysis	what trends do you see in this sales spreadsheet
+data_analysis	plot the histogram of these exam scores
+data_analysis	analyze the churn in this customer table
+data_analysis	fit a curve to this experimental data
+data_analysis	is this difference statistically significant? here are the numbers
+data_analysis	group this data by month and show averages
+data_analysis	find anomalies in this log data table
+data_analysis	visualize the correlation matrix of this dataset
+research	2026'nın en iyi kablosuz kulaklıkları hangileri, güncel
+research	türkiye'de yazılımcı maaşları şu an ne kadar
+research	en son çıkan yapay zeka modelleri neler, karşılaştır
+research	bu hafta bilim dünyasında neler oldu
+research	almanya'da master başvuru şartları güncel olarak ne
+research	en iyi kamp alanları hangileri, son yorumlara göre
+research	son çıkan araştırmalar kahvenin sağlığa etkisi hakkında ne diyor
+research	ikinci el araba fiyatları şu an nasıl
+research	hangi bulut sağlayıcı daha ucuz, şu anki fiyatlar
+research	bu konuda kaynak ve makale önerir misin, güncel olsun
+research	what are the newest features in the latest android release
+research	find the best budget gaming laptops right now
+research	what's the latest news on the climate summit
+research	compare tuition fees for cs masters in the netherlands this year
+research	who are the main competitors of figma currently
+research	search for recent reviews of the tesla model y
+research	what are current mortgage rates in the us
+research	look up recent research on long covid
+research	what's new in the world of quantum computing this month
+research	find the cheapest flights trends to tokyo this season
+file_create	proje sunumu için 15 slayt hazırla, başlıkları da öner
+file_create	düğün bütçesi için excel tablosu oluştur
+file_create	laboratuvar raporu şablonu hazırla word olarak
+file_create	öğrenci kulübü için üyelik formu oluştur
+file_create	haftalık toplantı tutanağı şablonu yap
+file_create	ders notlarımdan bir pdf doküman oluştur
+file_create	satış ekibi için performans dashboardu hazırla
+file_create	evlilik yıldönümü için davetiye tasarla, pdf
+file_create	şirket içi eğitim için slayt seti hazırla
+file_create	stok takibi için excel dosyası oluştur, formüllü
+file_create	make a google slides style deck about our product
+file_create	create a weekly meal planner spreadsheet
+file_create	put together a project proposal document
+file_create	make a printable checklist for moving house
+file_create	create an onboarding guide document for new hires
+file_create	build an html page for my resume
+file_create	create a gantt chart spreadsheet for the project
+file_create	make a timesheet template in excel
+file_create	create a pdf flyer for our event
+file_create	make a quarterly report deck with charts

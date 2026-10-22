@@ -1,8 +1,24 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2026 Hayrettin Enes Karalı
 // Dil desteği. chrome.i18n dili tarayıcıya göre seçer ve çalışırken değiştirilemez;
 // kullanıcı ayarlardan dil seçebilsin diye messages.json dosyalarını kendimiz yükleriz.
 // Biçim, Chrome'un messages.json biçimiyle aynıdır ($1, $2 ve adlandırılmış yer tutucular).
 
-const SUPPORTED = ["tr", "en"];
+// Desteklenen arayüz dilleri: kod → { klasör (_locales), biçim yerel ayarı, kendi adı }
+// Chrome'un geçerli yerel ayar klasör adları gerekir (pt_BR, zh_CN); dil kodu ise kısa tutulur.
+export const LANGS = {
+  tr: { dir: "tr", locale: "tr-TR", name: "Türkçe" },
+  en: { dir: "en", locale: "en-US", name: "English" },
+  de: { dir: "de", locale: "de-DE", name: "Deutsch" },
+  fr: { dir: "fr", locale: "fr-FR", name: "Français" },
+  es: { dir: "es", locale: "es-ES", name: "Español" },
+  it: { dir: "it", locale: "it-IT", name: "Italiano" },
+  pt: { dir: "pt_BR", locale: "pt-BR", name: "Português" },
+  ru: { dir: "ru", locale: "ru-RU", name: "Русский" },
+  ja: { dir: "ja", locale: "ja-JP", name: "日本語" },
+  zh: { dir: "zh_CN", locale: "zh-CN", name: "简体中文" }
+};
+const SUPPORTED = Object.keys(LANGS);
 const cache = new Map();
 
 export function resolveLang(setting, uiLang = (globalThis.chrome?.i18n?.getUILanguage?.() || "en")) {
@@ -13,7 +29,7 @@ export function resolveLang(setting, uiLang = (globalThis.chrome?.i18n?.getUILan
 
 async function loadMessages(lang) {
   if (cache.has(lang)) return cache.get(lang);
-  const url = chrome.runtime.getURL(`_locales/${lang}/messages.json`);
+  const url = chrome.runtime.getURL(`_locales/${LANGS[lang]?.dir || lang}/messages.json`);
   const json = await (await fetch(url)).json();
   cache.set(lang, json);
   return json;
@@ -37,13 +53,14 @@ export async function makeI18n(setting = "auto") {
   const lang = resolveLang(setting);
   const [main, fallback] = await Promise.all([loadMessages(lang), loadMessages("en")]);
   const t = (key, subs) => format(main[key] || fallback[key], subs) || key;
-  const nf = new Intl.NumberFormat(lang === "tr" ? "tr-TR" : "en-US");
+  const locale = LANGS[lang]?.locale || "en-US";
+  const nf = new Intl.NumberFormat(locale);
   // Küçük yüzdelerde daha fazla ondalık: 0,03 · 0,4 · 7
   const pctFmt = (x) => {
     const v = !(x > 0) ? 0 : x < 0.1 ? Math.max(0.01, Math.round(x * 100) / 100) : x < 1 ? Math.round(x * 10) / 10 : x < 10 ? Math.round(x * 10) / 10 : Math.round(x);
     return t("pct", [nf.format(v)]);
   };
-  return { lang, t, num: (n) => nf.format(Math.round(n)), pct: pctFmt, locale: lang === "tr" ? "tr-TR" : "en-US" };
+  return { lang, t, num: (n) => nf.format(Math.round(n)), pct: pctFmt, locale };
 }
 
 export function duration(t, ms) {

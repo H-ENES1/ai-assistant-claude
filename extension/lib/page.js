@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2026 Hayrettin Enes Karalı
 // claude.ai sayfasından prompt kutusunu, sohbet geçmişini ve ekleri okur.
 // Claude.ai'nin sayfa yapısı değişebilir; bu yüzden her şey için birden çok seçici denenir.
 // Sayfa değişirse düzeltilecek tek yer bu dosya.
@@ -90,7 +92,7 @@ export function detectModel() {
 }
 
 // Effort / düşünme seviyesi seçicisi ("Orta", "High" gibi). Bulunamazsa null.
-const EFFORT_RE = /(?:^|[\s·|()])(çok yüksek|extra high|düşük|orta|yüksek|maksimum|maks|low|medium|high|max)(?=$|[\s·|()])/i;
+const EFFORT_RE = /(?:^|[\s·|()])(çok yüksek|ekstra yüksek|extra high|x-?high|düşük|orta|yüksek|maksimum|maks|low|medium|high|max)(?=$|[\s·|()])/i;
 export function detectEffort() {
   const composer = getComposer() || document;
   for (const el of composer.querySelectorAll("button, [role='button'], [data-testid*='effort']")) {
@@ -113,4 +115,48 @@ export function isConversationPage() {
   // Mesaj kutusu olan her sayfa (sohbet, yeni sohbet, proje)
   if (getInputElement()) return true;
   return /^\/chat\//.test(location.pathname) || location.pathname === "/new";
+}
+
+// Gönderim/cevap tespiti için hafif sayımlar (metin okumadan).
+export function countUserMessages() {
+  return outermost(allMatches(USER_MSG_SELECTORS)).length;
+}
+// Son asistan mesajı: metni ve hâlâ yazılıyor mu (data-is-streaming="true")
+export function lastAssistant() {
+  const list = outermost(allMatches(ASSISTANT_MSG_SELECTORS));
+  const el = list[list.length - 1];
+  const streaming = !!document.querySelector('[data-is-streaming="true"]');
+  return { count: list.length, text: el ? (el.innerText || "") : "", streaming, el: el || null };
+}
+// Son kullanıcı mesajı ve kısa bir kimlik (metnin başı + uzunluğu). claude.ai uzun sohbetlerde eski mesajları
+// sayfadan kaldırdığı için mesaj SAYISI güvenilir değil; yeni gönderim, son mesajın değişmesinden anlaşılır.
+export function lastUserMessage() {
+  const list = outermost(allMatches(USER_MSG_SELECTORS));
+  const el = list[list.length - 1] || null;
+  const text = el ? (el.innerText || "") : "";
+  return { el, key: el ? `${text.length}|${text.slice(0, 200)}` : "" };
+}
+
+// Mesaj kutusunun hemen üstünde claude.ai'nin kendi uyarısı (ör. kullanım bildirimi) varsa,
+// bizim bildirimimiz onun üstüne yerleşsin diye en üst sınırı verir.
+export function composerTop() {
+  const c = getComposer();
+  if (!c) return null;
+  const r = c.getBoundingClientRect();
+  let top = r.top, el = c;
+  for (let depth = 0; depth < 3 && el; depth++) {
+    let prev = el.previousElementSibling;
+    while (prev) {
+      if (!prev.hasAttribute?.("data-token-forecast")) {
+        const pr = prev.getBoundingClientRect();
+        const visible = pr.height > 0 && pr.width > 0;
+        const overlapsX = pr.right > r.left && pr.left < r.right;
+        if (visible && overlapsX && pr.bottom >= top - 12 && pr.bottom <= top + 2 && pr.height < 180) top = Math.min(top, pr.top);
+        else if (visible && pr.bottom < top - 12) break;
+      }
+      prev = prev.previousElementSibling;
+    }
+    el = el.parentElement;
+  }
+  return top;
 }

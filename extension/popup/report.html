@@ -1,0 +1,85 @@
+<!doctype html>
+<html class="tab report">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="report.css">
+</head>
+<body>
+  <header class="rp-head">
+    <div>
+      <h1 id="title"></h1>
+      <p id="range" class="muted small"></p>
+    </div>
+    <div class="rp-actions">
+      <button id="csv" type="button"></button>
+      <a id="back" href="popup.html?view=tab"></a>
+    </div>
+  </header>
+
+  <p id="empty" class="rp-empty" hidden></p>
+
+  <main id="main" hidden>
+    <section class="tiles" id="tiles"></section>
+
+    <section class="rp-sec" id="tipsSec">
+      <h2 id="tipsTitle"></h2>
+      <ul id="tips" class="tips"></ul>
+    </section>
+
+    <div class="rp-two">
+      <section class="rp-sec">
+        <h2 id="famTitle"></h2>
+        <div id="fam" class="bars"></div>
+      </section>
+      <section class="rp-sec">
+        <h2 id="typeTitle"></h2>
+        <div id="types" class="bars"></div>
+      </section>
+    </div>
+
+    <div class="rp-two">
+      <section class="rp-sec">
+        <h2 id="domTitle"></h2>
+        <div id="doms" class="bars"></div>
+        <div id="subs" class="subchips"></div>
+        <p id="domNote" class="muted small"></p>
+      </section>
+      <section class="rp-sec">
+        <h2 id="effTitle"></h2>
+        <div id="effs" class="bars"></div>
+        <p id="effNote" class="muted small"></p>
+      </section>
+    </div>
+
+    <section class="rp-sec">
+      <h2 id="heatTitle"></h2>
+      <div id="heat" class="heat" role="img"></div>
+      <p id="heatNote" class="muted small"></p>
+    </section>
+
+    <section class="rp-sec" id="learnSec">
+      <h2 id="learnTitle"></h2>
+      <p id="learnMsg" class="small"></p>
+      <div id="learnChart" class="learn" role="img"></div>
+      <p id="learnNote" class="muted small"></p>
+    </section>
+
+    <div class="rp-two">
+      <section class="rp-sec">
+        <h2 id="topTitle"></h2>
+        <ol id="top" class="top"></ol>
+      </section>
+      <section class="rp-sec">
+        <h2 id="accTitle"></h2>
+        <p id="acc" class="small"></p>
+        <p id="measured" class="muted small"></p>
+      </section>
+    </div>
+
+    <p id="privacy" class="muted small rp-foot"></p>
+  </main>
+  <script type="module" src="report.js"></script>
+</body>
+</html>

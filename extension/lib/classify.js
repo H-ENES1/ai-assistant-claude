@@ -1,9 +1,20 @@
-// Soru tipi sınıflandırıcı (TR + EN, kural tabanlı, tamamen yerel).
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2026 Hayrettin Enes Karalı
+// Soru tipi sınıflandırıcı (TR + EN, tamamen yerel).
+// v1.0: kurallar + öğrenen model (lib/learn.js) birlikte çalışır. Kuralların puanları öğrenen modele
+// özellik olarak girer; son kararı öğrenen model verir. Ayrı yazılmış dağınık test setinde doğruluk
+// kurallarla %64, karma modelle %88 (tests/ml/train.mjs). Kullanıcı düzeltmeleri cihazda öğrenilir.
 // Çıktı: { type, confidence, scores, complexity (0..1), lengthHint (çarpan), signals[] }
 //
 // Neden kural tabanlı? Eklenti her tuş vuruşunda çalışır; küçük, hızlı, açıklanabilir ve
 // çevrimdışı olmalı. Adım 10'daki kalibrasyon, tip başına çıktı uzunluğunu kullanıcının
 // gerçek verisine göre düzelttiği için sınıflandırıcının mükemmel olması gerekmez.
+
+import { featurize, predict, decodeModel } from "./learn.js";
+import PACKED from "./learn-weights.js";
+let MODEL = null;
+try { MODEL = decodeModel(PACKED); } catch (_) { MODEL = null; }
+export const modelInfo = () => (MODEL ? { ...MODEL.meta, dim: MODEL.dim } : null);
 
 export const TYPES = [
   "short_qa",      // kısa soru / tek cevaplı bilgi
@@ -25,7 +36,8 @@ const RULES = {
   short_qa: [
     [/^(kaç|ne zaman|kim|hangi|nerede|kaçta|ne kadar)\b/i, 2],
     [/^(who|when|where|which|how many|how much|what year|is it|are there|does|did|can i)\b/i, 2],
-    [/\b(evet mi hayır mı|yes or no|tek kelime|one word|kısaca|briefly|in short)\b/i, 1.5]
+    [/\b(evet mi hayır mı|yes or no|tek kelime|one word|kısaca|briefly|in short)\b/i, 1.5],
+    [/\b(neresi|nerededir|kaç|kimdir|hangisidir|ne zaman|kaçıncı)\b[^.!]{0,40}\?\s*$/i, 1.8]
   ],
   explain: [
     [/\b(açıkla|açıklar|açıklayabilir|anlat|anlatır|nedir|ne demek|nasıl çalışı|ne işe yar|nasıl oluyor|nasıl olur|neden|niçin|niye|farkı ne|arasındaki fark)/i, 2],
@@ -100,7 +112,7 @@ const RULES = {
   ]
 };
 
-const HARD = /\b(kanıtla|ispatla|türet|adım adım|detaylı|ayrıntılı|kapsamlı|derinlemesine|mimari|optimize|tasarla|tasarım|karmaşık|ileri düzey|ölçeklenebilir|dağıtık|mikroservis|strateji|karar|risk|vergi|uzun vadeli|baştan sona|refactor|literatür|açık problem|kanıt|tamamını|her şeyi|production|üretim seviyesi)|\b(prove|proof|derive|derivation|rigorous|step by step|in detail|detailed|comprehensive|in-depth|thorough|architecture|design (a|an|the)|scalable|distributed|microservices?|sharding|failover|trade-?offs?|strategy|decision|risks?|complex|advanced|end-to-end|production|literature|refactor)\b/gi;
+const HARD = /\b(kanıtla|ispatla|türet|adım adım|detaylı|ayrıntılı|kapsamlı|derinlemesine|mimari|optimize|tasarla|tasarım|karmaşık|ileri düzey|ölçeklenebilir|dağıtık|mikroservis|strateji|karar|risk|vergi|uzun vadeli|baştan sona|refactor|literatür|açık problem|kanıt|tamamını|her şeyi|production|üretim seviyesi|zor|zorlu|zorlayıcı)|\b(prove|proof|derive|derivation|rigorous|step by step|in detail|detailed|comprehensive|in-depth|thorough|architecture|design (a|an|the)|scalable|distributed|microservices?|sharding|failover|trade-?offs?|strategy|decision|risks?|complex|advanced|end-to-end|production|literature|refactor|difficult|challenging|complicated)\b/gi;
 const SHORT_HINT = /\b(kısaca|kısa|tek cümle|bir cümle|tek kelime|sadece|yalnızca|özetle söyle|briefly|short|one sentence|one word|just|only|tl;?dr|in a nutshell)\b/i;
 const LONG_HINT = /\b(detaylı|ayrıntılı|kapsamlı|uzun|derinlemesine|her şeyi|tamamını|adım adım|örneklerle|in detail|detailed|comprehensive|long|in-depth|thorough|step by step|with examples|everything|full)\b/i;
 
@@ -110,6 +122,22 @@ const UB = "(?:(?<=[\\p{L}\\p{N}_])(?![\\p{L}\\p{N}_])|(?<![\\p{L}\\p{N}_])(?=[\
 const toUnicode = (re) => new RegExp(re.source.replaceAll("\\b", UB), re.flags.includes("u") ? re.flags : re.flags + "u");
 for (const rules of Object.values(RULES)) for (const r of rules) r[0] = toUnicode(r[0]);
 const HARD_U = toUnicode(HARD), SHORT_U = toUnicode(SHORT_HINT), LONG_U = toUnicode(LONG_HINT);
+
+// "Görev mi, konu mu?" — "çeviri" ya da "özetle" kelimesi geçmesi işin çeviri/özet olduğunu göstermez.
+// "Çeviri sistemi olan bir site yaptıracağım" bir yapım işidir; çeviri onun özelliğidir.
+const SITE_N = "(?:site\\w*|web ?sitesi\\w*|website\\w*|web ?sayfa\\w*|landing page|uygulamam\\w*|uygulaması\\w*|uygulamayı|uygulama\\b|eklenti\\w*|sistem\\w*|platform\\w*|portal\\w*|panel\\w*|bot\\b|botu\\w*|oyun\\w*|mağaza\\w*|e-?ticaret\\w*|app\\b|apps\\b|application|extension|plugin|system|store|service|game|dashboard)";
+const BUILD_V = "(?:yap(?:mak|ma\\b|mam|mamız|ıyorum|ıyoruz|ıcam|ıcaz|acağım|acağız|alım|ayım|malıyım|abilir misin|ar mısın)|yaptır(?:mak|mam|acağım|ıcam|ıyorum|mamız|acağız)|yaptırt\\w*|kur(?:mak|mam|uyorum|acağım|alım|mamız)|geliştir(?:mek|mem|iyorum|eceğim|elim|memiz)|oluştur(?:mak|mam|uyorum|acağım)|tasarla(?:mak|mam|yacağım|yıp|r mısın)|tasarlat\\w*|kodla\\b|kodlar mısın|hazırla(?:mak|mam|yacağım)|yayınla(?:mak|mam|yacağım)|sıfırdan)";
+const BUILD = new RegExp(
+  `\\b${SITE_N}[^.!?\\n]{0,70}?\\b${BUILD_V}|\\b${BUILD_V}[^.!?\\n]{0,40}?\\b${SITE_N}` +
+  `|\\b(?:build|create|make|develop|launch|implement|set up|design|code)\\s+(?:a|an|my|the|our|this)?\\s*(?:[\\w-]+\\s+){0,3}(?:website|web ?app|app|application|site|platform|system|tool|bot|extension|plugin|service|api|store|game|dashboard)\\b` +
+  `|\\bi18n\\b|\\b(?:localize|localise|internationali[sz]e)\\b|\\bçok ?dilli\\b|\\b(?:multi-?lingual|multilingual|bilingual)\\b` +
+  `|\\bsit(?:e|em|emi|enin|esini)\\b[^.!?\\n]{0,60}\\baç(?:mak|acağım|ıyorum|mam)\\b`, "i");
+const LIGHT_WORD = "(?:çeviri|tercüme|özetleme|özet|düzeltme|yazım denetim\\w*|translation|translat\\w*|summari[sz]\\w*|proofread\\w*|paraphras\\w*)";
+const FEATURE_N = "(?:uygulama\\w*|sistem\\w*|özellik\\w*|eklenti\\w*|modül\\w*|api\\w*|servis\\w*|katman\\w*|altyapı\\w*|motor\\w*|bot\\b|botu\\w*|araç\\w*|app\\b|system|feature|plugin|extension|module|service|tool|engine|layer|pipeline|files?)";
+const FEATURE = new RegExp(`\\b${LIGHT_WORD}\\s+${FEATURE_N}|\\b${FEATURE_N}\\s+${LIGHT_WORD}|\\bçeviri\\w*\\s+ile\\b`, "i");
+// Doğrudan istek: "Bunu çevir:", "Translate to Turkish: …", "Şu paragrafı özetle"
+const DIRECT = /^\s*(?:lütfen\s+)?(?:translate|summari[sz]e|rewrite|proofread|paraphrase)\b|(?:^|[.!?]\s*)(?:lütfen\s+)?(?:bu|şu|aşağıdaki|yukarıdaki)\b[^.!?\n:]{0,40}\b(?:çevir|özetle|yeniden yaz|düzelt|sadeleştir|kısalt)\w*|\b(?:çevir|çevirir misin|translate|please translate)\b[^.!?\n]{0,30}:/i;
+const BUILD_U = toUnicode(BUILD), FEATURE_U = toUnicode(FEATURE), DIRECT_U = toUnicode(DIRECT);
 
 // Türkçe büyük/küçük harf: "İ"→"i", "I"→"ı". İngilizce için normal küçük harf de denenir.
 function variants(text) {
@@ -131,8 +159,21 @@ export function classify(prompt, ctx = {}) {
   // uygulanır (60K karakterde 270 ms → birkaç ms).
   const ruleText = text.length > 6000 ? text.slice(0, 4000) + "\n" + text.slice(-1500) : text;
   const vs = variants(ruleText);
+  const hits = {}; // tip → eşleşen ifadeler (öneri bildiriminde "gördüğüm işaretler" olarak gösterilir)
   for (const [type, rules] of Object.entries(RULES)) {
-    for (const [re, pts] of rules) if (anyMatch(re, vs)) scores[type] += pts;
+    for (const [re, pts] of rules) {
+      for (const v of vs) {
+        const m = v.match(re);
+        if (m) {
+          scores[type] += pts;
+          // Kullanıcıya orijinal yazımıyla göster (Türkçe küçük harf dönüşümü uzunluğu korur)
+          let w = (m[0] || "").trim();
+          if (v.length === ruleText.length && m.index != null) w = ruleText.slice(m.index, m.index + m[0].length).trim() || w;
+          if (w && w.length <= 40 && !/^[=∫∑√∂≤≥π^\d\s*/+-]+$/.test(w)) (hits[type] ||= []).includes(w) || hits[type].push(w);
+          break;
+        }
+      }
+    }
   }
 
   // Yapısal ipuçları
@@ -154,6 +195,14 @@ export function classify(prompt, ctx = {}) {
   if (sheets.length) { scores.data_analysis += 2.5; signals.push("sheet"); }
   if (images.length) { scores.explain += 0.6; signals.push("image"); }
 
+  // Görev mi, konu mu? Çeviri/özet/düzeltme bir özelliğin adıysa ya da iş bir yapım işiyse, hafif iş sayılmaz.
+  const building = anyMatch(BUILD_U, vs), feature = anyMatch(FEATURE_U, vs), direct = anyMatch(DIRECT_U, vs);
+  const notTask = (building || feature) && !direct;
+  if (notTask) {
+    for (const k of ["translate", "summarize", "rewrite"]) scores[k] *= 0.15;
+    if (building) { scores.code_write += 2.6; signals.push("build"); }
+  }
+
   // Uzun yapıştırılmış metin + kısa talimat → yeniden yazma / özet / çeviri lehine
   if (words > 250 && scores.rewrite + scores.summarize + scores.translate === 0) scores.summarize += 0.6;
 
@@ -172,10 +221,33 @@ export function classify(prompt, ctx = {}) {
 
   const sorted = Object.values(scores).sort((a, b) => b - a);
   const margin = sorted[0] - (sorted[1] || 0);
-  const confidence = signals.includes("default") ? "low" : margin >= 2 ? "high" : margin >= 0.8 ? "medium" : "low";
+  let confidence = signals.includes("default") ? "low" : margin >= 2 ? "high" : margin >= 0.8 ? "medium" : "low";
+
+  // Öğrenen model: kural puanlarını da girdi olarak alır, son kararı verir
+  const ruleType = best, ruleConfidence = confidence;
+  let ml = null;
+  if (MODEL && ctx.useModel !== false && words >= 2) {
+    try { ml = predict(MODEL, featurize(text, scores, MODEL.dim), ctx.personal || null); } catch (_) { ml = null; }
+  }
+  if (ml) {
+    best = ml.type;
+    const agree = ml.type === ruleType && !signals.includes("default");
+    confidence = (agree && (ruleConfidence !== "low" || ml.prob >= 0.5)) || ml.prob >= 0.75 ? "high"
+      : ml.prob >= 0.5 || (agree && ml.prob >= 0.35) ? "medium" : "low";
+    if (!agree) signals.push("model");
+  }
+  // Yapım işi + hata/kod belirtisi yok → kod düzeltme değil, kod yazma
+  if (building && best === "code_fix" && !signals.includes("code") && scores.code_fix < 1) best = "code_write";
+  // Öğrenen model "çeviri" gibi kelimelere takılabilir; görev değil konu ise hafif tipe izin verilmez
+  if (notTask && ["translate", "summarize", "rewrite"].includes(best)) {
+    best = ["translate", "summarize", "rewrite"].includes(ruleType) ? (building ? "code_write" : "explain") : ruleType;
+    if (confidence === "high") confidence = "medium";
+  }
 
   // Karmaşıklık (0..1): uzunluk, zor kelimeler, ek boyutu, çok maddeli istek
-  const hard = Math.max(...vs.map((v) => (v.match(new RegExp(HARD_U.source, "giu")) || []).length));
+  const hardList = vs.map((v) => v.match(new RegExp(HARD_U.source, "giu")) || []).sort((a, b) => b.length - a.length)[0] || [];
+  const hard = hardList.length;
+  const hardWords = [...new Set(hardList.map((x) => x.trim()))].slice(0, 3);
   const bullets = (ruleText.match(/^\s*([-*•]|\d+[.)])\s+/gm) || []).length;
   const attTokens = att.reduce((s, a) => s + (a.high || 0), 0);
   let complexity =
@@ -186,7 +258,8 @@ export function classify(prompt, ctx = {}) {
     0.15 * Math.min(1, attTokens / 50000) +
     (best === "math" ? 0.15 : 0) +
     (best === "code_write" || best === "code_fix" ? 0.1 : 0) +
-    (best === "research" ? 0.1 : 0);
+    (best === "research" ? 0.1 : 0) +
+    (building ? 0.2 : 0);
   complexity = Math.max(0, Math.min(1, complexity));
 
   // Çıktı uzunluğu ipucu (log uzayında çarpan)
@@ -195,7 +268,8 @@ export function classify(prompt, ctx = {}) {
   if (anyMatch(LONG_U, vs)) { lengthHint *= 1.7; signals.push("long"); }
   if (bullets >= 3) lengthHint *= 1 + 0.08 * Math.min(8, bullets);
 
-  return { type: best, confidence, scores, complexity, lengthHint, signals, words };
+  return { type: best, confidence, scores, complexity, lengthHint, signals, words, hits: (hits[best] || []).slice(0, 3), hardWords, bullets, attTokens,
+    ruleType, source: ml ? "model" : "rules", modelProb: ml ? Math.round(ml.prob * 100) / 100 : null };
 }
 
 // ---------- Model önerisi ----------

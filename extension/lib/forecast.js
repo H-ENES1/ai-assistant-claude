@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2026 Hayrettin Enes Karalı
 // Tahmin motoru: bir mesajın limitlerin ne kadarını kullanacağını hesaplar.
 //
 // Model (her şey belirsizliğiyle birlikte, Monte Carlo ile hesaplanır):
@@ -17,20 +19,25 @@
 //   k_pencere    : plan başına "1 maliyet birimi = limitin yüzde kaçı". Önsel değerler kaba
 //                  tahmindir; adım 10'daki kalibrasyon her mesajın gerçek yüzde değişiminden öğrenir.
 
+import COMMUNITY from "./community-priors.js";
+
+// eff: claude.ai'deki effort seçicisi (Anthropic destek makalesi ve effort belgesi, Ekim 2026).
+//   def = varsayılan seviye (Opus 5.5 ve Haiku 5.5: medium; diğerleri high), x = "extra high" (xhigh) var mı.
+//   Seçicisi olmayan modellerde eff yok.
 export const MODELS = {
-  "fable 5.1":  { id: "claude-fable-5-1",  family: "fable",  weight: 10,  ctx: 1_000_000 },
-  "fable 5":    { id: "claude-fable-5",    family: "fable",  weight: 10,  ctx: 500_000 },
-  "opus 5.5":   { id: "claude-opus-5-5",   family: "opus",   weight: 4,   ctx: 1_000_000 },
-  "opus 5":     { id: "claude-opus-5",     family: "opus",   weight: 5,   ctx: 1_000_000 },
-  "opus 4.8":   { id: "claude-opus-4-8",   family: "opus",   weight: 5,   ctx: 500_000 },
-  "opus 4.7":   { id: "claude-opus-4-7",   family: "opus",   weight: 5,   ctx: 500_000 },
-  "opus 4.6":   { id: "claude-opus-4-6",   family: "opus",   weight: 5,   ctx: 500_000 },
+  "fable 5.1":  { id: "claude-fable-5-1",  family: "fable",  weight: 10,  ctx: 1_000_000, eff: { def: "high", x: true } },
+  "fable 5":    { id: "claude-fable-5",    family: "fable",  weight: 10,  ctx: 500_000,   eff: { def: "high", x: true } },
+  "opus 5.5":   { id: "claude-opus-5-5",   family: "opus",   weight: 4,   ctx: 1_000_000, eff: { def: "medium", x: true } },
+  "opus 5":     { id: "claude-opus-5",     family: "opus",   weight: 5,   ctx: 1_000_000, eff: { def: "high", x: true } },
+  "opus 4.8":   { id: "claude-opus-4-8",   family: "opus",   weight: 5,   ctx: 500_000,   eff: { def: "high", x: true } },
+  "opus 4.7":   { id: "claude-opus-4-7",   family: "opus",   weight: 5,   ctx: 500_000,   eff: { def: "high", x: true } },
+  "opus 4.6":   { id: "claude-opus-4-6",   family: "opus",   weight: 5,   ctx: 500_000,   eff: { def: "high", x: false } },
   "opus 4.5":   { id: "claude-opus-4-5",   family: "opus",   weight: 5,   ctx: 200_000 },
-  "sonnet 5.5": { id: "claude-sonnet-5-5", family: "sonnet", weight: 2,   ctx: 1_000_000 },
-  "sonnet 5":   { id: "claude-sonnet-5",   family: "sonnet", weight: 2,   ctx: 1_000_000 },
-  "sonnet 4.6": { id: "claude-sonnet-4-6", family: "sonnet", weight: 3,   ctx: 500_000 },
+  "sonnet 5.5": { id: "claude-sonnet-5-5", family: "sonnet", weight: 2,   ctx: 1_000_000, eff: { def: "high", x: false } },
+  "sonnet 5":   { id: "claude-sonnet-5",   family: "sonnet", weight: 2,   ctx: 1_000_000, eff: { def: "high", x: false } },
+  "sonnet 4.6": { id: "claude-sonnet-4-6", family: "sonnet", weight: 3,   ctx: 500_000,   eff: { def: "high", x: false } },
   "sonnet 4.5": { id: "claude-sonnet-4-5", family: "sonnet", weight: 3,   ctx: 200_000 },
-  "haiku 5.5":  { id: "claude-haiku-5-5",  family: "haiku",  weight: 0.1, longWeight: 0.5, longAbove: 100_000, ctx: 1_000_000 },
+  "haiku 5.5":  { id: "claude-haiku-5-5",  family: "haiku",  weight: 0.1, longWeight: 0.5, longAbove: 100_000, ctx: 1_000_000, eff: { def: "medium", x: false } },
   "haiku 4.5":  { id: "claude-haiku-4-5",  family: "haiku",  weight: 1,   ctx: 200_000 }
 };
 const FAMILY_DEFAULT = { fable: "fable 5.1", opus: "opus 5.5", sonnet: "sonnet 5.5", haiku: "haiku 5.5" };
@@ -58,27 +65,51 @@ export const PLAN_CAPS = {
 };
 export const PRIOR_K_LOGSD = 0.8;
 
-// Mayıs 2026'dan beri Pro ve Max'te yoğun saat kısıtlaması yok; Free ve Team için
-// hafta içi 12:00–18:00 UTC arası oturum limiti ~1,5 kat hızlı doluyor (lugia19).
-export const PEAK = { multiplier: 1.5, tiers: ["claude_free", "claude_team"] };
+// Yoğun saat: hafta içi 05:00–11:00 Pasifik saati (yaz/kış saati otomatik). Mart 2026'dan beri claude.ai'de
+// (web, masaüstü, mobil) 5 saatlik limit bu aralıkta daha hızlı doluyor; Free, Pro ve Max dahil. Mayıs 2026'daki
+// gevşetme yalnızca Claude Code içindir (claude.ai sohbetini kapsamaz). Anthropic çarpanı yayımlamadı:
+// 1,5 kaba önseldir, kalibrasyon yoğun saatteki ölçümlerden ayrıca öğrenir ("session_peak").
+// Kaynaklar: TechRadar 27.03.2026; pasqualepillitteri.it (06.05.2026 güncellemesi).
+export const PEAK = { multiplier: 1.5, logSd: 0.4, startHour: 5, endHour: 11, tz: "America/Los_Angeles",
+  tiers: ["claude_free", "claude_pro", "claude_team", "claude_max_5x", "claude_max_20x"] };
+function laParts(now) {
+  const f = new Intl.DateTimeFormat("en-US", { timeZone: PEAK.tz, weekday: "short", hour: "numeric", hourCycle: "h23" });
+  const parts = Object.fromEntries(f.formatToParts(now).map((p) => [p.type, p.value]));
+  return { wd: parts.weekday, h: Number(parts.hour) };
+}
 export function isPeak(now = new Date()) {
-  const d = now.getUTCDay(), h = now.getUTCHours();
-  return d !== 0 && d !== 6 && h >= 12 && h < 18;
+  const { wd, h } = laParts(now);
+  return wd !== "Sat" && wd !== "Sun" && h >= PEAK.startHour && h < PEAK.endHour;
+}
+// Bugünün yoğun saat aralığı (yerel saate çevirmek için epoch ms)
+export function peakWindow(now = new Date()) {
+  const la = new Date(now.toLocaleString("en-US", { timeZone: PEAK.tz }));
+  const offset = la.getTime() - new Date(now.toLocaleString("en-US", { timeZone: "UTC" })).getTime(); // LA − UTC
+  const day = new Date(Date.UTC(la.getFullYear(), la.getMonth(), la.getDate()));
+  return { start: day.getTime() + PEAK.startHour * 3600e3 - offset, end: day.getTime() + PEAK.endHour * 3600e3 - offset };
 }
 
 // Effort → gizli düşünme tokenı / görünen çıktı oranı (önsel; kalibrasyon k içinde emer).
+// Anthropic: effort "katı bir bütçe değil, davranış sinyali"; düşük seviyede basit işlerde düşünme hiç olmayabilir.
+// xhigh ("extra high") uzun kodlama/ajan işleri içindir; max "sınırsız" en derin akıl yürütme.
 const EFFORT = {
   off: { m: 0, sd: 0 }, low: { m: 0.25, sd: 0.6 }, medium: { m: 0.7, sd: 0.6 },
-  high: { m: 1.6, sd: 0.6 }, max: { m: 3, sd: 0.7 }, auto: { m: 0.7, sd: 0.8 }
+  high: { m: 1.6, sd: 0.6 }, xhigh: { m: 2.2, sd: 0.7 }, max: { m: 3, sd: 0.7 }, auto: { m: 0.7, sd: 0.8 }
 };
+export const EFFORT_RATIO = Object.fromEntries(Object.entries(EFFORT).map(([k, v]) => [k, v.m]));
 export function normalizeEffort(label) {
   const s = String(label || "").toLocaleLowerCase("tr");
+  if (/çok yüksek|ekstra|extra|x-?high/.test(s)) return "xhigh";
+  if (/maks|max/.test(s)) return "max";
   if (/düşük|low/.test(s)) return "low";
   if (/orta|medium/.test(s)) return "medium";
-  if (/çok yüksek|maks|max|extra/.test(s)) return "max";
   if (/yüksek|high/.test(s)) return "high";
   if (/kapalı|off|none/.test(s)) return "off";
   return "auto";
+}
+// Sayfada effort okunamazsa modelin varsayılanı kullanılır (yoksa "auto")
+export function defaultEffort(modelLabel) {
+  return resolveModel(modelLabel).info?.eff?.def || null;
 }
 
 export const effortMean = (key) => (EFFORT[key] || EFFORT.auto).m;
@@ -106,7 +137,10 @@ const LEN = {
   complexity: 1.047
 };
 // Claude ile açık modeller arasındaki fark için önsel: cevaplar ~%30 daha uzun, ek belirsizlik.
-export const CLAUDE_OUTPUT_PRIOR = { mean: Math.log(1.3), sd: 0.35 };
+// Topluluk verisi varsa (en az 3 katkı) onun değeri kullanılır.
+export const CLAUDE_OUTPUT_PRIOR = COMMUNITY.outBias && COMMUNITY.outBias.users >= 3
+  ? { mean: COMMUNITY.outBias.mean, sd: COMMUNITY.outBias.sd }
+  : { mean: Math.log(1.3), sd: 0.35 };
 
 // CASTILLO'da iyi temsil edilmeyen tipler için uzman önselleri.
 const OVERRIDE = {
@@ -191,8 +225,19 @@ export function outputPrior(cls, ctx = {}, calib = null) {
   return { mu, sd, tool };
 }
 
+export function peakPrior(base) {
+  return { mu: base.mu + Math.log(PEAK.multiplier), sd: Math.sqrt(base.sd * base.sd + PEAK.logSd * PEAK.logSd) };
+}
+
 // k (yüzde / maliyet birimi) dağılımı, pencere başına
+export function communityK(tier, window) {
+  const c = COMMUNITY.k?.[tier]?.[window];
+  return c && c.users >= 3 && Number.isFinite(c.mu) && Number.isFinite(c.sd) ? { mu: c.mu, sd: c.sd } : null;
+}
 export function kPrior(tier, window) {
+  // Topluluk önseli: aynı plandaki en az 3 kullanıcının öğrendiği k'ların ortancası
+  const c = communityK(tier, window);
+  if (c) return c;
   const caps = PLAN_CAPS[tier] || PLAN_CAPS.claude_pro;
   const cap = caps[window];
   return { mu: Math.log(100 / cap), sd: PRIOR_K_LOGSD + (PLAN_CAPS[tier] ? 0 : 0.4) };
@@ -204,8 +249,10 @@ export function kPrior(tier, window) {
 export function forecastMessage(input, { samples = 800 } = {}) {
   const now = input.now ?? Date.now();
   const m = resolveModel(input.model);
-  const effortKey = normalizeEffort(input.effort);
-  const eff = EFFORT[effortKey];
+  let effortKey = normalizeEffort(input.effort);
+  let effortAssumed = false;
+  if (effortKey === "auto" && m.info?.eff?.def) { effortKey = m.info.eff.def; effortAssumed = true; }
+  const eff = EFFORT[effortKey] || EFFORT.auto;
   const tier = input.tier || "claude_pro";
   const cls = input.cls;
   const calib = input.calib || null;
@@ -231,14 +278,17 @@ export function forecastMessage(input, { samples = 800 } = {}) {
   const out = outputPrior(cls, { promptTokens: prompt, attachmentTokens: att }, calib);
   const pIn = logRange({ low: prompt.low + att.low, mid: prompt.mid + att.mid, high: prompt.high + att.high });
   const pHist = logRange(histT);
-  const kS = calib?.kPosterior?.(tier, "session") || kPrior(tier, "session");
-  const kW = calib?.kPosterior?.(tier, "weekly") || kPrior(tier, "weekly");
   const peak = PEAK.tiers.includes(tier) && isPeak(new Date(now));
-  const peakMul = peak ? PEAK.multiplier : 1;
+  // Yoğun saatte ayrı öğrenilen k kullanılır (yoksa normal k × 1,5 önseli)
+  const kS = (peak ? calib?.kPosterior?.(tier, "session_peak") : calib?.kPosterior?.(tier, "session")) ||
+    (peak ? peakPrior(kPrior(tier, "session")) : kPrior(tier, "session"));
+  const kW = calib?.kPosterior?.(tier, "weekly") || kPrior(tier, "weekly");
+  const peakMul = 1; // yoğun saat etkisi kS içinde
 
   const seed = Math.round(prompt.mid * 7 + att.mid * 13 + histT.mid * 3 + (cls.type.length * 101)) || 1;
   const N = normals(mulberry32(seed));
   const S = { out: [], cost: [], sess: [], week: [], think: [] };
+  const B = { input: 0, history: 0, tool: 0, output: 0, thinking: 0 }; // harcama dökümü (ortalama pay)
   for (let i = 0; i < samples; i++) {
     const zOut = N();
     const visible = Math.exp(out.mu + out.sd * zOut);
@@ -251,21 +301,24 @@ export function forecastMessage(input, { samples = 800 } = {}) {
     const cost = w * (newIn + histCost + toolIn + OUTPUT_PRICE_RATIO * (visible + think));
     const zk = N();
     S.out.push(visible); S.think.push(think); S.cost.push(cost);
+    B.input += newIn; B.history += histCost; B.tool += toolIn; B.output += OUTPUT_PRICE_RATIO * visible; B.thinking += OUTPUT_PRICE_RATIO * think;
     S.sess.push(cost * Math.exp(kS.mu + kS.sd * zk) * peakMul);
     S.week.push(cost * Math.exp(kW.mu + kW.sd * zk)); // aynı z: iki pencere birlikte yanılır
   }
   const q = (arr) => { const s = [...arr].sort((a, b) => a - b); return { low: quantile(s, 0.1), mid: quantile(s, 0.5), high: quantile(s, 0.9), p80: quantile(s, 0.8) }; };
 
   const sess = q(S.sess), week = q(S.week);
+  const bTotal = B.input + B.history + B.tool + B.output + B.thinking;
+  const breakdown = Object.fromEntries(Object.entries(B).map(([k, v]) => [k, bTotal > 0 ? v / bTotal : 0]));
   const spreadRatio = sess.high / Math.max(1e-9, sess.low);
   const confidence = spreadRatio < 3 ? "high" : spreadRatio < 8 ? "medium" : "low";
 
   return {
-    model: m.key, modelApprox: !!m.approx, weight: w, effort: effortKey, tier, peak,
+    model: m.key, modelApprox: !!m.approx, weight: w, effort: effortKey, effortAssumed, tier, peak,
     cache, minutesSince,
     output: q(S.out), thinking: q(S.think), cost: q(S.cost),
     pct: { session: sess, weekly: week },
-    confidence,
+    confidence, breakdown,
     context: {
       used: contextBase + prompt.high + att.high + histT.high + q(S.out).high,
       usedLow: contextBase + prompt.low + att.low + histT.low,
@@ -311,16 +364,7 @@ export function recommendModel(fc, rec, input) {
   return { kind: "ok", label: cur.key };
 }
 
-export function recommendEffort(cls, effortKey) {
-  const light = ["short_qa", "translate", "rewrite", "summarize"];
-  if (light.includes(cls.type) && (effortKey === "high" || effortKey === "max") && cls.complexity < 0.4) {
-    return { kind: "lower", to: "low" };
-  }
-  if ((cls.type === "math" || cls.type === "code_write") && cls.complexity >= 0.6 && (effortKey === "low" || effortKey === "off")) {
-    return { kind: "raise", to: "high" };
-  }
-  return null;
-}
+// (Effort önerisi lib/effort.js'e taşındı: iş türü + alan + model + kullanıcı geri bildirimi.)
 
 // ---------- Kalan limitle yapılabilecekler (adım 7) ----------
 // Temsilci görevler: tipik girdi büyüklükleriyle, YENİ bir sohbette (geçmiş yok, sistem önbellekte).

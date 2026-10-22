@@ -1,0 +1,309 @@
+d.brand	Token Forecast
+d.nav0	Features
+d.nav1	How it works
+d.nav2	Learning
+d.nav3	Privacy
+d.nav4	Install
+d.eyebrow	Free browser extension for claude.ai
+d.h1	Know <em>before</em> you send.
+d.lede	Token Forecast tells you how much of your 5-hour and weekly Claude limit a message will use before you hit send. It also shows which model and which effort setting are enough, with reasons, and learns your plan over time.
+d.cta1	Install · Chrome and Opera
+d.cta2	How it works
+d.tr1	No account
+d.tr2	No server
+d.tr3	Your messages never leave your device
+d.tr4	10 interface languages
+d.demoT	TRY IT LIVE
+d.demoS	The extension's real forecasting engine, running in your browser
+d.demoL	YOUR MESSAGE
+d.cModel	Model
+d.cEffort	Effort
+d.cPlan	Plan
+d.cChat	Chat
+d.eLow	Low
+d.eMed	Medium
+d.eHigh	High
+d.eMax	Max
+d.chNew	New chat
+d.chMid	Short history (8K)
+d.chLong	Long history (190K)
+d.usedL	5-hour limit used now
+d.fType	TASK
+d.fTok	INPUT → REPLY
+d.fWeek	WEEKLY
+d.gapE	WHAT'S MISSING
+d.gapH	Claude Code shows your usage. The chat screen doesn't.
+d.gapP	On claude.ai you have to open Settings → Usage, and it only tells you what you've already used. Limits often run out in the middle of a task, on a message you didn't expect. Token Forecast brings this into the chat and goes one step further: before you send.
+d.t0	Feature
+d.t1	Settings → Usage
+d.t2	Usage meters*
+d.t3	Token Forecast
+d.r1	5-hour and weekly percentage, reset time
+d.r2	Inside the chat, next to the message box
+d.r3	What this message will cost, before sending
+d.r4	Which model is enough, and why
+d.r5	The hidden cost of switching models mid-chat
+d.r6	Roughly how many tasks your remaining limit allows
+d.r7	Learns from your plan and habits
+d.r8	“Why did this message cost so much?” explanation
+d.r9	Weekly report, hour heatmap and personal tips
+d.r10	Cache and peak-hour countdowns
+d.part	partly
+d.part2	partly
+d.gapF	* None of the eight usage extensions whose pages we reviewed in October 2026 offers a per-message estimate before sending or a reasoned model suggestion; all show usage after you send. One has a cache countdown, one a peak-hour countdown, one a heatmap.
+d.ftE	WHAT IT DOES
+d.ftH	Before, while and after you spend your limit.
+d.ftP	Everything runs in your browser. Features added in this release are marked.
+d.fk1	BEFORE
+d.fk2	WHILE
+d.fk3	AFTER
+d.fk4	LEARNS
+d.nw	NEW
+d.f1h	Estimate before sending
+d.f1p	While you type, it shows how much of your 5-hour and weekly limit will go, with an 80% range. It accounts for attachments, chat history, model and thinking effort.
+d.f2h	Model suggestion with reasons
+d.f2p	It tells you which model is enough, what it looked at and how much you'd save. When unsure it never suggests a light model.
+d.f3h	Cost breakdown
+d.f3p	How much of the cost comes from the answer, thinking, history and attachments, at a glance on the card.
+d.f4h	Cache and peak-hour countdowns
+d.f4p	How many more minutes the chat history is read for free, and when peak hours end.
+d.f5h	When will it run out at this pace?
+d.f5p	Looking at your last hour, it tells you whether the 5-hour limit will fill before it resets.
+d.f6h	Handoff summary
+d.f6p	When a chat gets too long, one click copies a ready prompt asking Claude for a short summary to carry into a new chat.
+d.f7h	“Why did that cost so much?”
+d.f7p	If a message uses far more than estimated, it tells you why: history re-read after a long break, peak hours, a long answer, or use on another device.
+d.f8h	Weekly report
+d.f8p	Messages, limit used, peak-hour share, model and task mix, an hour heatmap and tips made for you. Monday-morning notification, CSV export.
+d.f9h	On-device learned model
+d.f9p	It recognizes the task type with rules plus a small learned model. When you correct it, it learns on your device.
+d.f10h	Personal calibration
+d.f10p	After every message it measures how your limit actually changed, learning your plan's size and the answer lengths Claude gives you.
+d.vidC	47-second intro. The interface shown is illustrative; the numbers come from the extension's own engine.
+d.sh3	Weekly report (with simulated sample data): topics, effort mix and proof of learning. Computed only in your browser, from records with no message text.
+d.mlE	MACHINE LEARNING
+d.mlH	Rules start it, a model learns, you correct it.
+d.mlP	Knowing what kind of task a message is underpins both the estimate and the model suggestion. The old version recognized it with rules only. Now the rule scores feed a small learned model that runs on your device. The model is 128 KB, never goes online and runs within a keystroke.
+d.st1v	64%<span class="arrow">→</span><span class="good">88%</span>
+d.st1	Task type recognized correctly: rules → rules + model. On 120 everyday messages written without looking (no diacritics, greetings, typos).
+d.st2	Dangerous errors: taking a hard task (code, math, research) for a simple one. Two test sets, 240 messages.
+d.st3	Correct Haiku suggestions on truly simple tasks. Wrong Haiku suggestions 0 → 1 (“17% of 2350”).
+d.ly1h	Personal calibration
+d.ly1p	From your limit percentage read before and after every message, it learns your plan's size, the peak-hour effect and the answer lengths Claude gives you.
+d.ly2h	Personal corrections
+d.ly2p	When you say “wrong task type?” in the suggestion and pick the right one, the model updates on your device; 👍/👎 tune the suggestion bounds. What's stored is weight differences, not text.
+d.ly3h	Community (optional)
+d.ly3p	If you share a text-free summary of what was learned, new users start from real measurements instead of guesses.
+d.mlF	Honest note: the training and test messages were also written by the project; accuracy on real user messages hasn't been measured yet. That's exactly what community contributions are for. Answer quality (was Haiku really enough?) wasn't measured.
+d.cmE	COMMUNITY
+d.cmH	More accurate, together.
+d.cmP	Anthropic doesn't publish limit sizes; every user learns their plan by measuring. Combine those measurements and a newcomer gets accurate estimates from their first message. Nothing is sent automatically.
+d.cmL	How to contribute
+d.cm1	<span>In the extension window, <b>Contribute to the community</b> → <b>Show contribution summary</b>. It contains only numbers and labels.</span>
+d.cm2	<span><b>Copy and open the form</b>, paste it into the form and submit.</span>
+d.cm3	<span>Summaries are combined; the next release ships better starting values for everyone.</span>
+d.cmSoon	The contribution form and a 2-minute survey will appear here once the project page is live.
+d.fqE	FAQ
+d.fqH	Things you might wonder.
+d.q1	Does it cost anything?
+d.a1	No. You don't need an account either.
+d.q2	Does it read my messages and send them somewhere?
+d.a2	It reads the message box in your browser to count tokens, but sends nothing anywhere. The extension has no server, no analytics, no tracking. The weekly report and learned values contain no message text.
+d.q3	How accurate are the estimates?
+d.a3	Ranges are wide for the first messages because limit sizes start as rough guesses. It narrows by measuring every message; in simulation the error drops to 1.13× after 20 messages and 1.08× after 100. The window shows how many measurements fell inside the range.
+d.q4	How is it different from Claude's own usage screen?
+d.a4	Settings → Usage shows what you've already used. Token Forecast tells you, before you send, how much this message will use, which model is enough, and why something cost so much.
+d.q5	Could it harm my account?
+d.a5	It isn't an official Anthropic tool. It reads the usage data claude.ai's own pages use, with your session; it never sends messages, changes settings or automates anything.
+d.q6	Which browsers?
+d.a6	Chrome, Opera, Edge and Brave (Chromium 116 or later). A Firefox version is on the roadmap.
+d.q7	Is the source code open?
+d.a7	Yes. The code is open under the GNU AGPL-3.0: you can read, run, modify and share it. If you distribute a modified version, you must release it under the same license with its source code and keep the copyright notice. The name and logo “Token Tahmini / Token Forecast” are not covered by the license; modified versions must use a different name.
+d.rmE	ROADMAP
+d.rmH	What's next?
+d.rm1h	Store release
+d.rm1p	Chrome Web Store, Opera and Firefox add-ons.
+d.rm2h	First community starting values
+d.rm2p	Limit sizes per plan and answer lengths, from contributions.
+d.rm3h	Blind quality test
+d.rm3p	Compare different models' answers to the same question without labels; tune suggestion thresholds from it.
+d.rm4h	Shared report for teams
+d.rm4p	Team-wide usage and shared tips on Team plans, still text-free.
+d.rm5h	Multiple accounts
+d.rm5p	Separate limits and learned values per account.
+d.ft3	© 2026 Hayrettin Enes Karalı. Open source under the GNU AGPL-3.0.
+d.shE	IN THE EXTENSION
+d.shH	A forecast while you type, a measurement when you send.
+d.shP	A small pill and a reasoned suggestion above the message box; in the toolbar, your limits, what your remaining limit allows, and learning status.
+d.sh1	A translation request: Haiku and Low effort. With “Why?” open you see the detected task, topic, effort suggestion, signals and basis.
+d.sh2	Toolbar window. Screenshots are from the test environment.
+d.hwE	HOW IT WORKS
+d.hwH	Less like a price list, more like a measuring instrument.
+d.hwP	Anthropic doesn't publish exact limit sizes. So the extension starts from a rough prior and corrects itself on every message by measuring how your real usage percentage changes before and after.
+d.d1	The model's relative price. The gap between Haiku, Sonnet, Opus and Fable shows up in your limit at the same ratio (an assumption, corrected by measurement).
+d.d2t	history
+d.d2	A chat used within the last hour is read from cache and doesn't count against your limit. Wait an hour and the whole history counts again; the extension warns you.
+d.d3t	reply
+d.d3	Reply length comes from a distribution per task type (CASTILLO dataset, 12 task types). That's why you see an 80% range, not a single number.
+d.d4t	5 ×
+d.d4	Output tokens cost five times input tokens. Thinking (effort) tokens are invisible but they count.
+d.d5	“What percentage of my limit is one cost unit?” Specific to your plan. Learned after every message with a Gamma-Poisson update; tracked separately for peak hours.
+d.simC	Simulation: 300 virtual plans deviating up to 2× from the prior, using the extension's real calibration code. Median estimate error is 1.68× on the first message, 1.13× after 20 messages, 1.08× after 100.
+d.mdE	MODEL SUGGESTION
+d.mdH	Not the lightest model. The lightest model that's enough.
+d.mdP	Suggesting a light model is a worse mistake than suggesting an expensive one: a bad answer means asking again. The extension suggests Haiku only for clearly simple tasks it's confident about; when unsure it says at least Sonnet. Its basis is Anthropic's model selection guide, a 60-prompt suggestion test set (100% fit, zero too-light suggestions) and the on-device learned model.
+d.mdF	Relative cost: assumed proportional to API price and corrected by calibration. On claude.ai the system prompt and memory push the context above 100K tokens, so Haiku's long-context price applies. Switching models in a long chat means the new model re-reads the whole history; in that case the extension says “pick it in your next new chat”.
+d.pvE	PRIVACY
+d.pvH	Everything is computed in your browser.
+d.pvP	The extension has no server. Your messages, attachments and chats never leave your device; no analytics, no tracking. It only runs on claude.ai, with your own session.
+d.pvL	What it reads, and why
+d.pv1	claude.ai's usage page data: your 5-hour and weekly percentage.
+d.pv2	The open chat's history length: for cache and context math (text is counted locally).
+d.pv3	The text and attachments in the message box: only to count tokens, locally.
+d.pv4	Permissions: storage, alarms, notifications, and only the <code>claude.ai</code> site.
+d.inE	INSTALL
+d.inH	Installs in two minutes.
+d.inP	A store release is in preparation. For now it loads in developer mode; the same steps work in Chrome, Opera, Edge and Brave.
+d.s1	<span>Download the release zip: <span id="dl">download page (coming soon)</span>.</span>
+d.s2	<span>Right-click the zip → <b>Extract all</b>. You get a folder with <code>manifest.json</code> directly inside.</span>
+d.s3	<span>Go to <code>chrome://extensions</code> (Opera: <code>opera://extensions</code>) and turn on <b>Developer mode</b>.</span>
+d.s4	<span><b>Load unpacked</b> → choose the extracted folder.</span>
+d.s5	<span>Reload your claude.ai tab. A pill appears above the message box; start typing.</span>
+d.upH	Don't lose what it learned when updating
+d.upP	Before removing the old version, open the extension window: Settings → <b>Export my data</b>. After installing the new one, use <b>Import my data</b>.
+d.hcH	If something doesn't work
+d.hcP	<b>Health check</b> in the window shows the state of every step. Use <b>Copy log</b> when reporting a bug; the log contains no message text.
+d.lmE	LIMITATIONS
+d.lmH	We also tell you what we don't know.
+d.l1	It relies on claude.ai's undocumented internals. If Anthropic changes the page, an update is needed; the health check shows it right away.
+d.l2	Ranges are wide for the first messages; limit sizes start as rough estimates.
+d.l3	Model suggestions come from rules plus a small learned model; answer quality was not measured. Your 👍/👎 and task-type corrections tune them to you.
+d.l4	During peak hours (weekdays 05:00–11:00 Pacific) the 5-hour limit fills faster; Anthropic hasn't published the multiplier, so the extension learns it by measuring.
+d.l5	Using the same account on another device or in Claude Code at the same time can disturb measurements; the outlier filter removes most of them.
+d.l6	Thinking tokens are never visible on claude.ai; they're only learned indirectly from usage changes.
+d.spH	Support the project
+d.spP	Token Forecast will stay free. If you'd like to help it keep going:
+d.spB	Support ☕
+d.ft1	Token Forecast is an independent project and is not affiliated with Anthropic. Claude is a trademark of Anthropic.
+d.ft2	Sources: Anthropic's model selection guide and docs · CASTILLO dataset (CC BY 4.0) · lugia19/Claude-Usage-Extension measurements (GPL-3.0; observations only, no code copied).
+d.fDomL	TOPIC
+d.nav5	Proof
+d.eXh	Extra high
+d.f11h	Recognizes the topic
+d.f11p	Sorts a message into 16 topic areas and sub-topics (Science · Physics, Engineering · Electrical…) with about 2,600 keywords. For health, law and money questions it never suggests a light model.
+d.f12h	Effort suggestion
+d.f12p	From Low to Max: which effort level is enough for this task, and how much limit you save if your current setting is higher. It knows each model's default and the Extra high level.
+d.f13h	Looks at the task, not the word
+d.f13p	“I need a website with a translation system built” is a build job, not a translation. The extension tells the difference and does not suggest Haiku.
+d.f14h	A pill you can move
+d.f14p	Drag the pill wherever you like. It steps aside by itself when claude.ai's effort or model menu opens, and Alt + arrow keys move it too.
+d.f15h	Proof of learning
+d.f15p	The report shows, from your own measurements, whether the forecast error is shrinking over time. If it isn't, it says so.
+d.sh4	Effort suggestion: if Medium is enough instead of Max, it tells you how much limit you would save.
+d.sh5	It looks at the task, not the word: “a site with a translation system” is a build job, so Haiku is not suggested.
+d.alt1	Suggestion notice for a translation request: Haiku 5.5 is enough, effort Low; sections for detected task, topic, effort suggestion, signals and basis
+d.alt2	Effort suggestion notice: Medium is enough instead of Max, with the amount of limit saved
+d.alt3	Sonnet 5.5 suggestion for a request to build a website that includes a translation system; Haiku is not suggested
+d.alt4	Extension window: 5-hour session, weekly limit, what the remaining limit can do, weekly report row and personal calibration status
+d.alt5	Weekly report page: spending tiles, tips, model, task, topic and effort mix, hour heat map, proof-of-learning chart, most expensive messages
+d.dmE	TOPIC AND EFFORT
+d.dmH	Same question, different topic: different model, different effort.
+d.dmP	A second axis next to the task type: it sorts a message into 16 topic areas and sub-topics (on your device, by keywords). For health, law and money questions it never suggests a light model and keeps effort at Medium or above. In science, math and engineering it raises effort one level for explanations. In poetry and fiction it caps effort at Medium, because long thinking adds little there.
+d.dmF	Keywords are shortened examples for each area. If it can't find an area it says “General” and the suggestion doesn't change.
+d.efF	Basis: Anthropic's effort documentation and support article. The thinking-cost ratios (relative to the visible reply length) are the extension's assumption and get corrected by your own measurements. Whether the suggested effort preserves answer quality has not been measured.
+d.pfE	PROOF
+d.pfH	Does it learn over time? We measured.
+d.pfP	200 simulated users with hidden true values (120 messages each), running the extension's real forecast and calibration code. Each message is forecast first, then the truth is seen and learned. A copy that doesn't learn and a perfect forecaster that knows the true values run on the same message stream.
+d.pfC	In the total limit of the messages in each block, how many times off the forecast was (1.00× is perfect). Lower is better.
+d.hnH	What this does not prove
+d.hn1	The users are simulated. Real accounts may differ, which is why the report's “Proof of learning” section checks you against your own measurements.
+d.hn2	The spend of one message can't be known in advance: reply length and hidden thinking are random. The learning forecast comes down to this randomness floor (1.7×) and can't go below it. The goal is to keep the total and the range right.
+d.hn3	For task recognition, personal corrections did not give a measurable accuracy gain on 240 varied messages (it stayed around 90%). Corrections are for fixing your own recurring patterns, they don't raise general accuracy.
+d.hn4	The experiments are reproducible: tests/learning-proof.mjs and tests/classifier-learning.mjs.
+d.l7	Topic recognition is keyword-based. On a nearly blind set of 90 messages written after the rules were finished, it found 71% with 1 wrong area; when it can't find one it says “General” and the suggestion doesn't change. Whether the suggested effort preserves answer quality has not been measured.
+d.q8	Why doesn't it suggest Haiku when my message contains “translate”?
+d.a8	It looks at the task, not the word. “Translate this: …” is a translation request and Haiku is enough. “I need a site with a translation system built” is a build job and at least Sonnet is suggested. 15 such trap sentences and real translation requests are in the automated tests.
+d.q9	How do I see that it really learns?
+d.a9	Extension window → Weekly report → Proof of learning. After 30 measurements it compares the error of the first and the latest measurements, and says so if it did not drop. The experiment we ran with simulated users is in the Proof section above.
+d.l8	The interface comes in 10 languages, but message analysis (task type, topic, model and effort suggestions) currently works only for Turkish and English messages. In other languages you still get the token and limit forecast (the token count is tuned per language, though measured on fewer samples), but no suggestions.
+d.q10	Which languages does it work in?
+d.a10	The extension and this site come in Turkish, English, German, French, Spanish, Italian, Portuguese, Russian, Japanese and Chinese; pick one in the settings. Message analysis (task type, topic, model and effort suggestions) is done only for Turkish and English messages. If you write in another language, the token and limit forecast still works, no suggestion is shown and the extension tells you so. The intro video and screenshots are in Turkish and English; the other languages see the English ones.
+d.rm6h	A learned model for topics
+d.rm6p	For messages where keywords are not enough; with user corrections.
+d.ft4	Version 0.12.0 · 22 October 2026
+ui.of5h	of your 5-hour limit
+ui.range	80% range: $1–$2
+ui.noFit	This message may not fit your remaining limit ($1 left).
+ui.maybeFit	In a bad case it could exceed your remaining limit ($1 left).
+ui.peak	Peak hours right now: the 5-hour limit fills faster.
+ui.empty	Type something or pick an example above.
+ui.scale	grey: used · orange: this message
+ui.rel	vs Sonnet
+ui.simX	messages sent
+ui.simY	estimate error (×)
+ui.conf.high	high confidence
+ui.conf.medium	medium confidence
+ui.conf.low	low confidence
+ui.presetLabels.0	Translate
+ui.presetLabels.1	Code bug
+ui.presetLabels.2	Derivation
+ui.presetLabels.3	Article
+ui.presetLabels.4	Architecture
+ui.models.haiku.0	The lowest latency and price. Translation, proofreading, short summaries, single-answer questions.
+ui.models.haiku.1	Suggested only for clearly simple tasks it's confident about.
+ui.models.sonnet.0	Speed and capability for everyday work: code, data analysis, writing, explanations.
+ui.models.sonnet.1	The default suggestion for most tasks; the safe side when unsure.
+ui.models.opus.0	Complex coding and enterprise work: large refactors, systems design, long agent runs.
+ui.models.opus.1	When difficulty cues (prove, architecture, comprehensive…) are high.
+ui.models.fable.0	The highest capability: multi-hour agent sessions, multistep deep research.
+ui.models.fable.1	Only for very hard derivations, designs and research.
+ui.loop.0	Type
+ui.loop.1	Forecast
+ui.loop.2	Send
+ui.loop.3	Measure
+ui.loop.4	Learn
+x.risk	HIGH STAKES
+x.deep	DEEP REASONING
+x.plan	PLANNING
+x.creative	CREATIVE
+x.light	LIGHT
+x.effHead	thinking / reply
+x.pfX	message block
+x.pfY	error (×)
+x.off	Hide the bot
+x.on	Show the bot
+x.eff.0	Routine tasks: translation, short questions, proofreading. Uses the least limit.
+x.effr.0	0.25×
+x.eff.1	Most everyday tasks: explanations, writing, simple code. The default for Opus 5.5 and Haiku 5.5.
+x.effr.1	0.7×
+x.eff.2	The best general balance, the default for other models. Proofs, hard explanations, planning.
+x.effr.2	1.6×
+x.eff.3	Long coding and agent work. Only on Opus 4.7 and later, and Fable.
+x.effr.3	2.2×
+x.eff.4	The deepest reasoning: the hardest math and research. Slowest and most expensive.
+x.effr.4	3×
+x.pfL.0	Learning
+x.pfL.1	Copy that doesn't learn
+x.pfL.2	Perfect forecaster (floor)
+x.ps.0.v	2.04× → 1.40×
+x.ps.0.p	Block-total error: first 3 messages → last 40 messages. The copy that doesn't learn stays around 2.1–2.2×.
+x.ps.1.v	≈ 79%
+x.ps.1.p	The 80% forecast range covers the truth about 79% of the time (target 80%). The ranges are neither too narrow nor too wide.
+x.ps.2.v	1.74× / 1.71×
+x.ps.2.p	Single-message error: learning / perfect forecaster floor. The remaining error is the randomness of reply length; learning can't fix it.
+x.bot.0	Hi, I'm Tiko! I perch wherever you point the mouse. You can click me.
+x.bot.1	Reading this page costs your limit nothing.
+x.bot.2	The cache is free for 60 minutes. After a long break the history is read again.
+x.bot.3	For routine work, Low or Medium effort is usually enough.
+x.bot.4	If I'm not sure, I don't suggest Haiku.
+x.bot.5	You can drag the pill. Not me, sadly.
+x.bot.6	Forecast: this speech bubble used 0% of your limit.
+s.title	Token Forecast
+s.dlPage	download page
+s.contribForm	Contribution form
+s.survey	2-minute survey
+s.curve	Learning curve
+s.loopNote	k and reply length are updated
+s.simTitle	Calibration simulation
+s.close	Close ✕
+s.vidEn	The video is in English.

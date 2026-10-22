@@ -1,0 +1,477 @@
+extName	Token Forecast（Claude 用量预测）
+extShortName	Token Forecast
+extDescription	发送前估算一条消息将消耗你 Claude 使用额度的多少，必要时推荐更省的模型。
+popupTitle	Token Forecast
+sessionLimit	5 小时会话
+weeklyLimit	每周额度
+resetsAt	将于 $TIME$ 重置
+noData	暂无使用数据。请在已登录状态下打开 claude.ai。
+settings	设置
+language	语言
+languageAuto	浏览器默认
+thresholds	提醒阈值
+panelEstimate	预计消耗：本次会话的 $LOW$–$HIGH$%
+confidenceLow	可信度：低
+confidenceMedium	可信度：中
+confidenceHigh	可信度：高
+panelLoading	估算中…
+pct	$1%
+resetsIn	$1后重置（$2）
+durDH	$1天$2小时
+durHM	$1小时$2分钟
+durM	$1分钟
+bottleneck	该额度会最先用完
+fetchError	无法读取使用情况。请确认你已登录 claude.ai。
+otherLimits	其他额度
+updatedJustNow	刚刚更新
+updatedAgo	$1前更新
+staleWarning	上次更新失败
+refresh	刷新
+dbgPrompt	消息
+dbgHistory	对话
+dbgMessages	$1 条消息
+dbgNotFound	未检测到
+dbgAttachments	附件
+dbgTotal	输入合计
+dbgTokens	token
+dbgNoInput	未找到消息输入框
+dbgAnalyzing	分析中…
+dbgPasted	粘贴的文本
+dbgPages	$1 页
+dbgConvAttachments	此聊天中已发送的附件（$1）
+dbgContext	上下文窗口（$1，$2）
+dbgModelUnknown	未检测到模型
+ctxOver	这超出了 Claude 的上下文窗口。请只发送需要的部分。
+ctxNear	这可能超出 Claude 的上下文窗口。请拆分内容或新开一个聊天。
+pdfTextOnly	超过 100 页的 PDF：Claude 只会读取文字，不读取图片或图表。
+pdfTooLarge	超过 1000 页的 PDF：claude.ai 不会接受。
+lessThan	不到 $1
+warnNoFit	这很可能放不进你的 $1（剩余 $2）。
+warnMaybeFit	这可能放不进你的 $1（剩余 $2）。
+ctxWorkspace	在付费套餐中，claude.ai 可能把特别大的文件放进工作区，由 Claude 用代码读取，而不是一次读完。
+warnCacheCold	你已有 $1 分钟没用这个聊天，缓存已过期：整段历史（约 $2 个 token）将重新计费。新开聊天可能便宜得多。
+warnCacheUnknown	如果这个聊天闲置超过一小时，它的历史（约 $1 个 token）将重新计费。
+tipNewChat	这个聊天已经很长（约 $1 个 token）。带一段简短摘要新开聊天，回答会更准确也更省。
+warnPeak	高峰时段（工作日 $1–$2 点，你的本地时间）：claude.ai 的 5 小时额度此时消耗更快。建议把长任务挪到这个时段之外。
+recDowngrade	$1 可能就够了，并可少消耗约 $2% 的额度。
+recUpgrade	这看起来比较复杂；$1 可能给出明显更好的回答。
+rec_short_qa	简短的事实性问题很少需要大模型。
+rec_translate	轻量模型翻译得很好。
+rec_rewrite	改写现有文字是轻量任务。
+rec_summarize	摘要是较轻量模型的强项。
+rec_explain	中等模型讲解得不错。
+rec_writing	中等模型写作不错。
+rec_data_analysis	常规分析适合中等模型。
+rec_file_create	文档和演示文稿适合中等模型。
+rec_code_write	日常编程适合中等模型。
+rec_code_fix	大多数排错适合中等模型。
+rec_research	常规调研适合中等模型。
+rec_math	常规题目适合中等模型。
+rec_complex	这项任务看起来很复杂。
+rec_hardest	这属于最难的任务类型之一。
+effLower	这里通常用“低”努力程度就够了；“高”主要会增加隐藏的思考 token。
+effRaise	对于这么难的问题，提高努力程度可能值得。
+type_short_qa	简短问题
+type_explain	讲解
+type_math	解题
+type_code_write	编写代码
+type_code_fix	调试／代码
+type_translate	翻译
+type_writing	写作
+type_rewrite	文本编辑
+type_summarize	摘要
+type_data_analysis	数据分析
+type_research	调研
+type_file_create	创建文件
+rowWeekly	每周额度
+rowType	请求类型
+rowModel	模型
+modelName	$1
+rowInput	输入（新增）
+rowOutput	预期回答
+rowCache	缓存
+rowContext	上下文窗口
+cache_none	新聊天
+cache_warm	有效（历史免费）
+cache_cold	已过期（历史计费）
+cache_unknown	未知
+effort_low	低努力
+effort_medium	中等努力
+effort_high	高努力
+effort_max	最高努力
+effort_off	关闭思考
+effort_auto	自动
+footCalibrated	已从你的 $1 条消息中学习 · $2% 落在预测范围内。
+footLearning	仍在学习：再发几条消息，估算会更准确。
+pillIdle	Token Forecast
+pillUsed	5 小时：已用 $1
+pillSub	（5 小时额度）
+cardTitle	这条消息将消耗
+cardSub	你的 5 小时额度 · 可能范围 $1
+cardIdleSub	5 小时额度已用的比例。开始输入即可看到估算。
+close	关闭
+notifResets	将于 $1 重置。
+notifThresholdTitle	$1 已达 $2%
+notifThresholdBody	发送前先用预测来规划较大的任务。
+notifThresholdBodyHigh	快用完了：先做最重要的事。
+notifResetTitle	$1 已重置
+notifResetBody	你可以从上次中断的地方继续。
+notifTestBody	通知工作正常。
+freePlanWait	免费套餐在你于 claude.ai 发送第一条消息后才会显示使用情况。
+capTitle	用剩余额度可以做
+capSub	在 $1 的新聊天中，大约能完成下列之一（保守估计）。
+cap_short_qa	个简短问题
+cap_explain	次讲解
+cap_code_fix	次代码修复
+cap_writing	项写作任务
+cap_summarize	份文档摘要
+cap_research	项调研任务
+calTitle	个人校准
+calNone	还没有测量数据。你每发一条消息，扩展都会学到你的套餐实际是怎么消耗的。
+calFew	目前有 $1 次测量；再多几次，估算会更准确。
+calSome	$1 次测量 · $2% 的实际值落在预测范围内。
+setNotif	通知
+setPanel	在 claude.ai 上显示估算
+setMemory	Claude 记忆（上下文大小）
+memAuto	假定已开启
+memOn	开启
+memOff	关闭
+btnTestNotif	测试通知
+btnExport	导出我的数据
+btnResetCal	重置校准
+btnResetConfirm	再点一次以重置
+privacyNote	所有计算都在你的浏览器内完成。消息内容绝不会离开你的设备。
+moreDetails	详情与设置
+detailsTitle	Token Forecast – 详情
+healthTitle	系统自检
+hHook	页面钩子（可见已发送的消息）
+hSend	检测到最近一次发送
+hDone	已读取最近一次回答流
+hUsage	正在读取使用情况
+hPage	页面：输入／模型／努力程度
+hLast	最近一次测量
+hNone	暂无
+hHookNoReply	无响应 – 请刷新 claude.ai 标签页
+hHookReplaced	fetch 已被网站替换
+hProbe	消息被发往另一个地址
+hSendWait	尚未发送消息或未检测到
+hSseYes	数据流正常
+hSseNo	已读取数据流，但其中没有使用数据
+hCopyLog	复制日志
+hCopied	已复制
+hLogTitle	测量日志
+hHint	如果某一行显示有问题，请复制日志并发给开发者。
+hDomPath	从页面检测到（备用途径）
+advSave	这个任务用 $1 就够了
+advSaveDetail	这条消息约消耗你额度的 $1；用 $2 约为 $3（节省 $4%）。
+advSaveNext	这类任务用 $1 就够了，但请不要在当前聊天中切换
+advSaveNextDetail	聊天历史（$1 个 token）不在新模型的缓存里，会被重新读取，这条消息反而更贵。请在下次新开聊天时选择 $2。
+advUpgrade	$1 可能吃力：建议使用 $2
+advUpgradeDetail	$1 消耗你额度的速度约是 $2 倍。如果你想先试 $3，回答不够好时再切换。
+advOk	$1 适合这个任务
+advOkTiny	$1 也够用，但差别很小（你额度的 $2）。
+advWhy	为什么？
+advHide	隐藏
+advDetected	识别到的任务
+advSignals	我看到的线索
+advBasis	依据
+advWhen	何时切换
+advDetectedVal	$1 · $2 · $3
+level_low	轻
+level_mid	中等
+level_high	难
+ev_trigger	措辞“$1”
+ev_hard	难度线索：$1
+ev_code	代码块／代码行
+ev_attach	附件：$1 个 token
+ev_bullets	包含 $1 个要点的请求
+ev_long	要求详细回答
+ev_short	要求简短回答
+ev_words	$1 个词
+why_simple_task	任务简单明确；分类器很有把握。
+why_unsure_safe	我不确定任务类型，所以保守起见，至少推荐 Sonnet。
+why_complex	复杂度高。
+why_hardest	非常难的证明、设计或调研。
+why_pref_floor	根据你的反馈，这类任务我会选更强的模型。
+why_pref_ceil	根据你的反馈，这类任务我不会催你换更强的模型。
+basis_haiku	Anthropic 将 Haiku 5.5 定位为“延迟最低、价格最低”的模型，适合大批量的简单任务和子代理。
+basis_sonnet	据 Anthropic 介绍，Sonnet 5.5 提供“适合日常工作的速度与性能”：代码生成、数据分析、内容创作。
+basis_opus	Anthropic 推荐将 Opus 5.5 用于复杂编程和企业级任务：大型重构、系统工程、持续数小时的代理。
+basis_fable	Fable 5.1 是“当前可用的最强性能”：持续数小时的代理会话、多步骤的深度调研。
+tbasis_short_qa	只有一个答案的事实性问题只需简短回答，轻量模型就能胜任。涉及人物或事件的问题可能被编造，重要时请核实。
+tbasis_translate	翻译时文本已经存在；模型保持原意并转换语言。轻量模型做得很好。
+tbasis_rewrite	改写或简化时内容已定，模型只改进表达形式。
+tbasis_summarize	摘要所需的信息就在文本里；短文本用轻量模型即可，长文档或专业文档用中等模型更稳妥。
+tbasis_explain	讲解概念需要准确和好例子；通常中等模型就够，进阶话题 Opus 更有帮助。
+tbasis_writing	写文章和邮件时，中等模型能很好地把握语气和流畅度。
+tbasis_data_analysis	数据分析兼有计算与解读；通常中等模型就够。
+tbasis_file_create	创建文件或演示文稿是多步骤工作；通常中等模型就够，长文档可用 Opus。
+tbasis_code_write	Sonnet 擅长日常编程；架构设计和跨多个文件的工作推荐用 Opus。
+tbasis_code_fix	Sonnet 能处理单个文件里的错误；难缠或涉及整个系统的错误用 Opus。
+tbasis_research	调研就是查找并整合资料来源；深入的多步骤调研用 Opus 或 Fable。
+tbasis_math	计算和标准题目适合中等模型；证明和较长的推导适合 Opus 或 Fable。
+when_haiku	如果回答流于表面或有错误，请切换到 Sonnet。
+when_sonnet	如果回答不够好或任务变大，请切换到 Opus。
+when_opus	持续数小时的代理工作，或 Opus 不够用时，请使用 Fable。
+when_fable	Fable 是最强也最贵的模型；只用于真正困难的任务。
+advCaveat	这条建议是基于规则和一个在你设备上运行的小型学习模型做出的估计；回答质量并未被测量。你的反馈和纠正会让它更适合你。
+advFbQ	这条建议对吗？
+advFbGood	👍 对
+advFbBad	👎 不对
+advFbThanks	谢谢，已保存。
+advSource	来源：Anthropic 的模型选择指南
+setAdvisor	显示模型建议
+btnImport	导入我的数据
+btnImportConfirm	是，恢复备份
+importReady	已读取备份：$1 次测量（$2）。它将替换当前已学到的内容；请再按一次按钮确认。
+importDone	备份已恢复：找回 $1 次测量。
+importBad	此文件不是有效的 Token Forecast 备份。
+supportLink	支持这个项目 ☕
+cacheWarmLeft	有效 · 历史还可免费 $1 分钟
+cacheColdAgo	已失效（上一条消息在$1前）· 历史将被重新读取
+tipHandoff	这个聊天很长（$1 个 token），并且每条消息都在增加。换到新聊天时，可以请 Claude 写一段简短的交接摘要。
+tipHandoffWarm	这个聊天很长（$1 个 token）。缓存有效时请求交接摘要成本很低；把它粘贴到新聊天里继续即可。
+btnHandoff	复制交接提示词
+handoffPrompt	我要把这段对话转到一个新聊天。请写一份简短的交接摘要：目标、目前已做的决定、重要细节（文件名、数字、代码片段）、未解决的问题和下一步。它应能直接粘贴进新聊天，不超过 300 字。
+peakLeft	还有 $1 结束。
+warnSurprise	你上一条消息消耗超出预期：$1（估算 $2）。可能原因：$3。
+cr_cold	你在长时间停顿后才发消息，所以历史被重新读取
+cr_long_chat	聊天非常长
+cr_peak	高峰时段
+cr_effort	高努力程度（隐藏思考）
+cr_long_answer	回答比预期更长
+cr_big_model	大模型
+cr_elsewhere	同一账号可能在其他标签页、其他设备或 Claude Code 中被使用
+bdTitle	成本从何而来（估算）
+bd_output	回答
+bd_thinking	思考
+bd_input	消息与文件
+bd_history	历史
+bd_tool	工具
+wkNotifTitle	你的每周报告已生成
+wkNotifMsgs	$1 条消息
+wkNotifSpent	$1 个完整的 5 小时额度
+wkNotifPeak	其中 $1% 在高峰时段
+rpTitle	每周报告
+rpRange	最近 7 天 · $1 – $2
+rpMsgs	消息
+rpChats	分布在 $1 个聊天中
+rpChangeUp	比上周多 $1%
+rpChangeDown	比上周少 $1%
+rpChangeSame	与上周持平
+rpChangeNone	上周没有记录
+rpSpent	已消耗的 5 小时额度
+rpSessions	$1 个额度
+rpSpentSub	5 小时额度合计 $1
+rpPeak	高峰时段
+rpPeakSub	占消息的 $1
+rpSave	错过的节省
+rpSaveSub	有 $1 条消息用更轻量的模型就够了
+rpSaveNone	你一直按建议使用
+rpTips	我的建议
+tip_peak	你的使用中有 $1% 发生在高峰时段（$2，工作日）。此时 claude.ai 的 5 小时额度消耗更快；把长任务挪出这个时段，同样的工作能少用额度。
+tip_cold	有 $1 条消息是在停顿超过一小时后发进长聊天的，因此每次都要重新读取整段历史（占你使用量的 $2%）。停顿之后，新开聊天或使用交接摘要更省。
+tip_advice	有 $2 条消息用更轻量的模型就够了。如果按建议使用，你大约能节省一个会话额度的 $1。
+tip_long	有 $1 条消息发送在超过 10 万 token 的聊天里。这么长的上下文会拖累额度和回答质量；新话题新开聊天会有帮助。
+tip_effort	在 $1 个简单任务（翻译、简短问题）中，思考努力程度被设得很高。用“低”能以更少的消耗得到同样的结果。
+tip_upgrade	有 $1 条消息被建议使用更强的模型。如果回答不够好，直接用更强的模型开始这类任务，比反复追问更省。
+tip_good	本周你的使用看起来很均衡：高峰时段、长聊天或过大模型都没有明显问题。
+rpByModel	模型（按用量）
+rpByType	任务类型（按用量）
+rpHeat	你什么时候发消息？（最近 4 周，本地时间）
+rpHeatPeak	带框的格子：高峰时段
+rpTop	最贵的消息
+rpMeasured	实测
+rpEstimated	估算
+rpAcc	预测准确度
+rpAccVal	在 $1 条已测量的消息中，有 $2 条落在预测范围内。
+rpAccNone	本周没有已测量的消息；数值均为估算。
+rpMeasuredShare	$1 的数值为实测，其余是发送时的估算。
+rpCsv	下载 CSV
+rpPrivacy	此报告仅在本浏览器内，根据不含消息内容的记录计算。
+rpOpen	每周报告
+rpWeekLine	最近 7 天：$1 条消息 · $2 个完整的 5 小时额度
+rpDays	周一,周二,周三,周四,周五,周六,周日
+rpNoData	记录还不够生成报告。在 claude.ai 上用几天后，此页就会充实起来。
+rpOther	其他
+setWeekly	周一早晨发送每周报告通知
+burnEta	按最近一小时的速度，大约在 $1 用满（重置时间 $2）。
+burnSafe	按这个速度，在重置前不会用满。
+burnIdle	最近一小时没有明显使用。
+rpBack	详情与设置
+advRelabel	任务类型不对？请选择正确的：
+advRelabelThanks	谢谢——我会在这台设备上从中学习。
+ev_ml	学习模型的把握度为 $1%
+comTitle	为社区做贡献（可选）
+comText	如果你分享这台设备上学到的内容，新用户一开始就能得到更准确的预测。摘要中不含消息内容、聊天名称、日期或账号信息。发送前你可以查看内容；不会自动发送任何东西。
+comBuild	显示贡献摘要
+comCopy	复制并打开表单
+comCopyOnly	复制
+comCopied	已复制。请粘贴到打开的表单字段中并提交。
+comNoUrl	已复制。社区表单即将开放；在此之前请先保留这段文字。
+comEmpty	暂时没有可分享的内容。发几条消息后再试。
+feedbackLink	发送反馈或建议
+rpOpenBtn	打开报告 →
+rpWeekLinePct	最近 7 天：$1 条消息 · 共用掉 5 小时额度的 $2
+rpSpentSmall	合计（一个满额度＝100%）
+rowDomain	主题
+dom_science	科学
+dom_math	数学
+dom_engineering	工程
+dom_software	软件
+dom_data_ai	数据与 AI
+dom_academic	学术写作
+dom_project	项目与规划
+dom_literature	文学与创意写作
+dom_business	商务与职业
+dom_finance	经济与金融
+dom_law	法律
+dom_health	健康
+dom_education	学习与考试
+dom_language	语言
+dom_humanities	历史、哲学与社会
+dom_daily	日常生活
+dom_general	通用
+sub_science_physics	物理
+sub_science_chemistry	化学
+sub_science_biology	生物
+sub_science_astronomy	天文
+sub_science_earth	地球科学
+sub_math_pure	代数与分析
+sub_math_statistics	统计
+sub_engineering_electrical	电气与电子
+sub_engineering_mechanical	机械工程
+sub_engineering_civil	土木工程
+sub_engineering_control	控制与工业
+sub_software_web	Web
+sub_software_mobile	移动端
+sub_software_systems	系统与数据库
+sub_software_general	编程
+sub_data_ai_ml	机器学习
+sub_data_ai_llm	语言模型
+sub_data_ai_data	数据分析
+sub_academic_paper	学术论文
+sub_academic_thesis	学位论文
+sub_academic_grant	基金与申请
+sub_project_planning	规划
+sub_project_agile	敏捷
+sub_project_startup	创业
+sub_literature_poetry	诗歌
+sub_literature_fiction	小说
+sub_literature_analysis	文学分析
+sub_literature_screen	影视与戏剧
+sub_business_career	职业发展
+sub_business_marketing	市场营销
+sub_business_management	管理
+sub_finance_investing	投资
+sub_finance_personal	个人理财
+sub_finance_accounting	会计与税务
+sub_finance_economics	经济学
+sub_law_contract	合同
+sub_law_civil	一般法律
+sub_law_privacy	数据隐私
+sub_law_ip	知识产权
+sub_health_medical	医学
+sub_health_nutrition	营养
+sub_health_fitness	健身
+sub_health_mental	心理健康
+sub_education_exam	考试
+sub_education_homework	作业
+sub_education_teaching	教学
+sub_language_grammar	语法
+sub_language_learning	语言学习
+sub_language_translation	翻译
+sub_humanities_history	历史
+sub_humanities_philosophy	哲学
+sub_humanities_society	社会
+sub_humanities_psychology	心理学
+sub_daily_food	饮食
+sub_daily_travel	旅行
+sub_daily_home	家居
+sub_daily_fun	休闲娱乐
+sub_daily_people	人际关系
+dbasis_science	科学领域重视准确和一致；详细的讲解会提高一档努力程度。
+dbasis_math	数学需要逐步推理；证明和推导至少使用“高”努力程度。
+dbasis_engineering	工程计算出错代价高；设计和计算类任务会提高一档努力程度。
+dbasis_software	努力程度随代码复杂度上升；对于 Opus 上的高难度编程，Anthropic 建议先试“超高”。
+dbasis_data_ai	数据与 AI 任务通常需要适度的思考。
+dbasis_academic	学术写作看重一致性；修改润色通常用较低努力程度，文献综述和方法部分则更高。
+dbasis_project	Anthropic 建议在项目规划时提高努力程度；规划类任务至少使用“中等”。
+dbasis_literature	长时间思考很少能改善创意写作；努力程度上限设为“中等”。
+dbasis_business	商务写作多为例行工作；默认或更轻的设置即可。
+dbasis_finance	错误的理财建议可能造成损害：不用轻量模型，努力程度至少“中等”。
+dbasis_law	错误的法律信息可能造成损害：不用轻量模型，努力程度至少“中等”。重要决定请咨询律师。
+dbasis_health	错误的健康信息可能造成损害：不用轻量模型，努力程度至少“中等”。紧急情况请就医。
+dbasis_education	学习类任务多为讲解；努力程度随难度上升。
+dbasis_language	语言类任务（翻译、语法）通常较轻；降低一档努力程度即可。
+dbasis_humanities	历史和哲学的讲解需要适度的思考。
+dbasis_daily	日常任务较轻；降低一档努力程度即可。
+dbasis_general
+eff_low	低
+eff_medium	中等
+eff_high	高
+eff_xhigh	超高
+eff_max	最高
+effort_xhigh	超高努力
+effDefaultMark	（默认）
+effLowerX	使用“$1”努力程度，这条消息可节省约 $2 的额度。
+effAssumedNote	（无法从页面读取努力程度设置；已假定为该模型的默认值 $1。）
+effRaiseX	使用“$1”努力程度，这个任务可能得到更可靠的回答。
+advEffWith	努力程度：$1
+advEffLowerTitle	把努力程度设为“$1”：约少 $2
+advEffLowerDetail	当前：$1。对这类任务，努力程度“$2”通常能得到同样的回答；减少隐藏思考可使这条消息的成本降低约 $3%。
+advEffRaiseTitle	这个任务请把努力程度设为“$1”
+advEffRaiseDetail	当前：$1。这个任务需要深入思考；努力程度“$2”会给出更可靠的回答，但这条消息成本约高 $3%。回答不好意味着再问一次，那更贵。
+advEffAlsoLower	努力程度“$1”也够用。
+advDomain	主题
+advEffort	努力程度建议
+advEffortVal	我建议“$1”。
+advEffForModel	（针对 $1）
+advEffNow	当前：$1。
+advFbQEff	这条努力程度建议对吗？
+effBasis	努力程度依据：据 Anthropic 介绍，“低”和“中等”可让例行任务的额度用得更久，“高”是最佳平衡，“超高”用于长时间编程和代理工作，“最高”用于最深入的思考。
+ev_domain	主题词：$1
+why_stakes	对于高风险主题（健康、法律、金钱），我不会建议使用轻量模型。
+ewhy_e_light_type	轻量任务类型
+ewhy_e_mid_type	中等任务
+ewhy_e_deep_type	需要深度思考的任务
+ewhy_e_big_doc	大文档
+ewhy_e_stakes	高风险：至少“中等”
+ewhy_e_depth	科学／技术深度
+ewhy_e_plan	规划类任务
+ewhy_e_complex	复杂请求
+ewhy_e_hardest	非常难的问题
+ewhy_e_proof	证明／推导
+ewhy_e_creative	创意写作：上限“中等”
+ewhy_e_light_domain	日常／语言类任务
+ewhy_e_short	要求简短回答
+ewhy_e_pref	你的反馈
+ewhy_e_long_code	高难度编程：超高
+rpByDomain	主题（按消耗）
+rpByEffort	努力程度设置（按消耗）
+rpDomainNote	主题由你的设备根据消息中的词语估计；不会保存任何文本。
+tip_effort_over	有 $1 条消息的努力程度高于建议。按建议的设置，大约能少消耗 $2 的额度。
+tip_domain_save	“$1”主题的节省空间最大：有 $2 条消息用更轻量的模型就够了。
+tip_domain_stakes	有 $1 条消息涉及健康、法律或金钱。在这些领域我不建议轻量模型或低努力程度；重要决定请同时咨询专业人士。
+pillDragTitle	拖动以移动
+pillReset	重置胶囊位置
+rpEffOver	有 $1 条消息的努力程度高于建议（错过的节省 ≈ $2）。
+rpEffOk	你的努力程度设置与建议一致。
+rpLearn	学习成效
+rpLearnFew	目前已测量 $1 条消息。每 10 次测量生成一根柱子，满 30 次后会显示趋势（还差约 $2 条）。
+rpLearnBetter	最初几次测量中，预测的总额度偏差为 $1 倍；最近几次为 $2 倍。扩展正在逐渐了解你。
+rpLearnSame	预测误差在最初几次为 $1 倍、最近几次为 $2 倍：没有明显变化。如果原本就很准，这是正常的。
+rpLearnWorse	最近几次测量的偏差（$2 倍）比最初几次（$1 倍）更大。在其他设备或 Claude Code 上使用同一账号会干扰测量；可以试试重置校准。
+rpLearnRange	落在预测范围内的比例：最初几次 $1，最近几次 $2（目标约 80%）。
+rpLearnBar	第 $1–$2 次测量：$3 倍
+rpLearnNote	每根柱子代表连续 10 条已测量的消息，显示预测的总额度与实际消耗相差多少（1.00＝完全一致）。百分比会四舍五入为整数，所以使用每 10 条消息的合计，而不是单条消息。
+setEffortAdvice	显示努力程度建议
+setTips	显示提示（缓存、高峰时段、长聊天、交接摘要）
+setExplain	显示“为什么消耗这么多？”的说明
+setView	视图
+viewFull	完整：预测与全部建议
+viewSimple	简洁：仅预测与额度提醒
+viewCustom	自定义（在下方选择）
+viewNote	简洁视图会隐藏模型与努力程度建议、提示和成本说明。预测以及额度与上下文提醒始终显示。
+warnLangLimited	消息分析（任务类型、主题、模型与努力程度建议）目前仅支持土耳其语和英语消息。使用此语言时，你仍能获得 token 和额度预测，但没有建议。
+typeNA	此语言暂不分析

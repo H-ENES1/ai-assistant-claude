@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2026 Hayrettin Enes Karalı
 // Claude.ai kullanım verisini okuma ve sadeleştirme.
 // Not: Bu uç noktalar resmi/belgelenmiş değil; Claude.ai'nin kendi sayfasının kullandığı iç API.
 // Değişirse tek düzeltilecek yer bu dosya.

@@ -20,30 +20,70 @@
       <ul id="capList"></ul>
     </section>
 
+    <section id="week" hidden>
+      <h2 id="weekTitle"></h2>
+      <p id="weekLine" class="small"></p>
+      <div class="buttons"><button id="openReport" type="button"></button></div>
+    </section>
+
     <section id="calib">
       <h2 id="calTitle"></h2>
       <p id="calText" class="small"></p>
     </section>
 
+    <details id="health">
+      <summary id="healthTitle"></summary>
+      <ul id="healthList" class="health"></ul>
+      <p id="hHint" class="muted small"></p>
+      <h2 id="hLogTitle"></h2>
+      <pre id="traceLog" class="tracelog"></pre>
+      <div class="buttons"><button id="copyLog" type="button"></button></div>
+    </details>
+
+    <details id="community">
+      <summary id="comTitle"></summary>
+      <p id="comText" class="muted small"></p>
+      <div class="buttons">
+        <button id="comBuild" type="button"></button>
+        <button id="comCopy" type="button" hidden></button>
+      </div>
+      <pre id="comPreview" class="tracelog" hidden></pre>
+      <p id="comNote" class="small note-ok" hidden></p>
+      <p id="feedbackRow" class="small" hidden><a id="feedback" target="_blank" rel="noopener noreferrer"></a></p>
+    </details>
+
     <details id="settings">
       <summary id="setTitle"></summary>
       <label class="field"><span id="lblLang"></span>
-        <select id="lang"><option value="auto" id="optAuto"></option><option value="tr">Türkçe</option><option value="en">English</option></select>
+        <select id="lang"><option value="auto" id="optAuto"></option></select>
       </label>
       <div class="field"><span id="lblTh"></span>
         <div class="ths"><input id="th0" type="number" min="1" max="100"><input id="th1" type="number" min="1" max="100"><input id="th2" type="number" min="1" max="100"></div>
       </div>
       <label class="check"><input id="notif" type="checkbox"><span id="lblNotif"></span></label>
       <label class="check"><input id="panel" type="checkbox"><span id="lblPanel"></span></label>
+      <label class="field"><span id="lblView"></span>
+        <select id="view"><option value="full" id="viewFull"></option><option value="simple" id="viewSimple"></option><option value="custom" id="viewCustom" hidden></option></select>
+      </label>
+      <p id="viewNote" class="muted small"></p>
+      <label class="check"><input id="advisor" type="checkbox"><span id="lblAdvisor"></span></label>
+      <label class="check"><input id="effortAdvice" type="checkbox"><span id="lblEffortAdvice"></span></label>
+      <label class="check"><input id="tips" type="checkbox"><span id="lblTips"></span></label>
+      <label class="check"><input id="explain" type="checkbox"><span id="lblExplain"></span></label>
+      <label class="check"><input id="weekly" type="checkbox"><span id="lblWeekly"></span></label>
       <label class="field"><span id="lblMem"></span>
         <select id="memory"><option value="auto" id="memAuto"></option><option value="on" id="memOn"></option><option value="off" id="memOff"></option></select>
       </label>
       <div class="buttons">
         <button id="testNotif" type="button"></button>
         <button id="export" type="button"></button>
+        <button id="import" type="button"></button>
+        <input id="importFile" type="file" accept="application/json,.json" hidden>
         <button id="resetCal" type="button" class="danger"></button>
       </div>
+      <p id="importMsg" class="small" hidden></p>
       <p id="privacy" class="muted small"></p>
+      <p id="supportRow" class="small" hidden><a id="support" target="_blank" rel="noopener noreferrer"></a></p>
     </details>
   </main>
   <footer id="meta" class="muted small"></footer>

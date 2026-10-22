@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2026 Hayrettin Enes Karalı
 // claude.ai sohbet verisini (iç API) okur ve token tahmini için sadeleştirir.
 // Bu uç nokta belgelenmemiştir; alan adları lugia19/Claude-Usage-Extension projesinin
 // gözlemlerinden (Ekim 2026) alınmıştır. Her alan isteğe bağlı kabul edilir: bir alan yoksa

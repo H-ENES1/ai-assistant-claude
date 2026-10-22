@@ -1,0 +1,477 @@
+extName	Claude向け Token Forecast
+extShortName	Token Forecast
+extDescription	送信前に、メッセージがClaudeの利用上限をどれだけ消費するかを見積もり、必要に応じて低コストなモデルを提案します。
+popupTitle	Token Forecast
+sessionLimit	5時間セッション
+weeklyLimit	週間上限
+resetsAt	$TIME$ にリセット
+noData	利用データはまだありません。ログインした状態で claude.ai を開いてください。
+settings	設定
+language	言語
+languageAuto	ブラウザの既定
+thresholds	警告のしきい値
+panelEstimate	推定消費量：セッションの $LOW$～$HIGH$%
+confidenceLow	信頼度：低
+confidenceMedium	信頼度：中
+confidenceHigh	信頼度：高
+panelLoading	見積もり中…
+pct	$1%
+resetsIn	$1後にリセット（$2）
+durDH	$1日$2時間
+durHM	$1時間$2分
+durM	$1分
+bottleneck	この上限が先に尽きます
+fetchError	利用状況を読み取れませんでした。claude.ai にログインしているか確認してください。
+otherLimits	その他の上限
+updatedJustNow	たった今更新
+updatedAgo	$1前に更新
+staleWarning	前回の更新に失敗しました
+refresh	更新
+dbgPrompt	メッセージ
+dbgHistory	会話
+dbgMessages	$1件のメッセージ
+dbgNotFound	検出できません
+dbgAttachments	添付ファイル
+dbgTotal	入力の合計
+dbgTokens	トークン
+dbgNoInput	メッセージ欄が見つかりません
+dbgAnalyzing	解析中…
+dbgPasted	貼り付けたテキスト
+dbgPages	$1ページ
+dbgConvAttachments	このチャットで送信した添付（$1）
+dbgContext	コンテキストウィンドウ（$1、$2）
+dbgModelUnknown	モデルを検出できません
+ctxOver	Claudeのコンテキストウィンドウに収まりません。必要な部分だけを送ってください。
+ctxNear	Claudeのコンテキストウィンドウに収まらない可能性があります。分割するか、新しいチャットを開いてください。
+pdfTextOnly	100ページを超えるPDF：Claudeはテキストのみを読み取り、画像や図は読めません。
+pdfTooLarge	1000ページを超えるPDF：claude.ai では受け付けられません。
+lessThan	$1未満
+warnNoFit	おそらく $1 に収まりません（残り $2）。
+warnMaybeFit	$1 に収まらない可能性があります（残り $2）。
+ctxWorkspace	有料プランでは、claude.ai が非常に大きなファイルをワークスペースに置き、Claudeが一度にではなくコードで読むことがあります。
+warnCacheCold	このチャットを $1 分間使っておらず、キャッシュが切れました。履歴全体（約$2トークン）が再計算されます。新しいチャットの方がはるかに安くなる場合があります。
+warnCacheUnknown	このチャットが1時間以上放置されていた場合、履歴（約$1トークン）が再計算されます。
+tipNewChat	このチャットは長くなっています（約$1トークン）。短い要約を添えた新しいチャットの方が、回答が正確で安くなります。
+warnPeak	ピーク時間帯（平日 $1～$2時、現地時間）：claude.ai の5時間上限は現在、速く消費されます。長い作業はこの時間帯を避けるのがおすすめです。
+recDowngrade	$1 でおそらく十分で、上限の消費を約$2%減らせます。
+recUpgrade	難しそうな内容です。$1 の方がかなり良い回答になる可能性があります。
+rec_short_qa	短い事実確認の質問に大きなモデルはほとんど不要です。
+rec_translate	軽量モデルでも翻訳は十分に得意です。
+rec_rewrite	既存の文章の書き直しは軽い作業です。
+rec_summarize	要約は軽量モデルの得意分野です。
+rec_explain	説明は中位のモデルで十分こなせます。
+rec_writing	文章作成は中位のモデルで十分こなせます。
+rec_data_analysis	標準的な分析は中位のモデルに向いています。
+rec_file_create	文書やプレゼン資料は中位のモデルに向いています。
+rec_code_write	日常的なコーディングは中位のモデルに向いています。
+rec_code_fix	ほとんどのバグ修正は中位のモデルに向いています。
+rec_research	定型的な調査は中位のモデルに向いています。
+rec_math	定型的な問題は中位のモデルに向いています。
+rec_complex	複雑な作業に見えます。
+rec_hardest	最も難しい種類の作業の一つです。
+effLower	ここでは通常「低」の努力量で十分です。「高」は主に隠れた思考トークンを増やします。
+effRaise	これほど難しい問題なら、努力量を上げる価値があるかもしれません。
+type_short_qa	短い質問
+type_explain	説明
+type_math	問題解決
+type_code_write	コード作成
+type_code_fix	デバッグ／コード
+type_translate	翻訳
+type_writing	文章作成
+type_rewrite	文章の編集
+type_summarize	要約
+type_data_analysis	データ分析
+type_research	調査
+type_file_create	ファイル作成
+rowWeekly	週間上限
+rowType	依頼の種類
+rowModel	モデル
+modelName	$1
+rowInput	入力（新規）
+rowOutput	想定される回答
+rowCache	キャッシュ
+rowContext	コンテキストウィンドウ
+cache_none	新しいチャット
+cache_warm	有効（履歴は無料）
+cache_cold	期限切れ（履歴も計算）
+cache_unknown	不明
+effort_low	努力量：低
+effort_medium	努力量：中
+effort_high	努力量：高
+effort_max	努力量：最大
+effort_off	思考オフ
+effort_auto	自動
+footCalibrated	あなたの $1 件のメッセージから学習 · $2% が範囲内に収まりました。
+footLearning	学習中：数件のメッセージを送ると見積もりが正確になります。
+pillIdle	Token Forecast
+pillUsed	5時間：$1 使用
+pillSub	（5時間上限）
+cardTitle	このメッセージの消費量
+cardSub	5時間上限に対して · 想定範囲 $1
+cardIdleSub	これまでに使った5時間上限の割合です。入力を始めると見積もりが表示されます。
+close	閉じる
+notifResets	$1 にリセットされます。
+notifThresholdTitle	$1：$2%
+notifThresholdBody	大きな作業は、送信前に予測を見て計画しましょう。
+notifThresholdBodyHigh	ほぼ使い切りました。大事なことから先に済ませましょう。
+notifResetTitle	$1 がリセットされました
+notifResetBody	中断したところから再開できます。
+notifTestBody	通知は正常に動作しています。
+freePlanWait	無料プランでは、claude.ai で最初のメッセージを送信した後に利用状況が表示されます。
+capTitle	残りでできること
+capSub	$1 の新しいチャットで、次のうちおよそ1つ分（控えめな見積もり）。
+cap_short_qa	短い質問
+cap_explain	説明
+cap_code_fix	コード修正
+cap_writing	文章作成
+cap_summarize	文書の要約
+cap_research	調査作業
+calTitle	個人用キャリブレーション
+calNone	測定値はまだありません。メッセージを送るたびに、お使いのプランの実際の挙動を拡張機能が学習します。
+calFew	現在 $1 件の測定値があります。あと数件で見積もりが正確になります。
+calSome	$1 件の測定 · 実際の値の $2% が予測範囲内でした。
+setNotif	通知
+setPanel	claude.ai に見積もりを表示
+setMemory	Claudeのメモリ（コンテキストの大きさ）
+memAuto	有効と仮定
+memOn	オン
+memOff	オフ
+btnTestNotif	通知をテスト
+btnExport	自分のデータをエクスポート
+btnResetCal	キャリブレーションをリセット
+btnResetConfirm	もう一度クリックでリセット
+privacyNote	すべてブラウザ内で計算されます。メッセージの本文があなたの端末から出ることはありません。
+moreDetails	詳細と設定
+detailsTitle	Token Forecast – 詳細
+healthTitle	システムチェック
+hHook	ページフック（送信メッセージを検知）
+hSend	最後の送信を検出
+hDone	最後の応答ストリームを読み取り
+hUsage	利用状況の読み取り
+hPage	ページ：入力／モデル／努力量
+hLast	最後の測定
+hNone	まだありません
+hHookNoReply	応答なし – claude.ai のタブを再読み込みしてください
+hHookReplaced	サイトによって fetch が置き換えられました
+hProbe	メッセージが別のアドレスに送られています
+hSendWait	まだメッセージが送信されていないか、検出されていません
+hSseYes	ストリーム正常
+hSseNo	ストリームは読み取れましたが、利用データがありません
+hCopyLog	ログをコピー
+hCopied	コピーしました
+hLogTitle	測定ログ
+hHint	問題のある行があれば、ログをコピーして開発者に送ってください。
+hDomPath	ページから検出（代替経路）
+advSave	この作業には $1 で十分です
+advSaveDetail	このメッセージは上限の約 $1 を消費します。$2 なら約 $3（$4% の節約）です。
+advSaveNext	この種の作業には $1 で十分ですが、このチャットでは切り替えないでください
+advSaveNextDetail	チャット履歴（$1 トークン）は新しいモデルのキャッシュになく再読み込みされるため、このメッセージはむしろ高くなります。次に新しいチャットを開くときに $2 を選んでください。
+advUpgrade	$1 では難しいかもしれません：$2 をおすすめします
+advUpgradeDetail	$1 は上限を約 $2 倍の速さで消費します。先に $3 を試したい場合は、回答が足りなければ切り替えてください。
+advOk	この作業には $1 が適しています
+advOkTiny	$1 でも十分ですが、差はごくわずかです（上限の $2）。
+advWhy	なぜ？
+advHide	非表示
+advDetected	検出した作業
+advSignals	見つけた手がかり
+advBasis	根拠
+advWhen	切り替えるタイミング
+advDetectedVal	$1 · $2 · $3
+level_low	軽い
+level_mid	中程度
+level_high	難しい
+ev_trigger	表現「$1」
+ev_hard	難易度の手がかり：$1
+ev_code	コードブロック／コード行
+ev_attach	添付：$1 トークン
+ev_bullets	$1 項目の依頼
+ev_long	詳しい回答が求められています
+ev_short	短い回答が求められています
+ev_words	$1 語
+why_simple_task	単純で明確な作業です。分類の確信度は高いです。
+why_unsure_safe	作業の種類に確信がないため、安全側に倒して少なくとも Sonnet をおすすめします。
+why_complex	複雑度が高いです。
+why_hardest	非常に難しい証明・設計・調査です。
+why_pref_floor	あなたのフィードバックに基づき、この種の作業にはより強力なモデルを選びます。
+why_pref_ceil	あなたのフィードバックに基づき、この種の作業ではより強力なモデルを勧めません。
+basis_haiku	Anthropic は Haiku 5.5 を「最も低遅延・低価格」のモデルと位置づけ、大量の単純作業やサブエージェント向けとしています。
+basis_sonnet	Anthropic によると、Sonnet 5.5 は「日常業務のための速度と性能」を備え、コード生成・データ分析・コンテンツ作成に向きます。
+basis_opus	Anthropic は、複雑なコーディングや企業向け作業（大規模なリファクタリング、システム設計、数時間にわたるエージェント）に Opus 5.5 を推奨しています。
+basis_fable	Fable 5.1 は「利用可能な最高性能」で、数時間のエージェントセッションや多段階の深い調査に向きます。
+tbasis_short_qa	答えが一つの事実確認は短い回答で足り、軽量モデルで十分です。人物や出来事の質問は作り話になることがあるため、重要なら確認してください。
+tbasis_translate	翻訳では原文があり、モデルは意味を保ったまま言語を変えます。軽量モデルが得意とする作業です。
+tbasis_rewrite	書き直しや平易化では内容が決まっており、モデルは形を整えるだけです。
+tbasis_summarize	要約では情報が本文にあります。短い文章なら軽量モデルで足り、長い文書や専門文書では中位のモデルが安全です。
+tbasis_explain	概念の説明には正確さと良い例が必要です。通常は中位のモデルで足り、高度な話題では Opus が役立ちます。
+tbasis_writing	文章やメールの作成では、中位のモデルが口調や流れをうまく捉えます。
+tbasis_data_analysis	データ分析は計算と解釈の組み合わせです。通常は中位のモデルで足ります。
+tbasis_file_create	ファイルやプレゼンの作成は多段階の作業です。通常は中位のモデルで足り、長い文書には Opus が向きます。
+tbasis_code_write	Sonnet は日常的なコーディングに強く、設計や複数ファイルにまたがる作業には Opus が推奨されます。
+tbasis_code_fix	Sonnet は単一ファイルのバグを扱えます。難しいバグやシステム全体に及ぶバグには Opus が向きます。
+tbasis_research	調査は情報源を探して統合する作業です。深い多段階の調査には Opus か Fable が向きます。
+tbasis_math	計算や標準的な問題は中位のモデルに向き、証明や長い導出には Opus か Fable が向きます。
+when_haiku	回答が浅い、または誤っている場合は Sonnet に切り替えてください。
+when_sonnet	回答が足りない、または作業が大きくなる場合は Opus に切り替えてください。
+when_opus	数時間のエージェント作業や、Opus で足りない場合は Fable を使ってください。
+when_fable	Fable は最も強力で最も高価なモデルです。本当に難しい作業にだけ使ってください。
+advCaveat	この提案は、ルールと端末上で動く小さな学習モデルによる推定です。回答の品質は測定していません。フィードバックと修正で、あなた向けに調整されます。
+advFbQ	この提案は正しかったですか？
+advFbGood	👍 正しい
+advFbBad	👎 違う
+advFbThanks	ありがとうございます。保存しました。
+advSource	出典：Anthropic のモデル選択ガイド
+setAdvisor	モデルの提案を表示
+btnImport	自分のデータをインポート
+btnImportConfirm	はい、バックアップを復元
+importReady	バックアップを読み込みました：測定 $1 件（$2）。現在の学習内容と置き換わります。確認のためもう一度ボタンを押してください。
+importDone	バックアップを復元しました：測定 $1 件が戻りました。
+importBad	このファイルは有効な Token Forecast のバックアップではありません。
+supportLink	プロジェクトを応援する ☕
+cacheWarmLeft	有効 · 履歴はあと $1 分無料
+cacheColdAgo	失効（最後のメッセージは$1前）· 履歴が再読み込みされます
+tipHandoff	このチャットは長く（$1 トークン）、メッセージごとに増えています。新しいチャットに移るには、Claudeに短い引き継ぎ要約を頼むとよいでしょう。
+tipHandoffWarm	このチャットは長くなっています（$1 トークン）。キャッシュが有効なうちは引き継ぎ要約の依頼が安く済みます。新しいチャットに貼り付けて続けてください。
+btnHandoff	引き継ぎ用プロンプトをコピー
+handoffPrompt	この会話を新しいチャットに移します。短い引き継ぎ要約を書いてください：目的、これまでに決めたこと、重要な詳細（ファイル名、数値、コード断片）、未解決の点、次のステップ。新しいチャットにそのまま貼り付けられる形で、300語以内にしてください。
+peakLeft	あと $1 で終了。
+warnSurprise	直前のメッセージは想定より多く消費しました：$1（見積もり $2）。考えられる原因：$3。
+cr_cold	長い中断の後に書き込んだため、履歴が再読み込みされた
+cr_long_chat	チャットが非常に長い
+cr_peak	ピーク時間帯
+cr_effort	努力量が高い（隠れた思考）
+cr_long_answer	回答が想定より長かった
+cr_big_model	大きなモデル
+cr_elsewhere	同じアカウントが別のタブ・別の端末・Claude Code で使われた可能性がある
+bdTitle	コストの内訳（推定）
+bd_output	回答
+bd_thinking	思考
+bd_input	メッセージとファイル
+bd_history	履歴
+bd_tool	ツール
+wkNotifTitle	週間レポートができました
+wkNotifMsgs	$1件のメッセージ
+wkNotifSpent	5時間上限 $1 回分
+wkNotifPeak	そのうち $1% がピーク時間帯
+rpTitle	週間レポート
+rpRange	過去7日間 · $1 – $2
+rpMsgs	メッセージ
+rpChats	$1件のチャット
+rpChangeUp	先週より $1% 増
+rpChangeDown	先週より $1% 減
+rpChangeSame	先週と同じ
+rpChangeNone	先週の記録なし
+rpSpent	消費した5時間上限
+rpSessions	上限 $1 回分
+rpSpentSub	5時間上限の合計 $1
+rpPeak	ピーク時間帯
+rpPeakSub	メッセージの $1
+rpSave	逃した節約
+rpSaveSub	$1件のメッセージは、より軽いモデルで足りました
+rpSaveNone	提案に沿って使えています
+rpTips	おすすめ
+tip_peak	利用の $1% がピーク時間帯（$2、平日）でした。その時間帯は claude.ai の5時間上限が速く消費されます。長い作業をこの時間帯から外すと、同じ作業を少ない上限で済ませられます。
+tip_cold	$1件のメッセージが、1時間以上空いた後に長いチャットへ送られ、そのたびに履歴全体が再読み込みされました（利用の $2%）。中断後は新しいチャットや引き継ぎ要約の方が安く済みます。
+tip_advice	$2件のメッセージは、より軽いモデルで足りました。提案に従えば、セッション上限の約 $1 を節約できたはずです。
+tip_long	$1件のメッセージが10万トークンを超えるチャットで送られました。これほど長い文脈は上限と回答品質の両方に負担です。新しい話題は新しいチャットで始めると効果的です。
+tip_effort	$1件の単純な作業（翻訳、短い質問）で思考の努力量が高く設定されていました。「低」でも同じ結果をより少ない消費で得られます。
+tip_upgrade	$1件のメッセージでより強力なモデルが提案されました。回答が足りなかったなら、何度も聞き直すより、最初から強力なモデルで始める方が安く済みます。
+tip_good	今週の使い方はバランスが取れています。ピーク時間帯、長いチャット、過剰なモデルの明確な問題はありません。
+rpByModel	モデル別（利用量順）
+rpByType	作業の種類別（利用量順）
+rpHeat	書き込む時間帯（過去4週間、現地時間）
+rpHeatPeak	枠付きのセル：ピーク時間帯
+rpTop	最も高かったメッセージ
+rpMeasured	実測
+rpEstimated	推定
+rpAcc	予測の精度
+rpAccVal	測定した $1 件のうち $2 件が予測範囲内でした。
+rpAccNone	今週は測定済みのメッセージがありません。値は推定です。
+rpMeasuredShare	値の $1 が実測で、残りは送信時点の推定です。
+rpCsv	CSVをダウンロード
+rpPrivacy	このレポートは、メッセージ本文を含まない記録からこのブラウザ内だけで計算されます。
+rpOpen	週間レポート
+rpWeekLine	過去7日間：$1件のメッセージ · 5時間上限 $2 回分
+rpDays	月,火,水,木,金,土,日
+rpNoData	レポートに十分な記録がまだありません。claude.ai を数日使うと、このページが埋まります。
+rpOther	その他
+setWeekly	月曜朝に週間レポートを通知
+burnEta	直近1時間のペースだと、$1 ごろに上限に達します（リセット $2）。
+burnSafe	このペースなら、リセット前に上限に達しません。
+burnIdle	直近1時間はほとんど使っていません。
+rpBack	詳細と設定
+advRelabel	作業の種類が違いますか？正しいものを選んでください：
+advRelabelThanks	ありがとうございます。この端末で学習します。
+ev_ml	学習モデルの確信度 $1%
+comTitle	コミュニティに貢献（任意）
+comText	この端末で学習した内容を共有すると、新しいユーザーでも最初から正確な予測が得られます。要約にはメッセージ本文、チャット名、日付、アカウント情報は含まれません。送信前に内容を確認できます。自動では何も送信されません。
+comBuild	貢献内容の要約を表示
+comCopy	コピーしてフォームを開く
+comCopyOnly	コピー
+comCopied	コピーしました。開いたフォームの欄に貼り付けて送信してください。
+comNoUrl	コピーしました。コミュニティのフォームはまもなく公開されます。それまでテキストを保管しておいてください。
+comEmpty	共有できるものがまだありません。メッセージを数件送ってからもう一度お試しください。
+feedbackLink	フィードバック・ご提案を送る
+rpOpenBtn	レポートを開く →
+rpWeekLinePct	過去7日間：$1件のメッセージ · 5時間上限の合計 $2 を使用
+rpSpentSmall	合計（上限1回分＝100%）
+rowDomain	分野
+dom_science	科学
+dom_math	数学
+dom_engineering	工学
+dom_software	ソフトウェア
+dom_data_ai	データとAI
+dom_academic	学術的な文章
+dom_project	プロジェクトと計画
+dom_literature	文学・創作
+dom_business	ビジネスとキャリア
+dom_finance	経済・金融
+dom_law	法律
+dom_health	健康
+dom_education	学習・試験
+dom_language	言語
+dom_humanities	歴史・哲学・社会
+dom_daily	日常生活
+dom_general	一般
+sub_science_physics	物理学
+sub_science_chemistry	化学
+sub_science_biology	生物学
+sub_science_astronomy	天文学
+sub_science_earth	地球科学
+sub_math_pure	代数・解析
+sub_math_statistics	統計学
+sub_engineering_electrical	電気・電子工学
+sub_engineering_mechanical	機械工学
+sub_engineering_civil	土木工学
+sub_engineering_control	制御・産業
+sub_software_web	Web
+sub_software_mobile	モバイル
+sub_software_systems	システムとデータベース
+sub_software_general	プログラミング
+sub_data_ai_ml	機械学習
+sub_data_ai_llm	言語モデル
+sub_data_ai_data	データ分析
+sub_academic_paper	学術論文
+sub_academic_thesis	学位論文
+sub_academic_grant	助成金・応募書類
+sub_project_planning	計画
+sub_project_agile	アジャイル
+sub_project_startup	スタートアップ
+sub_literature_poetry	詩
+sub_literature_fiction	小説
+sub_literature_analysis	文学分析
+sub_literature_screen	映画・演劇
+sub_business_career	キャリア
+sub_business_marketing	マーケティング
+sub_business_management	経営
+sub_finance_investing	投資
+sub_finance_personal	個人の家計
+sub_finance_accounting	会計・税務
+sub_finance_economics	経済学
+sub_law_contract	契約
+sub_law_civil	一般法務
+sub_law_privacy	データ保護
+sub_law_ip	知的財産
+sub_health_medical	医療
+sub_health_nutrition	栄養
+sub_health_fitness	フィットネス
+sub_health_mental	メンタルヘルス
+sub_education_exam	試験
+sub_education_homework	宿題
+sub_education_teaching	指導
+sub_language_grammar	文法
+sub_language_learning	語学学習
+sub_language_translation	翻訳
+sub_humanities_history	歴史
+sub_humanities_philosophy	哲学
+sub_humanities_society	社会
+sub_humanities_psychology	心理学
+sub_daily_food	食事
+sub_daily_travel	旅行
+sub_daily_home	住まい
+sub_daily_fun	趣味・娯楽
+sub_daily_people	人間関係
+dbasis_science	科学では正確さと一貫性が重要です。詳しい説明には努力量を1段階上げます。
+dbasis_math	数学は段階的な思考が必要です。証明や導出には少なくとも「高」の努力量を割り当てます。
+dbasis_engineering	工学計算のミスは高くつきます。設計・計算の作業には努力量を1段階上げます。
+dbasis_software	努力量はコードの複雑さに応じて上がります。Opus での難しいコーディングでは、まず「特高」を試すよう Anthropic は勧めています。
+dbasis_data_ai	データやAIの作業は、たいてい中程度の思考で足ります。
+dbasis_academic	学術的な文章では一貫性が重要です。推敲は少ない努力量で足り、文献レビューや方法論はより多く必要です。
+dbasis_project	Anthropic はプロジェクト計画では努力量を上げるよう勧めています。計画には少なくとも「中」を割り当てます。
+dbasis_literature	長く考えても創作が良くなることはまれです。努力量は「中」までに抑えます。
+dbasis_business	ビジネス文書は多くが定型作業です。既定かそれより軽い設定で足ります。
+dbasis_finance	お金に関する誤った助言は害になりえます。軽量モデルは使わず、努力量は少なくとも「中」にします。
+dbasis_law	誤った法律情報は害になりえます。軽量モデルは使わず、努力量は少なくとも「中」にします。重要な判断は弁護士に相談してください。
+dbasis_health	誤った健康情報は害になりえます。軽量モデルは使わず、努力量は少なくとも「中」にします。緊急時は医師の診察を受けてください。
+dbasis_education	学習の作業は主に説明です。難しさに応じて努力量が上がります。
+dbasis_language	言語の作業（翻訳、文法）は通常軽いので、努力量は1段階下げて足ります。
+dbasis_humanities	歴史や哲学の説明は、中程度の思考で足ります。
+dbasis_daily	日常の作業は軽いので、努力量は1段階下げて足ります。
+dbasis_general
+eff_low	低
+eff_medium	中
+eff_high	高
+eff_xhigh	特高
+eff_max	最大
+effort_xhigh	努力量：特高
+effDefaultMark	（既定）
+effLowerX	努力量「$1」にすると、このメッセージで上限を約 $2 節約できます。
+effAssumedNote	（ページから努力量の設定を読み取れなかったため、モデルの既定値 $1 と仮定しました。）
+effRaiseX	努力量「$1」にすると、この作業でより信頼できる回答が得られるかもしれません。
+advEffWith	努力量：$1
+advEffLowerTitle	努力量を「$1」に：約 $2 減
+advEffLowerDetail	現在：$1。この種の作業では、努力量「$2」でも通常は同じ回答が得られます。隠れた思考が減り、このメッセージのコストが約 $3% 下がります。
+advEffRaiseTitle	この作業では努力量を「$1」に
+advEffRaiseDetail	現在：$1。この作業は深い思考が必要です。努力量「$2」ならより信頼できる回答が得られますが、このメッセージのコストは約 $3% 増えます。回答が弱いと聞き直しになり、その方が高くつきます。
+advEffAlsoLower	努力量「$1」でも十分です。
+advDomain	分野
+advEffort	努力量の提案
+advEffortVal	$1 をおすすめします。
+advEffForModel	（$1 の場合）
+advEffNow	現在：$1。
+advFbQEff	この努力量の提案は正しかったですか？
+effBasis	努力量の根拠：Anthropic によると、「低」と「中」は定型作業で利用を長持ちさせ、「高」が最良のバランス、「特高」は長いコーディングやエージェント作業向け、「最大」は最も深い思考向けです。
+ev_domain	分野の語：$1
+why_stakes	リスクの高い分野（健康、法律、お金）では軽量モデルを提案しません。
+ewhy_e_light_type	軽い種類の作業
+ewhy_e_mid_type	中程度の作業
+ewhy_e_deep_type	深い思考が必要な作業
+ewhy_e_big_doc	大きな文書
+ewhy_e_stakes	高リスク：少なくとも「中」
+ewhy_e_depth	科学的・技術的な深さ
+ewhy_e_plan	計画の作業
+ewhy_e_complex	複雑な依頼
+ewhy_e_hardest	非常に難しい問題
+ewhy_e_proof	証明・導出
+ewhy_e_creative	創作：「中」までに制限
+ewhy_e_light_domain	日常・言語の作業
+ewhy_e_short	短い回答が求められている
+ewhy_e_pref	あなたのフィードバック
+ewhy_e_long_code	難しいコーディング：特高
+rpByDomain	分野別（消費量順）
+rpByEffort	努力量の設定別（消費量順）
+rpDomainNote	分野はメッセージ内の語から端末上で推定され、本文は保存されません。
+tip_effort_over	$1件のメッセージで、努力量が提案より高く設定されていました。提案の設定なら、上限の消費を約 $2 減らせたはずです。
+tip_domain_save	節約の余地が最も大きいのは「$1」です。$2件のメッセージは、より軽いモデルで足りました。
+tip_domain_stakes	$1件のメッセージが健康・法律・お金に関するものでした。これらでは軽量モデルも低い努力量も提案しません。重要な判断は専門家にも相談してください。
+pillDragTitle	ドラッグして移動
+pillReset	ピルの位置をリセット
+rpEffOver	$1件のメッセージで努力量が提案より高く設定されていました（逃した節約 ≈ $2）。
+rpEffOk	努力量の設定は提案どおりです。
+rpLearn	学習の証拠
+rpLearnFew	これまでに測定したメッセージは $1 件です。10件の測定ごとに1本の棒になり、30件から傾向が見えます（あと約 $2 件）。
+rpLearnBetter	最初の測定では、予測した合計上限が $1 倍ずれていましたが、直近では $2 倍です。拡張機能があなたに合ってきています。
+rpLearnSame	予測の誤差は、最初の測定で $1 倍、直近で $2 倍で、はっきりした変化はありません。もともと正確だった場合は想定どおりです。
+rpLearnWorse	直近の測定（$2 倍）の方が最初の測定（$1 倍）よりずれています。同じアカウントを別の端末や Claude Code で使うと測定が乱れます。キャリブレーションのリセットをお試しください。
+rpLearnRange	予測範囲内に収まった割合：最初の測定 $1、直近 $2（目標は約80%）。
+rpLearnBar	測定 $1～$2：$3 倍
+rpLearnNote	各棒は連続する10件の測定済みメッセージです。予測した合計上限が実際の消費量からどれだけずれたかを示します（1.00＝完全一致）。パーセントは整数に丸められるため、単発のメッセージではなく10件ごとの合計を使います。
+setEffortAdvice	努力量の提案を表示
+setTips	ヒントを表示（キャッシュ、ピーク時間帯、長いチャット、引き継ぎ要約）
+setExplain	「なぜこんなに消費した？」の説明を表示
+setView	表示
+viewFull	フル：予測とすべての提案
+viewSimple	シンプル：予測と上限の警告のみ
+viewCustom	カスタム（下で選択）
+viewNote	シンプル表示では、モデル・努力量の提案、ヒント、コストの説明を非表示にします。予測と、上限・コンテキストの警告は常に表示されます。
+warnLangLimited	メッセージの分析（作業の種類、分野、モデルと努力量の提案）は、現在トルコ語と英語のメッセージにのみ対応しています。この言語ではトークンと上限の予測は得られますが、提案は出ません。
+typeNA	この言語では分析対象外

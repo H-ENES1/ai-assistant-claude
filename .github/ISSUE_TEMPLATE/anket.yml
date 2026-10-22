@@ -1,0 +1,41 @@
+name: "📝 Kısa anket / Short survey (2 dk)"
+description: "Limitleri nasıl yaşıyorsun, eklentiden ne bekliyorsun?"
+title: "Anket"
+labels: ["anket"]
+body:
+  - type: dropdown
+    id: plan
+    attributes:
+      label: "Planın / Your plan"
+      options: ["Free", "Pro", "Max 5x", "Max 20x", "Team / Enterprise", "Bilmiyorum / Not sure"]
+    validations: { required: true }
+  - type: dropdown
+    id: siklik
+    attributes:
+      label: "Limite ne sıklıkla takılıyorsun? / How often do you hit the limit?"
+      options: ["Hiç / Never", "Ayda birkaç kez / A few times a month", "Haftada birkaç kez / A few times a week", "Her gün / Daily", "Günde birkaç kez / Several times a day"]
+    validations: { required: true }
+  - type: checkboxes
+    id: ozellik
+    attributes:
+      label: "En çok işine yarayan ya da yarayacak olanlar / Most useful features"
+      options:
+        - label: "Göndermeden önce mesaj başına tahmin / Per-message estimate before sending"
+        - label: "Gerekçeli model önerisi / Model suggestion with reasons"
+        - label: "Haftalık rapor / Weekly report"
+        - label: "Yoğun saat uyarısı / Peak-hour warning"
+        - label: "'Beklenenden fazla harcadı' açıklaması / 'Used more than expected' explanation"
+        - label: "Devir özeti (uzun sohbetten yeni sohbete) / Handoff summary"
+        - label: "Birden çok hesap / Multiple accounts"
+        - label: "Ekip panosu (Team) / Team dashboard"
+        - label: "Firefox / Safari sürümü / Firefox or Safari version"
+  - type: dropdown
+    id: odeme
+    attributes:
+      label: "Ekip ya da gelişmiş özellikler için ödeme yapar mıydın? / Would you pay for team or advanced features?"
+      options: ["Hayır, ücretsiz kalsın / No", "Tek seferlik küçük ücret / Small one-time fee", "Aylık küçük ücret / Small monthly fee", "Şirketim öderdi / My company would pay"]
+  - type: textarea
+    id: yorum
+    attributes:
+      label: "Eklemek istediğin her şey / Anything else"
+      description: "Ne eksik, ne yanlış, ne harika? Mesaj içeriği paylaşma."

@@ -1,16 +1,22 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2026 Hayrettin Enes Karalı
 // Açılır pencere: limitler, kalan limitle yapılabilecekler (adım 7), kalibrasyon (adım 10), ayarlar.
-import { makeI18n, duration, clock } from "../lib/i18n.js";
+import { makeI18n, duration, clock, LANGS } from "../lib/i18n.js";
 import { capacity } from "../lib/forecast.js";
-import { makeCalib } from "../lib/calibrate.js";
+import { makeCalib, CALIB_VERSION } from "../lib/calibrate.js";
+import { SUPPORT_URL, CONTRIB_URL, FEEDBACK_URL } from "../lib/config.js";
+import { buildContribution, contributionText } from "../lib/contrib.js";
+import { weeklyReport, burnRate } from "../lib/report.js";
 
 if (new URLSearchParams(location.search).get("view") === "tab") document.documentElement.classList.add("tab");
-const DEFAULTS = { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto" };
+const VIEW_KEYS = ["advisor", "effortAdvice", "tips", "explain"];
+const DEFAULTS = { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto", advisor: true, effortAdvice: true, tips: true, explain: true, weeklyReport: true };
 const $ = (id) => document.getElementById(id);
 const store = chrome.storage.local;
 let I = null;
 
 async function data() {
-  const r = await store.get(["usage", "usageMeta", "settings", "calib", "tier", "lastContext"]);
+  const r = await store.get(["usage", "usageMeta", "settings", "calib", "tier", "lastContext", "trace", "hookHello", "lastSend", "lastDone", "pageHealth", "usageHist", "sends"]);
   return { ...r, settings: { ...DEFAULTS, ...(r.settings || {}) } };
 }
 
@@ -23,14 +29,27 @@ function staticTexts() {
   $("capTitle").textContent = t("capTitle");
   $("calTitle").textContent = t("calTitle");
   $("setTitle").textContent = t("settings");
+  $("healthTitle").textContent = t("healthTitle"); $("hHint").textContent = t("hHint");
+  $("hLogTitle").textContent = t("hLogTitle"); $("copyLog").textContent = t("hCopyLog");
   $("lblLang").textContent = t("language"); $("optAuto").textContent = t("languageAuto");
+  if ($("lang").options.length === 1) for (const [code, l] of Object.entries(LANGS)) { const o = document.createElement("option"); o.value = code; o.textContent = l.name; $("lang").append(o); }
   $("lblTh").textContent = t("thresholds");
   $("lblNotif").textContent = t("setNotif");
   $("lblPanel").textContent = t("setPanel");
+  $("lblAdvisor").textContent = t("setAdvisor");
+  $("lblEffortAdvice").textContent = t("setEffortAdvice"); $("lblTips").textContent = t("setTips"); $("lblExplain").textContent = t("setExplain");
+  $("lblView").textContent = t("setView"); $("viewFull").textContent = t("viewFull"); $("viewSimple").textContent = t("viewSimple"); $("viewCustom").textContent = t("viewCustom"); $("viewNote").textContent = t("viewNote");
+  $("lblWeekly").textContent = t("setWeekly");
+  $("weekTitle").textContent = t("rpOpen"); $("openReport").textContent = t("rpOpenBtn");
   $("lblMem").textContent = t("setMemory"); $("memAuto").textContent = t("memAuto"); $("memOn").textContent = t("memOn"); $("memOff").textContent = t("memOff");
   $("testNotif").textContent = t("btnTestNotif");
   $("export").textContent = t("btnExport");
+  $("import").textContent = t("btnImport");
+  if (SUPPORT_URL) { $("support").href = SUPPORT_URL; $("support").textContent = t("supportLink"); $("supportRow").hidden = false; }
   $("resetCal").textContent = t("btnResetCal");
+  $("comTitle").textContent = t("comTitle"); $("comText").textContent = t("comText");
+  $("comBuild").textContent = t("comBuild"); $("comCopy").textContent = CONTRIB_URL ? t("comCopy") : t("comCopyOnly");
+  if (FEEDBACK_URL) { $("feedback").href = FEEDBACK_URL; $("feedback").textContent = t("feedbackLink"); $("feedbackRow").hidden = false; }
   $("privacy").textContent = t("privacyNote");
 }
 
@@ -78,7 +97,20 @@ async function render() {
     limits.append(p);
   } else {
     const showB = (w) => w.key === usage.bottleneck && w.pct >= 50;
-    for (const w of [usage.fiveHour, usage.sevenDay].filter(Boolean)) limits.append(limitRow(w, showB(w)));
+    for (const w of [usage.fiveHour, usage.sevenDay].filter(Boolean)) {
+      const row = limitRow(w, showB(w));
+      // Harcama hızı: yalnızca 5 saatlik pencere için
+      if (w === usage.fiveHour) {
+        const b = burnRate(d.usageHist || []);
+        if (b) {
+          const p = document.createElement("p"); p.className = "small burn";
+          p.textContent = b.idle ? I.t("burnIdle") : b.beforeReset ? I.t("burnEta", [clock(b.eta, I.locale), b.resetsAt ? clock(b.resetsAt, I.locale) : "?"]) : I.t("burnSafe");
+          if (!b.idle && b.beforeReset) p.classList.add("note");
+          row.append(p);
+        }
+      }
+      limits.append(row);
+    }
     if (usage.extras?.length) {
       const h = document.createElement("h2"); h.textContent = I.t("otherLimits"); limits.append(h);
       for (const w of usage.extras) limits.append(limitRow(w, showB(w)));
@@ -107,17 +139,32 @@ async function render() {
     capSec.hidden = rows.length === 0;
   } else capSec.hidden = true;
 
+  // Haftalık özet satırı
+  const wr = weeklyReport(d.sends || []);
+  $("week").hidden = !(d.sends || []).length;
+  $("weekLine").textContent = wr.sessionsEq >= 1
+    ? I.t("rpWeekLine", [String(wr.n), (Math.round(wr.sessionsEq * 10) / 10).toLocaleString(I.locale)])
+    : I.t("rpWeekLinePct", [String(wr.n), I.pct(wr.spent)]);
+
   // Kalibrasyon
   const cs = calib.summary();
   $("calText").textContent = cs.measurements === 0 ? I.t("calNone")
     : cs.measurements < 3 ? I.t("calFew", [String(cs.measurements)])
     : I.t("calSome", [String(cs.measurements), cs.inRangePct === null ? "–" : String(cs.inRangePct)]);
 
+  renderHealth(d);
+
   // Ayarlar
   $("lang").value = d.settings.language;
   d.settings.thresholds.forEach((v, i) => { const el = $(`th${i}`); if (el) el.value = v; });
   $("notif").checked = !!d.settings.notifications;
   $("panel").checked = !!d.settings.panel;
+  $("advisor").checked = d.settings.advisor !== false;
+  $("effortAdvice").checked = d.settings.effortAdvice !== false;
+  $("tips").checked = d.settings.tips !== false;
+  $("explain").checked = d.settings.explain !== false;
+  { const ks = VIEW_KEYS.map((k) => d.settings[k] !== false); $("view").value = ks.every(Boolean) ? "full" : ks.every((x) => !x) ? "simple" : "custom"; $("viewCustom").hidden = $("view").value !== "custom"; }
+  $("weekly").checked = d.settings.weeklyReport !== false;
   $("memory").value = d.settings.memory === true ? "on" : d.settings.memory === false ? "off" : "auto";
 
   // Alt bilgi
@@ -128,6 +175,43 @@ async function render() {
     if (usageMeta.error && usageMeta.errorAt > usageMeta.fetchedAt) meta.textContent += " · " + I.t("staleWarning");
   } else meta.textContent = "";
 }
+
+const fmtTime = (at) => new Date(at).toLocaleTimeString(I.locale, { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+const ago = (at) => (at ? duration(I.t, Date.now() - at) : null);
+
+function renderHealth(d) {
+  const t = I.t, tr = d.trace || [];
+  const rows = [];
+  const hh = d.hookHello, probe = [...tr].reverse().find((x) => x.step === "hook:probe");
+  rows.push([t("hHook"), !hh ? "wait" : hh.wrapped ? "ok" : "bad", !hh ? t("hHookNoReply") : hh.wrapped ? `✓ (${hh.seen || 0})` : t("hHookReplaced")]);
+  rows.push([t("hSend"), d.lastSend ? "ok" : probe ? "bad" : "wait", d.lastSend ? fmtTime(d.lastSend) : probe ? `${t("hProbe")}: ${probe.info?.path}` : t("hSendWait")]);
+  const ld = d.lastDone;
+  const ldOk = ld && (ld.sse || ld.via === "dom");
+  rows.push([t("hDone"), !ld ? "wait" : ldOk ? "ok" : "bad", !ld ? t("hNone") : `${fmtTime(ld.at)} · ${ld.via === "dom" ? t("hDomPath") : ld.sse ? t("hSseYes") : t("hSseNo")}`]);
+  const um = d.usageMeta;
+  rows.push([t("hUsage"), um?.fetchedAt && !(um.error && um.errorAt > um.fetchedAt) ? "ok" : um?.fetchedAt ? "wait" : "bad", um?.fetchedAt ? `${ago(um.fetchedAt) || "0"} · ${um.source || ""}` : t("hNone")]);
+  const ph = d.pageHealth;
+  rows.push([t("hPage"), !ph ? "wait" : ph.composer && ph.model ? "ok" : "bad", !ph ? t("hNone") : [ph.composer ? "✓" : "✗", ph.model || "✗", ph.effort || "–"].join(" / ")]);
+  const last = [...tr].reverse().find((x) => /^done:(observed|skip|window)$/.test(x.step));
+  const obsOk = last && last.step === "done:observed" && (last.info?.results || []).includes("ok");
+  rows.push([t("hLast"), !last ? "wait" : obsOk ? "ok" : "bad", !last ? t("hNone") : `${last.step.slice(5)} ${JSON.stringify(last.info || {}).slice(0, 80)}`]);
+  const ul = $("healthList"); ul.replaceChildren();
+  for (const [label, state, val] of rows) {
+    const li = document.createElement("li"); li.className = state;
+    const dot = document.createElement("span"); dot.className = "dot"; dot.textContent = state === "ok" ? "✓" : state === "bad" ? "✗" : "…";
+    const l = document.createElement("span"); l.className = "lbl"; l.textContent = label;
+    const v = document.createElement("span"); v.className = "val"; v.textContent = val;
+    li.append(dot, l, v); ul.append(li);
+  }
+  $("traceLog").textContent = tr.slice(-25).map((x) => `${fmtTime(x.at)} ${x.step}${x.info ? " " + JSON.stringify(x.info) : ""}`).join("\n") || t("hNone");
+}
+
+$("copyLog").addEventListener("click", async () => {
+  const d = await data();
+  const text = `Token Forecast ${chrome.runtime.getManifest().version}\n` + (d.trace || []).map((x) => `${new Date(x.at).toISOString()} ${x.step}${x.info ? " " + JSON.stringify(x.info) : ""}`).join("\n") +
+    `\nhook=${JSON.stringify(d.hookHello || null)} page=${JSON.stringify(d.pageHealth || null)} usageMeta=${JSON.stringify({ ...d.usageMeta, error: d.usageMeta?.error ? "yes" : null })}`;
+  try { await navigator.clipboard.writeText(text); $("copyLog").textContent = I.t("hCopied"); setTimeout(() => ($("copyLog").textContent = I.t("hCopyLog")), 1500); } catch (_) {}
+});
 
 async function saveSettings(patch) {
   const { settings } = await store.get("settings");
@@ -144,6 +228,18 @@ for (let i = 0; i < 3; i++) {
 }
 $("notif").addEventListener("change", (e) => saveSettings({ notifications: e.target.checked }));
 $("panel").addEventListener("change", (e) => saveSettings({ panel: e.target.checked }));
+$("advisor").addEventListener("change", (e) => saveSettings({ advisor: e.target.checked }));
+$("effortAdvice").addEventListener("change", (e) => saveSettings({ effortAdvice: e.target.checked }));
+$("tips").addEventListener("change", (e) => saveSettings({ tips: e.target.checked }));
+$("explain").addEventListener("change", (e) => saveSettings({ explain: e.target.checked }));
+// Görünüm: tek anahtarla tüm önerileri aç/kapat (tahmin ve limit uyarıları her zaman kalır)
+$("view").addEventListener("change", (e) => {
+  if (e.target.value === "custom") return;
+  const on = e.target.value === "full";
+  saveSettings(Object.fromEntries(VIEW_KEYS.map((k) => [k, on])));
+});
+$("weekly").addEventListener("change", (e) => saveSettings({ weeklyReport: e.target.checked }));
+$("openReport").addEventListener("click", () => chrome.runtime.sendMessage({ type: "open:report" }));
 $("memory").addEventListener("change", (e) => saveSettings({ memory: e.target.value === "on" ? true : e.target.value === "off" ? false : "auto" }));
 $("testNotif").addEventListener("click", () => chrome.runtime.sendMessage({ type: "notify:test" }));
 $("resetCal").addEventListener("click", async () => {
@@ -157,14 +253,60 @@ $("resetCal").addEventListener("click", async () => {
   render();
 });
 $("export").addEventListener("click", async () => {
-  const d = await store.get(["calib", "settings", "tier", "usage", "lastContext"]);
-  const blob = new Blob([JSON.stringify({ exportedAt: new Date().toISOString(), ...d }, null, 2)], { type: "application/json" });
+  const d = await store.get(["calib", "settings", "tier", "usage", "lastContext", "recPrefs", "sends", "learnPersonal"]);
+  const blob = new Blob([JSON.stringify({ format: "token-forecast-backup", formatVersion: 1, extVersion: chrome.runtime.getManifest().version, exportedAt: new Date().toISOString(), ...d }, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = `token-tahmini-${new Date().toISOString().slice(0, 10)}.json`;
   a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 5000);
 });
+// İçe aktarma: dışa aktarılan yedeği geri yükler (eklentiyi kaldırıp kurunca öğrenilenler kaybolmasın)
+let pendingImport = null;
+const importMsg = (text, ok) => { const p = $("importMsg"); p.hidden = false; p.textContent = text; p.className = "small " + (ok ? "note-ok" : "note-bad"); };
+$("import").addEventListener("click", () => {
+  if (pendingImport) {
+    chrome.runtime.sendMessage({ type: "data:import", data: pendingImport }, (r) => {
+      pendingImport = null; $("import").textContent = I.t("btnImport");
+      importMsg(r?.ok ? I.t("importDone", [String(r.measurements ?? 0)]) : I.t("importBad"), !!r?.ok);
+      render();
+    });
+    return;
+  }
+  $("importFile").click();
+});
+$("importFile").addEventListener("change", async (e) => {
+  const f = e.target.files?.[0]; e.target.value = "";
+  if (!f) return;
+  try {
+    if (f.size > 5e6) throw new Error("size");
+    const j = JSON.parse(await f.text());
+    if (!j || typeof j !== "object" || !j.calib || j.calib.version !== CALIB_VERSION || typeof j.calib.k !== "object") throw new Error("format");
+    pendingImport = { calib: j.calib, settings: j.settings || null, recPrefs: j.recPrefs || null, sends: Array.isArray(j.sends) ? j.sends : null, learnPersonal: j.learnPersonal || null };
+    const n = j.calib.stats?.n || 0;
+    $("import").textContent = I.t("btnImportConfirm");
+    importMsg(I.t("importReady", [String(n), j.exportedAt ? new Date(j.exportedAt).toLocaleDateString(I.locale) : "?"]), true);
+  } catch (_) { pendingImport = null; importMsg(I.t("importBad"), false); }
+});
+
+// Topluluk katkısı: önce göster, sonra kullanıcı isterse kopyala (otomatik gönderim yok)
+let contribText = "";
+$("comBuild").addEventListener("click", async () => {
+  const d = await store.get(["calib", "sends", "recPrefs", "learnFixes", "tier", "settings"]);
+  const c = buildContribution({ calib: d.calib, sends: d.sends || [], recPrefs: d.recPrefs, learnFixes: d.learnFixes, tier: d.tier || "claude_pro", extVersion: chrome.runtime.getManifest().version, lang: I.lang });
+  const pre = $("comPreview");
+  if (!Object.keys(c.k).length && !(c.acc.n > 0)) { pre.hidden = true; $("comCopy").hidden = true; $("comNote").hidden = false; $("comNote").textContent = I.t("comEmpty"); return; }
+  contribText = contributionText(c);
+  pre.textContent = JSON.stringify(c, null, 1); pre.hidden = false;
+  $("comCopy").hidden = false; $("comNote").hidden = true;
+});
+$("comCopy").addEventListener("click", async () => {
+  if (!contribText) return;
+  try { await navigator.clipboard.writeText(contribText); } catch (_) {}
+  $("comNote").hidden = false; $("comNote").textContent = CONTRIB_URL ? I.t("comCopied") : I.t("comNoUrl");
+  if (CONTRIB_URL) chrome.tabs.create({ url: CONTRIB_URL });
+});
+
 $("refresh").addEventListener("click", async (e) => {
   const btn = e.currentTarget;
   btn.disabled = true; btn.classList.add("spin");
@@ -174,9 +316,9 @@ $("refresh").addEventListener("click", async (e) => {
 });
 
 chrome.storage.onChanged.addListener((ch, area) => {
-  if (area === "local" && (ch.usage || ch.usageMeta || ch.settings || ch.calib)) render();
+  if (area === "local" && (ch.usage || ch.usageMeta || ch.settings || ch.calib || ch.trace || ch.hookHello || ch.pageHealth || ch.sends)) render();
 });
 
-if (document.documentElement.classList.contains("tab")) $("settings").open = true;
+if (document.documentElement.classList.contains("tab")) { $("settings").open = true; $("health").open = true; }
 render();
 chrome.runtime.sendMessage({ type: "usage:refresh" });

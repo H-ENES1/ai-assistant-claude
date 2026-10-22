@@ -1,0 +1,1446 @@
+{
+  "extName": {
+    "message": "Token Forecast（Claude 用量预测）"
+  },
+  "extShortName": {
+    "message": "Token Forecast"
+  },
+  "extDescription": {
+    "message": "发送前估算一条消息将消耗你 Claude 使用额度的多少，必要时推荐更省的模型。"
+  },
+  "popupTitle": {
+    "message": "Token Forecast"
+  },
+  "sessionLimit": {
+    "message": "5 小时会话"
+  },
+  "weeklyLimit": {
+    "message": "每周额度"
+  },
+  "resetsAt": {
+    "message": "将于 $TIME$ 重置",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "noData": {
+    "message": "暂无使用数据。请在已登录状态下打开 claude.ai。"
+  },
+  "settings": {
+    "message": "设置"
+  },
+  "language": {
+    "message": "语言"
+  },
+  "languageAuto": {
+    "message": "浏览器默认"
+  },
+  "thresholds": {
+    "message": "提醒阈值"
+  },
+  "panelEstimate": {
+    "message": "预计消耗：本次会话的 $LOW$–$HIGH$%",
+    "placeholders": {
+      "low": {
+        "content": "$1"
+      },
+      "high": {
+        "content": "$2"
+      }
+    }
+  },
+  "confidenceLow": {
+    "message": "可信度：低"
+  },
+  "confidenceMedium": {
+    "message": "可信度：中"
+  },
+  "confidenceHigh": {
+    "message": "可信度：高"
+  },
+  "panelLoading": {
+    "message": "估算中…"
+  },
+  "pct": {
+    "message": "$1%"
+  },
+  "resetsIn": {
+    "message": "$1后重置（$2）"
+  },
+  "durDH": {
+    "message": "$1天$2小时"
+  },
+  "durHM": {
+    "message": "$1小时$2分钟"
+  },
+  "durM": {
+    "message": "$1分钟"
+  },
+  "bottleneck": {
+    "message": "该额度会最先用完"
+  },
+  "fetchError": {
+    "message": "无法读取使用情况。请确认你已登录 claude.ai。"
+  },
+  "otherLimits": {
+    "message": "其他额度"
+  },
+  "updatedJustNow": {
+    "message": "刚刚更新"
+  },
+  "updatedAgo": {
+    "message": "$1前更新"
+  },
+  "staleWarning": {
+    "message": "上次更新失败"
+  },
+  "refresh": {
+    "message": "刷新"
+  },
+  "dbgPrompt": {
+    "message": "消息"
+  },
+  "dbgHistory": {
+    "message": "对话"
+  },
+  "dbgMessages": {
+    "message": "$1 条消息"
+  },
+  "dbgNotFound": {
+    "message": "未检测到"
+  },
+  "dbgAttachments": {
+    "message": "附件"
+  },
+  "dbgTotal": {
+    "message": "输入合计"
+  },
+  "dbgTokens": {
+    "message": "token"
+  },
+  "dbgNoInput": {
+    "message": "未找到消息输入框"
+  },
+  "dbgAnalyzing": {
+    "message": "分析中…"
+  },
+  "dbgPasted": {
+    "message": "粘贴的文本"
+  },
+  "dbgPages": {
+    "message": "$1 页"
+  },
+  "dbgConvAttachments": {
+    "message": "此聊天中已发送的附件（$1）"
+  },
+  "dbgContext": {
+    "message": "上下文窗口（$1，$2）"
+  },
+  "dbgModelUnknown": {
+    "message": "未检测到模型"
+  },
+  "ctxOver": {
+    "message": "这超出了 Claude 的上下文窗口。请只发送需要的部分。"
+  },
+  "ctxNear": {
+    "message": "这可能超出 Claude 的上下文窗口。请拆分内容或新开一个聊天。"
+  },
+  "pdfTextOnly": {
+    "message": "超过 100 页的 PDF：Claude 只会读取文字，不读取图片或图表。"
+  },
+  "pdfTooLarge": {
+    "message": "超过 1000 页的 PDF：claude.ai 不会接受。"
+  },
+  "lessThan": {
+    "message": "不到 $1"
+  },
+  "warnNoFit": {
+    "message": "这很可能放不进你的 $1（剩余 $2）。"
+  },
+  "warnMaybeFit": {
+    "message": "这可能放不进你的 $1（剩余 $2）。"
+  },
+  "ctxWorkspace": {
+    "message": "在付费套餐中，claude.ai 可能把特别大的文件放进工作区，由 Claude 用代码读取，而不是一次读完。"
+  },
+  "warnCacheCold": {
+    "message": "你已有 $1 分钟没用这个聊天，缓存已过期：整段历史（约 $2 个 token）将重新计费。新开聊天可能便宜得多。"
+  },
+  "warnCacheUnknown": {
+    "message": "如果这个聊天闲置超过一小时，它的历史（约 $1 个 token）将重新计费。"
+  },
+  "tipNewChat": {
+    "message": "这个聊天已经很长（约 $1 个 token）。带一段简短摘要新开聊天，回答会更准确也更省。"
+  },
+  "warnPeak": {
+    "message": "高峰时段（工作日 $1–$2 点，你的本地时间）：claude.ai 的 5 小时额度此时消耗更快。建议把长任务挪到这个时段之外。"
+  },
+  "recDowngrade": {
+    "message": "$1 可能就够了，并可少消耗约 $2% 的额度。"
+  },
+  "recUpgrade": {
+    "message": "这看起来比较复杂；$1 可能给出明显更好的回答。"
+  },
+  "rec_short_qa": {
+    "message": "简短的事实性问题很少需要大模型。"
+  },
+  "rec_translate": {
+    "message": "轻量模型翻译得很好。"
+  },
+  "rec_rewrite": {
+    "message": "改写现有文字是轻量任务。"
+  },
+  "rec_summarize": {
+    "message": "摘要是较轻量模型的强项。"
+  },
+  "rec_explain": {
+    "message": "中等模型讲解得不错。"
+  },
+  "rec_writing": {
+    "message": "中等模型写作不错。"
+  },
+  "rec_data_analysis": {
+    "message": "常规分析适合中等模型。"
+  },
+  "rec_file_create": {
+    "message": "文档和演示文稿适合中等模型。"
+  },
+  "rec_code_write": {
+    "message": "日常编程适合中等模型。"
+  },
+  "rec_code_fix": {
+    "message": "大多数排错适合中等模型。"
+  },
+  "rec_research": {
+    "message": "常规调研适合中等模型。"
+  },
+  "rec_math": {
+    "message": "常规题目适合中等模型。"
+  },
+  "rec_complex": {
+    "message": "这项任务看起来很复杂。"
+  },
+  "rec_hardest": {
+    "message": "这属于最难的任务类型之一。"
+  },
+  "effLower": {
+    "message": "这里通常用“低”努力程度就够了；“高”主要会增加隐藏的思考 token。"
+  },
+  "effRaise": {
+    "message": "对于这么难的问题，提高努力程度可能值得。"
+  },
+  "type_short_qa": {
+    "message": "简短问题"
+  },
+  "type_explain": {
+    "message": "讲解"
+  },
+  "type_math": {
+    "message": "解题"
+  },
+  "type_code_write": {
+    "message": "编写代码"
+  },
+  "type_code_fix": {
+    "message": "调试／代码"
+  },
+  "type_translate": {
+    "message": "翻译"
+  },
+  "type_writing": {
+    "message": "写作"
+  },
+  "type_rewrite": {
+    "message": "文本编辑"
+  },
+  "type_summarize": {
+    "message": "摘要"
+  },
+  "type_data_analysis": {
+    "message": "数据分析"
+  },
+  "type_research": {
+    "message": "调研"
+  },
+  "type_file_create": {
+    "message": "创建文件"
+  },
+  "rowWeekly": {
+    "message": "每周额度"
+  },
+  "rowType": {
+    "message": "请求类型"
+  },
+  "rowModel": {
+    "message": "模型"
+  },
+  "modelName": {
+    "message": "$1"
+  },
+  "rowInput": {
+    "message": "输入（新增）"
+  },
+  "rowOutput": {
+    "message": "预期回答"
+  },
+  "rowCache": {
+    "message": "缓存"
+  },
+  "rowContext": {
+    "message": "上下文窗口"
+  },
+  "cache_none": {
+    "message": "新聊天"
+  },
+  "cache_warm": {
+    "message": "有效（历史免费）"
+  },
+  "cache_cold": {
+    "message": "已过期（历史计费）"
+  },
+  "cache_unknown": {
+    "message": "未知"
+  },
+  "effort_low": {
+    "message": "低努力"
+  },
+  "effort_medium": {
+    "message": "中等努力"
+  },
+  "effort_high": {
+    "message": "高努力"
+  },
+  "effort_max": {
+    "message": "最高努力"
+  },
+  "effort_off": {
+    "message": "关闭思考"
+  },
+  "effort_auto": {
+    "message": "自动"
+  },
+  "footCalibrated": {
+    "message": "已从你的 $1 条消息中学习 · $2% 落在预测范围内。"
+  },
+  "footLearning": {
+    "message": "仍在学习：再发几条消息，估算会更准确。"
+  },
+  "pillIdle": {
+    "message": "Token Forecast"
+  },
+  "pillUsed": {
+    "message": "5 小时：已用 $1"
+  },
+  "pillSub": {
+    "message": "（5 小时额度）"
+  },
+  "cardTitle": {
+    "message": "这条消息将消耗"
+  },
+  "cardSub": {
+    "message": "你的 5 小时额度 · 可能范围 $1"
+  },
+  "cardIdleSub": {
+    "message": "5 小时额度已用的比例。开始输入即可看到估算。"
+  },
+  "close": {
+    "message": "关闭"
+  },
+  "notifResets": {
+    "message": "将于 $1 重置。"
+  },
+  "notifThresholdTitle": {
+    "message": "$1 已达 $2%"
+  },
+  "notifThresholdBody": {
+    "message": "发送前先用预测来规划较大的任务。"
+  },
+  "notifThresholdBodyHigh": {
+    "message": "快用完了：先做最重要的事。"
+  },
+  "notifResetTitle": {
+    "message": "$1 已重置"
+  },
+  "notifResetBody": {
+    "message": "你可以从上次中断的地方继续。"
+  },
+  "notifTestBody": {
+    "message": "通知工作正常。"
+  },
+  "freePlanWait": {
+    "message": "免费套餐在你于 claude.ai 发送第一条消息后才会显示使用情况。"
+  },
+  "capTitle": {
+    "message": "用剩余额度可以做"
+  },
+  "capSub": {
+    "message": "在 $1 的新聊天中，大约能完成下列之一（保守估计）。"
+  },
+  "cap_short_qa": {
+    "message": "个简短问题"
+  },
+  "cap_explain": {
+    "message": "次讲解"
+  },
+  "cap_code_fix": {
+    "message": "次代码修复"
+  },
+  "cap_writing": {
+    "message": "项写作任务"
+  },
+  "cap_summarize": {
+    "message": "份文档摘要"
+  },
+  "cap_research": {
+    "message": "项调研任务"
+  },
+  "calTitle": {
+    "message": "个人校准"
+  },
+  "calNone": {
+    "message": "还没有测量数据。你每发一条消息，扩展都会学到你的套餐实际是怎么消耗的。"
+  },
+  "calFew": {
+    "message": "目前有 $1 次测量；再多几次，估算会更准确。"
+  },
+  "calSome": {
+    "message": "$1 次测量 · $2% 的实际值落在预测范围内。"
+  },
+  "setNotif": {
+    "message": "通知"
+  },
+  "setPanel": {
+    "message": "在 claude.ai 上显示估算"
+  },
+  "setMemory": {
+    "message": "Claude 记忆（上下文大小）"
+  },
+  "memAuto": {
+    "message": "假定已开启"
+  },
+  "memOn": {
+    "message": "开启"
+  },
+  "memOff": {
+    "message": "关闭"
+  },
+  "btnTestNotif": {
+    "message": "测试通知"
+  },
+  "btnExport": {
+    "message": "导出我的数据"
+  },
+  "btnResetCal": {
+    "message": "重置校准"
+  },
+  "btnResetConfirm": {
+    "message": "再点一次以重置"
+  },
+  "privacyNote": {
+    "message": "所有计算都在你的浏览器内完成。消息内容绝不会离开你的设备。"
+  },
+  "moreDetails": {
+    "message": "详情与设置"
+  },
+  "detailsTitle": {
+    "message": "Token Forecast – 详情"
+  },
+  "healthTitle": {
+    "message": "系统自检"
+  },
+  "hHook": {
+    "message": "页面钩子（可见已发送的消息）"
+  },
+  "hSend": {
+    "message": "检测到最近一次发送"
+  },
+  "hDone": {
+    "message": "已读取最近一次回答流"
+  },
+  "hUsage": {
+    "message": "正在读取使用情况"
+  },
+  "hPage": {
+    "message": "页面：输入／模型／努力程度"
+  },
+  "hLast": {
+    "message": "最近一次测量"
+  },
+  "hNone": {
+    "message": "暂无"
+  },
+  "hHookNoReply": {
+    "message": "无响应 – 请刷新 claude.ai 标签页"
+  },
+  "hHookReplaced": {
+    "message": "fetch 已被网站替换"
+  },
+  "hProbe": {
+    "message": "消息被发往另一个地址"
+  },
+  "hSendWait": {
+    "message": "尚未发送消息或未检测到"
+  },
+  "hSseYes": {
+    "message": "数据流正常"
+  },
+  "hSseNo": {
+    "message": "已读取数据流，但其中没有使用数据"
+  },
+  "hCopyLog": {
+    "message": "复制日志"
+  },
+  "hCopied": {
+    "message": "已复制"
+  },
+  "hLogTitle": {
+    "message": "测量日志"
+  },
+  "hHint": {
+    "message": "如果某一行显示有问题，请复制日志并发给开发者。"
+  },
+  "hDomPath": {
+    "message": "从页面检测到（备用途径）"
+  },
+  "advSave": {
+    "message": "这个任务用 $1 就够了"
+  },
+  "advSaveDetail": {
+    "message": "这条消息约消耗你额度的 $1；用 $2 约为 $3（节省 $4%）。"
+  },
+  "advSaveNext": {
+    "message": "这类任务用 $1 就够了，但请不要在当前聊天中切换"
+  },
+  "advSaveNextDetail": {
+    "message": "聊天历史（$1 个 token）不在新模型的缓存里，会被重新读取，这条消息反而更贵。请在下次新开聊天时选择 $2。"
+  },
+  "advUpgrade": {
+    "message": "$1 可能吃力：建议使用 $2"
+  },
+  "advUpgradeDetail": {
+    "message": "$1 消耗你额度的速度约是 $2 倍。如果你想先试 $3，回答不够好时再切换。"
+  },
+  "advOk": {
+    "message": "$1 适合这个任务"
+  },
+  "advOkTiny": {
+    "message": "$1 也够用，但差别很小（你额度的 $2）。"
+  },
+  "advWhy": {
+    "message": "为什么？"
+  },
+  "advHide": {
+    "message": "隐藏"
+  },
+  "advDetected": {
+    "message": "识别到的任务"
+  },
+  "advSignals": {
+    "message": "我看到的线索"
+  },
+  "advBasis": {
+    "message": "依据"
+  },
+  "advWhen": {
+    "message": "何时切换"
+  },
+  "advDetectedVal": {
+    "message": "$1 · $2 · $3"
+  },
+  "level_low": {
+    "message": "轻"
+  },
+  "level_mid": {
+    "message": "中等"
+  },
+  "level_high": {
+    "message": "难"
+  },
+  "ev_trigger": {
+    "message": "措辞“$1”"
+  },
+  "ev_hard": {
+    "message": "难度线索：$1"
+  },
+  "ev_code": {
+    "message": "代码块／代码行"
+  },
+  "ev_attach": {
+    "message": "附件：$1 个 token"
+  },
+  "ev_bullets": {
+    "message": "包含 $1 个要点的请求"
+  },
+  "ev_long": {
+    "message": "要求详细回答"
+  },
+  "ev_short": {
+    "message": "要求简短回答"
+  },
+  "ev_words": {
+    "message": "$1 个词"
+  },
+  "why_simple_task": {
+    "message": "任务简单明确；分类器很有把握。"
+  },
+  "why_unsure_safe": {
+    "message": "我不确定任务类型，所以保守起见，至少推荐 Sonnet。"
+  },
+  "why_complex": {
+    "message": "复杂度高。"
+  },
+  "why_hardest": {
+    "message": "非常难的证明、设计或调研。"
+  },
+  "why_pref_floor": {
+    "message": "根据你的反馈，这类任务我会选更强的模型。"
+  },
+  "why_pref_ceil": {
+    "message": "根据你的反馈，这类任务我不会催你换更强的模型。"
+  },
+  "basis_haiku": {
+    "message": "Anthropic 将 Haiku 5.5 定位为“延迟最低、价格最低”的模型，适合大批量的简单任务和子代理。"
+  },
+  "basis_sonnet": {
+    "message": "据 Anthropic 介绍，Sonnet 5.5 提供“适合日常工作的速度与性能”：代码生成、数据分析、内容创作。"
+  },
+  "basis_opus": {
+    "message": "Anthropic 推荐将 Opus 5.5 用于复杂编程和企业级任务：大型重构、系统工程、持续数小时的代理。"
+  },
+  "basis_fable": {
+    "message": "Fable 5.1 是“当前可用的最强性能”：持续数小时的代理会话、多步骤的深度调研。"
+  },
+  "tbasis_short_qa": {
+    "message": "只有一个答案的事实性问题只需简短回答，轻量模型就能胜任。涉及人物或事件的问题可能被编造，重要时请核实。"
+  },
+  "tbasis_translate": {
+    "message": "翻译时文本已经存在；模型保持原意并转换语言。轻量模型做得很好。"
+  },
+  "tbasis_rewrite": {
+    "message": "改写或简化时内容已定，模型只改进表达形式。"
+  },
+  "tbasis_summarize": {
+    "message": "摘要所需的信息就在文本里；短文本用轻量模型即可，长文档或专业文档用中等模型更稳妥。"
+  },
+  "tbasis_explain": {
+    "message": "讲解概念需要准确和好例子；通常中等模型就够，进阶话题 Opus 更有帮助。"
+  },
+  "tbasis_writing": {
+    "message": "写文章和邮件时，中等模型能很好地把握语气和流畅度。"
+  },
+  "tbasis_data_analysis": {
+    "message": "数据分析兼有计算与解读；通常中等模型就够。"
+  },
+  "tbasis_file_create": {
+    "message": "创建文件或演示文稿是多步骤工作；通常中等模型就够，长文档可用 Opus。"
+  },
+  "tbasis_code_write": {
+    "message": "Sonnet 擅长日常编程；架构设计和跨多个文件的工作推荐用 Opus。"
+  },
+  "tbasis_code_fix": {
+    "message": "Sonnet 能处理单个文件里的错误；难缠或涉及整个系统的错误用 Opus。"
+  },
+  "tbasis_research": {
+    "message": "调研就是查找并整合资料来源；深入的多步骤调研用 Opus 或 Fable。"
+  },
+  "tbasis_math": {
+    "message": "计算和标准题目适合中等模型；证明和较长的推导适合 Opus 或 Fable。"
+  },
+  "when_haiku": {
+    "message": "如果回答流于表面或有错误，请切换到 Sonnet。"
+  },
+  "when_sonnet": {
+    "message": "如果回答不够好或任务变大，请切换到 Opus。"
+  },
+  "when_opus": {
+    "message": "持续数小时的代理工作，或 Opus 不够用时，请使用 Fable。"
+  },
+  "when_fable": {
+    "message": "Fable 是最强也最贵的模型；只用于真正困难的任务。"
+  },
+  "advCaveat": {
+    "message": "这条建议是基于规则和一个在你设备上运行的小型学习模型做出的估计；回答质量并未被测量。你的反馈和纠正会让它更适合你。"
+  },
+  "advFbQ": {
+    "message": "这条建议对吗？"
+  },
+  "advFbGood": {
+    "message": "👍 对"
+  },
+  "advFbBad": {
+    "message": "👎 不对"
+  },
+  "advFbThanks": {
+    "message": "谢谢，已保存。"
+  },
+  "advSource": {
+    "message": "来源：Anthropic 的模型选择指南"
+  },
+  "setAdvisor": {
+    "message": "显示模型建议"
+  },
+  "btnImport": {
+    "message": "导入我的数据"
+  },
+  "btnImportConfirm": {
+    "message": "是，恢复备份"
+  },
+  "importReady": {
+    "message": "已读取备份：$1 次测量（$2）。它将替换当前已学到的内容；请再按一次按钮确认。"
+  },
+  "importDone": {
+    "message": "备份已恢复：找回 $1 次测量。"
+  },
+  "importBad": {
+    "message": "此文件不是有效的 Token Forecast 备份。"
+  },
+  "supportLink": {
+    "message": "支持这个项目 ☕"
+  },
+  "cacheWarmLeft": {
+    "message": "有效 · 历史还可免费 $1 分钟"
+  },
+  "cacheColdAgo": {
+    "message": "已失效（上一条消息在$1前）· 历史将被重新读取"
+  },
+  "tipHandoff": {
+    "message": "这个聊天很长（$1 个 token），并且每条消息都在增加。换到新聊天时，可以请 Claude 写一段简短的交接摘要。"
+  },
+  "tipHandoffWarm": {
+    "message": "这个聊天很长（$1 个 token）。缓存有效时请求交接摘要成本很低；把它粘贴到新聊天里继续即可。"
+  },
+  "btnHandoff": {
+    "message": "复制交接提示词"
+  },
+  "handoffPrompt": {
+    "message": "我要把这段对话转到一个新聊天。请写一份简短的交接摘要：目标、目前已做的决定、重要细节（文件名、数字、代码片段）、未解决的问题和下一步。它应能直接粘贴进新聊天，不超过 300 字。"
+  },
+  "peakLeft": {
+    "message": "还有 $1 结束。"
+  },
+  "warnSurprise": {
+    "message": "你上一条消息消耗超出预期：$1（估算 $2）。可能原因：$3。"
+  },
+  "cr_cold": {
+    "message": "你在长时间停顿后才发消息，所以历史被重新读取"
+  },
+  "cr_long_chat": {
+    "message": "聊天非常长"
+  },
+  "cr_peak": {
+    "message": "高峰时段"
+  },
+  "cr_effort": {
+    "message": "高努力程度（隐藏思考）"
+  },
+  "cr_long_answer": {
+    "message": "回答比预期更长"
+  },
+  "cr_big_model": {
+    "message": "大模型"
+  },
+  "cr_elsewhere": {
+    "message": "同一账号可能在其他标签页、其他设备或 Claude Code 中被使用"
+  },
+  "bdTitle": {
+    "message": "成本从何而来（估算）"
+  },
+  "bd_output": {
+    "message": "回答"
+  },
+  "bd_thinking": {
+    "message": "思考"
+  },
+  "bd_input": {
+    "message": "消息与文件"
+  },
+  "bd_history": {
+    "message": "历史"
+  },
+  "bd_tool": {
+    "message": "工具"
+  },
+  "wkNotifTitle": {
+    "message": "你的每周报告已生成"
+  },
+  "wkNotifMsgs": {
+    "message": "$1 条消息"
+  },
+  "wkNotifSpent": {
+    "message": "$1 个完整的 5 小时额度"
+  },
+  "wkNotifPeak": {
+    "message": "其中 $1% 在高峰时段"
+  },
+  "rpTitle": {
+    "message": "每周报告"
+  },
+  "rpRange": {
+    "message": "最近 7 天 · $1 – $2"
+  },
+  "rpMsgs": {
+    "message": "消息"
+  },
+  "rpChats": {
+    "message": "分布在 $1 个聊天中"
+  },
+  "rpChangeUp": {
+    "message": "比上周多 $1%"
+  },
+  "rpChangeDown": {
+    "message": "比上周少 $1%"
+  },
+  "rpChangeSame": {
+    "message": "与上周持平"
+  },
+  "rpChangeNone": {
+    "message": "上周没有记录"
+  },
+  "rpSpent": {
+    "message": "已消耗的 5 小时额度"
+  },
+  "rpSessions": {
+    "message": "$1 个额度"
+  },
+  "rpSpentSub": {
+    "message": "5 小时额度合计 $1"
+  },
+  "rpPeak": {
+    "message": "高峰时段"
+  },
+  "rpPeakSub": {
+    "message": "占消息的 $1"
+  },
+  "rpSave": {
+    "message": "错过的节省"
+  },
+  "rpSaveSub": {
+    "message": "有 $1 条消息用更轻量的模型就够了"
+  },
+  "rpSaveNone": {
+    "message": "你一直按建议使用"
+  },
+  "rpTips": {
+    "message": "我的建议"
+  },
+  "tip_peak": {
+    "message": "你的使用中有 $1% 发生在高峰时段（$2，工作日）。此时 claude.ai 的 5 小时额度消耗更快；把长任务挪出这个时段，同样的工作能少用额度。"
+  },
+  "tip_cold": {
+    "message": "有 $1 条消息是在停顿超过一小时后发进长聊天的，因此每次都要重新读取整段历史（占你使用量的 $2%）。停顿之后，新开聊天或使用交接摘要更省。"
+  },
+  "tip_advice": {
+    "message": "有 $2 条消息用更轻量的模型就够了。如果按建议使用，你大约能节省一个会话额度的 $1。"
+  },
+  "tip_long": {
+    "message": "有 $1 条消息发送在超过 10 万 token 的聊天里。这么长的上下文会拖累额度和回答质量；新话题新开聊天会有帮助。"
+  },
+  "tip_effort": {
+    "message": "在 $1 个简单任务（翻译、简短问题）中，思考努力程度被设得很高。用“低”能以更少的消耗得到同样的结果。"
+  },
+  "tip_upgrade": {
+    "message": "有 $1 条消息被建议使用更强的模型。如果回答不够好，直接用更强的模型开始这类任务，比反复追问更省。"
+  },
+  "tip_good": {
+    "message": "本周你的使用看起来很均衡：高峰时段、长聊天或过大模型都没有明显问题。"
+  },
+  "rpByModel": {
+    "message": "模型（按用量）"
+  },
+  "rpByType": {
+    "message": "任务类型（按用量）"
+  },
+  "rpHeat": {
+    "message": "你什么时候发消息？（最近 4 周，本地时间）"
+  },
+  "rpHeatPeak": {
+    "message": "带框的格子：高峰时段"
+  },
+  "rpTop": {
+    "message": "最贵的消息"
+  },
+  "rpMeasured": {
+    "message": "实测"
+  },
+  "rpEstimated": {
+    "message": "估算"
+  },
+  "rpAcc": {
+    "message": "预测准确度"
+  },
+  "rpAccVal": {
+    "message": "在 $1 条已测量的消息中，有 $2 条落在预测范围内。"
+  },
+  "rpAccNone": {
+    "message": "本周没有已测量的消息；数值均为估算。"
+  },
+  "rpMeasuredShare": {
+    "message": "$1 的数值为实测，其余是发送时的估算。"
+  },
+  "rpCsv": {
+    "message": "下载 CSV"
+  },
+  "rpPrivacy": {
+    "message": "此报告仅在本浏览器内，根据不含消息内容的记录计算。"
+  },
+  "rpOpen": {
+    "message": "每周报告"
+  },
+  "rpWeekLine": {
+    "message": "最近 7 天：$1 条消息 · $2 个完整的 5 小时额度"
+  },
+  "rpDays": {
+    "message": "周一,周二,周三,周四,周五,周六,周日"
+  },
+  "rpNoData": {
+    "message": "记录还不够生成报告。在 claude.ai 上用几天后，此页就会充实起来。"
+  },
+  "rpOther": {
+    "message": "其他"
+  },
+  "setWeekly": {
+    "message": "周一早晨发送每周报告通知"
+  },
+  "burnEta": {
+    "message": "按最近一小时的速度，大约在 $1 用满（重置时间 $2）。"
+  },
+  "burnSafe": {
+    "message": "按这个速度，在重置前不会用满。"
+  },
+  "burnIdle": {
+    "message": "最近一小时没有明显使用。"
+  },
+  "rpBack": {
+    "message": "详情与设置"
+  },
+  "advRelabel": {
+    "message": "任务类型不对？请选择正确的："
+  },
+  "advRelabelThanks": {
+    "message": "谢谢——我会在这台设备上从中学习。"
+  },
+  "ev_ml": {
+    "message": "学习模型的把握度为 $1%"
+  },
+  "comTitle": {
+    "message": "为社区做贡献（可选）"
+  },
+  "comText": {
+    "message": "如果你分享这台设备上学到的内容，新用户一开始就能得到更准确的预测。摘要中不含消息内容、聊天名称、日期或账号信息。发送前你可以查看内容；不会自动发送任何东西。"
+  },
+  "comBuild": {
+    "message": "显示贡献摘要"
+  },
+  "comCopy": {
+    "message": "复制并打开表单"
+  },
+  "comCopyOnly": {
+    "message": "复制"
+  },
+  "comCopied": {
+    "message": "已复制。请粘贴到打开的表单字段中并提交。"
+  },
+  "comNoUrl": {
+    "message": "已复制。社区表单即将开放；在此之前请先保留这段文字。"
+  },
+  "comEmpty": {
+    "message": "暂时没有可分享的内容。发几条消息后再试。"
+  },
+  "feedbackLink": {
+    "message": "发送反馈或建议"
+  },
+  "rpOpenBtn": {
+    "message": "打开报告 →"
+  },
+  "rpWeekLinePct": {
+    "message": "最近 7 天：$1 条消息 · 共用掉 5 小时额度的 $2"
+  },
+  "rpSpentSmall": {
+    "message": "合计（一个满额度＝100%）"
+  },
+  "rowDomain": {
+    "message": "主题"
+  },
+  "dom_science": {
+    "message": "科学"
+  },
+  "dom_math": {
+    "message": "数学"
+  },
+  "dom_engineering": {
+    "message": "工程"
+  },
+  "dom_software": {
+    "message": "软件"
+  },
+  "dom_data_ai": {
+    "message": "数据与 AI"
+  },
+  "dom_academic": {
+    "message": "学术写作"
+  },
+  "dom_project": {
+    "message": "项目与规划"
+  },
+  "dom_literature": {
+    "message": "文学与创意写作"
+  },
+  "dom_business": {
+    "message": "商务与职业"
+  },
+  "dom_finance": {
+    "message": "经济与金融"
+  },
+  "dom_law": {
+    "message": "法律"
+  },
+  "dom_health": {
+    "message": "健康"
+  },
+  "dom_education": {
+    "message": "学习与考试"
+  },
+  "dom_language": {
+    "message": "语言"
+  },
+  "dom_humanities": {
+    "message": "历史、哲学与社会"
+  },
+  "dom_daily": {
+    "message": "日常生活"
+  },
+  "dom_general": {
+    "message": "通用"
+  },
+  "sub_science_physics": {
+    "message": "物理"
+  },
+  "sub_science_chemistry": {
+    "message": "化学"
+  },
+  "sub_science_biology": {
+    "message": "生物"
+  },
+  "sub_science_astronomy": {
+    "message": "天文"
+  },
+  "sub_science_earth": {
+    "message": "地球科学"
+  },
+  "sub_math_pure": {
+    "message": "代数与分析"
+  },
+  "sub_math_statistics": {
+    "message": "统计"
+  },
+  "sub_engineering_electrical": {
+    "message": "电气与电子"
+  },
+  "sub_engineering_mechanical": {
+    "message": "机械工程"
+  },
+  "sub_engineering_civil": {
+    "message": "土木工程"
+  },
+  "sub_engineering_control": {
+    "message": "控制与工业"
+  },
+  "sub_software_web": {
+    "message": "Web"
+  },
+  "sub_software_mobile": {
+    "message": "移动端"
+  },
+  "sub_software_systems": {
+    "message": "系统与数据库"
+  },
+  "sub_software_general": {
+    "message": "编程"
+  },
+  "sub_data_ai_ml": {
+    "message": "机器学习"
+  },
+  "sub_data_ai_llm": {
+    "message": "语言模型"
+  },
+  "sub_data_ai_data": {
+    "message": "数据分析"
+  },
+  "sub_academic_paper": {
+    "message": "学术论文"
+  },
+  "sub_academic_thesis": {
+    "message": "学位论文"
+  },
+  "sub_academic_grant": {
+    "message": "基金与申请"
+  },
+  "sub_project_planning": {
+    "message": "规划"
+  },
+  "sub_project_agile": {
+    "message": "敏捷"
+  },
+  "sub_project_startup": {
+    "message": "创业"
+  },
+  "sub_literature_poetry": {
+    "message": "诗歌"
+  },
+  "sub_literature_fiction": {
+    "message": "小说"
+  },
+  "sub_literature_analysis": {
+    "message": "文学分析"
+  },
+  "sub_literature_screen": {
+    "message": "影视与戏剧"
+  },
+  "sub_business_career": {
+    "message": "职业发展"
+  },
+  "sub_business_marketing": {
+    "message": "市场营销"
+  },
+  "sub_business_management": {
+    "message": "管理"
+  },
+  "sub_finance_investing": {
+    "message": "投资"
+  },
+  "sub_finance_personal": {
+    "message": "个人理财"
+  },
+  "sub_finance_accounting": {
+    "message": "会计与税务"
+  },
+  "sub_finance_economics": {
+    "message": "经济学"
+  },
+  "sub_law_contract": {
+    "message": "合同"
+  },
+  "sub_law_civil": {
+    "message": "一般法律"
+  },
+  "sub_law_privacy": {
+    "message": "数据隐私"
+  },
+  "sub_law_ip": {
+    "message": "知识产权"
+  },
+  "sub_health_medical": {
+    "message": "医学"
+  },
+  "sub_health_nutrition": {
+    "message": "营养"
+  },
+  "sub_health_fitness": {
+    "message": "健身"
+  },
+  "sub_health_mental": {
+    "message": "心理健康"
+  },
+  "sub_education_exam": {
+    "message": "考试"
+  },
+  "sub_education_homework": {
+    "message": "作业"
+  },
+  "sub_education_teaching": {
+    "message": "教学"
+  },
+  "sub_language_grammar": {
+    "message": "语法"
+  },
+  "sub_language_learning": {
+    "message": "语言学习"
+  },
+  "sub_language_translation": {
+    "message": "翻译"
+  },
+  "sub_humanities_history": {
+    "message": "历史"
+  },
+  "sub_humanities_philosophy": {
+    "message": "哲学"
+  },
+  "sub_humanities_society": {
+    "message": "社会"
+  },
+  "sub_humanities_psychology": {
+    "message": "心理学"
+  },
+  "sub_daily_food": {
+    "message": "饮食"
+  },
+  "sub_daily_travel": {
+    "message": "旅行"
+  },
+  "sub_daily_home": {
+    "message": "家居"
+  },
+  "sub_daily_fun": {
+    "message": "休闲娱乐"
+  },
+  "sub_daily_people": {
+    "message": "人际关系"
+  },
+  "dbasis_science": {
+    "message": "科学领域重视准确和一致；详细的讲解会提高一档努力程度。"
+  },
+  "dbasis_math": {
+    "message": "数学需要逐步推理；证明和推导至少使用“高”努力程度。"
+  },
+  "dbasis_engineering": {
+    "message": "工程计算出错代价高；设计和计算类任务会提高一档努力程度。"
+  },
+  "dbasis_software": {
+    "message": "努力程度随代码复杂度上升；对于 Opus 上的高难度编程，Anthropic 建议先试“超高”。"
+  },
+  "dbasis_data_ai": {
+    "message": "数据与 AI 任务通常需要适度的思考。"
+  },
+  "dbasis_academic": {
+    "message": "学术写作看重一致性；修改润色通常用较低努力程度，文献综述和方法部分则更高。"
+  },
+  "dbasis_project": {
+    "message": "Anthropic 建议在项目规划时提高努力程度；规划类任务至少使用“中等”。"
+  },
+  "dbasis_literature": {
+    "message": "长时间思考很少能改善创意写作；努力程度上限设为“中等”。"
+  },
+  "dbasis_business": {
+    "message": "商务写作多为例行工作；默认或更轻的设置即可。"
+  },
+  "dbasis_finance": {
+    "message": "错误的理财建议可能造成损害：不用轻量模型，努力程度至少“中等”。"
+  },
+  "dbasis_law": {
+    "message": "错误的法律信息可能造成损害：不用轻量模型，努力程度至少“中等”。重要决定请咨询律师。"
+  },
+  "dbasis_health": {
+    "message": "错误的健康信息可能造成损害：不用轻量模型，努力程度至少“中等”。紧急情况请就医。"
+  },
+  "dbasis_education": {
+    "message": "学习类任务多为讲解；努力程度随难度上升。"
+  },
+  "dbasis_language": {
+    "message": "语言类任务（翻译、语法）通常较轻；降低一档努力程度即可。"
+  },
+  "dbasis_humanities": {
+    "message": "历史和哲学的讲解需要适度的思考。"
+  },
+  "dbasis_daily": {
+    "message": "日常任务较轻；降低一档努力程度即可。"
+  },
+  "dbasis_general": {
+    "message": ""
+  },
+  "eff_low": {
+    "message": "低"
+  },
+  "eff_medium": {
+    "message": "中等"
+  },
+  "eff_high": {
+    "message": "高"
+  },
+  "eff_xhigh": {
+    "message": "超高"
+  },
+  "eff_max": {
+    "message": "最高"
+  },
+  "effort_xhigh": {
+    "message": "超高努力"
+  },
+  "effDefaultMark": {
+    "message": "（默认）"
+  },
+  "effLowerX": {
+    "message": "使用“$1”努力程度，这条消息可节省约 $2 的额度。"
+  },
+  "effAssumedNote": {
+    "message": "（无法从页面读取努力程度设置；已假定为该模型的默认值 $1。）"
+  },
+  "effRaiseX": {
+    "message": "使用“$1”努力程度，这个任务可能得到更可靠的回答。"
+  },
+  "advEffWith": {
+    "message": "努力程度：$1"
+  },
+  "advEffLowerTitle": {
+    "message": "把努力程度设为“$1”：约少 $2"
+  },
+  "advEffLowerDetail": {
+    "message": "当前：$1。对这类任务，努力程度“$2”通常能得到同样的回答；减少隐藏思考可使这条消息的成本降低约 $3%。"
+  },
+  "advEffRaiseTitle": {
+    "message": "这个任务请把努力程度设为“$1”"
+  },
+  "advEffRaiseDetail": {
+    "message": "当前：$1。这个任务需要深入思考；努力程度“$2”会给出更可靠的回答，但这条消息成本约高 $3%。回答不好意味着再问一次，那更贵。"
+  },
+  "advEffAlsoLower": {
+    "message": "努力程度“$1”也够用。"
+  },
+  "advDomain": {
+    "message": "主题"
+  },
+  "advEffort": {
+    "message": "努力程度建议"
+  },
+  "advEffortVal": {
+    "message": "我建议“$1”。"
+  },
+  "advEffForModel": {
+    "message": "（针对 $1）"
+  },
+  "advEffNow": {
+    "message": "当前：$1。"
+  },
+  "advFbQEff": {
+    "message": "这条努力程度建议对吗？"
+  },
+  "effBasis": {
+    "message": "努力程度依据：据 Anthropic 介绍，“低”和“中等”可让例行任务的额度用得更久，“高”是最佳平衡，“超高”用于长时间编程和代理工作，“最高”用于最深入的思考。"
+  },
+  "ev_domain": {
+    "message": "主题词：$1"
+  },
+  "why_stakes": {
+    "message": "对于高风险主题（健康、法律、金钱），我不会建议使用轻量模型。"
+  },
+  "ewhy_e_light_type": {
+    "message": "轻量任务类型"
+  },
+  "ewhy_e_mid_type": {
+    "message": "中等任务"
+  },
+  "ewhy_e_deep_type": {
+    "message": "需要深度思考的任务"
+  },
+  "ewhy_e_big_doc": {
+    "message": "大文档"
+  },
+  "ewhy_e_stakes": {
+    "message": "高风险：至少“中等”"
+  },
+  "ewhy_e_depth": {
+    "message": "科学／技术深度"
+  },
+  "ewhy_e_plan": {
+    "message": "规划类任务"
+  },
+  "ewhy_e_complex": {
+    "message": "复杂请求"
+  },
+  "ewhy_e_hardest": {
+    "message": "非常难的问题"
+  },
+  "ewhy_e_proof": {
+    "message": "证明／推导"
+  },
+  "ewhy_e_creative": {
+    "message": "创意写作：上限“中等”"
+  },
+  "ewhy_e_light_domain": {
+    "message": "日常／语言类任务"
+  },
+  "ewhy_e_short": {
+    "message": "要求简短回答"
+  },
+  "ewhy_e_pref": {
+    "message": "你的反馈"
+  },
+  "ewhy_e_long_code": {
+    "message": "高难度编程：超高"
+  },
+  "rpByDomain": {
+    "message": "主题（按消耗）"
+  },
+  "rpByEffort": {
+    "message": "努力程度设置（按消耗）"
+  },
+  "rpDomainNote": {
+    "message": "主题由你的设备根据消息中的词语估计；不会保存任何文本。"
+  },
+  "tip_effort_over": {
+    "message": "有 $1 条消息的努力程度高于建议。按建议的设置，大约能少消耗 $2 的额度。"
+  },
+  "tip_domain_save": {
+    "message": "“$1”主题的节省空间最大：有 $2 条消息用更轻量的模型就够了。"
+  },
+  "tip_domain_stakes": {
+    "message": "有 $1 条消息涉及健康、法律或金钱。在这些领域我不建议轻量模型或低努力程度；重要决定请同时咨询专业人士。"
+  },
+  "pillDragTitle": {
+    "message": "拖动以移动"
+  },
+  "pillReset": {
+    "message": "重置胶囊位置"
+  },
+  "rpEffOver": {
+    "message": "有 $1 条消息的努力程度高于建议（错过的节省 ≈ $2）。"
+  },
+  "rpEffOk": {
+    "message": "你的努力程度设置与建议一致。"
+  },
+  "rpLearn": {
+    "message": "学习成效"
+  },
+  "rpLearnFew": {
+    "message": "目前已测量 $1 条消息。每 10 次测量生成一根柱子，满 30 次后会显示趋势（还差约 $2 条）。"
+  },
+  "rpLearnBetter": {
+    "message": "最初几次测量中，预测的总额度偏差为 $1 倍；最近几次为 $2 倍。扩展正在逐渐了解你。"
+  },
+  "rpLearnSame": {
+    "message": "预测误差在最初几次为 $1 倍、最近几次为 $2 倍：没有明显变化。如果原本就很准，这是正常的。"
+  },
+  "rpLearnWorse": {
+    "message": "最近几次测量的偏差（$2 倍）比最初几次（$1 倍）更大。在其他设备或 Claude Code 上使用同一账号会干扰测量；可以试试重置校准。"
+  },
+  "rpLearnRange": {
+    "message": "落在预测范围内的比例：最初几次 $1，最近几次 $2（目标约 80%）。"
+  },
+  "rpLearnBar": {
+    "message": "第 $1–$2 次测量：$3 倍"
+  },
+  "rpLearnNote": {
+    "message": "每根柱子代表连续 10 条已测量的消息，显示预测的总额度与实际消耗相差多少（1.00＝完全一致）。百分比会四舍五入为整数，所以使用每 10 条消息的合计，而不是单条消息。"
+  },
+  "setEffortAdvice": {
+    "message": "显示努力程度建议"
+  },
+  "setTips": {
+    "message": "显示提示（缓存、高峰时段、长聊天、交接摘要）"
+  },
+  "setExplain": {
+    "message": "显示“为什么消耗这么多？”的说明"
+  },
+  "setView": {
+    "message": "视图"
+  },
+  "viewFull": {
+    "message": "完整：预测与全部建议"
+  },
+  "viewSimple": {
+    "message": "简洁：仅预测与额度提醒"
+  },
+  "viewCustom": {
+    "message": "自定义（在下方选择）"
+  },
+  "viewNote": {
+    "message": "简洁视图会隐藏模型与努力程度建议、提示和成本说明。预测以及额度与上下文提醒始终显示。"
+  },
+  "warnLangLimited": {
+    "message": "消息分析（任务类型、主题、模型与努力程度建议）目前仅支持土耳其语和英语消息。使用此语言时，你仍能获得 token 和额度预测，但没有建议。"
+  },
+  "typeNA": {
+    "message": "此语言暂不分析"
+  }
+}

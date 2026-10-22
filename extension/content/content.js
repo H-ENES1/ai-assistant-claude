@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2026 Hayrettin Enes Karalı
 // İçerik betiği: claude.ai sayfasında çalışır ve her şeyi birbirine bağlar.
 //
 //  sayfa ──(prompt, ekler, model, effort)──┐
@@ -14,16 +16,17 @@
   const L = {};
   const loading = (async () => {
     const mod = (p) => import(chrome.runtime.getURL(p));
-    [L.usage, L.tokens, L.page, L.att, L.ctx, L.cls, L.fc, L.cal, L.conv, L.i18n, L.panel] = await Promise.all([
+    [L.usage, L.tokens, L.page, L.att, L.ctx, L.cls, L.fc, L.cal, L.conv, L.i18n, L.panel, L.adv, L.rep, L.learn, L.dom] = await Promise.all([
       mod("lib/usage.js"), mod("lib/tokens.js"), mod("lib/page.js"), mod("lib/attachments.js"), mod("lib/context.js"),
       mod("lib/classify.js"), mod("lib/forecast.js"), mod("lib/calibrate.js"), mod("lib/conversation.js"),
-      mod("lib/i18n.js"), mod("lib/panel.js")
+      mod("lib/i18n.js"), mod("lib/panel.js"), mod("lib/advisor.js"), mod("lib/report.js"), mod("lib/learn.js"), mod("lib/domain.js")
     ]);
-  })().catch((e) => console.debug("[Token Forecast] yüklenemedi", e));
+  })().catch((e) => { console.debug("[Token Forecast] yüklenemedi", e); try { chrome.runtime.sendMessage({ type: "trace", step: "load:error", info: { message: String(e?.message || e).slice(0, 160) }, at: Date.now() }); } catch (_) {} });
 
   // ---------- Durum ----------
   const S = {
-    settings: { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto" },
+    settings: { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto", advisor: true, effortAdvice: true, tips: true, explain: true },
+    recPrefs: null, bannerHidden: null, pillOffset: null,
     i18n: null, usage: null, tier: null, orgId: null, calib: null,
     conv: { id: null, summary: null, fetchedAt: 0, error: null },
     activity: {}, // sohbet → son gönderim zamanı (bu cihazda görülen)
@@ -34,7 +37,11 @@
   const store = chrome.storage.local;
 
   async function loadState() {
-    const r = await store.get(["settings", "usage", "tier", "orgId", "calib", "convActivity"]);
+    const r = await store.get(["settings", "usage", "tier", "orgId", "calib", "convActivity", "recPrefs", "lastSurprise", "learnPersonal", "pillOffset"]);
+    S.pillOffset = r.pillOffset || null;
+    S.learnPersonal = r.learnPersonal || null;
+    S.recPrefs = r.recPrefs || null;
+    S.surprise = r.lastSurprise || null;
     S.settings = { ...S.settings, ...(r.settings || {}) };
     S.usage = r.usage || null; S.tier = r.tier || null; S.orgId = r.orgId || null;
     S.calib = L.cal.makeCalib(r.calib);
@@ -49,6 +56,10 @@
     if (ch.tier) S.tier = ch.tier.newValue || null;
     if (ch.orgId) S.orgId = ch.orgId.newValue || null;
     if (ch.calib) S.calib = L.cal.makeCalib(ch.calib.newValue);
+    if (ch.recPrefs) S.recPrefs = ch.recPrefs.newValue || null;
+    if (ch.lastSurprise) S.surprise = ch.lastSurprise.newValue || null;
+    if (ch.learnPersonal) { S.learnPersonal = ch.learnPersonal.newValue || null; memo = null; }
+    if (ch.pillOffset) { S.pillOffset = ch.pillOffset.newValue || null; const cur = panel?.getOffset?.(); if (panel && JSON.stringify(cur) !== JSON.stringify(S.pillOffset)) panel.setOffset(S.pillOffset); }
     if (ch.settings) {
       S.settings = { ...S.settings, ...(ch.settings.newValue || {}) };
       S.i18n = await L.i18n.makeI18n(S.settings.language);
@@ -59,6 +70,9 @@
   const send = (msg) => new Promise((res) => {
     try { chrome.runtime.sendMessage(msg, (r) => { void chrome.runtime.lastError; res(r); }); } catch (_) { res(null); }
   });
+
+  // Tanı günlüğü: ölçüm hattının her adımını kaydeder (yalnızca adım adları ve sayılar; metin yok).
+  const trace = (step, info) => send({ type: "trace", step, info: info || null, at: Date.now() });
 
   // ---------- Kullanım (adım 3) ----------
   async function ensureOrg() {
@@ -183,13 +197,19 @@
     const attKey = S.pending.map((p) => `${p.id}:${p.status}`).join(",");
     // Metin ve ekler değişmediyse token sayımı ve sınıflandırma tekrarlanmaz
     if (!memo || memo.text !== prompt.text || memo.attKey !== attKey || memo.lang !== S.i18n.lang) {
+      let cls0 = L.cls.classify(prompt.text, { attachments: S.pending, personal: S.learnPersonal });
+      // Mesaj Türkçe ya da İngilizce değilse iş türü ve alan tespiti güvenilmez: nötr varsayım kullan, öneri gösterme
+      const langLimited = ["other", "cyrillic", "cjk"].includes(L.tokens.textLanguage(prompt.text));
+      let dom0 = L.dom.detectDomain(prompt.text, cls0);
+      if (langLimited) { cls0 = { ...cls0, type: "explain", confidence: "low", complexity: Math.min(cls0.complexity || 0, 0.15), langLimited: true }; dom0 = { domain: "general" }; }
       memo = {
         text: prompt.text, attKey, lang: S.i18n.lang,
         pt: L.tokens.estimateTokens(prompt.text, opts()),
-        cls: L.cls.classify(prompt.text, { attachments: S.pending })
+        cls: cls0,
+        dom: dom0
       };
     }
-    const pt = memo.pt, cls = memo.cls;
+    const pt = memo.pt, cls = memo.cls, dom = memo.dom;
     const att = L.tokens.sumRanges(...S.pending);
     const analyzing = S.pending.some((x) => x.status === "analyzing");
     const hist = historyInput();
@@ -201,10 +221,19 @@
     const fc = L.fc.forecastMessage(input);
     const fit = L.fc.fitCheck(fc, S.usage);
     const rec = L.fc.recommendModel(fc, L.cls.recommendTier(cls), input);
-    const effRec = L.fc.recommendEffort(cls, fc.effort);
     const ctxLevel = L.ctx.contextLevel({ low: fc.context.usedLow, high: fc.context.used }, fc.context.window);
-    const r = { at: Date.now(), prompt, pt, att, analyzing, hist, cls, input, fc, fit, rec, effRec, ctxLevel, empty: !prompt.text && !S.pending.length };
+    const empty = !prompt.text && !S.pending.length;
+    let adv = null;
+    try {
+      adv = L.adv.advise({ cls, dom, fc, currentModel: model, effort: fc.effort, effortAssumed: fc.effortAssumed,
+        historyTokens: hist.tokens?.mid || 0, cacheWarm: fc.cache === "warm",
+        attachmentTokens: att.mid || 0, prefs: S.recPrefs, analyzing, emptyPrompt: empty });
+    } catch (e) { console.debug("[Token Forecast] öneri", e); }
+    if (cls.langLimited) adv = null; // bu dilde model/effort önerisi yok
+    if (adv && S.settings.effortAdvice === false) adv = { ...adv, effort: null }; // effort önerisi kapalı
+    const r = { at: Date.now(), prompt, pt, att, analyzing, hist, cls, dom, input, fc, fit, rec, ctxLevel, adv, empty, langLimited: !!cls.langLimited };
     S.last = r;
+    if (!r.empty) S.lastFull = r;
     window.__tokenForecastLast = r;
     rememberContext(model, effort, tier);
     return r;
@@ -243,30 +272,45 @@
       if (it.detail?.tooLarge) warnings.push({ sev: "crit", text: t("pdfTooLarge") });
       else if (it.detail?.textOnly) warnings.push({ sev: "info", text: t("pdfTextOnly") });
     }
-    // 3) Önbellek
+    // 3) Önbellek ve sohbet ipuçları (Ayarlar → "İpuçları"; kapalıysa gösterilmez)
+    const tipsOn = S.settings.tips !== false;
     const histMid = r.hist.tokens.mid || 0;
-    if (fc.cache === "cold" && histMid > 5000) {
+    if (!tipsOn) { /* ipuçları kapalı */ } else if (fc.cache === "cold" && histMid > 5000) {
       warnings.push({ sev: "warn", text: t("warnCacheCold", [String(Math.round(fc.minutesSince)), num(histMid)]) });
     } else if (fc.cache === "unknown" && histMid > 20000) {
       warnings.push({ sev: "info", text: t("warnCacheUnknown", [num(histMid)]) });
     }
-    if (histMid > 150_000) warnings.push({ sev: "info", text: t("tipNewChat", [num(histMid)]) });
+    if (tipsOn && histMid > 150_000) warnings.push({ sev: "info", text: t("tipNewChat", [num(histMid)]) });
+    // 3b) Devir özeti: uzun sohbette yeni sohbete geçmek için Claude'dan kısa özet iste (metin yerelde kopyalanır)
+    if (tipsOn && histMid > 60_000 && !r.empty) {
+      warnings.push({ sev: "tip", text: t(fc.cache === "warm" ? "tipHandoffWarm" : "tipHandoff", [num(histMid)]), action: { label: t("btnHandoff"), copy: t("handoffPrompt"), done: t("hCopied") } });
+    }
     // 4) Yoğun saat
-    if (fc.peak) {
-      // Yoğun saatler hafta içi 12:00–18:00 UTC; kullanıcının yerel saatine çevrilir
-      const d0 = new Date(); d0.setUTCHours(12, 0, 0, 0);
-      const d1 = new Date(); d1.setUTCHours(18, 0, 0, 0);
+    if (tipsOn && fc.peak) {
+      // Yoğun saatler hafta içi 05:00–11:00 Pasifik; kullanıcının yerel saatine çevrilir
+      const pw = L.fc.peakWindow();
+      const d0 = new Date(pw.start), d1 = new Date(pw.end);
       const hm = (d) => d.toLocaleTimeString(S.i18n.locale, { hour: "2-digit", minute: "2-digit" });
-      warnings.push({ sev: "info", text: t("warnPeak", [hm(d0), hm(d1)]) });
+      const leftMs = pw.end - Date.now();
+      warnings.push({ sev: "info", text: t("warnPeak", [hm(d0), hm(d1)]) + (leftMs > 0 ? " " + t("peakLeft", [L.i18n.duration(t, leftMs)]) : "") });
     }
+    // 4b) Son mesaj beklenenden çok fazla harcadıysa nedenini açıkla (30 dk gösterilir)
+    const sp = S.surprise;
+    if (S.settings.explain !== false && sp && Date.now() - sp.at < 30 * 60000) {
+      const why = (sp.reasons || []).map((k) => t(`cr_${k}`)).filter(Boolean).join("; ");
+      warnings.push({ sev: "warn", text: t("warnSurprise", [pct(sp.d), `${pct(sp.lo)}–${pct(sp.hi)}`, why]) });
+    }
+    if (r.langLimited && !r.empty) warnings.push({ sev: "info", text: t("warnLangLimited") });
     // 5) Model ve effort önerisi
-    if (r.rec?.kind === "downgrade" && sess.mid > 0.05) {
-      warnings.push({ sev: "tip", text: t("recDowngrade", [r.rec.label, String(Math.round(r.rec.saving * 100))]) + " " + t(r.rec.reasonKey) });
-    } else if (r.rec?.kind === "upgrade") {
-      warnings.push({ sev: "info", text: t("recUpgrade", [r.rec.label]) });
-    }
-    if (r.effRec?.kind === "lower") warnings.push({ sev: "tip", text: t("effLower") });
-    if (r.effRec?.kind === "raise") warnings.push({ sev: "info", text: t("effRaise") });
+    const a = r.adv;
+    const modelAdvOn = S.settings.advisor !== false;
+    if (!modelAdvOn) { /* model önerisi kapalı */ }
+    else if (a?.kind === "save") warnings.push({ sev: "tip", text: t("advSave", [a.suggested]) + " · " + t("advSaveDetail", [pct(a.curPct), a.suggested, pct(a.sugPct), String(Math.round(a.savingFrac * 100))]) });
+    else if (a?.kind === "save_next") warnings.push({ sev: "info", text: t("advSaveNext", [a.suggested]) });
+    else if (a?.kind === "upgrade") warnings.push({ sev: "info", text: t("advUpgrade", [a.current, a.suggested]) });
+    const ef = a?.effort;
+    if (ef?.kind === "lower") warnings.push({ sev: "tip", text: t("effLowerX", [t(`eff_${ef.to}`), ef.savedPct > 0 ? pct(ef.savedPct) : "–"]) + (ef.assumed ? " " + t("effAssumedNote", [t(`eff_${ef.from}`)]) : "") });
+    else if (ef?.kind === "raise") warnings.push({ sev: "info", text: t("effRaiseX", [t(`eff_${ef.to}`)]) });
 
     const level = warnings.some((w) => w.sev === "crit") ? "crit" : warnings.some((w) => w.sev === "warn") ? "warn" : "ok";
     const used = S.usage?.fiveHour?.pct ?? null;
@@ -277,8 +321,9 @@
 
     const rows = [
       [t("rowWeekly"), range(week)],
-      [t("rowType"), `${typeName} · ${conf}`],
-      [t("rowModel"), `${fc.model ? S.i18n.t("modelName", [cap(fc.model)]) : "?"}${fc.effort !== "auto" ? " · " + t(`effort_${fc.effort}`) : ""}`],
+      [t("rowType"), r.langLimited ? t("typeNA") : `${typeName} · ${conf}`],
+      ...(r.langLimited ? [] : [[t("rowDomain"), domainLabel(r.dom)]]),
+      [t("rowModel"), `${fc.model ? S.i18n.t("modelName", [cap(fc.model)]) : "?"}${fc.effort !== "auto" ? " · " + t(`effort_${fc.effort}`) + (fc.effortAssumed ? " " + t("effDefaultMark") : "") : ""}`],
       [t("rowInput"), tokRange(inTokens) + " " + t("dbgTokens")],
       [t("rowOutput"), `${num(fc.output.low)}–${num(fc.output.high)} ${t("dbgTokens")}`]
     ];
@@ -286,7 +331,8 @@
     if (r.att.high > 0 || r.analyzing) detail.push([t("dbgAttachments"), r.analyzing ? t("dbgAnalyzing") : `${S.pending.length} · ${tokRange(r.att)}`]);
     if (r.hist.messages) {
       detail.push([t("dbgHistory"), `${t("dbgMessages", [String(r.hist.messages)])} · ${tokRange(r.hist.tokens)}`]);
-      detail.push([t("rowCache"), t(`cache_${fc.cache}`)]);
+      const left = fc.cache === "warm" && fc.minutesSince !== null ? Math.max(1, Math.round(60 - fc.minutesSince)) : null;
+      detail.push([t("rowCache"), left !== null ? t("cacheWarmLeft", [String(left)]) : fc.cache === "cold" && fc.minutesSince !== null ? t("cacheColdAgo", [L.i18n.duration(t, fc.minutesSince * 60000)]) : t(`cache_${fc.cache}`)]);
     }
     detail.push([t("rowContext"), `${pct(100 * r.ctxLevel.highPct)} / ${num(fc.context.window / 1000)}K`]);
     const cs = S.calib.summary();
@@ -303,17 +349,102 @@
       big: r.empty ? (used !== null ? pct(used) : "–") : `≈ ${pct(sess.mid)}`,
       bigSub: r.empty ? t("cardIdleSub") : t("cardSub", [range(sess)]),
       bar: used !== null ? { used, est: r.empty ? 0 : sess.mid } : null,
-      warnings, rows: r.empty ? rows.slice(0, 1).concat(rows.slice(2, 3)) : rows, detail, foot,
+      warnings, rows: r.empty ? rows.slice(0, 1).concat(rows.slice(3, 4)) : rows, detail, foot,
+      breakdown: r.empty ? null : {
+        label: t("bdTitle"),
+        parts: ["output", "thinking", "input", "history", "tool"].map((k) => ({ key: k, share: fc.breakdown?.[k] || 0, label: t(`bd_${k}`), pctText: t("pct", [String(Math.round(100 * (fc.breakdown?.[k] || 0)))]) })).filter((p) => p.share >= 0.005)
+      },
       closeLabel: t("close"),
-      moreLabel: t("moreDetails")
+      moreLabel: t("moreDetails"),
+      dragTitle: t("pillDragTitle"),
+      resetLabel: t("pillReset")
     };
   }
   const cap = (s) => String(s).replace(/(^|\s)\S/g, (c) => c.toUpperCase());
+  // "Bilim · Fizik" (+ ikinci alan)
+  function domainLabel(d) {
+    const { t } = S.i18n;
+    if (!d || d.domain === "general") return t("dom_general");
+    let s = t(`dom_${d.domain}`) + (d.sub ? " · " + t(`sub_${d.domain}_${d.sub}`) : "");
+    if (d.second) s += " + " + t(`dom_${d.second}`);
+    return s;
+  }
+
+  // ---------- Model + effort önerisi bildirimi ----------
+  const advKey = (a) => `${a.type}|${a.kind}|${a.tier}|${a.curTier}|${a.effort?.kind || ""}|${a.effort?.to || ""}`;
+  function bannerVM(r) {
+    const a = r.adv;
+    if (!a || S.settings.advisor === false || r.empty) return null;
+    if (S.bannerHidden && S.bannerHidden === advKey(a)) return null;
+    const { t, pct, num } = S.i18n;
+    const ef = a.effort || null;
+    const effName = (l) => t(`eff_${l}`);
+    let tone = { save: "save", save_next: "next", upgrade: "up", ok: "ok" }[a.kind];
+    let icon = { save: "↓", save_next: "i", upgrade: "↑", ok: "✓" }[a.kind];
+    let title, detail = "", target = a.kind === "ok" ? null : "model";
+    if (a.kind === "save") { title = t("advSave", [a.suggested]); detail = t("advSaveDetail", [pct(a.curPct), a.suggested, pct(a.sugPct), String(Math.round(a.savingFrac * 100))]); }
+    else if (a.kind === "save_next") { title = t("advSaveNext", [a.suggested]); detail = t("advSaveNextDetail", [num(a.switchExtraTokens), a.suggested]); }
+    else if (a.kind === "upgrade") { title = t("advUpgrade", [a.current, a.suggested]); detail = t("advUpgradeDetail", [a.suggested, (1 + a.extraFrac).toFixed(1).replace(/\.0$/, ""), a.current]); }
+    else { title = t("advOk", [a.current]); detail = a.tinySaving ? t("advOkTiny", [a.tinySaving.model, pct(a.tinySaving.savedPct)]) : ""; }
+    // Effort: model uygunsa effort önerisi başlığa çıkar; model değişecekse önerilen effort başlığa eklenir
+    if (ef?.kind === "with_switch") title += " · " + t("advEffWith", [effName(ef.to)]);
+    else if (a.kind === "ok" && ef?.kind === "lower") {
+      tone = "save"; icon = "↓"; target = "effort";
+      title = t("advEffLowerTitle", [effName(ef.to), ef.savedPct > 0 ? pct(ef.savedPct) : "–"]);
+      detail = t("advEffLowerDetail", [effName(ef.from) + (ef.assumed ? " " + t("effDefaultMark") : ""), effName(ef.to), ef.saving != null ? String(Math.round(ef.saving * 100)) : "–"]);
+    } else if (a.kind === "ok" && ef?.kind === "raise") {
+      tone = "up"; icon = "↑"; target = "effort";
+      title = t("advEffRaiseTitle", [effName(ef.to)]);
+      detail = t("advEffRaiseDetail", [effName(ef.from) + (ef.assumed ? " " + t("effDefaultMark") : ""), effName(ef.to), ef.extra != null ? String(Math.round(ef.extra * 100)) : "–"]);
+    } else if (a.kind === "ok" && ef?.kind === "ok") title += " · " + t("advEffWith", [effName(ef.to)]);
+    else if (a.kind !== "ok" && ef?.kind === "lower") detail += (detail ? " " : "") + t("advEffAlsoLower", [effName(ef.to)]);
+
+    const conf = t(a.confidence === "high" ? "confidenceHigh" : a.confidence === "medium" ? "confidenceMedium" : "confidenceLow");
+    const fixOpts = L.cls.TYPES.filter((x) => x !== a.type).map((x) => ({ value: x, label: t(`type_${x}`) }));
+    const sections = [
+      { label: t("advDetected"), text: t("advDetectedVal", [t(`type_${a.type}`), t(`level_${a.level}`), conf]), fix: S.fixDone === advKey(a) ? { done: true, thanks: t("advRelabelThanks") } : { label: t("advRelabel"), options: fixOpts, thanks: t("advRelabelThanks") } }
+    ];
+    if (a.domain && a.domain.domain !== "general") sections.push({ label: t("advDomain"), text: domainLabel(a.domain) + ". " + t(`dbasis_${a.domain.domain}`) });
+    sections.push({ label: t("advSignals"), chips: a.evidence.map((e) => t(e.key, e.params.map((x) => (typeof x === "number" ? num(x) : x)))) });
+    if (ef) {
+      const cur = ef.kind === "with_switch" ? t("advEffForModel", [ef.model]) : t("advEffNow", [effName(ef.from) + (ef.assumed ? " " + t("effDefaultMark") : "")]);
+      sections.push({ label: t("advEffort"), text: `${t("advEffortVal", [effName(ef.to)])} ${cur}`, chips: (ef.why || []).map((k) => t(`ewhy_${k}`)) });
+    }
+    sections.push(
+      { label: t("advBasis"), text: [t(a.typeBasisKey), t(a.basisKey), ...a.why.map((w) => t(`why_${w}`))].join(" ") + (ef ? " " + t("effBasis") : "") },
+      { label: t("advWhen"), text: t(a.whenKey) }
+    );
+    return {
+      key: advKey(a), tone, icon, title, detail, sections,
+      caveat: t("advCaveat"), source: t("advSource"), whyLabel: t("advWhy"), hideLabel: t("advHide"), fbThanks: t("advFbThanks"),
+      feedback: !target ? null : (S.fbDone === advKey(a) ? { done: true } : { q: t(target === "effort" ? "advFbQEff" : "advFbQ"), good: t("advFbGood"), bad: t("advFbBad") }),
+      adv: { type: a.type, kind: a.kind, tier: a.tier, curTier: a.curTier, target, ekind: ef?.kind || null }
+    };
+  }
 
   function render(r) {
-    if (!S.settings.panel || !r) { panel?.update(null); return; }
-    if (!panel) panel = L.panel.createPanel({ getAnchor: () => L.page.getComposer(), onMore: () => send({ type: "open:details" }) });
+    if (!S.settings.panel || !r) { panel?.update(null); panel?.updateBanner(null); return; }
+    if (!panel) panel = L.panel.createPanel({
+      getAnchor: () => L.page.getComposer(),
+      getAnchorTop: () => L.page.composerTop(),
+      onMore: () => send({ type: "open:details" }),
+      initialOffset: S.pillOffset,
+      onMoved: (o) => { S.pillOffset = o; store.set({ pillOffset: o }); trace("pill:moved", o ? { dx: o.dx, dy: o.dy } : { reset: true }); },
+      onBannerFeedback: (b, good) => { S.fbDone = b?.key || null; if (b?.adv) { send({ type: "advisor:feedback", adv: b.adv, good }); trace("advisor:feedback", { ...b.adv, good }); } },
+      onBannerHide: (b) => { S.bannerHidden = b?.key || null; },
+      onBannerRelabel: (b, label) => {
+        S.fixDone = b?.key || null;
+        // Kişisel öğrenme: mevcut mesajın özellik vektörü (metin değil, sayı dizisi) + doğru etiket
+        const text = S.last?.prompt?.text || "";
+        if (!text) return;
+        const feats = L.learn.featurize(text, S.last.cls.scores);
+        send({ type: "learn:label", feats, label, from: b?.adv?.type || null });
+        trace("learn:label", { from: b?.adv?.type || null, to: label, n: feats.length });
+        memo = null; schedule(300);
+      }
+    });
     panel.update(viewModel(r));
+    panel.updateBanner(bannerVM(r));
   }
 
   // ---------- Kalibrasyon gözlemi (adım 10) ----------
@@ -323,6 +454,15 @@
     if (!d || d.__tokenForecast !== 1) return;
     if (d.kind === "send") onSend(d);
     else if (d.kind === "done") onDone(d);
+    else if (d.kind === "hello") {
+      // Yalnızca durum değişince günlüğe yaz (her odaklanmada aynı satır birikmesin)
+      const sig = `${d.wrapped}|${d.sawCompletion}`;
+      if (sig !== S.lastHello) { S.lastHello = sig; trace("hook:hello", { wrapped: d.wrapped, seen: d.sawCompletion }); }
+      else send({ type: "health:hook", at: Date.now(), wrapped: d.wrapped, seen: d.sawCompletion });
+    }
+    else if (d.kind === "perf") trace("hook:perf", { path: d.path, via: d.via });
+    else if (d.kind === "worker") trace("hook:worker", { path: d.path });
+    else if (d.kind === "probe") trace("hook:probe", { path: String(d.path || "").slice(0, 120) });
   });
 
   async function preUsage() {
@@ -338,8 +478,15 @@
 
   async function onSend(d) {
     await loading;
-    const r = compute() || S.last;
+    if (d.via !== "dom") {
+      S.hookSends = (S.hookSends || 0) + 1; S.hookSendAt = Date.now();
+      // Sayfa yolu bu gönderimi bir an önce yakaladıysa onu iptal et: kanca daha ayrıntılı veri verir
+      if (DOMW.pending && Date.now() - DOMW.pending.at < 10000) { S.snapshots.delete(DOMW.pending.id); DOMW.pending = null; DOMW.consumed = S.hookSends; }
+    }
+    // DOM yolunda mesaj kutusu çoktan boşalmış olur: gönderimden hemen önceki tahmini kullan
+    const r = d.estimate || compute() || S.last;
     const conv = d.conv;
+    trace("send:seen", { via: d.via || "hook", estimate: !!r, retry: !!d.retry, bodyKeys: d.body ? d.body.keys : null });
     S.activity[conv] = d.at;
     store.set({ convActivity: trimActivity(S.activity) });
     if (!r) return;
@@ -350,12 +497,28 @@
       model: r.fc.model, weight: r.fc.weight, effort: r.fc.effort, peak: r.fc.peak,
       newInput: r.pt.mid + r.att.mid, history: r.hist.tokens.mid || 0, cold: r.fc.cache === "cold",
       cacheKnown: r.fc.cache !== "unknown", toolMedian: base.tool ? base.tool.median : 0,
-      predicted: r.fc.pct, outMuNoAdj: base.mu, pre: null
+      predicted: r.fc.pct, outMuNoAdj: base.mu, pre: null, logId: `${d.at}-${d.id}`
     };
     S.snapshots.set(d.id, snap);
+    // Haftalık rapor için gönderim kaydı (metin yok; yalnızca tahmin, model, tip, öneri)
+    const r3 = (x) => (Number.isFinite(x) ? Math.round(x * 1000) / 1000 : null);
+    const fam = L.fc.resolveModel(r.fc.model || "").info?.family || null;
+    snap.log = {
+      id: snap.logId, at: d.at, conv: String(conv || "").slice(0, 8), fam, model: r.fc.model, type: r.cls.type, eff: r.fc.effort,
+      peak: !!r.fc.peak, cache: r.fc.cache, hist: Math.round(r.hist.tokens.mid || 0),
+      pred: r3(r.fc.pct.session.mid), predLo: r3(r.fc.pct.session.low), predHi: r3(r.fc.pct.session.high), predW: r3(r.fc.pct.weekly.mid),
+      adv: r.adv ? { k: r.adv.kind, t: r.adv.tier } : null, save: r.adv?.kind === "save" ? r3(r.adv.savedPct) : 0,
+      dom: r.dom?.domain || null, sub: r.dom?.sub || null,
+      effRec: r.adv?.effort?.to || null, effAs: !!r.fc.effortAssumed,
+      effSave: r.adv?.effort?.kind === "lower" && r.adv.effort.savedPct > 0 ? r3(r.adv.effort.savedPct) : 0,
+      outHi: Math.round(r.fc.output.high || 0)
+    };
+    send({ type: "log:send", entry: snap.log });
     S.pending = [];
     // Önceki değeri hemen iste; cevap bundan önce biterse onDone bu sözü bekler
-    snap.prePromise = preUsage().then((p) => (snap.pre = p));
+    // "Önce" değeri: gönderim tuşuna basıldığı an alınmış okuma varsa o (istek sunucuya ulaşmadan önce), yoksa şimdi oku
+    const armedPre = DOMW.armed && Date.now() - DOMW.armed.at < 20000 ? DOMW.armed.pre : null;
+    snap.prePromise = (d.prePromise || armedPre || preUsage()).then((p) => { snap.pre = p; trace("send:pre", p ? { five: p.usage?.fiveHour?.pct ?? null } : { usage: "none" }); return p; });
     // Çok eski anlık görüntüleri temizle
     for (const [k, v] of S.snapshots) if (Date.now() - v.at > 20 * 60000) S.snapshots.delete(k);
     schedule(100);
@@ -365,31 +528,46 @@
     await loading;
     const snap = S.snapshots.get(d.id);
     S.snapshots.delete(d.id);
+    trace("done:seen", { via: d.via || "hook", snap: !!snap, error: d.error || null, aborted: !!d.aborted, sse: !!d.messageLimit, chars: (d.text || "").length });
     let post = null;
     if (d.messageLimit) {
       post = L.usage.normalizeSse(d.messageLimit);
       send({ type: "usage:sse", messageLimit: d.messageLimit });
     }
     if (!post) {
-      await new Promise((res) => setTimeout(res, 1500));
+      await new Promise((res) => setTimeout(res, d.via === "dom" ? 4000 : 1500));
       try { post = await readUsageNow(); } catch (_) {}
+    }
+    // Yedek yolda kullanım geç işlenebilir: 30 sn sonra bir kez daha oku ve büyük olanı al
+    // (bu arada yeni bir mesaj gönderildiyse ikinci okuma o mesajı da içereceği için yapılmaz).
+    if (d.via === "dom" && post) {
+      const doneAt = Date.now();
+      await new Promise((res) => setTimeout(res, 26000));
+      const newer = DOMW.pending && DOMW.pending.at > doneAt;
+      if (!newer) {
+        try {
+          const late = await readUsageNow();
+          for (const k of ["fiveHour", "sevenDay"]) if (late?.[k] && post[k] && late[k].pct > post[k].pct && Math.abs((late[k].resetsAt || 0) - (post[k].resetsAt || 0)) < 120000) post = { ...post, [k]: late[k] };
+          trace("done:late", { five: late?.fiveHour?.pct ?? null });
+        } catch (_) {}
+      }
     }
     refreshConversation(1500);
     if (snap?.prePromise) await snap.prePromise.catch(() => null);
-    if (!snap || !post || d.error || d.aborted) return;
-    if (!snap.cacheKnown && snap.history > 5000) return; // önbellek durumu bilinmiyorsa maliyet belirsiz → öğrenme
+    if (!snap || !post || d.error || d.aborted) { trace("done:skip", { reason: !snap ? "no-snapshot" : !post ? "no-usage-after" : d.error ? "http-error" : "aborted" }); return; }
+    if (!snap.cacheKnown && snap.history > 5000) { trace("done:skip", { reason: "cache-unknown", history: snap.history }); return; } // önbellek durumu bilinmiyorsa maliyet belirsiz → öğrenme
 
     const outTokens = L.tokens.estimateTokens(d.text || "", opts()).mid;
     const cost = L.fc.realizedCost({ weight: snap.weight, newInput: snap.newInput, history: snap.history, cold: snap.cold, outTokens, effort: snap.effort, toolMedian: snap.toolMedian });
     const list = [];
     for (const [win, key] of [["session", "fiveHour"], ["weekly", "sevenDay"]]) {
       const a = snap.pre?.usage?.[key], b = post[key];
-      if (!a || !b) continue;
-      if (a.resetsAt && b.resetsAt && Math.abs(a.resetsAt - b.resetsAt) > 2 * 60000) continue; // pencere yenilendi
-      if (Date.now() - snap.pre.at > 15 * 60000) continue;
+      if (!a || !b) { trace("done:window", { win, reason: !a ? "no-before" : "no-after" }); continue; }
+      if (a.resetsAt && b.resetsAt && Math.abs(a.resetsAt - b.resetsAt) > 2 * 60000) { trace("done:window", { win, reason: "reset-mismatch", diffMin: Math.round(Math.abs(a.resetsAt - b.resetsAt) / 60000) }); continue; } // pencere yenilendi
+      if (Date.now() - snap.pre.at > 15 * 60000) { trace("done:window", { win, reason: "before-too-old" }); continue; }
       list.push({
         at: Date.now(), tier: snap.tier, window: win, delta: Math.round((b.pct - a.pct) * 100) / 100, cost,
-        peakMul: win === "session" && snap.peak ? L.fc.PEAK.multiplier : 1,
+        peakMul: 1, peak: win === "session" && !!snap.peak,
         predicted: snap.predicted[win], type: snap.cls.type, outTokens, outMuNoAdj: snap.outMuNoAdj, model: snap.model
       });
     }
@@ -397,7 +575,18 @@
       // Kullanım farkı ölçülemedi ama cevap uzunluğu yine de öğrenilebilir
       list.push({ at: Date.now(), tier: snap.tier, window: null, type: snap.cls.type, outTokens, outMuNoAdj: snap.outMuNoAdj, model: snap.model });
     }
-    if (list.length) send({ type: "calib:observe", list });
+    // Gönderim kaydını ölçülen değerlerle tamamla; beklenenden çok fazlaysa açıklama üret
+    if (snap.log) {
+      const sess = list.find((x) => x.window === "session"), week = list.find((x) => x.window === "weekly");
+      const patch = { out: outTokens || null, d: sess ? sess.delta : null, dw: week ? week.delta : null };
+      send({ type: "log:done", id: snap.logId, patch });
+      const sp = L.rep.surprise({ ...snap.log, ...patch });
+      if (sp) { send({ type: "surprise", surprise: sp }); trace("done:surprise", { d: sp.d, hi: sp.hi, reasons: sp.reasons }); }
+    }
+    if (list.length) {
+      const res = await send({ type: "calib:observe", list });
+      trace("done:observed", { n: list.length, deltas: list.map((x) => x.delta ?? null), results: Array.isArray(res) ? res.map((x) => x.reason) : res });
+    } else trace("done:skip", { reason: "nothing-to-observe", outTokens });
   }
 
   function trimActivity(a) {
@@ -406,6 +595,76 @@
     keys.sort((x, y) => a[x] - a[y]).slice(0, keys.length - 300).forEach((k) => delete a[k]);
     return a;
   }
+
+  // ---------- Yedek gönderim/cevap tespiti (sayfa yapısından) ----------
+  // claude.ai gönderimi bir Web Worker içinden yapabiliyor (completionGzipWorker); o zaman sayfadaki fetch kancası
+  // isteği hiç görmez. Bu yedek yol, kullanıcı mesajı sayısının artmasından gönderimi, son asistan mesajının
+  // yazılmasının bitmesinden cevabı anlar. Kanca çalışırsa bu yol devreye girmez (çift sayım yok).
+  const DOMW = { conv: undefined, lastEl: null, lastKey: "", armed: null, seq: 0, pending: null, consumed: 0 };
+  const grabPre = () => {
+    try {
+      if (DOMW.armed && Date.now() - DOMW.armed.at < 1500) return; // aynı gönderim için ikinci olay
+      const r = compute();
+      // Kullanımın "önce" değerini gönderim anında iste (cevap başladıktan sonra okumak farkı küçültür)
+      const pre = preUsage().catch(() => null);
+      DOMW.armed = { r: r && !r.empty ? r : S.lastFull, at: Date.now(), pre };
+    } catch (_) {}
+  };
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey && !e.isComposing && L.page?.getInputElement?.()?.contains(e.target)) grabPre();
+  }, true);
+  document.addEventListener("pointerdown", (e) => {
+    const b = e.target?.closest?.("button");
+    if (b && L.page?.getComposer?.()?.contains(b)) grabPre();
+  }, true);
+
+  function domTick() {
+    if (!L.page?.lastUserMessage) return;
+    const convId = (location.pathname.match(/\/chat\/([^/?#]+)/) || [])[1] || null;
+    const u = L.page.lastUserMessage();
+    const armedRecent = !!(DOMW.armed && Date.now() - DOMW.armed.at < 20000);
+    if (DOMW.conv !== convId) {
+      // Sohbet değişti. Yeni sohbetin ilk mesajıysa (az önce Enter'a basıldı) mevcut mesaj "yeni" sayılsın.
+      DOMW.conv = convId; DOMW.consumed = S.hookSends || 0; DOMW.pending = null;
+      if (armedRecent) { DOMW.lastEl = null; DOMW.lastKey = ""; } else { DOMW.lastEl = u.el; DOMW.lastKey = u.key; return; }
+    }
+    // Sayfa yüklenirken mesajlar sonradan çizilir: daha önce hiç mesaj görmediysek yalnızca gönderim tuşuyla yeni say
+    const isNew = u.el && u.el !== DOMW.lastEl && u.key && u.key !== DOMW.lastKey && (DOMW.lastKey !== "" || armedRecent);
+    if (u.el && u.el !== DOMW.lastEl) DOMW.lastEl = u.el; // aynı mesaj yeniden çizildiyse yalnızca öğeyi güncelle
+    if (isNew) {
+      DOMW.lastKey = u.key;
+      if (DOMW.pending) { trace("done:skip", { reason: "superseded" }); S.snapshots.delete(DOMW.pending.id); DOMW.pending = null; }
+      const hookCaught = (S.hookSends || 0) > (DOMW.consumed || 0) && Date.now() - (S.hookSendAt || 0) < 15000;
+      DOMW.consumed = S.hookSends || 0;
+      if (hookCaught) return; // kanca zaten yakaladı
+      const armed = DOMW.armed && Date.now() - DOMW.armed.at < 20000 ? DOMW.armed : null;
+      const pre = armed ? armed.r : (S.lastFull && Date.now() - S.lastFull.at < 120000 ? S.lastFull : null);
+      DOMW.armed = null;
+      const id = `dom-${Date.now()}-${++DOMW.seq}`;
+      const a0 = L.page.lastAssistant();
+      DOMW.pending = { id, at: Date.now(), stableSince: 0, lastText: "", startText: a0.text, startEl: a0.el, userEl: u.el, userKey: u.key };
+      onSend({ kind: "send", via: "dom", id, conv: convId, retry: false, at: Date.now(), estimate: pre, prePromise: armed?.pre || null });
+      if (!pre) trace("send:no-estimate");
+      return;
+    }
+    const p = DOMW.pending;
+    if (!p) return;
+    const a = L.page.lastAssistant();
+    if (Date.now() - p.at > 10 * 60000) { DOMW.pending = null; onDone({ kind: "done", via: "dom", id: p.id, aborted: true, at: Date.now() }); return; }
+    // Cevap, gönderilen mesajdan SONRA gelen yeni bir asistan mesajı olmalı. Gönderim anında ekranda olan eski
+    // cevap (yeni cevap henüz çizilmeden "durmuş" görünür) asla bitmiş cevap sayılmaz.
+    const userEl = p.userEl && p.userEl.isConnected ? p.userEl : (L.page.lastUserMessage().key === p.userKey ? L.page.lastUserMessage().el : null);
+    const after = a.el && userEl ? !!(userEl.compareDocumentPosition(a.el) & Node.DOCUMENT_POSITION_FOLLOWING) : null;
+    const isNewReply = after === true || (after === null && a.el && a.el !== p.startEl && a.text !== p.startText);
+    if (!isNewReply || a.streaming || !a.text) { p.stableSince = 0; p.lastText = a.text; return; }
+    if (a.text !== p.lastText || !p.stableSince) { p.lastText = a.text; p.stableSince = Date.now(); return; }
+    // Yazılıyor göstergesi kapalı ve metin 4 sn değişmedi → bitti (araç kullanan cevaplarda ara duraklamalar olur)
+    if (Date.now() - p.stableSince >= 4000) {
+      DOMW.pending = null;
+      onDone({ kind: "done", via: "dom", id: p.id, text: a.text, messageLimit: null, at: Date.now() });
+    }
+  }
+  setInterval(() => { try { domTick(); } catch (_) {} }, 700);
 
   // ---------- Tetikleyiciler ----------
   let timer = null;
@@ -429,5 +688,16 @@
     periodicUsage();
     refreshConversation(300);
     schedule(400);
+    // Sağlık: sayfa öğeleri bulundu mu, kanca yerinde mi?
+    const pingHook = () => { try { window.postMessage({ __tokenForecastCmd: "ping" }, location.origin); } catch (_) {} };
+    const report = () => {
+      send({ type: "health", at: Date.now(), page: {
+        composer: !!L.page.getComposer(), model: L.page.detectModel(), effort: L.page.detectEffort(), url: location.pathname.replace(/[0-9a-f]{8}-[0-9a-f-]{27}/gi, ":id")
+      } });
+    };
+    setTimeout(() => { pingHook(); report(); }, 2500);
+    setTimeout(() => { pingHook(); report(); }, 12000);
+    window.addEventListener("focus", () => { pingHook(); report(); });
+    trace("content:ready");
   })();
 })();

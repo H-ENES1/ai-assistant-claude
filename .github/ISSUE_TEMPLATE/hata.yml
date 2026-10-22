@@ -1,0 +1,21 @@
+name: "🐞 Hata bildirimi / Bug report"
+description: "Ölçüm saymıyor, tahmin tuhaf, panel görünmüyor..."
+title: "Hata: "
+labels: ["hata"]
+body:
+  - type: textarea
+    id: ne
+    attributes:
+      label: "Ne oldu, ne bekliyordun? / What happened, what did you expect?"
+    validations: { required: true }
+  - type: textarea
+    id: gunluk
+    attributes:
+      label: "Tanı günlüğü / Diagnostic log"
+      description: "Eklenti → Sağlık kontrolü → Günlüğü kopyala. Yalnızca adım adları ve sayılar içerir."
+      render: text
+  - type: input
+    id: tarayici
+    attributes:
+      label: "Tarayıcı ve sürüm / Browser and version"
+      placeholder: "Chrome 141 / Opera 120 ..."
