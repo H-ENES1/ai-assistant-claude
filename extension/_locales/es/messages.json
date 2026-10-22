@@ -1442,5 +1442,59 @@
   },
   "typeNA": {
     "message": "No analizado en este idioma"
+  },
+  "welTitle": {
+    "message": "Te damos la bienvenida a Token Forecast"
+  },
+  "welLead": {
+    "message": "Antes de empezar, aquí tienes exactamente lo que la extensión lee y guarda. Nada sale de tu dispositivo."
+  },
+  "welReadTitle": {
+    "message": "Qué lee en claude.ai"
+  },
+  "welRead1": {
+    "message": "El texto y los adjuntos del cuadro de mensaje, para contar tokens y estimar el coste. No se guardan."
+  },
+  "welRead2": {
+    "message": "El historial del chat abierto, para calcular la caché y el contexto. Se cuenta localmente y no se guarda."
+  },
+  "welRead3": {
+    "message": "Tus porcentajes de uso de 5 horas y semanal, leídos de claude.ai con tu propia sesión."
+  },
+  "welStoreTitle": {
+    "message": "Qué guarda en este dispositivo"
+  },
+  "welStore": {
+    "message": "Tus ajustes, valores aprendidos (como el tamaño de tu plan) y un registro de envíos para el informe semanal que solo contiene números y etiquetas, nunca texto. Puedes exportarlo o restablecerlo en Ajustes; al desinstalar se elimina."
+  },
+  "welNeverTitle": {
+    "message": "Qué no hace nunca"
+  },
+  "welNever": {
+    "message": "Sin servidor, sin analítica, sin rastreo. Nunca envía tus mensajes a ningún sitio, nunca envía mensajes por ti y nunca cambia tus ajustes de claude.ai."
+  },
+  "welPolicy": {
+    "message": "Leer la política de privacidad completa"
+  },
+  "welAccept": {
+    "message": "Aceptar y empezar"
+  },
+  "welLater": {
+    "message": "Ahora no"
+  },
+  "welDone": {
+    "message": "Listo. Vuelve a tu pestaña de claude.ai y empieza a escribir."
+  },
+  "welLaterNote": {
+    "message": "La extensión permanece desactivada hasta que aceptes. Puedes hacerlo más tarde desde la ventana de la extensión."
+  },
+  "consentChip": {
+    "message": "Token Forecast está desactivado · Activar"
+  },
+  "consentPopup": {
+    "message": "Token Forecast necesita tu permiso antes de leer nada en claude.ai."
+  },
+  "consentPopupBtn": {
+    "message": "Revisar y activar"
   }
 }

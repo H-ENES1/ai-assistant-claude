@@ -1442,5 +1442,59 @@
   },
   "typeNA": {
     "message": "この言語では分析対象外"
+  },
+  "welTitle": {
+    "message": "Token Forecast へようこそ"
+  },
+  "welLead": {
+    "message": "始める前に、この拡張機能が何を読み取り、何を保存するのかを正確にお伝えします。データが端末の外に出ることはありません。"
+  },
+  "welReadTitle": {
+    "message": "claude.ai で読み取るもの"
+  },
+  "welRead1": {
+    "message": "メッセージ欄のテキストと添付ファイル：トークンを数えてコストを見積もるため。保存しません。"
+  },
+  "welRead2": {
+    "message": "開いているチャットの履歴：キャッシュとコンテキストの計算のため。ローカルで数え、保存しません。"
+  },
+  "welRead3": {
+    "message": "5時間と週間の使用率：あなた自身のセッションで claude.ai から読み取ります。"
+  },
+  "welStoreTitle": {
+    "message": "この端末に保存するもの"
+  },
+  "welStore": {
+    "message": "設定、学習した数値（プランの大きさなど）、週間レポート用の送信記録。記録には数値とラベルだけが含まれ、テキストは一切含まれません。設定からエクスポートやリセットができ、拡張機能を削除すると消去されます。"
+  },
+  "welNeverTitle": {
+    "message": "決してしないこと"
+  },
+  "welNever": {
+    "message": "サーバーなし、分析なし、トラッキングなし。メッセージをどこかへ送ることも、あなたの代わりにメッセージを送ることも、claude.ai の設定を変えることもありません。"
+  },
+  "welPolicy": {
+    "message": "プライバシーポリシーの全文を読む"
+  },
+  "welAccept": {
+    "message": "同意して開始"
+  },
+  "welLater": {
+    "message": "今はしない"
+  },
+  "welDone": {
+    "message": "準備完了です。claude.ai のタブに戻って入力を始めてください。"
+  },
+  "welLaterNote": {
+    "message": "同意するまで拡張機能はオフのままです。あとで拡張機能のウィンドウから同意することもできます。"
+  },
+  "consentChip": {
+    "message": "Token Forecast はオフです · オンにする"
+  },
+  "consentPopup": {
+    "message": "Token Forecast は claude.ai で何かを読み取る前に、あなたの許可を必要とします。"
+  },
+  "consentPopupBtn": {
+    "message": "確認してオンにする"
   }
 }

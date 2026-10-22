@@ -6,6 +6,7 @@
 // - Eşik bildirimleri, "limit yenilendi" bildirimi ve araç çubuğu rozeti (adım 8).
 // - Kalibrasyon durumunun tek yazıcısıdır (adım 10).
 
+import { hasConsent, isConsented } from "./lib/consent.js";
 import { readUsage, normalizeUsage, normalizeSse } from "./lib/usage.js";
 import { observe, emptyState } from "./lib/calibrate.js";
 import { makeI18n, clock } from "./lib/i18n.js";
@@ -31,12 +32,20 @@ async function settings() {
   return { ...DEFAULT_SETTINGS, ...(s || {}) };
 }
 
-chrome.runtime.onInstalled.addListener(async () => {
-  const { settings: s, calib } = await get(["settings", "calib"]);
+chrome.runtime.onInstalled.addListener(async (details) => {
+  const { settings: s, calib, consent } = await get(["settings", "calib", "consent"]);
   await set({ settings: { ...DEFAULT_SETTINGS, ...(s || {}) }, ...(calib ? {} : { calib: emptyState() }) });
   chrome.alarms.create(ALARM, { periodInMinutes: PERIOD_MIN });
   scheduleWeekly();
+  // Onay yoksa (yeni kurulum ya da onay öncesi sürümden güncelleme) karşılama/onay sayfasını aç
+  if (!isConsented(consent) && (details?.reason === "install" || details?.reason === "update")) openWelcome();
   refresh();
+});
+function openWelcome() {
+  try { chrome.tabs.create({ url: chrome.runtime.getURL("popup/welcome.html") }); } catch (_) {}
+}
+chrome.storage.onChanged.addListener((ch, area) => {
+  if (area === "local" && ch.consent && isConsented(ch.consent.newValue)) refresh();
 });
 chrome.runtime.onStartup.addListener(() => {
   chrome.alarms.create(ALARM, { periodInMinutes: PERIOD_MIN });
@@ -73,6 +82,7 @@ async function refresh() {
   if (inFlight) return inFlight;
   inFlight = (async () => {
     try {
+      if (!(await hasConsent())) return { ok: false, error: "consent" };
       const { orgId } = await get("orgId");
       const res = await readUsage({ orgId });
       const patch = {};
@@ -238,6 +248,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   const reply = (p) => p.then(sendResponse, (e) => sendResponse({ ok: false, error: String(e) }));
   switch (msg?.type) {
     case "ping": sendResponse({ ok: true }); return false;
+    case "consent:open": openWelcome(); sendResponse({ ok: true }); return false;
     case "usage:refresh": reply(refresh()); return true;
     case "usage:report": {
       const usage = normalizeUsage(msg.raw);

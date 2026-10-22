@@ -1442,5 +1442,59 @@
   },
   "typeNA": {
     "message": "Not analyzed in this language"
+  },
+  "welTitle": {
+    "message": "Welcome to Token Forecast"
+  },
+  "welLead": {
+    "message": "Before it starts, here is exactly what the extension reads and keeps. Nothing leaves your device."
+  },
+  "welReadTitle": {
+    "message": "What it reads on claude.ai"
+  },
+  "welRead1": {
+    "message": "The text and attachments in the message box, to count tokens and estimate the cost. Not stored."
+  },
+  "welRead2": {
+    "message": "The open chat's history, to calculate cache and context. Counted locally, not stored."
+  },
+  "welRead3": {
+    "message": "Your 5-hour and weekly usage percentages, read from claude.ai with your own session."
+  },
+  "welStoreTitle": {
+    "message": "What it keeps on this device"
+  },
+  "welStore": {
+    "message": "Your settings, learned numbers (such as your plan size) and a log of sends for the weekly report that contains only numbers and labels, never text. You can export it or reset it in Settings; uninstalling removes it."
+  },
+  "welNeverTitle": {
+    "message": "What it never does"
+  },
+  "welNever": {
+    "message": "No server, no analytics, no tracking. It never sends your messages anywhere, never sends messages for you and never changes your claude.ai settings."
+  },
+  "welPolicy": {
+    "message": "Read the full privacy policy"
+  },
+  "welAccept": {
+    "message": "Agree and start"
+  },
+  "welLater": {
+    "message": "Not now"
+  },
+  "welDone": {
+    "message": "All set. Go back to your claude.ai tab and start typing."
+  },
+  "welLaterNote": {
+    "message": "The extension stays off until you agree. You can do this later from the extension window."
+  },
+  "consentChip": {
+    "message": "Token Forecast is off · Turn on"
+  },
+  "consentPopup": {
+    "message": "Token Forecast needs your permission before it reads anything on claude.ai."
+  },
+  "consentPopupBtn": {
+    "message": "Review and turn on"
   }
 }

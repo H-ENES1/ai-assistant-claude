@@ -475,3 +475,21 @@ viewCustom	Personnalisé (choix ci-dessous)
 viewNote	L'affichage simple masque les suggestions de modèle et d'effort, les conseils et les explications de coût. La prévision et les alertes de limite et de contexte restent toujours visibles.
 warnLangLimited	L'analyse du message (type de tâche, sujet, suggestion de modèle et d'effort) ne fonctionne pour l'instant que pour les messages en turc et en anglais. Dans cette langue, vous obtenez la prévision de jetons et de limite, mais pas de suggestions.
 typeNA	Non analysé dans cette langue
+welTitle	Bienvenue dans Token Forecast
+welLead	Avant de commencer, voici exactement ce que l’extension lit et conserve. Rien ne quitte votre appareil.
+welReadTitle	Ce qu’elle lit sur claude.ai
+welRead1	Le texte et les pièces jointes de la zone de message, pour compter les tokens et estimer le coût. Non conservés.
+welRead2	L’historique de la conversation ouverte, pour calculer le cache et le contexte. Compté localement, non conservé.
+welRead3	Vos pourcentages d’utilisation sur 5 heures et hebdomadaires, lus sur claude.ai avec votre propre session.
+welStoreTitle	Ce qu’elle conserve sur cet appareil
+welStore	Vos réglages, des valeurs apprises (comme la taille de votre forfait) et un journal des envois pour le rapport hebdomadaire, qui ne contient que des nombres et des libellés, jamais de texte. Vous pouvez l’exporter ou le réinitialiser dans les réglages ; la désinstallation le supprime.
+welNeverTitle	Ce qu’elle ne fait jamais
+welNever	Aucun serveur, aucune analyse, aucun pistage. Elle n’envoie jamais vos messages nulle part, n’envoie jamais de messages à votre place et ne modifie jamais vos réglages claude.ai.
+welPolicy	Lire la politique de confidentialité complète
+welAccept	Accepter et commencer
+welLater	Pas maintenant
+welDone	C’est prêt. Revenez à votre onglet claude.ai et commencez à écrire.
+welLaterNote	L’extension reste désactivée tant que vous n’avez pas accepté. Vous pourrez le faire plus tard depuis la fenêtre de l’extension.
+consentChip	Token Forecast est désactivé · Activer
+consentPopup	Token Forecast a besoin de votre autorisation avant de lire quoi que ce soit sur claude.ai.
+consentPopupBtn	Examiner et activer

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy · Token Forecast</title>
+<style>
+:root{--bg:#faf9f5;--ink:#141413;--mute:#5e5d59;--line:#e3e1d8;--acc:#b85a3a}
+@media (prefers-color-scheme:dark){:root{--bg:#1d1c1a;--ink:#f0eee6;--mute:#b0aea5;--line:#3a3935;--acc:#e08a6a}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:720px;margin:0 auto;padding:40px 16px 64px}
+h1{font-size:28px;margin:0 0 4px}h2{font-size:19px;margin:32px 0 8px}
+p,li{color:var(--ink)}small,.mute{color:var(--mute)}a{color:var(--acc)}
+hr{border:0;border-top:1px solid var(--line);margin:40px 0}
+ul{padding-left:20px}
+</style>
+</head>
+<body>
+<main>
+<h1>Privacy Policy</h1>
+<p class="mute">Token Forecast (Token Tahmini) browser extension · Last updated: 23 October 2026</p>
+
+<p><strong>Short version: the extension does not collect, transmit, sell or share any of your data. Everything is computed and stored on your own device.</strong></p>
+
+<h2>What the extension reads, and why</h2>
+<ul>
+<li><strong>The text and attachments in the claude.ai message box</strong>, only to count tokens and estimate the cost of the message on your device. This content is never stored and never leaves your device.</li>
+<li><strong>The length of the open chat's history</strong>, for cache and context calculations. Text is counted locally and not stored.</li>
+<li><strong>Your usage percentages from claude.ai</strong> (5-hour and weekly), read from claude.ai with your own logged-in session, to show your limits and to calibrate the forecast.</li>
+</ul>
+
+<h2>What is stored on your device</h2>
+<p>Using the browser's local extension storage (<code>chrome.storage.local</code>), the extension keeps: your settings; learned calibration values (numbers such as your plan size and typical answer lengths); and a log of sends for the weekly report containing only numbers and labels (time, model, effort, task type, topic, forecast and measured percentages). <strong>No message text, chat title, attachment content or account details are stored.</strong> You can export this data or reset the learned values from the extension's settings; uninstalling the extension removes all of it.</p>
+
+<h2>Network requests</h2>
+<p>The extension has no server, no analytics and no tracking. Its only network requests go to <code>claude.ai</code>, using your existing session, to read usage information that claude.ai's own pages use. It never sends messages, changes settings or automates actions on your account.</p>
+
+<h2>Optional community contribution</h2>
+<p>If you choose to, you can open a text-free summary of what the extension learned (numbers and labels only), review it, copy it yourself and paste it into a public GitHub issue form. Nothing is sent automatically. Anything you post on GitHub is subject to GitHub's own privacy policy.</p>
+
+<h2>Permissions</h2>
+<ul>
+<li><code>storage</code>: to keep settings and learned values on your device.</li>
+<li><code>alarms</code>: to refresh usage periodically and schedule the weekly report notification.</li>
+<li><code>notifications</code>: for limit threshold, limit reset and weekly report notifications.</li>
+<li>Host access to <code>https://claude.ai/*</code> only: to show the forecast next to the message box and read your usage.</li>
+</ul>
+
+<h2>Data use</h2>
+<p>Your data is not sold, not transferred to third parties, not used for purposes unrelated to the extension's single purpose, and not used to determine creditworthiness or for lending.</p>
+
+<h2>Changes and contact</h2>
+<p>Changes to this policy are published on this page and in the project repository. Questions: open an issue at <a href="https://github.com/H-ENES1/token-tahmin/issues">github.com/H-ENES1/token-tahmin/issues</a>.</p>
+
+<hr>
+
+<h1>Gizlilik Politikası</h1>
+<p class="mute">Token Tahmini (Token Forecast) tarayıcı eklentisi · Son güncelleme: 23 Ekim 2026</p>
+<p><strong>Kısaca: Eklenti hiçbir verini toplamaz, göndermez, satmaz ya da paylaşmaz. Her şey kendi cihazında hesaplanır ve saklanır.</strong></p>
+<h2>Ne okur, neden</h2>
+<ul>
+<li><strong>claude.ai mesaj kutusundaki metin ve ekler:</strong> yalnızca tokenları saymak ve mesajın maliyetini cihazında tahmin etmek için. Saklanmaz, cihazdan çıkmaz.</li>
+<li><strong>Açık sohbetin geçmiş uzunluğu:</strong> önbellek ve bağlam hesabı için. Metin yerel olarak sayılır, saklanmaz.</li>
+<li><strong>claude.ai kullanım yüzdelerin</strong> (5 saatlik ve haftalık): kendi oturumunla claude.ai'den okunur; limitlerini göstermek ve tahmini ayarlamak için.</li>
+</ul>
+<h2>Cihazında ne saklanır</h2>
+<p>Tarayıcının yerel eklenti deposunda: ayarların, öğrenilen değerler (plan büyüklüğü, tipik cevap uzunluğu gibi sayılar) ve haftalık rapor için yalnızca sayı ve etiket içeren gönderim kayıtları (zaman, model, effort, iş türü, konu, tahmin ve ölçülen yüzde). <strong>Mesaj metni, sohbet adı, ek içeriği ya da hesap bilgisi saklanmaz.</strong> Bu verileri ayarlardan dışa aktarabilir ya da öğrenilen değerleri sıfırlayabilirsin; eklentiyi kaldırınca hepsi silinir.</p>
+<h2>Ağ istekleri</h2>
+<p>Eklentinin sunucusu, analitiği ve izlemesi yoktur. Tek ağ isteği, mevcut oturumunla <code>claude.ai</code>'ye, claude.ai'nin kendi sayfalarının kullandığı kullanım bilgisini okumak içindir. Mesaj göndermez, ayar değiştirmez, hesabında hiçbir işlemi otomatikleştirmez.</p>
+<h2>İsteğe bağlı topluluk katkısı</h2>
+<p>İstersen, öğrenilenlerin metin içermeyen özetini (yalnızca sayılar ve etiketler) görüp kendin kopyalayarak herkese açık bir GitHub formuna yapıştırabilirsin. Hiçbir şey otomatik gönderilmez. GitHub'a yazdıkların GitHub'ın kendi gizlilik politikasına tabidir.</p>
+<h2>Değişiklikler ve iletişim</h2>
+<p>Değişiklikler bu sayfada ve proje deposunda yayımlanır. Sorular için: <a href="https://github.com/H-ENES1/token-tahmin/issues">github.com/H-ENES1/token-tahmin/issues</a>.</p>
+</main>
+</body>
+</html>

@@ -87,3 +87,9 @@ npm run e2e    # Playwright, sahte claude.ai (43 kontrol). PW_EXPERIMENTAL_SERVI
 - Çeviriler makine çevirisidir, anadili konuşan biri gözden geçirmedi.
 - Site hatası düzeltildi: İngilizce SSS a1–a5 yerine ekran görüntüsü alt metni görünüyordu (anahtar çakışması → alt1–alt5).
 - Lisans AGPL-3.0'a geçti (yukarıdaki not). Site SSS a7 ve altbilgi 10 dilde güncellendi.
+
+## 0.12.1 (23.10.2026) — Mağaza hazırlığı
+- **Açık onay** (`lib/consent.js`, `popup/welcome.*`): Chrome Web Store 2026 kuralı, veri cihazda işlense bile ne okunduğunu eklenti içinde gösterip onay almayı şart koşuyor. Kurulumda (ve onaysız güncellemede) karşılama sayfası açılır; onay yokken content.js yalnızca "aç" düğmesi gösterir, arka plan kullanım okumaz. Okunan veri türleri değişirse `CONSENT_VERSION` artır. e2e bunu denetler (64 kontrol).
+- Bağlantılar dolduruldu: PROJECT_URL, CONTRIB_URL (katki.yml), FEEDBACK_URL (new/choose), PRIVACY_URL; sitede CONTRIB_URL, SURVEY_URL (anket.yml), RELEASES_URL. manifest `homepage_url`.
+- Gizlilik politikası: `site/build/static/privacy.html` → Pages'te `/privacy.html`.
+- Mağaza metinleri ve görselleri: `store/`.

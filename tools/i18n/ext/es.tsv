@@ -475,3 +475,21 @@ viewCustom	Personalizada (elige abajo)
 viewNote	La vista simple oculta las sugerencias de modelo y esfuerzo, los consejos y las explicaciones de coste. La previsión y los avisos de límite y contexto siempre se muestran.
 warnLangLimited	El análisis del mensaje (tipo de tarea, tema, sugerencia de modelo y de esfuerzo) por ahora solo funciona con mensajes en turco e inglés. En este idioma obtienes la previsión de tokens y de límite, pero no sugerencias.
 typeNA	No analizado en este idioma
+welTitle	Te damos la bienvenida a Token Forecast
+welLead	Antes de empezar, aquí tienes exactamente lo que la extensión lee y guarda. Nada sale de tu dispositivo.
+welReadTitle	Qué lee en claude.ai
+welRead1	El texto y los adjuntos del cuadro de mensaje, para contar tokens y estimar el coste. No se guardan.
+welRead2	El historial del chat abierto, para calcular la caché y el contexto. Se cuenta localmente y no se guarda.
+welRead3	Tus porcentajes de uso de 5 horas y semanal, leídos de claude.ai con tu propia sesión.
+welStoreTitle	Qué guarda en este dispositivo
+welStore	Tus ajustes, valores aprendidos (como el tamaño de tu plan) y un registro de envíos para el informe semanal que solo contiene números y etiquetas, nunca texto. Puedes exportarlo o restablecerlo en Ajustes; al desinstalar se elimina.
+welNeverTitle	Qué no hace nunca
+welNever	Sin servidor, sin analítica, sin rastreo. Nunca envía tus mensajes a ningún sitio, nunca envía mensajes por ti y nunca cambia tus ajustes de claude.ai.
+welPolicy	Leer la política de privacidad completa
+welAccept	Aceptar y empezar
+welLater	Ahora no
+welDone	Listo. Vuelve a tu pestaña de claude.ai y empieza a escribir.
+welLaterNote	La extensión permanece desactivada hasta que aceptes. Puedes hacerlo más tarde desde la ventana de la extensión.
+consentChip	Token Forecast está desactivado · Activar
+consentPopup	Token Forecast necesita tu permiso antes de leer nada en claude.ai.
+consentPopupBtn	Revisar y activar

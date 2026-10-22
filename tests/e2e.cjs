@@ -99,15 +99,33 @@ const check = (name, ok, info = "") => { results.push({ name, ok: !!ok, info });
   check("eklenti yüklendi", !!extId, extId);
   const storage = (keys) => sw.evaluate((k) => chrome.storage.local.get(k), keys);
 
+  // 0) Açık onay: kurulumda karşılama sayfası açılır; onay yokken sayfada hiçbir şey okunmaz
+  const welcome = ctx.pages().find((p) => p.url().includes("/popup/welcome.html")) || await ctx.waitForEvent("page", { predicate: (p) => p.url().includes("/popup/welcome.html"), timeout: 8000 }).catch(() => null);
+  check("kurulumda onay sayfası açıldı", !!welcome, welcome ? "welcome.html" : "yok");
   const page = await ctx.newPage();
   page.on("console", (m) => { if (m.type() === "error") errors.push(m.text()); });
   page.on("pageerror", (e) => errors.push(String(e)));
+  const before = netLog.length;
   await page.goto(`https://claude.ai/chat/${CONV}`);
+  await page.waitForFunction(() => document.getElementById("token-forecast-consent")?.shadowRoot?.querySelector("button")?.textContent, null, { timeout: 10000 }).catch(() => {});
+  await page.waitForTimeout(1500);
+  const chipTxt = await page.evaluate(() => document.getElementById("token-forecast-consent")?.shadowRoot?.querySelector("button")?.textContent || "");
+  const apiBefore = netLog.slice(before).filter((r) => /claude\.ai\/api\//.test(r.u));
+  check("onaysız: yalnızca 'aç' düğmesi, panel yok, claude.ai API'sine istek yok", !!chipTxt && !(await page.$("[data-token-forecast]")) && apiBefore.length === 0, `${chipTxt} · API ${apiBefore.length}`);
+  if (welcome) {
+    await welcome.waitForSelector("#accept:not(:empty)");
+    const wt = await welcome.evaluate(() => document.body.innerText);
+    check("onay sayfası: okunanlar, saklananlar, gizlilik bağlantısı", /claude\.ai/.test(wt) && /token/i.test(wt) && (await welcome.getAttribute("#welPolicy", "href")).includes("privacy"), wt.split("\n")[0]);
+    await welcome.click("#accept");
+  } else {
+    await sw.evaluate(() => chrome.storage.local.set({ consent: { v: 1, at: Date.now() } }));
+  }
   const host = page.locator("[data-token-forecast]");
   await page.waitForFunction(() => document.querySelector("[data-token-forecast]")?.shadowRoot?.querySelector(".head")?.textContent, null, { timeout: 15000 });
   const head = () => page.evaluate(() => document.querySelector("[data-token-forecast]").shadowRoot.querySelector(".head").textContent);
   const cardText = () => page.evaluate(() => document.querySelector("[data-token-forecast]").shadowRoot.querySelector(".card").innerText);
   check("panel boşta görünüyor", (await head()).length > 0, await head());
+  check("onaydan sonra 'aç' düğmesi kalktı", !(await page.$("#token-forecast-consent")));
 
   // 1) Yazınca tahmin
   const ed = page.locator(".ProseMirror");

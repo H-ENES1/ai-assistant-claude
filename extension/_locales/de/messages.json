@@ -1442,5 +1442,59 @@
   },
   "typeNA": {
     "message": "In dieser Sprache nicht analysiert"
+  },
+  "welTitle": {
+    "message": "Willkommen bei Token Forecast"
+  },
+  "welLead": {
+    "message": "Bevor es losgeht, siehst du hier genau, was die Erweiterung liest und speichert. Nichts verlässt dein Gerät."
+  },
+  "welReadTitle": {
+    "message": "Was sie auf claude.ai liest"
+  },
+  "welRead1": {
+    "message": "Text und Anhänge im Nachrichtenfeld, um Tokens zu zählen und die Kosten zu schätzen. Wird nicht gespeichert."
+  },
+  "welRead2": {
+    "message": "Den Verlauf des geöffneten Chats, für Cache- und Kontextberechnung. Lokal gezählt, nicht gespeichert."
+  },
+  "welRead3": {
+    "message": "Deine 5-Stunden- und Wochennutzung in Prozent, mit deiner eigenen Sitzung von claude.ai gelesen."
+  },
+  "welStoreTitle": {
+    "message": "Was sie auf diesem Gerät speichert"
+  },
+  "welStore": {
+    "message": "Deine Einstellungen, gelernte Zahlen (etwa die Größe deines Tarifs) und ein Sendeprotokoll für den Wochenbericht, das nur Zahlen und Bezeichnungen enthält, nie Text. Du kannst es in den Einstellungen exportieren oder zurücksetzen; beim Deinstallieren wird es gelöscht."
+  },
+  "welNeverTitle": {
+    "message": "Was sie nie tut"
+  },
+  "welNever": {
+    "message": "Kein Server, keine Analyse, kein Tracking. Sie sendet deine Nachrichten nirgendwohin, sendet keine Nachrichten für dich und ändert keine claude.ai-Einstellungen."
+  },
+  "welPolicy": {
+    "message": "Vollständige Datenschutzerklärung lesen"
+  },
+  "welAccept": {
+    "message": "Zustimmen und starten"
+  },
+  "welLater": {
+    "message": "Nicht jetzt"
+  },
+  "welDone": {
+    "message": "Fertig. Geh zurück zu deinem claude.ai-Tab und fang an zu tippen."
+  },
+  "welLaterNote": {
+    "message": "Die Erweiterung bleibt aus, bis du zustimmst. Das geht auch später über das Erweiterungsfenster."
+  },
+  "consentChip": {
+    "message": "Token Forecast ist aus · Einschalten"
+  },
+  "consentPopup": {
+    "message": "Token Forecast braucht deine Erlaubnis, bevor es etwas auf claude.ai liest."
+  },
+  "consentPopupBtn": {
+    "message": "Ansehen und einschalten"
   }
 }

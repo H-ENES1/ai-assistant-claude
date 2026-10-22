@@ -5,6 +5,7 @@ import { makeI18n, duration, clock, LANGS } from "../lib/i18n.js";
 import { capacity } from "../lib/forecast.js";
 import { makeCalib, CALIB_VERSION } from "../lib/calibrate.js";
 import { SUPPORT_URL, CONTRIB_URL, FEEDBACK_URL } from "../lib/config.js";
+import { isConsented } from "../lib/consent.js";
 import { buildContribution, contributionText } from "../lib/contrib.js";
 import { weeklyReport, burnRate } from "../lib/report.js";
 
@@ -319,6 +320,17 @@ chrome.storage.onChanged.addListener((ch, area) => {
   if (area === "local" && (ch.usage || ch.usageMeta || ch.settings || ch.calib || ch.trace || ch.hookHello || ch.pageHealth || ch.sends)) render();
 });
 
+async function renderConsent() {
+  const { consent } = await store.get("consent");
+  const J = await makeI18n(((await store.get("settings")).settings || {}).language || "auto");
+  const off = !isConsented(consent);
+  $("consentBox").hidden = !off;
+  if (off) { $("consentText").textContent = J.t("consentPopup"); $("consentBtn").textContent = J.t("consentPopupBtn"); }
+}
+$("consentBtn").addEventListener("click", () => chrome.tabs.create({ url: chrome.runtime.getURL("popup/welcome.html") }));
+chrome.storage.onChanged.addListener((ch, area) => { if (area === "local" && (ch.consent || ch.settings)) renderConsent(); });
+
 if (document.documentElement.classList.contains("tab")) { $("settings").open = true; $("health").open = true; }
+renderConsent();
 render();
 chrome.runtime.sendMessage({ type: "usage:refresh" });

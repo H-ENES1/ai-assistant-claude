@@ -60,4 +60,5 @@ for lang in ('tr','en'):
   for n in ('oneri','effort','tuzak','popup','rapor'): shutil.copy(f'{B}img/{lang}/{n}.png', f'{PAGES}img/{lang}/{n}.png')
   for f in (f'tanitim-{lang}.mp4', f'kapak-{lang}.jpg'): shutil.copy(f'{B}video/{f}', f'{PAGES}video/{f}')
 open(PAGES+'.nojekyll','w').write('')
+for f in os.listdir(B+'static'): shutil.copy(B+'static/'+f, PAGES+f)
 print('pages ok')

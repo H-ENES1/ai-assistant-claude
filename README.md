@@ -7,7 +7,7 @@
 A free browser extension for [claude.ai](https://claude.ai) that predicts how much of your 5-hour and weekly Claude limit a message will use, tells you which model and effort level are enough (with reasons), and learns your plan over time. Everything runs in your browser.
 
 [![License: AGPL v3](https://img.shields.io/badge/license-AGPL--3.0--or--later-blue.svg)](LICENSE)
-![Version](https://img.shields.io/badge/version-0.12.0-d97757)
+![Version](https://img.shields.io/badge/version-0.12.1-d97757)
 ![Manifest V3](https://img.shields.io/badge/Manifest-V3-555)
 ![Chromium 116+](https://img.shields.io/badge/Chromium-116%2B-555)
 ![UI languages](https://img.shields.io/badge/UI%20languages-10-2a7b57)
@@ -176,13 +176,13 @@ The training and test messages were also written by the project, and accuracy on
 
 ## Privacy
 
-Everything is computed in your browser. Your message text, attachments and chats never leave your device. The extension has no server, no analytics and no tracking. It only runs on claude.ai, with your own session, and reads:
+On first install a consent page shows exactly what the extension reads and keeps; **nothing is read until you agree**. Everything is computed in your browser. Your message text, attachments and chats never leave your device. The extension has no server, no analytics and no tracking. It only runs on claude.ai, with your own session, and reads:
 
 - the data of claude.ai's usage page (your 5-hour and weekly percentages);
 - the length of the open chat's history, for cache and context calculations;
 - the text and attachments in the message box, only to count tokens, locally.
 
-Permissions: storage, alarms, notifications, and only the `claude.ai` site. It never sends messages, changes settings or automates anything. The weekly report and the learned values contain no message text. A community contribution is shared only if you view it and copy it yourself. The end-to-end test checks the network: only requests to claude.ai, and the single POST is the page's own `/completion`.
+Permissions: storage, alarms, notifications, and only the `claude.ai` site. Full [privacy policy](https://h-enes1.github.io/token-tahmin/privacy.html). It never sends messages, changes settings or automates anything. The weekly report and the learned values contain no message text. A community contribution is shared only if you view it and copy it yourself. The end-to-end test checks the network: only requests to claude.ai, and the single POST is the page's own `/completion`.
 
 ## Known limitations
 

@@ -6,7 +6,7 @@
 
 [English README](README.md) · [Web sitesi](https://h-enes1.github.io/token-tahmin/) · [Sürümler](https://github.com/H-ENES1/token-tahmin/releases)
 
-Sürüm 0.12.0 · [GNU AGPL-3.0-or-later](LICENSE)
+Sürüm 0.12.1 · [GNU AGPL-3.0-or-later](LICENSE)
 
 <a href="https://h-enes1.github.io/token-tahmin/"><img src="site/video/kapak-tr.jpg" alt="Tanıtım videosunun kapağı. Tıklayınca 47 saniyelik video ve canlı demo olan web sitesi açılır." width="720"></a>
 
@@ -95,7 +95,7 @@ Eğitim ve test mesajlarını da proje yazdı; gerçek kullanıcı mesajlarıyla
 
 ## Gizlilik
 
-Her şey tarayıcıda hesaplanır. Mesaj metni, ek ve sohbet içeriği cihazdan çıkmaz; eklentinin sunucusu, analitiği, izlemesi yoktur. Gönderim kayıtları (haftalık rapor için) ve öğrenilen değerler metin içermez. Topluluk katkısı yalnızca kullanıcı görüp kopyalarsa paylaşılır.
+İlk kurulumda bir onay sayfası eklentinin tam olarak neyi okuyup sakladığını gösterir; **onay verene kadar hiçbir şey okunmaz**. Her şey tarayıcıda hesaplanır. Mesaj metni, ek ve sohbet içeriği cihazdan çıkmaz; eklentinin sunucusu, analitiği, izlemesi yoktur. Gönderim kayıtları (haftalık rapor için) ve öğrenilen değerler metin içermez. Topluluk katkısı yalnızca kullanıcı görüp kopyalarsa paylaşılır. Ayrıntılar: [gizlilik politikası](https://h-enes1.github.io/token-tahmin/privacy.html).
 
 ## Bilinen sınırlamalar
 

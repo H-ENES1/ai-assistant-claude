@@ -13,6 +13,37 @@
   if (window.__tokenForecastLoaded) return;
   window.__tokenForecastLoaded = true;
 
+  // Onay kapısı: kullanıcı karşılama sayfasında onay vermeden sayfada hiçbir şey okunmaz (lib/consent.js).
+  const gate = async (start) => {
+    const { isConsented } = await import(chrome.runtime.getURL("lib/consent.js"));
+    const { consent, settings } = await chrome.storage.local.get(["consent", "settings"]);
+    if (isConsented(consent)) { start(); return; }
+    let chip = null;
+    try {
+      const { makeI18n } = await import(chrome.runtime.getURL("lib/i18n.js"));
+      const I = await makeI18n(settings?.language || "auto");
+      const host = document.createElement("div");
+      host.id = "token-forecast-consent";
+      host.style.cssText = "position:fixed;right:16px;bottom:16px;z-index:2147483646";
+      const root = host.attachShadow({ mode: "open" });
+      root.innerHTML = '<style>button{font:600 12.5px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;color:#141413;background:#faf9f5;border:1px solid #d9d6cc;border-radius:999px;padding:8px 13px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.12)}button:hover{background:#fff}i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#d97757;margin-right:7px}</style><button type="button"><i></i></button>';
+      const b = root.querySelector("button");
+      b.append(I.t("consentChip"));
+      b.addEventListener("click", () => { try { chrome.runtime.sendMessage({ type: "consent:open" }); } catch (_) {} });
+      (document.body || document.documentElement).append(host);
+      chip = host;
+    } catch (_) {}
+    const onCh = (ch, area) => {
+      if (area !== "local" || !ch.consent || !isConsented(ch.consent.newValue)) return;
+      chrome.storage.onChanged.removeListener(onCh);
+      chip?.remove();
+      start();
+    };
+    chrome.storage.onChanged.addListener(onCh);
+  };
+
+  gate(() => {
+
   const L = {};
   const loading = (async () => {
     const mod = (p) => import(chrome.runtime.getURL(p));
@@ -700,4 +731,5 @@
     window.addEventListener("focus", () => { pingHook(); report(); });
     trace("content:ready");
   })();
+  });
 })();

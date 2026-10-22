@@ -1442,5 +1442,59 @@
   },
   "typeNA": {
     "message": "Bu dilde analiz yok"
+  },
+  "welTitle": {
+    "message": "Token Tahmini'ne hoş geldin"
+  },
+  "welLead": {
+    "message": "Başlamadan önce eklentinin tam olarak neyi okuduğunu ve neyi sakladığını gör. Hiçbir şey cihazından çıkmaz."
+  },
+  "welReadTitle": {
+    "message": "claude.ai'de ne okur"
+  },
+  "welRead1": {
+    "message": "Mesaj kutusundaki metni ve ekleri: token saymak ve maliyeti tahmin etmek için. Saklanmaz."
+  },
+  "welRead2": {
+    "message": "Açık sohbetin geçmişini: önbellek ve bağlam hesabı için. Yerelde sayılır, saklanmaz."
+  },
+  "welRead3": {
+    "message": "5 saatlik ve haftalık kullanım yüzdelerini: kendi oturumunla claude.ai'den okunur."
+  },
+  "welStoreTitle": {
+    "message": "Bu cihazda ne saklar"
+  },
+  "welStore": {
+    "message": "Ayarların, öğrenilen sayılar (plan büyüklüğün gibi) ve haftalık rapor için yalnızca sayı ve etiket içeren, hiç metin içermeyen gönderim kayıtları. Ayarlardan dışa aktarabilir ya da sıfırlayabilirsin; eklentiyi kaldırınca silinir."
+  },
+  "welNeverTitle": {
+    "message": "Asla ne yapmaz"
+  },
+  "welNever": {
+    "message": "Sunucu yok, analitik yok, izleme yok. Mesajlarını hiçbir yere göndermez, senin yerine mesaj göndermez, claude.ai ayarlarını değiştirmez."
+  },
+  "welPolicy": {
+    "message": "Gizlilik politikasının tamamını oku"
+  },
+  "welAccept": {
+    "message": "Kabul et ve başlat"
+  },
+  "welLater": {
+    "message": "Şimdi değil"
+  },
+  "welDone": {
+    "message": "Hazır. claude.ai sekmene dön ve yazmaya başla."
+  },
+  "welLaterNote": {
+    "message": "Onay verene kadar eklenti kapalı kalır. Bunu daha sonra eklenti penceresinden yapabilirsin."
+  },
+  "consentChip": {
+    "message": "Token Tahmini kapalı · Aç"
+  },
+  "consentPopup": {
+    "message": "Token Tahmini, claude.ai'de bir şey okumadan önce iznini istiyor."
+  },
+  "consentPopupBtn": {
+    "message": "İncele ve aç"
   }
 }

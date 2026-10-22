@@ -64,3 +64,7 @@ html.tab details[open] summary { margin-bottom: 4px; }
 #supportRow a { color: var(--accent-ink); }
 .burn { margin: 3px 0 0; color: var(--muted); }
 .burn.note { color: var(--accent-ink); font-weight: 600; }
+
+.consent { background: var(--surface); border: 1px solid var(--accent); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; }
+.consent p { margin: 0 0 8px; }
+button.primary { background: var(--accent); color: #fff; }
