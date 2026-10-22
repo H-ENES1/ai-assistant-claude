@@ -2,3 +2,4 @@ node_modules/
 dist/
 tests/shots/
 *.bak
+site/standalone.html
