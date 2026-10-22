@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2026 Hayrettin Enes Karalı
 // Kişisel kalibrasyon (adım 10).
 //
 // İki şey öğrenilir:
@@ -13,7 +15,7 @@
 // Önsel değerler forecast.js'den gelir. Durum chrome.storage.local'da "calib" anahtarında saklanır
 // ve yalnızca arka plan servisi tarafından yazılır (sekmeler arası çakışma olmasın diye).
 
-import { kPrior, CLAUDE_OUTPUT_PRIOR } from "./forecast.js";
+import { kPrior, peakPrior, communityK, CLAUDE_OUTPUT_PRIOR } from "./forecast.js";
 
 export const CALIB_VERSION = 1;
 const MAX_LOG = 300;
@@ -49,7 +51,9 @@ export function makeCalib(state) {
   return {
     state: st,
     kPosterior(tier, win) {
-      const prior = gammaFromLogNormal(kPrior(tier, win));
+      // Yoğun saat k'sı: önseli, normal saatlerde öğrenilen k × 1,5 (belirsizliği artırılmış)
+      const base = win === "session_peak" ? (communityK(tier, "session_peak") || peakPrior(this.kPosterior(tier, "session"))) : kPrior(tier, win);
+      const prior = gammaFromLogNormal(base);
       const s = st.k?.[tier]?.[win];
       if (!s) return logNormalFromGamma(prior);
       return logNormalFromGamma({ a: prior.a + s.a, b: prior.b + s.b });
@@ -96,9 +100,10 @@ export function observe(state, obs) {
     else if (tooBig) { accepted = false; reason = "outlier"; }
     if (accepted) {
       st.k[obs.tier] ||= {};
-      const cur = st.k[obs.tier][obs.window] || { a: 0, b: 0, n: 0, at: 0 };
+      const bucket = obs.window === "session" && obs.peak ? "session_peak" : obs.window;
+      const cur = st.k[obs.tier][bucket] || { a: 0, b: 0, n: 0, at: 0 };
       const f = decayFactor(cur.at, now);
-      st.k[obs.tier][obs.window] = { a: cur.a * f + delta, b: cur.b * f + obs.cost, n: cur.n + 1, at: now };
+      st.k[obs.tier][bucket] = { a: cur.a * f + delta, b: cur.b * f + obs.cost, n: cur.n + 1, at: now };
       if (obs.window === "session") {
         st.stats.n++;
         // Yuvarlama payı ±1 ile aralıkta mı?

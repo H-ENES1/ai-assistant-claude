@@ -1,0 +1,44 @@
+Token Tahmini / Token Forecast
+Copyright (c) 2026 Hayrettin Enes Karalı
+
+Bu program özgür yazılımdır: Free Software Foundation tarafından yayımlanan GNU Affero
+Genel Kamu Lisansı'nın 3. sürümü (ya da isteğinize göre sonraki bir sürümü) koşullarıyla
+yeniden dağıtabilir ve/veya değiştirebilirsiniz. Tam metin: LICENSE dosyası.
+Program yararlı olacağı umuduyla dağıtılır, ancak HİÇBİR GARANTİ VERİLMEZ.
+
+This program is free software: you can redistribute it and/or modify it under the terms
+of the GNU Affero General Public License as published by the Free Software Foundation,
+either version 3 of the License, or (at your option) any later version. See LICENSE.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY.
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+Ad ve logo / Name and logo
+  "Token Tahmini", "Token Forecast" adları ve logo (kadran simgesi) lisansa dahil değildir
+  (AGPL-3.0 madde 7(e)). Değiştirilmiş sürümler başka bir ad ve logo kullanmalı, özgün
+  sürümle karıştırılmamalıdır. Telif bildirimleri kaldırılamaz.
+  The names "Token Tahmini" and "Token Forecast" and the logo are not licensed
+  (AGPL-3.0 section 7(e)). Modified versions must use a different name and logo and must
+  not be presented as the original. Copyright notices must be kept.
+
+Bu proje Anthropic ile bağlantılı değildir. "Claude", Anthropic PBC'nin ticari markasıdır.
+This project is not affiliated with Anthropic. "Claude" is a trademark of Anthropic PBC.
+
+Üçüncü taraf bildirimleri / Third-party notices
+
+CASTILLO — "Characterizing Response Length Distributions of Large Language Models"
+  Perez-Ramirez, Kostic, Boman (2025). https://arxiv.org/abs/2505.16881
+  Veri: CC BY 4.0 · Kod: Apache 2.0. Eklentideki cevap uzunluğu önselleri (görev tipi
+  başına log-normal parametreler) bu çalışmanın yayımlanmış ölçümlerinden türetilmiştir.
+  Response-length priors (per task type log-normal parameters) are derived from the
+  published measurements of this work. https://github.com/DanielFPerez/castillo
+
+lugia19/Claude-Usage-Extension (GPL-3.0)
+  Hiçbir kodu kullanılmamıştır. claude.ai'nin iç API alanları ve gözlemleri hakkındaki
+  herkese açık bilgiler (alan adları, önbellek süresi gibi) fikir kaynağı olarak
+  belirtilmiştir. No code from this project is used; publicly documented observations
+  about claude.ai internals are credited as a source of ideas.
+
+Anthropic model seçme rehberi / model selection guide
+  https://platform.claude.com/docs/en/about-claude/models/choosing-a-model
+  Model önerisinin gerekçe metinleri bu rehberdeki konumlandırmayı özetler.

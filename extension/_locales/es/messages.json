@@ -1,0 +1,1446 @@
+{
+  "extName": {
+    "message": "Token Forecast para Claude"
+  },
+  "extShortName": {
+    "message": "Token Forecast"
+  },
+  "extDescription": {
+    "message": "Estima antes de enviar cuánto de tu límite de Claude consumirá un mensaje y sugiere un modelo más económico cuando conviene."
+  },
+  "popupTitle": {
+    "message": "Token Forecast"
+  },
+  "sessionLimit": {
+    "message": "Sesión de 5 horas"
+  },
+  "weeklyLimit": {
+    "message": "Límite semanal"
+  },
+  "resetsAt": {
+    "message": "Se restablece a las $TIME$",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "noData": {
+    "message": "Aún no hay datos de uso. Abre claude.ai con tu sesión iniciada."
+  },
+  "settings": {
+    "message": "Ajustes"
+  },
+  "language": {
+    "message": "Idioma"
+  },
+  "languageAuto": {
+    "message": "Predeterminado del navegador"
+  },
+  "thresholds": {
+    "message": "Umbrales de aviso"
+  },
+  "panelEstimate": {
+    "message": "Consumo estimado: $LOW$–$HIGH$ % de tu sesión",
+    "placeholders": {
+      "low": {
+        "content": "$1"
+      },
+      "high": {
+        "content": "$2"
+      }
+    }
+  },
+  "confidenceLow": {
+    "message": "Confianza: baja"
+  },
+  "confidenceMedium": {
+    "message": "Confianza: media"
+  },
+  "confidenceHigh": {
+    "message": "Confianza: alta"
+  },
+  "panelLoading": {
+    "message": "Estimando…"
+  },
+  "pct": {
+    "message": "$1 %"
+  },
+  "resetsIn": {
+    "message": "Se restablece en $1 ($2)"
+  },
+  "durDH": {
+    "message": "$1 d $2 h"
+  },
+  "durHM": {
+    "message": "$1 h $2 min"
+  },
+  "durM": {
+    "message": "$1 min"
+  },
+  "bottleneck": {
+    "message": "Este límite se agotará primero"
+  },
+  "fetchError": {
+    "message": "No se pudo leer el uso. Comprueba que has iniciado sesión en claude.ai."
+  },
+  "otherLimits": {
+    "message": "Otros límites"
+  },
+  "updatedJustNow": {
+    "message": "Actualizado ahora mismo"
+  },
+  "updatedAgo": {
+    "message": "Actualizado hace $1"
+  },
+  "staleWarning": {
+    "message": "falló la última actualización"
+  },
+  "refresh": {
+    "message": "Actualizar"
+  },
+  "dbgPrompt": {
+    "message": "Mensaje"
+  },
+  "dbgHistory": {
+    "message": "Conversación"
+  },
+  "dbgMessages": {
+    "message": "$1 mensajes"
+  },
+  "dbgNotFound": {
+    "message": "no detectado"
+  },
+  "dbgAttachments": {
+    "message": "Adjuntos"
+  },
+  "dbgTotal": {
+    "message": "Entrada total"
+  },
+  "dbgTokens": {
+    "message": "tokens"
+  },
+  "dbgNoInput": {
+    "message": "No se encontró el cuadro de mensaje"
+  },
+  "dbgAnalyzing": {
+    "message": "analizando…"
+  },
+  "dbgPasted": {
+    "message": "texto pegado"
+  },
+  "dbgPages": {
+    "message": "$1 páginas"
+  },
+  "dbgConvAttachments": {
+    "message": "Adjuntos enviados en este chat ($1)"
+  },
+  "dbgContext": {
+    "message": "Ventana de contexto ($1, $2)"
+  },
+  "dbgModelUnknown": {
+    "message": "modelo no detectado"
+  },
+  "ctxOver": {
+    "message": "Esto no cabe en la ventana de contexto de Claude. Envía solo las partes que necesites."
+  },
+  "ctxNear": {
+    "message": "Es posible que esto no quepa en la ventana de contexto de Claude. Divídelo o abre un chat nuevo."
+  },
+  "pdfTextOnly": {
+    "message": "PDF de más de 100 páginas: Claude solo leerá el texto, no las imágenes ni los gráficos."
+  },
+  "pdfTooLarge": {
+    "message": "PDF de más de 1000 páginas: claude.ai no lo aceptará."
+  },
+  "lessThan": {
+    "message": "menos de $1"
+  },
+  "warnNoFit": {
+    "message": "Probablemente esto no cabrá en tu $1 (quedan $2)."
+  },
+  "warnMaybeFit": {
+    "message": "Es posible que esto no quepa en tu $1 (quedan $2)."
+  },
+  "ctxWorkspace": {
+    "message": "En los planes de pago, claude.ai puede colocar un archivo muy grande en un espacio de trabajo donde Claude lo lee con código en vez de todo de una vez."
+  },
+  "warnCacheCold": {
+    "message": "No has usado este chat en $1 min, la caché caducó: se volverá a contar todo el historial (~$2 tokens). Un chat nuevo puede costar mucho menos."
+  },
+  "warnCacheUnknown": {
+    "message": "Si este chat estuvo inactivo más de una hora, su historial (~$1 tokens) se volverá a contar."
+  },
+  "tipNewChat": {
+    "message": "Este chat es largo (~$1 tokens). Un chat nuevo con un breve resumen mantiene las respuestas más precisas y baratas."
+  },
+  "warnPeak": {
+    "message": "Horas punta (días laborables, $1–$2 h, tu hora): el límite de 5 horas de claude.ai se llena más rápido ahora. Conviene mover las tareas largas fuera de esa franja."
+  },
+  "recDowngrade": {
+    "message": "$1 probablemente bastaría y consumiría un $2 % menos de tu límite."
+  },
+  "recUpgrade": {
+    "message": "Parece exigente; $1 puede dar una respuesta bastante mejor."
+  },
+  "rec_short_qa": {
+    "message": "Las preguntas factuales cortas rara vez necesitan un modelo grande."
+  },
+  "rec_translate": {
+    "message": "Los modelos ligeros traducen bien."
+  },
+  "rec_rewrite": {
+    "message": "Reescribir un texto existente es una tarea ligera."
+  },
+  "rec_summarize": {
+    "message": "Resumir es un punto fuerte de los modelos más ligeros."
+  },
+  "rec_explain": {
+    "message": "Los modelos intermedios explican bien."
+  },
+  "rec_writing": {
+    "message": "Los modelos intermedios escriben bien."
+  },
+  "rec_data_analysis": {
+    "message": "Los análisis habituales encajan con un modelo intermedio."
+  },
+  "rec_file_create": {
+    "message": "Los documentos y presentaciones encajan con un modelo intermedio."
+  },
+  "rec_code_write": {
+    "message": "La programación cotidiana encaja con un modelo intermedio."
+  },
+  "rec_code_fix": {
+    "message": "La mayoría de las correcciones de errores encajan con un modelo intermedio."
+  },
+  "rec_research": {
+    "message": "La investigación de rutina encaja con un modelo intermedio."
+  },
+  "rec_math": {
+    "message": "Los problemas de rutina encajan con un modelo intermedio."
+  },
+  "rec_complex": {
+    "message": "La tarea parece compleja."
+  },
+  "rec_hardest": {
+    "message": "Es uno de los tipos de tarea más difíciles."
+  },
+  "effLower": {
+    "message": "Aquí suele bastar un esfuerzo bajo; un esfuerzo alto añade sobre todo tokens de razonamiento ocultos."
+  },
+  "effRaise": {
+    "message": "Para un problema así de difícil, un esfuerzo mayor puede valer la pena."
+  },
+  "type_short_qa": {
+    "message": "Pregunta corta"
+  },
+  "type_explain": {
+    "message": "Explicación"
+  },
+  "type_math": {
+    "message": "Resolución de problemas"
+  },
+  "type_code_write": {
+    "message": "Escribir código"
+  },
+  "type_code_fix": {
+    "message": "Depuración / código"
+  },
+  "type_translate": {
+    "message": "Traducción"
+  },
+  "type_writing": {
+    "message": "Redacción"
+  },
+  "type_rewrite": {
+    "message": "Edición de texto"
+  },
+  "type_summarize": {
+    "message": "Resumen"
+  },
+  "type_data_analysis": {
+    "message": "Análisis de datos"
+  },
+  "type_research": {
+    "message": "Investigación"
+  },
+  "type_file_create": {
+    "message": "Crear archivo"
+  },
+  "rowWeekly": {
+    "message": "Límite semanal"
+  },
+  "rowType": {
+    "message": "Tipo de solicitud"
+  },
+  "rowModel": {
+    "message": "Modelo"
+  },
+  "modelName": {
+    "message": "$1"
+  },
+  "rowInput": {
+    "message": "Entrada (nueva)"
+  },
+  "rowOutput": {
+    "message": "Respuesta esperada"
+  },
+  "rowCache": {
+    "message": "Caché"
+  },
+  "rowContext": {
+    "message": "Ventana de contexto"
+  },
+  "cache_none": {
+    "message": "chat nuevo"
+  },
+  "cache_warm": {
+    "message": "activa (historial gratis)"
+  },
+  "cache_cold": {
+    "message": "caducada (el historial cuenta)"
+  },
+  "cache_unknown": {
+    "message": "desconocida"
+  },
+  "effort_low": {
+    "message": "esfuerzo bajo"
+  },
+  "effort_medium": {
+    "message": "esfuerzo medio"
+  },
+  "effort_high": {
+    "message": "esfuerzo alto"
+  },
+  "effort_max": {
+    "message": "esfuerzo máximo"
+  },
+  "effort_off": {
+    "message": "razonamiento desactivado"
+  },
+  "effort_auto": {
+    "message": "automático"
+  },
+  "footCalibrated": {
+    "message": "Aprendido de $1 de tus mensajes · $2 % dentro del rango."
+  },
+  "footLearning": {
+    "message": "Aún aprendiendo: las estimaciones mejorarán tras unos pocos mensajes."
+  },
+  "pillIdle": {
+    "message": "Token Forecast"
+  },
+  "pillUsed": {
+    "message": "5 h: $1 usado"
+  },
+  "pillSub": {
+    "message": "del límite de 5 horas"
+  },
+  "cardTitle": {
+    "message": "Este mensaje consumirá"
+  },
+  "cardSub": {
+    "message": "de tu límite de 5 horas · rango probable $1"
+  },
+  "cardIdleSub": {
+    "message": "Parte ya usada del límite de 5 horas. Empieza a escribir para ver una estimación."
+  },
+  "close": {
+    "message": "Cerrar"
+  },
+  "notifResets": {
+    "message": "Se restablece a las $1."
+  },
+  "notifThresholdTitle": {
+    "message": "$1 al $2 %"
+  },
+  "notifThresholdBody": {
+    "message": "Planifica las tareas grandes con la previsión antes de enviar."
+  },
+  "notifThresholdBodyHigh": {
+    "message": "Casi agotado: haz primero lo importante."
+  },
+  "notifResetTitle": {
+    "message": "$1 se ha restablecido"
+  },
+  "notifResetBody": {
+    "message": "Puedes seguir donde lo dejaste."
+  },
+  "notifTestBody": {
+    "message": "Las notificaciones funcionan."
+  },
+  "freePlanWait": {
+    "message": "En el plan gratuito, el uso aparece después de que envíes tu primer mensaje en claude.ai."
+  },
+  "capTitle": {
+    "message": "Con lo que te queda"
+  },
+  "capSub": {
+    "message": "Aproximadamente una de estas tareas, en un chat nuevo con $1 (estimación prudente)."
+  },
+  "cap_short_qa": {
+    "message": "preguntas cortas"
+  },
+  "cap_explain": {
+    "message": "explicaciones"
+  },
+  "cap_code_fix": {
+    "message": "correcciones de código"
+  },
+  "cap_writing": {
+    "message": "tareas de redacción"
+  },
+  "cap_summarize": {
+    "message": "resúmenes de documentos"
+  },
+  "cap_research": {
+    "message": "tareas de investigación"
+  },
+  "calTitle": {
+    "message": "Calibración personal"
+  },
+  "calNone": {
+    "message": "Aún no hay mediciones. Cada mensaje que envías enseña a la extensión cómo se comporta realmente tu plan."
+  },
+  "calFew": {
+    "message": "$1 mediciones por ahora; con unas pocas más, las estimaciones serán más precisas."
+  },
+  "calSome": {
+    "message": "$1 mediciones · el $2 % de los valores reales estuvo dentro del rango previsto."
+  },
+  "setNotif": {
+    "message": "Notificaciones"
+  },
+  "setPanel": {
+    "message": "Mostrar la estimación en claude.ai"
+  },
+  "setMemory": {
+    "message": "Memoria de Claude (tamaño del contexto)"
+  },
+  "memAuto": {
+    "message": "Suponer activada"
+  },
+  "memOn": {
+    "message": "Activada"
+  },
+  "memOff": {
+    "message": "Desactivada"
+  },
+  "btnTestNotif": {
+    "message": "Probar notificación"
+  },
+  "btnExport": {
+    "message": "Exportar mis datos"
+  },
+  "btnResetCal": {
+    "message": "Restablecer calibración"
+  },
+  "btnResetConfirm": {
+    "message": "Haz clic de nuevo para restablecer"
+  },
+  "privacyNote": {
+    "message": "Todo se calcula en tu navegador. El texto de tus mensajes nunca sale de tu dispositivo."
+  },
+  "moreDetails": {
+    "message": "Detalles y ajustes"
+  },
+  "detailsTitle": {
+    "message": "Token Forecast – detalles"
+  },
+  "healthTitle": {
+    "message": "Comprobación del sistema"
+  },
+  "hHook": {
+    "message": "Gancho de página (ve los mensajes enviados)"
+  },
+  "hSend": {
+    "message": "Último envío detectado"
+  },
+  "hDone": {
+    "message": "Último flujo de respuesta leído"
+  },
+  "hUsage": {
+    "message": "Lectura del uso"
+  },
+  "hPage": {
+    "message": "Página: entrada / modelo / esfuerzo"
+  },
+  "hLast": {
+    "message": "Última medición"
+  },
+  "hNone": {
+    "message": "ninguna aún"
+  },
+  "hHookNoReply": {
+    "message": "sin respuesta – recarga la pestaña de claude.ai"
+  },
+  "hHookReplaced": {
+    "message": "el sitio reemplazó fetch"
+  },
+  "hProbe": {
+    "message": "los mensajes van a otra dirección"
+  },
+  "hSendWait": {
+    "message": "aún no se ha enviado ningún mensaje o no se detectó"
+  },
+  "hSseYes": {
+    "message": "flujo correcto"
+  },
+  "hSseNo": {
+    "message": "flujo leído, pero sin datos de uso"
+  },
+  "hCopyLog": {
+    "message": "Copiar registro"
+  },
+  "hCopied": {
+    "message": "Copiado"
+  },
+  "hLogTitle": {
+    "message": "Registro de mediciones"
+  },
+  "hHint": {
+    "message": "Si alguna línea muestra un problema, copia el registro y envíaselo al desarrollador."
+  },
+  "hDomPath": {
+    "message": "detectado desde la página (vía alternativa)"
+  },
+  "advSave": {
+    "message": "$1 basta para esta tarea"
+  },
+  "advSaveDetail": {
+    "message": "Este mensaje consume aproximadamente $1 de tu límite; con $2 sería aproximadamente $3 ($4 % de ahorro)."
+  },
+  "advSaveNext": {
+    "message": "$1 basta para tareas así, pero no cambies en este chat"
+  },
+  "advSaveNextDetail": {
+    "message": "El historial del chat ($1 tokens) no está en la caché del nuevo modelo y se releería, así que este mensaje costaría más. Elige $2 cuando abras tu próximo chat nuevo."
+  },
+  "advUpgrade": {
+    "message": "Esto podría ser difícil para $1: se recomienda $2"
+  },
+  "advUpgradeDetail": {
+    "message": "$1 consume tu límite unas $2× más rápido. Si prefieres probar primero $3, cambia si la respuesta no basta."
+  },
+  "advOk": {
+    "message": "$1 es adecuado para esta tarea"
+  },
+  "advOkTiny": {
+    "message": "$1 también bastaría, pero la diferencia es mínima ($2 de tu límite)."
+  },
+  "advWhy": {
+    "message": "¿Por qué?"
+  },
+  "advHide": {
+    "message": "Ocultar"
+  },
+  "advDetected": {
+    "message": "Tarea detectada"
+  },
+  "advSignals": {
+    "message": "Pistas que vi"
+  },
+  "advBasis": {
+    "message": "Base"
+  },
+  "advWhen": {
+    "message": "Cuándo cambiar"
+  },
+  "advDetectedVal": {
+    "message": "$1 · $2 · $3"
+  },
+  "level_low": {
+    "message": "ligera"
+  },
+  "level_mid": {
+    "message": "media"
+  },
+  "level_high": {
+    "message": "difícil"
+  },
+  "ev_trigger": {
+    "message": "la expresión $1"
+  },
+  "ev_hard": {
+    "message": "pistas de dificultad: $1"
+  },
+  "ev_code": {
+    "message": "bloque de código / líneas de código"
+  },
+  "ev_attach": {
+    "message": "adjunto: $1 tokens"
+  },
+  "ev_bullets": {
+    "message": "solicitud con $1 puntos"
+  },
+  "ev_long": {
+    "message": "se pide una respuesta detallada"
+  },
+  "ev_short": {
+    "message": "se pide una respuesta corta"
+  },
+  "ev_words": {
+    "message": "$1 palabras"
+  },
+  "why_simple_task": {
+    "message": "Tarea simple y clara; el clasificador está seguro."
+  },
+  "why_unsure_safe": {
+    "message": "No estoy seguro del tipo de tarea, así que voy a lo seguro y recomiendo al menos Sonnet."
+  },
+  "why_complex": {
+    "message": "Alta complejidad."
+  },
+  "why_hardest": {
+    "message": "Una demostración, un diseño o una investigación muy difíciles."
+  },
+  "why_pref_floor": {
+    "message": "Según tus comentarios, elijo un modelo más potente para este tipo de tareas."
+  },
+  "why_pref_ceil": {
+    "message": "Según tus comentarios, no te empujo hacia un modelo más potente para este tipo de tareas."
+  },
+  "basis_haiku": {
+    "message": "Anthropic presenta Haiku 5.5 como el modelo de «menor latencia y menor precio», para tareas simples de alto volumen y subagentes."
+  },
+  "basis_sonnet": {
+    "message": "Según Anthropic, Sonnet 5.5 ofrece «velocidad y rendimiento para el trabajo diario»: generación de código, análisis de datos, creación de contenido."
+  },
+  "basis_opus": {
+    "message": "Anthropic recomienda Opus 5.5 para programación compleja y tareas empresariales: grandes refactorizaciones, ingeniería de sistemas, agentes de varias horas."
+  },
+  "basis_fable": {
+    "message": "Fable 5.1 es «el mayor rendimiento disponible»: sesiones de agentes de varias horas, investigación profunda en varios pasos."
+  },
+  "tbasis_short_qa": {
+    "message": "Las preguntas factuales de respuesta única necesitan respuestas cortas; los modelos ligeros lo hacen bien. Las preguntas sobre personas o hechos pueden inventarse: verifica si es importante."
+  },
+  "tbasis_translate": {
+    "message": "En la traducción el texto ya existe; el modelo conserva el significado y cambia de idioma. Los modelos ligeros lo hacen bien."
+  },
+  "tbasis_rewrite": {
+    "message": "Al reescribir o simplificar, el contenido está dado; el modelo solo mejora la forma."
+  },
+  "tbasis_summarize": {
+    "message": "En un resumen la información está en el texto; para textos cortos basta un modelo ligero, para documentos largos o técnicos uno intermedio es más seguro."
+  },
+  "tbasis_explain": {
+    "message": "Explicar un concepto requiere precisión y buenos ejemplos; normalmente basta un modelo intermedio, y Opus ayuda en temas avanzados."
+  },
+  "tbasis_writing": {
+    "message": "Para textos y correos, un modelo intermedio capta bien el tono y la fluidez."
+  },
+  "tbasis_data_analysis": {
+    "message": "El análisis de datos mezcla cálculo e interpretación; normalmente basta un modelo intermedio."
+  },
+  "tbasis_file_create": {
+    "message": "Crear archivos o presentaciones es un trabajo de varios pasos; normalmente basta un modelo intermedio, y Opus para documentos largos."
+  },
+  "tbasis_code_write": {
+    "message": "Sonnet es fuerte en la programación cotidiana; se recomienda Opus para arquitectura y trabajo en varios archivos."
+  },
+  "tbasis_code_fix": {
+    "message": "Sonnet resuelve errores en un solo archivo; Opus los errores difíciles o que afectan a todo el sistema."
+  },
+  "tbasis_research": {
+    "message": "Investigar es encontrar y combinar fuentes; Opus o Fable para investigación profunda en varios pasos."
+  },
+  "tbasis_math": {
+    "message": "Los cálculos y problemas estándar encajan con un modelo intermedio; las demostraciones y derivaciones largas con Opus o Fable."
+  },
+  "when_haiku": {
+    "message": "Cambia a Sonnet si la respuesta es superficial o errónea."
+  },
+  "when_sonnet": {
+    "message": "Cambia a Opus si la respuesta no basta o la tarea crece."
+  },
+  "when_opus": {
+    "message": "Usa Fable para agentes de varias horas o cuando Opus no baste."
+  },
+  "when_fable": {
+    "message": "Fable es el modelo más potente y caro; úsalo solo para tareas realmente difíciles."
+  },
+  "advCaveat": {
+    "message": "Esta sugerencia es una estimación basada en reglas y un pequeño modelo de aprendizaje que se ejecuta en tu dispositivo; no se ha medido la calidad de las respuestas. Tus comentarios y correcciones la ajustan a ti."
+  },
+  "advFbQ": {
+    "message": "¿Fue correcta esta sugerencia?"
+  },
+  "advFbGood": {
+    "message": "👍 Correcta"
+  },
+  "advFbBad": {
+    "message": "👎 Incorrecta"
+  },
+  "advFbThanks": {
+    "message": "Gracias, guardado."
+  },
+  "advSource": {
+    "message": "Fuente: la guía de elección de modelo de Anthropic"
+  },
+  "setAdvisor": {
+    "message": "Mostrar la sugerencia de modelo"
+  },
+  "btnImport": {
+    "message": "Importar mis datos"
+  },
+  "btnImportConfirm": {
+    "message": "Sí, restaurar la copia"
+  },
+  "importReady": {
+    "message": "Copia leída: $1 mediciones ($2). Sustituirá lo aprendido actualmente; pulsa de nuevo el botón para confirmar."
+  },
+  "importDone": {
+    "message": "Copia restaurada: se recuperaron $1 mediciones."
+  },
+  "importBad": {
+    "message": "Este archivo no es una copia de seguridad válida de Token Forecast."
+  },
+  "supportLink": {
+    "message": "Apoyar el proyecto ☕"
+  },
+  "cacheWarmLeft": {
+    "message": "caliente · historial gratis $1 min más"
+  },
+  "cacheColdAgo": {
+    "message": "frío (último mensaje hace $1) · se releerá el historial"
+  },
+  "tipHandoff": {
+    "message": "Este chat es largo ($1 tokens) y crece con cada mensaje. Para pasar a un chat nuevo, puedes pedirle a Claude un breve resumen de traspaso."
+  },
+  "tipHandoffWarm": {
+    "message": "Este chat es largo ($1 tokens). Pedir un resumen de traspaso es barato mientras la caché está caliente; pégalo en un chat nuevo y continúa allí."
+  },
+  "btnHandoff": {
+    "message": "Copiar el prompt de traspaso"
+  },
+  "handoffPrompt": {
+    "message": "Voy a trasladar esta conversación a un chat nuevo. Escribe un breve resumen de traspaso: objetivo, decisiones tomadas hasta ahora, detalles importantes (nombres de archivos, cifras, fragmentos de código), preguntas abiertas y siguiente paso. Debe poder pegarse directamente en un chat nuevo, máximo 300 palabras."
+  },
+  "peakLeft": {
+    "message": "Termina en $1."
+  },
+  "warnSurprise": {
+    "message": "Tu último mensaje consumió más de lo esperado: $1 (estimación $2). Posibles causas: $3."
+  },
+  "cr_cold": {
+    "message": "escribiste tras una pausa larga, así que se releyó el historial"
+  },
+  "cr_long_chat": {
+    "message": "el chat es muy largo"
+  },
+  "cr_peak": {
+    "message": "horas punta"
+  },
+  "cr_effort": {
+    "message": "esfuerzo alto (razonamiento oculto)"
+  },
+  "cr_long_answer": {
+    "message": "la respuesta fue más larga de lo esperado"
+  },
+  "cr_big_model": {
+    "message": "modelo grande"
+  },
+  "cr_elsewhere": {
+    "message": "la misma cuenta pudo usarse en otra pestaña, en otro dispositivo o en Claude Code"
+  },
+  "bdTitle": {
+    "message": "De dónde viene el coste (estimación)"
+  },
+  "bd_output": {
+    "message": "Respuesta"
+  },
+  "bd_thinking": {
+    "message": "Razonamiento"
+  },
+  "bd_input": {
+    "message": "Mensaje y archivos"
+  },
+  "bd_history": {
+    "message": "Historial"
+  },
+  "bd_tool": {
+    "message": "Herramientas"
+  },
+  "wkNotifTitle": {
+    "message": "Tu informe semanal está listo"
+  },
+  "wkNotifMsgs": {
+    "message": "$1 mensajes"
+  },
+  "wkNotifSpent": {
+    "message": "$1 límites completos de 5 horas"
+  },
+  "wkNotifPeak": {
+    "message": "el $1 % de ellos en horas punta"
+  },
+  "rpTitle": {
+    "message": "Informe semanal"
+  },
+  "rpRange": {
+    "message": "Últimos 7 días · $1 – $2"
+  },
+  "rpMsgs": {
+    "message": "Mensajes"
+  },
+  "rpChats": {
+    "message": "en $1 chats"
+  },
+  "rpChangeUp": {
+    "message": "$1 % más que la semana pasada"
+  },
+  "rpChangeDown": {
+    "message": "$1 % menos que la semana pasada"
+  },
+  "rpChangeSame": {
+    "message": "igual que la semana pasada"
+  },
+  "rpChangeNone": {
+    "message": "sin registros la semana pasada"
+  },
+  "rpSpent": {
+    "message": "Límite de 5 horas consumido"
+  },
+  "rpSessions": {
+    "message": "$1 límites"
+  },
+  "rpSpentSub": {
+    "message": "$1 de límites de 5 horas en total"
+  },
+  "rpPeak": {
+    "message": "En horas punta"
+  },
+  "rpPeakSub": {
+    "message": "$1 de los mensajes"
+  },
+  "rpSave": {
+    "message": "Ahorro perdido"
+  },
+  "rpSaveSub": {
+    "message": "en $1 mensajes habría bastado un modelo más ligero"
+  },
+  "rpSaveNone": {
+    "message": "seguiste las sugerencias"
+  },
+  "rpTips": {
+    "message": "Mis sugerencias"
+  },
+  "tip_peak": {
+    "message": "El $1 % de tu uso fue en horas punta ($2, días laborables). Entonces el límite de 5 horas de claude.ai se llena más rápido; si mueves las tareas largas fuera de esa franja, haces el mismo trabajo con menos límite."
+  },
+  "tip_cold": {
+    "message": "$1 mensajes se enviaron en un chat largo tras una pausa de más de una hora, así que cada vez se releyó todo el historial (el $2 % de tu uso). Tras una pausa, un chat nuevo o un resumen de traspaso es más barato."
+  },
+  "tip_advice": {
+    "message": "En $2 mensajes habría bastado un modelo más ligero. Si hubieras seguido las sugerencias, habrías ahorrado aproximadamente $1 de un límite de sesión."
+  },
+  "tip_long": {
+    "message": "$1 mensajes se enviaron en chats de más de 100 000 tokens. Un contexto tan largo pesa en el límite y en la calidad de las respuestas; ayudan los chats nuevos para temas nuevos."
+  },
+  "tip_effort": {
+    "message": "En $1 tareas simples (traducción, preguntas cortas) el esfuerzo de razonamiento estaba alto. Un esfuerzo bajo da el mismo resultado por menos."
+  },
+  "tip_upgrade": {
+    "message": "Se sugirió un modelo más potente para $1 mensajes. Si las respuestas no bastaban, es más barato empezar esas tareas directamente con el modelo más potente que repetir la pregunta una y otra vez."
+  },
+  "tip_good": {
+    "message": "Tu uso parece equilibrado esta semana: ningún problema claro de horas punta, chats largos o modelos sobredimensionados."
+  },
+  "rpByModel": {
+    "message": "Modelos (por uso)"
+  },
+  "rpByType": {
+    "message": "Tipos de tarea (por uso)"
+  },
+  "rpHeat": {
+    "message": "¿Cuándo escribes? (últimas 4 semanas, tu hora)"
+  },
+  "rpHeatPeak": {
+    "message": "Casillas con borde: horas punta"
+  },
+  "rpTop": {
+    "message": "Mensajes más costosos"
+  },
+  "rpMeasured": {
+    "message": "medido"
+  },
+  "rpEstimated": {
+    "message": "estimado"
+  },
+  "rpAcc": {
+    "message": "Precisión de la previsión"
+  },
+  "rpAccVal": {
+    "message": "$2 de $1 mensajes medidos estuvieron dentro del rango previsto."
+  },
+  "rpAccNone": {
+    "message": "Esta semana no hay mensajes medidos; los valores son estimaciones."
+  },
+  "rpMeasuredShare": {
+    "message": "$1 de los valores se midieron; el resto son estimaciones hechas al enviar."
+  },
+  "rpCsv": {
+    "message": "Descargar CSV"
+  },
+  "rpPrivacy": {
+    "message": "Este informe se calcula solo en este navegador, a partir de registros sin texto de mensajes."
+  },
+  "rpOpen": {
+    "message": "Informe semanal"
+  },
+  "rpWeekLine": {
+    "message": "Últimos 7 días: $1 mensajes · $2 límites completos de 5 horas"
+  },
+  "rpDays": {
+    "message": "Lun,Mar,Mié,Jue,Vie,Sáb,Dom"
+  },
+  "rpNoData": {
+    "message": "Aún no hay suficientes registros para un informe. Tras unos días en claude.ai, esta página se llenará."
+  },
+  "rpOther": {
+    "message": "Otros"
+  },
+  "setWeekly": {
+    "message": "Notificación del informe semanal el lunes por la mañana"
+  },
+  "burnEta": {
+    "message": "Al ritmo de la última hora, se llenará hacia las $1 (restablecimiento $2)."
+  },
+  "burnSafe": {
+    "message": "A este ritmo no se llenará antes del restablecimiento."
+  },
+  "burnIdle": {
+    "message": "Sin uso notable en la última hora."
+  },
+  "rpBack": {
+    "message": "Detalles y ajustes"
+  },
+  "advRelabel": {
+    "message": "¿Tipo de tarea incorrecto? Elige el correcto:"
+  },
+  "advRelabelThanks": {
+    "message": "Gracias – aprendo de ello en este dispositivo."
+  },
+  "ev_ml": {
+    "message": "modelo de aprendizaje seguro al $1 %"
+  },
+  "comTitle": {
+    "message": "Contribuir a la comunidad (opcional)"
+  },
+  "comText": {
+    "message": "Si compartes lo aprendido en este dispositivo, las previsiones serán precisas desde el principio para los nuevos usuarios. El resumen no contiene texto de mensajes, nombres de chats, fechas ni datos de la cuenta. Ves el contenido antes de enviarlo; nada se envía automáticamente."
+  },
+  "comBuild": {
+    "message": "Mostrar el resumen de contribución"
+  },
+  "comCopy": {
+    "message": "Copiar y abrir el formulario"
+  },
+  "comCopyOnly": {
+    "message": "Copiar"
+  },
+  "comCopied": {
+    "message": "Copiado. Pégalo en el campo del formulario abierto y envíalo."
+  },
+  "comNoUrl": {
+    "message": "Copiado. El formulario de la comunidad se abrirá pronto; mientras tanto puedes conservar el texto."
+  },
+  "comEmpty": {
+    "message": "Aún no hay nada que compartir. Inténtalo tras enviar unos mensajes."
+  },
+  "feedbackLink": {
+    "message": "Enviar comentarios o una sugerencia"
+  },
+  "rpOpenBtn": {
+    "message": "Abrir informe →"
+  },
+  "rpWeekLinePct": {
+    "message": "Últimos 7 días: $1 mensajes · $2 de los límites de 5 horas usados en total"
+  },
+  "rpSpentSmall": {
+    "message": "en total (1 límite completo = 100 %)"
+  },
+  "rowDomain": {
+    "message": "Tema"
+  },
+  "dom_science": {
+    "message": "Ciencias"
+  },
+  "dom_math": {
+    "message": "Matemáticas"
+  },
+  "dom_engineering": {
+    "message": "Ingeniería"
+  },
+  "dom_software": {
+    "message": "Software"
+  },
+  "dom_data_ai": {
+    "message": "Datos e IA"
+  },
+  "dom_academic": {
+    "message": "Escritura académica"
+  },
+  "dom_project": {
+    "message": "Proyectos y planificación"
+  },
+  "dom_literature": {
+    "message": "Literatura y escritura creativa"
+  },
+  "dom_business": {
+    "message": "Negocios y carrera"
+  },
+  "dom_finance": {
+    "message": "Economía y finanzas"
+  },
+  "dom_law": {
+    "message": "Derecho"
+  },
+  "dom_health": {
+    "message": "Salud"
+  },
+  "dom_education": {
+    "message": "Estudios y exámenes"
+  },
+  "dom_language": {
+    "message": "Idiomas"
+  },
+  "dom_humanities": {
+    "message": "Historia, filosofía y sociedad"
+  },
+  "dom_daily": {
+    "message": "Vida diaria"
+  },
+  "dom_general": {
+    "message": "General"
+  },
+  "sub_science_physics": {
+    "message": "Física"
+  },
+  "sub_science_chemistry": {
+    "message": "Química"
+  },
+  "sub_science_biology": {
+    "message": "Biología"
+  },
+  "sub_science_astronomy": {
+    "message": "Astronomía"
+  },
+  "sub_science_earth": {
+    "message": "Ciencias de la Tierra"
+  },
+  "sub_math_pure": {
+    "message": "Álgebra y análisis"
+  },
+  "sub_math_statistics": {
+    "message": "Estadística"
+  },
+  "sub_engineering_electrical": {
+    "message": "Electricidad y electrónica"
+  },
+  "sub_engineering_mechanical": {
+    "message": "Ingeniería mecánica"
+  },
+  "sub_engineering_civil": {
+    "message": "Ingeniería civil"
+  },
+  "sub_engineering_control": {
+    "message": "Control e industria"
+  },
+  "sub_software_web": {
+    "message": "Web"
+  },
+  "sub_software_mobile": {
+    "message": "Móvil"
+  },
+  "sub_software_systems": {
+    "message": "Sistemas y bases de datos"
+  },
+  "sub_software_general": {
+    "message": "Programación"
+  },
+  "sub_data_ai_ml": {
+    "message": "Aprendizaje automático"
+  },
+  "sub_data_ai_llm": {
+    "message": "Modelos de lenguaje"
+  },
+  "sub_data_ai_data": {
+    "message": "Análisis de datos"
+  },
+  "sub_academic_paper": {
+    "message": "Artículo científico"
+  },
+  "sub_academic_thesis": {
+    "message": "Tesis"
+  },
+  "sub_academic_grant": {
+    "message": "Becas y solicitudes"
+  },
+  "sub_project_planning": {
+    "message": "Planificación"
+  },
+  "sub_project_agile": {
+    "message": "Ágil"
+  },
+  "sub_project_startup": {
+    "message": "Startup"
+  },
+  "sub_literature_poetry": {
+    "message": "Poesía"
+  },
+  "sub_literature_fiction": {
+    "message": "Ficción"
+  },
+  "sub_literature_analysis": {
+    "message": "Análisis literario"
+  },
+  "sub_literature_screen": {
+    "message": "Cine y teatro"
+  },
+  "sub_business_career": {
+    "message": "Carrera"
+  },
+  "sub_business_marketing": {
+    "message": "Marketing"
+  },
+  "sub_business_management": {
+    "message": "Gestión"
+  },
+  "sub_finance_investing": {
+    "message": "Inversión"
+  },
+  "sub_finance_personal": {
+    "message": "Finanzas personales"
+  },
+  "sub_finance_accounting": {
+    "message": "Contabilidad e impuestos"
+  },
+  "sub_finance_economics": {
+    "message": "Economía"
+  },
+  "sub_law_contract": {
+    "message": "Contratos"
+  },
+  "sub_law_civil": {
+    "message": "Derecho general"
+  },
+  "sub_law_privacy": {
+    "message": "Privacidad de datos"
+  },
+  "sub_law_ip": {
+    "message": "Propiedad intelectual"
+  },
+  "sub_health_medical": {
+    "message": "Medicina"
+  },
+  "sub_health_nutrition": {
+    "message": "Nutrición"
+  },
+  "sub_health_fitness": {
+    "message": "Ejercicio físico"
+  },
+  "sub_health_mental": {
+    "message": "Salud mental"
+  },
+  "sub_education_exam": {
+    "message": "Exámenes"
+  },
+  "sub_education_homework": {
+    "message": "Deberes"
+  },
+  "sub_education_teaching": {
+    "message": "Enseñanza"
+  },
+  "sub_language_grammar": {
+    "message": "Gramática"
+  },
+  "sub_language_learning": {
+    "message": "Aprendizaje de idiomas"
+  },
+  "sub_language_translation": {
+    "message": "Traducción"
+  },
+  "sub_humanities_history": {
+    "message": "Historia"
+  },
+  "sub_humanities_philosophy": {
+    "message": "Filosofía"
+  },
+  "sub_humanities_society": {
+    "message": "Sociedad"
+  },
+  "sub_humanities_psychology": {
+    "message": "Psicología"
+  },
+  "sub_daily_food": {
+    "message": "Comida"
+  },
+  "sub_daily_travel": {
+    "message": "Viajes"
+  },
+  "sub_daily_home": {
+    "message": "Hogar"
+  },
+  "sub_daily_fun": {
+    "message": "Ocio"
+  },
+  "sub_daily_people": {
+    "message": "Relaciones"
+  },
+  "dbasis_science": {
+    "message": "En ciencias importan la precisión y la coherencia; las explicaciones detalladas reciben un nivel más de esfuerzo."
+  },
+  "dbasis_math": {
+    "message": "Las matemáticas requieren razonar paso a paso; las demostraciones y derivaciones reciben al menos esfuerzo alto."
+  },
+  "dbasis_engineering": {
+    "message": "Los errores en cálculos de ingeniería son caros; las tareas de diseño y cálculo reciben un nivel más de esfuerzo."
+  },
+  "dbasis_software": {
+    "message": "El esfuerzo sube con la complejidad del código; para programación difícil con Opus, Anthropic aconseja probar primero «Muy alto»."
+  },
+  "dbasis_data_ai": {
+    "message": "Las tareas de datos e IA suelen requerir un razonamiento moderado."
+  },
+  "dbasis_academic": {
+    "message": "En la escritura académica importa la coherencia; las revisiones suelen pedir poco esfuerzo, las revisiones bibliográficas y los métodos más."
+  },
+  "dbasis_project": {
+    "message": "Anthropic recomienda subir el esfuerzo en la planificación de proyectos; la planificación recibe al menos esfuerzo medio."
+  },
+  "dbasis_literature": {
+    "message": "Pensar mucho rara vez mejora la escritura creativa; el esfuerzo se limita a medio."
+  },
+  "dbasis_business": {
+    "message": "La escritura profesional suele ser rutinaria; basta el ajuste predeterminado o uno más ligero."
+  },
+  "dbasis_finance": {
+    "message": "Un mal consejo de dinero puede perjudicar: sin modelo ligero, esfuerzo al menos medio."
+  },
+  "dbasis_law": {
+    "message": "Una información legal errónea puede perjudicar: sin modelo ligero, esfuerzo al menos medio. Para decisiones importantes, consulta a un abogado."
+  },
+  "dbasis_health": {
+    "message": "Una información de salud errónea puede perjudicar: sin modelo ligero, esfuerzo al menos medio. En una urgencia, acude a un médico."
+  },
+  "dbasis_education": {
+    "message": "Las tareas de estudio son sobre todo explicaciones; el esfuerzo sube con la dificultad."
+  },
+  "dbasis_language": {
+    "message": "Las tareas de idiomas (traducción, gramática) suelen ser ligeras; basta un nivel menos de esfuerzo."
+  },
+  "dbasis_humanities": {
+    "message": "Las explicaciones de historia y filosofía requieren un razonamiento moderado."
+  },
+  "dbasis_daily": {
+    "message": "Las tareas cotidianas son ligeras; basta un nivel menos de esfuerzo."
+  },
+  "dbasis_general": {
+    "message": ""
+  },
+  "eff_low": {
+    "message": "Bajo"
+  },
+  "eff_medium": {
+    "message": "Medio"
+  },
+  "eff_high": {
+    "message": "Alto"
+  },
+  "eff_xhigh": {
+    "message": "Muy alto"
+  },
+  "eff_max": {
+    "message": "Máximo"
+  },
+  "effort_xhigh": {
+    "message": "esfuerzo muy alto"
+  },
+  "effDefaultMark": {
+    "message": "(predeterminado)"
+  },
+  "effLowerX": {
+    "message": "Con esfuerzo $1 ahorras aproximadamente $2 del límite en este mensaje."
+  },
+  "effAssumedNote": {
+    "message": "(No se pudo leer el ajuste de esfuerzo en la página; se supuso el valor predeterminado del modelo, $1.)"
+  },
+  "effRaiseX": {
+    "message": "Con esfuerzo $1 podrías obtener una respuesta más fiable para esta tarea."
+  },
+  "advEffWith": {
+    "message": "Esfuerzo: $1"
+  },
+  "advEffLowerTitle": {
+    "message": "Pon el esfuerzo en $1: ≈ $2 menos"
+  },
+  "advEffLowerDetail": {
+    "message": "Ahora: $1. Para este tipo de tarea, el esfuerzo $2 suele dar la misma respuesta; menos razonamiento oculto reduce el coste de este mensaje en torno al $3 %."
+  },
+  "advEffRaiseTitle": {
+    "message": "Pon el esfuerzo en $1 para esta tarea"
+  },
+  "advEffRaiseDetail": {
+    "message": "Ahora: $1. Esta tarea requiere pensar a fondo; el esfuerzo $2 da una respuesta más fiable, pero este mensaje costará aproximadamente un $3 % más. Una respuesta floja obliga a preguntar de nuevo, y eso cuesta más."
+  },
+  "advEffAlsoLower": {
+    "message": "El esfuerzo $1 también basta."
+  },
+  "advDomain": {
+    "message": "Tema"
+  },
+  "advEffort": {
+    "message": "Sugerencia de esfuerzo"
+  },
+  "advEffortVal": {
+    "message": "Sugiero $1."
+  },
+  "advEffForModel": {
+    "message": "(para $1)"
+  },
+  "advEffNow": {
+    "message": "Ahora: $1."
+  },
+  "advFbQEff": {
+    "message": "¿Fue correcta esta sugerencia de esfuerzo?"
+  },
+  "effBasis": {
+    "message": "Base del esfuerzo: según Anthropic, Bajo y Medio estiran el uso en tareas rutinarias, Alto es el mejor equilibrio, Muy alto es para programación larga y trabajo de agentes, Máximo para el razonamiento más profundo."
+  },
+  "ev_domain": {
+    "message": "palabras del tema: $1"
+  },
+  "why_stakes": {
+    "message": "En temas de alto riesgo (salud, derecho, dinero) no sugiero un modelo ligero."
+  },
+  "ewhy_e_light_type": {
+    "message": "tipo de tarea ligero"
+  },
+  "ewhy_e_mid_type": {
+    "message": "tarea media"
+  },
+  "ewhy_e_deep_type": {
+    "message": "tarea de razonamiento profundo"
+  },
+  "ewhy_e_big_doc": {
+    "message": "documento grande"
+  },
+  "ewhy_e_stakes": {
+    "message": "riesgo alto: al menos medio"
+  },
+  "ewhy_e_depth": {
+    "message": "profundidad científica/técnica"
+  },
+  "ewhy_e_plan": {
+    "message": "tarea de planificación"
+  },
+  "ewhy_e_complex": {
+    "message": "solicitud compleja"
+  },
+  "ewhy_e_hardest": {
+    "message": "problema muy difícil"
+  },
+  "ewhy_e_proof": {
+    "message": "demostración/derivación"
+  },
+  "ewhy_e_creative": {
+    "message": "escritura creativa: limitada a medio"
+  },
+  "ewhy_e_light_domain": {
+    "message": "tarea cotidiana/de idiomas"
+  },
+  "ewhy_e_short": {
+    "message": "se pidió respuesta corta"
+  },
+  "ewhy_e_pref": {
+    "message": "tus comentarios"
+  },
+  "ewhy_e_long_code": {
+    "message": "programación difícil: Muy alto"
+  },
+  "rpByDomain": {
+    "message": "Temas (por consumo)"
+  },
+  "rpByEffort": {
+    "message": "Ajustes de esfuerzo (por consumo)"
+  },
+  "rpDomainNote": {
+    "message": "El tema se estima en tu dispositivo a partir de las palabras del mensaje; no se guarda ningún texto."
+  },
+  "tip_effort_over": {
+    "message": "En $1 mensajes el esfuerzo superó la sugerencia. El ajuste sugerido habría consumido aproximadamente $2 menos del límite."
+  },
+  "tip_domain_save": {
+    "message": "El mayor potencial de ahorro está en $1: en $2 mensajes habría bastado un modelo más ligero."
+  },
+  "tip_domain_stakes": {
+    "message": "$1 mensajes trataban de salud, derecho o dinero. Ahí no sugiero ni un modelo ligero ni un esfuerzo bajo; para decisiones importantes, consulta también a un profesional."
+  },
+  "pillDragTitle": {
+    "message": "Arrastra para mover"
+  },
+  "pillReset": {
+    "message": "Restablecer la posición de la píldora"
+  },
+  "rpEffOver": {
+    "message": "En $1 mensajes el esfuerzo superó la sugerencia (ahorro perdido ≈ $2)."
+  },
+  "rpEffOk": {
+    "message": "Tus ajustes de esfuerzo coinciden con las sugerencias."
+  },
+  "rpLearn": {
+    "message": "Prueba de aprendizaje"
+  },
+  "rpLearnFew": {
+    "message": "$1 mensajes medidos por ahora. Cada 10 mediciones forman una barra; la tendencia aparece a partir de 30 (faltan unos $2 mensajes)."
+  },
+  "rpLearnBetter": {
+    "message": "En las primeras mediciones el límite total previsto se desviaba un factor de $1; en las últimas, de $2. La extensión te va conociendo."
+  },
+  "rpLearnSame": {
+    "message": "El error de previsión es de $1× en las primeras mediciones y de $2× en las últimas: sin cambio claro. Si ya era preciso, es lo esperable."
+  },
+  "rpLearnWorse": {
+    "message": "Las últimas mediciones se desvían más ($2×) que las primeras ($1×). Usar la misma cuenta en otro dispositivo o en Claude Code perturba la medición; prueba a restablecer la calibración."
+  },
+  "rpLearnRange": {
+    "message": "Dentro del rango previsto: $1 en las primeras mediciones, $2 en las últimas (objetivo en torno al 80 %)."
+  },
+  "rpLearnBar": {
+    "message": "Mediciones $1–$2: $3×"
+  },
+  "rpLearnNote": {
+    "message": "Cada barra son 10 mensajes medidos consecutivos. Muestra cuánto se desvió el límite total previsto del realmente consumido (1,00 = perfecto). Los porcentajes se redondean a enteros, por eso se usan totales de 10 mensajes en lugar de mensajes sueltos."
+  },
+  "setEffortAdvice": {
+    "message": "Mostrar la sugerencia de esfuerzo"
+  },
+  "setTips": {
+    "message": "Mostrar consejos (caché, horas punta, chats largos, resumen de traspaso)"
+  },
+  "setExplain": {
+    "message": "Mostrar la explicación «¿Por qué costó tanto?»"
+  },
+  "setView": {
+    "message": "Vista"
+  },
+  "viewFull": {
+    "message": "Completa: previsión y todas las sugerencias"
+  },
+  "viewSimple": {
+    "message": "Simple: solo previsión y avisos de límite"
+  },
+  "viewCustom": {
+    "message": "Personalizada (elige abajo)"
+  },
+  "viewNote": {
+    "message": "La vista simple oculta las sugerencias de modelo y esfuerzo, los consejos y las explicaciones de coste. La previsión y los avisos de límite y contexto siempre se muestran."
+  },
+  "warnLangLimited": {
+    "message": "El análisis del mensaje (tipo de tarea, tema, sugerencia de modelo y de esfuerzo) por ahora solo funciona con mensajes en turco e inglés. En este idioma obtienes la previsión de tokens y de límite, pero no sugerencias."
+  },
+  "typeNA": {
+    "message": "No analizado en este idioma"
+  }
+}

@@ -1,0 +1,1446 @@
+{
+  "extName": {
+    "message": "Token Forecast für Claude"
+  },
+  "extShortName": {
+    "message": "Token Forecast"
+  },
+  "extDescription": {
+    "message": "Schätzt vor dem Senden, wie viel deines Claude-Limits eine Nachricht verbraucht, und empfiehlt bei Bedarf ein günstigeres Modell."
+  },
+  "popupTitle": {
+    "message": "Token Forecast"
+  },
+  "sessionLimit": {
+    "message": "5-Stunden-Sitzung"
+  },
+  "weeklyLimit": {
+    "message": "Wochenlimit"
+  },
+  "resetsAt": {
+    "message": "Wird um $TIME$ zurückgesetzt",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "noData": {
+    "message": "Noch keine Nutzungsdaten. Öffne claude.ai, während du angemeldet bist."
+  },
+  "settings": {
+    "message": "Einstellungen"
+  },
+  "language": {
+    "message": "Sprache"
+  },
+  "languageAuto": {
+    "message": "Browser-Standard"
+  },
+  "thresholds": {
+    "message": "Warnschwellen"
+  },
+  "panelEstimate": {
+    "message": "Geschätzter Verbrauch: $LOW$–$HIGH$ % deiner Sitzung",
+    "placeholders": {
+      "low": {
+        "content": "$1"
+      },
+      "high": {
+        "content": "$2"
+      }
+    }
+  },
+  "confidenceLow": {
+    "message": "Sicherheit: niedrig"
+  },
+  "confidenceMedium": {
+    "message": "Sicherheit: mittel"
+  },
+  "confidenceHigh": {
+    "message": "Sicherheit: hoch"
+  },
+  "panelLoading": {
+    "message": "Schätze…"
+  },
+  "pct": {
+    "message": "$1 %"
+  },
+  "resetsIn": {
+    "message": "Wird in $1 zurückgesetzt ($2)"
+  },
+  "durDH": {
+    "message": "$1 T $2 Std."
+  },
+  "durHM": {
+    "message": "$1 Std. $2 Min."
+  },
+  "durM": {
+    "message": "$1 Min."
+  },
+  "bottleneck": {
+    "message": "Dieses Limit ist zuerst aufgebraucht"
+  },
+  "fetchError": {
+    "message": "Nutzung konnte nicht gelesen werden. Prüfe, ob du bei claude.ai angemeldet bist."
+  },
+  "otherLimits": {
+    "message": "Weitere Limits"
+  },
+  "updatedJustNow": {
+    "message": "Gerade aktualisiert"
+  },
+  "updatedAgo": {
+    "message": "Vor $1 aktualisiert"
+  },
+  "staleWarning": {
+    "message": "letzte Aktualisierung fehlgeschlagen"
+  },
+  "refresh": {
+    "message": "Aktualisieren"
+  },
+  "dbgPrompt": {
+    "message": "Prompt"
+  },
+  "dbgHistory": {
+    "message": "Unterhaltung"
+  },
+  "dbgMessages": {
+    "message": "$1 Nachrichten"
+  },
+  "dbgNotFound": {
+    "message": "nicht erkannt"
+  },
+  "dbgAttachments": {
+    "message": "Anhänge"
+  },
+  "dbgTotal": {
+    "message": "Eingabe gesamt"
+  },
+  "dbgTokens": {
+    "message": "Tokens"
+  },
+  "dbgNoInput": {
+    "message": "Nachrichtenfeld nicht gefunden"
+  },
+  "dbgAnalyzing": {
+    "message": "analysiere…"
+  },
+  "dbgPasted": {
+    "message": "eingefügter Text"
+  },
+  "dbgPages": {
+    "message": "$1 Seiten"
+  },
+  "dbgConvAttachments": {
+    "message": "In diesem Chat gesendete Anhänge ($1)"
+  },
+  "dbgContext": {
+    "message": "Kontextfenster ($1, $2)"
+  },
+  "dbgModelUnknown": {
+    "message": "Modell nicht erkannt"
+  },
+  "ctxOver": {
+    "message": "Das passt nicht in das Kontextfenster von Claude. Sende nur die Teile, die du brauchst."
+  },
+  "ctxNear": {
+    "message": "Das passt möglicherweise nicht in das Kontextfenster von Claude. Teile es auf oder starte einen neuen Chat."
+  },
+  "pdfTextOnly": {
+    "message": "PDF mit über 100 Seiten: Claude liest nur den Text, keine Bilder oder Diagramme."
+  },
+  "pdfTooLarge": {
+    "message": "PDF mit über 1000 Seiten: claude.ai akzeptiert es nicht."
+  },
+  "lessThan": {
+    "message": "unter $1"
+  },
+  "warnNoFit": {
+    "message": "Das passt voraussichtlich nicht in dein $1 ($2 übrig)."
+  },
+  "warnMaybeFit": {
+    "message": "Das passt möglicherweise nicht in dein $1 ($2 übrig)."
+  },
+  "ctxWorkspace": {
+    "message": "In bezahlten Tarifen legt claude.ai eine sehr große Datei eventuell in einen Arbeitsbereich, wo Claude sie per Code liest statt auf einmal."
+  },
+  "warnCacheCold": {
+    "message": "Du hast diesen Chat seit $1 Min. nicht genutzt, der Cache ist abgelaufen: Der gesamte Verlauf (~$2 Tokens) wird erneut gezählt. Ein neuer Chat kann deutlich günstiger sein."
+  },
+  "warnCacheUnknown": {
+    "message": "Wenn dieser Chat über eine Stunde ruhte, wird sein Verlauf (~$1 Tokens) erneut gezählt."
+  },
+  "tipNewChat": {
+    "message": "Dieser Chat ist lang (~$1 Tokens). Ein neuer Chat mit kurzer Zusammenfassung hält Antworten präziser und günstiger."
+  },
+  "warnPeak": {
+    "message": "Stoßzeiten (werktags $1–$2 Uhr deiner Zeit): Auf claude.ai füllt sich das 5-Stunden-Limit gerade schneller. Verschiebe lange Aufgaben besser außerhalb dieses Zeitfensters."
+  },
+  "recDowngrade": {
+    "message": "$1 würde wahrscheinlich reichen und etwa $2 % weniger deines Limits verbrauchen."
+  },
+  "recUpgrade": {
+    "message": "Das sieht anspruchsvoll aus; $1 liefert möglicherweise eine deutlich bessere Antwort."
+  },
+  "rec_short_qa": {
+    "message": "Kurze Faktenfragen brauchen selten ein großes Modell."
+  },
+  "rec_translate": {
+    "message": "Leichte Modelle übersetzen gut."
+  },
+  "rec_rewrite": {
+    "message": "Das Überarbeiten eines vorhandenen Textes ist eine leichte Aufgabe."
+  },
+  "rec_summarize": {
+    "message": "Zusammenfassungen sind eine Stärke leichterer Modelle."
+  },
+  "rec_explain": {
+    "message": "Erklärungen gelingen mittelgroßen Modellen gut."
+  },
+  "rec_writing": {
+    "message": "Mittelgroße Modelle schreiben gut."
+  },
+  "rec_data_analysis": {
+    "message": "Standardanalysen passen zu einem mittelgroßen Modell."
+  },
+  "rec_file_create": {
+    "message": "Dokumente und Präsentationen passen zu einem mittelgroßen Modell."
+  },
+  "rec_code_write": {
+    "message": "Alltägliches Programmieren passt zu einem mittelgroßen Modell."
+  },
+  "rec_code_fix": {
+    "message": "Die meiste Fehlersuche passt zu einem mittelgroßen Modell."
+  },
+  "rec_research": {
+    "message": "Routinerecherche passt zu einem mittelgroßen Modell."
+  },
+  "rec_math": {
+    "message": "Routineaufgaben passen zu einem mittelgroßen Modell."
+  },
+  "rec_complex": {
+    "message": "Die Aufgabe wirkt komplex."
+  },
+  "rec_hardest": {
+    "message": "Das gehört zu den schwersten Aufgabenarten."
+  },
+  "effLower": {
+    "message": "Dafür reicht meist niedriger Aufwand; hoher Aufwand erzeugt vor allem zusätzliche verborgene Denk-Tokens."
+  },
+  "effRaise": {
+    "message": "Bei einem so schweren Problem kann höherer Aufwand sinnvoll sein."
+  },
+  "type_short_qa": {
+    "message": "Kurze Frage"
+  },
+  "type_explain": {
+    "message": "Erklärung"
+  },
+  "type_math": {
+    "message": "Problemlösen"
+  },
+  "type_code_write": {
+    "message": "Code schreiben"
+  },
+  "type_code_fix": {
+    "message": "Fehlersuche / Code"
+  },
+  "type_translate": {
+    "message": "Übersetzung"
+  },
+  "type_writing": {
+    "message": "Schreiben"
+  },
+  "type_rewrite": {
+    "message": "Text bearbeiten"
+  },
+  "type_summarize": {
+    "message": "Zusammenfassung"
+  },
+  "type_data_analysis": {
+    "message": "Datenanalyse"
+  },
+  "type_research": {
+    "message": "Recherche"
+  },
+  "type_file_create": {
+    "message": "Datei erstellen"
+  },
+  "rowWeekly": {
+    "message": "Wochenlimit"
+  },
+  "rowType": {
+    "message": "Art der Anfrage"
+  },
+  "rowModel": {
+    "message": "Modell"
+  },
+  "modelName": {
+    "message": "$1"
+  },
+  "rowInput": {
+    "message": "Eingabe (neu)"
+  },
+  "rowOutput": {
+    "message": "Erwartete Antwort"
+  },
+  "rowCache": {
+    "message": "Cache"
+  },
+  "rowContext": {
+    "message": "Kontextfenster"
+  },
+  "cache_none": {
+    "message": "neuer Chat"
+  },
+  "cache_warm": {
+    "message": "aktiv (Verlauf kostenlos)"
+  },
+  "cache_cold": {
+    "message": "abgelaufen (Verlauf zählt)"
+  },
+  "cache_unknown": {
+    "message": "unbekannt"
+  },
+  "effort_low": {
+    "message": "niedriger Aufwand"
+  },
+  "effort_medium": {
+    "message": "mittlerer Aufwand"
+  },
+  "effort_high": {
+    "message": "hoher Aufwand"
+  },
+  "effort_max": {
+    "message": "maximaler Aufwand"
+  },
+  "effort_off": {
+    "message": "Denken aus"
+  },
+  "effort_auto": {
+    "message": "automatisch"
+  },
+  "footCalibrated": {
+    "message": "Gelernt aus $1 deiner Nachrichten · $2 % lagen im Bereich."
+  },
+  "footLearning": {
+    "message": "Lernt noch: Die Schätzungen werden nach einigen Nachrichten genauer."
+  },
+  "pillIdle": {
+    "message": "Token Forecast"
+  },
+  "pillUsed": {
+    "message": "5 Std.: $1 genutzt"
+  },
+  "pillSub": {
+    "message": "des 5-Stunden-Limits"
+  },
+  "cardTitle": {
+    "message": "Diese Nachricht verbraucht"
+  },
+  "cardSub": {
+    "message": "deines 5-Stunden-Limits · wahrscheinlicher Bereich $1"
+  },
+  "cardIdleSub": {
+    "message": "Bisher genutztes 5-Stunden-Limit. Fang an zu tippen, um eine Schätzung zu sehen."
+  },
+  "close": {
+    "message": "Schließen"
+  },
+  "notifResets": {
+    "message": "Wird um $1 zurückgesetzt."
+  },
+  "notifThresholdTitle": {
+    "message": "$1 bei $2 %"
+  },
+  "notifThresholdBody": {
+    "message": "Plane größere Aufgaben mit der Vorhersage, bevor du sendest."
+  },
+  "notifThresholdBodyHigh": {
+    "message": "Fast aufgebraucht: Erledige zuerst das Wichtige."
+  },
+  "notifResetTitle": {
+    "message": "$1 wurde zurückgesetzt"
+  },
+  "notifResetBody": {
+    "message": "Du kannst dort weitermachen, wo du aufgehört hast."
+  },
+  "notifTestBody": {
+    "message": "Benachrichtigungen funktionieren."
+  },
+  "freePlanWait": {
+    "message": "Im kostenlosen Tarif erscheint die Nutzung, nachdem du in claude.ai deine erste Nachricht gesendet hast."
+  },
+  "capTitle": {
+    "message": "Mit dem, was dir bleibt"
+  },
+  "capSub": {
+    "message": "Ungefähr eines davon, in einem neuen Chat mit $1 (vorsichtige Schätzung)."
+  },
+  "cap_short_qa": {
+    "message": "kurze Fragen"
+  },
+  "cap_explain": {
+    "message": "Erklärungen"
+  },
+  "cap_code_fix": {
+    "message": "Code-Korrekturen"
+  },
+  "cap_writing": {
+    "message": "Schreibaufgaben"
+  },
+  "cap_summarize": {
+    "message": "Dokumentzusammenfassungen"
+  },
+  "cap_research": {
+    "message": "Rechercheaufgaben"
+  },
+  "calTitle": {
+    "message": "Persönliche Kalibrierung"
+  },
+  "calNone": {
+    "message": "Noch keine Messungen. Jede gesendete Nachricht zeigt der Erweiterung, wie sich dein Tarif tatsächlich verhält."
+  },
+  "calFew": {
+    "message": "Bisher $1 Messungen; mit ein paar weiteren werden die Schätzungen genauer."
+  },
+  "calSome": {
+    "message": "$1 Messungen · $2 % der tatsächlichen Werte lagen im Vorhersagebereich."
+  },
+  "setNotif": {
+    "message": "Benachrichtigungen"
+  },
+  "setPanel": {
+    "message": "Schätzung auf claude.ai anzeigen"
+  },
+  "setMemory": {
+    "message": "Claude-Gedächtnis (Kontextgröße)"
+  },
+  "memAuto": {
+    "message": "Als aktiv annehmen"
+  },
+  "memOn": {
+    "message": "An"
+  },
+  "memOff": {
+    "message": "Aus"
+  },
+  "btnTestNotif": {
+    "message": "Benachrichtigung testen"
+  },
+  "btnExport": {
+    "message": "Meine Daten exportieren"
+  },
+  "btnResetCal": {
+    "message": "Kalibrierung zurücksetzen"
+  },
+  "btnResetConfirm": {
+    "message": "Zum Zurücksetzen erneut klicken"
+  },
+  "privacyNote": {
+    "message": "Alles wird in deinem Browser berechnet. Der Nachrichtentext verlässt dein Gerät nie."
+  },
+  "moreDetails": {
+    "message": "Details & Einstellungen"
+  },
+  "detailsTitle": {
+    "message": "Token Forecast – Details"
+  },
+  "healthTitle": {
+    "message": "Systemprüfung"
+  },
+  "hHook": {
+    "message": "Seitenhaken (sieht gesendete Nachrichten)"
+  },
+  "hSend": {
+    "message": "Letztes Senden erkannt"
+  },
+  "hDone": {
+    "message": "Letzter Antwortstrom gelesen"
+  },
+  "hUsage": {
+    "message": "Nutzung wird gelesen"
+  },
+  "hPage": {
+    "message": "Seite: Eingabe / Modell / Aufwand"
+  },
+  "hLast": {
+    "message": "Letzte Messung"
+  },
+  "hNone": {
+    "message": "noch keine"
+  },
+  "hHookNoReply": {
+    "message": "keine Antwort – lade den claude.ai-Tab neu"
+  },
+  "hHookReplaced": {
+    "message": "fetch wurde von der Website ersetzt"
+  },
+  "hProbe": {
+    "message": "Nachrichten gehen an eine andere Adresse"
+  },
+  "hSendWait": {
+    "message": "noch keine Nachricht gesendet oder nicht erkannt"
+  },
+  "hSseYes": {
+    "message": "Stream in Ordnung"
+  },
+  "hSseNo": {
+    "message": "Stream gelesen, aber keine Nutzungsdaten darin"
+  },
+  "hCopyLog": {
+    "message": "Protokoll kopieren"
+  },
+  "hCopied": {
+    "message": "Kopiert"
+  },
+  "hLogTitle": {
+    "message": "Messprotokoll"
+  },
+  "hHint": {
+    "message": "Wenn eine Zeile ein Problem zeigt, kopiere das Protokoll und sende es an den Entwickler."
+  },
+  "hDomPath": {
+    "message": "von der Seite erkannt (Ausweichweg)"
+  },
+  "advSave": {
+    "message": "$1 reicht für diese Aufgabe"
+  },
+  "advSaveDetail": {
+    "message": "Diese Nachricht verbraucht etwa $1 deines Limits; mit $2 etwa $3 ($4 % Ersparnis)."
+  },
+  "advSaveNext": {
+    "message": "$1 reicht für solche Aufgaben, aber wechsle nicht in diesem Chat"
+  },
+  "advSaveNextDetail": {
+    "message": "Der Chatverlauf ($1 Tokens) liegt nicht im Cache des neuen Modells und würde neu gelesen, die Nachricht würde also mehr kosten. Wähle $2, wenn du den nächsten neuen Chat startest."
+  },
+  "advUpgrade": {
+    "message": "Das könnte für $1 schwer werden: $2 wird empfohlen"
+  },
+  "advUpgradeDetail": {
+    "message": "$1 verbraucht dein Limit etwa $2× so schnell. Wenn du lieber zuerst $3 probierst, wechsle, falls die Antwort nicht reicht."
+  },
+  "advOk": {
+    "message": "$1 passt zu dieser Aufgabe"
+  },
+  "advOkTiny": {
+    "message": "$1 würde auch reichen, aber der Unterschied ist winzig ($2 deines Limits)."
+  },
+  "advWhy": {
+    "message": "Warum?"
+  },
+  "advHide": {
+    "message": "Ausblenden"
+  },
+  "advDetected": {
+    "message": "Erkannte Aufgabe"
+  },
+  "advSignals": {
+    "message": "Hinweise, die ich gesehen habe"
+  },
+  "advBasis": {
+    "message": "Grundlage"
+  },
+  "advWhen": {
+    "message": "Wann wechseln"
+  },
+  "advDetectedVal": {
+    "message": "$1 · $2 · $3"
+  },
+  "level_low": {
+    "message": "leicht"
+  },
+  "level_mid": {
+    "message": "mittel"
+  },
+  "level_high": {
+    "message": "schwer"
+  },
+  "ev_trigger": {
+    "message": "die Formulierung $1"
+  },
+  "ev_hard": {
+    "message": "Schwierigkeitshinweise: $1"
+  },
+  "ev_code": {
+    "message": "Codeblock / Codezeilen"
+  },
+  "ev_attach": {
+    "message": "Anhang: $1 Tokens"
+  },
+  "ev_bullets": {
+    "message": "Anfrage mit $1 Punkten"
+  },
+  "ev_long": {
+    "message": "eine ausführliche Antwort wird gewünscht"
+  },
+  "ev_short": {
+    "message": "eine kurze Antwort wird gewünscht"
+  },
+  "ev_words": {
+    "message": "$1 Wörter"
+  },
+  "why_simple_task": {
+    "message": "Eine einfache, klare Aufgabe; der Klassifikator ist sicher."
+  },
+  "why_unsure_safe": {
+    "message": "Ich bin mir bei der Aufgabenart nicht sicher, bleibe also auf der sicheren Seite und empfehle mindestens Sonnet."
+  },
+  "why_complex": {
+    "message": "Hohe Komplexität."
+  },
+  "why_hardest": {
+    "message": "Eine sehr schwere Herleitung, ein Entwurf oder eine Rechercheaufgabe."
+  },
+  "why_pref_floor": {
+    "message": "Nach deinem Feedback wähle ich für solche Aufgaben ein stärkeres Modell."
+  },
+  "why_pref_ceil": {
+    "message": "Nach deinem Feedback dränge ich bei solchen Aufgaben nicht zu einem stärkeren Modell."
+  },
+  "basis_haiku": {
+    "message": "Anthropic positioniert Haiku 5.5 als Modell mit „der niedrigsten Latenz und dem niedrigsten Preis“, für einfache Aufgaben mit hohem Volumen und Sub-Agenten."
+  },
+  "basis_sonnet": {
+    "message": "Laut Anthropic bietet Sonnet 5.5 „Tempo und Leistung für den Arbeitsalltag“: Codegenerierung, Datenanalyse, Inhaltserstellung."
+  },
+  "basis_opus": {
+    "message": "Anthropic empfiehlt Opus 5.5 für komplexes Programmieren und Unternehmensaufgaben: große Refactorings, Systems Engineering, mehrstündige Agenten."
+  },
+  "basis_fable": {
+    "message": "Fable 5.1 ist „die höchste verfügbare Leistung“: mehrstündige Agentensitzungen, mehrstufige Tiefenrecherche."
+  },
+  "tbasis_short_qa": {
+    "message": "Faktenfragen mit einer Antwort brauchen kurze Antworten; leichte Modelle machen das gut. Fragen zu Personen oder Ereignissen können erfunden sein – prüfe nach, wenn es wichtig ist."
+  },
+  "tbasis_translate": {
+    "message": "Beim Übersetzen liegt der Text schon vor; das Modell behält die Bedeutung und wechselt die Sprache. Leichte Modelle machen das gut."
+  },
+  "tbasis_rewrite": {
+    "message": "Beim Überarbeiten oder Vereinfachen ist der Inhalt vorgegeben; das Modell verbessert nur die Form."
+  },
+  "tbasis_summarize": {
+    "message": "In einer Zusammenfassung steckt die Information im Text; für kurze Texte reicht ein leichtes Modell, bei langen oder fachlichen Dokumenten ist ein mittleres sicherer."
+  },
+  "tbasis_explain": {
+    "message": "Konzepte erklären braucht Genauigkeit und gute Beispiele; meist reicht ein mittleres Modell, bei fortgeschrittenen Themen hilft Opus."
+  },
+  "tbasis_writing": {
+    "message": "Für Texte und E-Mails trifft ein mittleres Modell Ton und Sprachfluss gut."
+  },
+  "tbasis_data_analysis": {
+    "message": "Datenanalyse mischt Rechnen und Interpretation; meist reicht ein mittleres Modell."
+  },
+  "tbasis_file_create": {
+    "message": "Dateien oder Präsentationen zu erstellen ist mehrstufige Arbeit; meist reicht ein mittleres Modell, für lange Dokumente Opus."
+  },
+  "tbasis_code_write": {
+    "message": "Sonnet ist stark beim alltäglichen Programmieren; für Architektur und Arbeit über mehrere Dateien wird Opus empfohlen."
+  },
+  "tbasis_code_fix": {
+    "message": "Sonnet bewältigt Fehler in einer Datei; Opus bei schweren oder systemweiten Fehlern."
+  },
+  "tbasis_research": {
+    "message": "Recherche bedeutet Quellen finden und zusammenführen; Opus oder Fable für tiefe, mehrstufige Recherche."
+  },
+  "tbasis_math": {
+    "message": "Rechnungen und Standardaufgaben passen zu einem mittleren Modell; Beweise und lange Herleitungen zu Opus oder Fable."
+  },
+  "when_haiku": {
+    "message": "Wechsle zu Sonnet, wenn die Antwort oberflächlich oder falsch ist."
+  },
+  "when_sonnet": {
+    "message": "Wechsle zu Opus, wenn die Antwort nicht reicht oder die Aufgabe wächst."
+  },
+  "when_opus": {
+    "message": "Nutze Fable für mehrstündige Agentenarbeit oder wenn Opus nicht reicht."
+  },
+  "when_fable": {
+    "message": "Fable ist das stärkste und teuerste Modell; nutze es nur für wirklich schwere Aufgaben."
+  },
+  "advCaveat": {
+    "message": "Dieser Vorschlag ist eine Schätzung aus Regeln plus einem kleinen, auf deinem Gerät laufenden Lernmodell; die Antwortqualität wurde nicht gemessen. Dein Feedback und deine Korrekturen stimmen ihn auf dich ab."
+  },
+  "advFbQ": {
+    "message": "War dieser Vorschlag richtig?"
+  },
+  "advFbGood": {
+    "message": "👍 Richtig"
+  },
+  "advFbBad": {
+    "message": "👎 Falsch"
+  },
+  "advFbThanks": {
+    "message": "Danke, gespeichert."
+  },
+  "advSource": {
+    "message": "Quelle: Anthropics Leitfaden zur Modellauswahl"
+  },
+  "setAdvisor": {
+    "message": "Hinweis zum Modellvorschlag anzeigen"
+  },
+  "btnImport": {
+    "message": "Meine Daten importieren"
+  },
+  "btnImportConfirm": {
+    "message": "Ja, Sicherung wiederherstellen"
+  },
+  "importReady": {
+    "message": "Sicherung gelesen: $1 Messungen ($2). Sie ersetzt das aktuell Gelernte; drücke die Schaltfläche zur Bestätigung erneut."
+  },
+  "importDone": {
+    "message": "Sicherung wiederhergestellt: $1 Messungen sind zurück."
+  },
+  "importBad": {
+    "message": "Diese Datei ist keine gültige Token-Forecast-Sicherung."
+  },
+  "supportLink": {
+    "message": "Das Projekt unterstützen ☕"
+  },
+  "cacheWarmLeft": {
+    "message": "warm · Verlauf noch $1 Min. kostenlos"
+  },
+  "cacheColdAgo": {
+    "message": "kalt (letzte Nachricht vor $1) · Verlauf wird neu gelesen"
+  },
+  "tipHandoff": {
+    "message": "Dieser Chat ist lang ($1 Tokens) und wächst mit jeder Nachricht. Für einen neuen Chat kannst du Claude um eine kurze Übergabe-Zusammenfassung bitten."
+  },
+  "tipHandoffWarm": {
+    "message": "Dieser Chat ist lang ($1 Tokens). Eine Übergabe-Zusammenfassung anzufordern ist günstig, solange der Cache warm ist; füge sie in einen neuen Chat ein und mach dort weiter."
+  },
+  "btnHandoff": {
+    "message": "Übergabe-Prompt kopieren"
+  },
+  "handoffPrompt": {
+    "message": "Ich verlege diese Unterhaltung in einen neuen Chat. Schreibe eine kurze Übergabe-Zusammenfassung: Ziel, bisher getroffene Entscheidungen, wichtige Details (Dateinamen, Zahlen, Codeausschnitte), offene Fragen und nächster Schritt. Sie soll sich direkt in einen neuen Chat einfügen lassen, höchstens 300 Wörter."
+  },
+  "peakLeft": {
+    "message": "Endet in $1."
+  },
+  "warnSurprise": {
+    "message": "Deine letzte Nachricht hat mehr verbraucht als erwartet: $1 (Schätzung $2). Mögliche Gründe: $3."
+  },
+  "cr_cold": {
+    "message": "du hast nach einer langen Pause geschrieben, deshalb wurde der Verlauf neu gelesen"
+  },
+  "cr_long_chat": {
+    "message": "der Chat ist sehr lang"
+  },
+  "cr_peak": {
+    "message": "Stoßzeiten"
+  },
+  "cr_effort": {
+    "message": "hoher Aufwand (verborgenes Denken)"
+  },
+  "cr_long_answer": {
+    "message": "die Antwort war länger als erwartet"
+  },
+  "cr_big_model": {
+    "message": "großes Modell"
+  },
+  "cr_elsewhere": {
+    "message": "dasselbe Konto wurde eventuell in einem anderen Tab, auf einem anderen Gerät oder in Claude Code genutzt"
+  },
+  "bdTitle": {
+    "message": "Woher die Kosten kommen (Schätzung)"
+  },
+  "bd_output": {
+    "message": "Antwort"
+  },
+  "bd_thinking": {
+    "message": "Denken"
+  },
+  "bd_input": {
+    "message": "Nachricht & Dateien"
+  },
+  "bd_history": {
+    "message": "Verlauf"
+  },
+  "bd_tool": {
+    "message": "Werkzeuge"
+  },
+  "wkNotifTitle": {
+    "message": "Dein Wochenbericht ist fertig"
+  },
+  "wkNotifMsgs": {
+    "message": "$1 Nachrichten"
+  },
+  "wkNotifSpent": {
+    "message": "$1 volle 5-Stunden-Limits"
+  },
+  "wkNotifPeak": {
+    "message": "$1 % davon zu Stoßzeiten"
+  },
+  "rpTitle": {
+    "message": "Wochenbericht"
+  },
+  "rpRange": {
+    "message": "Letzte 7 Tage · $1 – $2"
+  },
+  "rpMsgs": {
+    "message": "Nachrichten"
+  },
+  "rpChats": {
+    "message": "in $1 Chats"
+  },
+  "rpChangeUp": {
+    "message": "$1 % mehr als letzte Woche"
+  },
+  "rpChangeDown": {
+    "message": "$1 % weniger als letzte Woche"
+  },
+  "rpChangeSame": {
+    "message": "wie letzte Woche"
+  },
+  "rpChangeNone": {
+    "message": "letzte Woche keine Einträge"
+  },
+  "rpSpent": {
+    "message": "Verbrauchtes 5-Stunden-Limit"
+  },
+  "rpSessions": {
+    "message": "$1 Limits"
+  },
+  "rpSpentSub": {
+    "message": "$1 an 5-Stunden-Limits insgesamt"
+  },
+  "rpPeak": {
+    "message": "Zu Stoßzeiten"
+  },
+  "rpPeakSub": {
+    "message": "$1 der Nachrichten"
+  },
+  "rpSave": {
+    "message": "Verpasste Ersparnis"
+  },
+  "rpSaveSub": {
+    "message": "bei $1 Nachrichten hätte ein leichteres Modell gereicht"
+  },
+  "rpSaveNone": {
+    "message": "du bist den Vorschlägen gefolgt"
+  },
+  "rpTips": {
+    "message": "Meine Vorschläge"
+  },
+  "tip_peak": {
+    "message": "$1 % deiner Nutzung fanden zu Stoßzeiten statt ($2, werktags). Dann füllt claude.ai das 5-Stunden-Limit schneller; verschiebst du lange Aufgaben aus diesem Fenster, erledigst du dieselbe Arbeit mit weniger Limit."
+  },
+  "tip_cold": {
+    "message": "$1 Nachrichten gingen nach einer Pause von über einer Stunde in einen langen Chat, deshalb wurde jedes Mal der ganze Verlauf neu gelesen ($2 % deiner Nutzung). Nach einer Pause ist ein neuer Chat oder eine Übergabe-Zusammenfassung günstiger."
+  },
+  "tip_advice": {
+    "message": "Für $2 Nachrichten hätte ein leichteres Modell gereicht. Hättest du den Vorschlägen gefolgt, hättest du etwa $1 eines Sitzungslimits gespart."
+  },
+  "tip_long": {
+    "message": "$1 Nachrichten wurden in Chats mit über 100.000 Tokens gesendet. So langer Kontext belastet Limit und Antwortqualität; neue Chats für neue Themen helfen."
+  },
+  "tip_effort": {
+    "message": "Bei $1 einfachen Aufgaben (Übersetzung, kurze Fragen) war hoher Denkaufwand an. Niedriger Aufwand liefert dort dasselbe Ergebnis für weniger."
+  },
+  "tip_upgrade": {
+    "message": "Für $1 Nachrichten wurde ein stärkeres Modell vorgeschlagen. Wenn die Antworten nicht reichten, ist es günstiger, solche Aufgaben gleich mit dem stärkeren Modell zu starten, als immer wieder nachzufragen."
+  },
+  "tip_good": {
+    "message": "Deine Nutzung wirkt diese Woche ausgewogen: kein klares Problem mit Stoßzeiten, langen Chats oder überdimensionierten Modellen."
+  },
+  "rpByModel": {
+    "message": "Modelle (nach Nutzung)"
+  },
+  "rpByType": {
+    "message": "Aufgabenarten (nach Nutzung)"
+  },
+  "rpHeat": {
+    "message": "Wann schreibst du? (letzte 4 Wochen, deine Zeit)"
+  },
+  "rpHeatPeak": {
+    "message": "Umrandete Zellen: Stoßzeiten"
+  },
+  "rpTop": {
+    "message": "Teuerste Nachrichten"
+  },
+  "rpMeasured": {
+    "message": "gemessen"
+  },
+  "rpEstimated": {
+    "message": "geschätzt"
+  },
+  "rpAcc": {
+    "message": "Vorhersagegenauigkeit"
+  },
+  "rpAccVal": {
+    "message": "$2 von $1 gemessenen Nachrichten lagen im Vorhersagebereich."
+  },
+  "rpAccNone": {
+    "message": "Diese Woche keine gemessenen Nachrichten; die Werte sind Schätzungen."
+  },
+  "rpMeasuredShare": {
+    "message": "$1 der Werte wurden gemessen; der Rest sind Schätzungen zum Sendezeitpunkt."
+  },
+  "rpCsv": {
+    "message": "CSV herunterladen"
+  },
+  "rpPrivacy": {
+    "message": "Dieser Bericht wird nur in diesem Browser berechnet, aus Einträgen ohne Nachrichtentext."
+  },
+  "rpOpen": {
+    "message": "Wochenbericht"
+  },
+  "rpWeekLine": {
+    "message": "Letzte 7 Tage: $1 Nachrichten · $2 volle 5-Stunden-Limits"
+  },
+  "rpDays": {
+    "message": "Mo,Di,Mi,Do,Fr,Sa,So"
+  },
+  "rpNoData": {
+    "message": "Noch nicht genug Einträge für einen Bericht. Nach ein paar Tagen auf claude.ai füllt sich diese Seite."
+  },
+  "rpOther": {
+    "message": "Sonstige"
+  },
+  "setWeekly": {
+    "message": "Benachrichtigung zum Wochenbericht am Montagmorgen"
+  },
+  "burnEta": {
+    "message": "Im Tempo der letzten Stunde ist es gegen $1 voll (Zurücksetzung $2)."
+  },
+  "burnSafe": {
+    "message": "In diesem Tempo wird es vor der Zurücksetzung nicht voll."
+  },
+  "burnIdle": {
+    "message": "Keine nennenswerte Nutzung in der letzten Stunde."
+  },
+  "rpBack": {
+    "message": "Details und Einstellungen"
+  },
+  "advRelabel": {
+    "message": "Falsche Aufgabenart? Wähle die richtige:"
+  },
+  "advRelabelThanks": {
+    "message": "Danke – ich lerne daraus auf diesem Gerät."
+  },
+  "ev_ml": {
+    "message": "Lernmodell zu $1 % sicher"
+  },
+  "comTitle": {
+    "message": "Zur Community beitragen (optional)"
+  },
+  "comText": {
+    "message": "Wenn du das auf diesem Gerät Gelernte teilst, sind die Vorhersagen für neue Nutzer von Anfang an genau. Die Zusammenfassung enthält keinen Nachrichtentext, keine Chatnamen, Daten oder Kontoangaben. Du siehst den Inhalt vor dem Senden; nichts wird automatisch gesendet."
+  },
+  "comBuild": {
+    "message": "Beitragszusammenfassung anzeigen"
+  },
+  "comCopy": {
+    "message": "Kopieren und Formular öffnen"
+  },
+  "comCopyOnly": {
+    "message": "Kopieren"
+  },
+  "comCopied": {
+    "message": "Kopiert. Füge es in das Feld des geöffneten Formulars ein und sende es ab."
+  },
+  "comNoUrl": {
+    "message": "Kopiert. Das Community-Formular öffnet bald; den Text kannst du vorerst behalten."
+  },
+  "comEmpty": {
+    "message": "Noch nichts zu teilen. Versuche es nach ein paar gesendeten Nachrichten erneut."
+  },
+  "feedbackLink": {
+    "message": "Feedback oder Vorschlag senden"
+  },
+  "rpOpenBtn": {
+    "message": "Bericht öffnen →"
+  },
+  "rpWeekLinePct": {
+    "message": "Letzte 7 Tage: $1 Nachrichten · insgesamt $2 der 5-Stunden-Limits genutzt"
+  },
+  "rpSpentSmall": {
+    "message": "insgesamt (1 volles Limit = 100 %)"
+  },
+  "rowDomain": {
+    "message": "Thema"
+  },
+  "dom_science": {
+    "message": "Naturwissenschaften"
+  },
+  "dom_math": {
+    "message": "Mathematik"
+  },
+  "dom_engineering": {
+    "message": "Ingenieurwesen"
+  },
+  "dom_software": {
+    "message": "Software"
+  },
+  "dom_data_ai": {
+    "message": "Daten & KI"
+  },
+  "dom_academic": {
+    "message": "Wissenschaftliches Schreiben"
+  },
+  "dom_project": {
+    "message": "Projekte & Planung"
+  },
+  "dom_literature": {
+    "message": "Literatur & kreatives Schreiben"
+  },
+  "dom_business": {
+    "message": "Wirtschaft & Beruf"
+  },
+  "dom_finance": {
+    "message": "Wirtschaft & Finanzen"
+  },
+  "dom_law": {
+    "message": "Recht"
+  },
+  "dom_health": {
+    "message": "Gesundheit"
+  },
+  "dom_education": {
+    "message": "Lernen & Prüfungen"
+  },
+  "dom_language": {
+    "message": "Sprache"
+  },
+  "dom_humanities": {
+    "message": "Geschichte, Philosophie & Gesellschaft"
+  },
+  "dom_daily": {
+    "message": "Alltag"
+  },
+  "dom_general": {
+    "message": "Allgemein"
+  },
+  "sub_science_physics": {
+    "message": "Physik"
+  },
+  "sub_science_chemistry": {
+    "message": "Chemie"
+  },
+  "sub_science_biology": {
+    "message": "Biologie"
+  },
+  "sub_science_astronomy": {
+    "message": "Astronomie"
+  },
+  "sub_science_earth": {
+    "message": "Geowissenschaften"
+  },
+  "sub_math_pure": {
+    "message": "Algebra & Analysis"
+  },
+  "sub_math_statistics": {
+    "message": "Statistik"
+  },
+  "sub_engineering_electrical": {
+    "message": "Elektrotechnik & Elektronik"
+  },
+  "sub_engineering_mechanical": {
+    "message": "Maschinenbau"
+  },
+  "sub_engineering_civil": {
+    "message": "Bauingenieurwesen"
+  },
+  "sub_engineering_control": {
+    "message": "Regelungstechnik & Industrie"
+  },
+  "sub_software_web": {
+    "message": "Web"
+  },
+  "sub_software_mobile": {
+    "message": "Mobil"
+  },
+  "sub_software_systems": {
+    "message": "Systeme & Datenbanken"
+  },
+  "sub_software_general": {
+    "message": "Programmierung"
+  },
+  "sub_data_ai_ml": {
+    "message": "Maschinelles Lernen"
+  },
+  "sub_data_ai_llm": {
+    "message": "Sprachmodelle"
+  },
+  "sub_data_ai_data": {
+    "message": "Datenanalyse"
+  },
+  "sub_academic_paper": {
+    "message": "Fachartikel"
+  },
+  "sub_academic_thesis": {
+    "message": "Abschlussarbeit"
+  },
+  "sub_academic_grant": {
+    "message": "Förderanträge & Bewerbungen"
+  },
+  "sub_project_planning": {
+    "message": "Planung"
+  },
+  "sub_project_agile": {
+    "message": "Agil"
+  },
+  "sub_project_startup": {
+    "message": "Startup"
+  },
+  "sub_literature_poetry": {
+    "message": "Lyrik"
+  },
+  "sub_literature_fiction": {
+    "message": "Erzählprosa"
+  },
+  "sub_literature_analysis": {
+    "message": "Literaturanalyse"
+  },
+  "sub_literature_screen": {
+    "message": "Film & Bühne"
+  },
+  "sub_business_career": {
+    "message": "Karriere"
+  },
+  "sub_business_marketing": {
+    "message": "Marketing"
+  },
+  "sub_business_management": {
+    "message": "Management"
+  },
+  "sub_finance_investing": {
+    "message": "Geldanlage"
+  },
+  "sub_finance_personal": {
+    "message": "Private Finanzen"
+  },
+  "sub_finance_accounting": {
+    "message": "Buchhaltung & Steuern"
+  },
+  "sub_finance_economics": {
+    "message": "Volkswirtschaft"
+  },
+  "sub_law_contract": {
+    "message": "Verträge"
+  },
+  "sub_law_civil": {
+    "message": "Allgemeines Recht"
+  },
+  "sub_law_privacy": {
+    "message": "Datenschutz"
+  },
+  "sub_law_ip": {
+    "message": "Geistiges Eigentum"
+  },
+  "sub_health_medical": {
+    "message": "Medizin"
+  },
+  "sub_health_nutrition": {
+    "message": "Ernährung"
+  },
+  "sub_health_fitness": {
+    "message": "Fitness"
+  },
+  "sub_health_mental": {
+    "message": "Psychische Gesundheit"
+  },
+  "sub_education_exam": {
+    "message": "Prüfungen"
+  },
+  "sub_education_homework": {
+    "message": "Hausaufgaben"
+  },
+  "sub_education_teaching": {
+    "message": "Unterrichten"
+  },
+  "sub_language_grammar": {
+    "message": "Grammatik"
+  },
+  "sub_language_learning": {
+    "message": "Sprachenlernen"
+  },
+  "sub_language_translation": {
+    "message": "Übersetzung"
+  },
+  "sub_humanities_history": {
+    "message": "Geschichte"
+  },
+  "sub_humanities_philosophy": {
+    "message": "Philosophie"
+  },
+  "sub_humanities_society": {
+    "message": "Gesellschaft"
+  },
+  "sub_humanities_psychology": {
+    "message": "Psychologie"
+  },
+  "sub_daily_food": {
+    "message": "Essen"
+  },
+  "sub_daily_travel": {
+    "message": "Reisen"
+  },
+  "sub_daily_home": {
+    "message": "Zuhause"
+  },
+  "sub_daily_fun": {
+    "message": "Freizeit"
+  },
+  "sub_daily_people": {
+    "message": "Menschen"
+  },
+  "dbasis_science": {
+    "message": "In den Naturwissenschaften zählen Genauigkeit und Konsistenz; ausführliche Erklärungen bekommen eine Aufwandsstufe mehr."
+  },
+  "dbasis_math": {
+    "message": "Mathematik braucht Schritt-für-Schritt-Denken; Beweise und Herleitungen bekommen mindestens hohen Aufwand."
+  },
+  "dbasis_engineering": {
+    "message": "Fehler bei Ingenieurberechnungen sind teuer; Entwurfs- und Rechenaufgaben bekommen eine Aufwandsstufe mehr."
+  },
+  "dbasis_software": {
+    "message": "Der Aufwand steigt mit der Code-Komplexität; für schweres Programmieren mit Opus empfiehlt Anthropic, zuerst „Extra hoch“ zu probieren."
+  },
+  "dbasis_data_ai": {
+    "message": "Daten- und KI-Aufgaben brauchen meist mäßiges Nachdenken."
+  },
+  "dbasis_academic": {
+    "message": "Bei wissenschaftlichen Texten zählt Konsistenz; Überarbeitungen brauchen meist wenig Aufwand, Literaturübersichten und Methoden mehr."
+  },
+  "dbasis_project": {
+    "message": "Anthropic empfiehlt, den Aufwand bei Projektplanung zu erhöhen; Planung bekommt mindestens mittleren Aufwand."
+  },
+  "dbasis_literature": {
+    "message": "Langes Nachdenken verbessert kreatives Schreiben selten; der Aufwand ist auf Mittel begrenzt."
+  },
+  "dbasis_business": {
+    "message": "Geschäftliches Schreiben ist meist Routine; die Standardeinstellung oder eine leichtere reicht."
+  },
+  "dbasis_finance": {
+    "message": "Falsche Geldratschläge können schaden: kein leichtes Modell, Aufwand mindestens Mittel."
+  },
+  "dbasis_law": {
+    "message": "Falsche Rechtsinformationen können schaden: kein leichtes Modell, Aufwand mindestens Mittel. Frag bei wichtigen Entscheidungen einen Anwalt."
+  },
+  "dbasis_health": {
+    "message": "Falsche Gesundheitsinformationen können schaden: kein leichtes Modell, Aufwand mindestens Mittel. Im Notfall geh zum Arzt."
+  },
+  "dbasis_education": {
+    "message": "Lernaufgaben sind meist Erklärungen; der Aufwand steigt mit der Schwierigkeit."
+  },
+  "dbasis_language": {
+    "message": "Sprachaufgaben (Übersetzung, Grammatik) sind meist leicht; eine Aufwandsstufe weniger reicht."
+  },
+  "dbasis_humanities": {
+    "message": "Erklärungen zu Geschichte und Philosophie brauchen mäßiges Nachdenken."
+  },
+  "dbasis_daily": {
+    "message": "Alltagsaufgaben sind leicht; eine Aufwandsstufe weniger reicht."
+  },
+  "dbasis_general": {
+    "message": ""
+  },
+  "eff_low": {
+    "message": "Niedrig"
+  },
+  "eff_medium": {
+    "message": "Mittel"
+  },
+  "eff_high": {
+    "message": "Hoch"
+  },
+  "eff_xhigh": {
+    "message": "Extra hoch"
+  },
+  "eff_max": {
+    "message": "Maximal"
+  },
+  "effort_xhigh": {
+    "message": "extra hoher Aufwand"
+  },
+  "effDefaultMark": {
+    "message": "(Standard)"
+  },
+  "effLowerX": {
+    "message": "Mit Aufwand $1 sparst du bei dieser Nachricht etwa $2 des Limits."
+  },
+  "effAssumedNote": {
+    "message": "(Die Aufwandseinstellung konnte auf der Seite nicht gelesen werden; angenommen wurde der Modellstandard, $1.)"
+  },
+  "effRaiseX": {
+    "message": "Mit Aufwand $1 bekommst du für diese Aufgabe möglicherweise eine verlässlichere Antwort."
+  },
+  "advEffWith": {
+    "message": "Aufwand: $1"
+  },
+  "advEffLowerTitle": {
+    "message": "Aufwand auf $1 stellen: ≈ $2 weniger"
+  },
+  "advEffLowerDetail": {
+    "message": "Jetzt: $1. Bei dieser Aufgabenart liefert Aufwand $2 meist dieselbe Antwort; weniger verborgenes Denken senkt die Kosten dieser Nachricht um etwa $3 %."
+  },
+  "advEffRaiseTitle": {
+    "message": "Aufwand für diese Aufgabe auf $1 stellen"
+  },
+  "advEffRaiseDetail": {
+    "message": "Jetzt: $1. Diese Aufgabe braucht tiefes Nachdenken; Aufwand $2 liefert eine verlässlichere Antwort, kostet diese Nachricht aber etwa $3 % mehr. Eine schwache Antwort heißt erneut fragen, und das kostet mehr."
+  },
+  "advEffAlsoLower": {
+    "message": "Aufwand $1 reicht ebenfalls."
+  },
+  "advDomain": {
+    "message": "Thema"
+  },
+  "advEffort": {
+    "message": "Aufwandsvorschlag"
+  },
+  "advEffortVal": {
+    "message": "Ich schlage $1 vor."
+  },
+  "advEffForModel": {
+    "message": "(für $1)"
+  },
+  "advEffNow": {
+    "message": "Jetzt: $1."
+  },
+  "advFbQEff": {
+    "message": "War dieser Aufwandsvorschlag richtig?"
+  },
+  "effBasis": {
+    "message": "Grundlage des Aufwands: Laut Anthropic dehnen Niedrig und Mittel die Nutzung bei Routineaufgaben, Hoch ist die beste Balance, Extra hoch ist für langes Programmieren und Agentenarbeit, Maximal für das tiefste Nachdenken."
+  },
+  "ev_domain": {
+    "message": "Themenwörter: $1"
+  },
+  "why_stakes": {
+    "message": "Bei Themen mit hohem Risiko (Gesundheit, Recht, Geld) schlage ich kein leichtes Modell vor."
+  },
+  "ewhy_e_light_type": {
+    "message": "leichte Aufgabenart"
+  },
+  "ewhy_e_mid_type": {
+    "message": "mittlere Aufgabe"
+  },
+  "ewhy_e_deep_type": {
+    "message": "Aufgabe mit tiefem Nachdenken"
+  },
+  "ewhy_e_big_doc": {
+    "message": "großes Dokument"
+  },
+  "ewhy_e_stakes": {
+    "message": "hohes Risiko: mindestens Mittel"
+  },
+  "ewhy_e_depth": {
+    "message": "wissenschaftliche/technische Tiefe"
+  },
+  "ewhy_e_plan": {
+    "message": "Planungsaufgabe"
+  },
+  "ewhy_e_complex": {
+    "message": "komplexe Anfrage"
+  },
+  "ewhy_e_hardest": {
+    "message": "sehr schweres Problem"
+  },
+  "ewhy_e_proof": {
+    "message": "Beweis/Herleitung"
+  },
+  "ewhy_e_creative": {
+    "message": "kreatives Schreiben: auf Mittel begrenzt"
+  },
+  "ewhy_e_light_domain": {
+    "message": "Alltags-/Sprachaufgabe"
+  },
+  "ewhy_e_short": {
+    "message": "kurze Antwort gewünscht"
+  },
+  "ewhy_e_pref": {
+    "message": "dein Feedback"
+  },
+  "ewhy_e_long_code": {
+    "message": "schweres Programmieren: Extra hoch"
+  },
+  "rpByDomain": {
+    "message": "Themen (nach Verbrauch)"
+  },
+  "rpByEffort": {
+    "message": "Aufwandseinstellungen (nach Verbrauch)"
+  },
+  "rpDomainNote": {
+    "message": "Das Thema wird auf deinem Gerät aus den Wörtern der Nachricht geschätzt; es wird kein Text gespeichert."
+  },
+  "tip_effort_over": {
+    "message": "Bei $1 Nachrichten lag der Aufwand über dem Vorschlag. Die vorgeschlagene Einstellung hätte etwa $2 weniger vom Limit verbraucht."
+  },
+  "tip_domain_save": {
+    "message": "Das meiste Sparpotenzial liegt bei $1: Bei $2 Nachrichten hätte ein leichteres Modell gereicht."
+  },
+  "tip_domain_stakes": {
+    "message": "$1 Nachrichten betrafen Gesundheit, Recht oder Geld. Dort schlage ich weder ein leichtes Modell noch niedrigen Aufwand vor; frag bei wichtigen Entscheidungen auch eine Fachperson."
+  },
+  "pillDragTitle": {
+    "message": "Zum Verschieben ziehen"
+  },
+  "pillReset": {
+    "message": "Position der Pille zurücksetzen"
+  },
+  "rpEffOver": {
+    "message": "Bei $1 Nachrichten lag der Aufwand über dem Vorschlag (verpasste Ersparnis ≈ $2)."
+  },
+  "rpEffOk": {
+    "message": "Deine Aufwandseinstellungen entsprechen den Vorschlägen."
+  },
+  "rpLearn": {
+    "message": "Lernnachweis"
+  },
+  "rpLearnFew": {
+    "message": "Bisher $1 gemessene Nachrichten. Je 10 Messungen ergeben einen Balken, ein Trend zeigt sich ab 30 (noch etwa $2 Nachrichten)."
+  },
+  "rpLearnBetter": {
+    "message": "In den ersten Messungen lag das vorhergesagte Gesamtlimit um den Faktor $1 daneben, in den letzten um $2. Die Erweiterung lernt dich kennen."
+  },
+  "rpLearnSame": {
+    "message": "Der Vorhersagefehler beträgt $1× in den ersten Messungen und $2× in den letzten: keine klare Veränderung. War sie schon genau, ist das zu erwarten."
+  },
+  "rpLearnWorse": {
+    "message": "Die letzten Messungen liegen weiter daneben ($2×) als die ersten ($1×). Dasselbe Konto auf einem anderen Gerät oder in Claude Code zu nutzen stört die Messung; versuche dann, die Kalibrierung zurückzusetzen."
+  },
+  "rpLearnRange": {
+    "message": "Im Vorhersagebereich geblieben: $1 in den ersten Messungen, $2 in den letzten (Ziel etwa 80 %)."
+  },
+  "rpLearnBar": {
+    "message": "Messungen $1–$2: $3×"
+  },
+  "rpLearnNote": {
+    "message": "Jeder Balken sind 10 aufeinanderfolgende gemessene Nachrichten. Er zeigt, wie weit das vorhergesagte Gesamtlimit vom tatsächlich Verbrauchten entfernt war (1,00 = perfekt). Prozentwerte werden auf ganze Zahlen gerundet, daher werden 10-Nachrichten-Summen statt Einzelnachrichten verwendet."
+  },
+  "setEffortAdvice": {
+    "message": "Aufwandsvorschlag anzeigen"
+  },
+  "setTips": {
+    "message": "Tipps anzeigen (Cache, Stoßzeiten, lange Chats, Übergabe-Zusammenfassung)"
+  },
+  "setExplain": {
+    "message": "Erklärung „Warum hat das so viel gekostet?“ anzeigen"
+  },
+  "setView": {
+    "message": "Ansicht"
+  },
+  "viewFull": {
+    "message": "Voll: Vorhersage und alle Vorschläge"
+  },
+  "viewSimple": {
+    "message": "Einfach: nur Vorhersage und Limitwarnungen"
+  },
+  "viewCustom": {
+    "message": "Benutzerdefiniert (Auswahl unten)"
+  },
+  "viewNote": {
+    "message": "Die einfache Ansicht blendet Modell- und Aufwandsvorschläge, Tipps und Kostenerklärungen aus. Die Vorhersage und Warnungen zu Limits und Kontextgröße bleiben immer."
+  },
+  "warnLangLimited": {
+    "message": "Die Nachrichtenanalyse (Aufgabenart, Thema, Modell- und Aufwandsvorschlag) funktioniert derzeit nur für türkische und englische Nachrichten. In dieser Sprache erhältst du die Token- und Limitvorhersage, aber keine Vorschläge."
+  },
+  "typeNA": {
+    "message": "In dieser Sprache nicht analysiert"
+  }
+}

@@ -1,0 +1,120 @@
+short_qa	merhaba, saturnun kac uydusu var
+short_qa	fransanin baskenti neresiydi ya unuttum
+short_qa	Hocam pi sayısının ilk 5 basamağı?
+short_qa	sezen aksu kac dogumlu
+short_qa	euro bugün kaç tl biliyor musun
+short_qa	kanka 1 galon kaç litre
+short_qa	quick q: what's the speed of sound in air
+short_qa	who invented the telephone?
+short_qa	how many players on a soccer team
+short_qa	whats bigger, a mile or a kilometer
+explain	selam, transistör tam olarak nasıl çalışıyor anlamadım bir türlü
+explain	neden uçaklar havada kalabiliyor ya, kaldırma kuvveti ne
+explain	hocam schrödinger denklemi fiziksel olarak ne anlatıyor
+explain	borsa nasil isliyor, hisse alinca tam olarak ne aliyorum
+explain	devops ile sre farkı nedir, ikisi aynı şey mi
+explain	yapay zekalar gerçekten düşünüyor mu, mantığı ne
+explain	ok so how does gps actually figure out where i am
+explain	can u explain what kubernetes is like im 12
+explain	why do onions make you cry
+explain	I'm torn between two job offers, one pays more and one has better growth. how should I think about this?
+math	şu soruyu çözer misin: 2 üzeri x eşittir 32 ise x kaç
+math	integral sinx cosx dx nasil cozulur adim adim
+math	olasılık sorusu: torbada 3 kırmızı 5 mavi top var, iki top çekiliyor, ikisinin de mavi olma olasılığı
+math	hocam bu limiti bulamadım lim (x^2-1)/(x-1) x->1
+math	kuyudaki parçacık için <x> beklenen değerini hesapla, psi = sqrt(2/a) sin(pi x/a)
+math	maaşım 40000 vergi %20 ise net kaç olur hesaplar mısın
+math	pls solve: a car accelerates from 0 to 100 km/h in 8 s, what is the acceleration
+math	need the derivative of e^(3x^2) step by step
+math	show that 1+2+...+n = n(n+1)/2 by induction
+math	what is 17% of 2350
+code_write	bana python ile basit bir hesap makinesi kodu yazar mısın arayüzlü olsun
+code_write	discord botu yapmak istiyorum mesajlara otomatik cevap versin, kodu lazım
+code_write	esp32 ile wifi'ye bağlanıp sıcaklığı sunucuya gönderen kod
+code_write	html css js ile portfolyo sitesi kodlar mısın
+code_write	ogrenci not sistemi icin veritabani semasi ve tablolari olustur sql
+code_write	selenium ile bir siteden fiyatları çeken script lazım
+code_write	need a python script that downloads all images from a webpage
+code_write	write me a function in js that debounces another function
+code_write	can you make a snake game in pygame
+code_write	implement LRU cache in python with O(1) operations
+code_fix	```python\nimport pandas as pd\ndf = pd.read_csv('a.csv')\nprint(df['tarih'])\n``` KeyError: 'tarih' diyor ama sütun var
+code_fix	kodum sonsuz döngüye giriyor sebebini bulamadım yardım et
+code_fix	flutter build alırken gradle hatası veriyor ne yapmam lazım
+code_fix	bu fonksiyon yanlış sonuç döndürüyor, nerede hata var? def ort(l): return sum(l)/len(l)+1
+code_fix	nginx 502 bad gateway alıyorum node uygulamasında
+code_fix	java'da string karşılaştırması == ile çalışmıyor neden
+code_fix	my website loads super slow, here's the main.js, any idea why
+code_fix	git says detached HEAD, what did i break
+code_fix	Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'map')
+code_fix	this C code gives wrong output for negative numbers, help
+translate	şunu ingilizceye çevirir misin: ödev teslim tarihini uzatabilir miyiz
+translate	almanca bilen yok mu şu cümle ne demek: Ich habe keine Zeit
+translate	instagram bio mu ingilizce yapar mısın: fizik öğrencisi, kahve bağımlısı
+translate	bu mesajı hocama ingilizce atacağım, çevir: makalemi incelediğiniz için teşekkürler
+translate	"see you later alligator" türkçe nasıl denir
+translate	arapça şu yazıyı türkçeye çevir: مرحبا بكم
+translate	pls translate to spanish: where is the nearest pharmacy
+translate	what does 'saudade' mean, translate it
+translate	turn this paragraph into english for my report
+translate	translate: Toplantı saat 3'e ertelendi
+writing	hocama ödevi geç teslim edeceğimi söyleyen bir mail yazar mısın, kibar olsun
+writing	sevgilimle yıldönümümüz için romantik bir not yaz
+writing	kulübümüzün instagram hesabı için 5 gönderi fikri
+writing	burs başvurusu için kendimi anlatan bir yazı lazım, 300 kelime
+writing	köpeğimizin kaybolduğunu duyuran bir ilan yaz
+writing	bir fantastik roman için açılış paragrafı yazar mısın
+writing	write a funny out of office email
+writing	give me some ideas for a science fair project
+writing	draft a toast for my best friend's 30th birthday
+writing	write a short bio for my github profile
+rewrite	şu maili daha kibar hale getir: dosyaları hala göndermediniz acil lazım
+rewrite	bu paragraf çok uzun oldu, kısaltır mısın
+rewrite	yazdığım tezin özet kısmında dil bilgisi hataları var mı bak düzelt
+rewrite	bunu daha resmi yaz: hocam yarın gelemiyorum hastayım
+rewrite	şu metni daha anlaşılır yap, çok karışık olmuş
+rewrite	bu tweet'i daha esprili yap
+rewrite	can you make this sound less aggressive: you never answer my emails
+rewrite	fix my grammar pls: me and him goes to the store yesterday
+rewrite	reword this so it fits in 280 characters
+rewrite	tighten up this intro paragraph, it's too wordy
+summarize	şu makaleyi okuyacak vaktim yok, ana noktaları ne
+summarize	ders kaydının dökümünü attım, sınav için önemli yerleri çıkar
+summarize	bu uzun whatsapp konuşmasını özetler misin kim ne demiş
+summarize	kitabın bu bölümünde ne anlatılıyor kısaca
+summarize	sözleşmede beni bağlayan maddeler neler, özet geç
+summarize	bu raporun sonuç kısmını 2 cümlede söyle
+summarize	can u give me the tldr of this paper
+summarize	what are the key points of the text i pasted
+summarize	summarize this youtube transcript
+summarize	pull out the main conclusions from this study
+data_analysis	excel'de 3 yıllık satış verim var, hangi ürün düşüşte bakar mısın
+data_analysis	ölçüm verilerimin ortalamasını ve hatasını bul, grafik de çiz
+data_analysis	bu csv'de hangi şehirde müşteri en fazla
+data_analysis	anket sonuçlarını yüzdelik olarak çıkar ve yorumla
+data_analysis	deney tablomda doğrusal bir ilişki var mı kontrol et
+data_analysis	harcamalarım tabloda, nereye fazla para gidiyor analiz et
+data_analysis	here's my fitness tracker export, what patterns do you see
+data_analysis	check this dataset for missing values and give stats
+data_analysis	is the difference between group A and B significant? data below
+data_analysis	make a chart of temperature vs time from this table
+research	yeni çıkan telefonlardan hangisini almalıyım, güncel fiyatlarıyla karşılaştır
+research	erasmus için hangi ülkeler daha ucuz, şu an güncel bilgi lazım
+research	son zamanlarda kuantum bilgisayarlarda neler oldu
+research	türkiye'deki en iyi kodlama bootcampleri hangileri araştır
+research	bu yıl hangi yapay zeka araçları çıktı
+research	kira artış oranı şu an yüzde kaç, son düzenleme ne
+research	whats the latest on the mars sample return mission
+research	compare noise cancelling headphones under $300 right now
+research	find me recent papers on perovskite solar cells
+research	what are people saying about the new macbook
+file_create	tez savunması için slayt hazırlar mısın
+file_create	kulüp etkinlikleri için takvim tablosu oluştur
+file_create	öğrenci listesini excel dosyası olarak ver
+file_create	iş başvurusu için cv'mi pdf formatında hazırla
+file_create	projemiz için sunum lazım 8 sayfa
+file_create	aylık gelir gider şablonu yap excel'de
+file_create	make me a powerpoint about renewable energy
+file_create	create a habit tracker spreadsheet
+file_create	put together a report document from my notes with headings
+file_create	build a simple landing page for my bakery

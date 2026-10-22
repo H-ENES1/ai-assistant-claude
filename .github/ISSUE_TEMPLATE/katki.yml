@@ -1,0 +1,31 @@
+name: "📊 Topluluk verisi katkısı / Community data"
+description: "Eklentinin 'Topluluğa katkı' düğmesiyle kopyaladığın özeti buraya yapıştır. Mesaj metni içermez."
+title: "Katkı: [plan]"
+labels: ["katki"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Teşekkürler! Bu özet, yeni kullanıcıların tahminlerini ilk günden daha isabetli yapmak için kullanılır.
+        İçinde **mesaj metni, sohbet adı, tarih, hesap ya da kuruluş bilgisi yoktur**; yalnızca sayılar ve etiketler.
+        Bu konu herkese açıktır. / This issue is public; the summary contains only numbers and labels.
+  - type: textarea
+    id: ozet
+    attributes:
+      label: "Katkı özeti / Contribution summary"
+      description: "Eklenti → Topluluğa katkı → Kopyala. Olduğu gibi yapıştır."
+      render: json
+    validations:
+      required: true
+  - type: dropdown
+    id: sure
+    attributes:
+      label: "Eklentiyi ne zamandır kullanıyorsun? / How long have you used it?"
+      options: ["1 haftadan az / < 1 week", "1-4 hafta / 1-4 weeks", "1 aydan fazla / > 1 month"]
+  - type: checkboxes
+    id: onay
+    attributes:
+      label: "Onay / Consent"
+      options:
+        - label: "Bu özetin herkese açık olarak yayımlanmasını ve topluluk başlangıç değerlerinde kullanılmasını kabul ediyorum. / I agree this summary is public and used for community priors."
+          required: true

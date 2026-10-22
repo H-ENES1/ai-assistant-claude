@@ -6,7 +6,7 @@
     "message": "Token Tahmini"
   },
   "extDescription": {
-    "message": "Bir mesajın Claude kullanım limitinin ne kadarını kullanacağını göndermeden önce tahmin eder, uygun olduğunda daha ucuz bir model önerir ve limit bitmeden seni uyarır."
+    "message": "Claude'a mesaj göndermeden önce limitinizden ne kadar harcayacağını tahmin eder, uygunsa daha ekonomik model önerir."
   },
   "popupTitle": {
     "message": "Token Tahmini"
@@ -175,7 +175,7 @@
     "message": "Bu sohbet çok uzadı (~$1 token). Kısa bir özetle yeni sohbet açmak cevapları hem daha isabetli hem daha ucuz yapar."
   },
   "warnPeak": {
-    "message": "Yoğun saatlerdesin (hafta içi $1–$2): planında 5 saatlik limit şu an daha hızlı doluyor."
+    "message": "Yoğun saatlerdesin (hafta içi $1–$2, senin saatinle): claude.ai'de 5 saatlik limit şu an daha hızlı doluyor. Uzun işleri bu aralığın dışına bırakabilirsin."
   },
   "recDowngrade": {
     "message": "$1 büyük ihtimalle yeterli ve limitinden yaklaşık %$2 daha az harcar."
@@ -446,5 +446,1001 @@
   },
   "detailsTitle": {
     "message": "Token Tahmini — ayrıntılar"
+  },
+  "healthTitle": {
+    "message": "Sağlık kontrolü"
+  },
+  "hHook": {
+    "message": "Sayfa kancası (gönderilen mesajı görür)"
+  },
+  "hSend": {
+    "message": "Son gönderim algılandı"
+  },
+  "hDone": {
+    "message": "Son cevap akışı okundu"
+  },
+  "hUsage": {
+    "message": "Kullanım okunuyor"
+  },
+  "hPage": {
+    "message": "Sayfa: mesaj kutusu / model / effort"
+  },
+  "hLast": {
+    "message": "Son ölçüm"
+  },
+  "hNone": {
+    "message": "henüz yok"
+  },
+  "hHookNoReply": {
+    "message": "yanıt yok – claude.ai sekmesini yenile"
+  },
+  "hHookReplaced": {
+    "message": "fetch site tarafından değiştirilmiş"
+  },
+  "hProbe": {
+    "message": "gönderim farklı bir adrese gidiyor"
+  },
+  "hSendWait": {
+    "message": "henüz mesaj gönderilmedi ya da algılanmadı"
+  },
+  "hSseYes": {
+    "message": "akış tamam"
+  },
+  "hSseNo": {
+    "message": "akış okundu ama içinde kullanım verisi yok"
+  },
+  "hCopyLog": {
+    "message": "Günlüğü kopyala"
+  },
+  "hCopied": {
+    "message": "Kopyalandı"
+  },
+  "hLogTitle": {
+    "message": "Ölçüm günlüğü"
+  },
+  "hHint": {
+    "message": "Bir satırda sorun görünüyorsa günlüğü kopyalayıp geliştiriciye gönder."
+  },
+  "hDomPath": {
+    "message": "sayfadan algılandı (yedek yol)"
+  },
+  "advSave": {
+    "message": "Bu iş için $1 yeterli"
+  },
+  "advSaveDetail": {
+    "message": "Bu mesaj limitinin yaklaşık $1'ini kullanacak; $2 ile yaklaşık $3 (%$4 tasarruf)."
+  },
+  "advSaveNext": {
+    "message": "Bu tür işler için $1 yeterli; ama bu sohbette model değiştirme"
+  },
+  "advSaveNextDetail": {
+    "message": "Sohbet geçmişi ($1 token) yeni modelin önbelleğinde yok, baştan okunur; bu mesaj daha pahalıya gelir. Bir sonraki yeni sohbette $2 seç."
+  },
+  "advUpgrade": {
+    "message": "Bu iş $1 için zor olabilir: $2 önerilir"
+  },
+  "advUpgradeDetail": {
+    "message": "$1 limitini yaklaşık $2 kat hızlı harcar. Önce $3 ile denemek istersen, cevap yetersiz kalırsa yükselt."
+  },
+  "advOk": {
+    "message": "$1 bu iş için uygun"
+  },
+  "advOkTiny": {
+    "message": "$1 de yeterdi ama fark çok küçük (limitin $2'si)."
+  },
+  "advWhy": {
+    "message": "Neden?"
+  },
+  "advHide": {
+    "message": "Gizle"
+  },
+  "advDetected": {
+    "message": "Algılanan iş"
+  },
+  "advSignals": {
+    "message": "Gördüğüm işaretler"
+  },
+  "advBasis": {
+    "message": "Dayanak"
+  },
+  "advWhen": {
+    "message": "Ne zaman değiştirmeli"
+  },
+  "advDetectedVal": {
+    "message": "$1 · $2 · $3"
+  },
+  "level_low": {
+    "message": "kolay"
+  },
+  "level_mid": {
+    "message": "orta zorluk"
+  },
+  "level_high": {
+    "message": "zor"
+  },
+  "ev_trigger": {
+    "message": "$1 ifadesi"
+  },
+  "ev_hard": {
+    "message": "zorluk işaretleri: $1"
+  },
+  "ev_code": {
+    "message": "kod bloğu / kod satırları"
+  },
+  "ev_attach": {
+    "message": "ek: $1 token"
+  },
+  "ev_bullets": {
+    "message": "$1 maddelik istek"
+  },
+  "ev_long": {
+    "message": "ayrıntılı cevap isteniyor"
+  },
+  "ev_short": {
+    "message": "kısa cevap isteniyor"
+  },
+  "ev_words": {
+    "message": "$1 kelime"
+  },
+  "why_simple_task": {
+    "message": "Basit ve net bir iş; sınıflandırıcı emin."
+  },
+  "why_unsure_safe": {
+    "message": "İş türünden emin değilim; güvenli tarafta kalıp en az Sonnet öneriyorum."
+  },
+  "why_complex": {
+    "message": "Karmaşıklık yüksek."
+  },
+  "why_hardest": {
+    "message": "Çok zor bir türetme, tasarım ya da araştırma."
+  },
+  "why_pref_floor": {
+    "message": "Geri bildirimine göre bu tür işlerde daha güçlü bir model seçiyorum."
+  },
+  "why_pref_ceil": {
+    "message": "Geri bildirimine göre bu tür işlerde daha güçlü modele gerek görmüyorum."
+  },
+  "basis_haiku": {
+    "message": "Anthropic, Haiku 5.5'i \"en düşük gecikme ve fiyat\" modeli olarak; yüksek hacimli, basit işler ve alt görevler için konumlandırıyor."
+  },
+  "basis_sonnet": {
+    "message": "Anthropic'e göre Sonnet 5.5 \"günlük işler için hız ve yetenek\" sunar: kod üretme, veri analizi, içerik yazma."
+  },
+  "basis_opus": {
+    "message": "Anthropic, Opus 5.5'i karmaşık kodlama ve kurumsal işler için öneriyor: büyük refactor, sistem mühendisliği, saatler süren ajan işleri."
+  },
+  "basis_fable": {
+    "message": "Fable 5.1 \"en yüksek yetenek\" modeli: saatler süren ajan işleri, çok adımlı derin araştırma."
+  },
+  "tbasis_short_qa": {
+    "message": "Tek cevaplı bilgi soruları kısa cevap ister; hafif modeller bunları iyi yapar. Kişi ya da olay sorularında uydurma riski vardır, önemliyse kontrol et."
+  },
+  "tbasis_translate": {
+    "message": "Çeviride metin zaten elinde; model anlamı korur ve dili değiştirir. Hafif modellerin iyi yaptığı bir iş."
+  },
+  "tbasis_rewrite": {
+    "message": "Metni düzeltme ve sadeleştirmede içerik hazır; model yalnızca biçimi iyileştirir."
+  },
+  "tbasis_summarize": {
+    "message": "Özette bilgi metnin içinde; kısa metinlerde hafif model yeter, uzun ya da teknik belgelerde orta model daha güvenilir."
+  },
+  "tbasis_explain": {
+    "message": "Kavram açıklamada doğruluk ve iyi örnek seçimi önemli; orta model genelde yeterli, ileri konularda Opus fark yaratır."
+  },
+  "tbasis_writing": {
+    "message": "Yazı ve e-postada ton ve akıcılık için orta model iyi bir denge."
+  },
+  "tbasis_data_analysis": {
+    "message": "Veri analizinde hesap ve yorum birlikte; orta model genelde yeterli."
+  },
+  "tbasis_file_create": {
+    "message": "Dosya ya da sunum üretmek çok adımlı bir iş; orta model çoğu zaman yeterli, uzun belgelerde Opus."
+  },
+  "tbasis_code_write": {
+    "message": "Sonnet günlük kodlamada güçlü; mimari ve çok dosyalı işlerde Opus öneriliyor."
+  },
+  "tbasis_code_fix": {
+    "message": "Tek dosyalık hatalarda Sonnet yeterli; zor ya da sistem çapındaki hatalarda Opus."
+  },
+  "tbasis_research": {
+    "message": "Araştırmada kaynak tarama ve sentez var; derin, çok adımlı araştırmalarda Opus ya da Fable."
+  },
+  "tbasis_math": {
+    "message": "İşlem ve standart problemler orta modelde; kanıt ve uzun türetmelerde Opus ya da Fable."
+  },
+  "when_haiku": {
+    "message": "Cevap yüzeysel ya da hatalı gelirse Sonnet'e geç."
+  },
+  "when_sonnet": {
+    "message": "Cevap yetersiz kalırsa ya da iş büyürse Opus'a geç."
+  },
+  "when_opus": {
+    "message": "Saatler süren ajan işlerinde ya da Opus yetmezse Fable'a geç."
+  },
+  "when_fable": {
+    "message": "Fable en güçlü model ve en pahalısı; yalnızca gerçekten zor işlerde kullan."
+  },
+  "advCaveat": {
+    "message": "Bu öneri, kurallar ve cihazında çalışan küçük bir öğrenen modelle yapılmış bir tahmindir; cevap kalitesi ölçülmedi. Geri bildirimin ve düzeltmelerin önerileri sana göre ayarlar."
+  },
+  "advFbQ": {
+    "message": "Öneri doğru muydu?"
+  },
+  "advFbGood": {
+    "message": "👍 Doğru"
+  },
+  "advFbBad": {
+    "message": "👎 Yanlış"
+  },
+  "advFbThanks": {
+    "message": "Teşekkürler, kaydedildi."
+  },
+  "advSource": {
+    "message": "Kaynak: Anthropic model seçme rehberi"
+  },
+  "setAdvisor": {
+    "message": "Model önerisi bildirimini göster"
+  },
+  "btnImport": {
+    "message": "Verimi içe aktar"
+  },
+  "btnImportConfirm": {
+    "message": "Evet, yedeği yükle"
+  },
+  "importReady": {
+    "message": "Yedek okundu: $1 ölçüm ($2). Mevcut öğrenilenlerin yerine geçecek; onaylamak için butona tekrar bas."
+  },
+  "importDone": {
+    "message": "Yedek yüklendi: $1 ölçüm geri geldi."
+  },
+  "importBad": {
+    "message": "Bu dosya geçerli bir Token Tahmini yedeği değil."
+  },
+  "supportLink": {
+    "message": "Projeye destek ol ☕"
+  },
+  "cacheWarmLeft": {
+    "message": "sıcak · geçmiş $1 dk daha ücretsiz"
+  },
+  "cacheColdAgo": {
+    "message": "soğuk (son mesaj $1 önce) · geçmiş baştan okunur"
+  },
+  "tipHandoff": {
+    "message": "Bu sohbet uzun ($1 token) ve her mesajda büyüyor. Yeni sohbete geçmek için Claude'dan kısa bir devir özeti isteyebilirsin."
+  },
+  "tipHandoffWarm": {
+    "message": "Bu sohbet uzun ($1 token). Önbellek sıcakken devir özeti istemek ucuzdur; özeti yeni sohbete yapıştırıp oradan devam edersin."
+  },
+  "btnHandoff": {
+    "message": "Devir özeti istemini kopyala"
+  },
+  "handoffPrompt": {
+    "message": "Bu sohbeti yeni bir sohbete taşıyacağım. Kısa bir devir özeti yaz: amaç, şimdiye kadar verilen kararlar, önemli ayrıntılar (dosya adları, sayılar, kod parçaları), açık sorular ve bir sonraki adım. Yeni sohbete doğrudan yapıştırabileceğim biçimde, en fazla 300 kelime."
+  },
+  "peakLeft": {
+    "message": "Bitmesine $1 var."
+  },
+  "warnSurprise": {
+    "message": "Son mesaj beklenenden fazla harcadı: $1 (tahmin $2). Olası sebepler: $3."
+  },
+  "cr_cold": {
+    "message": "uzun bir aradan sonra yazdın, geçmiş baştan okundu"
+  },
+  "cr_long_chat": {
+    "message": "sohbet çok uzun"
+  },
+  "cr_peak": {
+    "message": "yoğun saat"
+  },
+  "cr_effort": {
+    "message": "yüksek effort (gizli düşünme)"
+  },
+  "cr_long_answer": {
+    "message": "cevap beklenenden uzun"
+  },
+  "cr_big_model": {
+    "message": "büyük model"
+  },
+  "cr_elsewhere": {
+    "message": "aynı hesap başka bir sekmede, cihazda ya da Claude Code'da kullanılmış olabilir"
+  },
+  "bdTitle": {
+    "message": "Harcamanın dökümü (tahmini)"
+  },
+  "bd_output": {
+    "message": "Cevap"
+  },
+  "bd_thinking": {
+    "message": "Düşünme"
+  },
+  "bd_input": {
+    "message": "Mesaj ve ekler"
+  },
+  "bd_history": {
+    "message": "Geçmiş"
+  },
+  "bd_tool": {
+    "message": "Araçlar"
+  },
+  "wkNotifTitle": {
+    "message": "Haftalık raporun hazır"
+  },
+  "wkNotifMsgs": {
+    "message": "$1 mesaj"
+  },
+  "wkNotifSpent": {
+    "message": "$1 tam 5 saatlik limit"
+  },
+  "wkNotifPeak": {
+    "message": "harcamanın %$1'i yoğun saatte"
+  },
+  "rpTitle": {
+    "message": "Haftalık rapor"
+  },
+  "rpRange": {
+    "message": "Son 7 gün · $1 – $2"
+  },
+  "rpMsgs": {
+    "message": "Mesaj"
+  },
+  "rpChats": {
+    "message": "$1 sohbette"
+  },
+  "rpChangeUp": {
+    "message": "geçen haftadan %$1 fazla"
+  },
+  "rpChangeDown": {
+    "message": "geçen haftadan %$1 az"
+  },
+  "rpChangeSame": {
+    "message": "geçen haftayla aynı"
+  },
+  "rpChangeNone": {
+    "message": "geçen hafta kayıt yok"
+  },
+  "rpSpent": {
+    "message": "Harcanan 5 saatlik limit"
+  },
+  "rpSessions": {
+    "message": "$1 limit"
+  },
+  "rpSpentSub": {
+    "message": "5 saatlik limitlerin toplam $1'i"
+  },
+  "rpPeak": {
+    "message": "Yoğun saatte"
+  },
+  "rpPeakSub": {
+    "message": "mesajların $1'i"
+  },
+  "rpSave": {
+    "message": "Kaçan tasarruf"
+  },
+  "rpSaveSub": {
+    "message": "$1 mesajda daha hafif model yeterdi"
+  },
+  "rpSaveNone": {
+    "message": "öneriye uygun gittin"
+  },
+  "rpTips": {
+    "message": "Önerilerim"
+  },
+  "tip_peak": {
+    "message": "Harcamanın %$1'i yoğun saatte oldu ($2, hafta içi). claude.ai bu saatlerde 5 saatlik limiti daha hızlı dolduruyor; uzun işleri bu aralığın dışına kaydırmak aynı işi daha az limitle yaptırır."
+  },
+  "tip_cold": {
+    "message": "$1 mesaj, bir saatten uzun aradan sonra uzun bir sohbete yazıldı; her seferinde tüm geçmiş baştan okundu (harcamanın %$2'si). Ara verdiysen yeni sohbet açmak ya da devir özeti kullanmak daha ucuz."
+  },
+  "tip_advice": {
+    "message": "$2 mesajda daha hafif bir model yeterliydi. Öneriye uysaydın yaklaşık $1 oturum limiti kazanırdın."
+  },
+  "tip_long": {
+    "message": "$1 mesaj 100 bin tokenı aşan sohbetlerde gönderildi. Bu kadar uzun bağlam hem limiti hem cevap kalitesini zorlar; konuyu yeni sohbetlere bölmek iyi gelir."
+  },
+  "tip_effort": {
+    "message": "$1 basit işte (çeviri, kısa soru gibi) yüksek düşünme ayarı açıktı. Bu işlerde düşük ayar aynı sonucu daha ucuza verir."
+  },
+  "tip_upgrade": {
+    "message": "$1 mesajda daha güçlü bir model önerildi. Cevaplar yetersiz geldiyse bu tür işleri doğrudan güçlü modelle başlatmak, tekrar tekrar sormaktan ucuzdur."
+  },
+  "tip_good": {
+    "message": "Bu hafta harcaman dengeli: yoğun saat, uzun sohbet ya da gereğinden büyük model belirgin bir sorun değil."
+  },
+  "rpByModel": {
+    "message": "Model dağılımı (harcamaya göre)"
+  },
+  "rpByType": {
+    "message": "İş türleri (harcamaya göre)"
+  },
+  "rpHeat": {
+    "message": "Ne zaman yazıyorsun? (son 4 hafta, senin saatinle)"
+  },
+  "rpHeatPeak": {
+    "message": "Çerçeveli hücreler: yoğun saatler"
+  },
+  "rpTop": {
+    "message": "En pahalı mesajlar"
+  },
+  "rpMeasured": {
+    "message": "ölçüldü"
+  },
+  "rpEstimated": {
+    "message": "tahmin"
+  },
+  "rpAcc": {
+    "message": "Tahmin isabeti"
+  },
+  "rpAccVal": {
+    "message": "Ölçülen $1 mesajın $2'si tahmin aralığında kaldı."
+  },
+  "rpAccNone": {
+    "message": "Bu hafta ölçülen mesaj yok; değerler tahmin."
+  },
+  "rpMeasuredShare": {
+    "message": "Değerlerin $1'i ölçüldü, kalanı gönderim anındaki tahmin."
+  },
+  "rpCsv": {
+    "message": "CSV indir"
+  },
+  "rpPrivacy": {
+    "message": "Bu rapor yalnızca bu tarayıcıda, mesaj metni içermeyen kayıtlardan hesaplanır."
+  },
+  "rpOpen": {
+    "message": "Haftalık rapor"
+  },
+  "rpWeekLine": {
+    "message": "Son 7 gün: $1 mesaj · $2 tam 5 saatlik limit"
+  },
+  "rpDays": {
+    "message": "Pzt,Sal,Çar,Per,Cum,Cmt,Paz"
+  },
+  "rpNoData": {
+    "message": "Rapor için henüz yeterli kayıt yok. Birkaç gün claude.ai'de yazdıktan sonra burası dolacak."
+  },
+  "rpOther": {
+    "message": "Diğer"
+  },
+  "setWeekly": {
+    "message": "Pazartesi sabahı haftalık rapor bildirimi"
+  },
+  "burnEta": {
+    "message": "Son saatteki hızla ~$1'de dolar (yenilenme $2)."
+  },
+  "burnSafe": {
+    "message": "Bu hızla yenilenmeden önce dolmaz."
+  },
+  "burnIdle": {
+    "message": "Son bir saatte kayda değer harcama yok."
+  },
+  "rpBack": {
+    "message": "Ayrıntılar ve ayarlar"
+  },
+  "advRelabel": {
+    "message": "İş türü yanlış mı? Doğrusunu seç:"
+  },
+  "advRelabelThanks": {
+    "message": "Teşekkürler; bu cihazda buna göre öğreniyorum."
+  },
+  "ev_ml": {
+    "message": "öğrenen model %$1 emin"
+  },
+  "comTitle": {
+    "message": "Topluluğa katkı (isteğe bağlı)"
+  },
+  "comText": {
+    "message": "Bu cihazda öğrenilen değerleri paylaşırsan yeni kullanıcıların tahminleri ilk günden daha isabetli olur. Özette mesaj metni, sohbet adı, tarih ya da hesap bilgisi yoktur. Göndermeden önce içeriği görürsün; hiçbir şey kendiliğinden gönderilmez."
+  },
+  "comBuild": {
+    "message": "Katkı özetini göster"
+  },
+  "comCopy": {
+    "message": "Kopyala ve formu aç"
+  },
+  "comCopyOnly": {
+    "message": "Kopyala"
+  },
+  "comCopied": {
+    "message": "Kopyalandı. Açılan formdaki kutuya yapıştırıp gönderebilirsin."
+  },
+  "comNoUrl": {
+    "message": "Kopyalandı. Topluluk formu yakında açılacak; şimdilik metni saklayabilirsin."
+  },
+  "comEmpty": {
+    "message": "Henüz paylaşılacak ölçüm yok. Birkaç mesaj gönderdikten sonra tekrar dene."
+  },
+  "feedbackLink": {
+    "message": "Geri bildirim ya da öneri gönder"
+  },
+  "rpOpenBtn": {
+    "message": "Raporu aç →"
+  },
+  "rpWeekLinePct": {
+    "message": "Son 7 gün: $1 mesaj · 5 saatlik limitlerden toplam $2 harcandı"
+  },
+  "rpSpentSmall": {
+    "message": "toplamda (1 tam limit = %100)"
+  },
+  "rowDomain": {
+    "message": "Alan"
+  },
+  "dom_science": {
+    "message": "Bilim"
+  },
+  "dom_math": {
+    "message": "Matematik"
+  },
+  "dom_engineering": {
+    "message": "Mühendislik"
+  },
+  "dom_software": {
+    "message": "Yazılım"
+  },
+  "dom_data_ai": {
+    "message": "Veri ve yapay zekâ"
+  },
+  "dom_academic": {
+    "message": "Akademik yazım"
+  },
+  "dom_project": {
+    "message": "Proje ve planlama"
+  },
+  "dom_literature": {
+    "message": "Edebiyat ve yaratıcı yazı"
+  },
+  "dom_business": {
+    "message": "İş ve kariyer"
+  },
+  "dom_finance": {
+    "message": "Ekonomi ve finans"
+  },
+  "dom_law": {
+    "message": "Hukuk"
+  },
+  "dom_health": {
+    "message": "Sağlık"
+  },
+  "dom_education": {
+    "message": "Ders ve sınav"
+  },
+  "dom_language": {
+    "message": "Dil"
+  },
+  "dom_humanities": {
+    "message": "Tarih, felsefe ve toplum"
+  },
+  "dom_daily": {
+    "message": "Günlük yaşam"
+  },
+  "dom_general": {
+    "message": "Genel"
+  },
+  "sub_science_physics": {
+    "message": "Fizik"
+  },
+  "sub_science_chemistry": {
+    "message": "Kimya"
+  },
+  "sub_science_biology": {
+    "message": "Biyoloji"
+  },
+  "sub_science_astronomy": {
+    "message": "Astronomi"
+  },
+  "sub_science_earth": {
+    "message": "Yer bilimleri"
+  },
+  "sub_math_pure": {
+    "message": "Analiz ve cebir"
+  },
+  "sub_math_statistics": {
+    "message": "İstatistik"
+  },
+  "sub_engineering_electrical": {
+    "message": "Elektrik-elektronik"
+  },
+  "sub_engineering_mechanical": {
+    "message": "Makine"
+  },
+  "sub_engineering_civil": {
+    "message": "İnşaat"
+  },
+  "sub_engineering_control": {
+    "message": "Kontrol ve endüstri"
+  },
+  "sub_software_web": {
+    "message": "Web"
+  },
+  "sub_software_mobile": {
+    "message": "Mobil"
+  },
+  "sub_software_systems": {
+    "message": "Sistem ve veritabanı"
+  },
+  "sub_software_general": {
+    "message": "Programlama"
+  },
+  "sub_data_ai_ml": {
+    "message": "Makine öğrenmesi"
+  },
+  "sub_data_ai_llm": {
+    "message": "Dil modelleri"
+  },
+  "sub_data_ai_data": {
+    "message": "Veri analizi"
+  },
+  "sub_academic_paper": {
+    "message": "Makale"
+  },
+  "sub_academic_thesis": {
+    "message": "Tez"
+  },
+  "sub_academic_grant": {
+    "message": "Başvuru ve proje önerisi"
+  },
+  "sub_project_planning": {
+    "message": "Planlama"
+  },
+  "sub_project_agile": {
+    "message": "Çevik"
+  },
+  "sub_project_startup": {
+    "message": "Girişim"
+  },
+  "sub_literature_poetry": {
+    "message": "Şiir"
+  },
+  "sub_literature_fiction": {
+    "message": "Kurgu"
+  },
+  "sub_literature_analysis": {
+    "message": "Edebi inceleme"
+  },
+  "sub_literature_screen": {
+    "message": "Senaryo ve sahne"
+  },
+  "sub_business_career": {
+    "message": "Kariyer"
+  },
+  "sub_business_marketing": {
+    "message": "Pazarlama"
+  },
+  "sub_business_management": {
+    "message": "Yönetim"
+  },
+  "sub_finance_investing": {
+    "message": "Yatırım"
+  },
+  "sub_finance_personal": {
+    "message": "Kişisel finans"
+  },
+  "sub_finance_accounting": {
+    "message": "Muhasebe ve vergi"
+  },
+  "sub_finance_economics": {
+    "message": "Ekonomi"
+  },
+  "sub_law_contract": {
+    "message": "Sözleşme"
+  },
+  "sub_law_civil": {
+    "message": "Genel hukuk"
+  },
+  "sub_law_privacy": {
+    "message": "Kişisel veri"
+  },
+  "sub_law_ip": {
+    "message": "Fikri mülkiyet"
+  },
+  "sub_health_medical": {
+    "message": "Tıbbi"
+  },
+  "sub_health_nutrition": {
+    "message": "Beslenme"
+  },
+  "sub_health_fitness": {
+    "message": "Spor"
+  },
+  "sub_health_mental": {
+    "message": "Ruh sağlığı"
+  },
+  "sub_education_exam": {
+    "message": "Sınav"
+  },
+  "sub_education_homework": {
+    "message": "Ödev"
+  },
+  "sub_education_teaching": {
+    "message": "Öğretim"
+  },
+  "sub_language_grammar": {
+    "message": "Dil bilgisi"
+  },
+  "sub_language_learning": {
+    "message": "Dil öğrenme"
+  },
+  "sub_language_translation": {
+    "message": "Çeviri"
+  },
+  "sub_humanities_history": {
+    "message": "Tarih"
+  },
+  "sub_humanities_philosophy": {
+    "message": "Felsefe"
+  },
+  "sub_humanities_society": {
+    "message": "Toplum"
+  },
+  "sub_humanities_psychology": {
+    "message": "Psikoloji"
+  },
+  "sub_daily_food": {
+    "message": "Yemek"
+  },
+  "sub_daily_travel": {
+    "message": "Seyahat"
+  },
+  "sub_daily_home": {
+    "message": "Ev"
+  },
+  "sub_daily_fun": {
+    "message": "Eğlence"
+  },
+  "sub_daily_people": {
+    "message": "İnsanlar"
+  },
+  "dbasis_science": {
+    "message": "Bilim sorularında açıklamanın doğru ve tutarlı olması önemli; ayrıntılı açıklamada effort bir seviye artar."
+  },
+  "dbasis_math": {
+    "message": "Matematikte adım adım akıl yürütme gerekir; ispat ve türetmede effort en az Yüksek."
+  },
+  "dbasis_engineering": {
+    "message": "Mühendislik hesaplarında hata pahalıdır; tasarım ve hesaplarda effort bir seviye artar."
+  },
+  "dbasis_software": {
+    "message": "Kodda karmaşıklık arttıkça effort artar; Opus'ta zor kodlama için Anthropic önce Çok yüksek'i (Extra high) önerir."
+  },
+  "dbasis_data_ai": {
+    "message": "Veri ve yapay zekâ işleri çoğunlukla orta düzey akıl yürütme ister."
+  },
+  "dbasis_academic": {
+    "message": "Akademik metinde tutarlılık önemli; düzeltme işlerinde hafif ayar genelde yeter, literatür ve yöntem yazımında daha fazlası."
+  },
+  "dbasis_project": {
+    "message": "Anthropic proje planlamada effort'u artırmayı önerir; plan işlerinde en az Orta."
+  },
+  "dbasis_literature": {
+    "message": "Yaratıcı yazıda uzun düşünme kaliteyi pek artırmaz; effort tavanı Orta."
+  },
+  "dbasis_business": {
+    "message": "İş yazışmaları genelde rutin; varsayılan ya da daha hafif ayar yeter."
+  },
+  "dbasis_finance": {
+    "message": "Para konusunda yanlış bilgi zarar verebilir: hafif model önerilmez, effort en az Orta."
+  },
+  "dbasis_law": {
+    "message": "Hukukta yanlış bilgi zarar verebilir: hafif model önerilmez, effort en az Orta. Önemli kararlar için bir avukata danış."
+  },
+  "dbasis_health": {
+    "message": "Sağlıkta yanlış bilgi zarar verebilir: hafif model önerilmez, effort en az Orta. Acil bir durumda doktora başvur."
+  },
+  "dbasis_education": {
+    "message": "Ders ve sınav işleri çoğunlukla açıklamadır; konu zorlaştıkça effort artar."
+  },
+  "dbasis_language": {
+    "message": "Dil işleri (çeviri, dil bilgisi) genelde hafiftir; effort bir seviye düşük yeter."
+  },
+  "dbasis_humanities": {
+    "message": "Tarih ve felsefe açıklamaları orta düzey akıl yürütme ister."
+  },
+  "dbasis_daily": {
+    "message": "Günlük işler hafiftir; effort bir seviye düşük yeter."
+  },
+  "dbasis_general": {
+    "message": ""
+  },
+  "eff_low": {
+    "message": "Düşük"
+  },
+  "eff_medium": {
+    "message": "Orta"
+  },
+  "eff_high": {
+    "message": "Yüksek"
+  },
+  "eff_xhigh": {
+    "message": "Çok yüksek"
+  },
+  "eff_max": {
+    "message": "Maksimum"
+  },
+  "effort_xhigh": {
+    "message": "çok yüksek effort"
+  },
+  "effDefaultMark": {
+    "message": "(varsayılan)"
+  },
+  "effLowerX": {
+    "message": "Effort'u $1 yapmak bu mesajda yaklaşık $2 limit kazandırır."
+  },
+  "effAssumedNote": {
+    "message": "(Sayfada effort ayarını okuyamadım; modelin varsayılanı $1 sayıldı.)"
+  },
+  "effRaiseX": {
+    "message": "Bu iş için effort'u $1 yapmak daha sağlam cevap verebilir."
+  },
+  "advEffWith": {
+    "message": "effort: $1"
+  },
+  "advEffLowerTitle": {
+    "message": "Effort'u $1 yap: ≈ $2 daha az harcar"
+  },
+  "advEffLowerDetail": {
+    "message": "Şu an: $1. Bu tür işte $2 effort genellikle aynı cevabı verir; gizli düşünme azaldığı için bu mesajın maliyeti yaklaşık %$3 düşer."
+  },
+  "advEffRaiseTitle": {
+    "message": "Bu iş için effort'u $1 yap"
+  },
+  "advEffRaiseDetail": {
+    "message": "Şu an: $1. Bu iş derin akıl yürütme istiyor; $2 effort daha sağlam cevap verir ama bu mesaj yaklaşık %$3 daha fazla harcar. Yetersiz cevap tekrar sormak demek, o da daha pahalıya gelir."
+  },
+  "advEffAlsoLower": {
+    "message": "Ayrıca effort $1 yeter."
+  },
+  "advDomain": {
+    "message": "Alan"
+  },
+  "advEffort": {
+    "message": "Effort önerisi"
+  },
+  "advEffortVal": {
+    "message": "$1 öneriyorum."
+  },
+  "advEffForModel": {
+    "message": "($1 için)"
+  },
+  "advEffNow": {
+    "message": "Şu an: $1."
+  },
+  "advFbQEff": {
+    "message": "Effort önerisi doğru muydu?"
+  },
+  "effBasis": {
+    "message": "Effort için dayanak: Anthropic'e göre Düşük ve Orta rutin işlerde kullanımı uzatır, Yüksek en iyi dengedir, Çok yüksek uzun kodlama ve ajan işleri, Maksimum en derin akıl yürütme içindir."
+  },
+  "ev_domain": {
+    "message": "alan kelimeleri: $1"
+  },
+  "why_stakes": {
+    "message": "Riskli alanda (sağlık, hukuk, para) hafif model önermiyorum."
+  },
+  "ewhy_e_light_type": {
+    "message": "hafif iş türü"
+  },
+  "ewhy_e_mid_type": {
+    "message": "orta düzey iş"
+  },
+  "ewhy_e_deep_type": {
+    "message": "derin akıl yürütme isteyen iş"
+  },
+  "ewhy_e_big_doc": {
+    "message": "büyük belge"
+  },
+  "ewhy_e_stakes": {
+    "message": "riskli alan: en az Orta"
+  },
+  "ewhy_e_depth": {
+    "message": "bilimsel/teknik derinlik"
+  },
+  "ewhy_e_plan": {
+    "message": "planlama işi"
+  },
+  "ewhy_e_complex": {
+    "message": "karmaşık istek"
+  },
+  "ewhy_e_hardest": {
+    "message": "çok zor problem"
+  },
+  "ewhy_e_proof": {
+    "message": "ispat/türetme"
+  },
+  "ewhy_e_creative": {
+    "message": "yaratıcı yazı: tavan Orta"
+  },
+  "ewhy_e_light_domain": {
+    "message": "günlük/dil işi"
+  },
+  "ewhy_e_short": {
+    "message": "kısa cevap istendi"
+  },
+  "ewhy_e_pref": {
+    "message": "senin geri bildirimin"
+  },
+  "ewhy_e_long_code": {
+    "message": "zor kodlama: Çok yüksek"
+  },
+  "rpByDomain": {
+    "message": "Alanlar (harcamaya göre)"
+  },
+  "rpByEffort": {
+    "message": "Effort ayarları (harcamaya göre)"
+  },
+  "rpDomainNote": {
+    "message": "Alan, mesajdaki kelimelerden cihazında tahmin edilir; metin saklanmaz."
+  },
+  "tip_effort_over": {
+    "message": "$1 mesajda effort önerilenden yüksekti. Önerilen ayarla yaklaşık $2 limit daha az harcanırdı."
+  },
+  "tip_domain_save": {
+    "message": "Tasarruf fırsatının çoğu $1 alanında: $2 mesajda daha hafif model yeterdi."
+  },
+  "tip_domain_stakes": {
+    "message": "$1 mesaj sağlık, hukuk ya da para konusundaydı. Bu konularda hafif model ve Düşük effort önermiyorum; önemli kararlarda bir uzmana da danış."
+  },
+  "pillDragTitle": {
+    "message": "Sürükleyerek taşıyabilirsin"
+  },
+  "pillReset": {
+    "message": "Hapı eski yerine al"
+  },
+  "rpEffOver": {
+    "message": "$1 mesajda effort önerilenden yüksekti (kaçan tasarruf ≈ $2)."
+  },
+  "rpEffOk": {
+    "message": "Effort ayarların önerilerle uyumlu görünüyor."
+  },
+  "rpLearn": {
+    "message": "Öğrenme kanıtı"
+  },
+  "rpLearnFew": {
+    "message": "Şimdiye kadar $1 ölçülen mesaj var. Her 10 ölçüm bir nokta olur, eğilim 30 ölçümden sonra görünür (yaklaşık $2 mesaj daha)."
+  },
+  "rpLearnBetter": {
+    "message": "İlk ölçümlerde tahmin edilen toplam limit gerçeğin $1 katı uzaktaydı, son ölçümlerde $2 kat. Eklenti seni öğreniyor."
+  },
+  "rpLearnSame": {
+    "message": "Tahmin hatası ilk ölçümlerde $1 kat, son ölçümlerde $2 kat: belirgin bir değişim yok. Zaten isabetliyse bu beklenen bir sonuçtur."
+  },
+  "rpLearnWorse": {
+    "message": "Son ölçümlerde hata ($2 kat) ilk ölçümlerden ($1 kat) büyük. Aynı hesabı başka cihazda ya da Claude Code'da kullanmak ölçümü bozar; böyleyse kalibrasyonu sıfırlamayı dene."
+  },
+  "rpLearnRange": {
+    "message": "Tahmin aralığında kalma: ilk ölçümlerde $1, son ölçümlerde $2 (hedef yaklaşık %80)."
+  },
+  "rpLearnBar": {
+    "message": "$1–$2. ölçüm: $3 kat"
+  },
+  "rpLearnNote": {
+    "message": "Her çubuk art arda 10 ölçülen mesajdır. Değer, tahmin edilen toplam limitin gerçekte harcananın kaç kat uzağında olduğunu gösterir (1,00 = kusursuz). Yüzdeler tam sayıya yuvarlandığı için tek mesaj yerine 10'luk toplam alınır."
+  },
+  "setEffortAdvice": {
+    "message": "Effort önerisini göster"
+  },
+  "setTips": {
+    "message": "İpuçlarını göster (önbellek, yoğun saat, uzun sohbet, devir özeti)"
+  },
+  "setExplain": {
+    "message": "“Neden bu kadar harcadı?” açıklamasını göster"
+  },
+  "setView": {
+    "message": "Görünüm"
+  },
+  "viewFull": {
+    "message": "Tam: tahmin ve tüm öneriler"
+  },
+  "viewSimple": {
+    "message": "Sade: yalnızca tahmin ve limit uyarıları"
+  },
+  "viewCustom": {
+    "message": "Özel (aşağıdaki seçimler)"
+  },
+  "viewNote": {
+    "message": "Sade görünümde model ve effort önerisi, ipuçları ve harcama açıklaması gizlenir. Tahmin, limit dolma ve bağlam uyarıları her zaman görünür."
+  },
+  "warnLangLimited": {
+    "message": "Mesaj analizi (iş türü, konu, model ve effort önerisi) şimdilik yalnızca Türkçe ve İngilizce mesajlarda çalışır. Bu dilde token ve limit tahmini gösterilir, öneri gösterilmez."
+  },
+  "typeNA": {
+    "message": "Bu dilde analiz yok"
   }
 }

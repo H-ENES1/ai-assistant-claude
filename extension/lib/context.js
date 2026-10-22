@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2026 Hayrettin Enes Karalı
 // Bağlam penceresi (context window) boyutları ve uyarı seviyesi.
 // Kaynak: https://support.claude.com/en/articles/8606394 (Ekim 2026, ücretli planlar, sohbet)
 //   1M  : Fable 5.1, Opus 5.5, Opus 5, Sonnet 5.5, Sonnet 5, Haiku 5.5

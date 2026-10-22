@@ -1,0 +1,309 @@
+d.brand	Token Forecast
+d.nav0	Funktionen
+d.nav1	So funktioniert’s
+d.nav2	Lernen
+d.nav3	Datenschutz
+d.nav4	Installation
+d.eyebrow	Kostenlose Browser-Erweiterung für claude.ai
+d.h1	Wissen, <em>bevor</em> du sendest.
+d.lede	Token Forecast sagt dir, wie viel deines 5-Stunden- und Wochenlimits bei Claude eine Nachricht verbraucht, bevor du auf „Senden“ drückst. Es zeigt auch, welches Modell und welche Aufwandsstufe ausreichen – mit Begründung – und lernt mit der Zeit deinen Tarif kennen.
+d.cta1	Installieren · Chrome und Opera
+d.cta2	So funktioniert’s
+d.tr1	Kein Konto
+d.tr2	Kein Server
+d.tr3	Deine Nachrichten verlassen nie dein Gerät
+d.tr4	Oberfläche in 10 Sprachen
+d.demoT	LIVE AUSPROBIEREN
+d.demoS	Die echte Prognose-Engine der Erweiterung, direkt in deinem Browser
+d.demoL	DEINE NACHRICHT
+d.cModel	Modell
+d.cEffort	Aufwand
+d.cPlan	Tarif
+d.cChat	Chat
+d.eLow	Niedrig
+d.eMed	Mittel
+d.eHigh	Hoch
+d.eMax	Maximal
+d.chNew	Neuer Chat
+d.chMid	Kurzer Verlauf (8K)
+d.chLong	Langer Verlauf (190K)
+d.usedL	Aktuell genutztes 5-Stunden-Limit
+d.fType	AUFGABE
+d.fTok	EINGABE → ANTWORT
+d.fWeek	WÖCHENTLICH
+d.gapE	WAS FEHLT
+d.gapH	Claude Code zeigt deine Nutzung. Der Chat-Bildschirm nicht.
+d.gapP	Auf claude.ai musst du Einstellungen → Nutzung öffnen, und dort steht nur, was du bereits verbraucht hast. Limits sind oft mitten in einer Aufgabe aus, bei einer Nachricht, die du nicht erwartet hast. Token Forecast holt das in den Chat und geht einen Schritt weiter: noch vor dem Senden.
+d.t0	Funktion
+d.t1	Einstellungen → Nutzung
+d.t2	Nutzungsanzeigen*
+d.t3	Token Forecast
+d.r1	Prozent für 5 Stunden und Woche, Zeitpunkt der Zurücksetzung
+d.r2	Im Chat, direkt neben dem Nachrichtenfeld
+d.r3	Was diese Nachricht kostet – vor dem Senden
+d.r4	Welches Modell reicht, und warum
+d.r5	Die versteckten Kosten eines Modellwechsels mitten im Chat
+d.r6	Grob, wie viele Aufgaben dein restliches Limit erlaubt
+d.r7	Lernt aus deinem Tarif und deinen Gewohnheiten
+d.r8	Erklärung „Warum hat diese Nachricht so viel gekostet?“
+d.r9	Wochenbericht, Stunden-Heatmap und persönliche Tipps
+d.r10	Countdown für Cache und Stoßzeiten
+d.part	teilweise
+d.part2	teilweise
+d.gapF	* Keine der acht Nutzungs-Erweiterungen, deren Seiten wir im Oktober 2026 geprüft haben, bietet vor dem Senden eine Schätzung pro Nachricht oder einen begründeten Modellvorschlag; alle zeigen die Nutzung erst nach dem Senden. Eine hat einen Cache-Countdown, eine einen Stoßzeiten-Countdown, eine eine Heatmap.
+d.ftE	WAS ES KANN
+d.ftH	Bevor, während und nachdem du dein Limit verbrauchst.
+d.ftP	Alles läuft in deinem Browser. Neu in dieser Version Hinzugekommenes ist markiert.
+d.fk1	VORHER
+d.fk2	WÄHREND
+d.fk3	NACHHER
+d.fk4	LERNT
+d.nw	NEU
+d.f1h	Schätzung vor dem Senden
+d.f1p	Während du tippst, zeigt es mit einem 80-%-Bereich, wie viel von deinem 5-Stunden- und Wochenlimit draufgeht. Anhänge, Chatverlauf, Modell und Denkaufwand sind eingerechnet.
+d.f2h	Modellvorschlag mit Begründung
+d.f2p	Es sagt dir, welches Modell reicht, worauf es geachtet hat und wie viel du sparst. Bei Unsicherheit schlägt es nie ein leichtes Modell vor.
+d.f3h	Kostenaufschlüsselung
+d.f3p	Wie viel der Kosten von der Antwort, vom Denken, vom Verlauf und von Anhängen kommt – auf der Karte auf einen Blick.
+d.f4h	Countdown für Cache und Stoßzeiten
+d.f4p	Wie viele Minuten der Chatverlauf noch kostenlos gelesen wird und wann die Stoßzeit endet.
+d.f5h	Wann ist das Limit in diesem Tempo leer?
+d.f5p	Anhand deiner letzten Stunde sagt es dir, ob sich das 5-Stunden-Limit vor der Zurücksetzung füllt.
+d.f6h	Übergabe-Zusammenfassung
+d.f6p	Wird ein Chat zu lang, kopiert ein Klick einen fertigen Prompt, mit dem du Claude um eine kurze Zusammenfassung für den neuen Chat bittest.
+d.f7h	„Warum hat das so viel gekostet?“
+d.f7p	Verbraucht eine Nachricht weit mehr als geschätzt, nennt es den Grund: nach langer Pause neu gelesener Verlauf, Stoßzeit, lange Antwort oder Nutzung auf einem anderen Gerät.
+d.f8h	Wochenbericht
+d.f8p	Nachrichten, verbrauchtes Limit, Anteil der Stoßzeiten, Modell- und Aufgabenmix, eine Stunden-Heatmap und Tipps nur für dich. Benachrichtigung am Montagmorgen, CSV-Export.
+d.f9h	Auf dem Gerät gelerntes Modell
+d.f9p	Es erkennt die Aufgabenart mit Regeln und einem kleinen gelernten Modell. Wenn du es korrigierst, lernt es das auf deinem Gerät.
+d.f10h	Persönliche Kalibrierung
+d.f10p	Nach jeder Nachricht misst es, wie sich dein Limit tatsächlich verändert hat, und lernt so die Größe deines Tarifs und die Antwortlängen, die Claude dir gibt.
+d.vidC	47 Sekunden Einführung. Die gezeigte Oberfläche ist beispielhaft; die Zahlen stammen aus der Engine der Erweiterung selbst.
+d.sh3	Wochenbericht (mit simulierten Beispieldaten): Themen, Aufwandsmix und Lernnachweis. Nur in deinem Browser berechnet, aus Einträgen ohne Nachrichtentext.
+d.mlE	MASCHINELLES LERNEN
+d.mlH	Regeln starten, ein Modell lernt, du korrigierst.
+d.mlP	Zu wissen, um welche Art von Aufgabe es sich handelt, bildet die Grundlage für Schätzung und Modellvorschlag. Die alte Version erkannte sie nur mit Regeln. Jetzt fließen die Regelwerte in ein kleines gelerntes Modell ein, das auf deinem Gerät läuft. Das Modell ist 128 KB groß, geht nie online und läuft schneller als ein Tastenanschlag.
+d.st1v	64 %<span class="arrow">→</span><span class="good">88 %</span>
+d.st1	Aufgabenart richtig erkannt: Regeln → Regeln + Modell. Bei 120 alltäglichen Nachrichten, die ohne Hinsehen geschrieben wurden (ohne Sonderzeichen, mit Grüßen und Tippfehlern).
+d.st2	Gefährliche Fehler: eine schwere Aufgabe (Code, Mathe, Recherche) für eine einfache zu halten. Zwei Testsätze, 240 Nachrichten.
+d.st3	Richtige Haiku-Vorschläge bei wirklich einfachen Aufgaben. Falsche Haiku-Vorschläge 0 → 1 („17 % von 2350“).
+d.ly1h	Persönliche Kalibrierung
+d.ly1p	Aus deinem Limit-Prozentwert vor und nach jeder Nachricht lernt es die Größe deines Tarifs, den Stoßzeiten-Effekt und die Antwortlängen, die Claude dir gibt.
+d.ly2h	Persönliche Korrekturen
+d.ly2p	Sagst du im Vorschlag „Falsche Aufgabenart?“ und wählst die richtige, aktualisiert sich das Modell auf deinem Gerät; 👍/👎 justieren die Grenzen des Vorschlags. Gespeichert werden Gewichtsunterschiede, kein Text.
+d.ly3h	Community (optional)
+d.ly3p	Wenn du eine textfreie Zusammenfassung des Gelernten teilst, starten neue Nutzer mit echten Messwerten statt mit Vermutungen.
+d.mlF	Ehrlicher Hinweis: Die Trainings- und Testnachrichten wurden ebenfalls vom Projekt geschrieben; die Genauigkeit bei echten Nutzernachrichten wurde noch nicht gemessen. Genau dafür sind Beiträge der Community da. Die Antwortqualität (reichte Haiku wirklich?) wurde nicht gemessen.
+d.cmE	COMMUNITY
+d.cmH	Gemeinsam genauer.
+d.cmP	Anthropic veröffentlicht keine Limitgrößen; jeder Nutzer lernt seinen Tarif durch Messen. Werden diese Messungen zusammengeführt, bekommt ein Neuling schon ab der ersten Nachricht genaue Schätzungen. Nichts wird automatisch gesendet.
+d.cmL	So kannst du beitragen
+d.cm1	<span>Im Fenster der Erweiterung: <b>Zur Community beitragen</b> → <b>Beitragszusammenfassung anzeigen</b>. Sie enthält nur Zahlen und Bezeichnungen.</span>
+d.cm2	<span><b>Kopieren und Formular öffnen</b>, in das Formular einfügen und absenden.</span>
+d.cm3	<span>Die Zusammenfassungen werden zusammengeführt; die nächste Version bringt für alle bessere Startwerte.</span>
+d.cmSoon	Das Beitragsformular und eine 2-Minuten-Umfrage erscheinen hier, sobald die Projektseite online ist.
+d.fqE	FAQ
+d.fqH	Was du dich vielleicht fragst.
+d.q1	Kostet es etwas?
+d.a1	Nein. Ein Konto brauchst du auch nicht.
+d.q2	Liest es meine Nachrichten und schickt sie irgendwohin?
+d.a2	Es liest das Nachrichtenfeld in deinem Browser, um Tokens zu zählen, sendet aber nichts irgendwohin. Die Erweiterung hat keinen Server, keine Analyse, kein Tracking. Wochenbericht und gelernte Werte enthalten keinen Nachrichtentext.
+d.q3	Wie genau sind die Schätzungen?
+d.a3	Bei den ersten Nachrichten sind die Bereiche weit, weil die Limitgrößen als grobe Vermutung starten. Mit jeder gemessenen Nachricht wird es enger; in der Simulation sinkt der Fehler nach 20 Nachrichten auf das 1,13-Fache und nach 100 auf das 1,08-Fache. Das Fenster zeigt, wie viele Messungen im Bereich lagen.
+d.q4	Wie unterscheidet es sich von Claudes eigener Nutzungsanzeige?
+d.a4	Einstellungen → Nutzung zeigt, was du schon verbraucht hast. Token Forecast sagt dir vor dem Senden, wie viel diese Nachricht verbraucht, welches Modell reicht und warum etwas so viel gekostet hat.
+d.q5	Kann es meinem Konto schaden?
+d.a5	Es ist kein offizielles Anthropic-Werkzeug. Es liest mit deiner Sitzung die Nutzungsdaten, die auch die Seiten von claude.ai selbst verwenden; es sendet nie Nachrichten, ändert keine Einstellungen und automatisiert nichts.
+d.q6	Welche Browser?
+d.a6	Chrome, Opera, Edge und Brave (Chromium 116 oder neuer). Eine Firefox-Version steht auf der Roadmap.
+d.q7	Ist der Quellcode offen?
+d.a7	Ja. Der Code ist unter der GNU AGPL-3.0 offen: Du kannst ihn lesen, ausführen, ändern und weitergeben. Wenn du eine geänderte Version verbreitest, musst du sie unter derselben Lizenz mit Quellcode veröffentlichen und den Urheberrechtsvermerk beibehalten. Name und Logo „Token Tahmini / Token Forecast“ sind von der Lizenz ausgenommen; geänderte Versionen müssen einen anderen Namen verwenden.
+d.rmE	ROADMAP
+d.rmH	Was kommt als Nächstes?
+d.rm1h	Store-Veröffentlichung
+d.rm1p	Chrome Web Store, Opera und Firefox-Add-ons.
+d.rm2h	Erste Startwerte aus der Community
+d.rm2p	Limitgrößen pro Tarif und Antwortlängen, aus Beiträgen.
+d.rm3h	Blindtest der Qualität
+d.rm3p	Antworten verschiedener Modelle auf dieselbe Frage ohne Beschriftung vergleichen; daraus die Schwellen der Vorschläge justieren.
+d.rm4h	Gemeinsamer Bericht für Teams
+d.rm4p	Nutzung im ganzen Team und gemeinsame Tipps in Team-Tarifen – weiterhin ohne Text.
+d.rm5h	Mehrere Konten
+d.rm5p	Getrennte Limits und gelernte Werte pro Konto.
+d.ft3	© 2026 Hayrettin Enes Karalı. Open Source unter der GNU AGPL-3.0.
+d.shE	IN DER ERWEITERUNG
+d.shH	Eine Prognose beim Tippen, eine Messung beim Senden.
+d.shP	Eine kleine Pille und ein begründeter Vorschlag über dem Nachrichtenfeld; in der Symbolleiste deine Limits, was dein restliches Limit erlaubt und der Lernstand.
+d.sh1	Eine Übersetzungsanfrage: Haiku und niedriger Aufwand. Bei geöffnetem „Warum?“ siehst du erkannte Aufgabe, Thema, Aufwandsvorschlag, Hinweise und Grundlage.
+d.sh2	Fenster der Symbolleiste. Die Screenshots stammen aus der Testumgebung.
+d.hwE	SO FUNKTIONIERT’S
+d.hwH	Weniger eine Preisliste, mehr ein Messinstrument.
+d.hwP	Anthropic veröffentlicht keine genauen Limitgrößen. Deshalb startet die Erweiterung mit einer groben Annahme und korrigiert sich bei jeder Nachricht selbst, indem sie misst, wie sich dein echter Nutzungsprozentwert davor und danach ändert.
+d.d1	Der relative Preis des Modells. Der Abstand zwischen Haiku, Sonnet, Opus und Fable zeigt sich im gleichen Verhältnis in deinem Limit (eine Annahme, die durch Messung korrigiert wird).
+d.d2t	Verlauf
+d.d2	Ein Chat, der in der letzten Stunde genutzt wurde, wird aus dem Cache gelesen und zählt nicht aufs Limit. Wartest du eine Stunde, zählt der ganze Verlauf wieder; die Erweiterung warnt dich.
+d.d3t	Antwort
+d.d3	Die Antwortlänge stammt aus einer Verteilung pro Aufgabenart (CASTILLO-Datensatz, 12 Aufgabenarten). Deshalb siehst du einen 80-%-Bereich und keine einzelne Zahl.
+d.d4t	5 ×
+d.d4	Ausgabe-Tokens kosten das Fünffache der Eingabe-Tokens. Denk-Tokens (Aufwand) sind unsichtbar, zählen aber mit.
+d.d5	„Wie viel Prozent meines Limits ist eine Kosteneinheit?“ Das hängt von deinem Tarif ab. Wird nach jeder Nachricht per Gamma-Poisson-Update gelernt; für Stoßzeiten getrennt geführt.
+d.simC	Simulation: 300 virtuelle Tarife, die bis zum 2-Fachen von der Annahme abweichen, mit dem echten Kalibrierungscode der Erweiterung. Der mittlere Schätzfehler beträgt bei der ersten Nachricht das 1,68-Fache, nach 20 Nachrichten das 1,13-Fache, nach 100 das 1,08-Fache.
+d.mdE	MODELLVORSCHLAG
+d.mdH	Nicht das leichteste Modell. Das leichteste, das reicht.
+d.mdP	Ein leichtes Modell vorzuschlagen ist der schlimmere Fehler als ein teures: Eine schlechte Antwort heißt, noch einmal zu fragen. Die Erweiterung schlägt Haiku nur bei eindeutig einfachen Aufgaben vor, bei denen sie sicher ist; im Zweifel sagt sie mindestens Sonnet. Grundlage sind Anthropics Leitfaden zur Modellauswahl, ein Testsatz mit 60 Prompts (100 % passend, keine zu leichten Vorschläge) und das auf dem Gerät gelernte Modell.
+d.mdF	Relative Kosten: proportional zum API-Preis angenommen und durch Kalibrierung korrigiert. Auf claude.ai bringen Systemprompt und Gedächtnis den Kontext über 100K Tokens, daher gilt Haikus Langkontext-Preis. Ein Modellwechsel in einem langen Chat bedeutet, dass das neue Modell den ganzen Verlauf neu liest; in diesem Fall sagt die Erweiterung „im nächsten neuen Chat wählen“.
+d.pvE	DATENSCHUTZ
+d.pvH	Alles wird in deinem Browser berechnet.
+d.pvP	Die Erweiterung hat keinen Server. Deine Nachrichten, Anhänge und Chats verlassen nie dein Gerät; keine Analyse, kein Tracking. Sie läuft nur auf claude.ai, mit deiner eigenen Sitzung.
+d.pvL	Was sie liest – und warum
+d.pv1	Die Daten der Nutzungsseite von claude.ai: dein 5-Stunden- und Wochenprozentwert.
+d.pv2	Die Verlaufslänge des geöffneten Chats: für Cache- und Kontextrechnung (der Text wird lokal gezählt).
+d.pv3	Text und Anhänge im Nachrichtenfeld: nur zum lokalen Zählen der Tokens.
+d.pv4	Berechtigungen: Speicher, Wecker, Benachrichtigungen und nur die Website <code>claude.ai</code>.
+d.inE	INSTALLATION
+d.inH	In zwei Minuten installiert.
+d.inP	Eine Store-Veröffentlichung ist in Vorbereitung. Bis dahin lädst du sie im Entwicklermodus; die Schritte sind in Chrome, Opera, Edge und Brave gleich.
+d.s1	<span>Lade die Release-ZIP herunter: <span id="dl">Download-Seite (demnächst)</span>.</span>
+d.s2	<span>Rechtsklick auf die ZIP → <b>Alle extrahieren</b>. Du erhältst einen Ordner, der <code>manifest.json</code> direkt enthält.</span>
+d.s3	<span>Öffne <code>chrome://extensions</code> (Opera: <code>opera://extensions</code>) und aktiviere den <b>Entwicklermodus</b>.</span>
+d.s4	<span><b>Entpackte Erweiterung laden</b> → wähle den entpackten Ordner.</span>
+d.s5	<span>Lade deinen claude.ai-Tab neu. Über dem Nachrichtenfeld erscheint eine Pille; fang an zu tippen.</span>
+d.upH	Beim Update nicht verlieren, was es gelernt hat
+d.upP	Öffne vor dem Entfernen der alten Version das Fenster der Erweiterung: Einstellungen → <b>Meine Daten exportieren</b>. Nach der Installation der neuen Version nutze <b>Meine Daten importieren</b>.
+d.hcH	Wenn etwas nicht funktioniert
+d.hcP	Die <b>Systemprüfung</b> im Fenster zeigt den Zustand jedes Schritts. Nutze beim Melden eines Fehlers <b>Protokoll kopieren</b>; das Protokoll enthält keinen Nachrichtentext.
+d.lmE	GRENZEN
+d.lmH	Wir sagen dir auch, was wir nicht wissen.
+d.l1	Es stützt sich auf undokumentierte Interna von claude.ai. Ändert Anthropic die Seite, ist ein Update nötig; die Systemprüfung zeigt das sofort.
+d.l2	Bei den ersten Nachrichten sind die Bereiche weit; die Limitgrößen starten als grobe Schätzung.
+d.l3	Modellvorschläge entstehen aus Regeln plus einem kleinen gelernten Modell; die Antwortqualität wurde nicht gemessen. Dein 👍/👎 und deine Korrekturen der Aufgabenart stimmen sie auf dich ab.
+d.l4	In Stoßzeiten (werktags 05:00–11:00 Pazifik) füllt sich das 5-Stunden-Limit schneller; Anthropic hat den Faktor nicht veröffentlicht, die Erweiterung lernt ihn durch Messen.
+d.l5	Nutzt du dasselbe Konto gleichzeitig auf einem anderen Gerät oder in Claude Code, können Messungen gestört werden; der Ausreißerfilter entfernt die meisten.
+d.l6	Denk-Tokens sind auf claude.ai nirgends sichtbar; sie werden nur indirekt aus Nutzungsänderungen gelernt.
+d.spH	Das Projekt unterstützen
+d.spP	Token Forecast bleibt kostenlos. Wenn du helfen möchtest, dass es weitergeht:
+d.spB	Unterstützen ☕
+d.ft1	Token Forecast ist ein unabhängiges Projekt und nicht mit Anthropic verbunden. Claude ist eine Marke von Anthropic.
+d.ft2	Quellen: Anthropics Leitfaden zur Modellauswahl und Dokumentation · CASTILLO-Datensatz (CC BY 4.0) · Messungen von lugia19/Claude-Usage-Extension (GPL-3.0; nur Beobachtungen, kein Code kopiert).
+d.fDomL	THEMA
+d.nav5	Nachweis
+d.eXh	Extra hoch
+d.f11h	Erkennt das Thema
+d.f11p	Ordnet eine Nachricht mit rund 2.600 Schlüsselwörtern 16 Themengebieten und Unterthemen zu (Naturwissenschaft · Physik, Ingenieurwesen · Elektrotechnik …). Bei Gesundheits-, Rechts- und Geldfragen schlägt es nie ein leichtes Modell vor.
+d.f12h	Aufwandsvorschlag
+d.f12p	Von Niedrig bis Maximal: welche Aufwandsstufe für diese Aufgabe reicht und wie viel Limit du sparst, wenn deine aktuelle Einstellung höher ist. Es kennt den Standard jedes Modells und die Stufe „Extra hoch“.
+d.f13h	Schaut auf die Aufgabe, nicht aufs Wort
+d.f13p	„Ich brauche eine Website mit Übersetzungssystem“ ist ein Bauauftrag, keine Übersetzung. Die Erweiterung erkennt den Unterschied und schlägt kein Haiku vor.
+d.f14h	Eine Pille zum Verschieben
+d.f14p	Zieh die Pille, wohin du willst. Sie weicht von selbst aus, wenn das Aufwands- oder Modellmenü von claude.ai aufgeht, und lässt sich auch mit Alt + Pfeiltasten bewegen.
+d.f15h	Lernnachweis
+d.f15p	Der Bericht zeigt anhand deiner eigenen Messungen, ob der Prognosefehler mit der Zeit kleiner wird. Falls nicht, sagt er das auch.
+d.sh4	Aufwandsvorschlag: Wenn „Mittel“ statt „Maximal“ reicht, sagt er dir, wie viel Limit du sparen würdest.
+d.sh5	Es schaut auf die Aufgabe, nicht aufs Wort: „eine Website mit Übersetzungssystem“ ist ein Bauauftrag, daher wird Haiku nicht vorgeschlagen.
+d.dmE	THEMA UND AUFWAND
+d.dmH	Gleiche Frage, anderes Thema: anderes Modell, anderer Aufwand.
+d.dmP	Eine zweite Achse neben der Aufgabenart: Sie ordnet eine Nachricht 16 Themengebieten und Unterthemen zu (auf deinem Gerät, anhand von Schlüsselwörtern). Bei Gesundheits-, Rechts- und Geldfragen schlägt sie nie ein leichtes Modell vor und hält den Aufwand bei „Mittel“ oder höher. In Naturwissenschaft, Mathematik und Ingenieurwesen hebt sie den Aufwand bei Erklärungen um eine Stufe. Bei Lyrik und Erzählprosa begrenzt sie den Aufwand auf „Mittel“, weil langes Nachdenken dort wenig bringt.
+d.dmF	Die Schlüsselwörter sind gekürzte Beispiele je Gebiet. Findet es kein Gebiet, sagt es „Allgemein“ und der Vorschlag ändert sich nicht.
+d.efF	Grundlage: Anthropics Dokumentation und Support-Artikel zum Aufwand. Die Verhältnisse der Denkkosten (relativ zur sichtbaren Antwortlänge) sind eine Annahme der Erweiterung und werden durch deine eigenen Messungen korrigiert. Ob der vorgeschlagene Aufwand die Antwortqualität erhält, wurde nicht gemessen.
+d.pfE	NACHWEIS
+d.pfH	Lernt es mit der Zeit? Wir haben gemessen.
+d.pfP	200 simulierte Nutzer mit verborgenen wahren Werten (je 120 Nachrichten), die den echten Prognose- und Kalibrierungscode der Erweiterung nutzen. Jede Nachricht wird zuerst prognostiziert, dann wird die Wahrheit gesehen und gelernt. Eine Kopie, die nicht lernt, und ein perfekter Prognostiker, der die wahren Werte kennt, laufen auf demselben Nachrichtenstrom.
+d.pfC	Wie viel Mal daneben die Prognose im Gesamtlimit der Nachrichten jedes Blocks lag (1,00× ist perfekt). Niedriger ist besser.
+d.hnH	Was das nicht beweist
+d.hn1	Die Nutzer sind simuliert. Echte Konten können abweichen; deshalb prüft der Abschnitt „Lernnachweis“ im Bericht dich anhand deiner eigenen Messungen.
+d.hn2	Der Verbrauch einer einzelnen Nachricht ist vorab nicht bekannt: Antwortlänge und verborgenes Denken sind zufällig. Die lernende Prognose sinkt bis zu dieser Zufallsuntergrenze (1,7×) und kann nicht darunter. Ziel ist, Summe und Bereich richtig zu halten.
+d.hn3	Bei der Aufgabenerkennung brachten persönliche Korrekturen bei 240 gemischten Nachrichten keinen messbaren Genauigkeitsgewinn (es blieb bei etwa 90 %). Korrekturen dienen dazu, deine eigenen wiederkehrenden Muster zu beheben; die allgemeine Genauigkeit erhöhen sie nicht.
+d.hn4	Die Experimente sind reproduzierbar: tests/learning-proof.mjs und tests/classifier-learning.mjs.
+d.l7	Die Themenerkennung beruht auf Schlüsselwörtern. Bei einem nahezu blinden Satz von 90 Nachrichten, die nach Fertigstellung der Regeln geschrieben wurden, fand sie 71 % mit 1 falschen Gebiet; findet sie keins, sagt sie „Allgemein“ und der Vorschlag ändert sich nicht. Ob der vorgeschlagene Aufwand die Antwortqualität erhält, wurde nicht gemessen.
+d.q8	Warum schlägt es kein Haiku vor, wenn meine Nachricht „übersetzen“ enthält?
+d.a8	Es schaut auf die Aufgabe, nicht aufs Wort. „Übersetze das: …“ ist eine Übersetzungsanfrage, und Haiku reicht. „Ich brauche eine Website mit Übersetzungssystem“ ist ein Bauauftrag, und es wird mindestens Sonnet vorgeschlagen. 15 solche Fangsätze und echte Übersetzungsanfragen sind in den automatischen Tests.
+d.q9	Woran sehe ich, dass es wirklich lernt?
+d.a9	Fenster der Erweiterung → Wochenbericht → Lernnachweis. Nach 30 Messungen vergleicht es den Fehler der ersten und der letzten Messungen und sagt es auch, wenn er nicht gesunken ist. Das Experiment mit simulierten Nutzern steht oben im Abschnitt „Nachweis“.
+d.rm6h	Ein gelerntes Modell für Themen
+d.rm6p	Für Nachrichten, bei denen Schlüsselwörter nicht reichen; mit Korrekturen der Nutzer.
+d.ft4	Version 0.12.0 · 22. Oktober 2026
+d.alt1	Vorschlagshinweis für eine Übersetzungsanfrage: Haiku 5.5 reicht, Aufwand Niedrig; Abschnitte für erkannte Aufgabe, Thema, Aufwandsvorschlag, Hinweise und Grundlage
+d.alt2	Hinweis zum Aufwandsvorschlag: Mittel reicht statt Maximal, mit der Menge des eingesparten Limits
+d.alt3	Sonnet-5.5-Vorschlag für die Anfrage, eine Website mit Übersetzungssystem zu bauen; Haiku wird nicht vorgeschlagen
+d.alt4	Fenster der Erweiterung: 5-Stunden-Sitzung, Wochenlimit, was das restliche Limit leisten kann, Zeile zum Wochenbericht und Stand der persönlichen Kalibrierung
+d.alt5	Seite des Wochenberichts: Verbrauchskacheln, Tipps, Modell-, Aufgaben-, Themen- und Aufwandsmix, Stunden-Heatmap, Diagramm zum Lernnachweis, teuerste Nachrichten
+d.l8	Die Oberfläche gibt es in 10 Sprachen, aber die Nachrichtenanalyse (Aufgabenart, Thema, Modell- und Aufwandsvorschläge) funktioniert derzeit nur für türkische und englische Nachrichten. In anderen Sprachen erhältst du weiterhin die Token- und Limitprognose (die Token-Zählung ist je Sprache abgestimmt, aber mit weniger Stichproben gemessen), aber keine Vorschläge.
+d.q10	In welchen Sprachen funktioniert es?
+d.a10	Die Erweiterung und diese Website gibt es auf Türkisch, Englisch, Deutsch, Französisch, Spanisch, Italienisch, Portugiesisch, Russisch, Japanisch und Chinesisch; die Sprache wählst du in den Einstellungen. Die Nachrichtenanalyse (Aufgabenart, Thema, Modell- und Aufwandsvorschläge) erfolgt nur für türkische und englische Nachrichten. Schreibst du in einer anderen Sprache, funktioniert die Token- und Limitprognose weiterhin, es wird kein Vorschlag angezeigt und die Erweiterung sagt dir das. Das Einführungsvideo und die Screenshots gibt es auf Türkisch und Englisch; die anderen Sprachen sehen die englischen.
+ui.of5h	deines 5-Stunden-Limits
+ui.range	80-%-Bereich: $1–$2
+ui.noFit	Diese Nachricht passt womöglich nicht in dein Restlimit ($1 übrig).
+ui.maybeFit	Im ungünstigen Fall könnte sie dein Restlimit überschreiten ($1 übrig).
+ui.peak	Gerade Stoßzeit: Das 5-Stunden-Limit füllt sich schneller.
+ui.empty	Tippe etwas oder wähle oben ein Beispiel.
+ui.scale	grau: genutzt · orange: diese Nachricht
+ui.rel	im Vergleich zu Sonnet
+ui.simX	gesendete Nachrichten
+ui.simY	Schätzfehler (×)
+ui.conf.high	hohe Sicherheit
+ui.conf.medium	mittlere Sicherheit
+ui.conf.low	niedrige Sicherheit
+ui.presetLabels.0	Übersetzung
+ui.presetLabels.1	Code-Fehler
+ui.presetLabels.2	Herleitung
+ui.presetLabels.3	Artikel
+ui.presetLabels.4	Architektur
+ui.models.haiku.0	Geringste Latenz und niedrigster Preis. Übersetzung, Korrekturlesen, kurze Zusammenfassungen, Fragen mit einer Antwort.
+ui.models.haiku.1	Wird nur bei eindeutig einfachen Aufgaben vorgeschlagen, bei denen es sicher ist.
+ui.models.sonnet.0	Tempo und Leistung für die tägliche Arbeit: Code, Datenanalyse, Schreiben, Erklärungen.
+ui.models.sonnet.1	Der Standardvorschlag für die meisten Aufgaben; die sichere Seite bei Unsicherheit.
+ui.models.opus.0	Komplexes Programmieren und Unternehmensaufgaben: große Refactorings, Systementwurf, lange Agentenläufe.
+ui.models.opus.1	Wenn Schwierigkeitshinweise (beweise, Architektur, umfassend …) stark ausfallen.
+ui.models.fable.0	Höchste Leistung: mehrstündige Agentensitzungen, mehrstufige Tiefenrecherche.
+ui.models.fable.1	Nur für sehr schwere Herleitungen, Entwürfe und Recherchen.
+ui.loop.0	Tippen
+ui.loop.1	Prognose
+ui.loop.2	Senden
+ui.loop.3	Messen
+ui.loop.4	Lernen
+x.risk	HOHES RISIKO
+x.deep	TIEFES DENKEN
+x.plan	PLANUNG
+x.creative	KREATIV
+x.light	LEICHT
+x.effHead	Denken / Antwort
+x.pfX	Nachrichtenblock
+x.pfY	Fehler (×)
+x.off	Bot ausblenden
+x.on	Bot anzeigen
+x.eff.0	Routineaufgaben: Übersetzung, kurze Fragen, Korrekturlesen. Verbraucht am wenigsten Limit.
+x.effr.0	0,25×
+x.eff.1	Die meisten Alltagsaufgaben: Erklärungen, Schreiben, einfacher Code. Der Standard von Opus 5.5 und Haiku 5.5.
+x.effr.1	0,7×
+x.eff.2	Die beste allgemeine Balance, der Standard der anderen Modelle. Beweise, schwere Erklärungen, Planung.
+x.effr.2	1,6×
+x.eff.3	Langes Programmieren und Agentenarbeit. Nur bei Opus 4.7 und neuer sowie bei Fable.
+x.effr.3	2,2×
+x.eff.4	Das tiefste Denken: schwerste Mathematik und Recherche. Am langsamsten und teuersten.
+x.effr.4	3×
+x.pfL.0	Lernend
+x.pfL.1	Kopie ohne Lernen
+x.pfL.2	Perfekter Prognostiker (Untergrenze)
+x.ps.0.v	2,04× → 1,40×
+x.ps.0.p	Fehler der Blocksumme: erste 3 Nachrichten → letzte 40 Nachrichten. Die Kopie ohne Lernen bleibt bei etwa 2,1–2,2×.
+x.ps.1.v	≈ 79 %
+x.ps.1.p	Der 80-%-Prognosebereich deckt die Wahrheit in etwa 79 % der Fälle ab (Ziel 80 %). Die Bereiche sind weder zu eng noch zu weit.
+x.ps.2.v	1,74× / 1,71×
+x.ps.2.p	Fehler pro Nachricht: lernend / Untergrenze des perfekten Prognostikers. Der Restfehler ist die Zufälligkeit der Antwortlänge; Lernen kann sie nicht beheben.
+x.bot.0	Hallo, ich bin Tiko! Ich lasse mich dort nieder, wohin du die Maus zeigst. Du kannst mich anklicken.
+x.bot.1	Diese Seite zu lesen kostet dein Limit nichts.
+x.bot.2	Der Cache ist 60 Minuten lang kostenlos. Nach einer langen Pause wird der Verlauf neu gelesen.
+x.bot.3	Für Routinearbeit reicht meist niedriger oder mittlerer Aufwand.
+x.bot.4	Wenn ich nicht sicher bin, schlage ich kein Haiku vor.
+x.bot.5	Die Pille kannst du ziehen. Mich leider nicht.
+x.bot.6	Prognose: Diese Sprechblase hat 0 % deines Limits verbraucht.
+s.title	Token Forecast
+s.dlPage	Download-Seite
+s.contribForm	Beitragsformular
+s.survey	2-Minuten-Umfrage
+s.curve	Lernkurve
+s.loopNote	k und Antwortlänge werden aktualisiert
+s.simTitle	Kalibrierungssimulation
+s.close	Schließen ✕
+s.vidEn	Das Video ist auf Englisch.

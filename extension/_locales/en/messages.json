@@ -6,7 +6,7 @@
     "message": "Token Forecast"
   },
   "extDescription": {
-    "message": "Estimates how much of your Claude usage limit a message will use before you send it, suggests a cheaper model when one fits, and warns you before you run out."
+    "message": "Estimates how much of your Claude usage limit a message will use before you send it, and suggests a cheaper model when one fits."
   },
   "popupTitle": {
     "message": "Token Forecast"
@@ -175,7 +175,7 @@
     "message": "This chat is long (~$1 tokens). Starting a new chat with a short summary keeps answers sharper and cheaper."
   },
   "warnPeak": {
-    "message": "Peak hours (weekdays $1–$2 your time): on your plan the 5-hour limit fills faster now."
+    "message": "Peak hours (weekdays $1–$2 your time): on claude.ai the 5-hour limit fills faster right now. Consider moving long tasks outside this window."
   },
   "recDowngrade": {
     "message": "$1 would likely be enough and use about $2% less of your limit."
@@ -446,5 +446,1001 @@
   },
   "detailsTitle": {
     "message": "Token Forecast — details"
+  },
+  "healthTitle": {
+    "message": "Health check"
+  },
+  "hHook": {
+    "message": "Page hook (sees sent messages)"
+  },
+  "hSend": {
+    "message": "Last send detected"
+  },
+  "hDone": {
+    "message": "Last reply stream read"
+  },
+  "hUsage": {
+    "message": "Usage is being read"
+  },
+  "hPage": {
+    "message": "Page: input / model / effort"
+  },
+  "hLast": {
+    "message": "Last measurement"
+  },
+  "hNone": {
+    "message": "none yet"
+  },
+  "hHookNoReply": {
+    "message": "no reply – reload the claude.ai tab"
+  },
+  "hHookReplaced": {
+    "message": "fetch was replaced by the site"
+  },
+  "hProbe": {
+    "message": "sends go to a different address"
+  },
+  "hSendWait": {
+    "message": "no message sent yet, or not detected"
+  },
+  "hSseYes": {
+    "message": "stream OK"
+  },
+  "hSseNo": {
+    "message": "stream read but no usage data in it"
+  },
+  "hCopyLog": {
+    "message": "Copy log"
+  },
+  "hCopied": {
+    "message": "Copied"
+  },
+  "hLogTitle": {
+    "message": "Measurement log"
+  },
+  "hHint": {
+    "message": "If a row shows a problem, copy the log and send it to the developer."
+  },
+  "hDomPath": {
+    "message": "detected from the page (backup path)"
+  },
+  "advSave": {
+    "message": "$1 is enough for this task"
+  },
+  "advSaveDetail": {
+    "message": "This message will use about $1 of your limit; with $2 about $3 ($4% saving)."
+  },
+  "advSaveNext": {
+    "message": "$1 is enough for tasks like this, but don't switch in this chat"
+  },
+  "advSaveNextDetail": {
+    "message": "The chat history ($1 tokens) isn't in the new model's cache and would be re-read, so this message would cost more. Pick $2 when you start your next new chat."
+  },
+  "advUpgrade": {
+    "message": "This may be hard for $1: $2 is recommended"
+  },
+  "advUpgradeDetail": {
+    "message": "$1 uses your limit about $2× as fast. If you'd rather try $3 first, upgrade if the answer falls short."
+  },
+  "advOk": {
+    "message": "$1 fits this task"
+  },
+  "advOkTiny": {
+    "message": "$1 would also do, but the difference is tiny ($2 of your limit)."
+  },
+  "advWhy": {
+    "message": "Why?"
+  },
+  "advHide": {
+    "message": "Hide"
+  },
+  "advDetected": {
+    "message": "Detected task"
+  },
+  "advSignals": {
+    "message": "Signals I saw"
+  },
+  "advBasis": {
+    "message": "Basis"
+  },
+  "advWhen": {
+    "message": "When to switch"
+  },
+  "advDetectedVal": {
+    "message": "$1 · $2 · $3"
+  },
+  "level_low": {
+    "message": "easy"
+  },
+  "level_mid": {
+    "message": "medium"
+  },
+  "level_high": {
+    "message": "hard"
+  },
+  "ev_trigger": {
+    "message": "the phrase $1"
+  },
+  "ev_hard": {
+    "message": "difficulty cues: $1"
+  },
+  "ev_code": {
+    "message": "code block / code lines"
+  },
+  "ev_attach": {
+    "message": "attachment: $1 tokens"
+  },
+  "ev_bullets": {
+    "message": "$1-point request"
+  },
+  "ev_long": {
+    "message": "a detailed answer is requested"
+  },
+  "ev_short": {
+    "message": "a short answer is requested"
+  },
+  "ev_words": {
+    "message": "$1 words"
+  },
+  "why_simple_task": {
+    "message": "A simple, clear task; the classifier is confident."
+  },
+  "why_unsure_safe": {
+    "message": "I'm not sure about the task type, so I stay on the safe side and suggest at least Sonnet."
+  },
+  "why_complex": {
+    "message": "High complexity."
+  },
+  "why_hardest": {
+    "message": "A very hard derivation, design or research task."
+  },
+  "why_pref_floor": {
+    "message": "Based on your feedback I pick a stronger model for tasks like this."
+  },
+  "why_pref_ceil": {
+    "message": "Based on your feedback I don't push a stronger model for tasks like this."
+  },
+  "basis_haiku": {
+    "message": "Anthropic positions Haiku 5.5 as \"the lowest latency and price\" model, for high-volume, simple tasks and sub-agent work."
+  },
+  "basis_sonnet": {
+    "message": "Per Anthropic, Sonnet 5.5 offers \"speed and capability for everyday workloads\": code generation, data analysis, content creation."
+  },
+  "basis_opus": {
+    "message": "Anthropic recommends Opus 5.5 for complex coding and enterprise work: large refactors, systems engineering, multi-hour agents."
+  },
+  "basis_fable": {
+    "message": "Fable 5.1 is \"the highest available capability\": multi-hour agent sessions, multistep deep research."
+  },
+  "tbasis_short_qa": {
+    "message": "Single-answer factual questions need short replies; light models do them well. Questions about people or events can be made up — verify if it matters."
+  },
+  "tbasis_translate": {
+    "message": "In translation the text is already there; the model keeps the meaning and changes the language. Light models do this well."
+  },
+  "tbasis_rewrite": {
+    "message": "When editing or simplifying, the content is given; the model only improves the form."
+  },
+  "tbasis_summarize": {
+    "message": "In a summary the information is in the text; a light model is fine for short texts, a mid model is safer for long or technical documents."
+  },
+  "tbasis_explain": {
+    "message": "Explaining concepts needs accuracy and good examples; a mid model is usually enough, Opus helps on advanced topics."
+  },
+  "tbasis_writing": {
+    "message": "For writing and emails, a mid model balances tone and fluency well."
+  },
+  "tbasis_data_analysis": {
+    "message": "Data analysis mixes calculation and interpretation; a mid model is usually enough."
+  },
+  "tbasis_file_create": {
+    "message": "Creating files or decks is multi-step work; a mid model is usually enough, Opus for long documents."
+  },
+  "tbasis_code_write": {
+    "message": "Sonnet is strong at everyday coding; Opus is recommended for architecture and multi-file work."
+  },
+  "tbasis_code_fix": {
+    "message": "Sonnet handles single-file bugs; Opus for hard or system-wide bugs."
+  },
+  "tbasis_research": {
+    "message": "Research means finding and synthesizing sources; Opus or Fable for deep, multistep research."
+  },
+  "tbasis_math": {
+    "message": "Calculations and standard problems suit a mid model; proofs and long derivations suit Opus or Fable."
+  },
+  "when_haiku": {
+    "message": "Switch to Sonnet if the answer is shallow or wrong."
+  },
+  "when_sonnet": {
+    "message": "Switch to Opus if the answer falls short or the task grows."
+  },
+  "when_opus": {
+    "message": "Use Fable for multi-hour agent work or if Opus isn't enough."
+  },
+  "when_fable": {
+    "message": "Fable is the strongest and most expensive model; use it only for truly hard tasks."
+  },
+  "advCaveat": {
+    "message": "This suggestion is an estimate from rules plus a small learned model running on your device; answer quality was not measured. Your feedback and corrections tune it to you."
+  },
+  "advFbQ": {
+    "message": "Was this suggestion right?"
+  },
+  "advFbGood": {
+    "message": "👍 Right"
+  },
+  "advFbBad": {
+    "message": "👎 Wrong"
+  },
+  "advFbThanks": {
+    "message": "Thanks, saved."
+  },
+  "advSource": {
+    "message": "Source: Anthropic's model selection guide"
+  },
+  "setAdvisor": {
+    "message": "Show model suggestion notice"
+  },
+  "btnImport": {
+    "message": "Import my data"
+  },
+  "btnImportConfirm": {
+    "message": "Yes, restore backup"
+  },
+  "importReady": {
+    "message": "Backup read: $1 measurements ($2). It will replace what's learned now; press the button again to confirm."
+  },
+  "importDone": {
+    "message": "Backup restored: $1 measurements are back."
+  },
+  "importBad": {
+    "message": "This file isn't a valid Token Forecast backup."
+  },
+  "supportLink": {
+    "message": "Support the project ☕"
+  },
+  "cacheWarmLeft": {
+    "message": "warm · history free for $1 more min"
+  },
+  "cacheColdAgo": {
+    "message": "cold (last message $1 ago) · history is re-read"
+  },
+  "tipHandoff": {
+    "message": "This chat is long ($1 tokens) and grows with every message. To move to a new chat, you can ask Claude for a short handoff summary."
+  },
+  "tipHandoffWarm": {
+    "message": "This chat is long ($1 tokens). Asking for a handoff summary is cheap while the cache is warm; paste it into a new chat and continue there."
+  },
+  "btnHandoff": {
+    "message": "Copy handoff prompt"
+  },
+  "handoffPrompt": {
+    "message": "I'm moving this conversation to a new chat. Write a short handoff summary: the goal, decisions made so far, important details (file names, numbers, code snippets), open questions and the next step. Make it ready to paste into a new chat, 300 words max."
+  },
+  "peakLeft": {
+    "message": "Ends in $1."
+  },
+  "warnSurprise": {
+    "message": "Your last message used more than expected: $1 (estimate $2). Possible reasons: $3."
+  },
+  "cr_cold": {
+    "message": "you wrote after a long break, so the history was re-read"
+  },
+  "cr_long_chat": {
+    "message": "the chat is very long"
+  },
+  "cr_peak": {
+    "message": "peak hours"
+  },
+  "cr_effort": {
+    "message": "high effort (hidden thinking)"
+  },
+  "cr_long_answer": {
+    "message": "the answer was longer than expected"
+  },
+  "cr_big_model": {
+    "message": "large model"
+  },
+  "cr_elsewhere": {
+    "message": "the same account may have been used in another tab, device or Claude Code"
+  },
+  "bdTitle": {
+    "message": "Where the cost comes from (estimate)"
+  },
+  "bd_output": {
+    "message": "Answer"
+  },
+  "bd_thinking": {
+    "message": "Thinking"
+  },
+  "bd_input": {
+    "message": "Message & files"
+  },
+  "bd_history": {
+    "message": "History"
+  },
+  "bd_tool": {
+    "message": "Tools"
+  },
+  "wkNotifTitle": {
+    "message": "Your weekly report is ready"
+  },
+  "wkNotifMsgs": {
+    "message": "$1 messages"
+  },
+  "wkNotifSpent": {
+    "message": "$1 full 5-hour limits"
+  },
+  "wkNotifPeak": {
+    "message": "$1% of it at peak hours"
+  },
+  "rpTitle": {
+    "message": "Weekly report"
+  },
+  "rpRange": {
+    "message": "Last 7 days · $1 – $2"
+  },
+  "rpMsgs": {
+    "message": "Messages"
+  },
+  "rpChats": {
+    "message": "in $1 chats"
+  },
+  "rpChangeUp": {
+    "message": "$1% more than last week"
+  },
+  "rpChangeDown": {
+    "message": "$1% fewer than last week"
+  },
+  "rpChangeSame": {
+    "message": "same as last week"
+  },
+  "rpChangeNone": {
+    "message": "no records last week"
+  },
+  "rpSpent": {
+    "message": "5-hour limit used"
+  },
+  "rpSessions": {
+    "message": "$1 limits"
+  },
+  "rpSpentSub": {
+    "message": "$1 of 5-hour limits in total"
+  },
+  "rpPeak": {
+    "message": "At peak hours"
+  },
+  "rpPeakSub": {
+    "message": "$1 of messages"
+  },
+  "rpSave": {
+    "message": "Missed savings"
+  },
+  "rpSaveSub": {
+    "message": "a lighter model would have done for $1 messages"
+  },
+  "rpSaveNone": {
+    "message": "you followed the suggestions"
+  },
+  "rpTips": {
+    "message": "My suggestions"
+  },
+  "tip_peak": {
+    "message": "$1% of your usage happened at peak hours ($2, weekdays). claude.ai fills the 5-hour limit faster then; moving long tasks outside that window gets the same work done with less of your limit."
+  },
+  "tip_cold": {
+    "message": "$1 messages went into a long chat after a break of more than an hour, so the whole history was re-read each time ($2% of your usage). After a break, a new chat or a handoff summary is cheaper."
+  },
+  "tip_advice": {
+    "message": "A lighter model would have been enough for $2 messages. Following the suggestion would have saved about $1 of a session limit."
+  },
+  "tip_long": {
+    "message": "$1 messages were sent in chats over 100K tokens. Context that long strains both your limit and answer quality; splitting topics into new chats helps."
+  },
+  "tip_effort": {
+    "message": "High thinking effort was on for $1 simple tasks (translation, quick questions). Low effort gives the same result for less there."
+  },
+  "tip_upgrade": {
+    "message": "A stronger model was suggested for $1 messages. If answers fell short, starting such tasks on the stronger model is cheaper than asking again and again."
+  },
+  "tip_good": {
+    "message": "Your usage looks balanced this week: no clear problem with peak hours, long chats or oversized models."
+  },
+  "rpByModel": {
+    "message": "Models (by usage)"
+  },
+  "rpByType": {
+    "message": "Task types (by usage)"
+  },
+  "rpHeat": {
+    "message": "When do you write? (last 4 weeks, your time)"
+  },
+  "rpHeatPeak": {
+    "message": "Outlined cells: peak hours"
+  },
+  "rpTop": {
+    "message": "Most expensive messages"
+  },
+  "rpMeasured": {
+    "message": "measured"
+  },
+  "rpEstimated": {
+    "message": "estimate"
+  },
+  "rpAcc": {
+    "message": "Forecast accuracy"
+  },
+  "rpAccVal": {
+    "message": "$2 of $1 measured messages fell within the forecast range."
+  },
+  "rpAccNone": {
+    "message": "No measured messages this week; values are estimates."
+  },
+  "rpMeasuredShare": {
+    "message": "$1 of the values were measured; the rest are send-time estimates."
+  },
+  "rpCsv": {
+    "message": "Download CSV"
+  },
+  "rpPrivacy": {
+    "message": "This report is computed only in this browser, from records that contain no message text."
+  },
+  "rpOpen": {
+    "message": "Weekly report"
+  },
+  "rpWeekLine": {
+    "message": "Last 7 days: $1 messages · $2 full 5-hour limits"
+  },
+  "rpDays": {
+    "message": "Mon,Tue,Wed,Thu,Fri,Sat,Sun"
+  },
+  "rpNoData": {
+    "message": "Not enough records for a report yet. After a few days of writing on claude.ai this page fills up."
+  },
+  "rpOther": {
+    "message": "Other"
+  },
+  "setWeekly": {
+    "message": "Weekly report notification on Monday morning"
+  },
+  "burnEta": {
+    "message": "At the last hour's pace it fills around $1 (resets $2)."
+  },
+  "burnSafe": {
+    "message": "At this pace it won't fill before it resets."
+  },
+  "burnIdle": {
+    "message": "No notable usage in the last hour."
+  },
+  "rpBack": {
+    "message": "Details and settings"
+  },
+  "advRelabel": {
+    "message": "Wrong task type? Pick the right one:"
+  },
+  "advRelabelThanks": {
+    "message": "Thanks — learning from this on this device."
+  },
+  "ev_ml": {
+    "message": "learned model $1% sure"
+  },
+  "comTitle": {
+    "message": "Contribute to the community (optional)"
+  },
+  "comText": {
+    "message": "Sharing what was learned on this device makes forecasts accurate from day one for new users. The summary contains no message text, chat names, dates or account details. You see the content before sending; nothing is sent automatically."
+  },
+  "comBuild": {
+    "message": "Show contribution summary"
+  },
+  "comCopy": {
+    "message": "Copy and open the form"
+  },
+  "comCopyOnly": {
+    "message": "Copy"
+  },
+  "comCopied": {
+    "message": "Copied. Paste it into the box in the form that opened and submit."
+  },
+  "comNoUrl": {
+    "message": "Copied. The community form opens soon; you can keep the text for now."
+  },
+  "comEmpty": {
+    "message": "Nothing to share yet. Try again after sending a few messages."
+  },
+  "feedbackLink": {
+    "message": "Send feedback or a suggestion"
+  },
+  "rpOpenBtn": {
+    "message": "Open report →"
+  },
+  "rpWeekLinePct": {
+    "message": "Last 7 days: $1 messages · $2 of 5-hour limits used in total"
+  },
+  "rpSpentSmall": {
+    "message": "in total (1 full limit = 100%)"
+  },
+  "rowDomain": {
+    "message": "Topic"
+  },
+  "dom_science": {
+    "message": "Science"
+  },
+  "dom_math": {
+    "message": "Mathematics"
+  },
+  "dom_engineering": {
+    "message": "Engineering"
+  },
+  "dom_software": {
+    "message": "Software"
+  },
+  "dom_data_ai": {
+    "message": "Data & AI"
+  },
+  "dom_academic": {
+    "message": "Academic writing"
+  },
+  "dom_project": {
+    "message": "Projects & planning"
+  },
+  "dom_literature": {
+    "message": "Literature & creative writing"
+  },
+  "dom_business": {
+    "message": "Business & career"
+  },
+  "dom_finance": {
+    "message": "Economics & finance"
+  },
+  "dom_law": {
+    "message": "Law"
+  },
+  "dom_health": {
+    "message": "Health"
+  },
+  "dom_education": {
+    "message": "Study & exams"
+  },
+  "dom_language": {
+    "message": "Language"
+  },
+  "dom_humanities": {
+    "message": "History, philosophy & society"
+  },
+  "dom_daily": {
+    "message": "Everyday life"
+  },
+  "dom_general": {
+    "message": "General"
+  },
+  "sub_science_physics": {
+    "message": "Physics"
+  },
+  "sub_science_chemistry": {
+    "message": "Chemistry"
+  },
+  "sub_science_biology": {
+    "message": "Biology"
+  },
+  "sub_science_astronomy": {
+    "message": "Astronomy"
+  },
+  "sub_science_earth": {
+    "message": "Earth science"
+  },
+  "sub_math_pure": {
+    "message": "Algebra & calculus"
+  },
+  "sub_math_statistics": {
+    "message": "Statistics"
+  },
+  "sub_engineering_electrical": {
+    "message": "Electrical & electronics"
+  },
+  "sub_engineering_mechanical": {
+    "message": "Mechanical"
+  },
+  "sub_engineering_civil": {
+    "message": "Civil"
+  },
+  "sub_engineering_control": {
+    "message": "Control & industrial"
+  },
+  "sub_software_web": {
+    "message": "Web"
+  },
+  "sub_software_mobile": {
+    "message": "Mobile"
+  },
+  "sub_software_systems": {
+    "message": "Systems & databases"
+  },
+  "sub_software_general": {
+    "message": "Programming"
+  },
+  "sub_data_ai_ml": {
+    "message": "Machine learning"
+  },
+  "sub_data_ai_llm": {
+    "message": "Language models"
+  },
+  "sub_data_ai_data": {
+    "message": "Data analysis"
+  },
+  "sub_academic_paper": {
+    "message": "Papers"
+  },
+  "sub_academic_thesis": {
+    "message": "Thesis"
+  },
+  "sub_academic_grant": {
+    "message": "Grants & applications"
+  },
+  "sub_project_planning": {
+    "message": "Planning"
+  },
+  "sub_project_agile": {
+    "message": "Agile"
+  },
+  "sub_project_startup": {
+    "message": "Startup"
+  },
+  "sub_literature_poetry": {
+    "message": "Poetry"
+  },
+  "sub_literature_fiction": {
+    "message": "Fiction"
+  },
+  "sub_literature_analysis": {
+    "message": "Literary analysis"
+  },
+  "sub_literature_screen": {
+    "message": "Screen & stage"
+  },
+  "sub_business_career": {
+    "message": "Career"
+  },
+  "sub_business_marketing": {
+    "message": "Marketing"
+  },
+  "sub_business_management": {
+    "message": "Management"
+  },
+  "sub_finance_investing": {
+    "message": "Investing"
+  },
+  "sub_finance_personal": {
+    "message": "Personal finance"
+  },
+  "sub_finance_accounting": {
+    "message": "Accounting & tax"
+  },
+  "sub_finance_economics": {
+    "message": "Economics"
+  },
+  "sub_law_contract": {
+    "message": "Contracts"
+  },
+  "sub_law_civil": {
+    "message": "General law"
+  },
+  "sub_law_privacy": {
+    "message": "Privacy"
+  },
+  "sub_law_ip": {
+    "message": "Intellectual property"
+  },
+  "sub_health_medical": {
+    "message": "Medical"
+  },
+  "sub_health_nutrition": {
+    "message": "Nutrition"
+  },
+  "sub_health_fitness": {
+    "message": "Fitness"
+  },
+  "sub_health_mental": {
+    "message": "Mental health"
+  },
+  "sub_education_exam": {
+    "message": "Exams"
+  },
+  "sub_education_homework": {
+    "message": "Homework"
+  },
+  "sub_education_teaching": {
+    "message": "Teaching"
+  },
+  "sub_language_grammar": {
+    "message": "Grammar"
+  },
+  "sub_language_learning": {
+    "message": "Language learning"
+  },
+  "sub_language_translation": {
+    "message": "Translation"
+  },
+  "sub_humanities_history": {
+    "message": "History"
+  },
+  "sub_humanities_philosophy": {
+    "message": "Philosophy"
+  },
+  "sub_humanities_society": {
+    "message": "Society"
+  },
+  "sub_humanities_psychology": {
+    "message": "Psychology"
+  },
+  "sub_daily_food": {
+    "message": "Food"
+  },
+  "sub_daily_travel": {
+    "message": "Travel"
+  },
+  "sub_daily_home": {
+    "message": "Home"
+  },
+  "sub_daily_fun": {
+    "message": "Fun"
+  },
+  "sub_daily_people": {
+    "message": "People"
+  },
+  "dbasis_science": {
+    "message": "In science, accuracy and consistency matter; detailed explanations get one effort level more."
+  },
+  "dbasis_math": {
+    "message": "Math needs step-by-step reasoning; proofs and derivations get at least High effort."
+  },
+  "dbasis_engineering": {
+    "message": "Mistakes in engineering calculations are costly; design and calculation work gets one effort level more."
+  },
+  "dbasis_software": {
+    "message": "Effort rises with code complexity; for hard coding on Opus, Anthropic suggests trying Extra high first."
+  },
+  "dbasis_data_ai": {
+    "message": "Data and AI tasks usually need moderate reasoning."
+  },
+  "dbasis_academic": {
+    "message": "Consistency matters in academic text; edits usually need little effort, literature reviews and methods more."
+  },
+  "dbasis_project": {
+    "message": "Anthropic recommends raising effort for project planning; planning gets at least Medium."
+  },
+  "dbasis_literature": {
+    "message": "Long thinking rarely improves creative writing; effort is capped at Medium."
+  },
+  "dbasis_business": {
+    "message": "Business writing is usually routine; the default or lighter setting is enough."
+  },
+  "dbasis_finance": {
+    "message": "Wrong money advice can hurt: no light model, effort at least Medium."
+  },
+  "dbasis_law": {
+    "message": "Wrong legal information can hurt: no light model, effort at least Medium. Ask a lawyer for important decisions."
+  },
+  "dbasis_health": {
+    "message": "Wrong health information can hurt: no light model, effort at least Medium. In an emergency, see a doctor."
+  },
+  "dbasis_education": {
+    "message": "Study tasks are mostly explanations; effort rises with difficulty."
+  },
+  "dbasis_language": {
+    "message": "Language tasks (translation, grammar) are usually light; one effort level lower is enough."
+  },
+  "dbasis_humanities": {
+    "message": "History and philosophy explanations need moderate reasoning."
+  },
+  "dbasis_daily": {
+    "message": "Everyday tasks are light; one effort level lower is enough."
+  },
+  "dbasis_general": {
+    "message": ""
+  },
+  "eff_low": {
+    "message": "Low"
+  },
+  "eff_medium": {
+    "message": "Medium"
+  },
+  "eff_high": {
+    "message": "High"
+  },
+  "eff_xhigh": {
+    "message": "Extra high"
+  },
+  "eff_max": {
+    "message": "Max"
+  },
+  "effort_xhigh": {
+    "message": "extra high effort"
+  },
+  "effDefaultMark": {
+    "message": "(default)"
+  },
+  "effLowerX": {
+    "message": "Setting effort to $1 saves about $2 of the limit on this message."
+  },
+  "effAssumedNote": {
+    "message": "(Couldn't read the effort setting on the page; assumed the model default, $1.)"
+  },
+  "effRaiseX": {
+    "message": "Setting effort to $1 may give a more reliable answer for this task."
+  },
+  "advEffWith": {
+    "message": "effort: $1"
+  },
+  "advEffLowerTitle": {
+    "message": "Set effort to $1: ≈ $2 less"
+  },
+  "advEffLowerDetail": {
+    "message": "Now: $1. For this kind of task $2 effort usually gives the same answer; less hidden thinking cuts this message's cost by about $3%."
+  },
+  "advEffRaiseTitle": {
+    "message": "Set effort to $1 for this task"
+  },
+  "advEffRaiseDetail": {
+    "message": "Now: $1. This task needs deep reasoning; $2 effort gives a more reliable answer but this message costs about $3% more. A weak answer means asking again, which costs more."
+  },
+  "advEffAlsoLower": {
+    "message": "Effort $1 is also enough."
+  },
+  "advDomain": {
+    "message": "Topic"
+  },
+  "advEffort": {
+    "message": "Effort suggestion"
+  },
+  "advEffortVal": {
+    "message": "I suggest $1."
+  },
+  "advEffForModel": {
+    "message": "(for $1)"
+  },
+  "advEffNow": {
+    "message": "Now: $1."
+  },
+  "advFbQEff": {
+    "message": "Was this effort suggestion right?"
+  },
+  "effBasis": {
+    "message": "Effort basis: per Anthropic, Low and Medium stretch usage on routine tasks, High is the best balance, Extra high is for long coding and agent work, Max for the deepest reasoning."
+  },
+  "ev_domain": {
+    "message": "topic words: $1"
+  },
+  "why_stakes": {
+    "message": "In high-stakes topics (health, law, money) I don't suggest a light model."
+  },
+  "ewhy_e_light_type": {
+    "message": "light task type"
+  },
+  "ewhy_e_mid_type": {
+    "message": "moderate task"
+  },
+  "ewhy_e_deep_type": {
+    "message": "task needing deep reasoning"
+  },
+  "ewhy_e_big_doc": {
+    "message": "large document"
+  },
+  "ewhy_e_stakes": {
+    "message": "high stakes: at least Medium"
+  },
+  "ewhy_e_depth": {
+    "message": "scientific/technical depth"
+  },
+  "ewhy_e_plan": {
+    "message": "planning task"
+  },
+  "ewhy_e_complex": {
+    "message": "complex request"
+  },
+  "ewhy_e_hardest": {
+    "message": "very hard problem"
+  },
+  "ewhy_e_proof": {
+    "message": "proof/derivation"
+  },
+  "ewhy_e_creative": {
+    "message": "creative writing: capped at Medium"
+  },
+  "ewhy_e_light_domain": {
+    "message": "everyday/language task"
+  },
+  "ewhy_e_short": {
+    "message": "short answer requested"
+  },
+  "ewhy_e_pref": {
+    "message": "your feedback"
+  },
+  "ewhy_e_long_code": {
+    "message": "hard coding: Extra high"
+  },
+  "rpByDomain": {
+    "message": "Topics (by spend)"
+  },
+  "rpByEffort": {
+    "message": "Effort settings (by spend)"
+  },
+  "rpDomainNote": {
+    "message": "Topic is guessed on your device from the words in the message; no text is stored."
+  },
+  "tip_effort_over": {
+    "message": "Effort was above the suggestion on $1 messages. The suggested setting would have used about $2 less of the limit."
+  },
+  "tip_domain_save": {
+    "message": "Most of the saving potential is in $1: a lighter model would have done for $2 messages."
+  },
+  "tip_domain_stakes": {
+    "message": "$1 messages were about health, law or money. I don't suggest a light model or Low effort there; for important decisions also ask an expert."
+  },
+  "pillDragTitle": {
+    "message": "Drag to move"
+  },
+  "pillReset": {
+    "message": "Reset pill position"
+  },
+  "rpEffOver": {
+    "message": "Effort was above the suggestion on $1 messages (missed saving ≈ $2)."
+  },
+  "rpEffOk": {
+    "message": "Your effort settings look in line with the suggestions."
+  },
+  "rpLearn": {
+    "message": "Proof of learning"
+  },
+  "rpLearnFew": {
+    "message": "$1 measured messages so far. Every 10 measurements make one bar, and a trend shows after 30 (about $2 more messages)."
+  },
+  "rpLearnBetter": {
+    "message": "In the first measurements the predicted total limit was off by a factor of $1, in the latest ones by $2. The extension is learning you."
+  },
+  "rpLearnSame": {
+    "message": "Forecast error is $1× in the first measurements and $2× in the latest: no clear change. If it was already accurate, that is expected."
+  },
+  "rpLearnWorse": {
+    "message": "The latest measurements are further off ($2×) than the first ($1×). Using the same account on another device or in Claude Code disturbs measurement; if so, try resetting calibration."
+  },
+  "rpLearnRange": {
+    "message": "Staying inside the forecast range: $1 in the first measurements, $2 in the latest (target about 80%)."
+  },
+  "rpLearnBar": {
+    "message": "Measurements $1–$2: $3×"
+  },
+  "rpLearnNote": {
+    "message": "Each bar is 10 consecutive measured messages. It shows how far the predicted total limit was from what was actually spent (1.00 = perfect). Percentages are rounded to whole numbers, so 10-message totals are used instead of single messages."
+  },
+  "setEffortAdvice": {
+    "message": "Show effort advice"
+  },
+  "setTips": {
+    "message": "Show tips (cache, peak hours, long chats, handoff summary)"
+  },
+  "setExplain": {
+    "message": "Show the “why did it cost this much?” explanation"
+  },
+  "setView": {
+    "message": "View"
+  },
+  "viewFull": {
+    "message": "Full: forecast and all suggestions"
+  },
+  "viewSimple": {
+    "message": "Simple: forecast and limit warnings only"
+  },
+  "viewCustom": {
+    "message": "Custom (choices below)"
+  },
+  "viewNote": {
+    "message": "The simple view hides model and effort suggestions, tips and cost explanations. The forecast and warnings about limits and context size always stay."
+  },
+  "warnLangLimited": {
+    "message": "Message analysis (task type, topic, model and effort advice) currently works for Turkish and English messages only. In this language you get the token and limit forecast, but no advice."
+  },
+  "typeNA": {
+    "message": "Not analyzed in this language"
   }
 }

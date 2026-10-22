@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8">
+<link rel="stylesheet" href="node_modules/@fontsource/newsreader/400.css">
+<link rel="stylesheet" href="node_modules/@fontsource/newsreader/500.css">
+<link rel="stylesheet" href="node_modules/@fontsource/newsreader/400-italic.css">
+<link rel="stylesheet" href="node_modules/@fontsource/newsreader/500-italic.css">
+<link rel="stylesheet" href="node_modules/@fontsource/inter/400.css">
+<link rel="stylesheet" href="node_modules/@fontsource/inter/500.css">
+<link rel="stylesheet" href="node_modules/@fontsource/inter/600.css">
+<link rel="stylesheet" href="node_modules/@fontsource/ibm-plex-mono/400.css">
+<link rel="stylesheet" href="node_modules/@fontsource/ibm-plex-mono/500.css">
+<style>
+/* Claude'a yakın sıcak palet: krem zemin, beyaz yüzey, turuncu vurgu, serif başlık */
+:root { --bg:#f5f4ed; --panel:#ffffff; --sunk:#efede4; --ink:#141413; --muted:#6b6a64; --line:#e3e0d5;
+  --accent:#d97757; --accent-ink:#b5502f; --ok:#2f7d57; --warn:#b8741a; --crit:#b9382a;
+  --serif:"Newsreader", Georgia, serif; --sans:"Inter", sans-serif; --mono:"IBM Plex Mono", monospace; }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1080px; overflow: hidden; background: var(--bg); color: var(--ink); font-family: var(--sans); }
+body.vert { height: 1920px; }
+#stage { position: absolute; left: 0; top: 0; width: 1080px; height: 1080px; overflow: hidden; background: var(--bg); }
+body.vert #stage { top: 420px; }
+#vtop, #vbot { display: none; position: absolute; left: 90px; right: 90px; }
+body.vert #vtop { display: flex; top: 150px; align-items: center; gap: 22px; }
+body.vert #vbot { display: block; top: 1560px; font-family: var(--serif); font-size: 76px; line-height: 1.05; letter-spacing: -0.02em; }
+body.vert #vbot em { color: var(--accent-ink); font-style: italic; }
+.abs { position: absolute; }
+.cap { font-family: var(--serif); font-weight: 500; font-size: 66px; letter-spacing: -0.015em; line-height: 1.06; left: 90px; right: 90px; top: 112px; }
+.cap em { font-style: italic; color: var(--accent-ink); }
+.h1 { font-family: var(--serif); font-weight: 500; letter-spacing: -0.02em; line-height: 1.02; }
+.eyebrow { font-family: var(--mono); font-size: 22px; letter-spacing: .1em; color: var(--muted); left: 90px; top: 62px; }
+/* Sahne 1 */
+#m1 { left: 90px; right: 90px; top: 560px; }
+#m1 .lbl { display: flex; justify-content: space-between; font-size: 28px; color: var(--muted); margin-bottom: 14px; }
+#m1 .lbl b { color: var(--ink); font-weight: 600; font-family: var(--mono); }
+.track { height: 30px; border-radius: 15px; background: var(--sunk); overflow: hidden; }
+.fill { height: 100%; border-radius: 15px; }
+#stamp { left: 90px; right: 90px; top: 700px; padding: 26px 30px; border-radius: 20px; border: 2px solid var(--crit); color: var(--crit); font-size: 34px; font-weight: 600; background: #fbecea; }
+#stamp span { display:block; color: var(--muted); font-weight: 400; font-size: 26px; margin-top: 6px; font-family: var(--mono); }
+/* Logo */
+.logo { display: flex; align-items: center; gap: 28px; }
+.logo .word { font-family: var(--serif); font-weight: 500; font-size: 108px; letter-spacing: -0.025em; }
+/* Kompozitör */
+#composer { left: 90px; right: 90px; top: 650px; height: 250px; border-radius: 28px; background: var(--panel); border: 1.5px solid var(--line); padding: 30px 34px; box-shadow: 0 30px 70px -36px rgba(20,20,19,.35); }
+#ctext { font-size: 34px; line-height: 1.38; min-height: 140px; }
+#ctext .ph { color: #a5a39b; }
+#ctext .caret { display: inline-block; width: 3px; height: 38px; background: var(--accent); vertical-align: -6px; margin-left: 2px; }
+#cbar { position: absolute; left: 34px; right: 34px; bottom: 24px; display: flex; gap: 12px; align-items: center; }
+.chip { font-size: 22px; padding: 6px 14px; border-radius: 999px; background: var(--sunk); color: var(--ink); }
+.send { margin-left: auto; width: 54px; height: 54px; border-radius: 14px; background: var(--accent); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 30px; }
+#pill { right: 90px; top: 580px; display: flex; gap: 12px; align-items: center; padding: 10px 22px 10px 16px; border-radius: 999px; background: var(--panel); border: 1.5px solid var(--line); font-size: 26px; white-space: nowrap; box-shadow: 0 6px 20px -10px rgba(20,20,19,.25); }
+#pill .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--ok); }
+#pill b { font-weight: 600; }
+#pill span.s { color: var(--muted); }
+#banner { left: 90px; right: 90px; bottom: 512px; border-radius: 22px; background: var(--panel); border: 1.5px solid var(--line); padding: 22px 26px; box-shadow: 0 10px 30px -18px rgba(20,20,19,.3); }
+#banner .row { display: flex; gap: 16px; align-items: center; font-size: 31px; font-weight: 600; }
+#banner .ic { width: 42px; height: 42px; border-radius: 50%; background: var(--tone); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; flex: none; }
+#banner .sub { margin-top: 10px; font-size: 25px; color: var(--muted); padding-left: 58px; }
+#banner .why { margin-left: auto; font-size: 22px; color: var(--muted); font-weight: 500; padding: 6px 12px; border-radius: 10px; background: var(--sunk); white-space: nowrap; }
+#why { margin-top: 16px; padding-left: 58px; display: grid; gap: 10px; }
+#why .l { font-size: 19px; color: var(--muted); font-weight: 600; letter-spacing: .03em; }
+.tags { display: flex; gap: 10px; flex-wrap: wrap; }
+.tag { font-size: 23px; padding: 6px 14px; border-radius: 10px; background: var(--sunk); }
+/* Sahne 5: neden bu kadar */
+#card5 { left: 90px; right: 90px; top: 360px; background: var(--panel); border: 1.5px solid var(--line); border-radius: 26px; padding: 30px 34px; box-shadow: 0 30px 70px -40px rgba(20,20,19,.35); }
+#card5 .big { font-family: var(--serif); font-size: 64px; line-height: 1; }
+#card5 .bigsub { color: var(--muted); font-size: 24px; margin-top: 6px; }
+#warn5 { margin-top: 24px; display: flex; gap: 14px; background: #fbf1e3; border-radius: 16px; padding: 18px 20px; font-size: 26px; line-height: 1.35; }
+#warn5 .i { color: var(--warn); font-weight: 700; }
+#bd5 { margin-top: 26px; }
+#bd5 .l { font-size: 20px; color: var(--muted); font-weight: 600; }
+.bdbar { display: flex; height: 22px; border-radius: 11px; overflow: hidden; margin-top: 10px; background: var(--sunk); gap: 3px; }
+.bdbar i { display: block; height: 100%; }
+.bdleg { display: flex; gap: 22px; margin-top: 12px; font-size: 22px; color: var(--muted); flex-wrap: wrap; }
+.bdleg span { display: inline-flex; align-items: center; gap: 8px; }
+.bdleg b { width: 16px; height: 16px; border-radius: 4px; display: inline-block; }
+/* Sahne 6: haftalık rapor */
+#tiles { left: 90px; right: 90px; top: 290px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.tile { background: var(--panel); border: 1.5px solid var(--line); border-radius: 20px; padding: 16px 22px; }
+.tile .lb { font-size: 22px; color: var(--muted); }
+.tile .v { font-family: var(--serif); font-size: 54px; line-height: 1.1; margin-top: 4px; }
+.tile.hot .v { color: var(--accent-ink); }
+#heat { left: 90px; right: 90px; top: 586px; display: grid; grid-template-columns: repeat(24, 1fr); gap: 4px; }
+#heat i { aspect-ratio: 1; border-radius: 4px; background: var(--sunk); display: block; }
+#heat i.pk { outline: 2px solid var(--accent); outline-offset: -2px; }
+#tip6 { left: 90px; right: 90px; top: 876px; background: var(--panel); border: 1.5px solid var(--line); border-left: 6px solid var(--accent); border-radius: 16px; padding: 18px 22px; font-size: 25px; line-height: 1.35; }
+/* Sahne 7: öğrenme */
+.stat7 { left: 90px; right: 90px; background: var(--panel); border: 1.5px solid var(--line); border-radius: 24px; padding: 26px 30px; }
+.stat7 .l { font-size: 24px; color: var(--muted); }
+.stat7 .v { font-family: var(--serif); font-size: 76px; line-height: 1.05; margin-top: 6px; }
+.stat7 .v .a { color: var(--muted); font-size: .6em; margin: 0 14px; }
+.stat7 .v em { font-style: normal; color: var(--accent-ink); }
+.stat7 .bars { display: grid; gap: 8px; margin-top: 14px; }
+.stat7 .bar { height: 16px; border-radius: 8px; background: var(--sunk); overflow: hidden; }
+.stat7 .bar i { display: block; height: 100%; border-radius: 8px; }
+.stat7 .n { font-size: 20px; color: var(--muted); margin-top: 10px; }
+/* Kapanış */
+#end { left: 90px; right: 90px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; gap: 34px; }
+#end .tag2 { font-family: var(--serif); font-weight: 500; font-size: 84px; letter-spacing: -0.02em; line-height: 1; }
+#end .tag2 em { color: var(--accent-ink); font-style: italic; }
+.pills { display: flex; gap: 14px; flex-wrap: wrap; }
+.pills span { font-size: 28px; padding: 12px 22px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--panel); }
+.pills span::before { content: "✓ "; color: var(--ok); font-weight: 700; }
+#end .foot { font-family: var(--mono); font-size: 22px; color: var(--muted); line-height: 1.6; }
+#progress { left: 0; bottom: 0; height: 6px; background: var(--accent); opacity: .7; }
+
+/* 0.11.1 eklemeleri */
+#banner .eff { display: inline-block; margin-left: 10px; padding: 2px 10px; border-radius: 8px; background: rgba(0,0,0,.06); color: var(--ink); font-weight: 500; }
+#banner .meta { margin-top: 8px; padding-left: 58px; font-size: 22px; color: var(--muted); }
+#banner .meta b { color: var(--ink); font-weight: 600; }
+.chipline { display: flex; gap: 10px; flex-wrap: wrap; }
+/* Effort sahnesi */
+#eq { left: 90px; right: 90px; top: 300px; background: var(--panel); border: 1.5px solid var(--line); border-radius: 22px; padding: 22px 28px; font-size: 31px; line-height: 1.35; }
+#eq .m { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
+#eq .m span { font-size: 22px; padding: 5px 12px; border-radius: 10px; background: var(--sunk); }
+#elev { left: 90px; right: 90px; top: 520px; display: grid; gap: 12px; }
+.lv { display: grid; grid-template-columns: 210px 1fr 150px; align-items: center; gap: 18px; padding: 12px 18px; border-radius: 16px; border: 1.5px solid transparent; font-size: 27px; }
+.lv .bar { height: 20px; border-radius: 10px; background: var(--sunk); overflow: hidden; }
+.lv .bar i { display: block; height: 100%; border-radius: 10px; background: #c9c6bb; }
+.lv .tg { font-size: 21px; font-weight: 600; text-align: right; }
+.lv.cur { border-color: var(--line); background: var(--panel); }
+.lv.cur .tg { color: var(--muted); }
+.lv.rec { border-color: #bcd8c8; background: #f3f8f5; }
+.lv.rec .bar i { background: var(--ok); }
+.lv.rec .tg { color: var(--ok); }
+#esave { left: 90px; right: 90px; top: 815px; font-size: 30px; font-weight: 600; color: var(--ok); }
+#esave span { color: var(--muted); font-weight: 400; font-size: 24px; display: block; margin-top: 4px; }
+/* Kanıt sahnesi */
+#chart7 { left: 70px; top: 300px; }
+#leg7 { left: 90px; right: 90px; top: 840px; display: flex; gap: 26px; flex-wrap: wrap; font-size: 23px; color: var(--muted); }
+#leg7 span { display: inline-flex; align-items: center; gap: 10px; }
+#leg7 b { width: 30px; height: 5px; border-radius: 3px; display: inline-block; }
+#note7 { left: 90px; right: 90px; top: 905px; font-size: 22px; color: var(--muted); line-height: 1.4; }
+#end { justify-content: flex-start !important; padding-top: 250px; }
+/* Tiko */
+#tiko { position: absolute; width: 140px; height: 170px; }
+#tiko svg { width: 100%; height: 100%; shape-rendering: crispEdges; overflow: visible; }
+#tbub { position: absolute; bottom: 186px; right: -10px; white-space: nowrap; background: #fff; border: 4px solid #3b2415; padding: 12px 18px; font: 500 28px var(--mono); box-shadow: 6px 6px 0 rgba(0,0,0,.15); }
+#tbub::after { content: ""; position: absolute; right: 54px; bottom: -14px; width: 18px; height: 18px; background: #fff; border-right: 4px solid #3b2415; border-bottom: 4px solid #3b2415; transform: rotate(45deg); }
+</style></head>
+<body>
+<div id="vtop"><svg width="84" height="84" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11.5" fill="none" stroke="#141413" stroke-width="2"/><path d="M13 13 L19.5 7.5" stroke="#d97757" stroke-width="2.6" stroke-linecap="round"/><circle cx="13" cy="13" r="2" fill="#141413"/></svg><div class="word" data-t="brand" style="font-family:var(--serif);font-size:74px;font-weight:500;letter-spacing:-0.02em"></div></div>
+<div id="vbot" data-t="vbot"></div>
+<div id="stage">
+  <div id="s1" class="abs" style="inset:0">
+    <div class="eyebrow abs" id="s1e" data-t="s1e"></div>
+    <div class="cap abs h1" id="s1c" style="font-size:86px; top:150px" data-t="s1c"></div>
+    <div id="m1" class="abs"><div class="lbl"><span data-t="lim5"></span><b id="m1v">%40</b></div><div class="track"><div class="fill" id="m1f"></div></div></div>
+    <div id="stamp" class="abs"><span style="display:inline;color:inherit;font:inherit;margin:0" data-t="stamp"></span><span data-t="stamp2"></span></div>
+  </div>
+  <div id="s2" class="abs" style="inset:0">
+    <div class="cap abs h1" id="s2c" style="font-size:84px; top:250px" data-t="s2c"></div>
+    <div class="logo abs" id="s2l" style="left:90px; top:640px">
+      <svg width="120" height="120" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11.5" fill="none" stroke="#141413" stroke-width="2"/><path id="needle" d="M13 13 L19.5 7.5" stroke="#d97757" stroke-width="2.6" stroke-linecap="round"/><circle cx="13" cy="13" r="2" fill="#141413"/></svg>
+      <div class="word" data-t="brand"></div>
+    </div>
+  </div>
+  <div id="s3" class="abs" style="inset:0">
+    <div class="eyebrow abs" id="s3e" data-t="s3e"></div>
+    <div class="cap abs" id="s3c"></div>
+    <div id="banner" class="abs"><div class="row"><span class="ic" id="bic">↓</span><span id="btitle"></span><span class="why" id="bwhy" data-t="why"></span></div><div class="sub" id="bsub"></div><div class="meta" id="bmeta"></div>
+      <div id="why"><div><div class="l" data-t="signals"></div><div class="tags" id="wtags"></div></div></div></div>
+    <div id="pill" class="abs"><span class="dot"></span><b id="pv">≈ %0,1</b><span class="s" data-t="pillsub"></span></div>
+    <div id="composer" class="abs"><div id="ctext"></div><div id="cbar"><span class="chip" data-t="file"></span><span class="chip" id="mchip">Opus 5.5</span><span class="chip" id="echip"></span><span class="send">↑</span></div></div>
+  </div>
+  <div id="s4" class="abs" style="inset:0">
+    <div class="eyebrow abs" data-t="s4e"></div>
+    <div class="cap abs" id="s4c" data-t="s4c"></div>
+    <div id="eq" class="abs"><div data-t="eq"></div><div class="m" id="eqm"></div></div>
+    <div id="elev" class="abs"></div>
+    <div id="esave" class="abs"><div data-t="esave"></div><span data-t="esave2"></span></div>
+  </div>
+  <div id="s5" class="abs" style="inset:0">
+    <div class="eyebrow abs" data-t="s5e"></div>
+    <div class="cap abs" id="s5c" data-t="s5c"></div>
+    <div id="card5" class="abs">
+      <div class="big" id="big5">≈ %2,1</div><div class="bigsub" data-t="bigsub5"></div>
+      <div id="warn5"><span class="i">!</span><span id="w5t"></span></div>
+      <div id="bd5"><div class="l" data-t="bdl"></div>
+        <div class="bdbar"><i id="bdh" style="background:var(--warn)"></i><i id="bdo" style="background:var(--accent)"></i><i id="bdt" style="background:#ebb59f"></i><i id="bdi" style="background:#a8a69d"></i></div>
+        <div class="bdleg"><span><b style="background:var(--warn)"></b><span data-t="bdh"></span></span><span><b style="background:var(--accent)"></b><span data-t="bdo"></span></span><span><b style="background:#ebb59f"></b><span data-t="bdt"></span></span><span><b style="background:#a8a69d"></b><span data-t="bdi"></span></span></div>
+      </div>
+    </div>
+  </div>
+  <div id="s6" class="abs" style="inset:0">
+    <div class="eyebrow abs" data-t="s6e"></div>
+    <div class="cap abs" data-t="s6c"></div>
+    <div id="tiles" class="abs">
+      <div class="tile"><div class="lb" data-t="t1"></div><div class="v" id="t1v">0</div></div>
+      <div class="tile"><div class="lb" data-t="t2"></div><div class="v" id="t2v">0</div></div>
+      <div class="tile hot"><div class="lb" data-t="t3"></div><div class="v" id="t3v">%0</div></div>
+      <div class="tile hot"><div class="lb" data-t="t4"></div><div class="v" id="t4v">%0</div></div>
+    </div>
+    <div id="heat" class="abs"></div>
+    <div id="tip6" class="abs" data-t="tip6"></div>
+  </div>
+  <div id="s7" class="abs" style="inset:0">
+    <div class="eyebrow abs" data-t="s7e"></div>
+    <div class="cap abs" data-t="s7c"></div>
+    <svg id="chart7" class="abs" width="940" height="520" viewBox="0 0 940 520"></svg>
+    <div id="leg7" class="abs"><span><b style="background:var(--accent)"></b><span data-t="lg1"></span></span><span><b style="background:#a8a69d"></b><span data-t="lg2"></span></span><span><b style="background:repeating-linear-gradient(90deg,#141413 0 6px,transparent 6px 11px)"></b><span data-t="lg3"></span></span></div>
+    <div id="note7" class="abs" data-t="note7"></div>
+  </div>
+  <div id="s8" class="abs" style="inset:0">
+    <div id="end" class="abs">
+      <div class="logo" style="gap:22px"><svg width="88" height="88" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11.5" fill="none" stroke="#141413" stroke-width="2"/><path d="M13 13 L19.5 7.5" stroke="#d97757" stroke-width="2.6" stroke-linecap="round"/><circle cx="13" cy="13" r="2" fill="#141413"/></svg><div class="word" style="font-size:80px" data-t="brand"></div></div>
+      <div class="tag2" id="e2" data-t="tag"></div>
+      <div class="pills" id="e3"></div>
+      <div class="foot" id="e4" data-t="foot"></div>
+    </div>
+  </div>
+  <div id="tiko"><div id="tbub" data-t="tbub"></div><svg viewBox="0 0 14 17" id="tsvg"></svg></div>
+  <div id="progress" class="abs"></div>
+</div>
+<script>
+const LEARN = /*LEARN*/;
+const Q = new URLSearchParams(location.search);
+const LANG = Q.get("lang") === "en" ? "en" : "tr";
+const VERT = Q.get("v") === "1";
+if (VERT) document.body.classList.add("vert");
+const TX = {
+  tr: { brand: "Token Tahmini", vbot: "Göndermeden<br>önce <em>bil.</em>",
+    s1e: "CLAUDE KULLANIYOR MUSUN?", s1c: "Limitin tam işin <em>ortasında</em> mı bitti?", lim5: "5 saatlik limit",
+    stamp: "Limit doldu, iş yarım kaldı.", stamp2: "4 sa 12 dk sonra yenilenecek", s2c: "Göndermeden <em>önce</em> bilseydin?",
+    s3e: "CLAUDE.AI İÇİN TARAYICI EKLENTİSİ",
+    caps: ["Sen yazarken <em>tahmin</em> eder.", "İşi görecek en hafif <em>modeli</em> önerir.", "Kelimeye değil, <em>işe</em> bakar.", "Zor işte <em>uyarır</em>, nedenini gösterir."],
+    why: "Neden?", signals: "GÖRDÜĞÜM İŞARETLER", pillsub: "5 saatlik limitinden", file: "+ Dosya", ph: "Mesajını yaz…",
+    eff: { low: "Düşük", medium: "Orta", high: "Yüksek", max: "Maksimum" },
+    p1: "Bu paragrafı İngilizceye çevir: Yarın sabahki toplantıya katılamayacağım.",
+    p2: "İçinde çeviri sistemi olan bir web sitesi yaptırmak istiyorum, zor bir iş.",
+    p3: "Hidrojen atomunun dalga fonksiyonlarını adım adım türet ve kanıtla.",
+    b1: "Bu iş için Haiku 5.5 yeterli", b1s: "≈ %0,4 yerine %0,01'den az", b1m: "İş: <b>Çeviri</b> · Konu: <b>Dil · Çeviri</b> · Effort: <b>Düşük</b> yeter",
+    b2: "Bu iş için Sonnet 5.5 yeterli", b2s: "≈ %1 yerine ≈ %0,5 · Haiku önerilmez", b2m: "Cümlede “çeviri” geçiyor ama iş <b>site yapımı</b> · Konu: <b>Yazılım · Web</b>",
+    b3: "Bu iş için Opus 5.5 önerilir", b3s: "≈ %1,5 harcar ama işin zorluğuna değer", b3m: "İş: <b>Problem çözme</b> · zor · güven: yüksek · Effort: <b>Yüksek</b>",
+    tags: ["“türet”", "“adım adım”", "“kanıtla”", "öğrenen model emin"],
+    s4e: "YENİ · EFFORT ÖNERİSİ", s4c: "Effort ayarının <em>fazla</em> olduğunu da söyler.",
+    eq: "“Kuantum dolanıklık nedir, basitçe anlat.”", eqm: ["Sonnet 5.5", "İş: Açıklama · kolay", "Konu: Bilim · Fizik"],
+    cur: "şu anki", rec: "yeter",
+    esave: "Maksimum yerine Orta: bu mesajda yarıdan az limit", esave2: "≈ %0,65 yerine ≈ %0,31 · sağlık, hukuk ve para konularında Düşük önermez",
+    s5e: "HARCAMA AÇIKLAMASI", s5c: "Beklenenden fazla harcarsa <em>nedenini</em> söyler.", bigsub5: "bu mesajın tahmini",
+    w5: "Son mesajın beklenenden fazla harcadı: %7 (tahmin %1–3). Olası sebepler: uzun bir aradan sonra yazdığın için sohbet geçmişi baştan okundu; yoğun saatlerdeydin.",
+    bdl: "HARCAMANIN DÖKÜMÜ", bdh: "Geçmiş", bdo: "Cevap", bdt: "Düşünme", bdi: "Mesaj",
+    s6e: "HAFTALIK RAPOR", s6c: "Her pazartesi <em>haftanı</em> özetler.", t1: "Mesaj", t2: "Harcanan 5 saatlik limit", t3: "Yoğun saatte", t4: "Kaçan tasarruf",
+    t2v: (x) => `${x} limit`, tip6: "Harcamanın %43'ü yoğun saatlerde oldu (15:00–21:00). Uzun işleri bu saatlerin dışına almak aynı işi daha az limitle yaptırır.",
+    s7e: "YENİ · ÖĞRENME KANITI", s7c: "Kullandıkça <em>daha isabetli</em> olur.",
+    yl: "Tahmin, gerçeğin kaç katı uzakta", xl: "Mesaj sırası", lg1: "Öğrenen eklenti", lg2: "Öğrenmeyen kopya", lg3: "Kusursuz tahminci",
+    note7: "200 sanal kullanıcıyla benzetim; toplam limit tahmini. Eklentinin raporu aynı ölçümü senin verinle de gösterir.",
+    tag: "Göndermeden önce <em>bil.</em>", pills: ["Ücretsiz", "Hesap gerekmez", "Mesajların cihazından çıkmaz", "Türkçe · English"],
+    tbub: "Göndermeden önce bana sor!",
+    foot: "claude.ai için tarayıcı eklentisi · Chrome · Edge · Opera · Brave<br>Bağımsız bir projedir; Anthropic ile bağlantısı yoktur." },
+  en: { brand: "Token Forecast", vbot: "Know <em>before</em><br>you send.",
+    s1e: "DO YOU USE CLAUDE?", s1c: "Hit your limit <em>mid-task</em> again?", lim5: "5-hour limit",
+    stamp: "Limit reached. Work left unfinished.", stamp2: "resets in 4 h 12 min", s2c: "What if you knew <em>before</em> sending?",
+    s3e: "BROWSER EXTENSION FOR CLAUDE.AI",
+    caps: ["It <em>forecasts</em> as you type.", "It suggests the lightest <em>model</em> that will do.", "It reads the <em>task</em>, not the keywords.", "It <em>warns</em> on hard tasks and shows why."],
+    why: "Why?", signals: "SIGNALS I SAW", pillsub: "of your 5-hour limit", file: "+ File", ph: "Write your message…",
+    eff: { low: "Low", medium: "Medium", high: "High", max: "Max" },
+    p1: "Translate this paragraph into Turkish: I can't make tomorrow morning's meeting.",
+    p2: "I want to build a website with a built-in translation system, it's a hard job.",
+    p3: "Derive the hydrogen atom wave functions step by step and prove them.",
+    b1: "Haiku 5.5 is enough for this", b1s: "under 0.01% instead of ≈ 0.4%", b1m: "Task: <b>Translation</b> · Topic: <b>Language · Translation</b> · Effort: <b>Low</b> is enough",
+    b2: "Sonnet 5.5 is enough for this", b2s: "≈ 0.5% instead of ≈ 1% · Haiku is not suggested", b2m: "It mentions “translation”, but the task is <b>building a site</b> · Topic: <b>Software · Web</b>",
+    b3: "Opus 5.5 is recommended for this", b3s: "uses ≈ 1.5%, but the task is worth it", b3m: "Task: <b>Problem solving</b> · hard · confidence: high · Effort: <b>High</b>",
+    tags: ["“derive”", "“step by step”", "“prove”", "learned model is sure"],
+    s4e: "NEW · EFFORT ADVICE", s4c: "It also tells you when effort is <em>too high</em>.",
+    eq: "“What is quantum entanglement? Explain simply.”", eqm: ["Sonnet 5.5", "Task: Explanation · easy", "Topic: Science · Physics"],
+    cur: "current", rec: "enough",
+    esave: "Medium instead of Max: less than half the limit for this message", esave2: "≈ 0.31% instead of ≈ 0.65% · never suggests Low for health, law or money",
+    s5e: "COST EXPLANATION", s5c: "If it costs more than expected, it tells you <em>why</em>.", bigsub5: "estimate for this message",
+    w5: "Your last message used more than expected: 7% (estimate 1–3%). Likely reasons: you wrote after a long break, so the chat history was re-read; it was peak hours.",
+    bdl: "WHERE THE COST COMES FROM", bdh: "History", bdo: "Answer", bdt: "Thinking", bdi: "Message",
+    s6e: "WEEKLY REPORT", s6c: "Every Monday it sums up <em>your week</em>.", t1: "Messages", t2: "5-hour limit used", t3: "At peak hours", t4: "Missed savings",
+    t2v: (x) => `${x} limits`, tip6: "43% of your usage happened at peak hours. Moving long tasks outside that window gets the same work done with less of your limit.",
+    s7e: "NEW · PROOF OF LEARNING", s7c: "It gets <em>more accurate</em> as you use it.",
+    yl: "How many times off the estimate is", xl: "Message number", lg1: "Learning extension", lg2: "No learning", lg3: "Perfect forecaster",
+    note7: "Simulation with 200 virtual users; total limit estimate. The extension's report shows the same measure with your own data.",
+    tag: "Know <em>before</em> you send.", pills: ["Free", "No account needed", "Your messages stay on your device", "English · Türkçe"],
+    tbub: "Ask me before you send!",
+    foot: "Browser extension for claude.ai · Chrome · Edge · Opera · Brave<br>An independent project, not affiliated with Anthropic." }
+}[LANG];
+document.documentElement.lang = LANG;
+document.querySelectorAll("[data-t]").forEach((el) => { const v = TX[el.dataset.t]; if (typeof v === "string") el.innerHTML = v; });
+document.getElementById("e3").innerHTML = TX.pills.map((p) => `<span>${p}</span>`).join("");
+document.getElementById("eqm").innerHTML = TX.eqm.map((p) => `<span>${p}</span>`).join("");
+const DUR = 47;
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = (x) => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const out = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const span = (t, a, b) => clamp((t - a) / (b - a));
+function show(el, t, a, b, { dy = 30, dx = 0, scale = 0 } = {}) {
+  const i = out(span(t, a, a + 0.6)), o = 1 - ease(span(t, b, b + 0.45));
+  const v = Math.min(i, o);
+  el.style.opacity = v;
+  el.style.transform = `translate(${dx * (1 - i)}px, ${dy * (1 - i)}px)` + (scale ? ` scale(${1 - scale * (1 - i)})` : "");
+  return v;
+}
+function scene(el, t, a, b) { const v = Math.min(span(t, a, a + .25), 1 - span(t, b - .3, b)); el.style.opacity = v; el.style.visibility = v > 0 ? "visible" : "hidden"; return v; }
+const dec = LANG === "tr" ? "," : ".";
+const fmt = (x, d = 1) => x.toFixed(d).replace(".", dec);
+const P = (x, d = 1) => LANG === "tr" ? "%" + fmt(x, d) : fmt(x, d) + "%";
+function typed(t, a, b, text) { const n = Math.round(text.length * clamp((t - a) / (b - a))); return text.slice(0, n); }
+const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+
+// Saat haritası (sabit örnek)
+const HEAT = [];
+for (let d = 0; d < 7; d++) for (let h = 0; h < 24; h++) {
+  const base = (h >= 9 && h <= 23 ? 0.25 : 0.03) + (d < 5 && h >= 15 && h < 21 ? 0.5 : 0) + (d >= 5 && h >= 11 && h <= 17 ? 0.35 : 0);
+  const n = Math.sin(d * 12.9898 + h * 78.233) * 43758.5453; const r = n - Math.floor(n);
+  HEAT.push({ d, h, v: clamp(base * (0.4 + r)), pk: d < 5 && h >= 15 && h < 21 });
+}
+$("heat").innerHTML = HEAT.map((c) => `<i class="${c.pk ? "pk" : ""}"></i>`).join("");
+const heatCells = [...$("heat").children];
+
+// Effort seviyeleri (Sonnet 5.5: xhigh yok). Çubuk = düşünme payı oranı (0,25 / 0,7 / 1,6 / 3)
+const LV = [["low", 0.25], ["medium", 0.7], ["high", 1.6], ["max", 3]];
+$("elev").innerHTML = LV.map(([k, r]) => `<div class="lv" data-k="${k}"><span>${TX.eff[k]}</span><div class="bar"><i style="width:${100 * r / 3}%"></i></div><span class="tg"></span></div>`).join("");
+const lvEls = [...$("elev").children];
+
+// Öğrenme grafiği
+const C = { w: 940, h: 520, l: 96, r: 64, t: 30, b: 70 };
+const ymin = 1.2, ymax = 2.4;
+const cx = (i) => C.l + i * (C.w - C.l - C.r) / (LEARN.length - 1);
+const cy = (v) => C.t + (ymax - v) / (ymax - ymin) * (C.h - C.t - C.b);
+const path = (key) => LEARN.map((p, i) => `${i ? "L" : "M"}${cx(i).toFixed(1)},${cy(p[key]).toFixed(1)}`).join(" ");
+{
+  let s = "";
+  for (let v = 1.2; v <= 2.401; v += 0.2) s += `<line x1="${C.l}" x2="${C.w - C.r}" y1="${cy(v)}" y2="${cy(v)}" stroke="#e3e0d5" stroke-width="1.5"/><text x="${C.l - 14}" y="${cy(v) + 8}" text-anchor="end" font-size="22" fill="#6b6a64" font-family="IBM Plex Mono">${fmt(v, 1)}×</text>`;
+  LEARN.forEach((p, i) => { s += `<text x="${cx(i)}" y="${C.h - C.b + 34}" text-anchor="middle" font-size="22" fill="#6b6a64" font-family="IBM Plex Mono">${p.blok}</text>`; });
+  s += `<text x="${(C.l + C.w - C.r) / 2}" y="${C.h - 6}" text-anchor="middle" font-size="21" fill="#6b6a64" font-family="Inter">${TX.xl}</text>`;
+  s += `<text x="${C.l - 2}" y="${C.t - 8}" font-size="21" fill="#6b6a64" font-family="Inter">${TX.yl}</text>`;
+  s += `<path id="pO" d="${path("oracleAgg")}" fill="none" stroke="#141413" stroke-width="3" stroke-dasharray="10 9" opacity=".55"/>`;
+  s += `<path id="pB" d="${path("bazAgg")}" fill="none" stroke="#a8a69d" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>`;
+  s += `<path id="pL" d="${path("ogrenAgg")}" fill="none" stroke="#d97757" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>`;
+  s += `<circle id="dL" r="10" fill="#d97757" stroke="#fff" stroke-width="3"/>`;
+  const a = LEARN[0].ogrenAgg, z = LEARN.at(-1).ogrenAgg, bz = LEARN.at(-1).bazAgg;
+  s += `<text id="lA" x="${cx(0) + 16}" y="${cy(a) - 16}" font-size="30" font-weight="600" fill="#b5502f" font-family="IBM Plex Mono">${fmt(a, 2)}×</text>`;
+  s += `<text id="lZ" x="${cx(LEARN.length - 1) - 4}" y="${cy(z) + 44}" text-anchor="end" font-size="34" font-weight="600" fill="#b5502f" font-family="IBM Plex Mono">${fmt(z, 2)}×</text>`;
+  s += `<text id="lB" x="${cx(LEARN.length - 1) - 4}" y="${cy(bz) - 18}" text-anchor="end" font-size="26" font-weight="600" fill="#6b6a64" font-family="IBM Plex Mono">${fmt(bz, 2)}×</text>`;
+  $("chart7").innerHTML = s;
+}
+const pL = $("pL"), pB = $("pB"), pO = $("pO");
+const lenL = pL.getTotalLength(), lenB = pB.getTotalLength(), lenO = pO.getTotalLength();
+[[pL, lenL], [pB, lenB]].forEach(([p, l]) => { p.style.strokeDasharray = `${l} ${l}`; });
+
+// Tiko (sitedeki piksel bot)
+const PAL = { K: "#3b2415", O: "#f28c28", H: "#ffc98b", D: "#c9661a", W: "#ffffff", P: "#ff8f70", Y: "#ffd84a", G: "#6fcf8a", R: "#e0533a" };
+const rects = (rows, x0 = 0, y0 = 0) => { let o = ""; rows.forEach((row, y) => { let x = 0; while (x < row.length) { const c = row[x]; if (c === ".") { x++; continue; } let e = x; while (e < row.length && row[e] === c) e++; o += `<rect x="${x0 + x}" y="${y0 + y}" width="${e - x}" height="1" fill="${PAL[c]}"/>`; x = e; } }); return o; };
+const HEAD = ["..KKKKKKKKKK..", ".KOOOOOOOOOOK.", ".KOHHOOOOOOOK.", ".KOOOOOOOOOOK.", ".KOOOOOOOOOOK.", ".KPOKOOOOKOPK.", ".KOOOKKKKOOOK.", ".KOOOOOOOOOOK.", "..KKKKKKKKKK.."];
+const BODY = ["...KOOOOOOK...", "...KOGGYROK...", "...KOOOOOOK...", "...KKKKKKKK..."];
+const LEG_A = ["....KO..OK....", "...KKK..KKK..."], LEG_B = ["...KKK..OK....", ".......KKK...."];
+$("tsvg").innerHTML = `<g id="lgA">${rects(LEG_A, 0, 15)}</g><g id="lgB" style="display:none">${rects(LEG_B, 0, 15)}</g>
+  <g id="tbody"><g>${rects(["KO", "KO", "KO", "KK"], 1, 11)}</g><g id="armR">${rects(["OK", "OK", "OK", "KK"], 11, 11)}</g>
+  ${rects(BODY, 0, 11)}${rects(HEAD, 0, 2)}<g id="lt">${rects(["YY"], 6, 0)}</g>${rects(["KK"], 6, 1)}
+  <g><rect x="3" y="5" width="2" height="2" fill="${PAL.K}"/><rect x="9" y="5" width="2" height="2" fill="${PAL.K}"/><rect x="3" y="5" width="1" height="1" fill="${PAL.W}"/><rect x="9" y="5" width="1" height="1" fill="${PAL.W}"/></g>
+  <g id="lid" style="display:none"><rect x="2" y="5" width="4" height="2" fill="${PAL.O}"/><rect x="8" y="5" width="4" height="2" fill="${PAL.O}"/><rect x="3" y="6" width="2" height="1" fill="${PAL.K}"/><rect x="9" y="6" width="2" height="1" fill="${PAL.K}"/></g></g>`;
+
+function tiko(t) {
+  // Kapanışta sağdan yürüyerek gelir, el sallar, konuşur
+  const el = $("tiko");
+  const a = 41.6, arrive = 43.0;
+  if (t < a) { el.style.opacity = 0; return; }
+  el.style.opacity = 1;
+  const k = ease(span(t, a, arrive));
+  const x = 1140 - (1140 - 830) * k, y = 820;
+  const walking = t < arrive;
+  const fr = Math.floor(t * 8) % 2;
+  $("lgA").style.display = walking && fr ? "none" : "";
+  $("lgB").style.display = walking && fr ? "" : "none";
+  const bob = walking ? (fr ? -10 : 0) : (Math.floor(t * 2) % 2 ? -4 : 0);
+  el.style.transform = `translate(${x}px, ${y + bob}px)`;
+  el.style.left = "0"; el.style.top = "0";
+  const wave = t > arrive + 0.1 && t < arrive + 1.6;
+  $("armR").setAttribute("transform", wave && Math.floor(t * 6) % 2 ? "translate(0,-3)" : "");
+  $("lt").style.opacity = Math.floor(t * 1.6) % 2 ? 1 : 0.3;
+  $("lid").style.display = (t > 45.2 && t < 45.35) ? "" : "none";
+  const bb = span(t, arrive + 0.3, arrive + 0.6);
+  $("tbub").style.opacity = bb; $("tbub").style.transform = `translateY(${8 * (1 - bb)}px)`;
+}
+
+function render(t) {
+  // 1 (0–4.2) sorun
+  scene($("s1"), t, -1, 4.2);
+  show($("s1e"), t, 0.1, 99); show($("s1c"), t, 0.3, 99, { dy: 40 });
+  show($("m1"), t, 0.9, 99);
+  const fillP = 40 + 60 * ease(span(t, 1.3, 2.9));
+  $("m1f").style.width = fillP + "%";
+  $("m1f").style.background = fillP > 92 ? "var(--crit)" : fillP > 75 ? "var(--warn)" : "var(--ok)";
+  $("m1v").textContent = P(Math.round(fillP), 0);
+  show($("stamp"), t, 2.95, 99, { dy: 0, scale: 0.08 });
+  // 2 (4.2–7.0) çözüm
+  scene($("s2"), t, 4.2, 7.0);
+  show($("s2c"), t, 4.2, 99, { dy: 40 });
+  show($("s2l"), t, 5.3, 99, { dy: 0, scale: 0.15 });
+  $("needle").setAttribute("transform", `rotate(${-100 + 100 * out(span(t, 5.5, 6.5))} 13 13)`);
+  // 3 (7.0–24.0) demo: çeviri → tuzak cümle → zor iş
+  scene($("s3"), t, 7.0, 24.0);
+  show($("s3e"), t, 7.0, 99);
+  const ci = t < 9.9 ? 0 : t < 13.0 ? 1 : t < 18.4 ? 2 : 3;
+  const cap = $("s3c");
+  if (cap.dataset.k !== String(ci)) { cap.innerHTML = TX.caps[ci]; cap.dataset.k = String(ci); }
+  show(cap, t, [7.05, 9.9, 13.0, 18.4][ci], 99, { dy: 24 });
+  show($("composer"), t, 7.1, 99, { dy: 40 });
+  const ph = t < 12.9 ? 1 : t < 18.3 ? 2 : 3;
+  const txt = ph === 1 ? typed(t, 7.8, 9.6, TX.p1) : ph === 2 ? typed(t, 13.3, 15.3, TX.p2) : typed(t, 18.7, 20.4, TX.p3);
+  const caret = Math.floor(t * 2.2) % 2 === 0 ? '<span class="caret"></span>' : '<span class="caret" style="opacity:0"></span>';
+  $("ctext").innerHTML = (txt ? esc(txt) : `<span class="ph">${TX.ph}</span>`) + caret;
+  $("mchip").textContent = ph === 3 ? "Sonnet 5.5" : "Opus 5.5";
+  $("echip").textContent = ph === 1 ? TX.eff.high : TX.eff.medium;
+  const [pa, pb, v0, v1] = ph === 1 ? [8.2, 9.6, 0.05, 0.37] : ph === 2 ? [13.6, 15.3, 0.1, 1.0] : [19.0, 20.4, 0.08, 0.53];
+  const pillOn = span(t, pa, pa + 0.4);
+  $("pill").style.opacity = out(pillOn); $("pill").style.transform = `translateY(${10 * (1 - out(pillOn))}px)`;
+  const pv = v0 + (v1 - v0) * span(t, pa, pb);
+  $("pv").textContent = "≈ " + P(pv, 1);
+  const b = $("banner");
+  let bOn;
+  const green = () => { b.style.setProperty("--tone", "var(--ok)"); $("bic").textContent = "↓"; b.style.borderColor = "#bcd8c8"; b.style.background = "#f3f8f5"; };
+  if (ph === 1) {
+    bOn = out(span(t, 9.9, 10.5)) * (1 - ease(span(t, 12.5, 12.85)));
+    green(); $("btitle").textContent = TX.b1; $("bsub").textContent = TX.b1s; $("bmeta").innerHTML = TX.b1m; $("why").style.display = "none";
+  } else if (ph === 2) {
+    bOn = out(span(t, 15.6, 16.2)) * (1 - ease(span(t, 17.9, 18.25)));
+    green(); $("btitle").textContent = TX.b2; $("bsub").textContent = TX.b2s; $("bmeta").innerHTML = TX.b2m; $("why").style.display = "none";
+  } else {
+    bOn = out(span(t, 20.8, 21.4));
+    b.style.setProperty("--tone", "var(--warn)"); $("bic").textContent = "↑";
+    $("btitle").textContent = TX.b3; $("bsub").textContent = TX.b3s; $("bmeta").innerHTML = TX.b3m;
+    b.style.borderColor = "#ecd2ab"; b.style.background = "#fdf8f0";
+    const w = span(t, 21.7, 22.2);
+    $("why").style.display = w > 0 ? "grid" : "none"; $("why").style.opacity = out(w);
+    const nTags = Math.floor(clamp((t - 21.8) / 0.3, 0, TX.tags.length));
+    const html = TX.tags.slice(0, nTags).map((x, i) => `<span class="tag"${i === 3 ? ' style="background:#f7e3da;color:#b5502f"' : ""}>${x}</span>`).join("");
+    if ($("wtags").innerHTML !== html) $("wtags").innerHTML = html;
+  }
+  $("bwhy").style.background = ph === 3 && t > 21.7 ? "var(--line)" : "var(--sunk)";
+  b.style.opacity = bOn; b.style.transform = `translateY(${18 * (1 - bOn)}px)`;
+  // 4 (24.0–29.0) effort
+  scene($("s4"), t, 24.0, 29.0);
+  show($("s4c"), t, 24.05, 99, { dy: 24 });
+  show($("eq"), t, 24.3, 99, { dy: 30 });
+  show($("elev"), t, 24.7, 99, { dy: 30 });
+  const moved = t > 26.0;
+  lvEls.forEach((el) => {
+    const k = el.dataset.k;
+    el.classList.toggle("cur", k === "max");
+    el.classList.toggle("rec", moved && k === "medium");
+    el.querySelector(".tg").textContent = k === "max" ? TX.cur : moved && k === "medium" ? "✓ " + TX.rec : "";
+  });
+  show($("esave"), t, 26.4, 99, { dy: 20 });
+  // 5 (29.0–33.4) harcama açıklaması
+  scene($("s5"), t, 29.0, 33.4);
+  show($("s5c"), t, 29.05, 99, { dy: 24 });
+  show($("card5"), t, 29.3, 99, { dy: 40 });
+  $("big5").textContent = "≈ " + P(2.1);
+  const w5 = span(t, 30.0, 30.4); $("warn5").style.opacity = out(w5); $("warn5").style.transform = `translateY(${12 * (1 - out(w5))}px)`;
+  $("w5t").textContent = TX.w5;
+  const g = out(span(t, 30.6, 31.8));
+  [["bdh", 0.58], ["bdo", 0.24], ["bdt", 0.14], ["bdi", 0.04]].forEach(([id, s]) => { $(id).style.width = (100 * s * g) + "%"; });
+  $("bd5").style.opacity = out(span(t, 30.5, 30.9));
+  // 6 (33.4–37.6) haftalık rapor
+  scene($("s6"), t, 33.4, 37.6);
+  const k = out(span(t, 33.8, 35.2));
+  $("t1v").textContent = String(Math.round(84 * k));
+  $("t2v").textContent = TX.t2v(fmt(3.4 * k));
+  $("t3v").textContent = P(Math.round(43 * k), 0);
+  $("t4v").textContent = P(5.3 * k);
+  show($("tiles"), t, 33.55, 99, { dy: 30 });
+  const hp = span(t, 34.4, 35.8);
+  heatCells.forEach((el, i) => { const c = HEAT[i]; const on = clamp(hp * 1.4 - (c.h / 24) * 0.4); el.style.background = c.v > 0.04 ? `color-mix(in srgb, #d97757 ${Math.round(100 * c.v * on)}%, #efede4)` : "#efede4"; });
+  show($("heat"), t, 34.2, 99, { dy: 20 });
+  show($("tip6"), t, 35.9, 99, { dy: 20 });
+  // 7 (37.6–42.0) öğrenme kanıtı
+  scene($("s7"), t, 37.6, 42.0);
+  show($("chart7"), t, 37.8, 99, { dy: 20 });
+  const dB = out(span(t, 38.2, 39.4)), dL = out(span(t, 38.6, 40.2));
+  pB.style.strokeDashoffset = lenB * (1 - dB);
+  pL.style.strokeDashoffset = lenL * (1 - dL);
+  pO.style.opacity = 0.55 * out(span(t, 38.0, 38.6));
+  const pt = pL.getPointAtLength(lenL * dL);
+  $("dL").setAttribute("cx", pt.x); $("dL").setAttribute("cy", pt.y); $("dL").style.opacity = span(t, 38.6, 38.8);
+  $("lA").style.opacity = out(span(t, 38.6, 39.0));
+  $("lZ").style.opacity = out(span(t, 40.1, 40.5));
+  $("lB").style.opacity = out(span(t, 39.3, 39.7));
+  show($("leg7"), t, 38.4, 99, { dy: 16 }); show($("note7"), t, 40.4, 99, { dy: 16 });
+  // 8 (42.0–47) kapanış + Tiko
+  const s8 = scene($("s8"), t, 42.0, 99);
+  if (VERT) { $("vtop").style.opacity = 1 - s8; $("vbot").style.opacity = 1 - s8; $("progress").style.display = "none"; }
+  show($("e2"), t, 42.2, 99); show($("e3"), t, 42.55, 99); show($("e4"), t, 42.9, 99);
+  tiko(t);
+  $("progress").style.width = (100 * t / DUR) + "%";
+}
+window.render = render; window.DUR = DUR;
+render(0);
+</script></body></html>

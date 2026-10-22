@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2026 Hayrettin Enes Karalı
 // Arka plan servisi (service worker).
 // - Kullanım verisini düzenli okur, plan türünü belirler (adım 3).
 // - Ücretsiz planda kullanım verisini cevap akışından alır (adım 3 eki).
@@ -7,10 +9,19 @@
 import { readUsage, normalizeUsage, normalizeSse } from "./lib/usage.js";
 import { observe, emptyState } from "./lib/calibrate.js";
 import { makeI18n, clock } from "./lib/i18n.js";
+import { applyFeedback } from "./lib/advisor.js";
+import { applyEffortFeedback } from "./lib/effort.js";
+import { trimSends, weeklyReport, nextWeeklyAt } from "./lib/report.js";
+import { personalStep, decodeModel } from "./lib/learn.js";
+import PACKED from "./lib/learn-weights.js";
+let LMODEL = null;
+const learnModel = () => (LMODEL ||= decodeModel(PACKED));
 
 const ALARM = "usage-refresh";
 const PERIOD_MIN = 5;
-export const DEFAULT_SETTINGS = { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto" };
+const WEEKLY_ALARM = "weekly-report";
+const REPORT_URL = "popup/report.html";
+export const DEFAULT_SETTINGS = { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto", advisor: true, effortAdvice: true, tips: true, explain: true, weeklyReport: true };
 
 const get = (k) => chrome.storage.local.get(k);
 const set = (o) => chrome.storage.local.set(o);
@@ -24,21 +35,31 @@ chrome.runtime.onInstalled.addListener(async () => {
   const { settings: s, calib } = await get(["settings", "calib"]);
   await set({ settings: { ...DEFAULT_SETTINGS, ...(s || {}) }, ...(calib ? {} : { calib: emptyState() }) });
   chrome.alarms.create(ALARM, { periodInMinutes: PERIOD_MIN });
+  scheduleWeekly();
   refresh();
 });
 chrome.runtime.onStartup.addListener(() => {
   chrome.alarms.create(ALARM, { periodInMinutes: PERIOD_MIN });
+  scheduleWeekly();
   refresh();
 });
 chrome.alarms.onAlarm.addListener((a) => {
   if (a.name === ALARM) refresh();
+  else if (a.name === WEEKLY_ALARM) weeklyNotify();
   else if (a.name.startsWith("reset:")) onReset(a.name.slice(6));
 });
 
 // ---------- Kullanım ----------
 async function saveUsage(usage, source) {
-  const { usage: prev } = await get("usage");
-  await set({ usage, usageMeta: { fetchedAt: Date.now(), source, error: null } });
+  const { usage: prev, usageHist = [] } = await get(["usage", "usageHist"]);
+  // Harcama hızı için kısa geçmiş (yalnızca yüzdeler): son 3 gün, en fazla 800 nokta
+  const now = Date.now(), lastH = usageHist[usageHist.length - 1];
+  const p5 = usage?.fiveHour?.pct ?? null;
+  if (p5 !== null && (!lastH || lastH.p5 !== p5 || now - lastH.at > 4 * 60000)) {
+    usageHist.push({ at: now, p5, r5: usage.fiveHour.resetsAt || null, p7: usage?.sevenDay?.pct ?? null });
+    while (usageHist.length > 800 || (usageHist.length && usageHist[0].at < now - 3 * 864e5)) usageHist.shift();
+  }
+  await set({ usage, usageHist, usageMeta: { fetchedAt: now, source, error: null } });
   await afterUsage(prev, usage);
 }
 
@@ -142,6 +163,41 @@ async function updateBadge(u) {
   } catch (_) {}
 }
 
+// ---------- Haftalık rapor ----------
+function scheduleWeekly() {
+  chrome.alarms.get(WEEKLY_ALARM, (a) => {
+    if (!a) chrome.alarms.create(WEEKLY_ALARM, { when: nextWeeklyAt(), periodInMinutes: 7 * 24 * 60 });
+  });
+}
+
+async function weeklyNotify() {
+  const s = await settings();
+  if (!s.notifications || s.weeklyReport === false) return;
+  const { sends = [] } = await get("sends");
+  const r = weeklyReport(sends);
+  if (!r.enough) return;
+  const i18n = await makeI18n(s.language);
+  const parts = [i18n.t("wkNotifMsgs", [String(r.n)]), i18n.t("wkNotifSpent", [(Math.round(r.sessionsEq * 10) / 10).toLocaleString(i18n.locale)])];
+  if (r.peak.share >= 0.2) parts.push(i18n.t("wkNotifPeak", [String(Math.round(r.peak.share * 100))]));
+  notify(`weekly:${Date.now()}`, i18n.t("wkNotifTitle"), parts.join(" · "));
+}
+
+chrome.notifications?.onClicked?.addListener((id) => {
+  if (id.startsWith("weekly:")) chrome.tabs.create({ url: chrome.runtime.getURL(REPORT_URL) });
+});
+
+// Gönderim kayıtları (metin yok): haftalık rapor ve "beklenenden fazla" açıklaması için
+let sendsQueue = Promise.resolve();
+function sendsUpdate(fn) {
+  sendsQueue = sendsQueue.then(async () => {
+    const { sends = [] } = await get("sends");
+    const out = fn(sends);
+    await set({ sends: trimSends(sends) });
+    return out;
+  }).catch((e) => ({ ok: false, error: String(e) }));
+  return sendsQueue;
+}
+
 // ---------- Kalibrasyon (adım 10) ----------
 let calibQueue = Promise.resolve();
 function calibObserve(list) {
@@ -157,6 +213,23 @@ function calibObserve(list) {
     return results;
   });
   return calibQueue;
+}
+
+// ---------- Tanı günlüğü ----------
+// Ölçüm hattının adımları (yalnızca adım adları ve sayılar). Son 60 kayıt tutulur.
+let traceQueue = Promise.resolve();
+function addTrace(entry) {
+  traceQueue = traceQueue.then(async () => {
+    const { trace = [] } = await get("trace");
+    trace.push(entry);
+    if (trace.length > 60) trace.splice(0, trace.length - 60);
+    const patch = { trace };
+    if (entry.step === "hook:hello") patch.hookHello = { at: entry.at, ...(entry.info || {}) };
+    if (entry.step === "send:seen") patch.lastSend = entry.at;
+    if (entry.step === "done:seen") patch.lastDone = { at: entry.at, ...(entry.info || {}) };
+    await set(patch);
+  }).catch(() => {});
+  return traceQueue;
 }
 
 // ---------- Mesajlar ----------
@@ -176,7 +249,49 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       return true;
     }
     case "usage:sse": reply(mergeSse(msg.messageLimit).then(() => ({ ok: true }))); return true;
+    case "trace": reply(addTrace({ step: String(msg.step || "").slice(0, 40), info: msg.info || null, at: msg.at || Date.now() }).then(() => ({ ok: true }))); return true;
+    case "health:hook": reply(set({ hookHello: { at: msg.at || Date.now(), wrapped: msg.wrapped, seen: msg.seen } }).then(() => ({ ok: true }))); return true;
+    case "health": reply(set({ pageHealth: { ...msg.page, at: msg.at || Date.now() } }).then(() => ({ ok: true }))); return true;
     case "calib:observe": reply(calibObserve(msg.list || [])); return true;
+    case "log:send": {
+      const e = msg.entry || {};
+      reply(sendsUpdate((list) => { if (e.id && !list.some((x) => x.id === e.id)) list.push(e); return { ok: true }; }));
+      return true;
+    }
+    case "log:done": {
+      reply(sendsUpdate((list) => {
+        const x = [...list].reverse().find((y) => y.id === msg.id);
+        if (!x) return { ok: false };
+        Object.assign(x, msg.patch || {});
+        return { ok: true };
+      }));
+      return true;
+    }
+    case "learn:label": {
+      // Kişisel düzeltme: kalibrasyon kuyruğundan geçer (tek yazıcı)
+      calibQueue = calibQueue.then(async () => {
+        const feats = Array.isArray(msg.feats) ? msg.feats.filter((f) => Array.isArray(f) && Number.isInteger(f[0]) && Number.isFinite(f[1])).slice(0, 4000) : [];
+        if (!feats.length) return { ok: false };
+        const { learnPersonal, learnFixes = {} } = await get(["learnPersonal", "learnFixes"]);
+        const key = `${String(msg.from || "?").slice(0, 20)}>${String(msg.label).slice(0, 20)}`;
+        learnFixes[key] = (learnFixes[key] || 0) + 1;
+        await set({ learnPersonal: personalStep(learnModel(), learnPersonal, feats, String(msg.label)), learnFixes });
+        return { ok: true };
+      });
+      reply(calibQueue); return true;
+    }
+    case "surprise": reply(set({ lastSurprise: msg.surprise || null }).then(() => ({ ok: true }))); return true;
+    case "open:report": {
+      const url = chrome.runtime.getURL(REPORT_URL);
+      reply((async () => {
+        const ctxs = await chrome.runtime.getContexts?.({ contextTypes: ["TAB"], documentUrls: [url] }).catch(() => []) || [];
+        const open = ctxs.find((c) => c.tabId >= 0);
+        if (open) await chrome.tabs.update(open.tabId, { active: true });
+        else await chrome.tabs.create({ url });
+        return { ok: true };
+      })());
+      return true;
+    }
     case "open:details": {
       // Ayrıntı sayfası zaten açıksa ona geç, değilse yeni sekmede aç
       const url = chrome.runtime.getURL("popup/popup.html?view=tab");
@@ -192,7 +307,35 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       })());
       return true;
     }
-    case "calib:reset": reply(set({ calib: emptyState() }).then(() => ({ ok: true }))); return true;
+    case "data:import": {
+      // Yedeği geri yükle (tek yazıcı: kalibrasyon kuyruğundan geçer). Biçim popup'ta doğrulandı, burada yine kontrol edilir.
+      calibQueue = calibQueue.then(async () => {
+        const d = msg.data || {};
+        if (!d.calib || d.calib.version !== emptyState().version || typeof d.calib.k !== "object") return { ok: false };
+        const patch = { calib: d.calib };
+        if (d.recPrefs && typeof d.recPrefs === "object") patch.recPrefs = d.recPrefs;
+        if (d.settings && typeof d.settings === "object") patch.settings = { ...DEFAULT_SETTINGS, ...d.settings };
+        if (d.learnPersonal && typeof d.learnPersonal === "object" && d.learnPersonal.w) patch.learnPersonal = d.learnPersonal;
+        if (Array.isArray(d.sends)) patch.sends = trimSends(d.sends.filter((x) => x && Number.isFinite(x.at)));
+        await set(patch);
+        return { ok: true, measurements: d.calib.stats?.n || 0 };
+      });
+      reply(calibQueue); return true;
+    }
+    case "calib:reset": reply(set({ calib: emptyState(), recPrefs: null, learnPersonal: null, learnFixes: {} }).then(() => ({ ok: true }))); return true;
+    case "advisor:feedback": {
+      // Tek yazıcı: geri bildirim sırayla uygulanır
+      calibQueue = calibQueue.then(async () => {
+        const { recPrefs } = await get("recPrefs");
+        const a = msg.adv || {};
+        const next = a.target === "effort"
+          ? applyEffortFeedback(recPrefs, { type: a.type, kind: a.ekind, good: !!msg.good })
+          : applyFeedback(recPrefs, { type: a.type, kind: a.kind, tier: a.tier, curTier: a.curTier, good: !!msg.good });
+        await set({ recPrefs: next });
+        return { ok: true };
+      });
+      reply(calibQueue); return true;
+    }
     case "notify:test": {
       reply(settings().then(async (s) => {
         const i18n = await makeI18n(s.language);

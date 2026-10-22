@@ -1,0 +1,477 @@
+extName	Token Forecast para Claude
+extShortName	Token Forecast
+extDescription	Estima antes de enviar quanto do seu limite do Claude uma mensagem vai consumir e sugere um modelo mais econômico quando cabe.
+popupTitle	Token Forecast
+sessionLimit	Sessão de 5 horas
+weeklyLimit	Limite semanal
+resetsAt	Reinicia às $TIME$
+noData	Ainda não há dados de uso. Abra o claude.ai com a sessão iniciada.
+settings	Configurações
+language	Idioma
+languageAuto	Padrão do navegador
+thresholds	Limites de aviso
+panelEstimate	Consumo estimado: $LOW$–$HIGH$% da sua sessão
+confidenceLow	Confiança: baixa
+confidenceMedium	Confiança: média
+confidenceHigh	Confiança: alta
+panelLoading	Estimando…
+pct	$1%
+resetsIn	Reinicia em $1 ($2)
+durDH	$1 d $2 h
+durHM	$1 h $2 min
+durM	$1 min
+bottleneck	Este limite vai acabar primeiro
+fetchError	Não foi possível ler o uso. Verifique se você está conectado ao claude.ai.
+otherLimits	Outros limites
+updatedJustNow	Atualizado agora
+updatedAgo	Atualizado há $1
+staleWarning	a última atualização falhou
+refresh	Atualizar
+dbgPrompt	Mensagem
+dbgHistory	Conversa
+dbgMessages	$1 mensagens
+dbgNotFound	não detectado
+dbgAttachments	Anexos
+dbgTotal	Entrada total
+dbgTokens	tokens
+dbgNoInput	Caixa de mensagem não encontrada
+dbgAnalyzing	analisando…
+dbgPasted	texto colado
+dbgPages	$1 páginas
+dbgConvAttachments	Anexos enviados neste chat ($1)
+dbgContext	Janela de contexto ($1, $2)
+dbgModelUnknown	modelo não detectado
+ctxOver	Isso não cabe na janela de contexto do Claude. Envie só as partes de que precisa.
+ctxNear	Isso pode não caber na janela de contexto do Claude. Divida ou abra um chat novo.
+pdfTextOnly	PDF com mais de 100 páginas: o Claude vai ler só o texto, sem imagens nem gráficos.
+pdfTooLarge	PDF com mais de 1000 páginas: o claude.ai não vai aceitar.
+lessThan	menos de $1
+warnNoFit	Provavelmente isso não cabe no seu $1 (restam $2).
+warnMaybeFit	Isso pode não caber no seu $1 (restam $2).
+ctxWorkspace	Nos planos pagos, o claude.ai pode colocar um arquivo muito grande em um espaço de trabalho, onde o Claude o lê por código em vez de tudo de uma vez.
+warnCacheCold	Você não usa este chat há $1 min, o cache expirou: todo o histórico (~$2 tokens) será contado de novo. Um chat novo pode custar bem menos.
+warnCacheUnknown	Se este chat ficou parado por mais de uma hora, o histórico dele (~$1 tokens) será contado de novo.
+tipNewChat	Este chat é longo (~$1 tokens). Um chat novo com um resumo curto deixa as respostas mais precisas e baratas.
+warnPeak	Horário de pico (dias úteis, $1–$2 h, no seu fuso): o limite de 5 horas do claude.ai está enchendo mais rápido agora. Vale mover tarefas longas para fora dessa faixa.
+recDowngrade	$1 provavelmente bastaria e consumiria cerca de $2% a menos do seu limite.
+recUpgrade	Isso parece exigente; $1 pode dar uma resposta bem melhor.
+rec_short_qa	Perguntas factuais curtas raramente precisam de um modelo grande.
+rec_translate	Modelos leves traduzem bem.
+rec_rewrite	Reescrever um texto existente é uma tarefa leve.
+rec_summarize	Resumir é um ponto forte dos modelos mais leves.
+rec_explain	Modelos intermediários explicam bem.
+rec_writing	Modelos intermediários escrevem bem.
+rec_data_analysis	Análises comuns combinam com um modelo intermediário.
+rec_file_create	Documentos e apresentações combinam com um modelo intermediário.
+rec_code_write	Programação do dia a dia combina com um modelo intermediário.
+rec_code_fix	A maioria das correções de bugs combina com um modelo intermediário.
+rec_research	Pesquisa de rotina combina com um modelo intermediário.
+rec_math	Problemas de rotina combinam com um modelo intermediário.
+rec_complex	A tarefa parece complexa.
+rec_hardest	Este é um dos tipos de tarefa mais difíceis.
+effLower	Aqui costuma bastar esforço baixo; esforço alto acrescenta principalmente tokens de raciocínio ocultos.
+effRaise	Para um problema tão difícil, um esforço maior pode valer a pena.
+type_short_qa	Pergunta curta
+type_explain	Explicação
+type_math	Resolução de problemas
+type_code_write	Escrita de código
+type_code_fix	Depuração / código
+type_translate	Tradução
+type_writing	Redação
+type_rewrite	Edição de texto
+type_summarize	Resumo
+type_data_analysis	Análise de dados
+type_research	Pesquisa
+type_file_create	Criação de arquivo
+rowWeekly	Limite semanal
+rowType	Tipo de pedido
+rowModel	Modelo
+modelName	$1
+rowInput	Entrada (nova)
+rowOutput	Resposta esperada
+rowCache	Cache
+rowContext	Janela de contexto
+cache_none	chat novo
+cache_warm	ativo (histórico grátis)
+cache_cold	expirado (histórico conta)
+cache_unknown	desconhecido
+effort_low	esforço baixo
+effort_medium	esforço médio
+effort_high	esforço alto
+effort_max	esforço máximo
+effort_off	raciocínio desligado
+effort_auto	automático
+footCalibrated	Aprendido com $1 das suas mensagens · $2% dentro da faixa.
+footLearning	Ainda aprendendo: as estimativas ficam mais precisas após algumas mensagens.
+pillIdle	Token Forecast
+pillUsed	5 h: $1 usado
+pillSub	do limite de 5 horas
+cardTitle	Esta mensagem vai consumir
+cardSub	do seu limite de 5 horas · faixa provável $1
+cardIdleSub	Parte já usada do limite de 5 horas. Comece a digitar para ver uma estimativa.
+close	Fechar
+notifResets	Reinicia às $1.
+notifThresholdTitle	$1 em $2%
+notifThresholdBody	Planeje as tarefas grandes com a previsão antes de enviar.
+notifThresholdBodyHigh	Quase esgotado: faça primeiro o que importa.
+notifResetTitle	$1 foi reiniciado
+notifResetBody	Você pode continuar de onde parou.
+notifTestBody	As notificações estão funcionando.
+freePlanWait	No plano gratuito, o uso aparece depois que você envia a primeira mensagem no claude.ai.
+capTitle	Com o que sobrou
+capSub	Aproximadamente uma destas, em um chat novo com $1 (estimativa conservadora).
+cap_short_qa	perguntas curtas
+cap_explain	explicações
+cap_code_fix	correções de código
+cap_writing	tarefas de redação
+cap_summarize	resumos de documentos
+cap_research	tarefas de pesquisa
+calTitle	Calibração pessoal
+calNone	Ainda não há medições. Cada mensagem enviada ensina à extensão como o seu plano realmente se comporta.
+calFew	$1 medições até agora; com mais algumas, as estimativas ficam mais precisas.
+calSome	$1 medições · $2% dos valores reais ficaram dentro da faixa prevista.
+setNotif	Notificações
+setPanel	Mostrar a estimativa no claude.ai
+setMemory	Memória do Claude (tamanho do contexto)
+memAuto	Presumir ativada
+memOn	Ativada
+memOff	Desativada
+btnTestNotif	Testar notificação
+btnExport	Exportar meus dados
+btnResetCal	Redefinir calibração
+btnResetConfirm	Clique de novo para redefinir
+privacyNote	Tudo é calculado no seu navegador. O texto das suas mensagens nunca sai do seu dispositivo.
+moreDetails	Detalhes e configurações
+detailsTitle	Token Forecast – detalhes
+healthTitle	Verificação do sistema
+hHook	Gancho da página (vê as mensagens enviadas)
+hSend	Último envio detectado
+hDone	Último fluxo de resposta lido
+hUsage	Leitura do uso
+hPage	Página: entrada / modelo / esforço
+hLast	Última medição
+hNone	nenhuma ainda
+hHookNoReply	sem resposta – recarregue a aba do claude.ai
+hHookReplaced	o site substituiu o fetch
+hProbe	as mensagens vão para outro endereço
+hSendWait	nenhuma mensagem enviada ainda ou não detectada
+hSseYes	fluxo correto
+hSseNo	fluxo lido, mas sem dados de uso
+hCopyLog	Copiar registro
+hCopied	Copiado
+hLogTitle	Registro de medições
+hHint	Se alguma linha mostrar problema, copie o registro e envie ao desenvolvedor.
+hDomPath	detectado pela página (caminho alternativo)
+advSave	$1 basta para esta tarefa
+advSaveDetail	Esta mensagem consome cerca de $1 do seu limite; com $2 seria cerca de $3 ($4% de economia).
+advSaveNext	$1 basta para tarefas assim, mas não troque neste chat
+advSaveNextDetail	O histórico do chat ($1 tokens) não está no cache do novo modelo e seria relido, então esta mensagem custaria mais. Escolha $2 ao abrir seu próximo chat novo.
+advUpgrade	Isso pode ser difícil para $1: recomenda-se $2
+advUpgradeDetail	$1 consome seu limite cerca de $2× mais rápido. Se preferir tentar $3 primeiro, troque caso a resposta não baste.
+advOk	$1 combina com esta tarefa
+advOkTiny	$1 também bastaria, mas a diferença é mínima ($2 do seu limite).
+advWhy	Por quê?
+advHide	Ocultar
+advDetected	Tarefa detectada
+advSignals	Pistas que vi
+advBasis	Base
+advWhen	Quando trocar
+advDetectedVal	$1 · $2 · $3
+level_low	leve
+level_mid	média
+level_high	difícil
+ev_trigger	a expressão $1
+ev_hard	pistas de dificuldade: $1
+ev_code	bloco de código / linhas de código
+ev_attach	anexo: $1 tokens
+ev_bullets	pedido com $1 itens
+ev_long	pede-se uma resposta detalhada
+ev_short	pede-se uma resposta curta
+ev_words	$1 palavras
+why_simple_task	Tarefa simples e clara; o classificador está seguro.
+why_unsure_safe	Não tenho certeza do tipo de tarefa, então prefiro o lado seguro e recomendo pelo menos o Sonnet.
+why_complex	Alta complexidade.
+why_hardest	Uma demonstração, um projeto ou uma pesquisa muito difíceis.
+why_pref_floor	Pelo seu feedback, escolho um modelo mais forte para esse tipo de tarefa.
+why_pref_ceil	Pelo seu feedback, não empurro você para um modelo mais forte nesse tipo de tarefa.
+basis_haiku	A Anthropic apresenta o Haiku 5.5 como o modelo de «menor latência e menor preço», para tarefas simples de alto volume e subagentes.
+basis_sonnet	Segundo a Anthropic, o Sonnet 5.5 oferece «velocidade e desempenho para o trabalho do dia a dia»: geração de código, análise de dados, criação de conteúdo.
+basis_opus	A Anthropic recomenda o Opus 5.5 para programação complexa e tarefas corporativas: grandes refatorações, engenharia de sistemas, agentes de várias horas.
+basis_fable	O Fable 5.1 é «o maior desempenho disponível»: sessões de agentes de várias horas, pesquisa profunda em várias etapas.
+tbasis_short_qa	Perguntas factuais de resposta única pedem respostas curtas; modelos leves se saem bem. Perguntas sobre pessoas ou eventos podem ser inventadas: confira se for importante.
+tbasis_translate	Na tradução o texto já existe; o modelo mantém o sentido e troca de idioma. Modelos leves fazem isso bem.
+tbasis_rewrite	Ao reescrever ou simplificar, o conteúdo já está dado; o modelo só melhora a forma.
+tbasis_summarize	Num resumo a informação está no texto; para textos curtos um modelo leve basta, para documentos longos ou técnicos um intermediário é mais seguro.
+tbasis_explain	Explicar um conceito exige precisão e bons exemplos; em geral basta um modelo intermediário, e o Opus ajuda em temas avançados.
+tbasis_writing	Para textos e e-mails, um modelo intermediário acerta bem o tom e a fluência.
+tbasis_data_analysis	A análise de dados mistura cálculo e interpretação; em geral basta um modelo intermediário.
+tbasis_file_create	Criar arquivos ou apresentações é um trabalho de várias etapas; em geral basta um modelo intermediário, e o Opus para documentos longos.
+tbasis_code_write	O Sonnet é forte na programação do dia a dia; o Opus é recomendado para arquitetura e trabalho em vários arquivos.
+tbasis_code_fix	O Sonnet resolve bugs em um único arquivo; o Opus os bugs difíceis ou que afetam o sistema todo.
+tbasis_research	Pesquisar é encontrar e combinar fontes; Opus ou Fable para pesquisa profunda em várias etapas.
+tbasis_math	Cálculos e problemas padrão combinam com um modelo intermediário; demonstrações e derivações longas com Opus ou Fable.
+when_haiku	Troque para o Sonnet se a resposta for superficial ou errada.
+when_sonnet	Troque para o Opus se a resposta não bastar ou a tarefa crescer.
+when_opus	Use o Fable para agentes de várias horas ou quando o Opus não bastar.
+when_fable	O Fable é o modelo mais forte e mais caro; use-o só para tarefas realmente difíceis.
+advCaveat	Esta sugestão é uma estimativa baseada em regras e em um pequeno modelo de aprendizado que roda no seu dispositivo; a qualidade das respostas não foi medida. Seu feedback e suas correções a ajustam a você.
+advFbQ	Esta sugestão estava certa?
+advFbGood	👍 Certa
+advFbBad	👎 Errada
+advFbThanks	Obrigado, salvo.
+advSource	Fonte: o guia de escolha de modelo da Anthropic
+setAdvisor	Mostrar a sugestão de modelo
+btnImport	Importar meus dados
+btnImportConfirm	Sim, restaurar o backup
+importReady	Backup lido: $1 medições ($2). Ele vai substituir o que foi aprendido agora; clique de novo no botão para confirmar.
+importDone	Backup restaurado: $1 medições recuperadas.
+importBad	Este arquivo não é um backup válido do Token Forecast.
+supportLink	Apoiar o projeto ☕
+cacheWarmLeft	quente · histórico grátis por mais $1 min
+cacheColdAgo	frio (última mensagem há $1) · o histórico será relido
+tipHandoff	Este chat é longo ($1 tokens) e cresce a cada mensagem. Para passar a um chat novo, você pode pedir ao Claude um resumo curto de transição.
+tipHandoffWarm	Este chat é longo ($1 tokens). Pedir um resumo de transição é barato enquanto o cache está quente; cole em um chat novo e continue lá.
+btnHandoff	Copiar o prompt de transição
+handoffPrompt	Estou levando esta conversa para um chat novo. Escreva um resumo curto de transição: objetivo, decisões tomadas até agora, detalhes importantes (nomes de arquivos, números, trechos de código), questões em aberto e próximo passo. Deve poder ser colado direto em um chat novo, no máximo 300 palavras.
+peakLeft	Termina em $1.
+warnSurprise	Sua última mensagem consumiu mais do que o esperado: $1 (estimativa $2). Possíveis causas: $3.
+cr_cold	você escreveu depois de uma pausa longa, então o histórico foi relido
+cr_long_chat	o chat é muito longo
+cr_peak	horário de pico
+cr_effort	esforço alto (raciocínio oculto)
+cr_long_answer	a resposta foi mais longa que o esperado
+cr_big_model	modelo grande
+cr_elsewhere	a mesma conta pode ter sido usada em outra aba, outro dispositivo ou no Claude Code
+bdTitle	De onde vem o custo (estimativa)
+bd_output	Resposta
+bd_thinking	Raciocínio
+bd_input	Mensagem e arquivos
+bd_history	Histórico
+bd_tool	Ferramentas
+wkNotifTitle	Seu relatório semanal está pronto
+wkNotifMsgs	$1 mensagens
+wkNotifSpent	$1 limites completos de 5 horas
+wkNotifPeak	$1% delas no horário de pico
+rpTitle	Relatório semanal
+rpRange	Últimos 7 dias · $1 – $2
+rpMsgs	Mensagens
+rpChats	em $1 chats
+rpChangeUp	$1% a mais que na semana passada
+rpChangeDown	$1% a menos que na semana passada
+rpChangeSame	igual à semana passada
+rpChangeNone	sem registros na semana passada
+rpSpent	Limite de 5 horas consumido
+rpSessions	$1 limites
+rpSpentSub	$1 de limites de 5 horas no total
+rpPeak	No horário de pico
+rpPeakSub	$1 das mensagens
+rpSave	Economia perdida
+rpSaveSub	em $1 mensagens um modelo mais leve teria bastado
+rpSaveNone	você seguiu as sugestões
+rpTips	Minhas sugestões
+tip_peak	$1% do seu uso foi no horário de pico ($2, dias úteis). Nele, o limite de 5 horas do claude.ai enche mais rápido; movendo as tarefas longas para fora dessa faixa, você faz o mesmo trabalho com menos limite.
+tip_cold	$1 mensagens foram enviadas em um chat longo após uma pausa de mais de uma hora, então todo o histórico foi relido a cada vez ($2% do seu uso). Depois de uma pausa, um chat novo ou um resumo de transição sai mais barato.
+tip_advice	Em $2 mensagens um modelo mais leve teria bastado. Seguindo as sugestões, você teria economizado cerca de $1 de um limite de sessão.
+tip_long	$1 mensagens foram enviadas em chats com mais de 100.000 tokens. Um contexto tão longo pesa no limite e na qualidade das respostas; chats novos para assuntos novos ajudam.
+tip_effort	Em $1 tarefas simples (tradução, perguntas curtas) o esforço de raciocínio estava alto. Esforço baixo dá o mesmo resultado por menos.
+tip_upgrade	Um modelo mais forte foi sugerido para $1 mensagens. Se as respostas não bastaram, sai mais barato começar essas tarefas direto com o modelo mais forte do que perguntar de novo várias vezes.
+tip_good	Seu uso parece equilibrado esta semana: nenhum problema claro de horário de pico, chats longos ou modelos superdimensionados.
+rpByModel	Modelos (por uso)
+rpByType	Tipos de tarefa (por uso)
+rpHeat	Quando você escreve? (últimas 4 semanas, seu fuso)
+rpHeatPeak	Células com contorno: horário de pico
+rpTop	Mensagens mais caras
+rpMeasured	medido
+rpEstimated	estimado
+rpAcc	Precisão da previsão
+rpAccVal	$2 de $1 mensagens medidas ficaram dentro da faixa prevista.
+rpAccNone	Nesta semana não há mensagens medidas; os valores são estimativas.
+rpMeasuredShare	$1 dos valores foram medidos; o resto são estimativas feitas no envio.
+rpCsv	Baixar CSV
+rpPrivacy	Este relatório é calculado apenas neste navegador, a partir de registros sem texto de mensagens.
+rpOpen	Relatório semanal
+rpWeekLine	Últimos 7 dias: $1 mensagens · $2 limites completos de 5 horas
+rpDays	Seg,Ter,Qua,Qui,Sex,Sáb,Dom
+rpNoData	Ainda não há registros suficientes para um relatório. Depois de alguns dias no claude.ai, esta página vai encher.
+rpOther	Outros
+setWeekly	Notificação do relatório semanal na manhã de segunda
+burnEta	No ritmo da última hora, deve encher por volta das $1 (reinício $2).
+burnSafe	Nesse ritmo, não vai encher antes do reinício.
+burnIdle	Sem uso relevante na última hora.
+rpBack	Detalhes e configurações
+advRelabel	Tipo de tarefa errado? Escolha o certo:
+advRelabelThanks	Obrigado – aprendo com isso neste dispositivo.
+ev_ml	modelo de aprendizado com $1% de certeza
+comTitle	Contribuir com a comunidade (opcional)
+comText	Se você compartilhar o que foi aprendido neste dispositivo, as previsões serão precisas desde o início para novos usuários. O resumo não contém texto de mensagens, nomes de chats, datas nem dados da conta. Você vê o conteúdo antes de enviar; nada é enviado automaticamente.
+comBuild	Mostrar o resumo da contribuição
+comCopy	Copiar e abrir o formulário
+comCopyOnly	Copiar
+comCopied	Copiado. Cole no campo do formulário aberto e envie.
+comNoUrl	Copiado. O formulário da comunidade abrirá em breve; por enquanto você pode guardar o texto.
+comEmpty	Ainda não há nada para compartilhar. Tente de novo depois de enviar algumas mensagens.
+feedbackLink	Enviar feedback ou sugestão
+rpOpenBtn	Abrir relatório →
+rpWeekLinePct	Últimos 7 dias: $1 mensagens · $2 dos limites de 5 horas usados no total
+rpSpentSmall	no total (1 limite cheio = 100%)
+rowDomain	Assunto
+dom_science	Ciências
+dom_math	Matemática
+dom_engineering	Engenharia
+dom_software	Software
+dom_data_ai	Dados e IA
+dom_academic	Escrita acadêmica
+dom_project	Projetos e planejamento
+dom_literature	Literatura e escrita criativa
+dom_business	Negócios e carreira
+dom_finance	Economia e finanças
+dom_law	Direito
+dom_health	Saúde
+dom_education	Estudos e provas
+dom_language	Idiomas
+dom_humanities	História, filosofia e sociedade
+dom_daily	Dia a dia
+dom_general	Geral
+sub_science_physics	Física
+sub_science_chemistry	Química
+sub_science_biology	Biologia
+sub_science_astronomy	Astronomia
+sub_science_earth	Ciências da Terra
+sub_math_pure	Álgebra e análise
+sub_math_statistics	Estatística
+sub_engineering_electrical	Elétrica e eletrônica
+sub_engineering_mechanical	Engenharia mecânica
+sub_engineering_civil	Engenharia civil
+sub_engineering_control	Controle e indústria
+sub_software_web	Web
+sub_software_mobile	Mobile
+sub_software_systems	Sistemas e bancos de dados
+sub_software_general	Programação
+sub_data_ai_ml	Aprendizado de máquina
+sub_data_ai_llm	Modelos de linguagem
+sub_data_ai_data	Análise de dados
+sub_academic_paper	Artigo científico
+sub_academic_thesis	Tese
+sub_academic_grant	Bolsas e candidaturas
+sub_project_planning	Planejamento
+sub_project_agile	Ágil
+sub_project_startup	Startup
+sub_literature_poetry	Poesia
+sub_literature_fiction	Ficção
+sub_literature_analysis	Análise literária
+sub_literature_screen	Cinema e teatro
+sub_business_career	Carreira
+sub_business_marketing	Marketing
+sub_business_management	Gestão
+sub_finance_investing	Investimentos
+sub_finance_personal	Finanças pessoais
+sub_finance_accounting	Contabilidade e impostos
+sub_finance_economics	Economia
+sub_law_contract	Contratos
+sub_law_civil	Direito geral
+sub_law_privacy	Privacidade de dados
+sub_law_ip	Propriedade intelectual
+sub_health_medical	Medicina
+sub_health_nutrition	Nutrição
+sub_health_fitness	Condicionamento físico
+sub_health_mental	Saúde mental
+sub_education_exam	Provas
+sub_education_homework	Lição de casa
+sub_education_teaching	Ensino
+sub_language_grammar	Gramática
+sub_language_learning	Aprendizado de idiomas
+sub_language_translation	Tradução
+sub_humanities_history	História
+sub_humanities_philosophy	Filosofia
+sub_humanities_society	Sociedade
+sub_humanities_psychology	Psicologia
+sub_daily_food	Culinária
+sub_daily_travel	Viagens
+sub_daily_home	Casa
+sub_daily_fun	Lazer
+sub_daily_people	Relacionamentos
+dbasis_science	Em ciências, precisão e consistência importam; explicações detalhadas ganham um nível a mais de esforço.
+dbasis_math	Matemática exige raciocínio passo a passo; demonstrações e derivações recebem pelo menos esforço alto.
+dbasis_engineering	Erros em cálculos de engenharia saem caros; tarefas de projeto e cálculo ganham um nível a mais de esforço.
+dbasis_software	O esforço sobe com a complexidade do código; para programação difícil com o Opus, a Anthropic aconselha testar primeiro «Muito alto».
+dbasis_data_ai	Tarefas de dados e IA costumam exigir raciocínio moderado.
+dbasis_academic	Na escrita acadêmica a consistência importa; revisões costumam pedir pouco esforço, revisões de literatura e métodos mais.
+dbasis_project	A Anthropic recomenda aumentar o esforço no planejamento de projetos; o planejamento recebe pelo menos esforço médio.
+dbasis_literature	Pensar muito raramente melhora a escrita criativa; o esforço fica limitado a médio.
+dbasis_business	A escrita profissional costuma ser rotina; basta a configuração padrão ou uma mais leve.
+dbasis_finance	Um mau conselho sobre dinheiro pode prejudicar: sem modelo leve, esforço pelo menos médio.
+dbasis_law	Uma informação jurídica errada pode prejudicar: sem modelo leve, esforço pelo menos médio. Para decisões importantes, consulte um advogado.
+dbasis_health	Uma informação de saúde errada pode prejudicar: sem modelo leve, esforço pelo menos médio. Em emergência, procure um médico.
+dbasis_education	Tarefas de estudo são em geral explicações; o esforço sobe com a dificuldade.
+dbasis_language	Tarefas de idiomas (tradução, gramática) costumam ser leves; um nível a menos de esforço basta.
+dbasis_humanities	Explicações de história e filosofia pedem raciocínio moderado.
+dbasis_daily	Tarefas do dia a dia são leves; um nível a menos de esforço basta.
+dbasis_general
+eff_low	Baixo
+eff_medium	Médio
+eff_high	Alto
+eff_xhigh	Muito alto
+eff_max	Máximo
+effort_xhigh	esforço muito alto
+effDefaultMark	(padrão)
+effLowerX	Com esforço $1 você economiza cerca de $2 do limite nesta mensagem.
+effAssumedNote	(Não foi possível ler a configuração de esforço na página; presumiu-se o padrão do modelo, $1.)
+effRaiseX	Com esforço $1 você pode obter uma resposta mais confiável para esta tarefa.
+advEffWith	Esforço: $1
+advEffLowerTitle	Ajuste o esforço para $1: ≈ $2 a menos
+advEffLowerDetail	Agora: $1. Para este tipo de tarefa, o esforço $2 costuma dar a mesma resposta; menos raciocínio oculto reduz o custo desta mensagem em cerca de $3%.
+advEffRaiseTitle	Ajuste o esforço para $1 nesta tarefa
+advEffRaiseDetail	Agora: $1. Esta tarefa exige pensar a fundo; o esforço $2 dá uma resposta mais confiável, mas esta mensagem custará cerca de $3% a mais. Uma resposta fraca significa perguntar de novo, e isso custa mais.
+advEffAlsoLower	O esforço $1 também basta.
+advDomain	Assunto
+advEffort	Sugestão de esforço
+advEffortVal	Sugiro $1.
+advEffForModel	(para $1)
+advEffNow	Agora: $1.
+advFbQEff	Esta sugestão de esforço estava certa?
+effBasis	Base do esforço: segundo a Anthropic, Baixo e Médio esticam o uso em tarefas de rotina, Alto é o melhor equilíbrio, Muito alto é para programação longa e trabalho de agentes, Máximo para o raciocínio mais profundo.
+ev_domain	palavras do assunto: $1
+why_stakes	Em assuntos de alto risco (saúde, direito, dinheiro), não sugiro um modelo leve.
+ewhy_e_light_type	tipo de tarefa leve
+ewhy_e_mid_type	tarefa média
+ewhy_e_deep_type	tarefa de raciocínio profundo
+ewhy_e_big_doc	documento grande
+ewhy_e_stakes	risco alto: pelo menos médio
+ewhy_e_depth	profundidade científica/técnica
+ewhy_e_plan	tarefa de planejamento
+ewhy_e_complex	pedido complexo
+ewhy_e_hardest	problema muito difícil
+ewhy_e_proof	demonstração/derivação
+ewhy_e_creative	escrita criativa: limitada a médio
+ewhy_e_light_domain	tarefa cotidiana/de idiomas
+ewhy_e_short	resposta curta pedida
+ewhy_e_pref	seu feedback
+ewhy_e_long_code	programação difícil: Muito alto
+rpByDomain	Assuntos (por consumo)
+rpByEffort	Configurações de esforço (por consumo)
+rpDomainNote	O assunto é estimado no seu dispositivo a partir das palavras da mensagem; nenhum texto é salvo.
+tip_effort_over	Em $1 mensagens o esforço ficou acima da sugestão. A configuração sugerida teria consumido cerca de $2 a menos do limite.
+tip_domain_save	O maior potencial de economia está em $1: em $2 mensagens um modelo mais leve teria bastado.
+tip_domain_stakes	$1 mensagens eram sobre saúde, direito ou dinheiro. Nesses casos não sugiro modelo leve nem esforço baixo; em decisões importantes, consulte também um profissional.
+pillDragTitle	Arraste para mover
+pillReset	Redefinir a posição da pílula
+rpEffOver	Em $1 mensagens o esforço ficou acima da sugestão (economia perdida ≈ $2).
+rpEffOk	Suas configurações de esforço seguem as sugestões.
+rpLearn	Prova de aprendizado
+rpLearnFew	$1 mensagens medidas até agora. Cada 10 medições formam uma barra, e uma tendência aparece a partir de 30 (faltam cerca de $2 mensagens).
+rpLearnBetter	Nas primeiras medições o limite total previsto errava por um fator de $1; nas últimas, por $2. A extensão está conhecendo você.
+rpLearnSame	O erro de previsão é de $1× nas primeiras medições e de $2× nas últimas: sem mudança clara. Se já era preciso, é o esperado.
+rpLearnWorse	As últimas medições erram mais ($2×) do que as primeiras ($1×). Usar a mesma conta em outro dispositivo ou no Claude Code atrapalha a medição; tente redefinir a calibração.
+rpLearnRange	Ficaram dentro da faixa prevista: $1 nas primeiras medições, $2 nas últimas (meta de cerca de 80%).
+rpLearnBar	Medições $1–$2: $3×
+rpLearnNote	Cada barra são 10 mensagens medidas consecutivas. Mostra o quanto o limite total previsto se afastou do realmente consumido (1,00 = perfeito). As porcentagens são arredondadas para inteiros, por isso usam-se totais de 10 mensagens em vez de mensagens isoladas.
+setEffortAdvice	Mostrar a sugestão de esforço
+setTips	Mostrar dicas (cache, horário de pico, chats longos, resumo de transição)
+setExplain	Mostrar a explicação «Por que custou tanto?»
+setView	Visualização
+viewFull	Completa: previsão e todas as sugestões
+viewSimple	Simples: só previsão e avisos de limite
+viewCustom	Personalizada (escolha abaixo)
+viewNote	A visualização simples oculta as sugestões de modelo e esforço, as dicas e as explicações de custo. A previsão e os avisos de limite e contexto sempre aparecem.
+warnLangLimited	A análise da mensagem (tipo de tarefa, assunto, sugestão de modelo e de esforço) por enquanto só funciona com mensagens em turco e inglês. Neste idioma você recebe a previsão de tokens e de limite, mas não sugestões.
+typeNA	Não analisado neste idioma
