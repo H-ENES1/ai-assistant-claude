@@ -1,9 +1,12 @@
-# Sürüm otomasyonu: "v*" etiketi gönderilince eklenti klasörünü zip'leyip GitHub sürümü oluşturur.
-# Release automation: on a "v*" tag push, zip the extension folder and publish a GitHub release.
+# Sürüm otomasyonu: main'e her gönderimde manifest.json'daki sürüm için GitHub sürümü yoksa
+# eklenti klasörünü zip'leyip v<sürüm> etiketiyle sürüm oluşturur. Actions sekmesinden elle de çalıştırılabilir.
+# Release automation: on every push to main, if no release exists for the manifest version,
+# zip the extension folder and publish release v<version>. Can also be run manually from the Actions tab.
 name: Release
 on:
   push:
-    tags: ["v*"]
+    branches: [main]
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
@@ -11,18 +14,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check version matches tag
-        run: |
-          V=$(node -p "require('./extension/manifest.json').version")
-          test "v$V" = "${GITHUB_REF_NAME}" || { echo "manifest $V != tag ${GITHUB_REF_NAME}"; exit 1; }
-      - name: Build install zip
-        run: |
-          cd extension && zip -qr "../token-tahmin-${GITHUB_REF_NAME}.zip" . -x README.md '*.bak'
-          cd .. && zip -q "token-tahmin-${GITHUB_REF_NAME}.zip" LICENSE NOTICE
-      - name: Publish release
+      - name: Read version, skip if released
+        id: v
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "${GITHUB_REF_NAME}" "token-tahmin-${GITHUB_REF_NAME}.zip" \
-            --title "Token Forecast ${GITHUB_REF_NAME#v}" --latest \
+          V="v$(node -p "require('./extension/manifest.json').version")"
+          echo "tag=$V" >> "$GITHUB_OUTPUT"
+          if gh release view "$V" >/dev/null 2>&1; then echo "exists=1" >> "$GITHUB_OUTPUT"; echo "$V already released"; fi
+      - name: Build install zip
+        if: steps.v.outputs.exists != '1'
+        run: |
+          T="${{ steps.v.outputs.tag }}"
+          cd extension && zip -qr "../token-tahmin-$T.zip" . -x README.md '*.bak'
+          cd .. && zip -q "token-tahmin-$T.zip" LICENSE NOTICE
+      - name: Publish release
+        if: steps.v.outputs.exists != '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          T="${{ steps.v.outputs.tag }}"
+          gh release create "$T" "token-tahmin-$T.zip" --target "${GITHUB_SHA}" \
+            --title "Token Forecast ${T#v}" --latest \
             --notes "Install: unzip, open chrome://extensions, enable Developer mode, Load unpacked, pick the folder. Message analysis works for Turkish and English messages only; translations are machine-made. Changes: see CLAUDE.md."
