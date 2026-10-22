@@ -1442,5 +1442,59 @@
   },
   "typeNA": {
     "message": "此语言暂不分析"
+  },
+  "welTitle": {
+    "message": "欢迎使用 Token Forecast"
+  },
+  "welLead": {
+    "message": "开始之前，请看清这个扩展具体会读取和保存什么。任何数据都不会离开你的设备。"
+  },
+  "welReadTitle": {
+    "message": "它在 claude.ai 上读取什么"
+  },
+  "welRead1": {
+    "message": "消息输入框中的文本和附件：用于统计 token 并估算成本。不会保存。"
+  },
+  "welRead2": {
+    "message": "已打开聊天的历史：用于计算缓存和上下文。在本地统计，不会保存。"
+  },
+  "welRead3": {
+    "message": "你的 5 小时和每周用量百分比：用你自己的会话从 claude.ai 读取。"
+  },
+  "welStoreTitle": {
+    "message": "它在这台设备上保存什么"
+  },
+  "welStore": {
+    "message": "你的设置、学到的数值（例如你的套餐大小），以及用于每周报告的发送记录；记录只包含数字和标签，从不包含文本。你可以在设置中导出或重置；卸载扩展会将其删除。"
+  },
+  "welNeverTitle": {
+    "message": "它绝不会做什么"
+  },
+  "welNever": {
+    "message": "没有服务器，没有分析，没有追踪。它绝不会把你的消息发送到任何地方，绝不会替你发送消息，也绝不会更改你的 claude.ai 设置。"
+  },
+  "welPolicy": {
+    "message": "阅读完整的隐私政策"
+  },
+  "welAccept": {
+    "message": "同意并开始"
+  },
+  "welLater": {
+    "message": "以后再说"
+  },
+  "welDone": {
+    "message": "设置完成。回到 claude.ai 标签页开始输入吧。"
+  },
+  "welLaterNote": {
+    "message": "在你同意之前，扩展会保持关闭。你也可以稍后在扩展窗口中同意。"
+  },
+  "consentChip": {
+    "message": "Token Forecast 已关闭 · 开启"
+  },
+  "consentPopup": {
+    "message": "Token Forecast 在读取 claude.ai 上的任何内容之前需要你的许可。"
+  },
+  "consentPopupBtn": {
+    "message": "查看并开启"
   }
 }

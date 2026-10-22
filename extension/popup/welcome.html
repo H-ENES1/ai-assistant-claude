@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Token Forecast</title>
+  <link rel="stylesheet" href="welcome.css">
+</head>
+<body>
+  <main>
+    <div class="top">
+      <img src="../icons/icon48.png" alt="" width="40" height="40">
+      <select id="lang" aria-label="Language"></select>
+    </div>
+    <h1 id="welTitle"></h1>
+    <p id="welLead" class="lead"></p>
+
+    <section>
+      <h2 id="welReadTitle"></h2>
+      <ul>
+        <li id="welRead1"></li>
+        <li id="welRead2"></li>
+        <li id="welRead3"></li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="welStoreTitle"></h2>
+      <p id="welStore"></p>
+    </section>
+    <section>
+      <h2 id="welNeverTitle"></h2>
+      <p id="welNever"></p>
+    </section>
+    <p><a id="welPolicy" target="_blank" rel="noopener noreferrer"></a></p>
+
+    <div class="actions" id="actions">
+      <button id="accept" type="button" class="primary"></button>
+      <button id="later" type="button"></button>
+    </div>
+    <p id="result" class="result" hidden></p>
+  </main>
+  <script type="module" src="welcome.js"></script>
+</body>
+</html>

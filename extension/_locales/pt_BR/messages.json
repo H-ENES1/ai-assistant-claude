@@ -1442,5 +1442,59 @@
   },
   "typeNA": {
     "message": "Não analisado neste idioma"
+  },
+  "welTitle": {
+    "message": "Boas-vindas ao Token Forecast"
+  },
+  "welLead": {
+    "message": "Antes de começar, veja exatamente o que a extensão lê e guarda. Nada sai do seu dispositivo."
+  },
+  "welReadTitle": {
+    "message": "O que ela lê no claude.ai"
+  },
+  "welRead1": {
+    "message": "O texto e os anexos da caixa de mensagem, para contar tokens e estimar o custo. Não são guardados."
+  },
+  "welRead2": {
+    "message": "O histórico do chat aberto, para calcular cache e contexto. Contado localmente, não guardado."
+  },
+  "welRead3": {
+    "message": "Suas porcentagens de uso de 5 horas e semanal, lidas do claude.ai com a sua própria sessão."
+  },
+  "welStoreTitle": {
+    "message": "O que ela guarda neste dispositivo"
+  },
+  "welStore": {
+    "message": "Suas configurações, valores aprendidos (como o tamanho do seu plano) e um registro de envios para o relatório semanal que contém só números e rótulos, nunca texto. Você pode exportá-lo ou redefini-lo nas configurações; ao desinstalar, ele é apagado."
+  },
+  "welNeverTitle": {
+    "message": "O que ela nunca faz"
+  },
+  "welNever": {
+    "message": "Sem servidor, sem análise, sem rastreamento. Nunca envia suas mensagens para lugar nenhum, nunca envia mensagens por você e nunca altera suas configurações do claude.ai."
+  },
+  "welPolicy": {
+    "message": "Ler a política de privacidade completa"
+  },
+  "welAccept": {
+    "message": "Aceitar e começar"
+  },
+  "welLater": {
+    "message": "Agora não"
+  },
+  "welDone": {
+    "message": "Pronto. Volte para a aba do claude.ai e comece a digitar."
+  },
+  "welLaterNote": {
+    "message": "A extensão fica desligada até você aceitar. Você pode fazer isso depois pela janela da extensão."
+  },
+  "consentChip": {
+    "message": "Token Forecast está desligado · Ligar"
+  },
+  "consentPopup": {
+    "message": "O Token Forecast precisa da sua permissão antes de ler qualquer coisa no claude.ai."
+  },
+  "consentPopupBtn": {
+    "message": "Revisar e ligar"
   }
 }

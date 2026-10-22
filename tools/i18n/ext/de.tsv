@@ -475,3 +475,21 @@ viewCustom	Benutzerdefiniert (Auswahl unten)
 viewNote	Die einfache Ansicht blendet Modell- und Aufwandsvorschläge, Tipps und Kostenerklärungen aus. Die Vorhersage und Warnungen zu Limits und Kontextgröße bleiben immer.
 warnLangLimited	Die Nachrichtenanalyse (Aufgabenart, Thema, Modell- und Aufwandsvorschlag) funktioniert derzeit nur für türkische und englische Nachrichten. In dieser Sprache erhältst du die Token- und Limitvorhersage, aber keine Vorschläge.
 typeNA	In dieser Sprache nicht analysiert
+welTitle	Willkommen bei Token Forecast
+welLead	Bevor es losgeht, siehst du hier genau, was die Erweiterung liest und speichert. Nichts verlässt dein Gerät.
+welReadTitle	Was sie auf claude.ai liest
+welRead1	Text und Anhänge im Nachrichtenfeld, um Tokens zu zählen und die Kosten zu schätzen. Wird nicht gespeichert.
+welRead2	Den Verlauf des geöffneten Chats, für Cache- und Kontextberechnung. Lokal gezählt, nicht gespeichert.
+welRead3	Deine 5-Stunden- und Wochennutzung in Prozent, mit deiner eigenen Sitzung von claude.ai gelesen.
+welStoreTitle	Was sie auf diesem Gerät speichert
+welStore	Deine Einstellungen, gelernte Zahlen (etwa die Größe deines Tarifs) und ein Sendeprotokoll für den Wochenbericht, das nur Zahlen und Bezeichnungen enthält, nie Text. Du kannst es in den Einstellungen exportieren oder zurücksetzen; beim Deinstallieren wird es gelöscht.
+welNeverTitle	Was sie nie tut
+welNever	Kein Server, keine Analyse, kein Tracking. Sie sendet deine Nachrichten nirgendwohin, sendet keine Nachrichten für dich und ändert keine claude.ai-Einstellungen.
+welPolicy	Vollständige Datenschutzerklärung lesen
+welAccept	Zustimmen und starten
+welLater	Nicht jetzt
+welDone	Fertig. Geh zurück zu deinem claude.ai-Tab und fang an zu tippen.
+welLaterNote	Die Erweiterung bleibt aus, bis du zustimmst. Das geht auch später über das Erweiterungsfenster.
+consentChip	Token Forecast ist aus · Einschalten
+consentPopup	Token Forecast braucht deine Erlaubnis, bevor es etwas auf claude.ai liest.
+consentPopupBtn	Ansehen und einschalten

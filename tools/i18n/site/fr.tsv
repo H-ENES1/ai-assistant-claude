@@ -222,7 +222,7 @@ d.q9	Comment voir qu’elle apprend vraiment ?
 d.a9	Fenêtre de l’extension → Rapport hebdomadaire → Preuve d’apprentissage. Après 30 mesures, elle compare l’erreur des premières et des dernières mesures, et le dit si elle n’a pas baissé. L’expérience menée avec des utilisateurs simulés figure dans la section Preuve plus haut.
 d.rm6h	Un modèle appris pour les sujets
 d.rm6p	Pour les messages où les mots-clés ne suffisent pas ; avec les corrections des utilisateurs.
-d.ft4	Version 0.12.0 · 22 octobre 2026
+d.ft4	Version 0.12.1 · 23 octobre 2026
 d.alt1	Notification de suggestion pour une demande de traduction : Haiku 5.5 suffit, effort Faible ; sections tâche détectée, sujet, suggestion d’effort, indices et base
 d.alt2	Notification de suggestion d’effort : Moyen suffit au lieu de Maximal, avec la quantité de limite économisée
 d.alt3	Suggestion Sonnet 5.5 pour une demande de création d’un site incluant un système de traduction ; Haiku n’est pas proposé

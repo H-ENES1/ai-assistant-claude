@@ -1442,5 +1442,59 @@
   },
   "typeNA": {
     "message": "Non analizzato in questa lingua"
+  },
+  "welTitle": {
+    "message": "Benvenuto in Token Forecast"
+  },
+  "welLead": {
+    "message": "Prima di iniziare, ecco esattamente cosa legge e conserva l’estensione. Nulla lascia il tuo dispositivo."
+  },
+  "welReadTitle": {
+    "message": "Cosa legge su claude.ai"
+  },
+  "welRead1": {
+    "message": "Il testo e gli allegati nella casella del messaggio, per contare i token e stimare il costo. Non vengono salvati."
+  },
+  "welRead2": {
+    "message": "La cronologia della chat aperta, per calcolare cache e contesto. Contata in locale, non salvata."
+  },
+  "welRead3": {
+    "message": "Le tue percentuali di utilizzo su 5 ore e settimanali, lette da claude.ai con la tua sessione."
+  },
+  "welStoreTitle": {
+    "message": "Cosa conserva su questo dispositivo"
+  },
+  "welStore": {
+    "message": "Le tue impostazioni, valori appresi (come la dimensione del tuo piano) e un registro degli invii per il rapporto settimanale che contiene solo numeri ed etichette, mai testo. Puoi esportarlo o reimpostarlo nelle impostazioni; disinstallando viene eliminato."
+  },
+  "welNeverTitle": {
+    "message": "Cosa non fa mai"
+  },
+  "welNever": {
+    "message": "Nessun server, nessuna analisi, nessun tracciamento. Non invia mai i tuoi messaggi da nessuna parte, non invia mai messaggi al posto tuo e non modifica mai le impostazioni di claude.ai."
+  },
+  "welPolicy": {
+    "message": "Leggi l’informativa sulla privacy completa"
+  },
+  "welAccept": {
+    "message": "Accetta e inizia"
+  },
+  "welLater": {
+    "message": "Non ora"
+  },
+  "welDone": {
+    "message": "Fatto. Torna alla scheda di claude.ai e inizia a scrivere."
+  },
+  "welLaterNote": {
+    "message": "L’estensione resta disattivata finché non accetti. Puoi farlo più tardi dalla finestra dell’estensione."
+  },
+  "consentChip": {
+    "message": "Token Forecast è disattivato · Attiva"
+  },
+  "consentPopup": {
+    "message": "Token Forecast ha bisogno del tuo permesso prima di leggere qualcosa su claude.ai."
+  },
+  "consentPopupBtn": {
+    "message": "Rivedi e attiva"
   }
 }

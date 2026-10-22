@@ -1442,5 +1442,59 @@
   },
   "typeNA": {
     "message": "Non analysé dans cette langue"
+  },
+  "welTitle": {
+    "message": "Bienvenue dans Token Forecast"
+  },
+  "welLead": {
+    "message": "Avant de commencer, voici exactement ce que l’extension lit et conserve. Rien ne quitte votre appareil."
+  },
+  "welReadTitle": {
+    "message": "Ce qu’elle lit sur claude.ai"
+  },
+  "welRead1": {
+    "message": "Le texte et les pièces jointes de la zone de message, pour compter les tokens et estimer le coût. Non conservés."
+  },
+  "welRead2": {
+    "message": "L’historique de la conversation ouverte, pour calculer le cache et le contexte. Compté localement, non conservé."
+  },
+  "welRead3": {
+    "message": "Vos pourcentages d’utilisation sur 5 heures et hebdomadaires, lus sur claude.ai avec votre propre session."
+  },
+  "welStoreTitle": {
+    "message": "Ce qu’elle conserve sur cet appareil"
+  },
+  "welStore": {
+    "message": "Vos réglages, des valeurs apprises (comme la taille de votre forfait) et un journal des envois pour le rapport hebdomadaire, qui ne contient que des nombres et des libellés, jamais de texte. Vous pouvez l’exporter ou le réinitialiser dans les réglages ; la désinstallation le supprime."
+  },
+  "welNeverTitle": {
+    "message": "Ce qu’elle ne fait jamais"
+  },
+  "welNever": {
+    "message": "Aucun serveur, aucune analyse, aucun pistage. Elle n’envoie jamais vos messages nulle part, n’envoie jamais de messages à votre place et ne modifie jamais vos réglages claude.ai."
+  },
+  "welPolicy": {
+    "message": "Lire la politique de confidentialité complète"
+  },
+  "welAccept": {
+    "message": "Accepter et commencer"
+  },
+  "welLater": {
+    "message": "Pas maintenant"
+  },
+  "welDone": {
+    "message": "C’est prêt. Revenez à votre onglet claude.ai et commencez à écrire."
+  },
+  "welLaterNote": {
+    "message": "L’extension reste désactivée tant que vous n’avez pas accepté. Vous pourrez le faire plus tard depuis la fenêtre de l’extension."
+  },
+  "consentChip": {
+    "message": "Token Forecast est désactivé · Activer"
+  },
+  "consentPopup": {
+    "message": "Token Forecast a besoin de votre autorisation avant de lire quoi que ce soit sur claude.ai."
+  },
+  "consentPopupBtn": {
+    "message": "Examiner et activer"
   }
 }

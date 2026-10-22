@@ -475,3 +475,21 @@ viewCustom	自定义（在下方选择）
 viewNote	简洁视图会隐藏模型与努力程度建议、提示和成本说明。预测以及额度与上下文提醒始终显示。
 warnLangLimited	消息分析（任务类型、主题、模型与努力程度建议）目前仅支持土耳其语和英语消息。使用此语言时，你仍能获得 token 和额度预测，但没有建议。
 typeNA	此语言暂不分析
+welTitle	欢迎使用 Token Forecast
+welLead	开始之前，请看清这个扩展具体会读取和保存什么。任何数据都不会离开你的设备。
+welReadTitle	它在 claude.ai 上读取什么
+welRead1	消息输入框中的文本和附件：用于统计 token 并估算成本。不会保存。
+welRead2	已打开聊天的历史：用于计算缓存和上下文。在本地统计，不会保存。
+welRead3	你的 5 小时和每周用量百分比：用你自己的会话从 claude.ai 读取。
+welStoreTitle	它在这台设备上保存什么
+welStore	你的设置、学到的数值（例如你的套餐大小），以及用于每周报告的发送记录；记录只包含数字和标签，从不包含文本。你可以在设置中导出或重置；卸载扩展会将其删除。
+welNeverTitle	它绝不会做什么
+welNever	没有服务器，没有分析，没有追踪。它绝不会把你的消息发送到任何地方，绝不会替你发送消息，也绝不会更改你的 claude.ai 设置。
+welPolicy	阅读完整的隐私政策
+welAccept	同意并开始
+welLater	以后再说
+welDone	设置完成。回到 claude.ai 标签页开始输入吧。
+welLaterNote	在你同意之前，扩展会保持关闭。你也可以稍后在扩展窗口中同意。
+consentChip	Token Forecast 已关闭 · 开启
+consentPopup	Token Forecast 在读取 claude.ai 上的任何内容之前需要你的许可。
+consentPopupBtn	查看并开启

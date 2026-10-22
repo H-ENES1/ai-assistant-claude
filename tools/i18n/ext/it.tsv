@@ -475,3 +475,21 @@ viewCustom	Personalizzata (scegli sotto)
 viewNote	La vista semplice nasconde i suggerimenti di modello e sforzo, i consigli e le spiegazioni dei costi. La previsione e gli avvisi su limiti e contesto restano sempre visibili.
 warnLangLimited	L'analisi del messaggio (tipo di compito, argomento, suggerimento di modello e di sforzo) per ora funziona solo con messaggi in turco e inglese. In questa lingua ottieni la previsione di token e limite, ma nessun suggerimento.
 typeNA	Non analizzato in questa lingua
+welTitle	Benvenuto in Token Forecast
+welLead	Prima di iniziare, ecco esattamente cosa legge e conserva l’estensione. Nulla lascia il tuo dispositivo.
+welReadTitle	Cosa legge su claude.ai
+welRead1	Il testo e gli allegati nella casella del messaggio, per contare i token e stimare il costo. Non vengono salvati.
+welRead2	La cronologia della chat aperta, per calcolare cache e contesto. Contata in locale, non salvata.
+welRead3	Le tue percentuali di utilizzo su 5 ore e settimanali, lette da claude.ai con la tua sessione.
+welStoreTitle	Cosa conserva su questo dispositivo
+welStore	Le tue impostazioni, valori appresi (come la dimensione del tuo piano) e un registro degli invii per il rapporto settimanale che contiene solo numeri ed etichette, mai testo. Puoi esportarlo o reimpostarlo nelle impostazioni; disinstallando viene eliminato.
+welNeverTitle	Cosa non fa mai
+welNever	Nessun server, nessuna analisi, nessun tracciamento. Non invia mai i tuoi messaggi da nessuna parte, non invia mai messaggi al posto tuo e non modifica mai le impostazioni di claude.ai.
+welPolicy	Leggi l’informativa sulla privacy completa
+welAccept	Accetta e inizia
+welLater	Non ora
+welDone	Fatto. Torna alla scheda di claude.ai e inizia a scrivere.
+welLaterNote	L’estensione resta disattivata finché non accetti. Puoi farlo più tardi dalla finestra dell’estensione.
+consentChip	Token Forecast è disattivato · Attiva
+consentPopup	Token Forecast ha bisogno del tuo permesso prima di leggere qualcosa su claude.ai.
+consentPopupBtn	Rivedi e attiva
