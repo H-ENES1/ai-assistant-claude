@@ -13,9 +13,9 @@ A free browser extension for [claude.ai](https://claude.ai) that predicts how mu
 ![UI languages](https://img.shields.io/badge/UI%20languages-10-2a7b57)
 ![No servers](https://img.shields.io/badge/servers-none-2a7b57)
 
-[Website](https://h-enes1.github.io/token-tahmin/) · [Releases](https://github.com/H-ENES1/token-tahmin/releases) · [Türkçe README](README.tr.md)
+[Website](https://h-enes1.github.io/ai-assistant-claude/) · [Releases](https://github.com/H-ENES1/ai-assistant-claude/releases) · [Türkçe README](README.tr.md)
 
-<a href="https://h-enes1.github.io/token-tahmin/"><img src="site/video/kapak-en.jpg" alt="Token Forecast intro video cover. Click to open the website with the 47-second video and a live demo." width="720"></a>
+<a href="https://h-enes1.github.io/ai-assistant-claude/"><img src="site/video/kapak-en.jpg" alt="Token Forecast intro video cover. Click to open the website with the 47-second video and a live demo." width="720"></a>
 
 <sub>47-second intro video and a live demo of the real prediction engine are on the website. The interface in the video is illustrative; the numbers come from the extension's own engine.</sub>
 
@@ -120,7 +120,7 @@ Turkish, English, German, French, Spanish, Italian, Portuguese, Russian, Japanes
 
 ## Install (developer mode)
 
-A store release is being prepared. For now, download the zip from [Releases](https://github.com/H-ENES1/token-tahmin/releases) and load it unpacked. The same steps work in Chrome, Opera, Edge and Brave.
+A store release is being prepared. For now, download the zip from [Releases](https://github.com/H-ENES1/ai-assistant-claude/releases) and load it unpacked. The same steps work in Chrome, Opera, Edge and Brave.
 
 1. Unzip it into a folder (`manifest.json` must be directly inside).
 2. Go to `chrome://extensions` (Opera: `opera://extensions`) and turn on **Developer mode**.
@@ -182,7 +182,7 @@ On first install a consent page shows exactly what the extension reads and keeps
 - the length of the open chat's history, for cache and context calculations;
 - the text and attachments in the message box, only to count tokens, locally.
 
-Permissions: storage, alarms, notifications, and only the `claude.ai` site. Full [privacy policy](https://h-enes1.github.io/token-tahmin/privacy.html). It never sends messages, changes settings or automates anything. The weekly report and the learned values contain no message text. A community contribution is shared only if you view it and copy it yourself. The end-to-end test checks the network: only requests to claude.ai, and the single POST is the page's own `/completion`.
+Permissions: storage, alarms, notifications, and only the `claude.ai` site. Full [privacy policy](https://h-enes1.github.io/ai-assistant-claude/privacy.html). It never sends messages, changes settings or automates anything. The weekly report and the learned values contain no message text. A community contribution is shared only if you view it and copy it yourself. The end-to-end test checks the network: only requests to claude.ai, and the single POST is the page's own `/completion`.
 
 ## Known limitations
 

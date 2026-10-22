@@ -50,8 +50,8 @@ Everything is computed in your browser. Your messages, attachments and chats nev
 LANGUAGES
 Interface in 10 languages: English, Turkish, German, French, Spanish, Italian, Portuguese, Russian, Japanese, Chinese. Message analysis (task, topic, model and effort suggestions) currently works for English and Turkish messages; in other languages you get the token and limit forecast without suggestions.
 
-Open source (GNU AGPL-3.0): https://github.com/H-ENES1/token-tahmin
-Website: https://h-enes1.github.io/token-tahmin/
+Open source (GNU AGPL-3.0): https://github.com/H-ENES1/ai-assistant-claude
+Website: https://h-enes1.github.io/ai-assistant-claude/
 
 Token Forecast is an independent project and is not affiliated with Anthropic. "Claude" is a trademark of Anthropic PBC. Anthropic does not publish exact limit sizes, so forecasts are estimates that improve as the extension measures your usage.
 ```
@@ -89,8 +89,8 @@ Her şey tarayıcında hesaplanır. Mesajların, eklerin ve sohbetlerin cihazın
 DİLLER
 10 dilde arayüz: Türkçe, İngilizce, Almanca, Fransızca, İspanyolca, İtalyanca, Portekizce, Rusça, Japonca, Çince. Mesaj analizi (iş türü, konu, model ve effort önerileri) şimdilik Türkçe ve İngilizce mesajlarda çalışır; diğer dillerde öneri olmadan token ve limit tahmini alırsın.
 
-Açık kaynak (GNU AGPL-3.0): https://github.com/H-ENES1/token-tahmin
-Web sitesi: https://h-enes1.github.io/token-tahmin/
+Açık kaynak (GNU AGPL-3.0): https://github.com/H-ENES1/ai-assistant-claude
+Web sitesi: https://h-enes1.github.io/ai-assistant-claude/
 
 Token Tahmini bağımsız bir projedir, Anthropic ile bağlantılı değildir. "Claude", Anthropic PBC'nin ticari markasıdır. Anthropic limit büyüklüklerini yayımlamadığı için tahminler yaklaşıktır ve eklenti kullanımını ölçtükçe iyileşir.
 ```
@@ -103,8 +103,8 @@ Token Tahmini bağımsız bir projedir, Anthropic ile bağlantılı değildir. "
 
 **Additional fields / Ek alanlar**
 - Official URL: (boş bırak; doğrulanmış alan adı gerekir)
-- Homepage URL: `https://h-enes1.github.io/token-tahmin/`
-- Support URL: `https://github.com/H-ENES1/token-tahmin/issues`
+- Homepage URL: `https://h-enes1.github.io/ai-assistant-claude/`
+- Support URL: `https://github.com/H-ENES1/ai-assistant-claude/issues`
 - Mature content: No
 
 ---
@@ -146,7 +146,7 @@ Token Forecast helps claude.ai users manage their own Claude usage limits. On cl
 - ✅ I do not use or transfer user data for purposes that are unrelated to my item's single purpose
 - ✅ I do not use or transfer user data to determine creditworthiness or for lending purposes
 
-**Privacy policy URL:** `https://h-enes1.github.io/token-tahmin/privacy.html`
+**Privacy policy URL:** `https://h-enes1.github.io/ai-assistant-claude/privacy.html`
 
 ---
 
@@ -158,5 +158,5 @@ Token Forecast helps claude.ai users manage their own Claude usage limits. On cl
 ## 4. Test instructions (İnceleyiciye notlar)
 "Test instructions" alanı varsa:
 ```
-The extension only runs on https://claude.ai and requires a logged-in Claude account (a free account works). After installing, a consent page opens; click "Agree and start". Then open claude.ai, start typing in the message box: a small pill with the forecast appears above the box; click it for details. The toolbar popup shows the usage limits. No test credentials are needed from us; any Claude account can be used. The source code is public: https://github.com/H-ENES1/token-tahmin
+The extension only runs on https://claude.ai and requires a logged-in Claude account (a free account works). After installing, a consent page opens; click "Agree and start". Then open claude.ai, start typing in the message box: a small pill with the forecast appears above the box; click it for details. The toolbar popup shows the usage limits. No test credentials are needed from us; any Claude account can be used. The source code is public: https://github.com/H-ENES1/ai-assistant-claude
 ```

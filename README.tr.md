@@ -4,11 +4,11 @@
 
 **Bir mesajın ne kadar limit harcayacağını göndermeden önce bil.**
 
-[English README](README.md) · [Web sitesi](https://h-enes1.github.io/token-tahmin/) · [Sürümler](https://github.com/H-ENES1/token-tahmin/releases)
+[English README](README.md) · [Web sitesi](https://h-enes1.github.io/ai-assistant-claude/) · [Sürümler](https://github.com/H-ENES1/ai-assistant-claude/releases)
 
 Sürüm 0.12.1 · [GNU AGPL-3.0-or-later](LICENSE)
 
-<a href="https://h-enes1.github.io/token-tahmin/"><img src="site/video/kapak-tr.jpg" alt="Tanıtım videosunun kapağı. Tıklayınca 47 saniyelik video ve canlı demo olan web sitesi açılır." width="720"></a>
+<a href="https://h-enes1.github.io/ai-assistant-claude/"><img src="site/video/kapak-tr.jpg" alt="Tanıtım videosunun kapağı. Tıklayınca 47 saniyelik video ve canlı demo olan web sitesi açılır." width="720"></a>
 
 </div>
 
@@ -55,7 +55,7 @@ claude.ai'de bir mesajın 5 saatlik ve haftalık Claude limitinin ne kadarını 
 
 ## Kurulum (geliştirici modu)
 
-Mağaza yayını hazırlanıyor. Şimdilik [Sürümler](https://github.com/H-ENES1/token-tahmin/releases) sayfasından zip'i indir.
+Mağaza yayını hazırlanıyor. Şimdilik [Sürümler](https://github.com/H-ENES1/ai-assistant-claude/releases) sayfasından zip'i indir.
 
 1. Zip'i bir klasöre çıkar (içinde doğrudan `manifest.json` olmalı).
 2. `chrome://extensions` (Opera: `opera://extensions`) → **Geliştirici modu** açık.
@@ -95,7 +95,7 @@ Eğitim ve test mesajlarını da proje yazdı; gerçek kullanıcı mesajlarıyla
 
 ## Gizlilik
 
-İlk kurulumda bir onay sayfası eklentinin tam olarak neyi okuyup sakladığını gösterir; **onay verene kadar hiçbir şey okunmaz**. Her şey tarayıcıda hesaplanır. Mesaj metni, ek ve sohbet içeriği cihazdan çıkmaz; eklentinin sunucusu, analitiği, izlemesi yoktur. Gönderim kayıtları (haftalık rapor için) ve öğrenilen değerler metin içermez. Topluluk katkısı yalnızca kullanıcı görüp kopyalarsa paylaşılır. Ayrıntılar: [gizlilik politikası](https://h-enes1.github.io/token-tahmin/privacy.html).
+İlk kurulumda bir onay sayfası eklentinin tam olarak neyi okuyup sakladığını gösterir; **onay verene kadar hiçbir şey okunmaz**. Her şey tarayıcıda hesaplanır. Mesaj metni, ek ve sohbet içeriği cihazdan çıkmaz; eklentinin sunucusu, analitiği, izlemesi yoktur. Gönderim kayıtları (haftalık rapor için) ve öğrenilen değerler metin içermez. Topluluk katkısı yalnızca kullanıcı görüp kopyalarsa paylaşılır. Ayrıntılar: [gizlilik politikası](https://h-enes1.github.io/ai-assistant-claude/privacy.html).
 
 ## Bilinen sınırlamalar
 

@@ -4,7 +4,7 @@
   "short_name": "__MSG_extShortName__",
   "description": "__MSG_extDescription__",
   "version": "0.12.1",
-  "homepage_url": "https://h-enes1.github.io/token-tahmin/",
+  "homepage_url": "https://h-enes1.github.io/ai-assistant-claude/",
   "default_locale": "en",
   "icons": {
     "16": "icons/icon16.png",

@@ -16,7 +16,7 @@ const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..")
 const SRC = path.resolve(process.argv[2] || path.join(root, "extension"));
 const OUT = path.resolve(process.argv[3] || path.join(root, "dist"));
 const manifest = JSON.parse(await fs.readFile(path.join(SRC, "manifest.json"), "utf8"));
-const HEADER = `/*! Token Tahmini / Token Forecast ${manifest.version} — (c) 2026 Hayrettin Enes Karalı. SPDX-License-Identifier: AGPL-3.0-or-later. Kaynak / Source: https://github.com/H-ENES1/token-tahmin */\n`;
+const HEADER = `/*! Token Tahmini / Token Forecast ${manifest.version} — (c) 2026 Hayrettin Enes Karalı. SPDX-License-Identifier: AGPL-3.0-or-later. Kaynak / Source: https://github.com/H-ENES1/ai-assistant-claude */\n`;
 const SKIP = new Set(["README.md", ".DS_Store"]);
 
 async function walk(dir) {

@@ -47,7 +47,7 @@ print("ok", len(out))
 PAGES='/home/claude/pages/'
 import shutil
 os.makedirs(PAGES, exist_ok=True)
-BASE='https://h-enes1.github.io/token-tahmin/'
+BASE='https://h-enes1.github.io/ai-assistant-claude/'
 og=('<meta property="og:type" content="website">\n<meta property="og:title" content="Token Tahmini — Göndermeden önce bil">\n'
     '<meta property="og:description" content="claude.ai\'de mesajını göndermeden önce limitinin ne kadarını harcayacağını gösteren ücretsiz tarayıcı eklentisi.">\n'
     f'<meta property="og:image" content="{BASE}video/kapak-tr.jpg">\n<meta property="og:url" content="{BASE}">\n<meta name="twitter:card" content="summary_large_image">\n'
