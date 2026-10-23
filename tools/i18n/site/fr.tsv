@@ -136,7 +136,7 @@ d.shE	DANS L’EXTENSION
 d.shH	Une prévision pendant que vous écrivez, une mesure quand vous envoyez.
 d.shP	Une petite pastille et une suggestion argumentée au-dessus de la zone de message ; dans la barre d’outils, vos limites, ce que permet votre limite restante et l’état de l’apprentissage.
 d.sh1	Une demande de traduction : Haiku et effort faible. Avec « Pourquoi ? » ouvert, vous voyez la tâche détectée, le sujet, la suggestion d’effort, les indices et la base.
-d.sh2	Fenêtre de la barre d’outils. Les captures d’écran viennent de l’environnement de test.
+d.sh2	Fenêtre de la barre d’outils.
 d.hwE	COMMENT ÇA MARCHE
 d.hwH	Moins une grille de prix qu’un instrument de mesure.
 d.hwP	Anthropic ne publie pas la taille exacte des limites. L’extension part donc d’une estimation grossière et se corrige à chaque message en mesurant comment votre pourcentage d’utilisation réel évolue avant et après.

@@ -136,7 +136,7 @@ d.shE	NA EXTENSÃO
 d.shH	Uma previsão enquanto você digita, uma medição quando você envia.
 d.shP	Uma pequena pílula e uma sugestão fundamentada acima da caixa de mensagem; na barra de ferramentas, seus limites, o que o limite restante permite e o estado do aprendizado.
 d.sh1	Um pedido de tradução: Haiku e esforço baixo. Com «Por quê?» aberto você vê a tarefa detectada, o assunto, a sugestão de esforço, os indícios e a base.
-d.sh2	Janela da barra de ferramentas. As capturas de tela são do ambiente de teste.
+d.sh2	Janela da barra de ferramentas.
 d.hwE	COMO FUNCIONA
 d.hwH	Menos uma tabela de preços, mais um instrumento de medida.
 d.hwP	A Anthropic não publica o tamanho exato dos limites. Por isso a extensão parte de uma estimativa aproximada e se corrige a cada mensagem, medindo como a sua porcentagem de uso real muda antes e depois.
