@@ -20,8 +20,6 @@ claude.ai'de bir mesajın 5 saatlik ve haftalık Claude limitinin ne kadarını 
 
 ## Ekran görüntüleri
 
-> Ekran görüntüleri gerçek hesaptan değil, test ortamından (sahte claude.ai sayfası) alındı.
-
 <img src="site/img/tr/oneri.png" alt="Çeviri isteği için öneri bildirimi: Haiku 5.5 yeter, effort Düşük; tespit edilen iş, konu, effort önerisi, ipuçları ve dayanak bölümleri" width="520"> <img src="site/img/tr/effort.png" alt="Effort önerisi bildirimi: Maksimum yerine Orta yeter, kazanılan limit miktarıyla" width="520">
 
 <img src="site/img/tr/tuzak.png" alt="İçinde çeviri sistemi geçen bir site yaptırma isteği için Sonnet 5.5 önerisi; Haiku önerilmiyor" width="520"> <img src="site/img/tr/popup.png" alt="Eklenti penceresi: 5 saatlik oturum, haftalık limit, kalan limitle neler yapılır, haftalık rapor satırı ve kişisel kalibrasyon durumu" width="260">

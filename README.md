@@ -46,8 +46,6 @@ Token Forecast brings that into the chat and goes one step further: it tells you
 
 ## Screenshots
 
-> Screenshots were captured in our test environment (a mock claude.ai page), not from a real account.
-
 ### A forecast and a reasoned suggestion above the message box
 
 <img src="site/img/en/oneri.png" alt="Suggestion notice for a translation request: Haiku 5.5 is enough, effort Low, with sections for detected task, topic, effort suggestion, signals and basis" width="560">
