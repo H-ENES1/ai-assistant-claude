@@ -1,0 +1,34 @@
+Sabe cuánto costará un mensaje antes de enviarlo.
+
+Token Forecast muestra, justo al lado del cuadro de mensaje de claude.ai, cuánto de tu límite de Claude de 5 horas y semanal usará un mensaje, antes de que pulses Enviar. También te dice qué modelo y qué nivel de esfuerzo bastan, con los motivos, y aprende tu plan con el tiempo.
+
+ANTES DE ENVIAR
+• Previsión con un rango del 80 %, según tu prompt, adjuntos (imágenes, PDF, Word, Excel, texto), historial del chat, modelo, esfuerzo y estado de la caché.
+• Sugerencia de modelo razonada: qué modelo basta, en qué se basa y cuánto ahorrarías. Si no está segura, nunca sugiere un modelo más ligero.
+• Sugerencia de esfuerzo de Bajo a Máximo, con el ahorro cuando tu ajuste es más alto de lo necesario.
+• Reconocimiento del tema (16 áreas). En preguntas de salud, derecho y dinero nunca sugiere un modelo ligero.
+• Desglose del coste, cuenta atrás de la caché y de las horas punta.
+
+MIENTRAS TRABAJAS
+• «A este ritmo, ¿cuándo se agota?» para tu límite de 5 horas.
+• Prompt de resumen de traspaso para chats largos.
+• Notificaciones de umbral (50/75/90 %), de reinicio del límite e insignia en la barra de herramientas.
+
+DESPUÉS
+• Explicaciones de «¿Por qué costó tanto?».
+• Informe semanal: mensajes, límite gastado, mezcla de modelos, tareas, temas y esfuerzo, mapa de calor por horas, consejos personales, exportación CSV.
+
+APRENDE EN TU DISPOSITIVO
+• Calibración personal del tamaño de tu plan y de la longitud habitual de las respuestas, a partir de tu propio uso.
+• Un pequeño modelo de tareas en el dispositivo que aprende de tus correcciones.
+
+PRIVACIDAD
+Todo se calcula en tu navegador. Tus mensajes, adjuntos y chats nunca salen de tu dispositivo. Sin servidor, sin analítica, sin rastreo. Solo funciona en claude.ai con tu propia sesión y nunca envía mensajes ni cambia ajustes por ti. Pide tu consentimiento antes de leer nada.
+
+IDIOMAS
+Interfaz en 10 idiomas: español, inglés, turco, alemán, francés, italiano, portugués, ruso, japonés y chino. El análisis de mensajes (tarea, tema, sugerencias de modelo y esfuerzo) funciona por ahora con mensajes en inglés y turco; en otros idiomas obtienes la previsión de tokens y límite sin sugerencias.
+
+Código abierto (GNU AGPL-3.0): https://github.com/H-ENES1/ai-assistant-claude
+Sitio web: https://h-enes1.github.io/ai-assistant-claude/
+
+Token Forecast es un proyecto independiente y no está afiliado a Anthropic. «Claude» es una marca de Anthropic PBC. Anthropic no publica el tamaño exacto de los límites, así que las previsiones son estimaciones que mejoran a medida que la extensión mide tu uso.
