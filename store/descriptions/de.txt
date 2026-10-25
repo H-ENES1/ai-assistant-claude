@@ -1,0 +1,34 @@
+Wisse, was eine Nachricht kostet, bevor du sie sendest.
+
+Token Forecast zeigt direkt neben dem Nachrichtenfeld von claude.ai, wie viel deines 5-Stunden- und Wochenlimits bei Claude eine Nachricht verbrauchen wird, bevor du auf Senden drückst. Außerdem sagt es dir, welches Modell und welche Aufwandsstufe ausreichen, mit Begründung, und lernt mit der Zeit deinen Tarif kennen.
+
+VOR DEM SENDEN
+• Prognose mit 80-%-Bereich, basierend auf deinem Prompt, Anhängen (Bilder, PDF, Word, Excel, Text), Chatverlauf, Modell, Aufwand und Cache-Zustand.
+• Begründete Modellempfehlung: welches Modell ausreicht, worauf sie sich stützt und wie viel du sparst. Ist sie sich nicht sicher, empfiehlt sie nie ein leichteres Modell.
+• Aufwandsempfehlung von Niedrig bis Maximal, mit der Ersparnis, wenn deine Einstellung höher als nötig ist.
+• Themenerkennung (16 Bereiche). Bei Fragen zu Gesundheit, Recht und Geld empfiehlt sie nie ein leichtes Modell.
+• Kostenaufschlüsselung, Cache-Countdown und Countdown für Stoßzeiten.
+
+WÄHREND DER ARBEIT
+• „Wann ist das Limit bei diesem Tempo aufgebraucht?“ für dein 5-Stunden-Limit.
+• Übergabe-Prompt für lange Chats.
+• Benachrichtigungen bei Schwellen (50/75/90 %), bei Limit-Zurücksetzung und ein Symbolleisten-Badge.
+
+DANACH
+• Erklärungen „Warum war das so teuer?“.
+• Wochenbericht: Nachrichten, verbrauchtes Limit, Modell-/Aufgaben-/Themen-/Aufwandsmix, stündliche Heatmap, persönliche Tipps, CSV-Export.
+
+LERNT AUF DEINEM GERÄT
+• Persönliche Kalibrierung deiner Tarifgröße und typischen Antwortlängen aus deiner eigenen Nutzung.
+• Ein kleines Aufgabenmodell auf dem Gerät, das aus deinen Korrekturen lernt.
+
+DATENSCHUTZ
+Alles wird in deinem Browser berechnet. Deine Nachrichten, Anhänge und Chats verlassen nie dein Gerät. Kein Server, keine Analyse, kein Tracking. Die Erweiterung läuft nur auf claude.ai mit deiner eigenen Sitzung und sendet nie Nachrichten oder ändert Einstellungen für dich. Bevor sie etwas liest, bittet sie um deine Zustimmung.
+
+SPRACHEN
+Oberfläche in 10 Sprachen: Deutsch, Englisch, Türkisch, Französisch, Spanisch, Italienisch, Portugiesisch, Russisch, Japanisch, Chinesisch. Die Nachrichtenanalyse (Aufgabe, Thema, Modell- und Aufwandsempfehlungen) funktioniert derzeit für englische und türkische Nachrichten; in anderen Sprachen erhältst du die Token- und Limitprognose ohne Empfehlungen.
+
+Open Source (GNU AGPL-3.0): https://github.com/H-ENES1/ai-assistant-claude
+Website: https://h-enes1.github.io/ai-assistant-claude/
+
+Token Forecast ist ein unabhängiges Projekt und nicht mit Anthropic verbunden. „Claude“ ist eine Marke von Anthropic PBC. Anthropic veröffentlicht keine genauen Limitgrößen, daher sind die Prognosen Schätzungen, die besser werden, während die Erweiterung deine Nutzung misst.
