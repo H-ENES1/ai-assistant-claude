@@ -156,6 +156,7 @@ td.c, th.c { text-align: center; width: 18%; font-weight: 600; }
 @media (max-width: 520px) { .terms div { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
 figure { margin: 0; }
 figcaption { font-size: .85rem; color: var(--muted); margin-top: 8px; }
+.ytl { margin: 10px 0 0; } .ytl a { display: inline-block; font-weight: 600; color: var(--accent-ink, #b5502f); text-decoration: none; border: 1.5px solid currentColor; border-radius: 999px; padding: 6px 16px; } .ytl a:hover { background: rgba(217,119,87,.08); }
 .chart { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
 .chart svg { display: block; width: 100%; height: auto; }
 .loop { margin-top: 28px; }
@@ -442,6 +443,7 @@ footer .wrap { display: grid; gap: 8px; }
         <p data-i="shP">Mesaj kutusunun üstünde küçük bir hap ve gerekçeli öneri bildirimi; araç çubuğunda limitlerin, kalan limitle yapılabilecekler ve öğrenme durumu.</p>
       </div>
       <figure class="vid" id="vidBox" hidden><video id="vid" controls playsinline preload="metadata" poster="video/kapak-tr.jpg"></video><figcaption data-i="vidC">47 saniyelik tanıtım. Ekrandaki arayüz temsilidir; rakamlar eklentinin kendi hesabıdır.</figcaption></figure>
+      <p class="ytl"><a id="ytA" href="https://www.youtube.com/watch?v=6Y4qZ-G2AS0" target="_blank" rel="noopener noreferrer">▶ Ayrıntılı tanıtım videosu (YouTube, 4 dk)</a></p>
       <div class="shots">
         <figure class="shot"><a class="zoom" data-img="oneri" href="img/tr/oneri.png" target="_blank" rel="noopener"><img data-img="oneri" data-alt-i="alt1" src="img/tr/oneri.png" alt="Çeviri isteği için açılmış öneri bildirimi: Haiku 5.5 yeterli, effort Düşük; algılanan iş, konu alanı, effort önerisi, işaretler ve dayanak bölümleri" width="746" height="491" loading="lazy"></a><figcaption data-i="sh1">Çeviri isteği: Haiku ve Düşük effort. “Neden?” açık; algılanan iş, konu alanı, effort önerisi, işaretler ve dayanak görünür.</figcaption></figure>
         <figure class="shot"><a class="zoom" data-img="effort" href="img/tr/effort.png" target="_blank" rel="noopener"><img data-img="effort" data-alt-i="alt2" src="img/tr/effort.png" alt="Effort önerisi bildirimi: Maksimum yerine Orta yeter; ne kadar limit kurtaracağı yazıyor" width="746" height="491" loading="lazy"></a><figcaption data-i="sh4">Effort önerisi: Maksimum yerine Orta yetiyorsa ne kadar limit kurtaracağını söyler.</figcaption></figure>
@@ -900,8 +902,8 @@ function Xx() {
   return (MERGED["x" + lang] = { ...X.en, ...o });
 }
 const STR = {
-  tr: { title: "Token Tahmini – Claude limit tahmini eklentisi", dlPage: "indirme sayfası", contribForm: "Katkı formu", survey: "2 dakikalık anket", curve: "Öğrenme eğrisi", loopNote: "k ve cevap uzunluğu güncellenir", simTitle: "Kalibrasyon simülasyonu", close: "Kapat ✕", vidEn: "" },
-  en: { title: "Token Forecast – Claude usage limit forecast extension", dlPage: "download page", contribForm: "Contribution form", survey: "2-minute survey", curve: "Learning curve", loopNote: "k and reply length are updated", simTitle: "Calibration simulation", close: "Close ✕", vidEn: "The video is in English." }
+  tr: { title: "Token Tahmini – Claude limit tahmini eklentisi", ytL: "▶ Ayrıntılı tanıtım videosu (YouTube, 4 dk)", dlPage: "indirme sayfası", contribForm: "Katkı formu", survey: "2 dakikalık anket", curve: "Öğrenme eğrisi", loopNote: "k ve cevap uzunluğu güncellenir", simTitle: "Kalibrasyon simülasyonu", close: "Kapat ✕", vidEn: "" },
+  en: { title: "Token Forecast – Claude usage limit forecast extension", ytL: "▶ Full walkthrough video (YouTube, 4 min)", dlPage: "download page", contribForm: "Contribution form", survey: "2-minute survey", curve: "Learning curve", loopNote: "k and reply length are updated", simTitle: "Calibration simulation", close: "Close ✕", vidEn: "The video is in English." }
 };
 const S = (k) => (lang === "tr" ? STR.tr : { ...STR.en, ...((SX[lang] && SX[lang].s) || {}) })[k];
 const u = (s, subs = []) => s.replace(/\$(\d)/g, (_, d) => subs[d - 1] ?? "");
@@ -929,6 +931,7 @@ function applyLang() {
   if (links.length) $("cmLinks").innerHTML = links.join(" · ");
   const v = $("vid"), vsrc = VIDEO[CL()] || VIDEO.tr;
   if (vsrc) { if (v.dataset.k !== vsrc) { v.dataset.k = vsrc; v.setAttribute("poster", A(`video/kapak-${CL()}.jpg`)); v.setAttribute("src", A(vsrc)); } $("vidBox").hidden = false; } else $("vidBox").hidden = true;
+  { const ya = $("ytA"); if (ya) { ya.textContent = S("ytL") || STR.en.ytL; ya.href = lang === "tr" ? "https://www.youtube.com/watch?v=6Y4qZ-G2AS0" : "https://www.youtube.com/watch?v=TKogrZgveAM"; } }
   { const vc = $("vidBox").querySelector("figcaption"); if (vc && lang !== "tr" && lang !== "en") vc.textContent += " " + S("vidEn"); }
   document.querySelectorAll("[data-img]").forEach((el) => {
     const f = A(`img/${CL()}/${el.dataset.img}.png`);
