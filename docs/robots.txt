@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://h-enes1.github.io/ai-assistant-claude/sitemap.xml

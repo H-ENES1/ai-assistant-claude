@@ -1,4 +1,4 @@
-<title>Token Tahmini</title>
+<title>Token Tahmini – Claude limit tahmini eklentisi</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Claude.ai'de mesajını göndermeden önce limitinin ne kadarını harcayacağını gösteren ücretsiz tarayıcı eklentisi.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -900,8 +900,8 @@ function Xx() {
   return (MERGED["x" + lang] = { ...X.en, ...o });
 }
 const STR = {
-  tr: { title: "Token Tahmini", dlPage: "indirme sayfası", contribForm: "Katkı formu", survey: "2 dakikalık anket", curve: "Öğrenme eğrisi", loopNote: "k ve cevap uzunluğu güncellenir", simTitle: "Kalibrasyon simülasyonu", close: "Kapat ✕", vidEn: "" },
-  en: { title: "Token Forecast", dlPage: "download page", contribForm: "Contribution form", survey: "2-minute survey", curve: "Learning curve", loopNote: "k and reply length are updated", simTitle: "Calibration simulation", close: "Close ✕", vidEn: "The video is in English." }
+  tr: { title: "Token Tahmini – Claude limit tahmini eklentisi", dlPage: "indirme sayfası", contribForm: "Katkı formu", survey: "2 dakikalık anket", curve: "Öğrenme eğrisi", loopNote: "k ve cevap uzunluğu güncellenir", simTitle: "Kalibrasyon simülasyonu", close: "Kapat ✕", vidEn: "" },
+  en: { title: "Token Forecast – Claude usage limit forecast extension", dlPage: "download page", contribForm: "Contribution form", survey: "2-minute survey", curve: "Learning curve", loopNote: "k and reply length are updated", simTitle: "Calibration simulation", close: "Close ✕", vidEn: "The video is in English." }
 };
 const S = (k) => (lang === "tr" ? STR.tr : { ...STR.en, ...((SX[lang] && SX[lang].s) || {}) })[k];
 const u = (s, subs = []) => s.replace(/\$(\d)/g, (_, d) => subs[d - 1] ?? "");
