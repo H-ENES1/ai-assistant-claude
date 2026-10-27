@@ -9,8 +9,11 @@
 <meta property="og:image" content="https://h-enes1.github.io/ai-assistant-claude/video/kapak-tr.jpg">
 <meta property="og:url" content="https://h-enes1.github.io/ai-assistant-claude/">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://h-enes1.github.io/ai-assistant-claude/">
+<meta name="author" content="Hayrettin Enes Karalı">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Token Tahmini (Token Forecast)","alternateName":["Token Tahmini","Token Forecast"],"applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Edge, Opera, Brave","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"claude.ai için ücretsiz tarayıcı eklentisi: mesajı göndermeden önce 5 saatlik ve haftalık limitin ne kadarını harcayacağını gösterir, uygun model ve effort önerir.","url":"https://h-enes1.github.io/ai-assistant-claude/","author":{"@type":"Person","name":"Hayrettin Enes Karalı","url":"https://github.com/H-ENES1"},"license":"https://www.gnu.org/licenses/agpl-3.0.html","codeRepository":"https://github.com/H-ENES1/ai-assistant-claude"}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 26 26%22%3E%3Ccircle cx=%2213%22 cy=%2213%22 r=%2211.5%22 fill=%22none%22 stroke=%22%23141413%22 stroke-width=%222%22/%3E%3Cpath d=%22M13 13 L19.5 7.5%22 stroke=%22%23d97757%22 stroke-width=%222.6%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2213%22 cy=%2213%22 r=%222%22 fill=%22%23141413%22/%3E%3C/svg%3E">
-<title>Token Tahmini</title>
+<title>Token Tahmini – Claude limit tahmini eklentisi</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Claude.ai'de mesajını göndermeden önce limitinin ne kadarını harcayacağını gösteren ücretsiz tarayıcı eklentisi.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -923,8 +926,8 @@ function Xx() {
   return (MERGED["x" + lang] = { ...X.en, ...o });
 }
 const STR = {
-  tr: { title: "Token Tahmini", dlPage: "indirme sayfası", contribForm: "Katkı formu", survey: "2 dakikalık anket", curve: "Öğrenme eğrisi", loopNote: "k ve cevap uzunluğu güncellenir", simTitle: "Kalibrasyon simülasyonu", close: "Kapat ✕", vidEn: "" },
-  en: { title: "Token Forecast", dlPage: "download page", contribForm: "Contribution form", survey: "2-minute survey", curve: "Learning curve", loopNote: "k and reply length are updated", simTitle: "Calibration simulation", close: "Close ✕", vidEn: "The video is in English." }
+  tr: { title: "Token Tahmini – Claude limit tahmini eklentisi", dlPage: "indirme sayfası", contribForm: "Katkı formu", survey: "2 dakikalık anket", curve: "Öğrenme eğrisi", loopNote: "k ve cevap uzunluğu güncellenir", simTitle: "Kalibrasyon simülasyonu", close: "Kapat ✕", vidEn: "" },
+  en: { title: "Token Forecast – Claude usage limit forecast extension", dlPage: "download page", contribForm: "Contribution form", survey: "2-minute survey", curve: "Learning curve", loopNote: "k and reply length are updated", simTitle: "Calibration simulation", close: "Close ✕", vidEn: "The video is in English." }
 };
 const S = (k) => (lang === "tr" ? STR.tr : { ...STR.en, ...((SX[lang] && SX[lang].s) || {}) })[k];
 const u = (s, subs = []) => s.replace(/\$(\d)/g, (_, d) => subs[d - 1] ?? "");
