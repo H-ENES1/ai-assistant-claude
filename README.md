@@ -17,6 +17,8 @@ A free browser extension for [claude.ai](https://claude.ai) that predicts how mu
 
 <a href="https://h-enes1.github.io/ai-assistant-claude/"><img src="site/video/kapak-en.jpg" alt="Token Forecast intro video cover. Click to open the website with the 47-second video and a live demo." width="720"></a>
 
+▶ **[Watch the full walkthrough on YouTube (4 min)](https://www.youtube.com/watch?v=TKogrZgveAM)** · [Türkçe](https://www.youtube.com/watch?v=6Y4qZ-G2AS0)
+
 <sub>47-second intro video and a live demo of the real prediction engine are on the website. The interface in the video is illustrative; the numbers come from the extension's own engine.</sub>
 
 </div>

@@ -10,6 +10,8 @@ Sürüm 0.12.1 · [GNU AGPL-3.0-or-later](LICENSE)
 
 <a href="https://h-enes1.github.io/ai-assistant-claude/"><img src="site/video/kapak-tr.jpg" alt="Tanıtım videosunun kapağı. Tıklayınca 47 saniyelik video ve canlı demo olan web sitesi açılır." width="720"></a>
 
+▶ **[Ayrıntılı tanıtım videosunu YouTube'da izle (4 dk)](https://www.youtube.com/watch?v=6Y4qZ-G2AS0)** · [English](https://www.youtube.com/watch?v=TKogrZgveAM)
+
 </div>
 
 
