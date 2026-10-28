@@ -7,7 +7,7 @@ d.nav4	インストール
 d.eyebrow	claude.ai 用の無料ブラウザ拡張機能
 d.h1	送信する<em>前</em>にわかる。
 d.lede	Token Forecast は、送信ボタンを押す前に、そのメッセージが Claude の5時間制限と週間制限をどれだけ使うかを教えてくれます。どのモデルとどの労力レベルで足りるかも理由つきで示し、時間とともにあなたのプランを学習します。
-d.cta1	インストール · Chrome と Opera
+d.cta1	Chromeに追加・無料
 d.cta2	仕組みを見る
 d.tr1	アカウント不要
 d.tr2	サーバーなし
@@ -121,8 +121,8 @@ d.q7	ソースコードは公開されていますか？
 d.a7	はい。コードは GNU AGPL-3.0 のもとで公開されています。読む、実行する、改変する、共有することができます。改変版を配布する場合は、同じライセンスでソースコードとともに公開し、著作権表示を残す必要があります。「Token Tahmini / Token Forecast」という名称とロゴはライセンスの対象外で、改変版は別の名称を使う必要があります。
 d.rmE	ロードマップ
 d.rmH	次は何が来る？
-d.rm1h	ストアでの公開
-d.rm1p	Chrome ウェブストア、Opera、Firefox アドオン。
+d.rm1h	OperaとFirefox
+d.rm1p	Chromeウェブストアで公開中。次はOperaアドオンとFirefoxです。
 d.rm2h	コミュニティからの最初の初期値
 d.rm2p	協力によるプラン別の制限の大きさと応答の長さ。
 d.rm3h	ブラインド品質テスト
@@ -163,7 +163,7 @@ d.pv3	メッセージ欄のテキストと添付ファイル：トークンを�
 d.pv4	権限：ストレージ、アラーム、通知、そしてサイト <code>claude.ai</code> のみ。
 d.inE	インストール
 d.inH	2分でインストールできます。
-d.inP	ストアでの公開は準備中です。今のところは開発者モードで読み込みます。手順は Chrome、Opera、Edge、Brave で共通です。
+d.inP	Chromeウェブストアからワンクリックでインストールできます。EdgeとBraveも同じページから、Operaは「Install Chrome Extensions」アドオンで利用できます。手動でインストールする場合の手順は下にあります。
 d.s1	<span>リリースの zip をダウンロード：<span id="dl">ダウンロードページ（近日公開）</span>。</span>
 d.s2	<span>zip を右クリック → <b>すべて展開</b>。<code>manifest.json</code> が直接入ったフォルダができます。</span>
 d.s3	<span><code>chrome://extensions</code>（Opera は <code>opera://extensions</code>）を開き、<b>デベロッパーモード</b>をオンにします。</span>

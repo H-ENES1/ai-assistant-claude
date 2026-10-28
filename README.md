@@ -13,7 +13,9 @@ A free browser extension for [claude.ai](https://claude.ai) that predicts how mu
 ![UI languages](https://img.shields.io/badge/UI%20languages-10-2a7b57)
 ![No servers](https://img.shields.io/badge/servers-none-2a7b57)
 
-[Website](https://h-enes1.github.io/ai-assistant-claude/) · [Releases](https://github.com/H-ENES1/ai-assistant-claude/releases) · [Türkçe README](README.tr.md)
+**[⬇ Add to Chrome — free, from the Chrome Web Store](https://chromewebstore.google.com/detail/chbjpjhmkpgfocnfpdafkakjicdicige)**
+
+[Chrome Web Store](https://chromewebstore.google.com/detail/chbjpjhmkpgfocnfpdafkakjicdicige) · [Website](https://h-enes1.github.io/ai-assistant-claude/) · [Releases](https://github.com/H-ENES1/ai-assistant-claude/releases) · [Türkçe README](README.tr.md)
 
 <a href="https://h-enes1.github.io/ai-assistant-claude/"><img src="site/video/kapak-en.jpg" alt="Token Forecast intro video cover. Click to open the website with the 47-second video and a live demo." width="720"></a>
 
@@ -118,9 +120,13 @@ Turkish, English, German, French, Spanish, Italian, Portuguese, Russian, Japanes
 
 ---
 
-## Install (developer mode)
+## Install
 
-A store release is being prepared. For now, download the zip from [Releases](https://github.com/H-ENES1/ai-assistant-claude/releases) and load it unpacked. The same steps work in Chrome, Opera, Edge and Brave.
+**[Add it from the Chrome Web Store](https://chromewebstore.google.com/detail/chbjpjhmkpgfocnfpdafkakjicdicige)** in one click. Edge and Brave can install from the same page; Opera works with the “Install Chrome Extensions” add-on.
+
+### Manual install (developer mode)
+
+If you prefer, download the zip from [Releases](https://github.com/H-ENES1/ai-assistant-claude/releases) and load it unpacked. The same steps work in Chrome, Opera, Edge and Brave.
 
 1. Unzip it into a folder (`manifest.json` must be directly inside).
 2. Go to `chrome://extensions` (Opera: `opera://extensions`) and turn on **Developer mode**.

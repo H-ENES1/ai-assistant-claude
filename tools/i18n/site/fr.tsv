@@ -7,7 +7,7 @@ d.nav4	Installation
 d.eyebrow	Extension de navigateur gratuite pour claude.ai
 d.h1	Sachez <em>avant</em> d’envoyer.
 d.lede	Token Forecast vous indique quelle part de votre limite Claude de 5 heures et de la semaine un message va consommer avant que vous n’appuyiez sur Envoyer. Il montre aussi quel modèle et quel niveau d’effort suffisent, avec les raisons, et apprend votre offre au fil du temps.
-d.cta1	Installer · Chrome et Opera
+d.cta1	Ajouter à Chrome · gratuit
 d.cta2	Comment ça marche
 d.tr1	Aucun compte
 d.tr2	Aucun serveur
@@ -121,8 +121,8 @@ d.q7	Le code source est-il ouvert ?
 d.a7	Oui. Le code est ouvert sous la licence GNU AGPL-3.0 : vous pouvez le lire, l’exécuter, le modifier et le partager. Si vous distribuez une version modifiée, vous devez la publier sous la même licence avec son code source et conserver la mention de copyright. Le nom et le logo « Token Tahmini / Token Forecast » ne sont pas couverts par la licence ; les versions modifiées doivent utiliser un autre nom.
 d.rmE	FEUILLE DE ROUTE
 d.rmH	Et ensuite ?
-d.rm1h	Publication sur les boutiques
-d.rm1p	Chrome Web Store, Opera et modules complémentaires Firefox.
+d.rm1h	Opera et Firefox
+d.rm1p	Disponible sur le Chrome Web Store ; les modules Opera et Firefox arrivent ensuite.
 d.rm2h	Premières valeurs de départ communautaires
 d.rm2p	Taille des limites par offre et longueur des réponses, issues des contributions.
 d.rm3h	Test de qualité en aveugle
@@ -163,7 +163,7 @@ d.pv3	Le texte et les pièces jointes de la zone de message : uniquement pour co
 d.pv4	Autorisations : stockage, alarmes, notifications, et uniquement le site <code>claude.ai</code>.
 d.inE	INSTALLATION
 d.inH	Installée en deux minutes.
-d.inP	Une publication sur les boutiques est en préparation. Pour l’instant, elle se charge en mode développeur ; les mêmes étapes valent pour Chrome, Opera, Edge et Brave.
+d.inP	Installation en un clic depuis le Chrome Web Store ; Edge et Brave utilisent la même page, Opera avec le module « Install Chrome Extensions ». Pour une installation manuelle, les étapes sont ci-dessous.
 d.s1	<span>Téléchargez le zip de la version : <span id="dl">page de téléchargement (bientôt)</span>.</span>
 d.s2	<span>Clic droit sur le zip → <b>Extraire tout</b>. Vous obtenez un dossier qui contient directement <code>manifest.json</code>.</span>
 d.s3	<span>Allez sur <code>chrome://extensions</code> (Opera : <code>opera://extensions</code>) et activez le <b>mode développeur</b>.</span>
