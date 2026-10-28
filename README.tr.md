@@ -4,6 +4,8 @@
 
 **Bir mesajın ne kadar limit harcayacağını göndermeden önce bil.**
 
+**[⬇ Chrome'a ekle — ücretsiz, Chrome Web Mağazası](https://chromewebstore.google.com/detail/chbjpjhmkpgfocnfpdafkakjicdicige)**
+
 [English README](README.md) · [Web sitesi](https://h-enes1.github.io/ai-assistant-claude/) · [Sürümler](https://github.com/H-ENES1/ai-assistant-claude/releases)
 
 Sürüm 0.12.1 · [GNU AGPL-3.0-or-later](LICENSE)
@@ -53,9 +55,13 @@ claude.ai'de bir mesajın 5 saatlik ve haftalık Claude limitinin ne kadarını 
 - **Cihazda öğrenen iş türü modeli (yeni):** Kurallar + küçük bir lojistik regresyon modeli (128 KB). Kullanıcı düzeltmeleri cihazda öğrenilir; metin saklanmaz, yalnızca ağırlık farkları.
 - **Topluluk katkısı (yeni, isteğe bağlı):** Öğrenilen değerlerin metin içermeyen özeti kullanıcı onayıyla kopyalanır ve forma yapıştırılır; `tools/aggregate.mjs` bunları birleştirip `lib/community-priors.js`'e yazar.
 
-## Kurulum (geliştirici modu)
+## Kurulum
 
-Mağaza yayını hazırlanıyor. Şimdilik [Sürümler](https://github.com/H-ENES1/ai-assistant-claude/releases) sayfasından zip'i indir.
+**[Chrome Web Mağazası'ndan ekle](https://chromewebstore.google.com/detail/chbjpjhmkpgfocnfpdafkakjicdicige)**, tek tıkla kurulur. Edge ve Brave aynı sayfadan kurabilir; Opera'da “Install Chrome Extensions” eklentisi gerekir.
+
+### Elle kurulum (geliştirici modu)
+
+İstersen [Sürümler](https://github.com/H-ENES1/ai-assistant-claude/releases) sayfasından zip'i indir.
 
 1. Zip'i bir klasöre çıkar (içinde doğrudan `manifest.json` olmalı).
 2. `chrome://extensions` (Opera: `opera://extensions`) → **Geliştirici modu** açık.

@@ -7,7 +7,7 @@ d.nav4	Install
 d.eyebrow	Free browser extension for claude.ai
 d.h1	Know <em>before</em> you send.
 d.lede	Token Forecast tells you how much of your 5-hour and weekly Claude limit a message will use before you hit send. It also shows which model and which effort setting are enough, with reasons, and learns your plan over time.
-d.cta1	Install · Chrome and Opera
+d.cta1	Add to Chrome · free
 d.cta2	How it works
 d.tr1	No account
 d.tr2	No server
@@ -121,8 +121,8 @@ d.q7	Is the source code open?
 d.a7	Yes. The code is open under the GNU AGPL-3.0: you can read, run, modify and share it. If you distribute a modified version, you must release it under the same license with its source code and keep the copyright notice. The name and logo “Token Tahmini / Token Forecast” are not covered by the license; modified versions must use a different name.
 d.rmE	ROADMAP
 d.rmH	What's next?
-d.rm1h	Store release
-d.rm1p	Chrome Web Store, Opera and Firefox add-ons.
+d.rm1h	Opera and Firefox
+d.rm1p	Live on the Chrome Web Store; Opera add-ons and Firefox are next.
 d.rm2h	First community starting values
 d.rm2p	Limit sizes per plan and answer lengths, from contributions.
 d.rm3h	Blind quality test
@@ -163,7 +163,7 @@ d.pv3	The text and attachments in the message box: only to count tokens, locally
 d.pv4	Permissions: storage, alarms, notifications, and only the <code>claude.ai</code> site.
 d.inE	INSTALL
 d.inH	Installs in two minutes.
-d.inP	A store release is in preparation. For now it loads in developer mode; the same steps work in Chrome, Opera, Edge and Brave.
+d.inP	Install it in one click from the Chrome Web Store; Edge and Brave can use the same page, and Opera works with the “Install Chrome Extensions” add-on. If you'd rather install it by hand, the steps are below.
 d.s1	<span>Download the release zip: <span id="dl">download page (coming soon)</span>.</span>
 d.s2	<span>Right-click the zip → <b>Extract all</b>. You get a folder with <code>manifest.json</code> directly inside.</span>
 d.s3	<span>Go to <code>chrome://extensions</code> (Opera: <code>opera://extensions</code>) and turn on <b>Developer mode</b>.</span>

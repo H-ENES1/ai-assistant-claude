@@ -156,6 +156,7 @@ td.c, th.c { text-align: center; width: 18%; font-weight: 600; }
 @media (max-width: 520px) { .terms div { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
 figure { margin: 0; }
 figcaption { font-size: .85rem; color: var(--muted); margin-top: 8px; }
+.storecta { margin: 18px 0 8px; }
 .ytl { margin: 10px 0 0; } .ytl a { display: inline-block; font-weight: 600; color: var(--accent-ink, #b5502f); text-decoration: none; border: 1.5px solid currentColor; border-radius: 999px; padding: 6px 16px; } .ytl a:hover { background: rgba(217,119,87,.08); }
 .chart { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
 .chart svg { display: block; width: 100%; height: auto; }
@@ -331,7 +332,7 @@ footer .wrap { display: grid; gap: 8px; }
         <h1 data-i="h1">Göndermeden önce <em>bil.</em></h1>
         <p class="lede" data-i="lede">Token Tahmini, yazdığın mesajın 5 saatlik ve haftalık Claude limitinin ne kadarını harcayacağını gönder tuşuna basmadan söyler. Hangi modelin ve hangi effort ayarının yeteceğini de gerekçesiyle gösterir; zamanla senin planından öğrenir.</p>
         <div class="cta">
-          <a class="btn primary" href="#kurulum" data-i="cta1">Kur · Chrome ve Opera</a>
+          <a class="btn primary" href="https://chromewebstore.google.com/detail/chbjpjhmkpgfocnfpdafkakjicdicige" target="_blank" rel="noopener noreferrer" data-i="cta1">Chrome'a ekle · ücretsiz</a>
           <a class="btn ghost" href="#nasil" data-i="cta2">Nasıl çalışır</a>
         </div>
         <div class="trust">
@@ -607,7 +608,8 @@ limit %  = k × maliyet</div>
         <div class="sec-head">
           <p class="eyebrow" data-i="inE">KURULUM</p>
           <h2 data-i="inH">İki dakikada kurulur.</h2>
-          <p data-i="inP">Mağaza sürümü hazırlanıyor. Şimdilik geliştirici modunda yüklenir; Chrome, Opera, Edge ve Brave'de aynı adımlar.</p>
+          <p data-i="inP">Chrome Web Mağazası'ndan tek tıkla kurulur; Edge ve Brave'de de aynı sayfadan, Opera'da “Install Chrome Extensions” eklentisiyle. Elle kurmak istersen adımlar aşağıda.</p>
+          <p class="storecta"><a class="btn primary" href="https://chromewebstore.google.com/detail/chbjpjhmkpgfocnfpdafkakjicdicige" target="_blank" rel="noopener noreferrer" data-i="cta1">Chrome'a ekle · ücretsiz</a></p>
         </div>
         <ol class="steps">
           <li data-i="s1"><span>Sürüm zip dosyasını indir: <span id="dl">indirme sayfası (yakında)</span>.</span></li>
@@ -673,7 +675,7 @@ limit %  = k × maliyet</div>
         <h2 data-i="rmH">Sırada ne var?</h2>
       </div>
       <div class="road">
-        <div class="now"><b data-i="rm1h">Mağaza sürümü</b><span data-i="rm1p">Chrome Web Mağazası, Opera ve Firefox eklentileri.</span></div>
+        <div class="now"><b data-i="rm1h">Opera ve Firefox</b><span data-i="rm1p">Chrome Web Mağazası'nda yayında; sırada Opera eklentileri ve Firefox.</span></div>
         <div><b data-i="rm2h">İlk topluluk başlangıç değerleri</b><span data-i="rm2p">Plan başına limit büyüklükleri ve cevap uzunluğu, katkılardan.</span></div>
         <div><b data-i="rm3h">Kör kalite testi</b><span data-i="rm3p">Aynı soruya farklı modellerin cevabını etiketsiz karşılaştır; öneri eşikleri buna göre ayarlansın.</span></div>
         <div><b data-i="rm4h">Ekipler için ortak rapor</b><span data-i="rm4p">Team planında ekibin toplam kullanımı ve ortak öneriler, yine metinsiz.</span></div>
@@ -709,6 +711,7 @@ limit %  = k × maliyet</div>
 <script>
 // ---- Ayarlar (geliştirici doldurur) ----
 const SUPPORT_URL = ""; // ör. GitHub Sponsors bağlantısı; boşken destek bölümü görünmez
+const STORE_URL = "https://chromewebstore.google.com/detail/chbjpjhmkpgfocnfpdafkakjicdicige";
 const RELEASES_URL = "https://github.com/H-ENES1/ai-assistant-claude/releases"; // GitHub sürümleri sayfası
 const CONTRIB_URL = "https://github.com/H-ENES1/ai-assistant-claude/issues/new?template=katki.yml"; // topluluk katkı formu (GitHub konu formu)
 const SURVEY_URL = "https://github.com/H-ENES1/ai-assistant-claude/issues/new?template=anket.yml"; // 2 dakikalık anket formu
@@ -725,7 +728,7 @@ const EN = {
   eyebrow: "Free browser extension for claude.ai",
   h1: "Know <em>before</em> you send.",
   lede: "Token Forecast tells you how much of your 5-hour and weekly Claude limit a message will use before you hit send. It also shows which model is enough, with its reasons, and learns your plan over time.",
-  cta1: "Install · Chrome and Opera", cta2: "How it works",
+  cta1: "Add to Chrome · free", cta2: "How it works",
   tr1: "No account", tr2: "No server", tr3: "Your messages never leave your device", tr4: "10 interface languages",
   demoT: "TRY IT LIVE", demoS: "The extension's real forecasting engine, running in your browser", demoL: "YOUR MESSAGE",
   cModel: "Model", cEffort: "Effort", cPlan: "Plan", cChat: "Chat", eLow: "Low", eMed: "Medium", eHigh: "High", eMax: "Max",
@@ -777,7 +780,7 @@ const EN = {
   q6: "Which browsers?", a6: "Chrome, Opera, Edge and Brave (Chromium 116 or later). A Firefox version is on the roadmap.",
   q7: "Is the source code open?", a7: "Yes. The code is open under the GNU AGPL-3.0: you can read, run, modify and share it. If you distribute a modified version, you must release it under the same license with its source code and keep the copyright notice. The name and logo “Token Tahmini / Token Forecast” are not covered by the license; modified versions must use a different name.",
   rmE: "ROADMAP", rmH: "What's next?",
-  rm1h: "Store release", rm1p: "Chrome Web Store, Opera and Firefox add-ons.",
+  rm1h: "Opera and Firefox", rm1p: "Live on the Chrome Web Store; Opera add-ons and Firefox are next.",
   rm2h: "First community starting values", rm2p: "Limit sizes per plan and answer lengths, from contributions.",
   rm3h: "Blind quality test", rm3p: "Compare different models' answers to the same question without labels; tune suggestion thresholds from it.",
   rm4h: "Shared report for teams", rm4p: "Team-wide usage and shared tips on Team plans, still text-free.",
@@ -799,7 +802,7 @@ const EN = {
   mdF: "Relative cost: assumed proportional to API price and corrected by calibration. On claude.ai the system prompt and memory push the context above 100K tokens, so Haiku's long-context price applies. Switching models in a long chat means the new model re-reads the whole history; in that case the extension says “pick it in your next new chat”.",
   pvE: "PRIVACY", pvH: "Everything is computed in your browser.", pvP: "The extension has no server. Your messages, attachments and chats never leave your device; no analytics, no tracking. It only runs on claude.ai, with your own session.",
   pvL: "What it reads, and why", pv1: "claude.ai's usage page data: your 5-hour and weekly percentage.", pv2: "The open chat's history length: for cache and context math (text is counted locally).", pv3: "The text and attachments in the message box: only to count tokens, locally.", pv4: "Permissions: storage, alarms, notifications, and only the <code>claude.ai</code> site.",
-  inE: "INSTALL", inH: "Installs in two minutes.", inP: "A store release is in preparation. For now it loads in developer mode; the same steps work in Chrome, Opera, Edge and Brave.",
+  inE: "INSTALL", inH: "Installs in two minutes.", inP: "Install it in one click from the Chrome Web Store; Edge and Brave can use the same page, and Opera works with the “Install Chrome Extensions” add-on. If you'd rather install it by hand, the steps are below.",
   s1: "<span>Download the release zip: <span id=\"dl\">download page (coming soon)</span>.</span>",
   s2: "<span>Right-click the zip → <b>Extract all</b>. You get a folder with <code>manifest.json</code> directly inside.</span>",
   s3: "<span>Go to <code>chrome://extensions</code> (Opera: <code>opera://extensions</code>) and turn on <b>Developer mode</b>.</span>",

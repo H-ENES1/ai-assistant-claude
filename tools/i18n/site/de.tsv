@@ -7,7 +7,7 @@ d.nav4	Installation
 d.eyebrow	Kostenlose Browser-Erweiterung für claude.ai
 d.h1	Wissen, <em>bevor</em> du sendest.
 d.lede	Token Forecast sagt dir, wie viel deines 5-Stunden- und Wochenlimits bei Claude eine Nachricht verbraucht, bevor du auf „Senden“ drückst. Es zeigt auch, welches Modell und welche Aufwandsstufe ausreichen – mit Begründung – und lernt mit der Zeit deinen Tarif kennen.
-d.cta1	Installieren · Chrome und Opera
+d.cta1	Zu Chrome hinzufügen · kostenlos
 d.cta2	So funktioniert’s
 d.tr1	Kein Konto
 d.tr2	Kein Server
@@ -121,8 +121,8 @@ d.q7	Ist der Quellcode offen?
 d.a7	Ja. Der Code ist unter der GNU AGPL-3.0 offen: Du kannst ihn lesen, ausführen, ändern und weitergeben. Wenn du eine geänderte Version verbreitest, musst du sie unter derselben Lizenz mit Quellcode veröffentlichen und den Urheberrechtsvermerk beibehalten. Name und Logo „Token Tahmini / Token Forecast“ sind von der Lizenz ausgenommen; geänderte Versionen müssen einen anderen Namen verwenden.
 d.rmE	ROADMAP
 d.rmH	Was kommt als Nächstes?
-d.rm1h	Store-Veröffentlichung
-d.rm1p	Chrome Web Store, Opera und Firefox-Add-ons.
+d.rm1h	Opera und Firefox
+d.rm1p	Im Chrome Web Store verfügbar; als Nächstes kommen Opera-Add-ons und Firefox.
 d.rm2h	Erste Startwerte aus der Community
 d.rm2p	Limitgrößen pro Tarif und Antwortlängen, aus Beiträgen.
 d.rm3h	Blindtest der Qualität
@@ -163,7 +163,7 @@ d.pv3	Text und Anhänge im Nachrichtenfeld: nur zum lokalen Zählen der Tokens.
 d.pv4	Berechtigungen: Speicher, Wecker, Benachrichtigungen und nur die Website <code>claude.ai</code>.
 d.inE	INSTALLATION
 d.inH	In zwei Minuten installiert.
-d.inP	Eine Store-Veröffentlichung ist in Vorbereitung. Bis dahin lädst du sie im Entwicklermodus; die Schritte sind in Chrome, Opera, Edge und Brave gleich.
+d.inP	Mit einem Klick aus dem Chrome Web Store installieren; Edge und Brave nutzen dieselbe Seite, Opera mit dem Add-on „Install Chrome Extensions“. Wenn du lieber manuell installierst, findest du die Schritte unten.
 d.s1	<span>Lade die Release-ZIP herunter: <span id="dl">Download-Seite (demnächst)</span>.</span>
 d.s2	<span>Rechtsklick auf die ZIP → <b>Alle extrahieren</b>. Du erhältst einen Ordner, der <code>manifest.json</code> direkt enthält.</span>
 d.s3	<span>Öffne <code>chrome://extensions</code> (Opera: <code>opera://extensions</code>) und aktiviere den <b>Entwicklermodus</b>.</span>
