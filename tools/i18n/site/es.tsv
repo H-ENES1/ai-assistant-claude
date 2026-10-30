@@ -307,3 +307,14 @@ s.loopNote	se actualizan k y la longitud de la respuesta
 s.simTitle	Simulación de calibración
 s.close	Cerrar ✕
 s.vidEn	El vídeo está en inglés.
+d.nav6	Naturaleza
+d.ecE	NATURALEZA
+d.ecH	No desperdiciar cómputo es el ahorro más fácil.
+d.ecP	Cada respuesta de Claude se genera en centros de datos que consumen electricidad y agua para refrigeración. Elegir el modelo más potente y el esfuerzo más alto para una tarea sencilla supone más cómputo del necesario. En nuestras pruebas, seguir las sugerencias redujo el cómputo en <b>≈ 40 %</b>.
+d.ec1v	≈ 40 %
+d.ec1	Menos cómputo al seguir las sugerencias, en 240 mensajes de ejemplo (entre el 38 % y el 50 %).
+d.ec2v	10–50 <small>MWh</small>
+d.ec2	Energía ahorrada por semana si 1 millón de personas enviaran 100 mensajes cada una. La electricidad semanal de cientos de hogares.
+d.ec3v	40–200 <small>toneladas</small>
+d.ec3	Agua ahorrada por semana en el mismo escenario. 100 toneladas son el agua potable de 50.000 personas durante un día.
+d.ecF	Son estimaciones. Supusimos 0,24–1,2 Wh de energía y ≈ 1–5 mL de agua por mensaje (medición de Gemini de Google, agosto de 2025, incluida el agua de las centrales; los mensajes largos con razonamiento consumen más). Anthropic no publica estas cifras para Claude. Para una persona: ≈ 10–50 Wh por semana, suficiente para encender una bombilla LED de 10 W durante 1–5 horas.

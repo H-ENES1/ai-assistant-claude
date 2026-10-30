@@ -307,3 +307,14 @@ s.loopNote	k e o comprimento da resposta são atualizados
 s.simTitle	Simulação de calibração
 s.close	Fechar ✕
 s.vidEn	O vídeo está em inglês.
+d.nav6	Natureza
+d.ecE	NATUREZA
+d.ecH	Não desperdiçar processamento é a economia mais fácil.
+d.ecP	Cada resposta do Claude é gerada em data centers que consomem eletricidade e água para resfriamento. Escolher o modelo mais forte e o maior esforço para uma tarefa simples significa mais processamento do que o necessário. Em nossos testes, seguir as sugestões reduziu o processamento em <b>≈ 40%</b>.
+d.ec1v	≈ 40%
+d.ec1	Menos processamento seguindo as sugestões, em 240 mensagens de exemplo (entre 38% e 50%).
+d.ec2v	10–50 <small>MWh</small>
+d.ec2	Energia economizada por semana se 1 milhão de pessoas enviassem 100 mensagens cada. A eletricidade semanal de centenas de casas.
+d.ec3v	40–200 <small>toneladas</small>
+d.ec3	Água economizada por semana no mesmo cenário. 100 toneladas são a água potável de 50.000 pessoas por um dia.
+d.ecF	São estimativas. Supusemos 0,24–1,2 Wh de energia e ≈ 1–5 mL de água por mensagem (medição do Gemini pelo Google, agosto de 2025, incluindo a água das usinas; mensagens longas com raciocínio consomem mais). A Anthropic não publica esses números para o Claude. Para uma pessoa: ≈ 10–50 Wh por semana, o suficiente para manter uma lâmpada LED de 10 W acesa por 1 a 5 horas.

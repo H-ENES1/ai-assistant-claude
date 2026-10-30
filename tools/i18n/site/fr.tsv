@@ -307,3 +307,14 @@ s.loopNote	k et la longueur de réponse sont mis à jour
 s.simTitle	Simulation de calibrage
 s.close	Fermer ✕
 s.vidEn	La vidéo est en anglais.
+d.nav6	Nature
+d.ecE	NATURE
+d.ecH	Ne pas gaspiller de calcul, c'est l'économie la plus simple.
+d.ecP	Chaque réponse de Claude est produite dans des centres de données qui consomment de l'électricité et de l'eau pour le refroidissement. Choisir le modèle le plus puissant et l'effort le plus élevé pour une tâche simple, c'est plus de calcul que nécessaire. Dans nos tests, suivre les suggestions a réduit le calcul d'<b>≈ 40 %</b>.
+d.ec1v	≈ 40 %
+d.ec1	De calcul en moins en suivant les suggestions, sur 240 messages d'exemple (entre 38 % et 50 %).
+d.ec2v	10–50 <small>MWh</small>
+d.ec2	D'énergie économisée par semaine si 1 million de personnes envoyaient 100 messages chacune. Une semaine d'électricité pour des centaines de foyers.
+d.ec3v	40–200 <small>tonnes</small>
+d.ec3	D'eau économisée par semaine dans le même scénario. 100 tonnes, c'est l'eau potable de 50 000 personnes pendant une journée.
+d.ecF	Ce sont des estimations. Nous avons supposé 0,24–1,2 Wh d'énergie et ≈ 1–5 mL d'eau par message (mesure Gemini de Google, août 2025, eau des centrales comprise ; les longs messages avec réflexion consomment davantage). Anthropic ne publie pas ces chiffres pour Claude. Pour une personne : ≈ 10–50 Wh par semaine, de quoi allumer une ampoule LED de 10 W pendant 1 à 5 heures.

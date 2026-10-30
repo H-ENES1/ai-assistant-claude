@@ -307,3 +307,14 @@ s.loopNote	k and reply length are updated
 s.simTitle	Calibration simulation
 s.close	Close ✕
 s.vidEn	The video is in English.
+d.nav6	Nature
+d.ecE	NATURE
+d.ecH	Not wasting compute is the easiest saving.
+d.ecP	Every Claude answer is made in data centers that use electricity, and water for cooling. Picking the strongest model and the highest effort for a simple task means more compute than needed. In our tests, following the suggestions cut compute by <b>≈ 40%</b>.
+d.ec1v	≈ 40%
+d.ec1	Less compute when following the suggestions, across 240 sample messages (between 38% and 50%).
+d.ec2v	10–50 <small>MWh</small>
+d.ec2	Energy saved per week if 1 million people sent 100 messages each. A week of electricity for hundreds of homes.
+d.ec3v	40–200 <small>tons</small>
+d.ec3	Water saved per week in the same scenario. 100 tons is a day's drinking water for 50,000 people.
+d.ecF	These are estimates. We assumed 0.24–1.2 Wh of energy and ≈ 1–5 mL of water per message (Google's Gemini measurement, August 2025, including power plant water; long messages with thinking use more). Anthropic doesn't publish these figures for Claude. For one person: ≈ 10–50 Wh a week, enough to run a 10 W LED bulb for 1–5 hours.

@@ -10,7 +10,7 @@
 :root {
   --bg: #faf9f5; --surface: #ffffff; --sunk: #f0eee6; --ink: #141413; --muted: #6b6a64; --line: #e8e6dc;
   --accent: #b5502f; --accent-ink: #ffffff; --meter: #d97757; --used: #a8a69d;
-  --ok: #2f7d57; --warn: #a8680f; --crit: #b9382a;
+  --water: #2f7fb5; --ok: #2f7d57; --warn: #a8680f; --crit: #b9382a;
   --f-display: "Newsreader", ui-serif, Georgia, "Times New Roman", serif;
   --f-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
@@ -20,13 +20,13 @@
   :root:not([data-theme="light"]) {
     --bg: #262624; --surface: #30302e; --sunk: #3d3d3a; --ink: #faf9f5; --muted: #b0aea5; --line: #44433f;
     --accent: #e8896a; --accent-ink: #141413; --meter: #d97757; --used: #77756d;
-    --ok: #5fb98a; --warn: #e0a24a; --crit: #ef7d6d; color-scheme: dark;
+    --water: #7fc1ea; --ok: #5fb98a; --warn: #e0a24a; --crit: #ef7d6d; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #262624; --surface: #30302e; --sunk: #3d3d3a; --ink: #faf9f5; --muted: #b0aea5; --line: #44433f;
   --accent: #e8896a; --accent-ink: #141413; --meter: #d97757; --used: #77756d;
-  --ok: #5fb98a; --warn: #e0a24a; --crit: #ef7d6d; color-scheme: dark;
+  --water: #7fc1ea; --ok: #5fb98a; --warn: #e0a24a; --crit: #ef7d6d; color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -213,6 +213,7 @@ ul.plain { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; }
 .stat .v small { font-size: .55em; color: var(--muted); }
 .stat .v .arrow { color: var(--muted); font-size: .7em; margin: 0 4px; }
 .stat .v .good { color: var(--accent); }
+.stat .v.good { color: var(--ok); } .stat .v.water { color: var(--water); } .stat .v.good small, .stat .v.water small { color: var(--muted); }
 .stat p { font-size: .9rem; color: var(--muted); margin-top: 6px; }
 .layers { counter-reset: l; list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
 .layers li { counter-increment: l; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px 14px 56px; position: relative; }
@@ -317,6 +318,7 @@ footer .wrap { display: grid; gap: 8px; }
       <a href="#nasil" class="hide-s" data-i="nav1">Nasıl çalışır</a>
       <a href="#ogrenme" class="hide-s" data-i="nav2">Öğrenme</a>
       <a href="#kanit" class="hide-s" data-i="nav5">Kanıt</a>
+      <a href="#doga" class="hide-s" data-i="nav6">Doğa</a>
       <a href="#gizlilik" class="hide-s" data-i="nav3">Gizlilik</a>
       <a href="#kurulum" data-i="nav4">Kurulum</a>
       <span class="lang"><select id="langSel" aria-label="Dil / Language"></select></span>
@@ -561,6 +563,22 @@ limit %  = k × maliyet</div>
           <li data-i="hn4">Deney tekrarlanabilir: tests/learning-proof.mjs ve tests/classifier-learning.mjs.</li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <section class="band" id="doga">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="ecE">DOĞA</p>
+        <h2 data-i="ecH">Gereksiz işlem gücü harcamamak, en kolay tasarruf.</h2>
+        <p data-i="ecP">Her Claude cevabı, elektrik harcayan ve soğutmak için su kullanan veri merkezlerinde üretilir. Basit bir iş için en güçlü modeli ve en yüksek effort'u seçmek, gerekenden fazla işlem demek. Testlerimizde önerilere uyunca harcanan işlem gücü <b>≈ %40</b> azaldı.</p>
+      </div>
+      <div class="stats eco">
+        <div class="stat"><div class="v good" data-i="ec1v">≈ %40</div><p data-i="ec1">Önerilere uyunca daha az işlem gücü; 240 örnek mesajda (%38 ile %50 arası).</p></div>
+        <div class="stat"><div class="v good" data-i="ec2v">10–50 <small>MWh</small></div><p data-i="ec2">Haftalık enerji tasarrufu, 1 milyon kişi haftada 100'er mesaj yazsa. Yüzlerce evin bir haftalık elektriği.</p></div>
+        <div class="stat"><div class="v water" data-i="ec3v">40–200 <small>ton</small></div><p data-i="ec3">Haftalık su tasarrufu, aynı senaryoda. 100 ton, 50.000 kişinin bir günlük içme suyu.</p></div>
+      </div>
+      <p class="foot" data-i="ecF">Bunlar tahmin. Mesaj başına 0,24–1,2 Wh enerji ve ≈ 1–5 mL su varsayıldı (Google'ın Gemini ölçümü, Ağustos 2025, santral suyu dahil; uzun ve düşünmeli mesajlar daha fazla harcar). Anthropic, Claude için bu rakamları yayımlamıyor. Tek kişi için: haftada ≈ 10–50 Wh, yani 10 W'lık bir LED ampulü 1–5 saat yakacak kadar.</p>
     </div>
   </section>
 
@@ -825,6 +843,7 @@ const EN = {
 Object.assign(EN, {
   fDomL: "TOPIC",
   nav5: "Proof", eXh: "Extra high",
+  nav6: "Nature", ecE: "NATURE", ecH: "Not wasting compute is the easiest saving.", ecP: "Every Claude answer is made in data centers that use electricity, and water for cooling. Picking the strongest model and the highest effort for a simple task means more compute than needed. In our tests, following the suggestions cut compute by <b>≈ 40%</b>.", ec1v: "≈ 40%", ec1: "Less compute when following the suggestions, across 240 sample messages (between 38% and 50%).", ec2v: "10–50 <small>MWh</small>", ec2: "Energy saved per week if 1 million people sent 100 messages each. A week of electricity for hundreds of homes.", ec3v: "40–200 <small>tons</small>", ec3: "Water saved per week in the same scenario. 100 tons is a day's drinking water for 50,000 people.", ecF: "These are estimates. We assumed 0.24–1.2 Wh of energy and ≈ 1–5 mL of water per message (Google's Gemini measurement, August 2025, including power plant water; long messages with thinking use more). Anthropic doesn't publish these figures for Claude. For one person: ≈ 10–50 Wh a week, enough to run a 10 W LED bulb for 1–5 hours.",
   lede: "Token Forecast tells you how much of your 5-hour and weekly Claude limit a message will use before you hit send. It also shows which model and which effort setting are enough, with reasons, and learns your plan over time.",
   f11h: "Recognizes the topic", f11p: "Sorts a message into 16 topic areas and sub-topics (Science · Physics, Engineering · Electrical…) with about 2,600 keywords. For health, law and money questions it never suggests a light model.",
   f12h: "Effort suggestion", f12p: "From Low to Max: which effort level is enough for this task, and how much limit you save if your current setting is higher. It knows each model's default and the Extra high level.",
