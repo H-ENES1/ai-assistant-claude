@@ -307,3 +307,14 @@ s.loopNote	k und Antwortlänge werden aktualisiert
 s.simTitle	Kalibrierungssimulation
 s.close	Schließen ✕
 s.vidEn	Das Video ist auf Englisch.
+d.nav6	Natur
+d.ecE	NATUR
+d.ecH	Keine Rechenleistung zu verschwenden ist die einfachste Ersparnis.
+d.ecP	Jede Claude-Antwort entsteht in Rechenzentren, die Strom verbrauchen und Wasser zur Kühlung nutzen. Für eine einfache Aufgabe das stärkste Modell und den höchsten Aufwand zu wählen, bedeutet mehr Rechenleistung als nötig. In unseren Tests sank die Rechenleistung um <b>≈ 40 %</b>, wenn die Vorschläge befolgt wurden.
+d.ec1v	≈ 40 %
+d.ec1	Weniger Rechenleistung bei befolgten Vorschlägen, über 240 Beispielnachrichten (zwischen 38 % und 50 %).
+d.ec2v	10–50 <small>MWh</small>
+d.ec2	Eingesparte Energie pro Woche, wenn 1 Million Menschen je 100 Nachrichten senden. Der Wochenstrom von Hunderten Haushalten.
+d.ec3v	40–200 <small>Tonnen</small>
+d.ec3	Eingespartes Wasser pro Woche im selben Szenario. 100 Tonnen sind das Trinkwasser von 50.000 Menschen für einen Tag.
+d.ecF	Das sind Schätzungen. Angenommen wurden 0,24–1,2 Wh Energie und ≈ 1–5 ml Wasser pro Nachricht (Googles Gemini-Messung, August 2025, inklusive Kraftwerkswasser; lange Nachrichten mit Denken verbrauchen mehr). Anthropic veröffentlicht diese Zahlen für Claude nicht. Für eine Person: ≈ 10–50 Wh pro Woche, genug für eine 10-W-LED-Lampe für 1–5 Stunden.
