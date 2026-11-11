@@ -1496,5 +1496,17 @@
   },
   "consentPopupBtn": {
     "message": "Review and turn on"
+  },
+  "rowFableShare": {
+    "message": "Fable share"
+  },
+  "fableSharePill": {
+    "message": "Fable share $1"
+  },
+  "fableShareLabel": {
+    "message": "Fable share (weekly)"
+  },
+  "fableShareNear": {
+    "message": "Your Fable share is almost used up ($1). Switch to $2."
   }
 }

@@ -1496,5 +1496,17 @@
   },
   "consentPopupBtn": {
     "message": "Revisar e ligar"
+  },
+  "rowFableShare": {
+    "message": "Cota do Fable"
+  },
+  "fableSharePill": {
+    "message": "Cota do Fable $1"
+  },
+  "fableShareLabel": {
+    "message": "Cota do Fable (semanal)"
+  },
+  "fableShareNear": {
+    "message": "Sua cota do Fable está quase esgotada ($1). Mude para $2."
   }
 }

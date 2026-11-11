@@ -1496,5 +1496,17 @@
   },
   "consentPopupBtn": {
     "message": "Посмотреть и включить"
+  },
+  "rowFableShare": {
+    "message": "Доля Fable"
+  },
+  "fableSharePill": {
+    "message": "Доля Fable $1"
+  },
+  "fableShareLabel": {
+    "message": "Доля Fable (за неделю)"
+  },
+  "fableShareNear": {
+    "message": "Ваша доля Fable почти исчерпана ($1). Перейдите на $2."
   }
 }

@@ -1496,5 +1496,17 @@
   },
   "consentPopupBtn": {
     "message": "İncele ve aç"
+  },
+  "rowFableShare": {
+    "message": "Fable payı"
+  },
+  "fableSharePill": {
+    "message": "Fable payı $1"
+  },
+  "fableShareLabel": {
+    "message": "Fable payı (haftalık)"
+  },
+  "fableShareNear": {
+    "message": "Fable payın dolmak üzere ($1). $2'e geç."
   }
 }

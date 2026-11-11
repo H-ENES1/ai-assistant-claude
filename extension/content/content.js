@@ -262,7 +262,11 @@
     } catch (e) { console.debug("[Token Forecast] öneri", e); }
     if (cls.langLimited) adv = null; // bu dilde model/effort önerisi yok
     if (adv && S.settings.effortAdvice === false) adv = { ...adv, effort: null }; // effort önerisi kapalı
-    const r = { at: Date.now(), prompt, pt, att, analyzing, hist, cls, dom, input, fc, fit, rec, ctxLevel, adv, empty, langLimited: !!cls.langLimited };
+    // Fable seçiliyken ve claude.ai Fable'a özel haftalık pencere döndürüyorsa (yoksa null: hiçbir şey gösterilmez)
+    const fam = L.fc.resolveModel(model).info?.family;
+    const fw = fam === "fable" ? L.usage.familyWindow(S.usage, "fable") : null;
+    const fableShare = fw ? { pct: fw.pct, resetsAt: fw.resetsAt, near: fw.pct >= L.usage.FAMILY_SHARE_WARN_PCT } : null;
+    const r = { at: Date.now(), prompt, pt, att, analyzing, hist, cls, dom, input, fc, fit, rec, ctxLevel, adv, empty, langLimited: !!cls.langLimited, fableShare };
     S.last = r;
     if (!r.empty) S.lastFull = r;
     window.__tokenForecastLast = r;
@@ -332,7 +336,9 @@
       warnings.push({ sev: "warn", text: t("warnSurprise", [pct(sp.d), `${pct(sp.lo)}–${pct(sp.hi)}`, why]) });
     }
     if (r.langLimited && !r.empty) warnings.push({ sev: "info", text: t("warnLangLimited") });
-    // 5) Model ve effort önerisi
+    // 5) Model ve effort önerisi. Fable payı dolmak üzereyse uyarı her zaman görünür (limit uyarısı sayılır).
+    const fs = r.fableShare;
+    if (fs?.near) warnings.push({ sev: fs.pct >= 100 ? "crit" : "warn", text: t("fableShareNear", [pct(fs.pct), L.fc.RECOMMEND_LABEL.opus]) });
     const a = r.adv;
     const modelAdvOn = S.settings.advisor !== false;
     if (!modelAdvOn) { /* model önerisi kapalı */ }
@@ -358,6 +364,7 @@
       [t("rowInput"), tokRange(inTokens) + " " + t("dbgTokens")],
       [t("rowOutput"), `${num(fc.output.low)}–${num(fc.output.high)} ${t("dbgTokens")}`]
     ];
+    const fableRow = fs ? [[t("rowFableShare"), pct(fs.pct)]] : [];
     const detail = [];
     if (r.att.high > 0 || r.analyzing) detail.push([t("dbgAttachments"), r.analyzing ? t("dbgAnalyzing") : `${S.pending.length} · ${tokRange(r.att)}`]);
     if (r.hist.messages) {
@@ -374,13 +381,13 @@
     return {
       level,
       head: r.empty ? t("pillIdle") : `≈ ${pct(sess.mid)}`,
-      sub: r.empty ? (used !== null ? t("pillUsed", [pct(used)]) : "") : `(${range(sess)}) ${t("pillSub")}`,
+      sub: r.empty ? [used !== null ? t("pillUsed", [pct(used)]) : "", fs ? t("fableSharePill", [pct(fs.pct)]) : ""].filter(Boolean).join(" · ") : `(${range(sess)}) ${t("pillSub")}`,
       title: t("extName"),
       cardTitle: t("cardTitle"),
       big: r.empty ? (used !== null ? pct(used) : "–") : `≈ ${pct(sess.mid)}`,
       bigSub: r.empty ? t("cardIdleSub") : t("cardSub", [range(sess)]),
       bar: used !== null ? { used, est: r.empty ? 0 : sess.mid } : null,
-      warnings, rows: r.empty ? rows.slice(0, 1).concat(rows.slice(3, 4)) : rows, detail, foot,
+      warnings, rows: r.empty ? rows.slice(0, 1).concat(fableRow, rows.slice(3, 4)) : rows.slice(0, 1).concat(fableRow, rows.slice(1)), detail, foot,
       breakdown: r.empty ? null : {
         label: t("bdTitle"),
         parts: ["output", "thinking", "input", "history", "tool"].map((k) => ({ key: k, share: fc.breakdown?.[k] || 0, label: t(`bd_${k}`), pctText: t("pct", [String(Math.round(100 * (fc.breakdown?.[k] || 0)))]) })).filter((p) => p.share >= 0.005)
@@ -429,6 +436,8 @@
       detail = t("advEffRaiseDetail", [effName(ef.from) + (ef.assumed ? " " + t("effDefaultMark") : ""), effName(ef.to), ef.extra != null ? String(Math.round(ef.extra * 100)) : "–"]);
     } else if (a.kind === "ok" && ef?.kind === "ok") title += " · " + t("advEffWith", [effName(ef.to)]);
     else if (a.kind !== "ok" && ef?.kind === "lower") detail += (detail ? " " : "") + t("advEffAlsoLower", [effName(ef.to)]);
+    // Fable payı dolmak üzere: "Fable uygun" desek bile kullanıcı Opus'a geçmeli
+    if (r.fableShare?.near) detail = t("fableShareNear", [pct(r.fableShare.pct), L.fc.RECOMMEND_LABEL.opus]) + (detail ? " " + detail : "");
 
     const conf = t(a.confidence === "high" ? "confidenceHigh" : a.confidence === "medium" ? "confidenceMedium" : "confidenceLow");
     const fixOpts = L.cls.TYPES.filter((x) => x !== a.type).map((x) => ({ value: x, label: t(`type_${x}`) }));

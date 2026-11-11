@@ -1496,5 +1496,17 @@
   },
   "consentPopupBtn": {
     "message": "確認してオンにする"
+  },
+  "rowFableShare": {
+    "message": "Fable枠"
+  },
+  "fableSharePill": {
+    "message": "Fable枠 $1"
+  },
+  "fableShareLabel": {
+    "message": "Fable枠（週間）"
+  },
+  "fableShareNear": {
+    "message": "Fable枠がまもなく上限に達します（$1）。$2 に切り替えてください。"
   }
 }

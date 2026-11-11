@@ -2,7 +2,8 @@
 // Copyright (c) 2026 Hayrettin Enes Karalı
 // Açılır pencere: limitler, kalan limitle yapılabilecekler (adım 7), kalibrasyon (adım 10), ayarlar.
 import { makeI18n, duration, clock, LANGS } from "../lib/i18n.js";
-import { capacity } from "../lib/forecast.js";
+import { capacity, resolveModel, RECOMMEND_LABEL } from "../lib/forecast.js";
+import { familyWindow, FAMILY_SHARE_WARN_PCT } from "../lib/usage.js";
 import { makeCalib, CALIB_VERSION } from "../lib/calibrate.js";
 import { SUPPORT_URL, CONTRIB_URL, FEEDBACK_URL } from "../lib/config.js";
 import { isConsented } from "../lib/consent.js";
@@ -63,11 +64,11 @@ function labelFor(key) {
   return `${base} · ${name.charAt(0).toUpperCase()}${name.slice(1)}`;
 }
 
-function limitRow(w, isBottleneck) {
+function limitRow(w, isBottleneck, label = null) {
   const el = document.createElement("div");
   el.className = "limit" + (isBottleneck ? " bottleneck" : "");
   const head = document.createElement("div"); head.className = "limit-head";
-  const name = document.createElement("span"); name.textContent = labelFor(w.key);
+  const name = document.createElement("span"); name.textContent = label || labelFor(w.key);
   const pct = document.createElement("strong"); pct.textContent = I.pct(w.pct);
   head.append(name, pct);
   const bar = document.createElement("div"); bar.className = "bar";
@@ -112,9 +113,22 @@ async function render() {
       }
       limits.append(row);
     }
-    if (usage.extras?.length) {
+    // Fable seçiliyken Fable'a özel haftalık pencere "Fable payı" olarak ana bölümde gösterilir (pencere yoksa hiçbir şey)
+    const fw = resolveModel(d.lastContext?.model).info?.family === "fable" ? familyWindow(usage, "fable") : null;
+    if (fw) {
+      const row = limitRow(fw, showB(fw), I.t("fableShareLabel"));
+      row.dataset.fableShare = "";
+      if (fw.pct >= FAMILY_SHARE_WARN_PCT) {
+        const n = document.createElement("p"); n.className = "small note";
+        n.textContent = I.t("fableShareNear", [I.pct(fw.pct), RECOMMEND_LABEL.opus]);
+        row.append(n);
+      }
+      limits.append(row);
+    }
+    const extras = (usage.extras || []).filter((w) => w !== fw);
+    if (extras.length) {
       const h = document.createElement("h2"); h.textContent = I.t("otherLimits"); limits.append(h);
-      for (const w of usage.extras) limits.append(limitRow(w, showB(w)));
+      for (const w of extras) limits.append(limitRow(w, showB(w)));
     }
   }
 
