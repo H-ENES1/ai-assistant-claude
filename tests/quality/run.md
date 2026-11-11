@@ -67,6 +67,15 @@ edilebilir ilk model (haiku → sonnet → opus). (a) hafif öneri: öneri bunda
 OTOMATİK değiştirme: öneriyi ayrı commit'te yap, `npm run test` (uygunluk ≥ %96, gerekenden hafif = 0) geçmeli,
 değişen her davranış için `tests/rec-cases.json`'a örnek ekle.
 
+## Eşik denemesi (yeni cevap gerekmez)
+`extension/lib/advisor.js` içinde bir eşiği değiştirdikten sonra aynı cevap ve puanlarla yeni öneriyi ölçmek için:
+```
+node tests/quality/build-prompts.mjs   # öneriyi yeni kodla yeniden hesaplar
+node tests/quality/analyze.mjs         # hafif / ağır sayıları yeniden çıkarır
+git diff tests/quality/tablolar.md     # ne değişti
+```
+`npm run test` yine geçmeli (uygunluk ≥ %96, gerekenden hafif = 0).
+
 ## Bilinen tuzaklar
 - Alt ajanlar Claude Code sistem istemiyle çalışır ve deponun `CLAUDE.md` dosyasını görür: claude.ai'deki
   cevapla birebir aynı değildir. Depo sahibiyle ilgili istemler (ör. "… kimdir") bulaşmalıdır.
