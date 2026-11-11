@@ -1,0 +1,2480 @@
+[
+ {
+  "id": "r01",
+  "set": "rec",
+  "prompt": "Türkiye'nin başkenti neresi?",
+  "authorOk": [
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "short_qa",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 4,
+  "domain": "general",
+  "sub": null,
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r02",
+  "set": "rec",
+  "prompt": "Işık hızı kaç km/s?",
+  "authorOk": [
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "short_qa",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 5,
+  "domain": "science",
+  "sub": "physics",
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r03",
+  "set": "rec",
+  "prompt": "Who wrote Pride and Prejudice?",
+  "authorOk": [
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "short_qa",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 5,
+  "domain": "general",
+  "sub": null,
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r04",
+  "set": "rec",
+  "prompt": "Bugün günlerden ne, 20 Ekim 2026 hangi güne denk geliyor?",
+  "authorOk": [
+   "haiku",
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "research",
+  "confidence": "high",
+  "complexity": 0.11,
+  "words": 8,
+  "domain": "general",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r05",
+  "set": "rec",
+  "prompt": "Bu cümleyi İngilizceye çevir: Yarın toplantıya katılamayacağım.",
+  "authorOk": [
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "translate",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 7,
+  "domain": "language",
+  "sub": "translation",
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r06",
+  "set": "rec",
+  "prompt": "Translate this into Turkish: The meeting has been moved to Friday.",
+  "authorOk": [
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "translate",
+  "confidence": "high",
+  "complexity": 0.02,
+  "words": 11,
+  "domain": "language",
+  "sub": "translation",
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r07",
+  "set": "rec",
+  "prompt": "Şu paragrafı Almancaya tercüme eder misin? Merhaba, ben Antalya'da fizik okuyorum.",
+  "authorOk": [
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "translate",
+  "confidence": "high",
+  "complexity": 0.02,
+  "words": 12,
+  "domain": "language",
+  "sub": "translation",
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r08",
+  "set": "rec",
+  "prompt": "Yazım hatalarını düzeltir misin? Bugun okula gittim ve cok yoruldum.",
+  "authorOk": [
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "rewrite",
+  "confidence": "high",
+  "complexity": 0.02,
+  "words": 10,
+  "domain": "general",
+  "sub": null,
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r09",
+  "set": "rec",
+  "prompt": "Make this email sound more professional: hey, can u send the file asap",
+  "authorOk": [
+   "haiku",
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "rewrite",
+  "confidence": "high",
+  "complexity": 0.02,
+  "words": 13,
+  "domain": "general",
+  "sub": null,
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r10",
+  "set": "rec",
+  "prompt": "Şu metni sadeleştir ve kısalt",
+  "authorOk": [
+   "haiku",
+   "sonnet"
+  ],
+  "noContext": "metin yok",
+  "type": "rewrite",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 5,
+  "domain": "general",
+  "sub": null,
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r11",
+  "set": "rec",
+  "prompt": "Bu makaleyi 5 maddede özetle",
+  "authorOk": [
+   "haiku",
+   "sonnet"
+  ],
+  "noContext": "makale yok",
+  "type": "summarize",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 4,
+  "domain": "general",
+  "sub": null,
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r12",
+  "set": "rec",
+  "prompt": "TL;DR of this thread please",
+  "authorOk": [
+   "haiku"
+  ],
+  "noContext": "sohbet yok",
+  "type": "summarize",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 6,
+  "domain": "software",
+  "sub": null,
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r13",
+  "set": "rec",
+  "prompt": "Kediler neden kutulara bu kadar meraklı?",
+  "authorOk": [
+   "haiku",
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "explain",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 6,
+  "domain": "daily",
+  "sub": "home",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "low",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r14",
+  "set": "rec",
+  "prompt": "Kuantum dolanıklık nedir, basitçe açıklar mısın?",
+  "authorOk": [
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "explain",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 6,
+  "domain": "science",
+  "sub": "physics",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r15",
+  "set": "rec",
+  "prompt": "How does a transistor work?",
+  "authorOk": [
+   "sonnet",
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "explain",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 5,
+  "domain": "engineering",
+  "sub": "electrical",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r16",
+  "set": "rec",
+  "prompt": "Gauss yasasının integral formunu bir örnekle anlatır mısın?",
+  "authorOk": [
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "explain",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 8,
+  "domain": "math",
+  "sub": "pure",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r17",
+  "set": "rec",
+  "prompt": "Hocama ödev teslimini ertelemesi için kibar bir e-posta yaz",
+  "authorOk": [
+   "sonnet",
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "writing",
+  "confidence": "high",
+  "complexity": 0.02,
+  "words": 10,
+  "domain": "education",
+  "sub": "homework",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r18",
+  "set": "rec",
+  "prompt": "Write a cover letter for a junior data analyst position.",
+  "authorOk": [
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "writing",
+  "confidence": "high",
+  "complexity": 0.02,
+  "words": 10,
+  "domain": "business",
+  "sub": "career",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r19",
+  "set": "rec",
+  "prompt": "Kara delikler hakkında Evrim Ağacı için 1500 kelimelik popüler bilim makalesi yaz",
+  "authorOk": [
+   "sonnet",
+   "opus"
+  ],
+  "noContext": null,
+  "type": "writing",
+  "confidence": "high",
+  "complexity": 0.02,
+  "words": 11,
+  "domain": "science",
+  "sub": "biology",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r20",
+  "set": "rec",
+  "prompt": "Write a short poem about the sea at night.",
+  "authorOk": [
+   "sonnet",
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "writing",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 9,
+  "domain": "literature",
+  "sub": "poetry",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "low",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r21",
+  "set": "rec",
+  "prompt": "Hafta sonu yapılacak 5 etkinlik fikri ver",
+  "authorOk": [
+   "haiku",
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "writing",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 6,
+  "domain": "daily",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "low",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r22",
+  "set": "rec",
+  "prompt": "x^2 - 5x + 6 = 0 denklemini çöz",
+  "authorOk": [
+   "haiku",
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "math",
+  "confidence": "high",
+  "complexity": 0.16,
+  "words": 4,
+  "domain": "math",
+  "sub": "pure",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "ok"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r23",
+  "set": "rec",
+  "prompt": "∫ x e^x dx integralini hesapla",
+  "authorOk": [
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "math",
+  "confidence": "high",
+  "complexity": 0.16,
+  "words": 6,
+  "domain": "math",
+  "sub": "pure",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "ok"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r24",
+  "set": "rec",
+  "prompt": "Bir zarın iki kez atılmasında toplamın 7 olma olasılığını hesapla",
+  "authorOk": [
+   "sonnet",
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "math",
+  "confidence": "high",
+  "complexity": 0.16,
+  "words": 9,
+  "domain": "math",
+  "sub": "pure",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "ok"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r25",
+  "set": "rec",
+  "prompt": "Schrödinger denklemini adım adım türet ve her adımı kanıtla, detaylı olsun",
+  "authorOk": [
+   "opus"
+  ],
+  "noContext": null,
+  "type": "math",
+  "confidence": "high",
+  "complexity": 0.81,
+  "words": 11,
+  "domain": "math",
+  "sub": "pure",
+  "tier": "opus",
+  "why": [
+   "complex"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "upgrade",
+   "suggested": "Opus 5.5",
+   "effort": "high",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "ok",
+   "suggested": "Opus 5.5",
+   "effort": "high",
+   "effortKind": "raise"
+  }
+ },
+ {
+  "id": "r26",
+  "set": "rec",
+  "prompt": "Prove that every bounded monotone sequence of real numbers converges, rigorously.",
+  "authorOk": [
+   "opus",
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "math",
+  "confidence": "high",
+  "complexity": 0.42,
+  "words": 11,
+  "domain": "math",
+  "sub": "pure",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "ok"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r27",
+  "set": "rec",
+  "prompt": "Hidrojen atomu için radyal dalga fonksiyonlarını türet, Laguerre polinomlarıyla ilişkisini kanıtla",
+  "authorOk": [
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "math",
+  "confidence": "high",
+  "complexity": 0.55,
+  "words": 11,
+  "domain": "math",
+  "sub": "pure",
+  "tier": "opus",
+  "why": [
+   "complex"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "upgrade",
+   "suggested": "Opus 5.5",
+   "effort": "high",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "ok",
+   "suggested": "Opus 5.5",
+   "effort": "high",
+   "effortKind": "raise"
+  }
+ },
+ {
+  "id": "r28",
+  "set": "rec",
+  "prompt": "Python'da bir listeyi ters çeviren fonksiyon yazar mısın?",
+  "authorOk": [
+   "sonnet",
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "high",
+  "complexity": 0.11,
+  "words": 9,
+  "domain": "software",
+  "sub": "general",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r29",
+  "set": "rec",
+  "prompt": "Write a JavaScript function that debounces another function.",
+  "authorOk": [
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "high",
+  "complexity": 0.11,
+  "words": 8,
+  "domain": "software",
+  "sub": "web",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r30",
+  "set": "rec",
+  "prompt": "Arduino ile sıcaklık sensöründen veri okuyan kod yaz",
+  "authorOk": [
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "high",
+  "complexity": 0.11,
+  "words": 8,
+  "domain": "engineering",
+  "sub": "electrical",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r31",
+  "set": "rec",
+  "prompt": "Write a SQL query that returns the top 10 customers by revenue.",
+  "authorOk": [
+   "sonnet",
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "high",
+  "complexity": 0.12,
+  "words": 11,
+  "domain": "software",
+  "sub": "systems",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r32",
+  "set": "rec",
+  "prompt": "Bu kodu çalıştırdığımda hata veriyor:\n```py\nfor i in range(len(a)+1):\n    print(a[i])\n```",
+  "authorOk": [
+   "sonnet",
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "code_fix",
+  "confidence": "high",
+  "complexity": 0.12,
+  "words": 15,
+  "domain": "software",
+  "sub": "general",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r33",
+  "set": "rec",
+  "prompt": "TypeError: Cannot read properties of undefined (reading 'map') — how do I fix this?",
+  "authorOk": [
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "code_fix",
+  "confidence": "high",
+  "complexity": 0.12,
+  "words": 13,
+  "domain": "software",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r34",
+  "set": "rec",
+  "prompt": "Bana kapsamlı bir e-ticaret sitesinin mimarisini tasarla, backend ve frontend dahil, production seviyesinde",
+  "authorOk": [
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "high",
+  "complexity": 0.64,
+  "words": 14,
+  "domain": "software",
+  "sub": "web",
+  "tier": "opus",
+  "why": [
+   "complex"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "upgrade",
+   "suggested": "Opus 5.5",
+   "effort": "xhigh",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "ok",
+   "suggested": "Opus 5.5",
+   "effort": "xhigh",
+   "effortKind": "raise"
+  }
+ },
+ {
+  "id": "r35",
+  "set": "rec",
+  "prompt": "Design a scalable architecture for a real-time chat app with 1M users, including database sharding and failover.",
+  "authorOk": [
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "high",
+  "complexity": 0.65,
+  "words": 18,
+  "domain": "software",
+  "sub": "systems",
+  "tier": "opus",
+  "why": [
+   "complex"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "upgrade",
+   "suggested": "Opus 5.5",
+   "effort": "xhigh",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "ok",
+   "suggested": "Opus 5.5",
+   "effort": "xhigh",
+   "effortKind": "raise"
+  }
+ },
+ {
+  "id": "r36",
+  "set": "rec",
+  "prompt": "Mikroservis mimarisinde dağıtık işlem yönetimini (saga pattern) tasarla ve örnek kodla açıkla",
+  "authorOk": [
+   "opus"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "high",
+  "complexity": 0.64,
+  "words": 12,
+  "domain": "software",
+  "sub": "general",
+  "tier": "opus",
+  "why": [
+   "complex"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "upgrade",
+   "suggested": "Opus 5.5",
+   "effort": "xhigh",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "ok",
+   "suggested": "Opus 5.5",
+   "effort": "xhigh",
+   "effortKind": "raise"
+  }
+ },
+ {
+  "id": "r37",
+  "set": "rec",
+  "prompt": "Bu React uygulamasını baştan sona refactor et, state yönetimini Redux'tan Zustand'a taşı, tüm testleri güncelle",
+  "authorOk": [
+   "opus",
+   "sonnet"
+  ],
+  "noContext": "kod yok",
+  "type": "code_fix",
+  "confidence": "high",
+  "complexity": 0.39,
+  "words": 17,
+  "domain": "software",
+  "sub": "general",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r38",
+  "set": "rec",
+  "prompt": "Bir sistem tasarla: kullanıcıların Claude limitlerini tahmin eden bir tarayıcı eklentisi",
+  "authorOk": [
+   "opus",
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "high",
+  "complexity": 0.25,
+  "words": 11,
+  "domain": "software",
+  "sub": "web",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r39",
+  "set": "rec",
+  "prompt": "Bu CSV dosyasındaki satışları aylara göre analiz et",
+  "authorOk": [
+   "sonnet"
+  ],
+  "noContext": "dosya yok",
+  "type": "data_analysis",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 8,
+  "domain": "data_ai",
+  "sub": "data",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r40",
+  "set": "rec",
+  "prompt": "Excel tablosundaki notların ortalamasını ve standart sapmasını bul",
+  "authorOk": [
+   "sonnet",
+   "haiku"
+  ],
+  "noContext": "tablo yok",
+  "type": "data_analysis",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 8,
+  "domain": "data_ai",
+  "sub": "data",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r41",
+  "set": "rec",
+  "prompt": "2026'daki en iyi öğrenci laptopları hangileri, fiyatlarıyla karşılaştır",
+  "authorOk": [
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "research",
+  "confidence": "high",
+  "complexity": 0.11,
+  "words": 8,
+  "domain": "education",
+  "sub": "teaching",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r42",
+  "set": "rec",
+  "prompt": "Plazmonik indis artırımı üzerine son 5 yılın literatürünü tara, yöntemleri karşılaştır ve açık problemleri çıkar",
+  "authorOk": [
+   "opus",
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "research",
+  "confidence": "high",
+  "complexity": 0.38,
+  "words": 14,
+  "domain": "science",
+  "sub": "physics",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "ok"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r43",
+  "set": "rec",
+  "prompt": "Bu konuyla ilgili 10 slaytlık bir sunum hazırla",
+  "authorOk": [
+   "sonnet"
+  ],
+  "noContext": "konu yok",
+  "type": "file_create",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 7,
+  "domain": "general",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r44",
+  "set": "rec",
+  "prompt": "Bütçe takibi için bir Excel dosyası oluştur",
+  "authorOk": [
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "file_create",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 7,
+  "domain": "data_ai",
+  "sub": "data",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r45",
+  "set": "rec",
+  "prompt": "Bir yatırım kararı vermem lazım: şu üç seçeneğin risklerini, vergi etkilerini ve uzun vadeli getirilerini derinlemesine analiz et",
+  "authorOk": [
+   "opus",
+   "sonnet"
+  ],
+  "noContext": "seçenekler yok",
+  "type": "data_analysis",
+  "confidence": "medium",
+  "complexity": 0.55,
+  "words": 18,
+  "domain": "finance",
+  "sub": "investing",
+  "tier": "opus",
+  "why": [
+   "complex"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "upgrade",
+   "suggested": "Opus 5.5",
+   "effort": "xhigh",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "ok",
+   "suggested": "Opus 5.5",
+   "effort": "xhigh",
+   "effortKind": "raise"
+  }
+ },
+ {
+  "id": "r46",
+  "set": "rec",
+  "prompt": "Strateji öner: üniversitemizin bilim topluluğu için 1 yıllık kapsamlı bir büyüme planı hazırla, bütçe ve riskler dahil",
+  "authorOk": [
+   "sonnet",
+   "opus"
+  ],
+  "noContext": null,
+  "type": "writing",
+  "confidence": "medium",
+  "complexity": 0.42,
+  "words": 16,
+  "domain": "finance",
+  "sub": "personal",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "r47",
+  "set": "rec",
+  "prompt": "Merhaba",
+  "authorOk": [
+   "haiku",
+   "sonnet"
+  ],
+  "noContext": "selam",
+  "type": "short_qa",
+  "confidence": "low",
+  "complexity": 0,
+  "words": 1,
+  "domain": "general",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [
+   "unsure_safe"
+  ],
+  "shown": false,
+  "fromSonnet": null,
+  "fromOpus": null
+ },
+ {
+  "id": "r48",
+  "set": "rec",
+  "prompt": "Teşekkürler!",
+  "authorOk": [
+   "haiku",
+   "sonnet"
+  ],
+  "noContext": "selam",
+  "type": "short_qa",
+  "confidence": "low",
+  "complexity": 0,
+  "words": 1,
+  "domain": "general",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [
+   "unsure_safe"
+  ],
+  "shown": false,
+  "fromSonnet": null,
+  "fromOpus": null
+ },
+ {
+  "id": "r49",
+  "set": "rec",
+  "prompt": "Devam et",
+  "authorOk": [
+   "haiku",
+   "sonnet",
+   "opus"
+  ],
+  "noContext": "önceki sohbet yok",
+  "type": "code_fix",
+  "confidence": "low",
+  "complexity": 0.1,
+  "words": 2,
+  "domain": "general",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [],
+  "shown": false,
+  "fromSonnet": null,
+  "fromOpus": null
+ },
+ {
+  "id": "r50",
+  "set": "rec",
+  "prompt": "Bunu bir daha düşün, emin misin?",
+  "authorOk": [
+   "haiku",
+   "sonnet",
+   "opus"
+  ],
+  "noContext": "önceki sohbet yok",
+  "type": "writing",
+  "confidence": "low",
+  "complexity": 0.01,
+  "words": 6,
+  "domain": "general",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "c01",
+  "set": "chatty",
+  "prompt": "test mesajı",
+  "authorOk": [
+   "sonnet",
+   "opus"
+  ],
+  "noContext": "önceki sohbet yok",
+  "type": "code_fix",
+  "confidence": "low",
+  "complexity": 0.1,
+  "words": 2,
+  "domain": "general",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [],
+  "shown": false,
+  "fromSonnet": null,
+  "fromOpus": null
+ },
+ {
+  "id": "c02",
+  "set": "chatty",
+  "prompt": "ikinci ölçümü almadı gibi",
+  "authorOk": [
+   "sonnet",
+   "opus"
+  ],
+  "noContext": "önceki sohbet yok",
+  "type": "explain",
+  "confidence": "low",
+  "complexity": 0.01,
+  "words": 4,
+  "domain": "general",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "c03",
+  "set": "chatty",
+  "prompt": "olm bayadır kullanıom bu kişisel ölçüm saymıyor sanırım",
+  "authorOk": [
+   "sonnet",
+   "opus"
+  ],
+  "noContext": "önceki sohbet yok",
+  "type": "code_fix",
+  "confidence": "low",
+  "complexity": 0.11,
+  "words": 8,
+  "domain": "general",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "c04",
+  "set": "chatty",
+  "prompt": "evet çalışıyor ama ekler kısmını ekleyip çıkarınca prompt değişmiyor öyle mi olması lazım",
+  "authorOk": [
+   "sonnet",
+   "opus"
+  ],
+  "noContext": "önceki sohbet yok",
+  "type": "code_fix",
+  "confidence": "low",
+  "complexity": 0.12,
+  "words": 13,
+  "domain": "data_ai",
+  "sub": "llm",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "c05",
+  "set": "chatty",
+  "prompt": "önce bunu bi incele hatayı koddan bulmaya çalış",
+  "authorOk": [
+   "sonnet",
+   "opus"
+  ],
+  "noContext": "kod yok",
+  "type": "code_fix",
+  "confidence": "low",
+  "complexity": 0.11,
+  "words": 8,
+  "domain": "software",
+  "sub": "general",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "c06",
+  "set": "chatty",
+  "prompt": "9.4 te hala kişi kullanınca kendini güncelliyor demi kendi kendine veri topluyor ve öğreniyor",
+  "authorOk": [
+   "sonnet",
+   "opus"
+  ],
+  "noContext": "önceki sohbet yok",
+  "type": "explain",
+  "confidence": "high",
+  "complexity": 0.02,
+  "words": 13,
+  "domain": "general",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "c07",
+  "set": "chatty",
+  "prompt": "eklentiyi açamadım",
+  "authorOk": [
+   "sonnet",
+   "opus"
+  ],
+  "noContext": "önceki sohbet yok",
+  "type": "explain",
+  "confidence": "high",
+  "complexity": 0,
+  "words": 2,
+  "domain": "general",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [],
+  "shown": false,
+  "fromSonnet": null,
+  "fromOpus": null
+ },
+ {
+  "id": "c08",
+  "set": "chatty",
+  "prompt": "hayrettin enes karalı kimdir",
+  "authorOk": [
+   "sonnet",
+   "haiku",
+   "opus"
+  ],
+  "noContext": "alt ajanın bağlamında depo sahibi bilgisi var (bulaşma)",
+  "type": "short_qa",
+  "confidence": "low",
+  "complexity": 0.01,
+  "words": 4,
+  "domain": "general",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [
+   "unsure_safe"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "low",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "c09",
+  "set": "chatty",
+  "prompt": "Bu kelimeyi Fransızcaya çevir: kitap",
+  "authorOk": [
+   "haiku",
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "translate",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 5,
+  "domain": "language",
+  "sub": "translation",
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "c10",
+  "set": "chatty",
+  "prompt": "Şu cümledeki yazım hatalarını düzelt: bugun hava cok guzel",
+  "authorOk": [
+   "haiku",
+   "sonnet"
+  ],
+  "noContext": null,
+  "type": "rewrite",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 9,
+  "domain": "general",
+  "sub": null,
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "t01",
+  "set": "trap",
+  "prompt": "Bir site yaptırmam lazım, bu zor bir iş. Sitede çeviri sistemi de olacak, TR ve EN.",
+  "authorOk": [
+   "sonnet",
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "high",
+  "complexity": 0.46,
+  "words": 16,
+  "domain": "language",
+  "sub": "translation",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "t02",
+  "set": "trap",
+  "prompt": "Çok dilli bir web sitesi yapıyorum, çeviri özelliği olan, kullanıcı girişli, veritabanlı. Baştan sona kodla.",
+  "authorOk": [
+   "sonnet",
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "high",
+  "complexity": 0.45,
+  "words": 15,
+  "domain": "software",
+  "sub": "web",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "ok"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "t03",
+  "set": "trap",
+  "prompt": "Çeviri uygulaması geliştirmek istiyorum, mimariyi tasarla",
+  "authorOk": [
+   "sonnet",
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "low",
+  "complexity": 0.57,
+  "words": 6,
+  "domain": "language",
+  "sub": "translation",
+  "tier": "opus",
+  "why": [
+   "complex"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "upgrade",
+   "suggested": "Opus 5.5",
+   "effort": "xhigh",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "ok",
+   "suggested": "Opus 5.5",
+   "effort": "xhigh",
+   "effortKind": "raise"
+  }
+ },
+ {
+  "id": "t04",
+  "set": "trap",
+  "prompt": "Sitemi çeviri eklentisiyle ingilizceye açmak istiyorum, nasıl bir yol izlemeliyim",
+  "authorOk": [
+   "sonnet",
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "medium",
+  "complexity": 0.32,
+  "words": 10,
+  "domain": "language",
+  "sub": "translation",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "t05",
+  "set": "trap",
+  "prompt": "Sitem için çeviri sistemi kurmam gerekiyor, hangi yöntem iyi",
+  "authorOk": [
+   "sonnet",
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "research",
+  "confidence": "low",
+  "complexity": 0.31,
+  "words": 9,
+  "domain": "language",
+  "sub": "translation",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "t06",
+  "set": "trap",
+  "prompt": "Mobil uygulamamı İngilizceye çevirecek bir sistem kurmak istiyorum, zor mu",
+  "authorOk": [
+   "sonnet",
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "medium",
+  "complexity": 0.45,
+  "words": 10,
+  "domain": "software",
+  "sub": "mobile",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "ok"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "t07",
+  "set": "trap",
+  "prompt": "I need to build a website with a translation feature for 5 languages, where do I start?",
+  "authorOk": [
+   "sonnet",
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "low",
+  "complexity": 0.33,
+  "words": 16,
+  "domain": "software",
+  "sub": "web",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "ok"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "t08",
+  "set": "trap",
+  "prompt": "Help me build a translation app that works offline, it's a hard project",
+  "authorOk": [
+   "sonnet",
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "explain",
+  "confidence": "high",
+  "complexity": 0.22,
+  "words": 14,
+  "domain": "project",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "ok"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "t09",
+  "set": "trap",
+  "prompt": "Add i18n to my React project and translate all the strings to Turkish, German and French",
+  "authorOk": [
+   "sonnet",
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "medium",
+  "complexity": 0.33,
+  "words": 17,
+  "domain": "software",
+  "sub": "web",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "ok"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "t10",
+  "set": "trap",
+  "prompt": "Bir özetleme uygulaması yapmak istiyorum, nasıl başlamalıyım",
+  "authorOk": [
+   "sonnet",
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "explain",
+  "confidence": "low",
+  "complexity": 0.21,
+  "words": 7,
+  "domain": "general",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "t11",
+  "set": "trap",
+  "prompt": "Write a Python script that summarizes PDFs and translates them",
+  "authorOk": [
+   "sonnet",
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "high",
+  "complexity": 0.12,
+  "words": 10,
+  "domain": "software",
+  "sub": "general",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "t12",
+  "set": "trap",
+  "prompt": "Tüm backend kodumu baştan yazmam gerekiyor, yeniden yaz diyorum ama nasıl planlarım",
+  "authorOk": [
+   "sonnet",
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "code_fix",
+  "confidence": "low",
+  "complexity": 0.12,
+  "words": 12,
+  "domain": "software",
+  "sub": "web",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "medium",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "t13",
+  "set": "trap",
+  "prompt": "Bu zor bir iş: e-ticaret sitesi yaptıracağım, ödeme sistemi ve çoklu dil de olacak",
+  "authorOk": [
+   "sonnet",
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "high",
+  "complexity": 0.45,
+  "words": 15,
+  "domain": "business",
+  "sub": "marketing",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "ok"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "t14",
+  "set": "trap",
+  "prompt": "Rapor yazmak zor bir iş, uzun bir proje raporu hazırlamam lazım, kısaca nasıl yapılır anlat",
+  "authorOk": [
+   "sonnet",
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "file_create",
+  "confidence": "low",
+  "complexity": 0.15,
+  "words": 15,
+  "domain": "general",
+  "sub": null,
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "low",
+   "effortKind": "lower"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "t15",
+  "set": "trap",
+  "prompt": "Şirketimin sitesini yeniden tasarlatacağım, İngilizce sürümü de olacak, ne yapmalıyım",
+  "authorOk": [
+   "sonnet",
+   "opus",
+   "fable"
+  ],
+  "noContext": null,
+  "type": "code_write",
+  "confidence": "low",
+  "complexity": 0.45,
+  "words": 10,
+  "domain": "business",
+  "sub": "management",
+  "tier": "sonnet",
+  "why": [],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "ok",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "ok"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Sonnet 5.5",
+   "effort": "high",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "k01",
+  "set": "control",
+  "prompt": "Bu cümleyi İngilizceye çevir: yarın görüşürüz",
+  "authorOk": [
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "translate",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 6,
+  "domain": "language",
+  "sub": "translation",
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "k02",
+  "set": "control",
+  "prompt": "Translate to Turkish: I will be late tomorrow",
+  "authorOk": [
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "translate",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 8,
+  "domain": "language",
+  "sub": "translation",
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "k03",
+  "set": "control",
+  "prompt": "Bu paragrafı Almancaya çevir: Toplantı yarın saat onda başlayacak.",
+  "authorOk": [
+   "haiku"
+  ],
+  "noContext": null,
+  "type": "translate",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 9,
+  "domain": "language",
+  "sub": "translation",
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "k04",
+  "set": "control",
+  "prompt": "Please translate this email into French",
+  "authorOk": [
+   "haiku"
+  ],
+  "noContext": "e-posta yok",
+  "type": "translate",
+  "confidence": "high",
+  "complexity": 0.01,
+  "words": 6,
+  "domain": "language",
+  "sub": "translation",
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ },
+ {
+  "id": "k05",
+  "set": "control",
+  "prompt": "Şunu özetle: kısa bir metin burada yer alıyor ve üç cümle",
+  "authorOk": [
+   "haiku"
+  ],
+  "noContext": "yer tutucu metin",
+  "type": "summarize",
+  "confidence": "high",
+  "complexity": 0.02,
+  "words": 11,
+  "domain": "general",
+  "sub": null,
+  "tier": "haiku",
+  "why": [
+   "simple_task"
+  ],
+  "shown": true,
+  "fromSonnet": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  },
+  "fromOpus": {
+   "kind": "save",
+   "suggested": "Haiku 5.5",
+   "effort": "low",
+   "effortKind": "with_switch"
+  }
+ }
+]

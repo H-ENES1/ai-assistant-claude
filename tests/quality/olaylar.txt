@@ -1,0 +1,7 @@
+r05.haiku: ajan cevabı dönüş mesajında tekrar etti (hakem gördü) → dosya silindi, yeniden cevaplatıldı
+r10.haiku: dönüş mesajı cevabın niteliğini sezdirdi (istemin kendisini sadeleştirmiş); içerik görülmedi, yeniden çalıştırılmadı (bağlamsız istem)
+r12.haiku: dönüş mesajı cevabın niteliğini sezdirdi (bir TL;DR yazmış); içerik görülmedi, yeniden çalıştırılmadı (bağlamsız istem)
+r48.haiku: dönüş mesajı cevabın tek satır olduğunu söyledi; içerik görülmedi (bağlamsız istem)
+r50.haiku: dönüş mesajı cevabın özünü söyledi (hangi iddia olduğunu soruyor); yeniden çalıştırılmadı (bağlamsız istem)
+c01–c03 (9 ajan): oturum limiti doldu (HTTP 429), cevap yazılamadı → limit yenilenince yeniden başlatıldı
+dal karışıklığı: başka bir oturum aynı klasörde fable-5-2 dalına geçti; ara commit yanlış dala gitti, gönderilmeden geri alındı ve iş ayrı worktree'ye taşındı. prompts.json o geçişten ÖNCE, main (456c011) koduyla üretildi.
