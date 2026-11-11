@@ -17,6 +17,7 @@ extension/              ← tarayıcıya yüklenen klasör (manifest.json burada
   popup/report.*        haftalık rapor sayfası
   _locales/{en,tr}/     tüm kullanıcı metinleri
 tests/                  unit, learn, report, contrib, advisor (+rec-cases.json) testleri, e2e.cjs (Playwright, 43 kontrol)
+tests/quality/          öneri kalitesi ölçümü: RAPOR.md (sonuç), run.md (yeniden çalıştırma), build-prompts/blind/analyze betikleri
 tests/ml/               train.tsv (600), test.tsv + test2.tsv (120+120, ayrı yazılmış), train.mjs (eğit + karşılaştır)
 tools/                  build-release.mjs (küçültülmüş mağaza paketi), aggregate.mjs (topluluk katkılarını birleştir)
 .github/ISSUE_TEMPLATE/ katki.yml (topluluk verisi), anket.yml, hata.yml
@@ -47,7 +48,8 @@ npm run e2e    # Playwright, sahte claude.ai (43 kontrol). PW_EXPERIMENTAL_SERVI
 ## Bilinen durum
 
 - Gerçek claude.ai'de (Ekim 2026) doğrulandı: mesaj kutusu, model ve effort seçicileri, kullanım okuma, sayfa yoluyla ölçüm (v0.9.5'te 3 ölçüm). claude.ai mesajı bir Web Worker'dan gönderiyor; fetch kancası gönderimi görmez, asıl ölçüm yolu sayfa yapısıdır (content.js domTick). Uzun sohbetlerde eski mesajlar sayfadan kaldırılır: mesaj SAYISINA güvenme.
-- Öneri kalitesi (Haiku gerçekten yeterli mi) ölçülmedi. Plan limit büyüklükleri (k) kaba önsel (topluluk önselleri gelene kadar).
+- Öneri kalitesi ilk kez ölçüldü (11.11.2026, `tests/quality/RAPOR.md`; 80 istem × Haiku/Sonnet/Opus, kör model hakem). Kendi başına cevaplanabilir 58 istemde: Haiku önerilen 13'ün 13'ünde Haiku cevabı ≥ 4; gerekenden hafif öneri 5 (%9, aralık %4–19); gereksiz ağır öneri 33 (%57; cevaplar 400 kelimeyle sınırlı olduğu için üst sınır). Eşikler değişmedi (kanıt yetersiz). Ölçülmeyenler: effort önerisi, Fable kademesi, uzun cevap isteyen işler, insan hakem. Yeniden çalıştırma: `tests/quality/run.md` (abonelik limitini harcar, `npm run test`'e dahil değil).
+- Plan limit büyüklükleri (k) kaba önsel (topluluk önselleri gelene kadar).
 - Lisans (22.10.2026 kararı): GNU AGPL-3.0-or-later (LICENSE, NOTICE). Kod açık kaynak; ad ve logo lisans dışı (AGPL madde 7(e), NOTICE). Derlenmiş JS dosya başlığında SPDX ve kaynak adresi var (https://github.com/H-ENES1/ai-assistant-claude; depo 23.10.2026 tarihinde ai-assistant-claude olarak yeniden adlandırıldı). Önceki "tüm hakları saklı" kararı ve BSL fikri terk edildi.
 - Sınıflandırıcı: test2 (gündelik dil) kurallar %64 → karma %88. Gerçek kullanıcı mesajlarıyla ölçülmedi.
 - Topluluk verisi: claude.ai artifact veritabanına kuruluş dışı ziyaretçi yazamıyor; bu yüzden GitHub konu formu (katki.yml) + tools/aggregate.mjs. Katkı metin içermez (contrib.test.mjs bunu denetler).
