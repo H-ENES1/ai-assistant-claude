@@ -371,7 +371,7 @@ footer .wrap { display: grid; gap: 8px; }
           <textarea id="prompt" spellcheck="false"></textarea>
           <div class="controls">
             <label><span data-i="cModel">Model</span>
-              <select id="model"><option>Haiku 5.5</option><option selected>Sonnet 5.5</option><option>Opus 5.5</option><option>Fable 5.1</option></select></label>
+              <select id="model"><option>Haiku 5.5</option><option selected>Sonnet 5.5</option><option>Opus 5.5</option><option>Fable 5.2</option></select></label>
             <label><span data-i="cEffort">Effort</span>
               <select id="effort"><option value="low" data-i="eLow">Düşük</option><option value="medium" selected data-i="eMed">Orta</option><option value="high" data-i="eHigh">Yüksek</option><option value="xhigh" data-i="eXh">Çok yüksek</option><option value="max" data-i="eMax">Maksimum</option></select></label>
             <label><span data-i="cPlan">Plan</span>
@@ -1195,7 +1195,7 @@ function renderProof() {
 function renderModels() {
   const L = Ui();
   // claude.ai'de sistem talimatı ve hafızayla bağlam 100K'yı aştığı için Haiku'nun uzun bağlam fiyatı geçerli (0,5)
-  const rows = [["haiku", "Haiku 5.5", 0.5], ["sonnet", "Sonnet 5.5", 2], ["opus", "Opus 5.5", 4], ["fable", "Fable 5.1", 10]];
+  const rows = [["haiku", "Haiku 5.5", 0.5], ["sonnet", "Sonnet 5.5", 2], ["opus", "Opus 5.5", 4], ["fable", "Fable 5.2", 10]];
   $("modelCards").innerHTML = rows.map(([k, name, w]) => {
     const rel = w / 2;
     const relTxt = lang === "tr" ? `${nf().format(rel)} kat` : `${nf().format(rel)}×`;
