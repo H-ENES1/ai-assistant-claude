@@ -8,7 +8,7 @@
     "test": "cd tests && node unit.test.mjs && node learn.test.mjs && node report.test.mjs && node contrib.test.mjs && node advisor.test.mjs && node effort.test.mjs && node domain.test.mjs && node traps.test.mjs && node lang.test.mjs",
     "train": "node tests/ml/train.mjs",
     "aggregate": "node tools/aggregate.mjs",
-    "e2e": "cd tests && PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 node e2e.cjs",
+    "e2e": "cd tests && node e2e.cjs",
     "build": "node tools/build-release.mjs",
     "proof": "node tests/learning-proof.mjs",
     "proof:classifier": "node tests/classifier-learning.mjs"

@@ -2,6 +2,9 @@
 // Copyright (c) 2026 Hayrettin Enes Karalı
 // Uçtan uca test: eklentiyi Chromium'a yükler, claude.ai'yi taklit eden sahte bir sayfa ve
 // sahte API ile çalıştırır. Çalıştır: node e2e.cjs
+// Arka plan servisinin istekleri sahte sunucuya gitsin (yoksa 4-5 kontrol yanlışlıkla kırmızı olur).
+// Burada ayarlanır ki Windows'ta da (npm betikleri cmd.exe ile çalışır) "npm run e2e" çalışsın.
+process.env.PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS ||= "1";
 const { chromium } = require("playwright");
 const path = require("path");
 const fs = require("fs");
