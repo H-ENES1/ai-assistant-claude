@@ -8,7 +8,7 @@
 
 [English README](README.md) · [Web sitesi](https://h-enes1.github.io/ai-assistant-claude/) · [Sürümler](https://github.com/H-ENES1/ai-assistant-claude/releases)
 
-Sürüm 0.12.1 · [GNU AGPL-3.0-or-later](LICENSE)
+Sürüm 0.12.2 · [GNU AGPL-3.0-or-later](LICENSE)
 
 <a href="https://h-enes1.github.io/ai-assistant-claude/"><img src="site/video/kapak-tr.jpg" alt="Tanıtım videosunun kapağı. Tıklayınca 47 saniyelik video ve canlı demo olan web sitesi açılır." width="720"></a>
 
