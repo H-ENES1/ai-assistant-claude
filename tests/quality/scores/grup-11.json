@@ -1,0 +1,7 @@
+{"group": 11, "items": [
+ {"id": "t14", "A": 5, "B": 4.5, "C": 4.5, "note": "Üçü de doğru adımları veriyor; A 'kısaca' isteğine en uygun, B ve C daha uzun."},
+ {"id": "t01", "A": 5, "B": 4.5, "C": 5, "note": "A ve C siteyi yaptıracak kişiye göre (teklif, brif, sorulacaklar) konuşuyor; B doğru ama geliştiren kişiye göre teknik."},
+ {"id": "r18", "A": 4.5, "B": 5, "C": 4, "note": "B başlık, doldurulacak örnekler ve ipuçlarıyla en kullanışlı; A kısa ama yeterli; C kullanıcının bilmediği başarıları (yüzde 9 artış, staj) uyduruyor."},
+ {"id": "r09", "A": 5, "B": 5, "C": 4.5, "note": "Üçü de profesyonel sürüm veriyor; A ve B iki ton seçeneği sunuyor, C tek ve biraz katı."},
+ {"id": "r28", "A": 5, "B": 5, "C": 5, "note": "Üçü de doğru ve çalışan çözümler (dilimleme, yerinde, elle) veriyor."}
+]}

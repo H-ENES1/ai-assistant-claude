@@ -1,0 +1,7 @@
+{"group": 12, "items": [
+ {"id": "r03", "A": 5, "B": 5, "C": 5, "note": "Üçü de Jane Austen ve 1813'ü doğru veriyor."},
+ {"id": "r25", "A": 5, "B": 5, "C": 4.5, "note": "Üçü de denklemin postüla olduğunu söyleyip sezgisel çıkarımı doğru veriyor; A ve B hangi adımın kanıt hangisinin varsayım olduğunu ayırıyor, C potansiyeli gerekçesiz ekliyor."},
+ {"id": "r02", "A": 5, "B": 5, "C": 5, "note": "Üçü de 299.792,458 km/s değerini doğru veriyor."},
+ {"id": "t06", "A": 5, "B": 4.5, "C": 5, "note": "Üçü de asıl işin metinleri koddan ayırmak olduğunu söylüyor; A ve C tuzaklar ve emek tahmininde daha eksiksiz."},
+ {"id": "r47", "A": 5, "B": 5, "C": 5, "note": "Üçü de uygun selamlama."}
+]}

@@ -1,0 +1,7 @@
+{"group": 13, "items": [
+ {"id": "c01", "A": 5, "B": 5, "C": 5, "note": "Üçü de mesajın ulaştığını söyleyip yardım teklif ediyor."},
+ {"id": "c08", "A": 5, "B": 5, "C": 5, "note": "Üçü de kişi hakkında bilgisi olmadığını söylüyor, uydurmuyor ve mahremiyete dikkat çekiyor."},
+ {"id": "r10", "A": 2, "B": 2, "C": 5, "note": "C metnin gelmediğini söylüyor; A ve B ölçüm düzeninin iç talimatını 'metin' sanıp onu sadeleştiriyor."},
+ {"id": "r06", "A": 5, "B": 4.5, "C": 4.5, "note": "Üçü de doğru; A erteleme/öne alma ayrımını not ediyor, B gün adını gereksiz büyük yazıyor, C 'taşındı' ile birebir çeviriyor."},
+ {"id": "c07", "A": 4, "B": 4.5, "C": 5, "note": "C önce neyin kastedildiğini sorup duruma göre ayırıyor; B tarayıcı varsayımıyla ayrıntılı; A genel ve varsayımlı adım listesi."}
+]}
