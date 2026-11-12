@@ -545,6 +545,14 @@
   const sStr = (v, n) => (typeof v === "string" ? v.slice(0, n) : "");
   const sId = (v) => (typeof v === "string" && /^[\w:.-]{1,64}$/.test(v) ? v : null);
   const sAt = (v) => (Number.isFinite(v) && Math.abs(v - Date.now()) < 5 * 60000 ? v : Date.now());
+  // Tanı günlüğü hata bildirimi için panoya kopyalanabilir: sayfanın verdiği serbest metin oraya girmemeli.
+  // Yalnızca kısa tanımlayıcılar; yolda her parça ayrı denetlenir, uymayan ya da kimlik benzeri parça "*" olur.
+  const sTok = (v, n = 24) => (typeof v === "string" && new RegExp(`^[A-Za-z_][\\w.-]{0,${n - 1}}$`).test(v) ? v : "");
+  const sPath = (v) => {
+    if (typeof v !== "string" || v[0] !== "/" || v.length > 300) return "";
+    const segs = v.split("?")[0].split("/").slice(1, 9).map((s) => (s === ":id" ? s : /^[a-z_][a-z0-9_.-]{0,31}$/i.test(s) && !/\d{4}|[0-9a-f]{12}/i.test(s) ? s : "*"));
+    return "/" + segs.join("/");
+  };
   function cleanLimit(ml) {
     const ws = ml && typeof ml === "object" && ml.windows && typeof ml.windows === "object" ? ml.windows : null;
     if (!ws) return null;
@@ -552,7 +560,7 @@
     for (const k of ["5h", "7d"]) {
       const w = ws[k];
       if (!w || typeof w !== "object" || typeof w.utilization !== "number" || !Number.isFinite(w.utilization)) continue;
-      out[k] = { utilization: w.utilization, resets_at: Number.isFinite(w.resets_at) ? w.resets_at : typeof w.resets_at === "string" ? w.resets_at.slice(0, 40) : null, status: sStr(w.status, 24) };
+      out[k] = { utilization: w.utilization, resets_at: Number.isFinite(w.resets_at) ? w.resets_at : typeof w.resets_at === "string" ? w.resets_at.slice(0, 40) : null, status: sTok(w.status) };
     }
     return Object.keys(out).length ? { windows: out } : null;
   }
@@ -562,7 +570,7 @@
       case "send": {
         const id = sId(d.id), conv = sId(d.conv);
         if (!id || !conv) return null;
-        const keys = Array.isArray(d.body?.keys) ? d.body.keys.filter((k) => typeof k === "string").slice(0, 40).map((k) => k.slice(0, 40)) : null;
+        const keys = Array.isArray(d.body?.keys) ? d.body.keys.map((k) => sTok(k, 40)).filter(Boolean).slice(0, 40) : null;
         return { kind: "send", id, conv, retry: !!d.retry, at: sAt(d.at), body: keys ? { keys } : null };
       }
       case "done": {
@@ -572,8 +580,8 @@
           error: typeof d.error === "number" ? d.error : d.error ? "network" : null, aborted: !!d.aborted, at: sAt(d.at) };
       }
       case "hello": return { kind: "hello", wrapped: !!d.wrapped, sawCompletion: Number.isFinite(d.sawCompletion) ? Math.max(0, Math.min(1e6, Math.round(d.sawCompletion))) : 0 };
-      case "perf": return { kind: "perf", path: sStr(d.path, 120), via: sStr(d.via, 20) };
-      case "worker": case "probe": return { kind: d.kind, path: sStr(d.path, 120) };
+      case "perf": return { kind: "perf", path: sPath(d.path), via: sTok(d.via, 20) };
+      case "worker": case "probe": return { kind: d.kind, path: sPath(d.path) };
     }
     return null;
   }

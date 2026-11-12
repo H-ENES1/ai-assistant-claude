@@ -15,7 +15,12 @@ const OUT = path.resolve(__dirname, "shots");
 fs.mkdirSync(OUT, { recursive: true });
 const CONV = "0b1c2d3e-0000-4000-8000-123456789abc";
 const now = Date.now();
-const state = { usage5h: 19, usage7d: 17, usageFable: 85, completions: 0, lastPrompt: null };
+const state = { usage5h: 19, usage7d: 17, usageFable: 85, completions: 0, lastPrompt: null, usageFail: false, convFail: false };
+// Gizlilik denetimi: testte yazılan / sayfada duran metinler ve dosya adları. Bunlar sayfanın kendi /completion
+// isteği dışında hiçbir istekte ve eklentinin deposunda hiçbir anahtarda görünmemeli.
+const EVIL = "SAHTE-SIZINTI-7f3a";
+const SENTINELS = ["Kuantum dolanıklık", "toplantıya katılamayacağım", "Laguerre", "debounces another", "Fotosentez", "Hello there", "formülü açıkla",
+  "kuantum tünelleme", "Kuantum tünelleme", "enerji engelini", "ONAY-ONCESI-GIZLI-METIN", "gizli-dosya", "img.png", "Elbette! İşte", EVIL];
 
 const PAGE = `<!doctype html><html><head><meta charset="utf-8"><title>Claude</title>
 <style>body{font-family:sans-serif;margin:0;background:#faf9f5} main{max-width:760px;margin:0 auto;padding:20px 20px 220px}
@@ -73,11 +78,16 @@ const check = (name, ok, info = "") => { results.push({ name, ok: !!ok, info });
   });
   const errors = [];
   const netLog = []; // gizlilik denetimi: tüm istekler (yöntem + adres)
-  ctx.on("request", (r) => netLog.push({ m: r.method(), u: r.url() }));
+  ctx.on("request", (r) => { let b = ""; try { b = r.postData() || ""; } catch (_) {} netLog.push({ m: r.method(), u: r.url(), b }); });
+  const wsLog = []; // WebSocket istek olayı üretmez: ayrıca izlenir
+  const watchWs = (p) => p.on("websocket", (ws) => wsLog.push(ws.url()));
+  ctx.pages().forEach(watchWs); ctx.on("page", watchWs);
   await ctx.route("https://claude.ai/**", async (route) => {
     const req = route.request(); const u = new URL(req.url());
     const json = (o) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(o) });
     if (u.pathname === "/api/organizations") return json([{ uuid: "org1", capabilities: ["chat", "claude_pro"], rate_limit_tier: "default_claude_ai" }]);
+    if (u.pathname === "/api/organizations/org1/usage" && state.usageFail) return route.fulfill({ status: 500, contentType: "application/json", body: "{}" });
+    if (u.pathname.endsWith(`/chat_conversations/${CONV}`) && state.convFail) return route.fulfill({ status: 500, contentType: "application/json", body: "{}" });
     if (u.pathname === "/api/organizations/org1/usage") return json({ five_hour: { utilization: state.usage5h, resets_at: new Date(now + 3 * 3600e3).toISOString() }, seven_day: { utilization: state.usage7d, resets_at: new Date(now + 3 * 86400e3).toISOString() }, seven_day_opus: null, seven_day_fable: { utilization: state.usageFable, resets_at: new Date(now + 5 * 86400e3).toISOString() } });
     if (u.pathname.endsWith(`/chat_conversations/${CONV}`)) return json({
       uuid: CONV, model: "claude-opus-5-5", current_leaf_message_uuid: "m1",
@@ -115,6 +125,23 @@ const check = (name, ok, info = "") => { results.push({ name, ok: !!ok, info });
   const chipTxt = await page.evaluate(() => document.getElementById("token-forecast-consent")?.shadowRoot?.querySelector("button")?.textContent || "");
   const apiBefore = netLog.slice(before).filter((r) => /claude\.ai\/api\//.test(r.u));
   check("onaysız: yalnızca 'aç' düğmesi, panel yok, claude.ai API'sine istek yok", !!chipTxt && !(await page.$("[data-token-forecast]")) && apiBefore.length === 0, `${chipTxt} · API ${apiBefore.length}`);
+  // 0b) Onay yokken sayfa kancası da uykuda: sayfa mesaj gönderse bile istek ve cevap OKUNMAZ, hiçbir şey yayılmaz
+  await page.evaluate(() => {
+    window.__tfSeen = [];
+    window.addEventListener("message", (e) => { const d = e.data; if (d && d.__tokenForecast === 1) window.__tfSeen.push({ kind: d.kind, enabled: d.enabled, json: JSON.stringify({ ...d, text: undefined }) }); });
+  });
+  await page.evaluate(async (conv) => {
+    const res = await fetch(`/api/organizations/org1/chat_conversations/${conv}/completion`, { method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ prompt: "ONAY-ONCESI-GIZLI-METIN", attachments: [{ file_name: "gizli-dosya.txt", extracted_content: "x" }], files: [] }) });
+    await res.text();
+    window.postMessage({ __tokenForecastCmd: "ping" }, location.origin);
+  }, CONV);
+  await page.waitForTimeout(600);
+  const preSeen = await page.evaluate(() => window.__tfSeen);
+  check("onaysız: sayfa kancası isteği ve cevabı okumadı (uykuda)", state.completions === 1 && preSeen.every((x) => x.kind === "hello" && x.enabled === false) && preSeen.length === 1 && Object.keys(await storage(["sends", "trace", "usage", "convActivity"])).length === 0,
+    preSeen.map((x) => `${x.kind}:${x.enabled}`).join(",") || "mesaj yok");
+  Object.assign(state, { completions: 0, lastPrompt: null, usage5h: 19, usage7d: 17 });
+  await page.evaluate(() => { window.__tfSeen = []; });
   if (welcome) {
     await welcome.waitForSelector("#accept:not(:empty)");
     const wt = await welcome.evaluate(() => document.body.innerText);
@@ -306,6 +333,9 @@ const check = (name, ok, info = "") => { results.push({ name, ok: !!ok, info });
   const log = st.calib?.log || [];
   check("kalibrasyon gözlemi kaydedildi", log.length >= 1 && log.at(-1).delta === 1 && log.at(-1).accepted, JSON.stringify(log.at(-1)));
   check("sohbet etkinliği kaydedildi", !!st.convActivity?.[CONV]);
+  const postSeen = await page.evaluate(() => window.__tfSeen);
+  const sendMsg = postSeen.find((x) => x.kind === "send");
+  check("onaydan sonra kanca uyandı; yaydığı gönderim mesajında istem metni ve dosya adı yok", !!sendMsg && postSeen.some((x) => x.kind === "done") && !/debounce|img\.png|"prompt":"/.test(sendMsg.json) && /"promptChars":\d+/.test(sendMsg.json), (sendMsg?.json || "").slice(0, 200));
 
   // 5b) Worker yolu: fetch hiç görülmez, yalnızca sayfa değişir (gerçek claude.ai'de gönderim worker'dan gidiyor)
   await ed.click(); await page.keyboard.type("Fotosentezi kısaca açıkla");
@@ -478,10 +508,157 @@ const check = (name, ok, info = "") => { results.push({ name, ok: !!ok, info });
   const badge = await sw.evaluate(() => chrome.action.getBadgeText({}));
   check("araç çubuğu rozeti", badge === "80", badge);
 
-  // 9) Hata yok
+  // 9) Hata yok (aşağıdaki denetimler bilerek hata üretir; konsol hataları burada dondurulur)
   const ours = errors.filter((e) => !/favicon/.test(e));
+
+  // 10) Denetim: sayfa betiği sahte kanca mesajı yollarsa (aynı penceredeki her betik bunu yapabilir)
+  const sendsBefore = ((await storage("sends")).sends || []).length;
+  await page.evaluate(({ conv, evil }) => {
+    const big = evil + "A".repeat(200000);
+    const post = (o) => window.postMessage({ __tokenForecast: 1, ...o }, location.origin);
+    post({ kind: "perf", path: big, via: big });
+    post({ kind: "worker", path: big });
+    post({ kind: "probe", path: big });
+    post({ kind: "probe", path: "/api/toplantıya katılamayacağım/" + evil + "0000" });
+    post({ kind: "done", id: "sahte-3", messageLimit: { windows: { "5h": { utilization: 0.2, status: "Kuantum dolanıklık nedir" } } } });
+    post({ kind: "hello", wrapped: big, sawCompletion: big });
+    post({ kind: "send", id: big, conv: big });
+    post({ kind: "send", id: "sahte-1", conv: evil + " <b>", at: Date.now() });
+    post({ kind: "send", id: "sahte-2", conv, at: Date.now(), via: "dom", prePromise: { then: 1 }, body: { keys: [big], prompt: big },
+      estimate: { unread: [], empty: false, cls: { type: evil, scores: {} }, dom: { domain: evil, sub: evil }, pt: { low: 1, mid: 1, high: 1 }, att: { low: 0, mid: 0, high: 0 }, hist: { tokens: { mid: 0 } },
+        fc: { model: evil, weight: 1e9, effort: evil, peak: false, cache: evil, pct: { session: { low: 1, mid: 50, high: 99 }, weekly: { low: 1, mid: 50, high: 99 } }, output: { high: 1 } }, adv: { kind: evil, tier: evil } } });
+    post({ kind: "done", id: "sahte-2", text: "x", model: big, messageLimit: { windows: { "5h": { utilization: 55, resets_at: 1, status: big }, "7d": { utilization: -3 } }, extra: big } });
+  }, { conv: CONV, evil: EVIL });
+  await page.waitForTimeout(4000);
+  const afterFake = await sw.evaluate(() => chrome.storage.local.get(null));
+  const fakeJson = JSON.stringify(afterFake);
+  const SEND_KEYS = ["id", "at", "conv", "fam", "model", "type", "eff", "peak", "cache", "hist", "pred", "predLo", "predHi", "predW", "adv", "save", "dom", "sub", "effRec", "effAs", "effSave", "outHi", "d", "dw", "out"];
+  const newSends = (afterFake.sends || []).slice(sendsBefore);
+  check("sahte mesaj: sayfanın verdiği 'tahmin' ve dizeler depoya girmedi", !fakeJson.includes(EVIL) && !fakeJson.includes("AAAAAAAAAA") && newSends.every((x) => Object.keys(x).every((k) => SEND_KEYS.includes(k)) && x.model !== EVIL),
+    `yeni kayıt ${newSends.length}: ` + JSON.stringify(newSends.map((x) => [x.model, x.type, x.pred])));
+  check("sahte mesaj: ölçek dışı kullanım (%5500) kabul edilmedi", afterFake.usage?.fiveHour?.pct <= 100 && Object.keys(afterFake.calib?.k || {}).every((k) => k === "claude_pro"), JSON.stringify(afterFake.usage?.fiveHour));
+  check("sahte mesaj: tanı günlüğü kayıtları küçük kaldı", (afterFake.trace || []).length <= 60 && (afterFake.trace || []).every((x) => JSON.stringify(x).length < 900), String(Math.max(...(afterFake.trace || []).map((x) => JSON.stringify(x).length))));
+
+  // 11) Denetim: okunamayan değer yerine sayı gösterilmez
+  // 11a) Model seçici okunamıyor ama sohbetin modeli API'den biliniyor → sayı kalır, kaynağı yazar
+  const setModel = (pg, from, to) => pg.evaluate(([a, b]) => { [...document.querySelectorAll("fieldset button")].find((x) => x.textContent === a).textContent = b; }, [from, to]);
+  await setModel(page, "Opus 5.5", "Akıllı");
+  await page.waitForFunction(() => /sohbetten okundu/.test(document.querySelector("[data-token-forecast]").shadowRoot.querySelector(".card").innerText), null, { timeout: 5000 }).catch(() => {});
+  const tChat = await cardText();
+  check("model seçici okunamadı, sohbetin modeli kullanıldı ve işaretlendi", /Opus 5\.5 \(sohbetten okundu\)/.test(tChat) && (await head()).startsWith("≈"), (tChat.match(/Model.*/) || [""])[0]);
+  await setModel(page, "Akıllı", "Opus 5.5");
+  // 11b) Yeni sohbet + okunamayan model → "Okunamadı", sayı yok, gönderim kalibrasyona yazılmaz
+  const pn = await ctx.newPage();
+  await pn.goto("https://claude.ai/new");
+  const head2 = () => pn.evaluate(() => document.querySelector("[data-token-forecast]")?.shadowRoot?.querySelector(".head")?.textContent || "");
+  const card2 = () => pn.evaluate(() => document.querySelector("[data-token-forecast]").shadowRoot.querySelector(".card").innerText);
+  await pn.waitForFunction(() => document.querySelector("[data-token-forecast]")?.shadowRoot?.querySelector(".head")?.textContent, null, { timeout: 15000 });
+  await pn.locator(".ProseMirror").click();
+  await pn.keyboard.type("Kuantum dolanıklık nedir, basitçe açıklar mısın?");
+  await pn.waitForFunction(() => document.querySelector("[data-token-forecast]").shadowRoot.querySelector(".head").textContent.startsWith("≈"), null, { timeout: 5000 }).catch(() => {});
+  const okHead = await head2();
+  await setModel(pn, "Opus 5.5", "Akıllı");
+  await pn.waitForFunction(() => !document.querySelector("[data-token-forecast]").shadowRoot.querySelector(".head").textContent.startsWith("≈"), null, { timeout: 5000 }).catch(() => {});
+  const unHead = await head2(), unCard = await card2();
+  const unBanner = await pn.evaluate(() => /show/.test(document.querySelector("[data-token-forecast]").shadowRoot.querySelector(".banner").className));
+  check("model okunamadı → 'Okunamadı', sayı ve öneri yok (Sonnet varsayılmadı)", okHead.startsWith("≈") && unHead === "Okunamadı" && /Seçili model okunamadı/.test(unCard) && !/≈|Sonnet|%\d/.test(unCard.replace(/5 sa.*/g, "")) && !unBanner, `${okHead} → ${unHead} | ${unCard.replace(/\n/g, " | ").slice(0, 160)}`);
+  await pn.evaluate(() => document.querySelector("[data-token-forecast]").shadowRoot.querySelector(".pill").click());
+  await pn.waitForTimeout(300);
+  await pn.screenshot({ path: path.join(OUT, "9-okunamadi.png") });
+  const nSends = ((await storage("sends")).sends || []).length, nLog = ((await storage("calib")).calib?.log || []).length;
+  await pn.click("#send");
+  await pn.waitForFunction(() => document.title.startsWith("done:"), null, { timeout: 10000 });
+  await pn.waitForTimeout(2500);
+  const trU = ((await storage("trace")).trace || []).map((x) => x.step);
+  check("model okunamadıyken gönderim: kayıt ve kalibrasyon gözlemi üretilmedi", ((await storage("sends")).sends || []).length === nSends && ((await storage("calib")).calib?.log || []).length === nLog && trU.includes("send:unread"), trU.slice(-6).join(","));
+  // 11c) Sohbet API'si okunamıyor → sayfadaki mesajlar sayılır ve "eksik olabilir" uyarısı çıkar
+  state.convFail = true;
+  await pn.goto(`https://claude.ai/chat/${CONV}`);
+  await pn.waitForFunction(() => document.querySelector("[data-token-forecast]")?.shadowRoot?.querySelector(".head")?.textContent, null, { timeout: 15000 });
+  await pn.locator(".ProseMirror").click();
+  await pn.keyboard.type("Kuantum dolanıklık nedir?");
+  await pn.waitForFunction(() => /okunamadı/.test(document.querySelector("[data-token-forecast]").shadowRoot.querySelector(".card").innerText), null, { timeout: 6000 }).catch(() => {});
+  const tPart = await card2();
+  check("sohbet API'si okunamadı → sayfadan sayıldı ve uyarı verildi", /Sohbet geçmişi claude\.ai'den okunamadı/.test(tPart) && /2 mesaj/.test(tPart), (tPart.match(/.*Sohbet geçmişi.*/) || [""])[0].slice(0, 120));
+  state.convFail = false;
+  await pn.close();
+  // 11d) Kullanım okunamıyor ve depodaki değer eski / penceresi yenilenmiş → sayı yerine "okunamadı", rozet "?"
+  state.usageFail = true;
+  await sw.evaluate(() => chrome.storage.local.get("usage").then(({ usage }) => chrome.storage.local.set({
+    usage: { ...usage, fiveHour: { ...usage.fiveHour, pct: 87, resetsAt: Date.now() - 60000 } },
+    usageMeta: { fetchedAt: Date.now() - 40 * 60000, source: "background", error: null } })));
+  await page.bringToFront();
+  await page.waitForTimeout(900);
+  const tExp = await cardText();
+  check("panel: yenilenme zamanı geçmiş %87 gösterilmiyor", !/%87/.test(tExp) && !/%87/.test(await page.evaluate(() => document.querySelector("[data-token-forecast]").shadowRoot.querySelector(".pill").innerText)), tExp.split("\n").slice(0, 3).join(" | "));
+  await pop.bringToFront(); await pop.reload(); await pop.waitForTimeout(1500);
+  const popStale = await pop.evaluate(() => document.body.innerText);
+  const badgeStale = await sw.evaluate(() => chrome.action.getBadgeText({}));
+  check("popup: okuma başarısız + veri eski → 'okunamadı', eski yüzde yok; rozet '?'", /Kullanım yüzdesi okunamadı/.test(popStale) && !/%87/.test(popStale) && !/5 saatlik oturum/.test(popStale) && badgeStale === "?", `rozet ${badgeStale} · ` + (popStale.match(/.*okunamadı.*/) || [""])[0]);
+  await page.bringToFront(); await page.waitForTimeout(700);
+  check("panel: kullanım okunamadı uyarısı", /Kullanım yüzdesi okunamadı/.test(await cardText()));
+  state.usageFail = false;
+  await pop.bringToFront(); await pop.click("#refresh"); await pop.waitForTimeout(1500);
+  const popBack = await pop.evaluate(() => document.body.innerText);
+  check("okuma düzelince sayılar ve rozet geri geldi", /5 saatlik oturum/.test(popBack) && !/Kullanım yüzdesi okunamadı/.test(popBack) && /^\d+$/.test(await sw.evaluate(() => chrome.action.getBadgeText({}))), await sw.evaluate(() => chrome.action.getBadgeText({})));
+
+  // 12) Denetim: kalibrasyon verisi sessizce silinmez
+  const calNow = (await storage("calib")).calib;
+  await sw.evaluate((c) => chrome.storage.local.set({ calib: { ...c, version: 99 } }), calNow);
+  await pop.evaluate(() => chrome.runtime.sendMessage({ type: "calib:observe", list: [{ at: Date.now(), tier: "claude_pro", window: "session", delta: 1, cost: 50000, predicted: { low: 0.5, mid: 1, high: 3 }, type: "explain", outTokens: 400, outMuNoAdj: 6, model: "opus 5.5" }] }));
+  const cb = await storage(["calib", "calibBackup"]);
+  check("daha yeni sürümün kalibrasyonu silinmedi: yedeğe alındı", cb.calibBackup?.version === 99 && cb.calibBackup?.data?.stats?.n === calNow.stats.n && cb.calib?.version === 1 && cb.calib?.stats?.n === 1, JSON.stringify({ yedek: cb.calibBackup?.data?.stats, yeni: cb.calib?.stats }));
+  await sw.evaluate((c) => chrome.storage.local.set({ calib: c }).then(() => chrome.storage.local.remove("calibBackup")), calNow);
+  // 0.9.1 kodunun ürettiği durum yedek dosyası olarak içe aktarılabiliyor
+  const fx091 = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", "calib-0.9.1.json"), "utf8"));
+  fs.writeFileSync(path.join(OUT, "yedek-0.9.1.json"), JSON.stringify({ format: "token-forecast-backup", formatVersion: 1, extVersion: "0.9.1", exportedAt: "2026-10-21T10:00:00.000Z", calib: fx091.state }));
+  await pop.evaluate(() => (document.getElementById("settings").open = true));
+  await pop.setInputFiles("#importFile", path.join(OUT, "yedek-0.9.1.json"));
+  await pop.waitForTimeout(400);
+  await pop.click("#import");
+  await pop.waitForTimeout(800);
+  const imp = (await storage("calib")).calib;
+  check("0.9.1 yedeği içe aktarıldı: ölçümler ve öğrenilen k korundu", imp?.stats?.n === fx091.state.stats.n && imp?.log?.length === fx091.state.log.length && imp?.k?.claude_max_5x?.session?.n === fx091.state.k.claude_max_5x.session.n, JSON.stringify(imp?.stats));
+  await sw.evaluate((c) => chrome.storage.local.set({ calib: c }), calNow);
+
+  // 13) Denetim: eklenti sayfaları CSP ile yalnızca claude.ai'ye bağlanabilir; dışa aktarma çalışır
+  const blocked = await pop.evaluate(() => fetch("https://example.com/tf-denetim").then(() => "gitti", () => "engellendi"));
+  const blockedSw = await sw.evaluate(() => fetch("https://example.com/tf-denetim-sw").then(() => "gitti", () => "engellendi"));
+  check("CSP: popup ve arka plan başka alan adına bağlanamıyor", blocked === "engellendi" && blockedSw === "engellendi" && !netLog.some((r) => /example\.com/.test(r.u)), `popup ${blocked} · arka plan ${blockedSw}`);
+  const [dl] = await Promise.all([pop.waitForEvent("download", { timeout: 8000 }).catch(() => null), pop.click("#export")]);
+  let exported = "";
+  if (dl) { try { exported = fs.readFileSync(await dl.path(), "utf8"); } catch (_) {} }
+  check("dışa aktarma: yedek dosyası iniyor, içinde mesaj metni yok", !!dl && /^token-tahmini-.*\.json$/.test(dl.suggestedFilename()) && /"token-forecast-backup"/.test(exported) && !SENTINELS.some((x) => exported.includes(x)), dl ? dl.suggestedFilename() : "indirme yok");
+  const wel2 = await ctx.newPage();
+  const welErr = [];
+  wel2.on("pageerror", (e) => welErr.push(String(e))); wel2.on("console", (m) => { if (m.type() === "error") welErr.push(m.text()); });
+  await wel2.goto(`chrome-extension://${extId}/popup/welcome.html`);
+  await wel2.waitForSelector("#welTitle:not(:empty)", { timeout: 5000 }).catch(() => {});
+  const welTxt = await wel2.evaluate(() => document.body.innerText);
+  check("onay sayfası CSP altında hatasız; saklanan kimlikler ve okunan cevaplar yazıyor", welErr.length === 0 && /kuruluş kimliği/.test(welTxt) && /Claude'un cevapları/.test(welTxt) && /plan türünü/.test(welTxt), welErr[0] || welTxt.split("\n")[0]);
+  await wel2.screenshot({ path: path.join(OUT, "10-onay-sayfasi.png"), fullPage: true });
+  await wel2.close();
+
+  // 14) Gizlilik: yazılan hiçbir metin ağda (sayfanın kendi gönderimi dışında) ya da depoda yok
+  const allStore = await sw.evaluate(() => chrome.storage.local.get(null));
+  const storeJson = JSON.stringify(allStore);
+  const inStore = SENTINELS.filter((x) => storeJson.includes(x));
+  check("depo: hiçbir anahtarda mesaj metni, cevap metni ya da dosya adı yok", inStore.length === 0, inStore.join(","));
+  const KNOWN_KEYS = ["settings", "calib", "consent", "usage", "usageHist", "usageMeta", "orgId", "tier", "notified", "sends", "trace", "hookHello", "lastSend", "lastDone", "pageHealth", "convActivity", "recPrefs", "learnPersonal", "learnFixes", "lastContext", "pillOffset"];
+  const unknownKeys = Object.keys(allStore).filter((k) => !KNOWN_KEYS.includes(k));
+  check("depo: yalnızca bilinen anahtarlar, toplam 1 MB altında", unknownKeys.length === 0 && storeJson.length < 1e6, `${unknownKeys.join(",")} ${Math.round(storeJson.length / 1024)} KB`);
+  check("depo: storage.sync ve storage.session boş (hiçbir şey hesaba eşitlenmiyor)", Object.keys(await sw.evaluate(() => chrome.storage.sync.get(null))).length === 0 && Object.keys(await sw.evaluate(() => chrome.storage.session.get(null))).length === 0);
+  check("ağ: WebSocket açılmadı", wsLog.length === 0, wsLog.join(","));
+
   // Gizlilik / "Claude kullanmıyor" denetimi: dışarı giden her istek
   const ext = netLog.filter((r) => !r.u.startsWith("chrome-extension://") && !r.u.startsWith("data:") && !r.u.startsWith("blob:"));
+  // İçerik denetimi: adreste ya da gövdede yazılan metinlerden biri var mı? (yalnızca sayfanın kendi /completion gövdesi içerebilir)
+  const dec = (s) => { try { return decodeURIComponent(s); } catch (_) { return s; } };
+  const leaks = ext.filter((r) => SENTINELS.some((x) => dec(r.u).includes(x) || (!(r.m === "POST" && /\/completion(\?|$)/.test(r.u)) && (r.b || "").includes(x))));
+  check("ağ: hiçbir adreste ya da eklenti isteğinde mesaj metni / dosya adı yok", leaks.length === 0 && ext.some((r) => (r.b || "").includes("debounces another")), leaks.slice(0, 3).map((r) => r.m + " " + r.u.slice(0, 80)).join(" | "));
+  const gets = ext.filter((r) => r.m === "GET" && /claude\.ai\/api\//.test(r.u)).map((r) => new URL(r.u).pathname.replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, ":id"));
+  const getKinds = [...new Set(gets)].sort();
+  check("ağ: eklentinin okuduğu uç noktalar yalnızca kuruluş, kullanım ve açık sohbet", getKinds.every((p) => ["/api/organizations", "/api/organizations/org1/usage", "/api/organizations/org1/chat_conversations/:id"].includes(p)), getKinds.join(" , "));
   const hosts = [...new Set(ext.map((r) => new URL(r.u).host))];
   check("ağ: yalnızca claude.ai'ye istek gitti", hosts.every((h) => h === "claude.ai"), hosts.join(","));
   const posts = ext.filter((r) => r.m !== "GET");
