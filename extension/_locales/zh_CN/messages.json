@@ -1456,16 +1456,16 @@
     "message": "消息输入框中的文本和附件：用于统计 token 并估算成本。不会保存。"
   },
   "welRead2": {
-    "message": "已打开聊天的历史：用于计算缓存和上下文。在本地统计，不会保存。"
+    "message": "已打开聊天的历史（你的消息和 Claude 的回复）：用于计算缓存、上下文和回复长度，从页面并用你自己的会话从 claude.ai 读取。在本地统计，不会保存。"
   },
   "welRead3": {
-    "message": "你的 5 小时和每周用量百分比：用你自己的会话从 claude.ai 读取。"
+    "message": "你的 5 小时和每周用量百分比以及套餐类型：用你自己的会话从 claude.ai 读取。"
   },
   "welStoreTitle": {
     "message": "它在这台设备上保存什么"
   },
   "welStore": {
-    "message": "你的设置、学到的数值（例如你的套餐大小），以及用于每周报告的发送记录；记录只包含数字和标签，从不包含文本。你可以在设置中导出或重置；卸载扩展会将其删除。"
+    "message": "你的设置、学到的数值（例如你的套餐大小），以及用于每周报告的发送记录；记录只包含数字和标签，从不包含文本。为了读取用量，它还会保存你的 claude.ai 组织 ID 和套餐类型，以及最近聊天的 ID（不是标题）和你最后一条消息的时间。你可以在设置中导出或重置；卸载扩展会将其删除。"
   },
   "welNeverTitle": {
     "message": "它绝不会做什么"
@@ -1508,5 +1508,32 @@
   },
   "fableShareNear": {
     "message": "你的 Fable 配额即将用完（$1）。请切换到 $2。"
+  },
+  "pillUnread": {
+    "message": "无法读取"
+  },
+  "unreadModel": {
+    "message": "无法读取所选模型。为避免显示错误数字，已隐藏预测。"
+  },
+  "unreadPlan": {
+    "message": "无法从 claude.ai 读取你的套餐。为避免显示错误数字，已隐藏预测。"
+  },
+  "unreadHint": {
+    "message": "claude.ai 可能已更改：请查看“详情与设置”中的“系统自检”。"
+  },
+  "usageUnread": {
+    "message": "用量无法读取或已过期；为避免显示错误，已将其隐藏。"
+  },
+  "histPartial": {
+    "message": "无法从 claude.ai 读取聊天历史；只统计了页面上可见的消息。在长聊天中预测可能偏低。"
+  },
+  "modelFromChat": {
+    "message": "（读取自聊天）"
+  },
+  "modelApproxMark": {
+    "message": "（版本未识别）"
+  },
+  "rowPlan": {
+    "message": "套餐"
   }
 }

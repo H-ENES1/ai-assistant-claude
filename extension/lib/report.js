@@ -22,6 +22,37 @@ export function trimSends(list, now = Date.now()) {
   return out.length > SENDS_MAX ? out.slice(out.length - SENDS_MAX) : out;
 }
 
+// Gönderim kaydını depoya yazmadan önce süzer: yalnızca bilinen alanlar, bilinen türde ve kısa etiketlerle.
+// Amaç: kayıtlara serbest metin (mesaj içeriği, sayfa betiğinin soktuğu dize) hiçbir yoldan girememesi ve
+// kayıt başına boyutun sınırlı kalması. Geçersiz kayıt → null.
+const LABEL = /^[a-z0-9_]{1,24}$/;
+const MODEL_LABEL = /^[a-z0-9 ._-]{1,32}$/;
+const label = (v) => (typeof v === "string" && LABEL.test(v) ? v : null);
+const numOrNull = (v) => (Number.isFinite(v) ? v : null);
+export function cleanSend(e) {
+  if (!e || typeof e !== "object" || !Number.isFinite(e.at)) return null;
+  const id = typeof e.id === "string" && /^[\w:.-]{1,80}$/.test(e.id) ? e.id : null;
+  if (!id) return null;
+  const adv = e.adv && typeof e.adv === "object" ? { k: label(e.adv.k), t: label(e.adv.t) } : null;
+  return {
+    id, at: e.at,
+    conv: typeof e.conv === "string" && /^[\w-]{1,8}$/.test(e.conv) ? e.conv : "",
+    fam: label(e.fam), model: typeof e.model === "string" && MODEL_LABEL.test(e.model) ? e.model : null,
+    type: label(e.type), eff: label(e.eff), peak: !!e.peak, cache: label(e.cache), hist: Math.max(0, Math.round(numOrNull(e.hist) || 0)),
+    pred: numOrNull(e.pred), predLo: numOrNull(e.predLo), predHi: numOrNull(e.predHi), predW: numOrNull(e.predW),
+    adv: adv && adv.k ? adv : null, save: numOrNull(e.save) || 0,
+    dom: label(e.dom), sub: label(e.sub), effRec: label(e.effRec), effAs: !!e.effAs, effSave: numOrNull(e.effSave) || 0,
+    outHi: Math.max(0, Math.round(numOrNull(e.outHi) || 0)),
+    // Ölçüm sonradan eklenir (log:done); yedekten gelen kayıtta zaten varsa korunur
+    ...(Number.isFinite(e.d) ? { d: e.d } : {}), ...(Number.isFinite(e.dw) ? { dw: e.dw } : {}), ...(Number.isFinite(e.out) ? { out: e.out } : {})
+  };
+}
+// Ölçüm yaması: yalnızca üç sayı alanı
+export function cleanDonePatch(p) {
+  const src = p && typeof p === "object" ? p : {};
+  return { out: numOrNull(src.out), d: numOrNull(src.d), dw: numOrNull(src.dw) };
+}
+
 const spentOf = (x) => (Number.isFinite(x.d) ? x.d : x.pred || 0);
 const spentWOf = (x) => (Number.isFinite(x.dw) ? x.dw : x.predW || 0);
 const sum = (arr, f) => arr.reduce((s, x) => s + f(x), 0);

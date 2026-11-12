@@ -20,6 +20,9 @@
   "host_permissions": [
     "https://claude.ai/*"
   ],
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; script-src 'self'; object-src 'none'; style-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://claude.ai; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+  },
   "background": {
     "service_worker": "background.js",
     "type": "module"

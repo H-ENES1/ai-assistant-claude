@@ -1456,16 +1456,16 @@
     "message": "Le texte et les pièces jointes de la zone de message, pour compter les tokens et estimer le coût. Non conservés."
   },
   "welRead2": {
-    "message": "L’historique de la conversation ouverte, pour calculer le cache et le contexte. Compté localement, non conservé."
+    "message": "L’historique de la conversation ouverte (vos messages et les réponses de Claude), lu sur la page et sur claude.ai avec votre propre session, pour calculer le cache, le contexte et la longueur des réponses. Compté localement, non conservé."
   },
   "welRead3": {
-    "message": "Vos pourcentages d’utilisation sur 5 heures et hebdomadaires, lus sur claude.ai avec votre propre session."
+    "message": "Vos pourcentages d’utilisation sur 5 heures et hebdomadaires ainsi que votre type de forfait, lus sur claude.ai avec votre propre session."
   },
   "welStoreTitle": {
     "message": "Ce qu’elle conserve sur cet appareil"
   },
   "welStore": {
-    "message": "Vos réglages, des valeurs apprises (comme la taille de votre forfait) et un journal des envois pour le rapport hebdomadaire, qui ne contient que des nombres et des libellés, jamais de texte. Vous pouvez l’exporter ou le réinitialiser dans les réglages ; la désinstallation le supprime."
+    "message": "Vos réglages, des valeurs apprises (comme la taille de votre forfait) et un journal des envois pour le rapport hebdomadaire, qui ne contient que des nombres et des libellés, jamais de texte. Pour lire votre utilisation, elle conserve aussi l’identifiant de votre organisation claude.ai et votre type de forfait, ainsi que les identifiants (pas les titres) des conversations récentes avec l’heure de votre dernier message. Vous pouvez l’exporter ou le réinitialiser dans les réglages ; la désinstallation le supprime."
   },
   "welNeverTitle": {
     "message": "Ce qu’elle ne fait jamais"
@@ -1508,5 +1508,32 @@
   },
   "fableShareNear": {
     "message": "Votre part Fable est presque épuisée ($1). Passez à $2."
+  },
+  "pillUnread": {
+    "message": "Illisible"
+  },
+  "unreadModel": {
+    "message": "Impossible de lire le modèle sélectionné. La prévision est masquée plutôt que d’afficher un chiffre faux."
+  },
+  "unreadPlan": {
+    "message": "Impossible de lire votre forfait sur claude.ai. La prévision est masquée plutôt que d’afficher un chiffre faux."
+  },
+  "unreadHint": {
+    "message": "claude.ai a peut-être changé : voir « Vérification du système » dans « Détails et réglages »."
+  },
+  "usageUnread": {
+    "message": "L’utilisation n’a pas pu être lue ou est périmée ; elle est masquée plutôt qu’affichée à tort."
+  },
+  "histPartial": {
+    "message": "Impossible de lire l’historique sur claude.ai ; seuls les messages visibles sur la page ont été comptés. Dans une longue conversation, la prévision peut être trop basse."
+  },
+  "modelFromChat": {
+    "message": "(lu dans la conversation)"
+  },
+  "modelApproxMark": {
+    "message": "(version non reconnue)"
+  },
+  "rowPlan": {
+    "message": "Forfait"
   }
 }

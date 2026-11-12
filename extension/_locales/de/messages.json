@@ -1456,16 +1456,16 @@
     "message": "Text und Anhänge im Nachrichtenfeld, um Tokens zu zählen und die Kosten zu schätzen. Wird nicht gespeichert."
   },
   "welRead2": {
-    "message": "Den Verlauf des geöffneten Chats, für Cache- und Kontextberechnung. Lokal gezählt, nicht gespeichert."
+    "message": "Den Verlauf des geöffneten Chats (deine Nachrichten und Claudes Antworten), von der Seite und mit deiner eigenen Sitzung von claude.ai gelesen, für Cache-, Kontext- und Antwortlängenberechnung. Lokal gezählt, nicht gespeichert."
   },
   "welRead3": {
-    "message": "Deine 5-Stunden- und Wochennutzung in Prozent, mit deiner eigenen Sitzung von claude.ai gelesen."
+    "message": "Deine 5-Stunden- und Wochennutzung in Prozent sowie deinen Tariftyp, mit deiner eigenen Sitzung von claude.ai gelesen."
   },
   "welStoreTitle": {
     "message": "Was sie auf diesem Gerät speichert"
   },
   "welStore": {
-    "message": "Deine Einstellungen, gelernte Zahlen (etwa die Größe deines Tarifs) und ein Sendeprotokoll für den Wochenbericht, das nur Zahlen und Bezeichnungen enthält, nie Text. Du kannst es in den Einstellungen exportieren oder zurücksetzen; beim Deinstallieren wird es gelöscht."
+    "message": "Deine Einstellungen, gelernte Zahlen (etwa die Größe deines Tarifs) und ein Sendeprotokoll für den Wochenbericht, das nur Zahlen und Bezeichnungen enthält, nie Text. Um deine Nutzung zu lesen, speichert es außerdem deine claude.ai-Organisations-ID und deinen Tariftyp sowie die IDs (nicht die Titel) der letzten Chats mit dem Zeitpunkt deiner letzten Nachricht. Du kannst es in den Einstellungen exportieren oder zurücksetzen; beim Deinstallieren wird es gelöscht."
   },
   "welNeverTitle": {
     "message": "Was sie nie tut"
@@ -1508,5 +1508,32 @@
   },
   "fableShareNear": {
     "message": "Dein Fable-Anteil ist fast aufgebraucht ($1). Wechsle zu $2."
+  },
+  "pillUnread": {
+    "message": "Nicht lesbar"
+  },
+  "unreadModel": {
+    "message": "Das gewählte Modell konnte nicht gelesen werden. Die Prognose wird ausgeblendet, statt eine falsche Zahl zu zeigen."
+  },
+  "unreadPlan": {
+    "message": "Dein Tarif konnte nicht von claude.ai gelesen werden. Die Prognose wird ausgeblendet, statt eine falsche Zahl zu zeigen."
+  },
+  "unreadHint": {
+    "message": "claude.ai hat sich möglicherweise geändert: siehe „Systemprüfung“ unter „Details & Einstellungen“."
+  },
+  "usageUnread": {
+    "message": "Die Nutzung konnte nicht gelesen werden oder ist veraltet; sie wird ausgeblendet, statt falsch angezeigt zu werden."
+  },
+  "histPartial": {
+    "message": "Der Chatverlauf konnte nicht von claude.ai gelesen werden; es wurden nur die auf der Seite sichtbaren Nachrichten gezählt. In einem langen Chat kann die Prognose zu niedrig sein."
+  },
+  "modelFromChat": {
+    "message": "(aus dem Chat gelesen)"
+  },
+  "modelApproxMark": {
+    "message": "(Version unbekannt)"
+  },
+  "rowPlan": {
+    "message": "Tarif"
   }
 }

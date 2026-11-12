@@ -3,8 +3,8 @@
 // Açılır pencere: limitler, kalan limitle yapılabilecekler (adım 7), kalibrasyon (adım 10), ayarlar.
 import { makeI18n, duration, clock, LANGS } from "../lib/i18n.js";
 import { capacity, resolveModel, RECOMMEND_LABEL } from "../lib/forecast.js";
-import { familyWindow, FAMILY_SHARE_WARN_PCT } from "../lib/usage.js";
-import { makeCalib, CALIB_VERSION } from "../lib/calibrate.js";
+import { familyWindow, liveUsage, FAMILY_SHARE_WARN_PCT } from "../lib/usage.js";
+import { makeCalib, migrateCalib } from "../lib/calibrate.js";
 import { SUPPORT_URL, CONTRIB_URL, FEEDBACK_URL } from "../lib/config.js";
 import { isConsented } from "../lib/consent.js";
 import { buildContribution, contributionText } from "../lib/contrib.js";
@@ -89,13 +89,16 @@ async function render() {
   const d = await data();
   I = await makeI18n(d.settings.language);
   staticTexts();
-  const { usage, usageMeta } = d;
+  const { usageMeta } = d;
+  // Yalnızca gösterilebilir kullanım: yenilenme zamanı geçmiş pencere ya da bayat veri sayı olarak gösterilmez
+  const usage = liveUsage(d.usage, usageMeta);
   const limits = $("limits");
   limits.replaceChildren();
 
   if (!usage) {
     const p = document.createElement("p"); p.className = "muted";
-    p.textContent = usageMeta?.freePlanNoUsage ? I.t("freePlanWait") : usageMeta?.error ? I.t("fetchError") : I.t("noData");
+    p.textContent = d.usage ? I.t("usageUnread") : usageMeta?.freePlanNoUsage ? I.t("freePlanWait") : usageMeta?.error ? I.t("fetchError") : I.t("noData");
+    if (d.usage) p.dataset.usageUnread = "";
     limits.append(p);
   } else {
     const showB = (w) => w.key === usage.bottleneck && w.pct >= 50;
@@ -136,9 +139,10 @@ async function render() {
   const calib = makeCalib(d.calib);
   const ctx = d.lastContext || {};
   const capSec = $("capacity");
-  if (usage) {
+  // Plan bilinmiyorsa bu liste hesaplanmaz (plan varsaymak sayıları katlarca saptırır); model adı alt başlıkta yazar
+  if (usage && (d.tier || ctx.tier)) {
     const memoryOn = d.settings.memory !== false;
-    const rows = capacity(usage, { model: ctx.model || "Sonnet 5.5", effort: ctx.effort, tier: d.tier || ctx.tier || "claude_pro", calib, memoryOn });
+    const rows = capacity(usage, { model: ctx.model || "Sonnet 5.5", effort: ctx.effort, tier: d.tier || ctx.tier, calib, memoryOn });
     const list = $("capList"); list.replaceChildren();
     for (const r of rows) {
       const li = document.createElement("li");
@@ -296,9 +300,11 @@ $("importFile").addEventListener("change", async (e) => {
   try {
     if (f.size > 5e6) throw new Error("size");
     const j = JSON.parse(await f.text());
-    if (!j || typeof j !== "object" || !j.calib || j.calib.version !== CALIB_VERSION || typeof j.calib.k !== "object") throw new Error("format");
+    // Eski sürüm yedekleri taşınır; daha yeni sürümün ya da bozuk dosyanın verisi reddedilir (lib/calibrate.js)
+    const mig = j && typeof j === "object" && j.calib ? migrateCalib(j.calib) : null;
+    if (!mig || !mig.state) throw new Error("format");
     pendingImport = { calib: j.calib, settings: j.settings || null, recPrefs: j.recPrefs || null, sends: Array.isArray(j.sends) ? j.sends : null, learnPersonal: j.learnPersonal || null };
-    const n = j.calib.stats?.n || 0;
+    const n = mig.state.stats?.n || 0;
     $("import").textContent = I.t("btnImportConfirm");
     importMsg(I.t("importReady", [String(n), j.exportedAt ? new Date(j.exportedAt).toLocaleDateString(I.locale) : "?"]), true);
   } catch (_) { pendingImport = null; importMsg(I.t("importBad"), false); }
