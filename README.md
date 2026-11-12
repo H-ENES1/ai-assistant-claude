@@ -172,11 +172,14 @@ Reproduce with `npm run proof` and `npm run proof:classifier`.
 |---|---|---|
 | Task type, test 2 (120 everyday messages, written without looking) | 64% | **88%** |
 | Task type, test 1 (120 messages; seen while the training data was being extended) | 61% | 90% |
+| Task type, **blind set 4** (350 messages, 250 Turkish + 100 English, written by sub-agents that never saw the code or the other tests; 12 Nov 2026) | 41% | **49%** |
 | Dangerous mistakes (taking a hard task for an easy one), two tests | 16 | 4 |
 | Correct Haiku suggestions / wrong Haiku suggestions (two tests) | 32/80 · 0 | 66/80 · 1 |
 | Suggestion test set (60 prompts): suitable · lighter than needed | 100% · 0 | 100% · 0 |
 
-Topic recognition is keyword-based: on a nearly blind set of 90 messages written after the rules were finished, it found 71% with 1 wrong area; when it finds nothing it says "General" and the suggestion does not change.
+Topic recognition is keyword-based: on a nearly blind set of 90 messages written after the rules were finished, it found 71% with 1 wrong area; when it finds nothing it says "General" and the suggestion does not change. On blind set 4 (350 messages) it found an acceptable area for 66%, picked a wrong area for 64 messages and fell back to "General" for 55.
+
+Blind set 4 is much harder than the earlier tests because its messages look like real use: 45% are longer than 20 words and many paste an e-mail, a table or code, while the training data has no example longer than 20 words. Earlier tests were written by the project in the same short style as the training data, so they overstated accuracy. Details: `node tests/blind4.mjs`.
 
 The training and test messages were also written by the project, and accuracy on **real users' messages has not been measured**. Whether the suggested model or effort actually keeps the answer quality **has not been measured either**: the basis is Anthropic's documentation and support articles.
 
