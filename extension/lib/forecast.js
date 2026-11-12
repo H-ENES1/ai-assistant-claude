@@ -152,8 +152,16 @@ const OVERRIDE = {
   data_analysis_with_file: { median: 900, sd: 0.8, tool: { median: 4_000, sd: 1.0 } }
 };
 
+// Model adı: seçicideki etiket ("Opus 5.5") ya da API kimliği ("claude-opus-5-5", "claude-sonnet-5-5-20260929";
+// sondaki tarih sürüm sayılmaz). Aile tanınmazsa { key: null, info: null } döner: çağıran bunu "okunamadı"
+// saymalıdır, bir model VARSAYMAMALIDIR (yanlış ağırlık = yanlış sayı).
 export function resolveModel(label) {
-  const s = String(label || "").toLowerCase().match(/(fable|opus|sonnet|haiku)\s*(\d+(?:\.\d+)?)/);
+  const raw = String(label || "").toLowerCase();
+  let s = raw.match(/(fable|opus|sonnet|haiku)\s*(\d+(?:\.\d+)?)/);
+  if (!s) {
+    const m = raw.match(/(fable|opus|sonnet|haiku)-(\d{1,2})(?:-(\d{1,2}))?(?!\d)/);
+    if (m) s = [m[0], m[1], m[3] ? `${m[2]}.${m[3]}` : m[2]];
+  }
   if (!s) return { key: null, info: null };
   const key = `${s[1]} ${s[2]}`;
   if (MODELS[key]) return { key, info: MODELS[key] };

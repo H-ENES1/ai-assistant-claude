@@ -80,9 +80,12 @@ export function readAttachments() {
 const MODEL_RE = /\b(Fable|Opus|Sonnet|Haiku)\s+\d+(?:\.\d+)?\b/;
 export function detectModel() {
   const composer = getInputElement()?.closest("fieldset, form") || document;
+  // Önce adında "model" geçen öğeler, sonra diğer düğmeler: "Opus 4 notları.pdf" gibi bir ek çipi
+  // model seçiciden önce gelip yanlış modele yol açmasın.
   const candidates = [
-    ...composer.querySelectorAll('[data-testid*="model"], button'),
-    ...document.querySelectorAll('[data-testid*="model-selector"]')
+    ...composer.querySelectorAll('[data-testid*="model"]'),
+    ...document.querySelectorAll('[data-testid*="model-selector"]'),
+    ...composer.querySelectorAll("button")
   ];
   for (const el of candidates) {
     const m = (el.innerText || el.textContent || "").match(MODEL_RE);

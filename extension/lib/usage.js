@@ -8,9 +8,12 @@ const BASE = "https://claude.ai/api";
 
 // Plan tespiti (lugia19/Claude-Usage-Extension yöntemi): raven_type → Team; "claude_max" yeteneği
 // + rate_limit_tier içinde "5x" → Max 5x, değilse Max 20x; "claude_pro" → Pro; aksi halde Free.
+// Biçim tanınmıyorsa (capabilities dizi değil) null döner: plan "okunamadı" sayılır, ücretsiz varsayılmaz
+// (yanlış plan, tahmini 8 kata kadar saptırır).
 export function tierFromOrg(org) {
-  if (!org) return "claude_free";
-  const caps = Array.isArray(org.capabilities) ? org.capabilities : [];
+  if (!org || typeof org !== "object") return null;
+  if (!Array.isArray(org.capabilities)) return org.raven_type ? "claude_team" : null;
+  const caps = org.capabilities;
   if (org.raven_type) return "claude_team";
   if (caps.includes("claude_max")) return String(org.rate_limit_tier || "").includes("5x") ? "claude_max_5x" : "claude_max_20x";
   if (caps.includes("claude_pro")) return "claude_pro";
@@ -42,12 +45,23 @@ export async function fetchRawUsage(orgId, fetchFn = fetch) {
   return res.json();
 }
 
+// Akla yatkın en büyük yüzde. Üstü (ya da eksi değer) ölçek/biçim değişmiş demektir: pencere "okunamadı" sayılır.
+export const MAX_PCT = 200;
+
+// resets_at: ISO metni (bugünkü biçim) ya da unix saniye/milisaniye (biçim değişirse)
+function parseTime(v) {
+  if (typeof v === "number" && Number.isFinite(v)) return v > 1e12 ? v : v > 1e9 ? v * 1000 : null;
+  if (typeof v !== "string" || !v) return null;
+  const t = Date.parse(v);
+  return Number.isFinite(t) ? t : null;
+}
+
 function toWindow(key, w) {
   if (!w || typeof w !== "object") return null;
-  const pct = Number(w.utilization);
-  if (w.utilization === null || w.utilization === undefined || !Number.isFinite(pct)) return null;
-  const resetsAt = w.resets_at ? Date.parse(w.resets_at) : NaN;
-  return { key, pct: Math.max(0, pct), resetsAt: Number.isFinite(resetsAt) ? resetsAt : null };
+  const u = w.utilization;
+  const pct = typeof u === "number" ? u : typeof u === "string" && u.trim() !== "" ? Number(u) : NaN;
+  if (!Number.isFinite(pct) || pct < 0 || pct > MAX_PCT) return null;
+  return { key, pct, resetsAt: parseTime(w.resets_at) };
 }
 
 // Ham yanıtı { fiveHour, sevenDay, extras[], bottleneck } biçimine çevirir.
@@ -105,13 +119,28 @@ function finalize(u) {
   return { ...u, extras: u.extras || [], bottleneck: bottleneck.key };
 }
 
+// Depodaki kullanım hâlâ gösterilebilir mi? Yanlış sayı göstermek en kötü durum olduğu için:
+//  - yenilenme zamanı geçmiş pencere atılır (gerçek değer artık bilinmiyor: sıfırlanmış olabilir),
+//  - son okuma denemesi başarısızsa ve veri USAGE_STALE_MS'den eskiyse hiçbir pencereye güvenilmez.
+// Döner: gösterilebilir kullanım ya da null ("okunamadı"). meta = usageMeta { fetchedAt, error, errorAt }.
+export const USAGE_STALE_MS = 20 * 60000;
+export function liveUsage(usage, meta = null, now = Date.now()) {
+  if (!usage || typeof usage !== "object") return null;
+  const failed = !!(meta && meta.error && (meta.errorAt || 0) > (meta.fetchedAt || 0));
+  if (failed && now - (meta.fetchedAt || 0) > USAGE_STALE_MS) return null;
+  const ok = (w) => (w && typeof w === "object" && Number.isFinite(w.pct) && w.pct >= 0 && w.pct <= MAX_PCT && !(w.resetsAt && w.resetsAt <= now) ? w : null);
+  return finalize({ fiveHour: ok(usage.fiveHour), sevenDay: ok(usage.sevenDay), extras: (Array.isArray(usage.extras) ? usage.extras : []).map(ok).filter(Boolean) });
+}
+
 // Cevap akışındaki message_limit → aynı biçim. utilization 0–1, resets_at unix saniye.
 // "exceeded_limit" durumunda değer 0.98 gibi görünebilir; durum öncelikli (lugia19 gözlemi).
 export function normalizeSse(messageLimit) {
   const win = (key, w) => {
-    if (!w || typeof w.utilization !== "number") return null;
+    // utilization 0–1 beklenir; aralık dışı (ör. ölçek 0–100'e dönerse) → pencere okunamadı
+    if (!w || typeof w !== "object" || typeof w.utilization !== "number" || !Number.isFinite(w.utilization)) return null;
+    if (w.utilization < 0 || w.utilization > MAX_PCT / 100) return null;
     const pct = w.status === "exceeded_limit" ? 100 : Math.round(w.utilization * 10000) / 100;
-    return { key, pct, resetsAt: w.resets_at ? w.resets_at * 1000 : null };
+    return { key, pct, resetsAt: parseTime(w.resets_at) };
   };
   const ws = messageLimit?.windows || {};
   return finalize({ fiveHour: win("five_hour", ws["5h"]), sevenDay: win("seven_day", ws["7d"]), extras: [] });
