@@ -1,8 +1,11 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // Copyright (c) 2026 Hayrettin Enes Karalı
 // İş türü sınıflandırıcısını eğitir ve kurallarla karşılaştırır.
-//   node tests/ml/train.mjs            → eğit, değerlendir, ölçüt tutuyorsa ağırlıkları yaz (extension/lib/learn-weights.js)
-//   node tests/ml/train.mjs --no-write → yalnızca değerlendir
+//   node tests/ml/train.mjs         → eğit ve değerlendir (ağırlık YAZMAZ)
+//   node tests/ml/train.mjs --write → ölçüt tutuyorsa ağırlıkları yaz (extension/lib/learn-weights.js)
+// DİKKAT (12.11.2026): train + train2 ile eğitilen ağırlıklar test2 ölçütünü geçti ama kör set 5'te Haiku yanlış
+// öneriyi 3 → 12'ye çıkardı ve geri alındı (CLAUDE.md). test2 ölçütü tek başına yetmiyor; bu yüzden yazma artık
+// açık istekle (--write) olur ve yazılan ağırlık yeni bir kör setle ölçülmeden yayımlanmamalıdır.
 // Eğitim verisi: train.tsv (600 kısa örnek) + train2.tsv (uzun ve yapıştırılmış içerikli örnekler; ayrı alt ajanlar yazdı).
 // Değerlendirme: eğitim verisinden hiç türetilmemiş, ayrı yazılmış test.tsv ve test2.tsv (dağınık, gerçekçi mesajlar).
 // Yazma ölçütü (test2): aday ağırlıklarla ÜRÜNÜN kararı (kurallar + ağırlıklar + korumalar) yayındaki ağırlıklardan
@@ -115,9 +118,9 @@ const show = (e) => console.log(`${e.name.padEnd(34)} doğruluk %${(100 * e.acc)
 // (yoksa "kurallar" satırı aslında ürünün karma kararını ölçer).
 const rulesGuess = (x) => classify(x, { useModel: false }).type;
 // Yayındaki ürünün kararı: kurallar + learn-weights.js'teki ağırlıklar + görev–konu korumaları.
-// lightGuard:false → hafif tür koruması (12.11.2026'da eklendi) kapalı; yani ağırlıklar yeniden yazılmadan
-// önceki ürün. Yazma ölçütü bu satıra göre verilir. Not: ağırlıklar yazıldıktan sonra bu satır yeni ağırlıkları ölçer.
-const shippedGuess = (x) => classify(x, { lightGuard: false }).type;
+// Hafif tür koruması açık (ürün bugün böyle çalışıyor). Yazma ölçütü bu satıra göre verilir.
+// Not: ağırlıklar yazıldıktan sonra bu satır yeni ağırlıkları ölçer.
+const shippedGuess = (x) => classify(x).type;
 const aug = train.flatMap(augment);
 console.log(`eğitim: ${train.length} örnek (train.tsv ${train1.length} + train2.tsv ${train2.length}) → çoğaltılmış ${aug.length} · test: ${test.length} (ayrı yazılmış)\n`);
 
@@ -192,7 +195,8 @@ if (C2.acc < S2.acc) worse.push(`test2 doğruluğu düştü (%${(100 * S2.acc).t
 if (C2.danger > S2.danger) worse.push(`test2 tehlikeli hata arttı (${S2.danger} → ${C2.danger})`);
 console.log(`\nyazma ölçütü (test2): yayındaki ${cell(S2)} → aday ${cell(C2)} · ${worse.length ? "TUTMADI: " + worse.join("; ") : "tuttu"}`);
 if (worse.length) console.log("ağırlıklar YAZILMADI");
-else if (!args.has("--no-write")) {
+else if (!args.has("--write") || args.has("--no-write")) console.log("ağırlıklar yazılmadı (yazmak için --write; önce başlıktaki DİKKAT notunu oku)");
+else {
   const out = path.join(here, "../../extension/lib/learn-weights.js");
   writeFileSync(out, `// Otomatik üretildi: tests/ml/train.mjs (elle düzenleme). ${meta.trained}\nexport default ${JSON.stringify(packed)};\n`);
   console.log("yazıldı:", path.relative(process.cwd(), out));
