@@ -314,8 +314,10 @@ $("importFile").addEventListener("change", async (e) => {
 let contribText = "";
 $("comBuild").addEventListener("click", async () => {
   const d = await store.get(["calib", "sends", "recPrefs", "learnFixes", "tier", "settings"]);
-  const c = buildContribution({ calib: d.calib, sends: d.sends || [], recPrefs: d.recPrefs, learnFixes: d.learnFixes, tier: d.tier || "claude_pro", extVersion: chrome.runtime.getManifest().version, lang: I.lang });
   const pre = $("comPreview");
+  // Plan okunamadıysa katkı üretilmez: yanlış plan etiketi topluluk önsellerini bozar (Pro varsayma)
+  if (!d.tier) { pre.hidden = true; $("comCopy").hidden = true; $("comNote").hidden = false; $("comNote").textContent = I.t("unreadPlan"); return; }
+  const c = buildContribution({ calib: d.calib, sends: d.sends || [], recPrefs: d.recPrefs, learnFixes: d.learnFixes, tier: d.tier, extVersion: chrome.runtime.getManifest().version, lang: I.lang });
   if (!Object.keys(c.k).length && !(c.acc.n > 0)) { pre.hidden = true; $("comCopy").hidden = true; $("comNote").hidden = false; $("comNote").textContent = I.t("comEmpty"); return; }
   contribText = contributionText(c);
   pre.textContent = JSON.stringify(c, null, 1); pre.hidden = false;

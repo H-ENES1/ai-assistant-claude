@@ -731,7 +731,9 @@
     } else trace("done:skip", { reason: "nothing-to-observe", outTokens });
   }
 
-  function trimActivity(a) {
+  // Veri azaltma: önbellek en çok 1 saat yaşar; 7 günden eski sohbet kimliği tutmanın faydası yok (en çok 300 kalır)
+  function trimActivity(a, now = Date.now()) {
+    for (const k of Object.keys(a)) if (!(a[k] > now - 7 * 864e5)) delete a[k];
     const keys = Object.keys(a);
     if (keys.length <= 300) return a;
     keys.sort((x, y) => a[x] - a[y]).slice(0, keys.length - 300).forEach((k) => delete a[k]);

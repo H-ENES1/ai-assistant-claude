@@ -100,5 +100,17 @@ const tabs = hits(js, /chrome\.tabs\.create\s*\(/);
 const tabsBad = tabs.filter((loc) => { const [f, n] = loc.split(":"); return !/getURL\(|\{ url:? ?(CONTRIB_URL)? ?\}|\{ url, index/.test(src[f].split(/\r?\n/)[n - 1]); });
 t(`sekme açma yalnızca eklenti sayfaları ve katkı formu (${tabs.length} çağrı)`, tabsBad.length === 0, tabsBad.join(", "));
 
+// 9) Gizlilik politikası kodla aynı şeyi söylüyor (mağaza kuralı: politika gerçek davranışı anlatmalı)
+const ROOT = fileURLToPath(new URL("../", import.meta.url));
+const policy = readFileSync(path.join(ROOT, "site/build/static/privacy.html"), "utf8");
+t("politika: site kaynağı ve yayımlanan docs/privacy.html aynı", policy.replace(/\r\n/g, "\n") === readFileSync(path.join(ROOT, "docs/privacy.html"), "utf8").replace(/\r\n/g, "\n"));
+const [polEn, polTr] = policy.split("<hr>");
+const ENDPOINTS = ["/api/organizations</code>", "/api/organizations/…/usage", "/api/organizations/…/chat_conversations/…"];
+t("politika: kodun okuduğu 3 uç nokta iki dilde de yazıyor", ENDPOINTS.every((e) => polEn.includes(e) && polTr.includes(e)));
+const H2 = (s) => (s.match(/<h2>/g) || []).length;
+t("politika: Türkçe bölüm İngilizceyle aynı sayıda başlık içeriyor (İzinler, Veri kullanımı dahil)", H2(polEn) === H2(polTr) && /<h2>İzinler<\/h2>/.test(polTr) && /<h2>Veri kullanımı<\/h2>/.test(polTr), `${H2(polEn)} / ${H2(polTr)}`);
+t("politika: kuruluş kimliği, Claude'un cevapları ve sohbet kimlikleri açıkça yazıyor", /organization ID/.test(polEn) && /Claude's replies/.test(polEn) && /kuruluş kimliğin/.test(polTr) && /Claude'un cevapları/.test(polTr) && /IDs \(not the titles\)/.test(polEn));
+t("politika: 'hesap bilgisi saklanmaz' gibi yanlış bir genelleme yok", !/account details are stored|hesap bilgisi saklanmaz/.test(policy));
+
 console.log(fail ? `\n${fail} BAŞARISIZ` : "\nTümü geçti");
 process.exit(fail ? 1 : 0);
