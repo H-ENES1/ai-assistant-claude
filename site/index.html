@@ -8,13 +8,18 @@
 <style>
 /* Düzen: bir ölçü aletinin ekranı — üstte tek bir canlı gösterge (demo), altında sakin bir teknik kılavuz.
    Renk ve yazı: Claude'un kendi görünümüne yakın (krem yüzey, sıcak gri çizgi, turuncu vurgu, serif başlık). */
+/* Web yazı tipi gelene kadar kullanılan yedekler, aynı genişliğe ayarlı (size-adjust, sayfa metniyle ölçüldü:
+   Newsreader/Georgia başlık boyutunda 0,94 × 1,034 ≈ 0,97 (optik boyut ekseni yüzünden) · Inter/Arial 1,062 · IBM Plex Mono/Consolas 1,091). Yazı tipi değişince satırlar kırılmaz, sayfa kaymaz. */
+@font-face { font-family: "Newsreader fb"; src: local("Georgia"); size-adjust: 97%; }
+@font-face { font-family: "Inter fb"; src: local("Arial"), local("Arimo"), local("Liberation Sans"); size-adjust: 106.2%; }
+@font-face { font-family: "Plex fb"; src: local("Consolas"); size-adjust: 109.1%; }
 :root {
   --bg: #faf9f5; --surface: #ffffff; --sunk: #f0eee6; --ink: #141413; --muted: #6b6a64; --line: #e8e6dc;
   --accent: #b5502f; --accent-ink: #ffffff; --meter: #d97757; --used: #a8a69d;
   --water: #2f7fb5; --ok: #2f7d57; --warn: #a8680f; --crit: #b9382a;
-  --f-display: "Newsreader", ui-serif, Georgia, "Times New Roman", serif;
-  --f-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --f-display: "Newsreader", "Newsreader fb", ui-serif, Georgia, "Times New Roman", serif;
+  --f-body: "Inter", "Inter fb", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono: "IBM Plex Mono", "Plex fb", ui-monospace, "SFMono-Regular", Consolas, monospace;
   --r: 12px;
 }
 @media (prefers-color-scheme: dark) {
@@ -58,6 +63,13 @@ nav.links a:hover { color: var(--ink); }
 .lang select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .lang select option { color: #141413; background: #fff; }
 @media (max-width: 720px) { nav.links a.hide-s { display: none; } }
+/* Telefonda üst çubuk sabit iki satır: marka, altında kurulum + dil. Tek satıra sığıp sığmaması yazı tipine bağlıydı;
+   web yazı tipi gelince satır sayısı değişip bütün sayfa kayıyordu (CLS). */
+@media (max-width: 560px) {
+  header.top .wrap { flex-wrap: wrap; row-gap: 6px; padding-block: 10px; }
+  .brand { white-space: nowrap; }
+  nav.links { width: 100%; flex-wrap: nowrap; justify-content: space-between; gap: 12px; }
+}
 
 /* Açılış */
 .hero { padding-block: 48px 56px; }
