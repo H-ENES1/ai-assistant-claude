@@ -244,8 +244,8 @@ wr(os.path.join(DOCS, 'sitemap.xml'), sm)
 # 3d. metni HTML'e yaz (JS'siz okunur), SSS yapısal verisi, paylaşım görselleri
 subprocess.run([node, os.path.join(HERE, 'prerender.cjs'), DOCS], check=True)
 
-# 3e. yazı tipleri. Ölçüm (Lighthouse, telefon): tüm aileler Google'dan ~520 KB idi ve ilk boyamayı geciktiriyordu.
-#     Şimdi Google Fonts'tan yalnızca sayfada geçen harfler istenir (text= alt kümesi, ~150 KB): Newsreader (başlık yazısı)
+# 3e. yazı tipleri. Ölçüm (Lighthouse, telefon): tüm aileler Google'dan 406 KB idi (tr) ve ilk boyamayı geciktiriyordu.
+#     Şimdi Google Fonts'tan yalnızca sayfada geçen harfler istenir (text= alt kümesi, tr: 148 KB): Newsreader (başlık yazısı)
 #     başlık/rakam harfleriyle, Inter ve IBM Plex Mono sayfanın (ve sayfa verisinin) tüm harfleriyle. Japonca/Çince gibi
 #     bu yazı tiplerinde olmayan harfler zaten sistem yazı tipine düşer, listeye girmez. Yükleme sayfa sonundaki
 #     betikle, ilk içerikli boyamadan sonra (LOADER_JS).
