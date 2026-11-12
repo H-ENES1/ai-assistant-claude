@@ -5,7 +5,7 @@
   "license": "AGPL-3.0-or-later",
   "type": "module",
   "scripts": {
-    "test": "cd tests && node unit.test.mjs && node learn.test.mjs && node report.test.mjs && node contrib.test.mjs && node advisor.test.mjs && node effort.test.mjs && node domain.test.mjs && node traps.test.mjs && node lang.test.mjs",
+    "test": "cd tests && node unit.test.mjs && node learn.test.mjs && node report.test.mjs && node contrib.test.mjs && node advisor.test.mjs && node effort.test.mjs && node domain.test.mjs && node traps.test.mjs && node lang.test.mjs && node denetim.test.mjs && node privacy.test.mjs",
     "train": "node tests/ml/train.mjs",
     "aggregate": "node tools/aggregate.mjs",
     "e2e": "cd tests && node e2e.cjs",
