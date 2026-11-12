@@ -3,7 +3,8 @@
 <meta name="description" content="Claude.ai'de mesajını göndermeden önce limitinin ne kadarını harcayacağını gösteren ücretsiz tarayıcı eklentisi.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"></noscript>
 <style>
 /* Düzen: bir ölçü aletinin ekranı — üstte tek bir canlı gösterge (demo), altında sakin bir teknik kılavuz.
    Renk ve yazı: Claude'un kendi görünümüne yakın (krem yüzey, sıcak gri çizgi, turuncu vurgu, serif başlık). */
@@ -129,6 +130,8 @@ textarea#prompt { width: 100%; min-height: 96px; resize: vertical; font: 15px/1.
 
 /* Bölümler */
 section.band { padding-block: 64px; border-top: 1px solid var(--line); }
+/* Uzun sayfa: ekran dışındaki bölümlerin düzeni ve boyaması görünene kadar ertelenir (telefonda ilk boyama hızlanır) */
+@supports (content-visibility: auto) { section.band { content-visibility: auto; contain-intrinsic-size: auto 900px; } }
 .sec-head { display: grid; gap: 10px; max-width: 46em; margin-bottom: 32px; }
 .sec-head p { color: var(--muted); font-size: 1.05rem; }
 .two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
@@ -157,7 +160,7 @@ td.c, th.c { text-align: center; width: 18%; font-weight: 600; }
 figure { margin: 0; }
 figcaption { font-size: .85rem; color: var(--muted); margin-top: 8px; }
 .storecta { margin: 18px 0 8px; }
-.ytl { margin: 10px 0 0; } .ytl a { display: inline-block; font-weight: 600; color: var(--accent-ink, #b5502f); text-decoration: none; border: 1.5px solid currentColor; border-radius: 999px; padding: 6px 16px; } .ytl a:hover { background: rgba(217,119,87,.08); }
+.ytl { margin: 10px 0 0; } .ytl a { display: inline-block; font-weight: 600; color: var(--accent); text-decoration: none; border: 1.5px solid currentColor; border-radius: 999px; padding: 6px 16px; } .ytl a:hover { background: rgba(217,119,87,.08); }
 .chart { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
 .chart svg { display: block; width: 100%; height: auto; }
 .loop { margin-top: 28px; }
@@ -250,7 +253,7 @@ ul.plain { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; }
 .dcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
 .dcard h3 { font-size: 1.1rem; display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
 .dcard .badge { font: 600 .62rem var(--f-mono); letter-spacing: .05em; border-radius: 999px; padding: 2px 7px; background: var(--sunk); color: var(--muted); white-space: nowrap; }
-.dcard .badge.risk { background: color-mix(in srgb, var(--crit) 14%, var(--surface)); color: var(--crit); }
+.dcard .badge.risk { background: color-mix(in srgb, var(--crit) 14%, var(--surface)); color: color-mix(in srgb, var(--crit) 72%, var(--ink)); }
 .dcard .subs { display: flex; flex-wrap: wrap; gap: 4px; }
 .dcard .subs span { font-size: .78rem; background: var(--sunk); border-radius: 999px; padding: 1px 8px; }
 .dcard .kw { font-size: .82rem; color: var(--muted); font-family: var(--f-mono); line-height: 1.5; }
@@ -305,11 +308,21 @@ ul.plain { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; }
 
 footer { border-top: 1px solid var(--line); padding-block: 28px 40px; font-size: .85rem; color: var(--muted); }
 footer .wrap { display: grid; gap: 8px; }
+footer .langs { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0; padding: 0; list-style: none; }
+footer .langs a { color: var(--muted); }
+footer .langs a[aria-current] { color: var(--ink); font-weight: 600; text-decoration: none; }
+/* Dil önerisi şeridi: yönlendirme yok, yalnızca öneri */
+.langhint { background: var(--sunk); border-bottom: 1px solid var(--line); font-size: .9rem; }
+.langhint[hidden] { display: none; }
+.langhint .wrap { display: flex; align-items: center; justify-content: center; gap: 4px 14px; flex-wrap: wrap; padding-block: 8px; text-align: center; }
+.langhint a { font-weight: 600; }
+.langhint button { background: none; border: 0; color: var(--muted); font: inherit; font-size: 1.15rem; line-height: 1; padding: 6px 10px; cursor: pointer; border-radius: 6px; }
+.langhint button:hover { color: var(--ink); }
 </style>
-
+<!--LANGHINT-->
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Token Tahmini">
+    <a class="brand" href="#top">
       <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 13 L19.5 7.5" stroke="var(--meter)" stroke-width="2.6" stroke-linecap="round"/><circle cx="13" cy="13" r="2" fill="currentColor"/></svg>
       <span data-i="brand">Token Tahmini</span>
     </a>
@@ -330,7 +343,7 @@ footer .wrap { display: grid; gap: 8px; }
   <section class="hero">
     <div class="wrap grid">
       <div>
-        <p class="eyebrow" data-i="eyebrow">claude.ai için ücretsiz tarayıcı eklentisi</p>
+        <p class="eyebrow" data-i="eyebrow">Claude kullanım limiti için ücretsiz tarayıcı eklentisi</p>
         <h1 data-i="h1">Göndermeden önce <em>bil.</em></h1>
         <p class="lede" data-i="lede">Token Tahmini, yazdığın mesajın 5 saatlik ve haftalık Claude limitinin ne kadarını harcayacağını gönder tuşuna basmadan söyler. Hangi modelin ve hangi effort ayarının yeteceğini de gerekçesiyle gösterir; zamanla senin planından öğrenir.</p>
         <div class="cta">
@@ -445,7 +458,7 @@ footer .wrap { display: grid; gap: 8px; }
         <h2 data-i="shH">Yazarken tahmin, gönderince ölçüm.</h2>
         <p data-i="shP">Mesaj kutusunun üstünde küçük bir hap ve gerekçeli öneri bildirimi; araç çubuğunda limitlerin, kalan limitle yapılabilecekler ve öğrenme durumu.</p>
       </div>
-      <figure class="vid" id="vidBox" hidden><video id="vid" controls playsinline preload="metadata" poster="video/kapak-tr.jpg"></video><figcaption data-i="vidC">47 saniyelik tanıtım. Ekrandaki arayüz temsilidir; rakamlar eklentinin kendi hesabıdır.</figcaption></figure>
+      <figure class="vid" id="vidBox" hidden><video id="vid" controls playsinline preload="none" poster="video/kapak-tr.jpg"></video><figcaption data-i="vidC">47 saniyelik tanıtım. Ekrandaki arayüz temsilidir; rakamlar eklentinin kendi hesabıdır.</figcaption></figure>
       <p class="ytl"><a id="ytA" href="https://www.youtube.com/watch?v=6Y4qZ-G2AS0" target="_blank" rel="noopener noreferrer">▶ Ayrıntılı tanıtım videosu (YouTube, 4 dk)</a></p>
       <div class="shots">
         <figure class="shot"><a class="zoom" data-img="oneri" href="img/tr/oneri.png" target="_blank" rel="noopener"><img data-img="oneri" data-alt-i="alt1" src="img/tr/oneri.png" alt="Çeviri isteği için açılmış öneri bildirimi: Haiku 5.5 yeterli, effort Düşük; algılanan iş, konu alanı, effort önerisi, işaretler ve dayanak bölümleri" width="746" height="491" loading="lazy"></a><figcaption data-i="sh1">Çeviri isteği: Haiku ve Düşük effort. “Neden?” açık; algılanan iş, konu alanı, effort önerisi, işaretler ve dayanak görünür.</figcaption></figure>
@@ -672,6 +685,8 @@ limit %  = k × maliyet</div>
         <h2 data-i="fqH">Aklına takılabilecekler.</h2>
       </div>
       <div class="faq">
+        <details><summary data-i="q11">Claude kullanım limiti nedir, ne zaman sıfırlanır?</summary><p data-i="a11">claude.ai'de iki limit var: 5 saatlik oturum limiti ve haftalık limit. Anthropic kesin büyüklüklerini yayımlamıyor; ne kadarını kullandığını ve ne zaman yenileneceğini Ayarlar → Kullanım sayfası gösterir. Token Tahmini aynı yüzdeyi sohbetin içinde gösterir ve bir mesajın bu limitten ne kadar harcayacağını göndermeden önce tahmin eder.</p></details>
+        <details><summary data-i="q12">Claude için token sayacı olarak da çalışır mı?</summary><p data-i="a12">Evet. Yazdığın mesajın, eklerin ve sohbet geçmişinin token sayısını tarayıcında hesaplar; yukarıdaki demoda “GİRDİ → CEVAP” satırında görürsün. Claude'un tokenizer'ı herkese açık olmadığı için bu sayı bir tahmindir ve dile göre ayarlanmıştır. Asıl işi, bu tokenların limitinin yüzde kaçına denk geldiğini söylemektir.</p></details>
         <details><summary data-i="q1">Ücretli mi?</summary><p data-i="a1">Hayır. Hesap açmak da gerekmiyor.</p></details>
         <details><summary data-i="q2">Mesajlarımı okuyup bir yere gönderiyor mu?</summary><p data-i="a2">Token saymak için mesaj kutusundaki metni tarayıcında okur ama hiçbir yere göndermez. Eklentinin sunucusu yok; analitik ya da izleme yok. Haftalık rapor ve öğrenilen değerler mesaj metni içermez.</p></details>
         <details><summary data-i="q3">Tahminler ne kadar doğru?</summary><p data-i="a3">İlk mesajlarda aralık geniştir, çünkü limit büyüklükleri başlangıçta kaba tahmindir. Eklenti her mesajda ölçerek daralır; simülasyonda tahmin hatası 20 mesajda 1,13 kata, 100 mesajda 1,08 kata iniyor. Pencerede kaç ölçümün aralığa düştüğünü görebilirsin.</p></details>
@@ -717,6 +732,7 @@ limit %  = k × maliyet</div>
   <div class="wrap">
     <p data-i="ft1">Token Tahmini bağımsız bir projedir; Anthropic ile bağlantılı değildir. Claude, Anthropic'in ticari markasıdır.</p>
     <p class="ftbar"><span data-i="ft4">Sürüm 0.12.1 · 23 Ekim 2026</span><button type="button" class="linkbtn" id="botToggle"></button></p>
+<!--LANGLINKS-->
     <p><a href="https://github.com/H-ENES1/ai-assistant-claude" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://h-enes1.github.io/ai-assistant-claude/privacy.html" target="_blank" rel="noopener noreferrer">Privacy / Gizlilik</a></p>
     <p data-i="ft3">© 2026 Hayrettin Enes Karalı. GNU AGPL-3.0 lisansı ile açık kaynak.</p>
     <p data-i="ft2">Kaynaklar: Anthropic model seçme rehberi ve belgeleri · CASTILLO veri seti (CC BY 4.0) · lugia19/Claude-Usage-Extension ölçümleri (GPL-3.0; yalnızca gözlemler, kod kopyalanmadı).</p>
@@ -736,14 +752,19 @@ const SURVEY_URL = "https://github.com/H-ENES1/ai-assistant-claude/issues/new?te
 const VIDEO = { tr: "video/tanitim-tr.mp4", en: "video/tanitim-en.mp4" }; // boşsa video bölümü gizlenir
 // Tek dosyalık sürümde görseller ve videolar sayfaya gömülür (build.py doldurur); klasörlü sürümde dosya yolu kullanılır.
 const TF_ASSETS = /*ASSETS*/null;
-const A = (p) => (TF_ASSETS && TF_ASSETS[p]) || p;
+// Dil başına statik sayfa (GitHub Pages): build.py her sayfaya window.TF_PAGE koyar. Dil URL'den gelir, tarayıcı diline göre değişmez.
+// TFD.done: metin önceden HTML'e yazıldı (prerender.cjs); o zaman data-i metinlerine ve görsellere dokunulmaz.
+const TFD = window.TF_PAGE || null;
+const PAGE_LANG = TFD ? TFD.lang : null, STATIC = !!(TFD && TFD.done);
+const ROOT = (TFD && TFD.root) || "", IMGX = (TFD && TFD.ext) || "png";
+const A = (p) => (TF_ASSETS && TF_ASSETS[p]) || ROOT + p;
 
 const MSG = /*MSGS*/;
 const SIM = /*SIM*/;
 
 const EN = {
   brand: "Token Forecast", nav0: "Features", nav1: "How it works", nav2: "Learning", nav3: "Privacy", nav4: "Install",
-  eyebrow: "Free browser extension for claude.ai",
+  eyebrow: "Free browser extension for your Claude usage limit",
   h1: "Know <em>before</em> you send.",
   lede: "Token Forecast tells you how much of your 5-hour and weekly Claude limit a message will use before you hit send. It also shows which model is enough, with its reasons, and learns your plan over time.",
   cta1: "Add to Chrome · free", cta2: "How it works",
@@ -875,6 +896,10 @@ Object.assign(EN, {
   q8: "Why doesn't it suggest Haiku when my message contains “translate”?", a8: "It looks at the task, not the word. “Translate this: …” is a translation request and Haiku is enough. “I need a site with a translation system built” is a build job and at least Sonnet is suggested. 15 such trap sentences and real translation requests are in the automated tests.",
   q9: "How do I see that it really learns?", a9: "Extension window → Weekly report → Proof of learning. After 30 measurements it compares the error of the first and the latest measurements, and says so if it did not drop. The experiment we ran with simulated users is in the Proof section above.",
   l8: "The interface comes in 10 languages, but message analysis (task type, topic, model and effort suggestions) currently works only for Turkish and English messages. In other languages you still get the token and limit forecast (the token count is tuned per language, though measured on fewer samples), but no suggestions.",
+  q11: "What is the Claude usage limit (rate limit), and when does it reset?",
+  a11: "claude.ai has two limits: a 5-hour session limit and a weekly limit. Anthropic doesn’t publish their exact size; Settings → Usage shows how much you’ve used and when it resets. Token Forecast shows the same percentage inside the chat and estimates how much of it a message will use before you send it.",
+  q12: "Does it work as a Claude token counter?",
+  a12: "Yes. It counts the tokens of your message, attachments and chat history in your browser; in the demo above you see them in the “INPUT → REPLY” row. Claude’s tokenizer isn’t public, so the count is an estimate, tuned per language. Its real job is telling you what share of your limit those tokens are.",
   q10: "Which languages does it work in?",
   a10: "The extension and this site come in Turkish, English, German, French, Spanish, Italian, Portuguese, Russian, Japanese and Chinese; pick one in the settings. Message analysis (task type, topic, model and effort suggestions) is done only for Turkish and English messages. If you write in another language, the token and limit forecast still works, no suggestion is shown and the extension tells you so. The intro video and screenshots are in Turkish and English; the other languages see the English ones.",
   rm6h: "A learned model for topics", rm6p: "For messages where keywords are not enough; with user corrections.",
@@ -897,6 +922,7 @@ const LOCALE = { tr: "tr-TR", en: "en-US", de: "de-DE", fr: "fr-FR", es: "es-ES"
 const SX = /*SITEL10N*/;
 let lang = "en";
 (function () {
+  if (PAGE_LANG) { lang = PAGE_LANG; return; }
   const codes = LANGS.map((l) => l[0]);
   let saved = null; try { saved = localStorage.getItem("tf-lang"); } catch (_) {}
   if (codes.includes(saved)) { lang = saved; return; }
@@ -938,8 +964,8 @@ const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "
 
 function applyLang() {
   document.documentElement.lang = LOCALE[lang].replace(/^(tr|en|de|fr|es|it|ru|ja)-.*$/, "$1");
-  document.title = S("title");
-  document.querySelectorAll("[data-i]").forEach((el) => {
+  if (!PAGE_LANG) document.title = S("title");
+  if (!STATIC) document.querySelectorAll("[data-i]").forEach((el) => {
     const k = el.dataset.i;
     if (!(k in TRtext)) TRtext[k] = el.innerHTML;
     el.innerHTML = tx(k);
@@ -950,13 +976,13 @@ function applyLang() {
   const links = [];
   if (CONTRIB_URL) links.push(`<a href="${esc(CONTRIB_URL)}" target="_blank" rel="noopener noreferrer">${esc(S("contribForm"))}</a>`);
   if (SURVEY_URL) links.push(`<a href="${esc(SURVEY_URL)}" target="_blank" rel="noopener noreferrer">${esc(S("survey"))}</a>`);
-  if (links.length) $("cmLinks").innerHTML = links.join(" · ");
+  if (links.length && !STATIC) $("cmLinks").innerHTML = links.join(" · ");
   const v = $("vid"), vsrc = VIDEO[CL()] || VIDEO.tr;
-  if (vsrc) { if (v.dataset.k !== vsrc) { v.dataset.k = vsrc; v.setAttribute("poster", A(`video/kapak-${CL()}.jpg`)); v.setAttribute("src", A(vsrc)); } $("vidBox").hidden = false; } else $("vidBox").hidden = true;
+  if (vsrc) { if (v.dataset.k !== vsrc) { v.dataset.k = vsrc; v.setAttribute("poster", A(`video/kapak-${CL()}.${IMGX === "webp" ? "webp" : "jpg"}`)); v.setAttribute("src", A(vsrc)); } $("vidBox").hidden = false; } else $("vidBox").hidden = true;
   { const ya = $("ytA"); if (ya) { ya.textContent = S("ytL") || STR.en.ytL; ya.href = lang === "tr" ? "https://www.youtube.com/watch?v=6Y4qZ-G2AS0" : "https://www.youtube.com/watch?v=TKogrZgveAM"; } }
-  { const vc = $("vidBox").querySelector("figcaption"); if (vc && lang !== "tr" && lang !== "en") vc.textContent += " " + S("vidEn"); }
-  document.querySelectorAll("[data-img]").forEach((el) => {
-    const f = A(`img/${CL()}/${el.dataset.img}.png`);
+  { const vc = $("vidBox").querySelector("figcaption"); if (vc && lang !== "tr" && lang !== "en" && !STATIC) vc.textContent += " " + S("vidEn"); }
+  if (!STATIC) document.querySelectorAll("[data-img]").forEach((el) => {
+    const f = A(`img/${CL()}/${el.dataset.img}.${IMGX}`);
     if (el.tagName === "A") el.href = f;
     else {
       el.src = f;
@@ -967,9 +993,14 @@ function applyLang() {
   renderPresets(); renderModels(); renderLoop(); renderSim(); renderDomains(); renderEffort(); renderProof(); compute();
   if (window.__tikoLang) window.__tikoLang();
 }
-function setLang(l) { lang = l; try { localStorage.setItem("tf-lang", l); } catch (_) {} applyLang(); }
-$("langSel").innerHTML = LANGS.map(([c, n]) => `<option value="${c}">${n}</option>`).join("");
-$("langSel").addEventListener("change", (e) => setLang(e.target.value));
+function setLang(l) {
+  try { localStorage.setItem("tf-lang", l); } catch (_) {}
+  // Statik sayfada dil değişimi o dilin adresine gider (her dilin kendi URL'si var)
+  if (PAGE_LANG) { if (l !== PAGE_LANG && TFD.urls && TFD.urls[l]) location.href = TFD.urls[l]; return; }
+  lang = l; applyLang();
+}
+$("langSel").innerHTML = LANGS.map(([c, n]) => `<option value="${c}"${c === lang ? " selected" : ""}>${n}</option>`).join("");
+if (!STATIC) $("langSel").addEventListener("change", (e) => setLang(e.target.value)); // statik sayfada sayfa sonundaki küçük betik yapar
 
 function renderPresets() {
   const box = $("presets"); box.replaceChildren();
@@ -1220,8 +1251,17 @@ function renderSim() {
 }
 
 if (SUPPORT_URL) { $("destek").hidden = false; $("supportBtn").href = SUPPORT_URL; }
-$("prompt").value = (lang === "tr" ? UI.tr : UI.en).presets[1][1];
-applyLang();
+if (STATIC) {
+  // Metin, bölümler ve demonun ilk çıktısı HTML'de hazır. Motorun ilk çalışması (sınıflandırıcı regex'leri) yavaş
+  // telefonda ilk boyamayı saniyelerce geciktiriyordu; o yüzden demoya ilk dokunuşta (fare, odak, dokunma) çalışır.
+  renderPresets();
+  const demo = document.querySelector(".demo"), EV = ["pointerover", "focusin", "touchstart"];
+  const arm = () => { EV.forEach((e) => demo.removeEventListener(e, arm)); computeNow(); };
+  EV.forEach((e) => demo.addEventListener(e, arm, { passive: true }));
+} else {
+  $("prompt").value = (lang === "tr" ? UI.tr : UI.en).presets[1][1];
+  applyLang();
+}
 // Görsele tıklayınca sayfa içinde büyüt (tek dosyalık sürümde yeni sekme açılamaz)
 (function () {
   const box = document.createElement("div");
