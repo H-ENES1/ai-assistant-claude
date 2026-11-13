@@ -30,7 +30,8 @@ tests/blind5.mjs        kör set 5 ölçümü (domain-cases5.json + ml/test4.tsv
 tools/                  build-release.mjs (küçültülmüş mağaza paketi), aggregate.mjs (topluluk katkılarını birleştir),
                         domain-dict.mjs (+domain-dict/sozluk.json: kör yazılmış alan sözlüğünü eleyip lib/domain.js'e yazar)
 .github/ISSUE_TEMPLATE/ katki.yml (topluluk verisi), anket.yml, hata.yml
-site/                   index.html (tanıtım sitesi, tek dosya) + build/ (kaynak, demo motoru esbuild ile gömülür)
+site/                   index.html (artifact sürümü, tek dosya) + build/ (kaynak; `python site/build/build.py` → docs/, ayrıntı build/OKU.md)
+docs/                   GitHub Pages çıktısı (elle düzenlenmez, build.py üretir): / = tr, /en/ … /zh/, app.js, sitemap.xml
 ```
 
 ## Testler (her değişiklikten sonra çalıştır)
@@ -152,3 +153,7 @@ npm run perf   # ölçüm (test değil): 60 ve 600 mesajlık sohbette boşta ve 
 - **CSP:** eklenti sayfaları yalnızca `https://claude.ai`'ye bağlanabilir (manifest). Yeni bir uç nokta ya da `fetch` eklemek = `tests/privacy.test.mjs` listesi + gizlilik politikası (`site/build/static/privacy.html` ve `docs/privacy.html`, aynı kalmalı) + onay metinleri.
 - Testler: `tests/denetim.test.mjs` (taşıma, okunamadı, süzgeçler), `tests/privacy.test.mjs` (statik gizlilik denetimi + politika–kod eşleşmesi), e2e'de metin sızıntısı (adres/gövde/depo), WebSocket, onay öncesi kanca, sahte mesaj, CSP.
 - `CONSENT_VERSION` artırılmadı (okunan veri türleri aynı, yalnızca metin düzeltildi); karar DENETIM.md'de.
+## Site ve arama motoru (12.11.2026, dal site-seo)
+- Dil başına statik sayfa: `/` = tr, `/en/` … `/zh/`; metin HTML'de hazır (prerender.cjs), hreflang + x-default=/en/, dile özel title/description (`site/build/seo.json`), OG/Twitter, JSON-LD SoftwareApplication + FAQPage. Tarayıcı diline göre yönlendirme YOK (yalnızca öneri şeridi). Ayrıntı ve Lighthouse önce/sonra: `SITE-SEO.md`.
+- Site metni değişince: `python site/build/build.py`, sonra `node site/build/site-test.cjs` ve `node site/build/multilang-test.cjs`.
+- Proje sitesinde `robots.txt` alan kökünde değil, tarayıcılar okumaz; site haritası Search Console'dan gönderilir.

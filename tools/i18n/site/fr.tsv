@@ -4,7 +4,7 @@ d.nav1	Comment ça marche
 d.nav2	Apprentissage
 d.nav3	Confidentialité
 d.nav4	Installation
-d.eyebrow	Extension de navigateur gratuite pour claude.ai
+d.eyebrow	Extension de navigateur gratuite pour votre limite d’utilisation de Claude
 d.h1	Sachez <em>avant</em> d’envoyer.
 d.lede	Token Forecast vous indique quelle part de votre limite Claude de 5 heures et de la semaine un message va consommer avant que vous n’appuyiez sur Envoyer. Il montre aussi quel modèle et quel niveau d’effort suffisent, avec les raisons, et apprend votre offre au fil du temps.
 d.cta1	Ajouter à Chrome · gratuit
@@ -318,3 +318,7 @@ d.ec2	D'énergie économisée par semaine si 1 million de personnes envoyaient 1
 d.ec3v	40–200 <small>tonnes</small>
 d.ec3	D'eau économisée par semaine dans le même scénario. 100 tonnes, c'est l'eau potable de 50 000 personnes pendant une journée.
 d.ecF	Ce sont des estimations. Nous avons supposé 0,24–1,2 Wh d'énergie et ≈ 1–5 mL d'eau par message (mesure Gemini de Google, août 2025, eau des centrales comprise ; les longs messages avec réflexion consomment davantage). Anthropic ne publie pas ces chiffres pour Claude. Pour une personne : ≈ 10–50 Wh par semaine, de quoi allumer une ampoule LED de 10 W pendant 1 à 5 heures.
+d.q11	Qu’est-ce que la limite d’utilisation de Claude et quand se réinitialise-t-elle ?
+d.a11	claude.ai a deux limites : une limite de session de 5 heures et une limite hebdomadaire. Anthropic ne publie pas leur taille exacte ; Paramètres → Utilisation montre ce que vous avez consommé et quand la limite se réinitialise. Token Forecast affiche ce même pourcentage dans la conversation et estime, avant l’envoi, la part qu’un message va consommer.
+d.q12	Fonctionne-t-elle comme compteur de tokens pour Claude ?
+d.a12	Oui. Elle compte dans votre navigateur les tokens de votre message, des pièces jointes et de l’historique ; dans la démo ci-dessus, ils apparaissent sur la ligne « ENTRÉE → RÉPONSE ». Le tokenizer de Claude n’est pas public : le nombre est donc une estimation, ajustée selon la langue. Son vrai rôle est de vous dire quelle part de votre limite représentent ces tokens.

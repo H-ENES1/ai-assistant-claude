@@ -4,7 +4,7 @@ d.nav1	Como funciona
 d.nav2	Aprendizado
 d.nav3	Privacidade
 d.nav4	Instalação
-d.eyebrow	Extensão de navegador gratuita para o claude.ai
+d.eyebrow	Extensão de navegador gratuita para o seu limite de uso do Claude
 d.h1	Saiba <em>antes</em> de enviar.
 d.lede	O Token Forecast diz quanto do seu limite do Claude de 5 horas e semanal uma mensagem vai consumir antes de você apertar enviar. Também mostra qual modelo e qual nível de esforço bastam, com os motivos, e aprende o seu plano com o tempo.
 d.cta1	Adicionar ao Chrome · grátis
@@ -318,3 +318,7 @@ d.ec2	Energia economizada por semana se 1 milhão de pessoas enviassem 100 mensa
 d.ec3v	40–200 <small>toneladas</small>
 d.ec3	Água economizada por semana no mesmo cenário. 100 toneladas são a água potável de 50.000 pessoas por um dia.
 d.ecF	São estimativas. Supusemos 0,24–1,2 Wh de energia e ≈ 1–5 mL de água por mensagem (medição do Gemini pelo Google, agosto de 2025, incluindo a água das usinas; mensagens longas com raciocínio consomem mais). A Anthropic não publica esses números para o Claude. Para uma pessoa: ≈ 10–50 Wh por semana, o suficiente para manter uma lâmpada LED de 10 W acesa por 1 a 5 horas.
+d.q11	O que é o limite de uso do Claude e quando ele é renovado?
+d.a11	O claude.ai tem dois limites: um de sessão de 5 horas e um semanal. A Anthropic não publica o tamanho exato deles; Configurações → Uso mostra quanto você já usou e quando o limite é renovado. O Token Forecast mostra essa mesma porcentagem dentro do chat e estima, antes de enviar, quanto uma mensagem vai gastar.
+d.q12	Funciona como contador de tokens do Claude?
+d.a12	Sim. Ele conta no seu navegador os tokens da mensagem, dos anexos e do histórico do chat; na demonstração acima, eles aparecem na linha “ENTRADA → RESPOSTA”. O tokenizador do Claude não é público, então o número é uma estimativa, ajustada por idioma. A função principal é dizer que parte do seu limite esses tokens representam.
