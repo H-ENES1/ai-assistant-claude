@@ -51,6 +51,11 @@ export function haikuGate(cls, ctx = {}) {
   if ((cls.hardWords || []).length) reasons.push("hard_words");
   // Riskli alan (sağlık, hukuk, para): yanlış cevabın bedeli yüksek → hafif model önerilmez
   if ((PROFILE[ctx.domain]?.stakes || 0) >= 2) reasons.push("stakes");
+  // Kurallar açıkça ağır bir tür gördüyse (kalıp eşleşmiş, güven medium/high) ve hafif türü yalnız öğrenen model
+  // söylüyorsa Haiku önerilmez: model kısa mesajda yüksek olasılıkla da yanılabiliyor
+  // ("şu an en iyi fiyat performans ekran kartı hangisi" → kısa soru, oysa güncel araştırma).
+  if (HAIKU_TYPES.has(cls.type) && cls.ruleType && !HAIKU_TYPES.has(cls.ruleType) && cls.ruleConfidence && cls.ruleConfidence !== "low"
+    && !(cls.signals || []).includes("default")) reasons.push("rules_heavy");
   return { ok: reasons.length === 0, reasons };
 }
 
@@ -60,7 +65,7 @@ export function decideTier(cls, ctx = {}, prefs = null) {
   let t = MIN_TIER[cls.type] || "sonnet";
   const gate = haikuGate(cls, ctx);
   if (gate.ok) { t = "haiku"; why.push("simple_task"); }
-  else if (HAIKU_TYPES.has(cls.type) && gate.reasons.includes("confidence")) why.push("unsure_safe");
+  else if (HAIKU_TYPES.has(cls.type) && (gate.reasons.includes("confidence") || gate.reasons.includes("rules_heavy"))) why.push("unsure_safe");
   else if (HAIKU_TYPES.has(cls.type) && gate.reasons.includes("stakes")) why.push("stakes");
 
   const c = cls.complexity || 0;

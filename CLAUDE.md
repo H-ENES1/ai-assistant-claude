@@ -22,6 +22,13 @@ tests/ml/               train.tsv (600), test.tsv + test2.tsv (120+120, ayrı ya
 tests/ml/               train.tsv (600), test.tsv + test2.tsv (120+120, ayrı yazılmış), test3.tsv (350, KÖR SET 4), train.mjs (eğit + karşılaştır)
 tests/blind4.mjs        kör set 4 ölçümü (domain-cases4.json + ml/test3.tsv): iş türü, alan, model/effort; eşik yok, yalnız set bütünlüğü denetlenir
 tools/                  build-release.mjs (küçültülmüş mağaza paketi), aggregate.mjs (topluluk katkılarını birleştir)
+tests/ml/               train.tsv (600 kısa), train2.tsv (633 uzun/yapıştırılmış içerikli; train2.meta.tsv: dil, alan, kaynak),
+                        test.tsv + test2.tsv (120+120, ayrı yazılmış), test3.tsv (350, set 4: YANMIŞ, bilgi amaçlı),
+                        test4.tsv (300, KÖR SET 5), train.mjs (eğit + karşılaştır; ağırlığı yalnız --write ile yazar)
+tests/blind4.mjs        set 4 ölçümü (domain-cases4.json + ml/test3.tsv): iş türü, alan, model/effort; eşik yok, yalnız set bütünlüğü denetlenir
+tests/blind5.mjs        kör set 5 ölçümü (domain-cases5.json + ml/test4.tsv); --base=<klasör> ile "önce" sürümü yan yana; --check yalnız bütünlük
+tools/                  build-release.mjs (küçültülmüş mağaza paketi), aggregate.mjs (topluluk katkılarını birleştir),
+                        domain-dict.mjs (+domain-dict/sozluk.json: kör yazılmış alan sözlüğünü eleyip lib/domain.js'e yazar)
 .github/ISSUE_TEMPLATE/ katki.yml (topluluk verisi), anket.yml, hata.yml
 site/                   index.html (tanıtım sitesi, tek dosya) + build/ (kaynak, demo motoru esbuild ile gömülür)
 ```
@@ -33,6 +40,12 @@ npm install   # kökte: esbuild + playwright
 npm run test   # birim + öğrenme + rapor + katkı + model önerisi (60 prompt: uygunluk ≥ %96, "gerekenden hafif öneri" = 0 olmalı)
 node tests/ml/train.mjs   # sınıflandırıcıyı yeniden eğit; test2'de karma < kurallar olursa ağırlıkları YAZMA (--no-write)
 npm run e2e    # Playwright, sahte claude.ai (69 kontrol). PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 şart (0.12.2'den beri e2e.cjs kendisi ayarlar):
+npm run test   # birim + öğrenme + rapor + katkı + model önerisi (72 prompt: uygunluk ≥ %96, "gerekenden hafif öneri" = 0 olmalı)
+               # + set 4 ve set 5 bütünlük denetimi (set 5 burada ÖLÇÜLMEZ)
+node tests/ml/train.mjs   # sınıflandırıcıyı eğit ve karşılaştır; ağırlık YAZMAZ. Yazmak için --write (test2'de doğruluk düşmemeli,
+                          # tehlikeli hata artmamalı) VE yazılan ağırlık yeni bir kör setle ölçülmeden yayımlanmaz (aşağıda kör set 5 notu)
+npm run blind5            # kör set 5 ölçümü; sonuca bakarak ayar yapılırsa set 5 yanar
+npm run e2e    # Playwright, sahte claude.ai (43 kontrol). PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 şart:
                # yoksa arka plan servisinin istekleri sahte sunucuya gitmez ve 4-5 kontrol yanlışlıkla kırmızı olur.
 ```
 
@@ -54,7 +67,23 @@ npm run e2e    # Playwright, sahte claude.ai (69 kontrol). PW_EXPERIMENTAL_SERVI
 - Plan limit büyüklükleri (k) kaba önsel (topluluk önselleri gelene kadar).
 - Lisans (22.10.2026 kararı): GNU AGPL-3.0-or-later (LICENSE, NOTICE). Kod açık kaynak; ad ve logo lisans dışı (AGPL madde 7(e), NOTICE). Derlenmiş JS dosya başlığında SPDX ve kaynak adresi var (https://github.com/H-ENES1/ai-assistant-claude; depo 23.10.2026 tarihinde ai-assistant-claude olarak yeniden adlandırıldı). Önceki "tüm hakları saklı" kararı ve BSL fikri terk edildi.
 - Sınıflandırıcı: test2 (gündelik dil) kurallar %64 → karma %88. Gerçek kullanıcı mesajlarıyla ölçülmedi.
-- **Kör set 4 (12.11.2026, 250 TR + 100 EN):** depoyu görmeyen alt ajanlar yazdı (`tests/ml/test3.tsv`, `tests/domain-cases4.json`; ölçüm `npm run blind`). İş türü: kurallar %41, yalnız metin %50, karma %50, ürün %49 (test/test2'de ürün %92/%89). Konu alanı: %66 kabul edilebilir, 64 yanlış alan, 55 "genel". Ana neden: train.tsv'de 20 kelimeden uzun örnek yok, kör setin %45'i 20 kelimeden uzun; uzun ve yapıştırılmış içerikli mesajlar `code_fix`'e kayıyor. Güven işe yarıyor: high %75, medium %60, low %23 doğru. **Bu sete bakarak kural, ağırlık ya da sözlük EKLEME**; iyileştirme yapılacaksa önce ayrı eğitim verisi yaz, sonra yeni bir kör setle ölç.
+- **Kör set 4 (12.11.2026, 250 TR + 100 EN):** depoyu görmeyen alt ajanlar yazdı (`tests/ml/test3.tsv`, `tests/domain-cases4.json`; ölçüm `npm run blind`). İş türü: kurallar %41, yalnız metin %50, karma %50, ürün %49 (test/test2'de ürün %92/%89). Konu alanı: %66 kabul edilebilir, 64 yanlış alan, 55 "genel". Ana neden: train.tsv'de 20 kelimeden uzun örnek yok, kör setin %45'i 20 kelimeden uzun; uzun ve yapıştırılmış içerikli mesajlar `code_fix`'e kayıyor. Güven işe yarıyor: high %75, medium %60, low %23 doğru. **Bu sete bakarak kural, ağırlık ya da sözlük EKLEME**; iyileştirme yapılacaksa önce ayrı eğitim verisi yaz, sonra yeni bir kör setle ölç. (Aynı gün yapıldı: aşağıdaki kör set 5 notu; set 4 artık yanmıştır.)
+- **Kör set 5 ve "uzun mesaj" denemesi (12.11.2026, dal `egitim-uzun`):**
+  - **Set 4 yanmıştır:** train2.tsv onun toplu sonuçlarına göre yazıldı; artık yalnız "önce" değeri, tablolarda "bilgi amaçlı".
+  - **Kör set 5** (200 TR + 100 EN, %60'ı 20–150 kelime, yapıştırılmış e-posta/tablo/makale/kod/hata çıktısı): depoyu görmeyen alt ajanlar yazdı, bağımsız ikinci etiketleyiciyle anlaşma iş türü %95,7, alan %94,3, model ailesi %85,3, effort %72,7 (model ve effort etiketleri tahmindir). Mühür commit'inden sonra içeriğine bakılmadı, **tek kez ölçüldü**, sonuca göre ayar yapılmadı. **Bu sete bakarak kural, ağırlık ya da sözlük EKLEME.**
+  - Yapılanlar: train2.tsv (633 örnek), yeniden eğitim, hafif tür koruması (`classify.js` LIGHT_*: uzun mesajda model tek başına hafif tür diyemez; "yapım işi kısa soru olamaz"), Haiku kapısı `rules_heavy` (`advisor.js`: kurallar güvenle ağır tür diyorsa Haiku yok), sözlük 2 (`domain.js` SOZLUK2 bloğu, 64 kural satırı, `tools/domain-dict.mjs` üretir).
+  - Sonuç (ürün; iş türü katı doğruluk · tehlikeli hata | hafif-öneri [iki etiketleyiciden de hafif] · Haiku yanlış öneri · riskli alanda Haiku · (Haiku toplam)):
+
+    | sürüm | test | test2 | set 4 (bilgi amaçlı) | set 5 (kör) |
+    |---|---|---|---|---|
+    | önce (kor-set-4) | %91,7 · 2 \| 1 [1] · 1 | %89,2 · 2 \| 0 · 0 | %49,1 · 10 \| 21 [12] · 5 · 4 · (24) | %38,7 · 5 \| 26 [15] · 3 · 1 · (12) |
+    | yeni ağırlık + yeni kod (**geri alındı**) | %89,2 · 1 \| 0 · 0 | %89,2 · 1 \| 0 · 0 | %63,4 · 14 \| 27 [16] · 9 · 3 · (37) | %67,3 · 5 \| 37 [26] · **12** · 1 · (34) |
+    | **eski ağırlık + yeni kod (dalda kalan)** | %81,7 · 1 \| 0 · 0 | %88,3 · 0 \| 0 · 0 | %46,0 · 0 \| 18 [9] · 2 · 2 · (15) | %36,3 · 2 \| 26 [15] · 2 · 1 · (10) |
+
+    Konu alanı (kabul edilebilir · yanlış alan · "genel"): set 5 %79,7 · 44 · 17 → %84,0 · 37 · 11; set 4 %66,0 · 64 · 55 → %72,3 · 55 · 42; set 3 %71 → %78; set 1–2 aynı ya da daha iyi.
+  - **Karar (ölçümden önce yazılmış kuralla):** yeni ağırlıklar set 5'te doğruluğu %39 → %67 yaptı ama Haiku yanlış öneriyi 3 → 12, hafif-öneri hatasını 15 → 26 çıkardı; tek yönlü güvenlik kuralı gereği **ağırlıklar geri alındı** (`learn-weights.js` = kor-set-4). Koruma, kapı ve sözlük güvenlik sayılarını kötüleştirmediği için kaldı. Bedeli: koruma eski ağırlıklarla kısa mesajlarda bazı hafif işleri ağır türe itiyor (test %91,7 → %81,7; Haiku önerilen 34 → 25), yani uzun mesaj sorunu ÇÖZÜLMEDİ, ürün yalnızca daha temkinli oldu. main'e birleştirilmedi.
+  - Dersler: (1) test2 yazma ölçütü tek başına yetmiyor, yeni ağırlık kör sette Haiku'yu 12 → 34 kez önerdi ve bunların 12'si yanlıştı; ağırlık değiştirirken ölçüt "Haiku yanlış öneri" olmalı. (2) Koruma eşikleri yeni ağırlıkların olasılıklarına göre seçilmişti; eski ağırlıklarla yeniden ayarlanmadı (ayarlanırsa yeni kör set gerekir). (3) Aynı model ailesinden yazarlar benzer örneklere yakınsıyor (train2'den 13 yakın kopya atıldı); kör set sonuçları gerçek kullanıcıya göre iyimser olabilir. (4) Ham model geliştirme verisinde tehlikeli hatayı 70'e çıkarıyordu; doğruluk kazancı hafif türleri (çeviri, özet, yeniden yazım) tanımaktan geliyor ve aynı şey riski de getiriyor.
+  - Sonraki adım fikirleri (kodlanmadı): talimat penceresi (yapıştırılan gövdeyi ayırıp türü talimattan okumak), Haiku kararı için ayrı "hafif mi" ölçütü/olasılık kalibrasyonu, alan tespitini talimat kısmına ağırlıklandırmak.
 - `tests/ml/train.mjs`: "kurallar" satırı `useModel:false` ile ölçülür (classify() öğrenen modeli kullanmaya başladığından beri bu satır yanlışlıkla ürünün karma kararını ölçüyordu; betik ayrıca eski `ext/` yolu yüzünden çalışmıyordu); "ürün" satırı yayındaki ağırlıklardır. Ağırlık yazma ölçütü test2 olarak kaldı, test3 karara karışmaz.
 - Topluluk verisi: claude.ai artifact veritabanına kuruluş dışı ziyaretçi yazamıyor; bu yüzden GitHub konu formu (katki.yml) + tools/aggregate.mjs. Katkı metin içermez (contrib.test.mjs bunu denetler).
 

@@ -1,10 +1,17 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // Copyright (c) 2026 Hayrettin Enes Karalı
 // İş türü sınıflandırıcısını eğitir ve kurallarla karşılaştırır.
-//   node tests/ml/train.mjs            → eğit, değerlendir, ağırlıkları yaz (ext/lib/learn-weights.js)
-//   node tests/ml/train.mjs --no-write → yalnızca değerlendir
-// Değerlendirme: train.tsv'den hiç türetilmemiş, ayrı yazılmış test.tsv (dağınık, gerçekçi mesajlar).
-import { readFileSync, writeFileSync } from "node:fs";
+//   node tests/ml/train.mjs         → eğit ve değerlendir (ağırlık YAZMAZ)
+//   node tests/ml/train.mjs --write → ölçüt tutuyorsa ağırlıkları yaz (extension/lib/learn-weights.js)
+// DİKKAT (12.11.2026): train + train2 ile eğitilen ağırlıklar test2 ölçütünü geçti ama kör set 5'te Haiku yanlış
+// öneriyi 3 → 12'ye çıkardı ve geri alındı (CLAUDE.md). test2 ölçütü tek başına yetmiyor; bu yüzden yazma artık
+// açık istekle (--write) olur ve yazılan ağırlık yeni bir kör setle ölçülmeden yayımlanmamalıdır.
+// Eğitim verisi: train.tsv (600 kısa örnek) + train2.tsv (uzun ve yapıştırılmış içerikli örnekler; ayrı alt ajanlar yazdı).
+// Değerlendirme: eğitim verisinden hiç türetilmemiş, ayrı yazılmış test.tsv ve test2.tsv (dağınık, gerçekçi mesajlar).
+// Yazma ölçütü (test2): aday ağırlıklarla ÜRÜNÜN kararı (kurallar + ağırlıklar + korumalar) yayındaki ağırlıklardan
+// daha az doğru olmamalı ve tehlikeli hata (ağır işi hafif türe atma) sayısı artmamalı; yoksa ağırlıklar yazılmaz.
+// Kör set 5 (test4.tsv) burada bilerek ölçülmez: yalnız tests/blind5.mjs ölçer.
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { classify } from "../../extension/lib/classify.js";
@@ -15,8 +22,11 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const read = (f) => readFileSync(path.join(here, f), "utf8").trim().split(/\r?\n/).filter((l) => l && !l.startsWith("#")).map((l) => {
   const i = l.indexOf("\t"); return { y: l.slice(0, i), x: l.slice(i + 1).replace(/\\n/g, "\n") };
 });
-const train = read("train.tsv"), test = read("test.tsv"), test2 = read("test2.tsv");
-// KÖR SET (kor-set-4, 12.11.2026): yalnızca ölçüm içindir. Buna bakarak kural, ağırlık ya da sözlük değiştirme.
+const train1 = read("train.tsv"), train2 = existsSync(path.join(here, "train2.tsv")) ? read("train2.tsv") : [];
+const train = [...train1, ...train2];
+const test = read("test.tsv"), test2 = read("test2.tsv");
+// KÖR SET 4 (12.11.2026): yalnızca ölçüm içindir, buna bakarak kural, ağırlık ya da sözlük değiştirme.
+// train2.tsv bu setin TOPLU sonuçlarına göre (uzun mesajlar zayıf) yazıldığı için set 4 artık "bilgi amaçlı"dır.
 const test3 = read("test3.tsv");
 const args = new Set(process.argv.slice(2));
 
@@ -101,15 +111,18 @@ function evaluate(name, rows, guess) {
   }
   return { name, acc: ok / rows.length, ok, n: rows.length, danger, per, errs };
 }
+const cell = (e) => `%${(100 * e.acc).toFixed(1)} · ${e.danger}`;
 const show = (e) => console.log(`${e.name.padEnd(34)} doğruluk %${(100 * e.acc).toFixed(1)} (${e.ok}/${e.n}) · tehlikeli hata (hafif tipe kayma): ${e.danger}`);
 
 // Yalnız kurallar: classify() artık yayındaki öğrenen modeli de kullandığı için useModel:false şart
 // (yoksa "kurallar" satırı aslında ürünün karma kararını ölçer).
 const rulesGuess = (x) => classify(x, { useModel: false }).type;
-// Ürünün bugünkü kararı: kurallar + yayındaki ağırlıklar (learn-weights.js) + görev–konu korumaları
+// Yayındaki ürünün kararı: kurallar + learn-weights.js'teki ağırlıklar + görev–konu korumaları.
+// Hafif tür koruması açık (ürün bugün böyle çalışıyor). Yazma ölçütü bu satıra göre verilir.
+// Not: ağırlıklar yazıldıktan sonra bu satır yeni ağırlıkları ölçer.
 const shippedGuess = (x) => classify(x).type;
 const aug = train.flatMap(augment);
-console.log(`eğitim: ${train.length} örnek → çoğaltılmış ${aug.length} · test: ${test.length} (ayrı yazılmış)\n`);
+console.log(`eğitim: ${train.length} örnek (train.tsv ${train1.length} + train2.tsv ${train2.length}) → çoğaltılmış ${aug.length} · test: ${test.length} (ayrı yazılmış)\n`);
 
 const R = evaluate("kurallar (mevcut)", test, rulesGuess); show(R);
 const S = evaluate("ürün (yayındaki ağırlıklar)", test, shippedGuess); show(S);
@@ -132,7 +145,7 @@ if (args.has("--errors2")) { console.log("\nKarma, test 2 hataları:"); H2.errs.
 
 // Üçüncü test seti (kör set 4): alt ajanlar depoyu görmeden yazdı, 250 TR + 100 EN. Ayar için KULLANILMAZ;
 // ağırlıkların yazılıp yazılmayacağına da karışmaz (karar ölçütü test2 olarak kalır).
-console.log("\nTest 3 (kör set 4; alt ajanlar yazdı, depoyu görmediler):");
+console.log("\nTest 3 (kör set 4, bilgi amaçlı; alt ajanlar yazdı, depoyu görmediler):");
 const R3 = evaluate("kurallar (mevcut)", test3, rulesGuess); show(R3);
 const T3 = evaluate("öğrenen model (yalnız metin)", test3, (x) => predict(mText, featurize(x, null, mText.dim)).type); show(T3);
 const H3 = evaluate("karma (yeniden eğitilmiş)", test3, (x) => predict(mHyb, featurize(x, classify(x).scores, mHyb.dim)).type); show(H3);
@@ -140,9 +153,14 @@ const S3 = evaluate("ürün (yayındaki ağırlıklar)", test3, shippedGuess); s
 if (args.has("--errors3")) { console.log("\nÜrün, test 3 hataları:"); S3.errs.forEach((e) => console.log("  " + e)); }
 
 // Yan yana tablo: doğruluk · tehlikeli hata (ağır işi hafif türe atma)
-const cell = (e) => `%${(100 * e.acc).toFixed(1)} · ${e.danger}`;
-console.log(`\n| yöntem | test (${test.length}) | test2 (${test2.length}) | test3, kör (${test3.length}) |\n|---|---|---|---|`);
-for (const [n, a, b, c] of [["kurallar", R, R2, R3], ["öğrenen model (yalnız metin)", T, T2, T3], ["karma (yeniden eğitilmiş)", Hy, H2, H3], ["ürün (yayındaki ağırlıklar)", S, S2, S3]])
+// Aday ürün: yeni ağırlıklar (int8'e sıkıştırılmış, yazılacak hâliyle) + kurallar + görev–konu korumaları.
+// Yazma kararı bu satırla verilir (ham "karma" satırı korumaları içermez).
+const candModel = decodeModel(encodeModel(mHyb));
+const candGuess = (x) => classify(x, { model: candModel }).type;
+const C = evaluate("aday ürün (yeni ağırlıklar)", test, candGuess), C2 = evaluate("aday ürün (yeni ağırlıklar)", test2, candGuess), C3 = evaluate("aday ürün (yeni ağırlıklar)", test3, candGuess);
+console.log("\nAday ürün (yeni ağırlıklar + kurallar + korumalar):"); show(C); show(C2); show(C3);
+console.log(`\n| yöntem | test (${test.length}) | test2 (${test2.length}) | test3, kör set 4, bilgi amaçlı (${test3.length}) |\n|---|---|---|---|`);
+for (const [n, a, b, c] of [["kurallar", R, R2, R3], ["öğrenen model (yalnız metin)", T, T2, T3], ["karma (yeniden eğitilmiş, ham)", Hy, H2, H3], ["ürün (yayındaki ağırlıklar)", S, S2, S3], ["aday ürün (yeni ağırlıklar)", C, C2, C3]])
   console.log(`| ${n} | ${cell(a)} | ${cell(b)} | ${cell(c)} |`);
 
 // Eğitim setinde 5 katlı çapraz doğrulama (karma)
@@ -163,7 +181,7 @@ for (const t of LEARN_TYPES) {
 if (args.has("--errors")) { console.log("\nKarma modelin hataları:"); Hy.errs.forEach((e) => console.log("  " + e)); console.log("\nKuralların hataları:"); R.errs.forEach((e) => console.log("  " + e)); }
 
 // Sıkıştırma kaybı: int8'e çevrilmiş model aynı sonucu veriyor mu?
-const meta = { trained: new Date().toISOString().slice(0, 10), train: train.length, augmented: aug.length, test: test.length,
+const meta = { trained: new Date().toISOString().slice(0, 10), train: train.length, train2: train2.length, augmented: aug.length, test: test.length,
   testAccRules: +R.acc.toFixed(3), testAccHybrid: +Hy.acc.toFixed(3), test2AccRules: +R2.acc.toFixed(3), test2AccHybrid: +H2.acc.toFixed(3),
   dangerRules: R.danger + R2.danger, dangerHybrid: Hy.danger + H2.danger, cv: +(cvOk / train.length).toFixed(3) };
 const packed = encodeModel(mHyb, meta);
@@ -171,7 +189,14 @@ const back = decodeModel(packed);
 const Q = evaluate("karma (int8 sıkıştırılmış)", test, (x) => predict(back, featurize(x, classify(x).scores, back.dim)).type); show(Q);
 console.log(`ağırlık boyutu: ${(packed.W.length / 1024).toFixed(0)} KB (base64)`);
 
-if (!args.has("--no-write")) {
+// Yazma ölçütü: test2'de aday ürün, yayındaki üründen kötü olmamalı (doğruluk ve tehlikeli hata).
+const worse = [];
+if (C2.acc < S2.acc) worse.push(`test2 doğruluğu düştü (%${(100 * S2.acc).toFixed(1)} → %${(100 * C2.acc).toFixed(1)})`);
+if (C2.danger > S2.danger) worse.push(`test2 tehlikeli hata arttı (${S2.danger} → ${C2.danger})`);
+console.log(`\nyazma ölçütü (test2): yayındaki ${cell(S2)} → aday ${cell(C2)} · ${worse.length ? "TUTMADI: " + worse.join("; ") : "tuttu"}`);
+if (worse.length) console.log("ağırlıklar YAZILMADI");
+else if (!args.has("--write") || args.has("--no-write")) console.log("ağırlıklar yazılmadı (yazmak için --write; önce başlıktaki DİKKAT notunu oku)");
+else {
   const out = path.join(here, "../../extension/lib/learn-weights.js");
   writeFileSync(out, `// Otomatik üretildi: tests/ml/train.mjs (elle düzenleme). ${meta.trained}\nexport default ${JSON.stringify(packed)};\n`);
   console.log("yazıldı:", path.relative(process.cwd(), out));
