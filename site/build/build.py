@@ -46,7 +46,11 @@ def js_json(o):
 node = shutil.which('node')
 if not node:
     sys.exit('node bulunamadı (PATH)')
-engine = subprocess.run([node, os.path.join(REPO, 'node_modules', 'esbuild', 'bin', 'esbuild'), os.path.join(HERE, 'entry.js'),
+# esbuild/bin/esbuild Windows'ta bir JS başlatıcısı, Linux/macOS'ta doğrudan çalışan ikili dosyadır
+ESB = os.path.join(REPO, 'node_modules', 'esbuild', 'bin', 'esbuild')
+with open(ESB, 'rb') as fh:
+    ESB_CMD = [ESB] if fh.read(4) in (b'\x7fELF', b'\xcf\xfa\xed\xfe', b'\xca\xfe\xba\xbe') else [node, ESB]
+engine = subprocess.run(ESB_CMD + [os.path.join(HERE, 'entry.js'),
                          '--bundle', '--format=iife', '--global-name=TF', '--minify', '--log-level=warning'],
                         check=True, capture_output=True, encoding='utf8').stdout.strip()
 src = rd(os.path.join(HERE, 'index.src.html'))
