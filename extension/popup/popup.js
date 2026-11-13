@@ -12,7 +12,7 @@ import { weeklyReport, burnRate } from "../lib/report.js";
 
 if (new URLSearchParams(location.search).get("view") === "tab") document.documentElement.classList.add("tab");
 const VIEW_KEYS = ["advisor", "effortAdvice", "tips", "explain"];
-const DEFAULTS = { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto", advisor: true, effortAdvice: true, tips: true, explain: true, weeklyReport: true };
+const DEFAULTS = { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto", advisor: true, effortAdvice: true, tips: true, explain: true, weeklyReport: true, tiko: true };
 const $ = (id) => document.getElementById(id);
 const store = chrome.storage.local;
 let I = null;
@@ -38,6 +38,7 @@ function staticTexts() {
   $("lblTh").textContent = t("thresholds");
   $("lblNotif").textContent = t("setNotif");
   $("lblPanel").textContent = t("setPanel");
+  $("lblTiko").textContent = t("setTiko");
   $("lblAdvisor").textContent = t("setAdvisor");
   $("lblEffortAdvice").textContent = t("setEffortAdvice"); $("lblTips").textContent = t("setTips"); $("lblExplain").textContent = t("setExplain");
   $("lblView").textContent = t("setView"); $("viewFull").textContent = t("viewFull"); $("viewSimple").textContent = t("viewSimple"); $("viewCustom").textContent = t("viewCustom"); $("viewNote").textContent = t("viewNote");
@@ -174,6 +175,7 @@ async function render() {
   d.settings.thresholds.forEach((v, i) => { const el = $(`th${i}`); if (el) el.value = v; });
   $("notif").checked = !!d.settings.notifications;
   $("panel").checked = !!d.settings.panel;
+  $("tiko").checked = d.settings.tiko !== false;
   $("advisor").checked = d.settings.advisor !== false;
   $("effortAdvice").checked = d.settings.effortAdvice !== false;
   $("tips").checked = d.settings.tips !== false;
@@ -243,6 +245,7 @@ for (let i = 0; i < 3; i++) {
 }
 $("notif").addEventListener("change", (e) => saveSettings({ notifications: e.target.checked }));
 $("panel").addEventListener("change", (e) => saveSettings({ panel: e.target.checked }));
+$("tiko").addEventListener("change", (e) => saveSettings({ tiko: e.target.checked }));
 $("advisor").addEventListener("change", (e) => saveSettings({ advisor: e.target.checked }));
 $("effortAdvice").addEventListener("change", (e) => saveSettings({ effortAdvice: e.target.checked }));
 $("tips").addEventListener("change", (e) => saveSettings({ tips: e.target.checked }));
