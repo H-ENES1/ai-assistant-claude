@@ -137,6 +137,18 @@ export function lastUserMessage() {
   return { el, key: el ? `${text.length}|${text.slice(0, 200)}` : "" };
 }
 
+// Tiko için: metne dokunmadan yalnızca öğe döndürür (Tiko bunların kutu koordinatını okur).
+// Yazılmakta olan cevap (claude.ai yazarken data-is-streaming="true" koyar).
+export function streamingReply() {
+  const el = document.querySelector('[data-is-streaming="true"]');
+  return { streaming: !!el, el: el || null };
+}
+// Son kullanıcı mesajının öğesi.
+export function lastUserEl() {
+  const list = allMatches(USER_MSG_SELECTORS);
+  return list[list.length - 1] || null;
+}
+
 // Mesaj kutusunun hemen üstünde claude.ai'nin kendi uyarısı (ör. kullanım bildirimi) varsa,
 // bizim bildirimimiz onun üstüne yerleşsin diye en üst sınırı verir.
 export function composerTop() {
