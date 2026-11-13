@@ -81,7 +81,10 @@ const CSS = `
 :host { all: initial; }
 .mv { position: fixed; left: 0; top: 0; width: ${W}px; height: ${H}px; z-index: 2147483644; pointer-events: none; will-change: transform; transition: opacity .16s linear; }
 .mv.gone { opacity: 0; visibility: hidden; transition: opacity .16s linear, visibility 0s .16s; }
-.tk { position: absolute; inset: 0; transform-origin: 50% 100%; --lx: 0; --ly: 0; }
+/* Altında sohbet yazısı ya da düğme var: saydamlaşır ve tıklamayı geçirir */
+.mv.ghost .tk { opacity: .32; }
+.mv.ghost .hit { pointer-events: none; }
+.tk { position: absolute; inset: 0; transform-origin: 50% 100%; --lx: 0; --ly: 0; transition: opacity .16s linear; }
 .sh { position: absolute; left: 4px; right: 4px; bottom: -2px; height: 4px; border-radius: 50%; background: rgba(0,0,0,.18); }
 .sp { position: absolute; inset: 0; transform-origin: 50% 100%; }
 svg { position: absolute; inset: 0; width: 100%; height: 100%; shape-rendering: crispEdges; overflow: visible; transform-origin: 50% 100%; pointer-events: none; }
@@ -213,7 +216,7 @@ function caretPoint(input) {
 // opt: getInput, getComposer, getComposerTop (öğe / sayı döndürür), getObstacles (hap ve bildirim kutuları),
 //      getAvoid (son kullanıcı mesajının kutusu), park ({rx, ry} | null), hintSeen, onPark, onHintShown, texts {hint, title}
 export function createTiko(opt = {}) {
-  const { getInput, getComposer, getComposerTop, getObstacles, getAvoid, onPark, onHintShown } = opt;
+  const { getInput, getComposer, getComposerTop, getObstacles, getAvoid, isBusy, onPark, onHintShown } = opt;
   const host = document.createElement("div");
   host.setAttribute("data-token-forecast-tiko", "");
   host.setAttribute("aria-hidden", "true"); // süs: gösterdiği her şey hapta ve popup'ta metin olarak var
@@ -228,7 +231,7 @@ export function createTiko(opt = {}) {
   let hintSeen = opt.hintSeen !== false;
   let dead = false, gone = true, placed = false, upFlag = false, lookKey = "0,0";
   let pos = { x: 0, y: 0 }, vel = { x: 0, y: 0 }, tgt = null, homeTgt = null, lastX = null;
-  let raf = 0, lastT = 0, running = false, needMeasure = false, needMenus = true, menuHit = false, snapNext = false, popNext = false;
+  let raf = 0, lastT = 0, running = false, needMeasure = false, needMenus = true, menuHit = false, busyHit = false, ghost = false, snapNext = false, popNext = false;
   let timer = 0, menuT = 0, sayT = 0, sayKind = "", replyEl = null, drag = null, suppressClick = false, lastNote = 0;
   const stats = { frames: 0, ms: 0 };
 
@@ -263,7 +266,7 @@ export function createTiko(opt = {}) {
       mv.classList.toggle("rmv", st.reduced);
       host.dataset.state = v.mode; host.dataset.pose = v.pose; host.dataset.face = v.face; host.dataset.place = v.place;
       if (!v.visible) { setGone(true); placed = false; mv.classList.remove("say"); }
-      needMeasure = true;
+      needMeasure = true; needMenus = true;
     }
     arm();
     if (v.visible && needMeasure) kick();
@@ -335,14 +338,23 @@ export function createTiko(opt = {}) {
     const box = { left: x, right: x + W, top, bottom: top + H };
     // claude.ai'nin kendi menüsü (model seçici, açılır liste) Tiko'nun üstüne açıldıysa geri çekil
     if (needMenus) {
-      needMenus = false; menuHit = false;
+      needMenus = false; menuHit = false; busyHit = false;
       for (const m of document.querySelectorAll(MENU_SEL)) {
         if (hits(m.getBoundingClientRect(), box)) { menuHit = true; break; }
+      }
+      // Altında bir sohbet mesajı ya da tıklanabilir bir şey var mı? (dört noktada isabet testi; içerik okunmaz)
+      // Kullanıcının kendi park ettiği yerde bakılmaz: oraya o koydu, tutup geri alabilmeli.
+      if (!menuHit && isBusy && place !== "park" && top >= 4) {
+        for (const [px, py] of [[x + W / 2, top + 8], [x + W / 2, top + H / 2], [x + 5, top + H - 6], [x + W - 5, top + H - 6]]) {
+          const under = document.elementsFromPoint(px, py).find((el) => el !== host && !el.hasAttribute?.("data-token-forecast"));
+          if (under && isBusy(under)) { busyHit = true; break; }
+        }
       }
     }
     // ---- buradan sonrası yazma ----
     if (up !== upFlag) { upFlag = up; tk.classList.toggle("up", up); }
     setGone(top < 4 || menuHit);
+    if (busyHit !== ghost) { ghost = busyHit; mv.classList.toggle("ghost", ghost); host.dataset.ghost = ghost ? "1" : "0"; }
     tgt = { x, y: top };
     const dist = Math.hypot(tgt.x - pos.x, tgt.y - pos.y);
     if (!placed || snapNext || st.reduced || dist > FAR) {
@@ -402,7 +414,7 @@ export function createTiko(opt = {}) {
     needMeasure = true; kick(); menusSoon();
   });
   const onSelection = guard(() => { if (st.mode === "typing") remeasure(); });
-  const onScroll = guard(() => { if (!vw.visible) return; if (vw.place === "perch" || vw.place === "park") snapNext = true; remeasure(); });
+  const onScroll = guard(() => { if (!vw.visible) return; if (vw.place === "perch" || vw.place === "park") snapNext = true; remeasure(); menusSoon(); });
   const onResize = guard(() => { snapNext = true; remeasure(); });
   function menusSoon() {
     if (menuT || !vw.visible) return;
@@ -515,7 +527,7 @@ export function createTiko(opt = {}) {
     // sig: { composer, heavy, light, weeklyPct, status } — content.js'in zaten hesapladığı sinyaller
     sync: guard((sig = {}) => {
       status = sig.status || "";
-      needMeasure = true; // hap ya da bildirim yer değiştirmiş olabilir
+      needMeasure = true; needMenus = true; // hap, bildirim ya da sayfa içeriği yer değiştirmiş olabilir
       push({ type: "composer", on: !!sig.composer }, { type: "signals", heavy: sig.heavy, light: sig.light, weeklyPct: sig.weeklyPct });
     }),
     send: guard(() => { lastX = null; push({ type: "send" }); }),
@@ -523,7 +535,7 @@ export function createTiko(opt = {}) {
     stream: guard((streaming, el) => {
       replyEl = el || replyEl;
       if (!!streaming !== st.streamOn) push({ type: "stream", on: !!streaming });
-      else if (streaming && vw.place === "perch") { snapNext = true; remeasure(); } // cevap uzadıkça kenar kayar
+      else if (streaming && vw.place === "perch") { if (!running) snapNext = true; remeasure(); } // cevap uzadıkça kenar kayar
     }),
     setTexts: guard(setTexts),
     setPark: guard((p) => {

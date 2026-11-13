@@ -470,19 +470,23 @@
   // ---------- Tiko (minik maskot) ----------
   // Tiko mesaj metnini görmez: buradan yalnızca hazır sinyaller gider (tahmin ağır mı, hafif model önerildi mi,
   // haftalık yüzde) ve tıklanınca göstereceği kısa durum satırı. Konum için koordinatları kendisi okur (lib/tiko.js).
-  let tiko = null, tikoParkSaved = "null";
+  let tiko = null, tikoParkSaved = "null", tikoAvoidEl = null, tikoFails = 0;
   function syncTiko(r) {
     try {
       if (S.settings.tiko === false || !L.tiko || !S.i18n) { tiko?.destroy(); tiko = null; return; }
       const { t, pct } = S.i18n;
-      if (!tiko || tiko.dead) {
+      // Tiko beklenmedik bir hatada kendini kaldırır. Üç kez olduysa bu sayfada bir daha kurulmaz (sessizce yok).
+      if (tiko?.dead) { tiko = null; tikoFails++; }
+      if (tikoFails >= 3) return;
+      if (!tiko) {
         tikoParkSaved = JSON.stringify(S.tikoPark);
         tiko = L.tiko.createTiko({
           getInput: () => L.page.getInputElement(),
           getComposer: () => L.page.getComposer(),
           getComposerTop: () => L.page.composerTop(),
           getObstacles: () => panel?.rects?.() || [],
-          getAvoid: () => L.page.lastUserEl()?.getBoundingClientRect() || null,
+          getAvoid: () => (tikoAvoidEl?.isConnected ? tikoAvoidEl.getBoundingClientRect() : null),
+          isBusy: (el) => L.page.isBusySpot(el),
           park: S.tikoPark, hintSeen: S.tikoHintSeen,
           onPark: (p) => { S.tikoPark = p; tikoParkSaved = JSON.stringify(p); store.set({ tikoPark: p }); },
           onHintShown: () => { S.tikoHintSeen = true; store.set({ tikoHintSeen: true }); }
@@ -496,12 +500,13 @@
         : [used !== null ? t("pillUsed", [pct(used)]) : "", week !== null ? `${t("weeklyLimit")}: ${pct(week)}` : ""].filter(Boolean).join(" · ");
       tiko.setTexts({ hint: t("tikoHint"), title: t("tikoTitle") });
       tiko.sync({ composer: !!r && !!L.page.getInputElement(), heavy, light, weeklyPct: Math.max(week ?? 0, r?.fableShare?.pct ?? 0), status });
-    } catch (_) { try { tiko?.destroy(); } catch (_e) {} tiko = null; }
+    } catch (_) { try { tiko?.destroy(); } catch (_e) {} tiko = null; tikoFails++; }
   }
   // Cevap yazılıyor mu? (domTick ile aynı 700 ms'lik saat; sekme gizliyken bakılmaz)
   function tikoTick() {
     if (!tiko || document.hidden) return;
     const s = L.page.streamingReply();
+    if (s.streaming) tikoAvoidEl = L.page.lastUserEl(); // cevabın üstüne otururken örtmemesi gereken kutu (kare başına aranmaz)
     tiko.stream(s.streaming, s.el);
   }
 
