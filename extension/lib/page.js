@@ -36,17 +36,21 @@ function firstMatch(selectors, root = document) {
   return null;
 }
 
-function allMatches(selectors, root = document) {
+// Eşleşen ilk seçicinin öğeleri; iç içe eşleşmeler (aynı mesajın iki katmanı) ayıklanır, dıştaki kalır.
+// Ayıklama her öğenin yalnızca kendi atalarına bakar (closest): uzun sohbette (500+ mesaj) liste × liste
+// karşılaştırması 700 ms'de bir çalışan domTick'i yavaşlatıyordu (tests/perf.cjs ile ölçüldü, DENETIM.md).
+function outermostMatches(selectors, root = document) {
   for (const s of selectors) {
-    const list = [...root.querySelectorAll(s)];
-    if (list.length) return list;
+    const list = root.querySelectorAll(s);
+    if (!list.length) continue;
+    const out = [];
+    for (const el of list) {
+      const up = el.parentElement?.closest(s);
+      if (!up || !(root === document || root.contains(up))) out.push(el);
+    }
+    return out;
   }
   return [];
-}
-
-// Aynı mesajın iç içe iki eşleşmesini tekilleştirir (dıştakini tutar).
-function outermost(list) {
-  return list.filter((el) => !list.some((o) => o !== el && o.contains(el)));
 }
 
 export function getInputElement() {
@@ -61,8 +65,8 @@ export function readPrompt() {
 }
 
 export function readHistory() {
-  const user = outermost(allMatches(USER_MSG_SELECTORS)).map((e) => e.innerText || "");
-  const assistant = outermost(allMatches(ASSISTANT_MSG_SELECTORS)).map((e) => e.innerText || "");
+  const user = outermostMatches(USER_MSG_SELECTORS).map((e) => e.innerText || "");
+  const assistant = outermostMatches(ASSISTANT_MSG_SELECTORS).map((e) => e.innerText || "");
   return {
     found: user.length + assistant.length > 0,
     user,
@@ -72,7 +76,7 @@ export function readHistory() {
 
 export function readAttachments() {
   const composer = getInputElement()?.closest("fieldset, form") || document;
-  const items = outermost(allMatches(ATTACHMENT_SELECTORS, composer));
+  const items = outermostMatches(ATTACHMENT_SELECTORS, composer);
   return { count: items.length };
 }
 
@@ -80,9 +84,12 @@ export function readAttachments() {
 const MODEL_RE = /\b(Fable|Opus|Sonnet|Haiku)\s+\d+(?:\.\d+)?\b/;
 export function detectModel() {
   const composer = getInputElement()?.closest("fieldset, form") || document;
+  // Önce adında "model" geçen öğeler, sonra diğer düğmeler: "Opus 4 notları.pdf" gibi bir ek çipi
+  // model seçiciden önce gelip yanlış modele yol açmasın.
   const candidates = [
-    ...composer.querySelectorAll('[data-testid*="model"], button'),
-    ...document.querySelectorAll('[data-testid*="model-selector"]')
+    ...composer.querySelectorAll('[data-testid*="model"]'),
+    ...document.querySelectorAll('[data-testid*="model-selector"]'),
+    ...composer.querySelectorAll("button")
   ];
   for (const el of candidates) {
     const m = (el.innerText || el.textContent || "").match(MODEL_RE);
@@ -119,11 +126,11 @@ export function isConversationPage() {
 
 // Gönderim/cevap tespiti için hafif sayımlar (metin okumadan).
 export function countUserMessages() {
-  return outermost(allMatches(USER_MSG_SELECTORS)).length;
+  return outermostMatches(USER_MSG_SELECTORS).length;
 }
 // Son asistan mesajı: metni ve hâlâ yazılıyor mu (data-is-streaming="true")
 export function lastAssistant() {
-  const list = outermost(allMatches(ASSISTANT_MSG_SELECTORS));
+  const list = outermostMatches(ASSISTANT_MSG_SELECTORS);
   const el = list[list.length - 1];
   const streaming = !!document.querySelector('[data-is-streaming="true"]');
   return { count: list.length, text: el ? (el.innerText || "") : "", streaming, el: el || null };
@@ -131,7 +138,7 @@ export function lastAssistant() {
 // Son kullanıcı mesajı ve kısa bir kimlik (metnin başı + uzunluğu). claude.ai uzun sohbetlerde eski mesajları
 // sayfadan kaldırdığı için mesaj SAYISI güvenilir değil; yeni gönderim, son mesajın değişmesinden anlaşılır.
 export function lastUserMessage() {
-  const list = outermost(allMatches(USER_MSG_SELECTORS));
+  const list = outermostMatches(USER_MSG_SELECTORS);
   const el = list[list.length - 1] || null;
   const text = el ? (el.innerText || "") : "";
   return { el, key: el ? `${text.length}|${text.slice(0, 200)}` : "" };

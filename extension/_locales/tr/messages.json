@@ -1456,16 +1456,16 @@
     "message": "Mesaj kutusundaki metni ve ekleri: token saymak ve maliyeti tahmin etmek için. Saklanmaz."
   },
   "welRead2": {
-    "message": "Açık sohbetin geçmişini: önbellek ve bağlam hesabı için. Yerelde sayılır, saklanmaz."
+    "message": "Açık sohbetin geçmişini (mesajların ve Claude'un cevapları): önbellek, bağlam ve cevap uzunluğu hesabı için sayfadan ve kendi oturumunla claude.ai'den okunur. Yerelde sayılır, saklanmaz."
   },
   "welRead3": {
-    "message": "5 saatlik ve haftalık kullanım yüzdelerini: kendi oturumunla claude.ai'den okunur."
+    "message": "5 saatlik ve haftalık kullanım yüzdelerini ve plan türünü: kendi oturumunla claude.ai'den okunur."
   },
   "welStoreTitle": {
     "message": "Bu cihazda ne saklar"
   },
   "welStore": {
-    "message": "Ayarların, öğrenilen sayılar (plan büyüklüğün gibi) ve haftalık rapor için yalnızca sayı ve etiket içeren, hiç metin içermeyen gönderim kayıtları. Ayarlardan dışa aktarabilir ya da sıfırlayabilirsin; eklentiyi kaldırınca silinir."
+    "message": "Ayarların, öğrenilen sayılar (plan büyüklüğün gibi) ve haftalık rapor için yalnızca sayı ve etiket içeren, hiç metin içermeyen gönderim kayıtları. Kullanımını okuyabilmek için claude.ai kuruluş kimliğini ve plan türünü, ayrıca son sohbetlerin kimliğini (adını değil) ve son mesajının zamanını da saklar. Ayarlardan dışa aktarabilir ya da sıfırlayabilirsin; eklentiyi kaldırınca silinir."
   },
   "welNeverTitle": {
     "message": "Asla ne yapmaz"
@@ -1508,5 +1508,32 @@
   },
   "fableShareNear": {
     "message": "Fable payın dolmak üzere ($1). $2'e geç."
+  },
+  "pillUnread": {
+    "message": "Okunamadı"
+  },
+  "unreadModel": {
+    "message": "Seçili model okunamadı. Yanlış sayı göstermemek için tahmin gizlendi."
+  },
+  "unreadPlan": {
+    "message": "Plan türün claude.ai'den okunamadı. Yanlış sayı göstermemek için tahmin gizlendi."
+  },
+  "unreadHint": {
+    "message": "claude.ai değişmiş olabilir: \"Ayrıntılar ve ayarlar\" içindeki \"Sağlık kontrolü\"ne bak."
+  },
+  "usageUnread": {
+    "message": "Kullanım yüzdesi okunamadı ya da eskidi; yanlış göstermemek için gizlendi."
+  },
+  "histPartial": {
+    "message": "Sohbet geçmişi claude.ai'den okunamadı; yalnızca sayfada görünen mesajlar sayıldı. Uzun sohbette tahmin düşük kalabilir."
+  },
+  "modelFromChat": {
+    "message": "(sohbetten okundu)"
+  },
+  "modelApproxMark": {
+    "message": "(sürüm tanınmadı)"
+  },
+  "rowPlan": {
+    "message": "Plan"
   }
 }

@@ -1456,16 +1456,16 @@
     "message": "O texto e os anexos da caixa de mensagem, para contar tokens e estimar o custo. Não são guardados."
   },
   "welRead2": {
-    "message": "O histórico do chat aberto, para calcular cache e contexto. Contado localmente, não guardado."
+    "message": "O histórico do chat aberto (suas mensagens e as respostas do Claude), lido da página e do claude.ai com a sua própria sessão, para calcular cache, contexto e tamanho das respostas. Contado localmente, não guardado."
   },
   "welRead3": {
-    "message": "Suas porcentagens de uso de 5 horas e semanal, lidas do claude.ai com a sua própria sessão."
+    "message": "Suas porcentagens de uso de 5 horas e semanal e o tipo do seu plano, lidos do claude.ai com a sua própria sessão."
   },
   "welStoreTitle": {
     "message": "O que ela guarda neste dispositivo"
   },
   "welStore": {
-    "message": "Suas configurações, valores aprendidos (como o tamanho do seu plano) e um registro de envios para o relatório semanal que contém só números e rótulos, nunca texto. Você pode exportá-lo ou redefini-lo nas configurações; ao desinstalar, ele é apagado."
+    "message": "Suas configurações, valores aprendidos (como o tamanho do seu plano) e um registro de envios para o relatório semanal que contém só números e rótulos, nunca texto. Para ler o seu uso, também guarda o ID da sua organização no claude.ai e o tipo do seu plano, além dos IDs (não os títulos) dos chats recentes com o horário da sua última mensagem. Você pode exportá-lo ou redefini-lo nas configurações; ao desinstalar, ele é apagado."
   },
   "welNeverTitle": {
     "message": "O que ela nunca faz"
@@ -1508,5 +1508,32 @@
   },
   "fableShareNear": {
     "message": "Sua cota do Fable está quase esgotada ($1). Mude para $2."
+  },
+  "pillUnread": {
+    "message": "Não foi possível ler"
+  },
+  "unreadModel": {
+    "message": "Não foi possível ler o modelo selecionado. A previsão fica oculta em vez de mostrar um número errado."
+  },
+  "unreadPlan": {
+    "message": "Não foi possível ler o seu plano no claude.ai. A previsão fica oculta em vez de mostrar um número errado."
+  },
+  "unreadHint": {
+    "message": "O claude.ai pode ter mudado: veja “Verificação do sistema” em “Detalhes e configurações”."
+  },
+  "usageUnread": {
+    "message": "O uso não pôde ser lido ou está desatualizado; fica oculto em vez de ser mostrado errado."
+  },
+  "histPartial": {
+    "message": "Não foi possível ler o histórico do chat no claude.ai; só as mensagens visíveis na página foram contadas. Em um chat longo a previsão pode ficar baixa demais."
+  },
+  "modelFromChat": {
+    "message": "(lido do chat)"
+  },
+  "modelApproxMark": {
+    "message": "(versão não reconhecida)"
+  },
+  "rowPlan": {
+    "message": "Plano"
   }
 }

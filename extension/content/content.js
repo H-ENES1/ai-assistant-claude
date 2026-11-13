@@ -44,6 +44,10 @@
 
   gate(() => {
 
+  // Sayfa kancası (inject/hook.js) onay gelene kadar uykudadır; buraya ancak onaydan sonra gelinir.
+  const hookCmd = (cmd) => { try { window.postMessage({ __tokenForecastCmd: cmd }, location.origin); } catch (_) {} };
+  hookCmd("enable");
+
   const L = {};
   const loading = (async () => {
     const mod = (p) => import(chrome.runtime.getURL(p));
@@ -58,7 +62,7 @@
   const S = {
     settings: { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto", advisor: true, effortAdvice: true, tips: true, explain: true },
     recPrefs: null, bannerHidden: null, pillOffset: null,
-    i18n: null, usage: null, tier: null, orgId: null, calib: null,
+    i18n: null, usage: null, usageMeta: null, tier: null, orgId: null, orgTried: false, calib: null,
     conv: { id: null, summary: null, fetchedAt: 0, error: null },
     activity: {}, // sohbet → son gönderim zamanı (bu cihazda görülen)
     pending: [], limbo: null, nextId: 1,
@@ -68,13 +72,13 @@
   const store = chrome.storage.local;
 
   async function loadState() {
-    const r = await store.get(["settings", "usage", "tier", "orgId", "calib", "convActivity", "recPrefs", "lastSurprise", "learnPersonal", "pillOffset"]);
+    const r = await store.get(["settings", "usage", "usageMeta", "tier", "orgId", "calib", "convActivity", "recPrefs", "lastSurprise", "learnPersonal", "pillOffset"]);
     S.pillOffset = r.pillOffset || null;
     S.learnPersonal = r.learnPersonal || null;
     S.recPrefs = r.recPrefs || null;
     S.surprise = r.lastSurprise || null;
     S.settings = { ...S.settings, ...(r.settings || {}) };
-    S.usage = r.usage || null; S.tier = r.tier || null; S.orgId = r.orgId || null;
+    S.usage = r.usage || null; S.usageMeta = r.usageMeta || null; S.tier = r.tier || null; S.orgId = r.orgId || null;
     S.calib = L.cal.makeCalib(r.calib);
     S.activity = r.convActivity || {};
     S.i18n = await L.i18n.makeI18n(S.settings.language);
@@ -84,6 +88,7 @@
     if (area !== "local") return;
     await loading;
     if (ch.usage) S.usage = ch.usage.newValue || null;
+    if (ch.usageMeta) S.usageMeta = ch.usageMeta.newValue || null;
     if (ch.tier) S.tier = ch.tier.newValue || null;
     if (ch.orgId) S.orgId = ch.orgId.newValue || null;
     if (ch.calib) S.calib = L.cal.makeCalib(ch.calib.newValue);
@@ -108,10 +113,17 @@
   // ---------- Kullanım (adım 3) ----------
   async function ensureOrg() {
     if (S.orgId && S.tier) return S.orgId;
-    const o = await L.usage.fetchOrg();
-    S.orgId = o.orgId; S.tier = o.tier;
-    await store.set({ orgId: o.orgId, tier: o.tier });
-    return S.orgId;
+    try {
+      const o = await L.usage.fetchOrg();
+      S.orgId = o.orgId;
+      // Plan tanınmadıysa (null) depodaki eski değer silinmez; S.tier boş kalırsa tahmin "okunamadı" olur
+      if (o.tier) S.tier = o.tier;
+      await store.set(o.tier ? { orgId: o.orgId, tier: o.tier } : { orgId: o.orgId });
+      return S.orgId;
+    } finally {
+      // Deneme bitti (başarılı ya da değil): plan hâlâ yoksa artık "yükleniyor" değil "okunamadı"
+      if (!S.orgTried) { S.orgTried = true; schedule(0); }
+    }
   }
   async function readUsageNow() {
     const orgId = await ensureOrg();
@@ -211,12 +223,18 @@
   function historyInput() {
     const id = L.conv.conversationIdFromPath();
     const local = id ? S.activity[id] || null : null;
-    if (id && S.conv.id === id && S.conv.summary) {
-      const s = S.conv.summary;
+    const s = id && S.conv.id === id ? S.conv.summary : null;
+    // API cevabı kullanılabilir mi? Biçim değişirse mesaj listesi boş ya da metinsiz gelir (0 token): o zaman
+    // geçmişi sessizce "yok" saymak yerine sayfadan okuruz.
+    if (s && s.messages > 0 && s.tokens?.high > 0) {
       return { source: "api", messages: s.messages, tokens: s.tokens, lastActivityAt: Math.max(s.lastActivityAt || 0, local || 0) || null, files: s.files, model: s.model };
     }
     const d = domHistory();
-    return { source: "dom", messages: d.count, tokens: d.est || { low: 0, mid: 0, high: 0 }, lastActivityAt: local, files: 0 };
+    // Sohbet API'si denendi ama okunamadı (hata ya da boş cevap) ve sayfada mesaj var: sayfadaki mesajlar sayılır.
+    // claude.ai uzun sohbetlerde eski mesajları sayfadan kaldırdığı için bu sayı EKSİK olabilir → kullanıcıya söylenir.
+    // (Yeni açılmış sohbette API bir an boş dönebilir: yalnızca hata varsa ya da sayfada 3+ mesaj varken uyar.)
+    const tried = !!id && S.conv.id === id && S.conv.fetchedAt > 0;
+    return { source: "dom", partial: tried && d.count > 0 && (!!S.conv.error || d.count >= 3), messages: d.count, tokens: d.est || { low: 0, mid: 0, high: 0 }, lastActivityAt: local, files: 0, model: s?.model || null };
   }
 
   let memo = null;
@@ -244,13 +262,25 @@
     const att = L.tokens.sumRanges(...S.pending);
     const analyzing = S.pending.some((x) => x.status === "analyzing");
     const hist = historyInput();
-    const model = L.page.detectModel() || hist.model || "Sonnet 5.5";
+    // Model: önce sayfadaki seçici; okunamazsa sohbetin kendi modeli (API). İkisi de yoksa bir model VARSAYILMAZ:
+    // yanlış ağırlıkla hesaplanmış sayı göstermek (ve kalibrasyona yazmak) hiç göstermemekten kötüdür.
+    const pageModel = L.page.detectModel();
+    const convModel = !pageModel && hist.model && L.fc.resolveModel(hist.model).info ? hist.model : null;
+    const model = pageModel || convModel;
     const effort = L.page.detectEffort();
+    // Plan henüz hiç denenmediyse (sayfa yeni açıldı) bekle; denendi ve yoksa "okunamadı"
+    if (!S.tier && !S.orgTried) return null;
+    const unread = [];
+    if (!model || !L.fc.resolveModel(model).info) unread.push("model");
+    if (!S.tier) unread.push("plan");
     const tier = S.tier || "claude_pro";
+    // Kullanım: yenilenme zamanı geçmiş pencere ya da bayat veri gösterilmez (lib/usage.js liveUsage)
+    const usage = L.usage.liveUsage(S.usage, S.usageMeta);
+    const usageLost = !!S.usage && !usage;
     const memoryOn = S.settings.memory === "auto" ? true : !!S.settings.memory;
     const input = { promptTokens: pt, attachmentTokens: att, history: hist, model, effort, tier, cls, calib: S.calib, memoryOn };
     const fc = L.fc.forecastMessage(input);
-    const fit = L.fc.fitCheck(fc, S.usage);
+    const fit = L.fc.fitCheck(fc, usage);
     const rec = L.fc.recommendModel(fc, L.cls.recommendTier(cls), input);
     const ctxLevel = L.ctx.contextLevel({ low: fc.context.usedLow, high: fc.context.used }, fc.context.window);
     const empty = !prompt.text && !S.pending.length;
@@ -260,17 +290,18 @@
         historyTokens: hist.tokens?.mid || 0, cacheWarm: fc.cache === "warm",
         attachmentTokens: att.mid || 0, prefs: S.recPrefs, analyzing, emptyPrompt: empty });
     } catch (e) { console.debug("[Token Forecast] öneri", e); }
-    if (cls.langLimited) adv = null; // bu dilde model/effort önerisi yok
+    if (cls.langLimited || unread.length) adv = null; // bu dilde (ya da model/plan okunamadıysa) öneri yok
     if (adv && S.settings.effortAdvice === false) adv = { ...adv, effort: null }; // effort önerisi kapalı
     // Fable seçiliyken ve claude.ai Fable'a özel haftalık pencere döndürüyorsa (yoksa null: hiçbir şey gösterilmez)
     const fam = L.fc.resolveModel(model).info?.family;
-    const fw = fam === "fable" ? L.usage.familyWindow(S.usage, "fable") : null;
+    const fw = fam === "fable" ? L.usage.familyWindow(usage, "fable") : null;
     const fableShare = fw ? { pct: fw.pct, resetsAt: fw.resetsAt, near: fw.pct >= L.usage.FAMILY_SHARE_WARN_PCT } : null;
-    const r = { at: Date.now(), prompt, pt, att, analyzing, hist, cls, dom, input, fc, fit, rec, ctxLevel, adv, empty, langLimited: !!cls.langLimited, fableShare };
+    const r = { at: Date.now(), prompt, pt, att, analyzing, hist, cls, dom, input, fc, fit, rec, ctxLevel, adv, empty, langLimited: !!cls.langLimited, fableShare,
+      unread, usage, usageLost, modelFrom: pageModel ? "page" : convModel ? "chat" : null };
     S.last = r;
-    if (!r.empty) S.lastFull = r;
+    if (!r.empty && !unread.length) S.lastFull = r;
     window.__tokenForecastLast = r;
-    rememberContext(model, effort, tier);
+    if (!unread.length) rememberContext(model, effort, tier);
     return r;
   }
 
@@ -284,7 +315,23 @@
 
   // ---------- Panel görünümü ----------
   let panel = null;
+  // Model ya da plan okunamadı: sayı yok, neyin okunamadığı yazar (yanlış sayı göstermektense)
+  function unreadVM(r) {
+    const { t } = S.i18n;
+    const used = r.usage?.fiveHour?.pct ?? null;
+    const warnings = r.unread.map((k) => ({ sev: "crit", text: t(k === "model" ? "unreadModel" : "unreadPlan") + " " + t("unreadHint") }));
+    if (r.usageLost) warnings.push({ sev: "warn", text: t("usageUnread") });
+    return {
+      level: "crit", unread: true,
+      head: t("pillUnread"), sub: r.unread.map((k) => t(k === "model" ? "rowModel" : "rowPlan")).join(" · "),
+      title: t("extName"), cardTitle: t("cardTitle"), big: t("pillUnread"), bigSub: "",
+      bar: used !== null ? { used, est: 0 } : null,
+      warnings, rows: [], detail: [], foot: "", breakdown: null,
+      closeLabel: t("close"), moreLabel: t("moreDetails"), dragTitle: t("pillDragTitle"), resetLabel: t("pillReset")
+    };
+  }
   function viewModel(r) {
+    if (r.unread.length) return unreadVM(r);
     const { t, num, pct } = S.i18n;
     const fc = r.fc;
     const sess = fc.pct.session, week = fc.pct.weekly;
@@ -303,6 +350,9 @@
       const big = S.pending.some((p) => p.high > 100_000);
       warnings.push({ sev: r.ctxLevel.level === "over" ? "crit" : "warn", text: t(r.ctxLevel.level === "over" ? "ctxOver" : "ctxNear") + (big && S.tier !== "claude_free" ? " " + t("ctxWorkspace") : "") });
     }
+    // 2b) Okunamayan girdiler: kullanım yüzdesi ve sohbet geçmişi
+    if (r.usageLost) warnings.push({ sev: "warn", text: t("usageUnread") });
+    if (r.hist.partial && !r.empty) warnings.push({ sev: "warn", text: t("histPartial") });
     for (const it of S.pending) {
       if (it.detail?.tooLarge) warnings.push({ sev: "crit", text: t("pdfTooLarge") });
       else if (it.detail?.textOnly) warnings.push({ sev: "info", text: t("pdfTextOnly") });
@@ -350,7 +400,7 @@
     else if (ef?.kind === "raise") warnings.push({ sev: "info", text: t("effRaiseX", [t(`eff_${ef.to}`)]) });
 
     const level = warnings.some((w) => w.sev === "crit") ? "crit" : warnings.some((w) => w.sev === "warn") ? "warn" : "ok";
-    const used = S.usage?.fiveHour?.pct ?? null;
+    const used = r.usage?.fiveHour?.pct ?? null;
     const typeName = t(`type_${r.cls.type}`);
     const conf = t(fc.confidence === "high" ? "confidenceHigh" : fc.confidence === "medium" ? "confidenceMedium" : "confidenceLow");
     const tokRange = (x) => (Math.round(x.low) === Math.round(x.high) ? num(x.high) : `${num(x.low)}–${num(x.high)}`);
@@ -360,7 +410,7 @@
       [t("rowWeekly"), range(week)],
       [t("rowType"), r.langLimited ? t("typeNA") : `${typeName} · ${conf}`],
       ...(r.langLimited ? [] : [[t("rowDomain"), domainLabel(r.dom)]]),
-      [t("rowModel"), `${fc.model ? S.i18n.t("modelName", [cap(fc.model)]) : "?"}${fc.effort !== "auto" ? " · " + t(`effort_${fc.effort}`) + (fc.effortAssumed ? " " + t("effDefaultMark") : "") : ""}`],
+      [t("rowModel"), `${fc.model ? S.i18n.t("modelName", [cap(fc.model)]) : "?"}${r.modelFrom === "chat" ? " " + t("modelFromChat") : ""}${fc.modelApprox ? " " + t("modelApproxMark") : ""}${fc.effort !== "auto" ? " · " + t(`effort_${fc.effort}`) + (fc.effortAssumed ? " " + t("effDefaultMark") : "") : ""}`],
       [t("rowInput"), tokRange(inTokens) + " " + t("dbgTokens")],
       [t("rowOutput"), `${num(fc.output.low)}–${num(fc.output.high)} ${t("dbgTokens")}`]
     ];
@@ -488,10 +538,57 @@
   }
 
   // ---------- Kalibrasyon gözlemi (adım 10) ----------
+  // Sayfa dünyasından gelen her şey GÜVENİLMEZDİR: aynı pencerede çalışan her betik (claude.ai'nin kendi kodu,
+  // sayfaya sızmış bir betik, başka bir eklentinin MAIN world betiği) bu mesajları taklit edebilir; source/origin
+  // denetimi bunu engellemez. Bu yüzden yalnızca beklenen alanlar, beklenen türde ve sınırlı uzunlukta alınır.
+  // İç alanlar (estimate, prePromise, via) dışarıdan KABUL EDİLMEZ: onları yalnızca domTick doğrudan verir.
+  const sStr = (v, n) => (typeof v === "string" ? v.slice(0, n) : "");
+  const sId = (v) => (typeof v === "string" && /^[\w:.-]{1,64}$/.test(v) ? v : null);
+  const sAt = (v) => (Number.isFinite(v) && Math.abs(v - Date.now()) < 5 * 60000 ? v : Date.now());
+  // Tanı günlüğü hata bildirimi için panoya kopyalanabilir: sayfanın verdiği serbest metin oraya girmemeli.
+  // Yalnızca kısa tanımlayıcılar; yolda her parça ayrı denetlenir, uymayan ya da kimlik benzeri parça "*" olur.
+  const sTok = (v, n = 24) => (typeof v === "string" && new RegExp(`^[A-Za-z_][\\w.-]{0,${n - 1}}$`).test(v) ? v : "");
+  const sPath = (v) => {
+    if (typeof v !== "string" || v[0] !== "/" || v.length > 300) return "";
+    const segs = v.split("?")[0].split("/").slice(1, 9).map((s) => (s === ":id" ? s : /^[a-z_][a-z0-9_.-]{0,31}$/i.test(s) && !/\d{4}|[0-9a-f]{12}/i.test(s) ? s : "*"));
+    return "/" + segs.join("/");
+  };
+  function cleanLimit(ml) {
+    const ws = ml && typeof ml === "object" && ml.windows && typeof ml.windows === "object" ? ml.windows : null;
+    if (!ws) return null;
+    const out = {};
+    for (const k of ["5h", "7d"]) {
+      const w = ws[k];
+      if (!w || typeof w !== "object" || typeof w.utilization !== "number" || !Number.isFinite(w.utilization)) continue;
+      out[k] = { utilization: w.utilization, resets_at: Number.isFinite(w.resets_at) ? w.resets_at : typeof w.resets_at === "string" ? w.resets_at.slice(0, 40) : null, status: sTok(w.status) };
+    }
+    return Object.keys(out).length ? { windows: out } : null;
+  }
+  function cleanHookMessage(d) {
+    if (!d || typeof d !== "object" || d.__tokenForecast !== 1) return null;
+    switch (d.kind) {
+      case "send": {
+        const id = sId(d.id), conv = sId(d.conv);
+        if (!id || !conv) return null;
+        const keys = Array.isArray(d.body?.keys) ? d.body.keys.map((k) => sTok(k, 40)).filter(Boolean).slice(0, 40) : null;
+        return { kind: "send", id, conv, retry: !!d.retry, at: sAt(d.at), body: keys ? { keys } : null };
+      }
+      case "done": {
+        const id = sId(d.id);
+        if (!id) return null;
+        return { kind: "done", id, text: sStr(d.text, 2 * 1024 * 1024), messageLimit: cleanLimit(d.messageLimit),
+          error: typeof d.error === "number" ? d.error : d.error ? "network" : null, aborted: !!d.aborted, at: sAt(d.at) };
+      }
+      case "hello": return { kind: "hello", wrapped: !!d.wrapped, sawCompletion: Number.isFinite(d.sawCompletion) ? Math.max(0, Math.min(1e6, Math.round(d.sawCompletion))) : 0 };
+      case "perf": return { kind: "perf", path: sPath(d.path), via: sTok(d.via, 20) };
+      case "worker": case "probe": return { kind: d.kind, path: sPath(d.path) };
+    }
+    return null;
+  }
   window.addEventListener("message", (e) => {
     if (e.source !== window || e.origin !== location.origin) return;
-    const d = e.data;
-    if (!d || d.__tokenForecast !== 1) return;
+    const d = cleanHookMessage(e.data);
+    if (!d) return;
     if (d.kind === "send") onSend(d);
     else if (d.kind === "done") onDone(d);
     else if (d.kind === "hello") {
@@ -502,7 +599,7 @@
     }
     else if (d.kind === "perf") trace("hook:perf", { path: d.path, via: d.via });
     else if (d.kind === "worker") trace("hook:worker", { path: d.path });
-    else if (d.kind === "probe") trace("hook:probe", { path: String(d.path || "").slice(0, 120) });
+    else if (d.kind === "probe") trace("hook:probe", { path: d.path });
   });
 
   async function preUsage() {
@@ -527,16 +624,20 @@
     const r = d.estimate || compute() || S.last;
     const conv = d.conv;
     trace("send:seen", { via: d.via || "hook", estimate: !!r, retry: !!d.retry, bodyKeys: d.body ? d.body.keys : null });
-    S.activity[conv] = d.at;
-    store.set({ convActivity: trimActivity(S.activity) });
+    if (typeof conv === "string" && conv) {
+      S.activity[conv] = d.at;
+      store.set({ convActivity: trimActivity(S.activity) });
+    }
     if (!r) return;
+    // Model ya da plan okunamadıysa bu gönderim ölçülmez: yanlış ağırlıkla hesaplanan maliyet kalibrasyonu bozar
+    if (r.unread?.length) { trace("send:unread", { what: r.unread }); S.pending = []; schedule(100); return; }
     const zero = { outputAdjust: () => ({ mean: 0, sd: 0 }) };
     const base = L.fc.outputPrior(r.cls, { promptTokens: r.pt, attachmentTokens: r.att }, zero);
     const snap = {
       at: d.at, conv, retry: d.retry, cls: r.cls, tier: S.tier || "claude_pro",
       model: r.fc.model, weight: r.fc.weight, effort: r.fc.effort, peak: r.fc.peak,
       newInput: r.pt.mid + r.att.mid, history: r.hist.tokens.mid || 0, cold: r.fc.cache === "cold",
-      cacheKnown: r.fc.cache !== "unknown", toolMedian: base.tool ? base.tool.median : 0,
+      cacheKnown: r.fc.cache !== "unknown", histPartial: !!r.hist.partial, toolMedian: base.tool ? base.tool.median : 0,
       predicted: r.fc.pct, outMuNoAdj: base.mu, pre: null, logId: `${d.at}-${d.id}`
     };
     S.snapshots.set(d.id, snap);
@@ -596,6 +697,7 @@
     if (snap?.prePromise) await snap.prePromise.catch(() => null);
     if (!snap || !post || d.error || d.aborted) { trace("done:skip", { reason: !snap ? "no-snapshot" : !post ? "no-usage-after" : d.error ? "http-error" : "aborted" }); return; }
     if (!snap.cacheKnown && snap.history > 5000) { trace("done:skip", { reason: "cache-unknown", history: snap.history }); return; } // önbellek durumu bilinmiyorsa maliyet belirsiz → öğrenme
+    if (snap.histPartial && snap.cold) { trace("done:skip", { reason: "history-partial" }); return; } // geçmiş eksik sayıldı ve soğuk okundu: maliyet düşük hesaplanır → öğrenme
 
     const outTokens = L.tokens.estimateTokens(d.text || "", opts()).mid;
     const cost = L.fc.realizedCost({ weight: snap.weight, newInput: snap.newInput, history: snap.history, cold: snap.cold, outTokens, effort: snap.effort, toolMedian: snap.toolMedian });
@@ -629,7 +731,9 @@
     } else trace("done:skip", { reason: "nothing-to-observe", outTokens });
   }
 
-  function trimActivity(a) {
+  // Veri azaltma: önbellek en çok 1 saat yaşar; 7 günden eski sohbet kimliği tutmanın faydası yok (en çok 300 kalır)
+  function trimActivity(a, now = Date.now()) {
+    for (const k of Object.keys(a)) if (!(a[k] > now - 7 * 864e5)) delete a[k];
     const keys = Object.keys(a);
     if (keys.length <= 300) return a;
     keys.sort((x, y) => a[x] - a[y]).slice(0, keys.length - 300).forEach((k) => delete a[k]);
@@ -729,7 +833,7 @@
     refreshConversation(300);
     schedule(400);
     // Sağlık: sayfa öğeleri bulundu mu, kanca yerinde mi?
-    const pingHook = () => { try { window.postMessage({ __tokenForecastCmd: "ping" }, location.origin); } catch (_) {} };
+    const pingHook = () => { hookCmd("enable"); hookCmd("ping"); };
     const report = () => {
       send({ type: "health", at: Date.now(), page: {
         composer: !!L.page.getComposer(), model: L.page.detectModel(), effort: L.page.detectEffort(), url: location.pathname.replace(/[0-9a-f]{8}-[0-9a-f-]{27}/gi, ":id")

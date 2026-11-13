@@ -46,7 +46,9 @@ node tests/ml/train.mjs   # sınıflandırıcıyı eğit ve karşılaştır; ağ
                           # tehlikeli hata artmamalı) VE yazılan ağırlık yeni bir kör setle ölçülmeden yayımlanmaz (aşağıda kör set 5 notu)
 npm run blind5            # kör set 5 ölçümü; sonuca bakarak ayar yapılırsa set 5 yanar
 npm run e2e    # Playwright, sahte claude.ai (43 kontrol). PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 şart:
+npm run e2e    # Playwright, sahte claude.ai (93 kontrol). PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 şart (0.12.2'den beri e2e.cjs kendisi ayarlar):
                # yoksa arka plan servisinin istekleri sahte sunucuya gitmez ve 4-5 kontrol yanlışlıkla kırmızı olur.
+npm run perf   # ölçüm (test değil): 60 ve 600 mesajlık sohbette boşta ve tuş başına sayfa maliyeti
 ```
 
 ## Kurallar
@@ -141,3 +143,12 @@ npm run e2e    # Playwright, sahte claude.ai (43 kontrol). PW_EXPERIMENTAL_SERVI
 - `tokens.js`: CJK_PER_CHAR (0,73) o200k ile ölçülmüş (b789b13); CLAUDE_FACTOR CJK'ya uygulanmaya devam.
 - e2e: sahte /usage `seven_day_fable` %85; 5 yeni kontrol (toplam 69). `PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS` artık e2e.cjs içinde ayarlanıyor: Windows'ta npm betikleri cmd.exe ile çalıştığı için `VAR=1 node …` önekli betik orada bozuluyordu.
 - Ortam: Node 22 LTS kullan. Node 26'da Playwright 1.56'nın tarayıcı kurulumu bozuluyor (`fs.rmdir` `recursive` seçeneği kaldırıldı).
+
+## Denetim (12.11.2026, dal `denetim`) — ayrıntı: DENETIM.md
+- **Onaydan önce okuma yok, kanca dahil:** `inject/hook.js` `enabled = false` ile uykuda başlar; içerik betiği onaydan sonra `__tokenForecastCmd: "enable"` yollar. Kanca istem metnini ve dosya adlarını asla yaymaz (yalnızca sayılar).
+- **Sayfadan gelen her mesaj güvenilmez:** `content.js cleanHookMessage` sınırda doğrular (alan, tür, uzunluk; yol/etiket yalnızca tanımlayıcı biçiminde); `estimate`, `prePromise`, `via` dışarıdan alınmaz. Arka planda `report.js cleanSend/cleanDonePatch` ikinci süzgeç. Yeni mesaj alanı eklerken ikisini de güncelle.
+- **Yanlış sayı yerine "Okunamadı":** model, plan, kullanım ya da geçmiş okunamazsa varsayım yapma (Sonnet/Pro/free yok). `compute()` `unread` döndürür; okunamadıyken gönderim kaydı ve kalibrasyon gözlemi üretilmez. Kullanım yalnızca `usage.js liveUsage` üzerinden gösterilir (yenilenme zamanı geçmiş ya da 20 dk'dır okunamayan veri gösterilmez, rozet "?").
+- **Kalibrasyon taşıma:** her okuma `calibrate.js migrateCalib` üzerinden; okunamayan/yeni sürüm veri `calibBackup`'a yedeklenir, silinmez. Şema değişirse `MIGRATIONS`'a adım ekle ve `tests/fixtures/calib-*.json` (eski sürümlerin gerçek koduyla üretildi) testini genişlet.
+- **CSP:** eklenti sayfaları yalnızca `https://claude.ai`'ye bağlanabilir (manifest). Yeni bir uç nokta ya da `fetch` eklemek = `tests/privacy.test.mjs` listesi + gizlilik politikası (`site/build/static/privacy.html` ve `docs/privacy.html`, aynı kalmalı) + onay metinleri.
+- Testler: `tests/denetim.test.mjs` (taşıma, okunamadı, süzgeçler), `tests/privacy.test.mjs` (statik gizlilik denetimi + politika–kod eşleşmesi), e2e'de metin sızıntısı (adres/gövde/depo), WebSocket, onay öncesi kanca, sahte mesaj, CSP.
+- `CONSENT_VERSION` artırılmadı (okunan veri türleri aynı, yalnızca metin düzeltildi); karar DENETIM.md'de.
