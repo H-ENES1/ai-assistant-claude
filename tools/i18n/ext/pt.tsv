@@ -493,3 +493,34 @@ welLaterNote	A extensão fica desligada até você aceitar. Você pode fazer iss
 consentChip	Token Forecast está desligado · Ligar
 consentPopup	O Token Forecast precisa da sua permissão antes de ler qualquer coisa no claude.ai.
 consentPopupBtn	Revisar e ligar
+ecoTitle	Água e energia que você economizou esta semana
+ecoLeadPos	Muito bem: esta semana você mudou $1× para a configuração mais leve sugerida. O mesmo trabalho com menos computação.
+ecoLeadNet	O extra de mudar $1× para uma configuração mais potente foi descontado.
+ecoLeadZero	Nesta semana não há diferença por mudanças de configuração: nada economizado, nada a mais. Se o modelo e o esforço já combinam com o trabalho, é assim que deve ser.
+ecoLeadNeg	Sem economia líquida esta semana. Você mudou $1× para um modelo mais potente ou um esforço mais alto; a diferença equivale mais ou menos a esta quantidade extra de água e energia. Se o trabalho pedia isso, foi a escolha certa.
+ecoLeadNone	Nada foi contado ainda nesta semana. Vai aparecer aqui quando você aplicar uma sugestão de modelo ou de esforço e enviar uma mensagem.
+ecoWater	Água
+ecoEnergy	Energia
+ecoExtra	a mais
+ecoRange	faixa estimada $1 – $2
+ecoU_drop	gota (≈ 0,05 mL)
+ecoU_tsp	colher de chá (5 mL)
+ecoU_glass	copo de água (250 mL)
+ecoU_bottle	garrafa (0,5 L)
+ecoU_bucket	balde (10 L)
+ecoU_tub	banheira (≈ 136 L)
+ecoU_phone	carga de celular (19 Wh)
+ecoU_kettle	ferver 1 L de água na chaleira elétrica (93 Wh)
+ecoU_led	de luz de uma lâmpada LED de 9 W
+ecoSecs	$1 s
+ecoTotalTitle	Desde que você instalou
+ecoTotalSince	A contagem começou em $1; mensagens anteriores não estão incluídas.
+ecoTotalZero	Nenhuma diferença se acumulou ainda.
+ecoTotalNeg	Sem economia líquida; diferença total:
+ecoHow	Como isso é calculado?
+ecoFormulaTok	token = computação evitada ÷ $1 (equivalente em tokens de saída do Sonnet 5.5)
+ecoFormulaE	e_token = $1 / $2 / $3 mWh (baixo / médio / alto)
+ecoFormulaW	WUE = $1 / $2 / $3 L/kWh (baixo / médio / alto; resfriamento do data center + geração de eletricidade)
+ecoFormulaWeek	Esta semana: tokens ≈ $1 → E ≈ $2 → W ≈ $3
+ecoAssume	A computação evitada é a diferença estimada entre o modelo e o esforço que você tinha ao começar a escrever a mensagem e a configuração com que a enviou; só conta a mensagem em que você mudou a configuração. Mudar para uma configuração mais leve só conta se a extensão sugeriu, e só até o nível sugerido; mudar para uma configuração mais potente é sempre descontado. Supõe-se que a energia por modelo é proporcional ao seu peso no limite (preço da API). A Anthropic não publica números de energia e água para o Claude: são estimativas, não medições.
+ecoSources	Fontes. Energia por token: Epoch AI, 2025 (GPT-4o, 500 tokens de saída ≈ 0,3 Wh); Jegham et al., 2025, arXiv:2505.09598 (Claude 3.7 Sonnet, 300 tokens de saída 0,95 Wh). Água por kWh, resfriamento + geração de eletricidade: Li et al., 2023, arXiv:2304.03271 (média dos EUA 0,55 + 3,14 L/kWh); Google, 2025, arXiv:2508.15734 (no local 1,15 L/kWh); Jegham et al. (AWS 0,18 + 5,11 L/kWh). Comparações: gota métrica 0,05 mL; colher de chá 5 mL (US 21 CFR 101.9); banheira cheia 136 L (USGS); carga de celular 19 Wh (US EPA); LED de 9 W ≈ 800 lúmens (US FTC); aquecer 1 L de água de 20 °C a 100 °C exige 93 Wh (c = 4,186 kJ/kg·K). Copo, garrafa e balde são tamanhos nominais.
