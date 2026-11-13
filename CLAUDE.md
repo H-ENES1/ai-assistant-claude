@@ -18,12 +18,9 @@ extension/              ← tarayıcıya yüklenen klasör (manifest.json burada
   popup/report.*        haftalık rapor sayfası
   lib/eco.js            kurtarılan su ve enerji: kaçınılan işlem → token → Wh → mL, birim seçimi (rapor-su)
   _locales/{en,tr}/     tüm kullanıcı metinleri
-tests/                  unit, learn, report, contrib, advisor (+rec-cases.json) testleri, e2e.cjs (Playwright, 43 kontrol)
+tests/                  unit, learn, report, contrib, advisor (+rec-cases.json), denetim, privacy, tiko, eco testleri;
+                        e2e.cjs + tiko.e2e.cjs + rapor-su.e2e.cjs (Playwright, sahte claude.ai)
 tests/quality/          öneri kalitesi ölçümü: RAPOR.md (sonuç), run.md (yeniden çalıştırma), build-prompts/blind/analyze betikleri
-tests/ml/               train.tsv (600), test.tsv + test2.tsv (120+120, ayrı yazılmış), train.mjs (eğit + karşılaştır)
-tests/ml/               train.tsv (600), test.tsv + test2.tsv (120+120, ayrı yazılmış), test3.tsv (350, KÖR SET 4), train.mjs (eğit + karşılaştır)
-tests/blind4.mjs        kör set 4 ölçümü (domain-cases4.json + ml/test3.tsv): iş türü, alan, model/effort; eşik yok, yalnız set bütünlüğü denetlenir
-tools/                  build-release.mjs (küçültülmüş mağaza paketi), aggregate.mjs (topluluk katkılarını birleştir)
 tests/ml/               train.tsv (600 kısa), train2.tsv (633 uzun/yapıştırılmış içerikli; train2.meta.tsv: dil, alan, kaynak),
                         test.tsv + test2.tsv (120+120, ayrı yazılmış), test3.tsv (350, set 4: YANMIŞ, bilgi amaçlı),
                         test4.tsv (300, KÖR SET 5), train.mjs (eğit + karşılaştır; ağırlığı yalnız --write ile yazar)
@@ -31,6 +28,7 @@ tests/blind4.mjs        set 4 ölçümü (domain-cases4.json + ml/test3.tsv): i�
 tests/blind5.mjs        kör set 5 ölçümü (domain-cases5.json + ml/test4.tsv); --base=<klasör> ile "önce" sürümü yan yana; --check yalnız bütünlük
 tools/                  build-release.mjs (küçültülmüş mağaza paketi), aggregate.mjs (topluluk katkılarını birleştir),
                         domain-dict.mjs (+domain-dict/sozluk.json: kör yazılmış alan sözlüğünü eleyip lib/domain.js'e yazar)
+promo/                  tanıtım taslakları (platform başına), TAKVIM.md
 .github/ISSUE_TEMPLATE/ katki.yml (topluluk verisi), anket.yml, hata.yml
 site/                   index.html (artifact sürümü, tek dosya) + build/ (kaynak; `python site/build/build.py` → docs/, ayrıntı build/OKU.md)
 docs/                   GitHub Pages çıktısı (elle düzenlenmez, build.py üretir): / = tr, /en/ … /zh/, app.js, sitemap.xml
@@ -40,20 +38,16 @@ docs/                   GitHub Pages çıktısı (elle düzenlenmez, build.py ü
 
 ```
 npm install   # kökte: esbuild + playwright
-npm run test   # birim + öğrenme + rapor + katkı + model önerisi (60 prompt: uygunluk ≥ %96, "gerekenden hafif öneri" = 0 olmalı)
-node tests/ml/train.mjs   # sınıflandırıcıyı yeniden eğit; test2'de karma < kurallar olursa ağırlıkları YAZMA (--no-write)
-npm run e2e    # Playwright, sahte claude.ai (69 kontrol). PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 şart (0.12.2'den beri e2e.cjs kendisi ayarlar):
 npm run test   # birim + öğrenme + rapor + katkı + model önerisi (72 prompt: uygunluk ≥ %96, "gerekenden hafif öneri" = 0 olmalı)
-               # + set 4 ve set 5 bütünlük denetimi (set 5 burada ÖLÇÜLMEZ)
+               # + denetim, gizlilik, Tiko, su/enerji testleri + set 4 ve set 5 bütünlük denetimi (set 5 burada ÖLÇÜLMEZ)
 node tests/ml/train.mjs   # sınıflandırıcıyı eğit ve karşılaştır; ağırlık YAZMAZ. Yazmak için --write (test2'de doğruluk düşmemeli,
                           # tehlikeli hata artmamalı) VE yazılan ağırlık yeni bir kör setle ölçülmeden yayımlanmaz (aşağıda kör set 5 notu)
 npm run blind5            # kör set 5 ölçümü; sonuca bakarak ayar yapılırsa set 5 yanar
-npm run e2e    # Playwright, sahte claude.ai (43 kontrol). PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 şart:
-npm run e2e    # Playwright, sahte claude.ai (93 kontrol). PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 şart (0.12.2'den beri e2e.cjs kendisi ayarlar):
+npm run e2e    # Playwright, sahte claude.ai: e2e.cjs (93 kontrol) + tiko.e2e.cjs (48) + rapor-su.e2e.cjs (33).
+               # PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 şart (0.12.2'den beri e2e.cjs kendisi ayarlar);
                # yoksa arka plan servisinin istekleri sahte sunucuya gitmez ve 4-5 kontrol yanlışlıkla kırmızı olur.
+               # Tiko uykusu 2 dk bekleyiş ister, varsayılan koşuda atlanır: cd tests && TIKO_SLEEP=1 node tiko.e2e.cjs (50 kontrol).
 npm run perf   # ölçüm (test değil): 60 ve 600 mesajlık sohbette boşta ve tuş başına sayfa maliyeti
-               # Ardından tests/tiko.e2e.cjs çalışır (48 kontrol; ekran görüntüleri tests/shots/tiko/, depoda tutulur).
-               # Uyku 2 dk bekleyiş ister, varsayılan koşuda atlanır: cd tests && TIKO_SLEEP=1 node tiko.e2e.cjs (50 kontrol).
 ```
 
 ## Kurallar
