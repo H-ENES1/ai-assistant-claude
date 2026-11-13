@@ -71,7 +71,7 @@ async function run(n, mode) {
     const sw = ctx.serviceWorkers().find(isOurs) || await ctx.waitForEvent("serviceworker", { predicate: isOurs, timeout: 15000 });
     // Çalışan yeni başlarken bağlanılırsa genel nesne henüz hazır olmayabiliyor: hazır olana kadar dışarıdan bekle
     for (let i = 0; i < 100 && !(await sw.evaluate(() => !!globalThis.chrome?.storage?.local).catch(() => false)); i++) await new Promise((r) => setTimeout(r, 100));
-    if (mode !== "onaysiz") await sw.evaluate(() => chrome.storage.local.set({ consent: { v: 1, at: Date.now() } }));
+    if (mode !== "onaysiz") await sw.evaluate(() => chrome.storage.local.set({ consent: { v: 2, at: Date.now() } }));
     for (const p of ctx.pages()) if (/welcome\.html/.test(p.url())) await p.close();
   }
   const page = await ctx.newPage();

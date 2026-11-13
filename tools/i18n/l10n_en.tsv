@@ -230,7 +230,7 @@ d.q10	Which languages does it work in?
 d.a10	The extension and this site come in Turkish, English, German, French, Spanish, Italian, Portuguese, Russian, Japanese and Chinese; pick one in the settings. Message analysis (task type, topic, model and effort suggestions) is done only for Turkish and English messages. If you write in another language, the token and limit forecast still works, no suggestion is shown and the extension tells you so. The intro video and screenshots are in Turkish and English; the other languages see the English ones.
 d.rm6h	A learned model for topics
 d.rm6p	For messages where keywords are not enough; with user corrections.
-d.ft4	Version 0.12.0 · 22 October 2026
+d.ft4	Version 0.13.0 · November 2026
 ui.of5h	of your 5-hour limit
 ui.range	80% range: $1–$2
 ui.noFit	This message may not fit your remaining limit ($1 left).

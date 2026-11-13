@@ -177,3 +177,11 @@ npm run perf   # ölçüm (test değil): 60 ve 600 mesajlık sohbette boşta ve 
 - **CSV:** `avoided_tokens_eq, avoided_by, energy_wh_low/mid/high, water_ml_low/mid/high` (işaretli; sayılmamış satırda boş).
 - **Site "Doğa" düzeltmesi:** dipnot "≈ 1–5 mL su (Google'ın Gemini ölçümü, santral suyu dahil)" diyordu; Google'ın rakamı 0,26 mL ve yalnızca yerinde soğutma suyudur (santral suyu yok). Enerji aralığı (mesaj başına 0,24–1,2 Wh) aynı kaldı: = ≈ 400 token × 0,6–3 mWh. Su artık rapordaki WUE aralığıyla hesaplanıyor: mesaj başına ≈ 0,9–6 mL, 1 milyon kişi senaryosunda 40–200 ton → **35–250 ton**; LED 10 W → 9 W (kaynaklı değer). Site `build.py` bu makinede çalışmadığı için (Linux yolları) kaynaklar ve üretilmiş `site/index.html`, `docs/index.html` aynı betikle birlikte yamalandı.
 - **Bilinen sınırlar:** e_token ve WUE başka şirketlerin modelleri/altyapısı için yayımlanmış değerlerdir, Claude 5 ailesi için ölçüm yok. "Kabul" doğrudan ölçülmez, taslak içindeki ayar değişikliğinden çıkarılır: kullanıcı öneriyi görüp bir sonraki mesajda uygularsa sayılmaz. Gerçek claude.ai'de denenmedi (yalnızca sahte sayfa e2e'si).
+
+## 0.13.0 (14.11.2026, dal `yayin-0-13`) — birleşik sürüm
+- Birleşen dallar (sırayla): fable-5-2, kalite-olcumu, kor-set-4, egitim-uzun, denetim, site-seo, tanitim, tiko-mini, rapor-su. Ayrıntılar yukarıdaki dal notlarında.
+- Birleştirmede düzeltilenler: `page.js lastUserEl` denetimin yeniden adlandırdığı yardımcıyı kullanıyor (Tiko cevabın üstüne oturamıyordu); `report.js cleanSend` su/enerji alanlarını (`ecoU`, `ecoK`) koruyor; yedekten gelen `eco` sayacı yalnız bilinen sayı alanlarıyla alınır; gizlilik testi SVG ad alanını ve Tiko'nun sabit şablonunu tanıyor.
+- `CONSENT_VERSION` 2: onay metni ve gizlilik politikası denetimde yeniden yazıldı; güncelleyen kullanıcı karşılama sayfasını bir kez daha görür.
+- Windows: `tools/build-release.mjs` zip'i Node içinde üretir (`tools/zip.mjs`, PATH'te zip gerekmez), `build-release` ve `aggregate` yolları `fileURLToPath` ile; `site/build/build.py` esbuild'i Linux/macOS'ta da doğru çağırır.
+- Testler (birleşik dalda): `npm run test` geçti; `npm run e2e` → e2e 93/93, tiko 48/48, rapor-su 33/33 (Türkçe tarayıcı diliyle; e2e'deki popup metin kontrolü Türkçe arayüz bekler).
+- Henüz yapılmadı: gerçek claude.ai'de Tiko ve su raporu denemesi; Prompt C (site tasarımı ve videolar).

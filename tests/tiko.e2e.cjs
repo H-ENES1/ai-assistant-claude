@@ -95,7 +95,7 @@ const hitsBox = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bott
   await page.waitForTimeout(1200);
   check("onay yokken Tiko yok", !(await page.$("[data-token-forecast-tiko]")));
   if (welcome) { await welcome.waitForSelector("#accept:not(:empty)"); await welcome.click("#accept"); await welcome.close().catch(() => {}); }
-  else await sw.evaluate(() => chrome.storage.local.set({ consent: { v: 1, at: Date.now() } }));
+  else await sw.evaluate(() => chrome.storage.local.set({ consent: { v: 2, at: Date.now() } }));
   await page.bringToFront();
 
   // Tiko'nun durumu: kutusu, sınıfları, baloncuğu

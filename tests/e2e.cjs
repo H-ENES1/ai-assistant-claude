@@ -148,7 +148,7 @@ const check = (name, ok, info = "") => { results.push({ name, ok: !!ok, info });
     check("onay sayfası: okunanlar, saklananlar, gizlilik bağlantısı", /claude\.ai/.test(wt) && /token/i.test(wt) && (await welcome.getAttribute("#welPolicy", "href")).includes("privacy"), wt.split("\n")[0]);
     await welcome.click("#accept");
   } else {
-    await sw.evaluate(() => chrome.storage.local.set({ consent: { v: 1, at: Date.now() } }));
+    await sw.evaluate(() => chrome.storage.local.set({ consent: { v: 2, at: Date.now() } }));
   }
   const host = page.locator("[data-token-forecast]");
   await page.waitForFunction(() => document.querySelector("[data-token-forecast]")?.shadowRoot?.querySelector(".head")?.textContent, null, { timeout: 15000 });

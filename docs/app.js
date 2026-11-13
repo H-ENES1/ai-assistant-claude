@@ -168,7 +168,7 @@ Object.assign(EN, {
   q10: "Which languages does it work in?",
   a10: "The extension and this site come in Turkish, English, German, French, Spanish, Italian, Portuguese, Russian, Japanese and Chinese; pick one in the settings. Message analysis (task type, topic, model and effort suggestions) is done only for Turkish and English messages. If you write in another language, the token and limit forecast still works, no suggestion is shown and the extension tells you so. The intro video and screenshots are in Turkish and English; the other languages see the English ones.",
   rm6h: "A learned model for topics", rm6p: "For messages where keywords are not enough; with user corrections.",
-  ft4: "Version 0.12.1 · 23 October 2026"
+  ft4: "Version 0.13.0 · November 2026"
 });
 const UI = {
   tr: { of5h: "5 saatlik limitinin", range: "%80 aralık: $1–$2", week: "$1", noFit: "Bu mesaj kalan limitine sığmayabilir (kalan $1).", maybeFit: "Kötü durumda kalan limitini aşabilir (kalan $1).", peak: "Şu an yoğun saatler: 5 saatlik limit daha hızlı doluyor.", empty: "Bir şey yaz ya da yukarıdan bir örnek seç.", tok: "$1 → $2", conf: { high: "güven yüksek", medium: "güven orta", low: "güven düşük" }, scale: "gri: kullanılan · turuncu: bu mesaj",

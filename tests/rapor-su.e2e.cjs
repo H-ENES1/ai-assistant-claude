@@ -112,7 +112,7 @@ const SCEN = {
   // Kurulumda karşılama sayfası açılır; servis hazır olunca onayı doğrudan yaz (onay akışını e2e.cjs dener)
   if (!ctx.pages().some((p) => p.url().includes("/popup/welcome.html"))) await ctx.waitForEvent("page", { predicate: (p) => p.url().includes("/popup/welcome.html"), timeout: 8000 }).catch(() => null);
   for (let i = 0; i < 40 && !(await sw.evaluate(() => !!globalThis.chrome?.storage?.local).catch(() => false)); i++) await new Promise((r) => setTimeout(r, 250));
-  await sw.evaluate(() => chrome.storage.local.set({ consent: { v: 1, at: Date.now() } }));
+  await sw.evaluate(() => chrome.storage.local.set({ consent: { v: 2, at: Date.now() } }));
   await new Promise((r) => setTimeout(r, 800));
   for (const p of ctx.pages()) if (p.url().includes("welcome.html")) await p.close().catch(() => {});
 

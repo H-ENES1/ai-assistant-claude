@@ -1,6 +1,6 @@
 # Chrome Web Store — mağaza kaydı / store listing
 
-Yüklenecek paket: `token-tahmin-v0.12.1-magaza.zip` (küçültülmüş; `npm run build` → `dist/`).
+Yüklenecek paket: `token-tahmin-0.13.0.zip` (küçültülmüş; `npm run build` → `dist/`).
 Görseller bu klasörde: `icon-128.png`, `en/` ve `tr/` altında 5 ekran görüntüsü (1280×800), küçük tanıtım görseli (440×280) ve büyük tanıtım görseli (1400×560).
 
 ---
