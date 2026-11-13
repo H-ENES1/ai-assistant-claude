@@ -5,11 +5,13 @@
 // Girdi: chrome.storage.local'daki "sends" listesi. Her kayıt bir gönderimdir ve METİN İÇERMEZ:
 //   { id, at, conv, fam, model, type, eff, peak, cache, hist, pred, predLo, predHi, predW,
 //     adv: { k, t } | null, save, d, dw, out, outHi, ok,
-//     dom, sub (konu alanı), effRec (önerilen effort), effAs (effort okunamadı, varsayılan sayıldı), effSave }
+//     dom, sub (konu alanı), effRec (önerilen effort), effAs (effort okunamadı, varsayılan sayıldı), effSave,
+//     ecoU, ecoK (taslağın başındaki ayara göre kaçınılan/fazladan işlem; lib/eco.js) }
 //   pred*: gönderim anındaki tahmin (5 saatlik limit yüzdesi; predW haftalık), d / dw: ölçülen fark.
 // Bütün fonksiyonlar saftır (yan etkisiz), birim testlerinde doğrudan denenir.
 
 import { isPeak, peakWindow } from "./forecast.js";
+import { ecoCsvCells, ECO_CSV_COLS } from "./eco.js";
 
 export const SENDS_MAX = 2000;
 export const SENDS_DAYS = 70;
@@ -220,9 +222,11 @@ export function nextWeeklyAt(now = Date.now(), hour = 9) {
 
 // CSV dışa aktarma (metin yok; yalnızca sayılar ve etiketler)
 export function sendsCsv(sends) {
-  const cols = ["at", "model", "type", "domain", "subdomain", "effort", "effort_suggested", "peak", "cache", "history_tokens", "pred_pct", "pred_low", "pred_high", "measured_pct", "weekly_pred_pct", "weekly_measured_pct", "advice", "advice_model"];
+  const cols = ["at", "model", "type", "domain", "subdomain", "effort", "effort_suggested", "peak", "cache", "history_tokens", "pred_pct", "pred_low", "pred_high", "measured_pct", "weekly_pred_pct", "weekly_measured_pct", "advice", "advice_model",
+    // Kaçınılan (+) ya da fazladan (−) işlem ve tahmini karşılığı; sayılmamış (eski) kayıtlarda boş (lib/eco.js)
+    ...ECO_CSV_COLS];
   const rows = (sends || []).map((x) => [new Date(x.at).toISOString(), x.model || "", x.type || "", x.dom || "", x.sub || "", x.eff || "", x.effRec || "", x.peak ? 1 : 0, x.cache || "", Math.round(x.hist || 0),
-    r2(x.pred), r2(x.predLo), r2(x.predHi), Number.isFinite(x.d) ? x.d : "", r2(x.predW), Number.isFinite(x.dw) ? x.dw : "", x.adv?.k || "", x.adv?.t || ""]);
+    r2(x.pred), r2(x.predLo), r2(x.predHi), Number.isFinite(x.d) ? x.d : "", r2(x.predW), Number.isFinite(x.dw) ? x.dw : "", x.adv?.k || "", x.adv?.t || "", ...ecoCsvCells(x)]);
   return [cols, ...rows].map((r) => r.join(",")).join("\n");
 }
 const r2 = (v) => (Number.isFinite(v) ? Math.round(v * 100) / 100 : "");
