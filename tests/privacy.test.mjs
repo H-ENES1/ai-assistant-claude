@@ -49,7 +49,9 @@ t("hook.js kendi isteğini üretmez (yalnız apply ile iletir)", hits(["inject/h
 
 // 3) Kaynaktaki her adres bilinen bir alan adında (http:// hiç yok)
 const ALLOWED_HOSTS = new Set(["claude.ai", "github.com", "h-enes1.github.io", "platform.claude.com", "support.claude.com", "anthropic.com", "www.anthropic.com"]);
-const urls = Object.entries(src).flatMap(([f, s]) => [...s.matchAll(/\bhttps?:\/\/[^\s"'`<>)\\]+/g)].map((m) => ({ f, u: m[0] })));
+const urls = Object.entries(src).flatMap(([f, s]) => [...s.matchAll(/\bhttps?:\/\/[^\s"'`<>)\\]+/g)].map((m) => ({ f, u: m[0] })))
+  // SVG ad alanı bir istek değil, yalnızca öğe türünü adlandıran sabit bir kimlik (createElementNS)
+  .filter(({ u }) => u !== "http://www.w3.org/2000/svg");
 const badHost = urls.filter(({ u }) => { try { return !ALLOWED_HOSTS.has(new URL(u.replace(/\$\{.*$/, "").replace(/[;,.]+$/, "")).host); } catch (_) { return true; } });
 t("bütün adresler bilinen alan adlarında", badHost.length === 0, badHost.slice(0, 5).map((x) => `${x.f}: ${x.u}`).join(" | "));
 t("http:// (şifresiz) adres yok", urls.every(({ u }) => u.startsWith("https://")), urls.filter(({ u }) => !u.startsWith("https://")).map((x) => x.u).join(","));
@@ -85,7 +87,9 @@ t("hook.js: onay gelene kadar uykuda (enabled = false, sarmalayıcının ilk sat
 // 7) HTML basma noktaları: yalnızca bilinen dosyalarda, bilinen sayıda (yenisi eklenirse kaçış denetimini gözden geçir)
 const sinks = hits(js, /innerHTML|insertAdjacentHTML|outerHTML|document\.write/);
 const sinkCount = sinks.reduce((m, loc) => { const f = loc.split(":")[0]; m[f] = (m[f] || 0) + 1; return m; }, {});
-t("innerHTML yalnızca panel.js (3) ve content.js (1, sabit metin)", JSON.stringify(sinkCount) === JSON.stringify({ "content/content.js": 1, "lib/panel.js": 3 }), JSON.stringify(sinkCount));
+t("innerHTML yalnızca panel.js (3), content.js (1, sabit metin) ve tiko.js (1, sabit şablon)", JSON.stringify(sinkCount) === JSON.stringify({ "content/content.js": 1, "lib/panel.js": 3, "lib/tiko.js": 1 }), JSON.stringify(sinkCount));
+// tiko.js: Shadow DOM kökü yalnızca modülün kendi sabitleriyle (CSS, SVG) doldurulur; sayfadan veri girmez
+t("tiko.js: innerHTML yalnızca CSS ve SVG sabitlerini kullanır", /root\.innerHTML = `<style>\$\{CSS\}<\/style>[^`$]*\$\{SVG\}[^`$]*`;/.test(src["lib/tiko.js"]));
 // panel.js: şablon içindeki her ${…} ya esc(…) ile kaçışlanır ya da sayı/sabit üretir
 const panel = src["lib/panel.js"];
 const tplExprs = [...panel.slice(panel.indexOf("function updateBanner")).matchAll(/\$\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}/g)].map((m) => m[1].trim());
