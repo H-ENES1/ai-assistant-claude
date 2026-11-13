@@ -19,6 +19,8 @@ extension/              ← tarayıcıya yüklenen klasör (manifest.json burada
 tests/                  unit, learn, report, contrib, advisor (+rec-cases.json) testleri, e2e.cjs (Playwright, 43 kontrol)
 tests/quality/          öneri kalitesi ölçümü: RAPOR.md (sonuç), run.md (yeniden çalıştırma), build-prompts/blind/analyze betikleri
 tests/ml/               train.tsv (600), test.tsv + test2.tsv (120+120, ayrı yazılmış), train.mjs (eğit + karşılaştır)
+tests/ml/               train.tsv (600), test.tsv + test2.tsv (120+120, ayrı yazılmış), test3.tsv (350, KÖR SET 4), train.mjs (eğit + karşılaştır)
+tests/blind4.mjs        kör set 4 ölçümü (domain-cases4.json + ml/test3.tsv): iş türü, alan, model/effort; eşik yok, yalnız set bütünlüğü denetlenir
 tools/                  build-release.mjs (küçültülmüş mağaza paketi), aggregate.mjs (topluluk katkılarını birleştir)
 .github/ISSUE_TEMPLATE/ katki.yml (topluluk verisi), anket.yml, hata.yml
 site/                   index.html (tanıtım sitesi, tek dosya) + build/ (kaynak, demo motoru esbuild ile gömülür)
@@ -52,6 +54,8 @@ npm run e2e    # Playwright, sahte claude.ai (69 kontrol). PW_EXPERIMENTAL_SERVI
 - Plan limit büyüklükleri (k) kaba önsel (topluluk önselleri gelene kadar).
 - Lisans (22.10.2026 kararı): GNU AGPL-3.0-or-later (LICENSE, NOTICE). Kod açık kaynak; ad ve logo lisans dışı (AGPL madde 7(e), NOTICE). Derlenmiş JS dosya başlığında SPDX ve kaynak adresi var (https://github.com/H-ENES1/ai-assistant-claude; depo 23.10.2026 tarihinde ai-assistant-claude olarak yeniden adlandırıldı). Önceki "tüm hakları saklı" kararı ve BSL fikri terk edildi.
 - Sınıflandırıcı: test2 (gündelik dil) kurallar %64 → karma %88. Gerçek kullanıcı mesajlarıyla ölçülmedi.
+- **Kör set 4 (12.11.2026, 250 TR + 100 EN):** depoyu görmeyen alt ajanlar yazdı (`tests/ml/test3.tsv`, `tests/domain-cases4.json`; ölçüm `npm run blind`). İş türü: kurallar %41, yalnız metin %50, karma %50, ürün %49 (test/test2'de ürün %92/%89). Konu alanı: %66 kabul edilebilir, 64 yanlış alan, 55 "genel". Ana neden: train.tsv'de 20 kelimeden uzun örnek yok, kör setin %45'i 20 kelimeden uzun; uzun ve yapıştırılmış içerikli mesajlar `code_fix`'e kayıyor. Güven işe yarıyor: high %75, medium %60, low %23 doğru. **Bu sete bakarak kural, ağırlık ya da sözlük EKLEME**; iyileştirme yapılacaksa önce ayrı eğitim verisi yaz, sonra yeni bir kör setle ölç.
+- `tests/ml/train.mjs`: "kurallar" satırı `useModel:false` ile ölçülür (classify() öğrenen modeli kullanmaya başladığından beri bu satır yanlışlıkla ürünün karma kararını ölçüyordu; betik ayrıca eski `ext/` yolu yüzünden çalışmıyordu); "ürün" satırı yayındaki ağırlıklardır. Ağırlık yazma ölçütü test2 olarak kaldı, test3 karara karışmaz.
 - Topluluk verisi: claude.ai artifact veritabanına kuruluş dışı ziyaretçi yazamıyor; bu yüzden GitHub konu formu (katki.yml) + tools/aggregate.mjs. Katkı metin içermez (contrib.test.mjs bunu denetler).
 
 ## Yapılacaklar (öncelik sırasıyla; her biri ayrı commit/PR)
@@ -66,7 +70,7 @@ npm run e2e    # Playwright, sahte claude.ai (69 kontrol). PW_EXPERIMENTAL_SERVI
 8. Tek tıkla model değiştirme: kırılgan, en sona; yapılırsa seçici yoksa sessizce gizle.
 
 ## 0.11.0 (22.10.2026)
-- **Konu alanı** `lib/domain.js`: 17 alan + alt başlıklar, 173 kural (TR kökler başta sınırlı, EN tam sınırlı). İş türü ipucu yalnızca kurallar ve öğrenen model aynı türdeyse. Test: `tests/domain.test.mjs` (set 1 geliştirme, set 2 görüldü, set 3 neredeyse kör: ilk ölçüm %72 kabul edilebilir / 6 yanlış alan; 4 tetikleme hatası düzeltildi → %71 / 1). Yeni sözlük eklerken set 3'e bakarak ekleme YAPMA; yeni kör set yaz.
+- **Konu alanı** `lib/domain.js`: 17 alan + alt başlıklar, 173 kural (TR kökler başta sınırlı, EN tam sınırlı). İş türü ipucu yalnızca kurallar ve öğrenen model aynı türdeyse. Test: `tests/domain.test.mjs` (set 1 geliştirme, set 2 görüldü, set 3 neredeyse kör: ilk ölçüm %72 kabul edilebilir / 6 yanlış alan; 4 tetikleme hatası düzeltildi → %71 / 1). Yeni sözlük eklerken set 3'e ya da set 4'e bakarak ekleme YAPMA; yeni kör set yaz.
 - **Effort** `lib/effort.js`: öneri (iş türü + alan profili + karmaşıklık + kişisel effOff), `compareEffort` (düşür/yükselt, tasarruf = düşünme payı × (1 − oran)), `applyEffortFeedback`. Model desteği `forecast.js` MODELS[].eff (def, x). Okunamayan effort → modelin varsayılanı (`fc.effortAssumed`). Kaynaklar: Anthropic effort belgesi + destek makalesi 8664678.
 - **Hap** sürüklenebilir (`pillOffset`, varsayılan yere göre fark), Alt+ok, kartta sıfırlama; claude.ai menüsü üstüne açılınca `.yield` ile gizlenir.
 - **Rapor**: alan/alt başlık/effort dağılımı, `tip_effort_over`, `tip_domain_save`, `tip_domain_stakes`; CSV'de domain, subdomain, effort_suggested.
