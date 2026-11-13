@@ -78,7 +78,7 @@ Your 5-hour and weekly limits, what the remaining limit still allows (short ques
 
 <img src="site/img/en/rapor.png" alt="Weekly report page: spending cards, tips, model, task, topic and effort mix, hourly heatmap, learning-proof chart, most expensive messages" width="760">
 
-Messages, limit spent, peak-hour share, model and task mix, topic and effort mix, a 7×24 hourly heatmap, the most expensive messages, forecast accuracy, a learning-proof chart and personal tips. Computed only in your browser from text-free records. Monday-morning notification, CSV export.
+Messages, limit spent, peak-hour share, model and task mix, topic and effort mix, a 7×24 hourly heatmap, the most expensive messages, forecast accuracy, a learning-proof chart and personal tips. It also shows the **water and energy you saved this week** by taking lighter-model or lower-effort suggestions, as everyday equivalents (drops, glasses of water, phone charges), always labelled as an estimate with a range, with the formula and sources one click away. Computed only in your browser from text-free records. Monday-morning notification, CSV export.
 
 ---
 
