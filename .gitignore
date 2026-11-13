@@ -1,5 +1,6 @@
 node_modules/
 dist/
-tests/shots/
+tests/shots/*
+!tests/shots/tiko/
 *.bak
 site/standalone.html
