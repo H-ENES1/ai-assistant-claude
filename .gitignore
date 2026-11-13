@@ -3,3 +3,4 @@ dist/
 tests/shots/
 *.bak
 site/standalone.html
+tests/quality/answers/raw/

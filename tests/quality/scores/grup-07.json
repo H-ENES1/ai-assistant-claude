@@ -1,0 +1,7 @@
+{"group": 7, "items": [
+ {"id": "r11", "A": 5, "B": 5, "C": 5, "note": "Üçü de makalenin gelmediğini söyleyip metni istiyor."},
+ {"id": "r31", "A": 5, "B": 5, "C": 5, "note": "Üç sorgu da doğru; lehçe ve eşitlik notları üçünde de var, C daha kısa."},
+ {"id": "r17", "A": 5, "B": 5, "C": 3.5, "note": "A ve B eksiksiz, doldurulabilir taslak; C'nin konu satırında yazım hatası var ve öğrenci kendini tanıtmıyor."},
+ {"id": "c04", "A": 4.5, "B": 3.5, "C": 4.5, "note": "A ve C bağlamı bilmediğini söyleyip iki durumu ayırıyor; B bağlam olmadan 'olmaması gerekir' diye kesin konuşuyor."},
+ {"id": "c09", "A": 5, "B": 5, "C": 4, "note": "Üçü de 'livre' diyor; C'nin telaffuz notu yanlış."}
+]}
