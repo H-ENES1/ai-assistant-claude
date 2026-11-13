@@ -532,7 +532,7 @@ const check = (name, ok, info = "") => { results.push({ name, ok: !!ok, info });
   await page.waitForTimeout(4000);
   const afterFake = await sw.evaluate(() => chrome.storage.local.get(null));
   const fakeJson = JSON.stringify(afterFake);
-  const SEND_KEYS = ["id", "at", "conv", "fam", "model", "type", "eff", "peak", "cache", "hist", "pred", "predLo", "predHi", "predW", "adv", "save", "dom", "sub", "effRec", "effAs", "effSave", "outHi", "d", "dw", "out"];
+  const SEND_KEYS = ["id", "at", "conv", "fam", "model", "type", "eff", "peak", "cache", "hist", "pred", "predLo", "predHi", "predW", "adv", "save", "dom", "sub", "effRec", "effAs", "effSave", "outHi", "d", "dw", "out", "ecoU", "ecoK"];
   const newSends = (afterFake.sends || []).slice(sendsBefore);
   check("sahte mesaj: sayfanın verdiği 'tahmin' ve dizeler depoya girmedi", !fakeJson.includes(EVIL) && !fakeJson.includes("AAAAAAAAAA") && newSends.every((x) => Object.keys(x).every((k) => SEND_KEYS.includes(k)) && x.model !== EVIL),
     `yeni kayıt ${newSends.length}: ` + JSON.stringify(newSends.map((x) => [x.model, x.type, x.pred])));
@@ -644,7 +644,7 @@ const check = (name, ok, info = "") => { results.push({ name, ok: !!ok, info });
   const storeJson = JSON.stringify(allStore);
   const inStore = SENTINELS.filter((x) => storeJson.includes(x));
   check("depo: hiçbir anahtarda mesaj metni, cevap metni ya da dosya adı yok", inStore.length === 0, inStore.join(","));
-  const KNOWN_KEYS = ["settings", "calib", "consent", "usage", "usageHist", "usageMeta", "orgId", "tier", "notified", "sends", "trace", "hookHello", "lastSend", "lastDone", "pageHealth", "convActivity", "recPrefs", "learnPersonal", "learnFixes", "lastContext", "pillOffset"];
+  const KNOWN_KEYS = ["settings", "calib", "consent", "usage", "usageHist", "usageMeta", "orgId", "tier", "notified", "sends", "trace", "hookHello", "lastSend", "lastDone", "pageHealth", "convActivity", "recPrefs", "learnPersonal", "learnFixes", "lastContext", "pillOffset", "eco", "tikoPark", "tikoHintSeen"];
   const unknownKeys = Object.keys(allStore).filter((k) => !KNOWN_KEYS.includes(k));
   check("depo: yalnızca bilinen anahtarlar, toplam 1 MB altında", unknownKeys.length === 0 && storeJson.length < 1e6, `${unknownKeys.join(",")} ${Math.round(storeJson.length / 1024)} KB`);
   check("depo: storage.sync ve storage.session boş (hiçbir şey hesaba eşitlenmiyor)", Object.keys(await sw.evaluate(() => chrome.storage.sync.get(null))).length === 0 && Object.keys(await sw.evaluate(() => chrome.storage.session.get(null))).length === 0);

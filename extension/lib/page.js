@@ -152,7 +152,7 @@ export function streamingReply() {
 }
 // Son kullanıcı mesajının öğesi.
 export function lastUserEl() {
-  const list = allMatches(USER_MSG_SELECTORS);
+  const list = outermostMatches(USER_MSG_SELECTORS);
   return list[list.length - 1] || null;
 }
 
