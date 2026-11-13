@@ -1508,5 +1508,14 @@
   },
   "fableShareNear": {
     "message": "Votre part Fable est presque épuisée ($1). Passez à $2."
+  },
+  "setTiko": {
+    "message": "Afficher Tiko (le petit robot près de la zone de message)"
+  },
+  "tikoHint": {
+    "message": "Salut, je suis Tiko ! Si je te gêne, tu peux me désactiver dans la fenêtre de l'extension, sous Réglages."
+  },
+  "tikoTitle": {
+    "message": "Tiko · glisser pour le garer · double-clic : retour à sa place"
   }
 }

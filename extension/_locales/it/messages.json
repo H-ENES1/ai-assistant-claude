@@ -1508,5 +1508,14 @@
   },
   "fableShareNear": {
     "message": "La tua quota Fable è quasi esaurita ($1). Passa a $2."
+  },
+  "setTiko": {
+    "message": "Mostra Tiko (il piccolo bot accanto alla casella del messaggio)"
+  },
+  "tikoHint": {
+    "message": "Ciao, sono Tiko! Se ti disturbo, puoi disattivarmi nella finestra dell'estensione, in Impostazioni."
+  },
+  "tikoTitle": {
+    "message": "Tiko · trascina per parcheggiarlo · doppio clic: torna al suo posto"
   }
 }

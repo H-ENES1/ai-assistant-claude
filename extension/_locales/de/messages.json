@@ -1508,5 +1508,14 @@
   },
   "fableShareNear": {
     "message": "Dein Fable-Anteil ist fast aufgebraucht ($1). Wechsle zu $2."
+  },
+  "setTiko": {
+    "message": "Tiko anzeigen (der kleine Bot am Nachrichtenfeld)"
+  },
+  "tikoHint": {
+    "message": "Hallo, ich bin Tiko! Wenn ich störe, kannst du mich im Erweiterungs-Popup unter Einstellungen ausschalten."
+  },
+  "tikoTitle": {
+    "message": "Tiko · ziehen zum Parken · Doppelklick: zurück an den Platz"
   }
 }
