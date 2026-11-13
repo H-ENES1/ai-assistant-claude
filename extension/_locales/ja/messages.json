@@ -1509,6 +1509,15 @@
   "fableShareNear": {
     "message": "Fable枠がまもなく上限に達します（$1）。$2 に切り替えてください。"
   },
+  "setTiko": {
+    "message": "Tiko を表示（メッセージ欄のそばの小さなボット）"
+  },
+  "tikoHint": {
+    "message": "こんにちは、Tiko です！邪魔なときは、拡張機能のポップアップの「設定」からオフにできます。"
+  },
+  "tikoTitle": {
+    "message": "Tiko · ドラッグで好きな場所に置く · ダブルクリックで元の場所へ"
+  },
   "pillUnread": {
     "message": "読み取れません"
   },

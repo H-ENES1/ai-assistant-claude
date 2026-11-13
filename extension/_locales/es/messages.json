@@ -1509,6 +1509,15 @@
   "fableShareNear": {
     "message": "Tu cuota de Fable casi se ha agotado ($1). Cambia a $2."
   },
+  "setTiko": {
+    "message": "Mostrar a Tiko (el pequeño bot junto al cuadro de mensaje)"
+  },
+  "tikoHint": {
+    "message": "¡Hola, soy Tiko! Si te molesto, puedes desactivarme en la ventana de la extensión, en Ajustes."
+  },
+  "tikoTitle": {
+    "message": "Tiko · arrastra para aparcarlo · doble clic: vuelve a su sitio"
+  },
   "pillUnread": {
     "message": "No se pudo leer"
   },

@@ -1509,6 +1509,15 @@
   "fableShareNear": {
     "message": "Fable payın dolmak üzere ($1). $2'e geç."
   },
+  "setTiko": {
+    "message": "Tiko'yu göster (mesaj kutusundaki minik bot)"
+  },
+  "tikoHint": {
+    "message": "Selam, ben Tiko! Rahatsız edersem beni eklenti penceresindeki Ayarlar'dan kapatabilirsin."
+  },
+  "tikoTitle": {
+    "message": "Tiko · sürükle: bir yere park et · çift tıkla: yerine dönsün"
+  },
   "pillUnread": {
     "message": "Okunamadı"
   },

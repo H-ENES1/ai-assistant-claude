@@ -1509,6 +1509,15 @@
   "fableShareNear": {
     "message": "Your Fable share is almost used up ($1). Switch to $2."
   },
+  "setTiko": {
+    "message": "Show Tiko (the tiny bot by the message box)"
+  },
+  "tikoHint": {
+    "message": "Hi, I'm Tiko! If I get in the way, you can turn me off in the extension popup under Settings."
+  },
+  "tikoTitle": {
+    "message": "Tiko · drag to park · double-click to send home"
+  },
   "pillUnread": {
     "message": "Can't read"
   },

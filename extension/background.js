@@ -22,7 +22,7 @@ const ALARM = "usage-refresh";
 const PERIOD_MIN = 5;
 const WEEKLY_ALARM = "weekly-report";
 const REPORT_URL = "popup/report.html";
-export const DEFAULT_SETTINGS = { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto", advisor: true, effortAdvice: true, tips: true, explain: true, weeklyReport: true };
+export const DEFAULT_SETTINGS = { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto", advisor: true, effortAdvice: true, tips: true, explain: true, weeklyReport: true, tiko: true };
 
 const get = (k) => chrome.storage.local.get(k);
 const set = (o) => chrome.storage.local.set(o);
