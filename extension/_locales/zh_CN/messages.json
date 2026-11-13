@@ -1496,5 +1496,17 @@
   },
   "consentPopupBtn": {
     "message": "查看并开启"
+  },
+  "rowFableShare": {
+    "message": "Fable 配额"
+  },
+  "fableSharePill": {
+    "message": "Fable 配额 $1"
+  },
+  "fableShareLabel": {
+    "message": "Fable 配额（每周）"
+  },
+  "fableShareNear": {
+    "message": "你的 Fable 配额即将用完（$1）。请切换到 $2。"
   }
 }

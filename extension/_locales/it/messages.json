@@ -1496,5 +1496,17 @@
   },
   "consentPopupBtn": {
     "message": "Rivedi e attiva"
+  },
+  "rowFableShare": {
+    "message": "Quota Fable"
+  },
+  "fableSharePill": {
+    "message": "Quota Fable $1"
+  },
+  "fableShareLabel": {
+    "message": "Quota Fable (settimanale)"
+  },
+  "fableShareNear": {
+    "message": "La tua quota Fable è quasi esaurita ($1). Passa a $2."
   }
 }

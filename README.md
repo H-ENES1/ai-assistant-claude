@@ -7,7 +7,7 @@
 A free browser extension for [claude.ai](https://claude.ai) that predicts how much of your 5-hour and weekly Claude limit a message will use, tells you which model and effort level are enough (with reasons), and learns your plan over time. Everything runs in your browser.
 
 [![License: AGPL v3](https://img.shields.io/badge/license-AGPL--3.0--or--later-blue.svg)](LICENSE)
-![Version](https://img.shields.io/badge/version-0.12.1-d97757)
+![Version](https://img.shields.io/badge/version-0.12.2-d97757)
 ![Manifest V3](https://img.shields.io/badge/Manifest-V3-555)
 ![Chromium 116+](https://img.shields.io/badge/Chromium-116%2B-555)
 ![UI languages](https://img.shields.io/badge/UI%20languages-10-2a7b57)

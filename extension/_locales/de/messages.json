@@ -1496,5 +1496,17 @@
   },
   "consentPopupBtn": {
     "message": "Ansehen und einschalten"
+  },
+  "rowFableShare": {
+    "message": "Fable-Anteil"
+  },
+  "fableSharePill": {
+    "message": "Fable-Anteil $1"
+  },
+  "fableShareLabel": {
+    "message": "Fable-Anteil (wöchentlich)"
+  },
+  "fableShareNear": {
+    "message": "Dein Fable-Anteil ist fast aufgebraucht ($1). Wechsle zu $2."
   }
 }

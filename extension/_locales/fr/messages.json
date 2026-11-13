@@ -1496,5 +1496,17 @@
   },
   "consentPopupBtn": {
     "message": "Examiner et activer"
+  },
+  "rowFableShare": {
+    "message": "Part Fable"
+  },
+  "fableSharePill": {
+    "message": "Part Fable $1"
+  },
+  "fableShareLabel": {
+    "message": "Part Fable (hebdomadaire)"
+  },
+  "fableShareNear": {
+    "message": "Votre part Fable est presque épuisée ($1). Passez à $2."
   }
 }
