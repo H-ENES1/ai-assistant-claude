@@ -1509,6 +1509,99 @@
   "fableShareNear": {
     "message": "Tu cuota de Fable casi se ha agotado ($1). Cambia a $2."
   },
+  "ecoTitle": {
+    "message": "Agua y energía que ahorraste esta semana"
+  },
+  "ecoLeadPos": {
+    "message": "Bien hecho: esta semana cambiaste $1× al ajuste más ligero sugerido. El mismo trabajo con menos cómputo."
+  },
+  "ecoLeadNet": {
+    "message": "Se ha restado el extra de cambiar $1× a un ajuste más potente."
+  },
+  "ecoLeadZero": {
+    "message": "Esta semana no hay diferencia por cambios de ajuste: nada ahorrado, nada de más. Si tu modelo y tu esfuerzo ya encajan con el trabajo, así es como debe verse."
+  },
+  "ecoLeadNeg": {
+    "message": "Esta semana no hay ahorro neto. Cambiaste $1× a un modelo más potente o a un esfuerzo más alto; la diferencia equivale más o menos a esta cantidad extra de agua y energía. Si el trabajo lo necesitaba, fue la decisión correcta."
+  },
+  "ecoLeadNone": {
+    "message": "Todavía no se ha contado nada esta semana. Aparecerá aquí cuando apliques una sugerencia de modelo o de esfuerzo y envíes un mensaje."
+  },
+  "ecoWater": {
+    "message": "Agua"
+  },
+  "ecoEnergy": {
+    "message": "Energía"
+  },
+  "ecoExtra": {
+    "message": "de más"
+  },
+  "ecoRange": {
+    "message": "rango estimado $1 – $2"
+  },
+  "ecoU_drop": {
+    "message": "gota (≈ 0,05 mL)"
+  },
+  "ecoU_tsp": {
+    "message": "cucharadita (5 mL)"
+  },
+  "ecoU_glass": {
+    "message": "vaso de agua (250 mL)"
+  },
+  "ecoU_bottle": {
+    "message": "botella (0,5 L)"
+  },
+  "ecoU_bucket": {
+    "message": "cubo (10 L)"
+  },
+  "ecoU_tub": {
+    "message": "bañera (≈ 136 L)"
+  },
+  "ecoU_phone": {
+    "message": "carga de móvil (19 Wh)"
+  },
+  "ecoU_kettle": {
+    "message": "hervir 1 L de agua en un hervidor (93 Wh)"
+  },
+  "ecoU_led": {
+    "message": "de luz de una bombilla LED de 9 W"
+  },
+  "ecoSecs": {
+    "message": "$1 s"
+  },
+  "ecoTotalTitle": {
+    "message": "Desde que lo instalaste"
+  },
+  "ecoTotalSince": {
+    "message": "El recuento empezó el $1; los mensajes anteriores no se incluyen."
+  },
+  "ecoTotalZero": {
+    "message": "Todavía no se ha acumulado ninguna diferencia."
+  },
+  "ecoTotalNeg": {
+    "message": "Sin ahorro neto; diferencia total:"
+  },
+  "ecoHow": {
+    "message": "¿Cómo se calcula?"
+  },
+  "ecoFormulaTok": {
+    "message": "token = cómputo evitado ÷ $1 (equivalente en tokens de salida de Sonnet 5.5)"
+  },
+  "ecoFormulaE": {
+    "message": "e_token = $1 / $2 / $3 mWh (bajo / medio / alto)"
+  },
+  "ecoFormulaW": {
+    "message": "WUE = $1 / $2 / $3 L/kWh (bajo / medio / alto; refrigeración del centro de datos + generación de electricidad)"
+  },
+  "ecoFormulaWeek": {
+    "message": "Esta semana: tokens ≈ $1 → E ≈ $2 → W ≈ $3"
+  },
+  "ecoAssume": {
+    "message": "El cómputo evitado es la diferencia estimada entre el modelo y el esfuerzo que tenías al empezar a escribir el mensaje y el ajuste con el que lo enviaste; solo cuenta el mensaje en el que cambiaste el ajuste. Cambiar a un ajuste más ligero solo cuenta si la extensión lo sugirió, y solo hasta el nivel sugerido; cambiar a un ajuste más potente siempre se resta. Se supone que la energía por modelo es proporcional a su peso en el límite (precio de la API). Anthropic no publica cifras de energía ni de agua para Claude: son estimaciones, no mediciones."
+  },
+  "ecoSources": {
+    "message": "Fuentes. Energía por token: Epoch AI, 2025 (GPT-4o, 500 tokens de salida ≈ 0,3 Wh); Jegham et al., 2025, arXiv:2505.09598 (Claude 3.7 Sonnet, 300 tokens de salida 0,95 Wh). Agua por kWh, refrigeración + generación de electricidad: Li et al., 2023, arXiv:2304.03271 (media de EE. UU. 0,55 + 3,14 L/kWh); Google, 2025, arXiv:2508.15734 (en el sitio 1,15 L/kWh); Jegham et al. (AWS 0,18 + 5,11 L/kWh). Comparaciones: gota métrica 0,05 mL; cucharadita 5 mL (US 21 CFR 101.9); bañera llena 136 L (USGS); carga de móvil 19 Wh (US EPA); LED de 9 W ≈ 800 lúmenes (US FTC); calentar 1 L de agua de 20 °C a 100 °C requiere 93 Wh (c = 4,186 kJ/kg·K). Vaso, botella y cubo son tamaños nominales."
+  },
   "setTiko": {
     "message": "Mostrar a Tiko (el pequeño bot junto al cuadro de mensaje)"
   },

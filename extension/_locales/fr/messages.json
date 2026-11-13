@@ -1509,6 +1509,99 @@
   "fableShareNear": {
     "message": "Votre part Fable est presque épuisée ($1). Passez à $2."
   },
+  "ecoTitle": {
+    "message": "L'eau et l'énergie que tu as économisées cette semaine"
+  },
+  "ecoLeadPos": {
+    "message": "Bien joué : cette semaine, tu es passé $1× au réglage plus léger suggéré. Même tâche, moins de calcul."
+  },
+  "ecoLeadNet": {
+    "message": "Le surplus dû à $1× passage à un réglage plus puissant a été déduit."
+  },
+  "ecoLeadZero": {
+    "message": "Aucune différence liée aux changements de réglage cette semaine : rien d'économisé, rien en plus. Si ton modèle et ton effort conviennent déjà à la tâche, c'est exactement ce qu'il faut."
+  },
+  "ecoLeadNeg": {
+    "message": "Pas d'économie nette cette semaine. Tu es passé $1× à un modèle plus puissant ou à un effort plus élevé ; la différence représente à peu près cette quantité d'eau et d'énergie en plus. Si la tâche le demandait, c'était le bon choix."
+  },
+  "ecoLeadNone": {
+    "message": "Rien n'a encore été compté cette semaine. Cela apparaîtra ici dès que tu appliqueras une suggestion de modèle ou d'effort et que tu enverras un message."
+  },
+  "ecoWater": {
+    "message": "Eau"
+  },
+  "ecoEnergy": {
+    "message": "Énergie"
+  },
+  "ecoExtra": {
+    "message": "en plus"
+  },
+  "ecoRange": {
+    "message": "fourchette estimée $1 – $2"
+  },
+  "ecoU_drop": {
+    "message": "goutte (≈ 0,05 mL)"
+  },
+  "ecoU_tsp": {
+    "message": "cuillère à café (5 mL)"
+  },
+  "ecoU_glass": {
+    "message": "verre d'eau (250 mL)"
+  },
+  "ecoU_bottle": {
+    "message": "bouteille (0,5 L)"
+  },
+  "ecoU_bucket": {
+    "message": "seau (10 L)"
+  },
+  "ecoU_tub": {
+    "message": "baignoire (≈ 136 L)"
+  },
+  "ecoU_phone": {
+    "message": "recharge de téléphone (19 Wh)"
+  },
+  "ecoU_kettle": {
+    "message": "1 L d'eau porté à ébullition à la bouilloire (93 Wh)"
+  },
+  "ecoU_led": {
+    "message": "d'éclairage d'une ampoule LED de 9 W"
+  },
+  "ecoSecs": {
+    "message": "$1 s"
+  },
+  "ecoTotalTitle": {
+    "message": "Depuis l'installation"
+  },
+  "ecoTotalSince": {
+    "message": "Le décompte a commencé le $1 ; les messages antérieurs ne sont pas inclus."
+  },
+  "ecoTotalZero": {
+    "message": "Aucune différence ne s'est encore accumulée."
+  },
+  "ecoTotalNeg": {
+    "message": "Pas d'économie nette ; différence totale :"
+  },
+  "ecoHow": {
+    "message": "Comment est-ce calculé ?"
+  },
+  "ecoFormulaTok": {
+    "message": "token = calcul évité ÷ $1 (équivalent en tokens de sortie Sonnet 5.5)"
+  },
+  "ecoFormulaE": {
+    "message": "e_token = $1 / $2 / $3 mWh (bas / moyen / haut)"
+  },
+  "ecoFormulaW": {
+    "message": "WUE = $1 / $2 / $3 L/kWh (bas / moyen / haut ; refroidissement du centre de données + production d'électricité)"
+  },
+  "ecoFormulaWeek": {
+    "message": "Cette semaine : tokens ≈ $1 → E ≈ $2 → W ≈ $3"
+  },
+  "ecoAssume": {
+    "message": "Le calcul évité est la différence estimée entre le modèle et l'effort que tu avais en commençant à écrire le message et le réglage avec lequel tu l'as envoyé ; seul le message où tu as changé le réglage est compté. Le passage à un réglage plus léger ne compte que si l'extension l'a suggéré, et seulement jusqu'au niveau suggéré ; le passage à un réglage plus puissant est toujours déduit. L'énergie par modèle est supposée proportionnelle à son poids dans la limite (prix de l'API). Anthropic ne publie pas de chiffres d'énergie ni d'eau pour Claude : ce sont des estimations, pas des mesures."
+  },
+  "ecoSources": {
+    "message": "Sources. Énergie par token : Epoch AI, 2025 (GPT-4o, 500 tokens de sortie ≈ 0,3 Wh) ; Jegham et al., 2025, arXiv:2505.09598 (Claude 3.7 Sonnet, 300 tokens de sortie 0,95 Wh). Eau par kWh, refroidissement + production d'électricité : Li et al., 2023, arXiv:2304.03271 (moyenne des États-Unis 0,55 + 3,14 L/kWh) ; Google, 2025, arXiv:2508.15734 (sur site 1,15 L/kWh) ; Jegham et al. (AWS 0,18 + 5,11 L/kWh). Comparaisons : goutte métrique 0,05 mL ; cuillère à café 5 mL (US 21 CFR 101.9) ; baignoire pleine 136 L (USGS) ; recharge de téléphone 19 Wh (US EPA) ; LED de 9 W ≈ 800 lumens (US FTC) ; chauffer 1 L d'eau de 20 °C à 100 °C demande 93 Wh (c = 4,186 kJ/kg·K). Verre, bouteille et seau sont des tailles nominales."
+  },
   "setTiko": {
     "message": "Afficher Tiko (le petit robot près de la zone de message)"
   },

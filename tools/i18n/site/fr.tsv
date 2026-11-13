@@ -315,9 +315,9 @@ d.ec1v	≈ 40 %
 d.ec1	De calcul en moins en suivant les suggestions, sur 240 messages d'exemple (entre 38 % et 50 %).
 d.ec2v	10–50 <small>MWh</small>
 d.ec2	D'énergie économisée par semaine si 1 million de personnes envoyaient 100 messages chacune. Une semaine d'électricité pour des centaines de foyers.
-d.ec3v	40–200 <small>tonnes</small>
+d.ec3v	35–250 <small>tonnes</small>
 d.ec3	D'eau économisée par semaine dans le même scénario. 100 tonnes, c'est l'eau potable de 50 000 personnes pendant une journée.
-d.ecF	Ce sont des estimations. Nous avons supposé 0,24–1,2 Wh d'énergie et ≈ 1–5 mL d'eau par message (mesure Gemini de Google, août 2025, eau des centrales comprise ; les longs messages avec réflexion consomment davantage). Anthropic ne publie pas ces chiffres pour Claude. Pour une personne : ≈ 10–50 Wh par semaine, de quoi allumer une ampoule LED de 10 W pendant 1 à 5 heures.
+d.ecF	Ce sont des estimations. Nous avons supposé une réponse de ≈ 400 tokens par message, 0,6–3 mWh d'énergie par token (0,24–1,2 Wh par message) et 3,6–5,3 L d'eau par kWh (≈ 0,9–6 mL par message ; refroidissement du centre de données et production d'électricité). Sources : Epoch AI 2025, Jegham et al. 2025, Li et al. 2023, mesure Gemini de Google (août 2025 : prompt médian 0,24 Wh). Les longs messages avec réflexion consomment davantage. Anthropic ne publie pas ces chiffres pour Claude. Pour une personne : ≈ 10–50 Wh par semaine, de quoi allumer une ampoule LED de 9 W pendant 1 à 5 heures.
 d.q11	Qu’est-ce que la limite d’utilisation de Claude et quand se réinitialise-t-elle ?
 d.a11	claude.ai a deux limites : une limite de session de 5 heures et une limite hebdomadaire. Anthropic ne publie pas leur taille exacte ; Paramètres → Utilisation montre ce que vous avez consommé et quand la limite se réinitialise. Token Forecast affiche ce même pourcentage dans la conversation et estime, avant l’envoi, la part qu’un message va consommer.
 d.q12	Fonctionne-t-elle comme compteur de tokens pour Claude ?

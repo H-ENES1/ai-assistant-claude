@@ -1509,6 +1509,99 @@
   "fableShareNear": {
     "message": "Fable枠がまもなく上限に達します（$1）。$2 に切り替えてください。"
   },
+  "ecoTitle": {
+    "message": "今週節約できた水とエネルギー"
+  },
+  "ecoLeadPos": {
+    "message": "おつかれさまです。今週は提案された軽い設定に $1× 切り替えました。同じ作業を、より少ない計算で済ませています。"
+  },
+  "ecoLeadNet": {
+    "message": "より強い設定に切り替えた $1× の増加分は差し引いてあります。"
+  },
+  "ecoLeadZero": {
+    "message": "今週は設定の変更による差はありません。節約も追加もゼロです。モデルと effort がすでに作業に合っているなら、これが本来の姿です。"
+  },
+  "ecoLeadNeg": {
+    "message": "今週は差し引きの節約はありません。より強いモデルまたは高い effort に $1× 切り替えたため、その差はおおよそ次の量の追加の水とエネルギーに相当します。作業に必要だったのなら、それが正しい選択です。"
+  },
+  "ecoLeadNone": {
+    "message": "今週はまだ集計がありません。モデルまたは effort の提案を適用してメッセージを送信すると、ここに表示されます。"
+  },
+  "ecoWater": {
+    "message": "水"
+  },
+  "ecoEnergy": {
+    "message": "エネルギー"
+  },
+  "ecoExtra": {
+    "message": "追加"
+  },
+  "ecoRange": {
+    "message": "推定範囲 $1 – $2"
+  },
+  "ecoU_drop": {
+    "message": "しずく（約 0.05 mL）"
+  },
+  "ecoU_tsp": {
+    "message": "小さじ（5 mL）"
+  },
+  "ecoU_glass": {
+    "message": "コップの水（250 mL）"
+  },
+  "ecoU_bottle": {
+    "message": "ボトル（0.5 L）"
+  },
+  "ecoU_bucket": {
+    "message": "バケツ（10 L）"
+  },
+  "ecoU_tub": {
+    "message": "浴槽（約 136 L）"
+  },
+  "ecoU_phone": {
+    "message": "スマホの充電（19 Wh）"
+  },
+  "ecoU_kettle": {
+    "message": "電気ケトルで水 1 L を沸かす（93 Wh）"
+  },
+  "ecoU_led": {
+    "message": "9 W の LED 電球の点灯時間"
+  },
+  "ecoSecs": {
+    "message": "$1 秒"
+  },
+  "ecoTotalTitle": {
+    "message": "インストールしてから"
+  },
+  "ecoTotalSince": {
+    "message": "集計は $1 に開始しました。それ以前のメッセージは含まれません。"
+  },
+  "ecoTotalZero": {
+    "message": "まだ差は積み上がっていません。"
+  },
+  "ecoTotalNeg": {
+    "message": "差し引きの節約はありません。合計の差："
+  },
+  "ecoHow": {
+    "message": "計算方法"
+  },
+  "ecoFormulaTok": {
+    "message": "token = 回避した計算量 ÷ $1（Sonnet 5.5 の出力トークン換算）"
+  },
+  "ecoFormulaE": {
+    "message": "e_token = $1 / $2 / $3 mWh（低 / 中 / 高）"
+  },
+  "ecoFormulaW": {
+    "message": "WUE = $1 / $2 / $3 L/kWh（低 / 中 / 高。データセンターの冷却 + 発電）"
+  },
+  "ecoFormulaWeek": {
+    "message": "今週：トークン ≈ $1 → E ≈ $2 → W ≈ $3"
+  },
+  "ecoAssume": {
+    "message": "回避した計算量とは、メッセージを書き始めたときのモデルと effort と、送信時の設定との推定差です。設定を変えたメッセージだけを数えます。軽い設定への切り替えは、拡張機能が提案した場合に限り、提案された段階までを数えます。強い設定への切り替えは常に差し引きます。モデルごとのエネルギーは、上限での重み（API 価格）に比例すると仮定しています。Anthropic は Claude のエネルギーや水の数値を公表していません。これらは測定値ではなく推定値です。"
+  },
+  "ecoSources": {
+    "message": "出典。トークンあたりのエネルギー：Epoch AI, 2025（GPT-4o、出力 500 トークン ≈ 0.3 Wh）、Jegham et al., 2025, arXiv:2505.09598（Claude 3.7 Sonnet、出力 300 トークン 0.95 Wh）。kWh あたりの水（冷却 + 発電）：Li et al., 2023, arXiv:2304.03271（米国平均 0.55 + 3.14 L/kWh）、Google, 2025, arXiv:2508.15734（施設内 1.15 L/kWh）、Jegham et al.（AWS 0.18 + 5.11 L/kWh）。比較値：メートル法のしずく 0.05 mL、小さじ 5 mL（US 21 CFR 101.9）、満水の浴槽 136 L（USGS）、スマホの充電 19 Wh（US EPA）、9 W の LED ≈ 800 ルーメン（US FTC）、水 1 L を 20 °C から 100 °C に温めるには 93 Wh（c = 4.186 kJ/kg·K）。コップ、ボトル、バケツは公称サイズです。"
+  },
   "setTiko": {
     "message": "Tiko を表示（メッセージ欄のそばの小さなボット）"
   },

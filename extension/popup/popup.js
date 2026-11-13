@@ -275,7 +275,7 @@ $("resetCal").addEventListener("click", async () => {
   render();
 });
 $("export").addEventListener("click", async () => {
-  const d = await store.get(["calib", "settings", "tier", "usage", "lastContext", "recPrefs", "sends", "learnPersonal"]);
+  const d = await store.get(["calib", "settings", "tier", "usage", "lastContext", "recPrefs", "sends", "learnPersonal", "eco"]);
   const blob = new Blob([JSON.stringify({ format: "token-forecast-backup", formatVersion: 1, extVersion: chrome.runtime.getManifest().version, exportedAt: new Date().toISOString(), ...d }, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
@@ -306,7 +306,7 @@ $("importFile").addEventListener("change", async (e) => {
     // Eski sürüm yedekleri taşınır; daha yeni sürümün ya da bozuk dosyanın verisi reddedilir (lib/calibrate.js)
     const mig = j && typeof j === "object" && j.calib ? migrateCalib(j.calib) : null;
     if (!mig || !mig.state) throw new Error("format");
-    pendingImport = { calib: j.calib, settings: j.settings || null, recPrefs: j.recPrefs || null, sends: Array.isArray(j.sends) ? j.sends : null, learnPersonal: j.learnPersonal || null };
+    pendingImport = { calib: j.calib, settings: j.settings || null, recPrefs: j.recPrefs || null, sends: Array.isArray(j.sends) ? j.sends : null, learnPersonal: j.learnPersonal || null, eco: j.eco || null };
     const n = mig.state.stats?.n || 0;
     $("import").textContent = I.t("btnImportConfirm");
     importMsg(I.t("importReady", [String(n), j.exportedAt ? new Date(j.exportedAt).toLocaleDateString(I.locale) : "?"]), true);

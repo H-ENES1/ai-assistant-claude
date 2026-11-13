@@ -51,10 +51,10 @@
   const L = {};
   const loading = (async () => {
     const mod = (p) => import(chrome.runtime.getURL(p));
-    [L.usage, L.tokens, L.page, L.att, L.ctx, L.cls, L.fc, L.cal, L.conv, L.i18n, L.panel, L.adv, L.rep, L.learn, L.dom] = await Promise.all([
+    [L.usage, L.tokens, L.page, L.att, L.ctx, L.cls, L.fc, L.cal, L.conv, L.i18n, L.panel, L.adv, L.rep, L.learn, L.dom, L.eco] = await Promise.all([
       mod("lib/usage.js"), mod("lib/tokens.js"), mod("lib/page.js"), mod("lib/attachments.js"), mod("lib/context.js"),
       mod("lib/classify.js"), mod("lib/forecast.js"), mod("lib/calibrate.js"), mod("lib/conversation.js"),
-      mod("lib/i18n.js"), mod("lib/panel.js"), mod("lib/advisor.js"), mod("lib/report.js"), mod("lib/learn.js"), mod("lib/domain.js")
+      mod("lib/i18n.js"), mod("lib/panel.js"), mod("lib/advisor.js"), mod("lib/report.js"), mod("lib/learn.js"), mod("lib/domain.js"), mod("lib/eco.js")
     ]);
     // Tiko süs: yüklenemezse eklentinin geri kalanı etkilenmez
     [L.tiko, L.tikoState] = await Promise.all([mod("lib/tiko.js"), mod("lib/tiko-state.js")]).catch(() => [null, null]);
@@ -272,6 +272,7 @@
     const pageModel = L.page.detectModel();
     const convModel = !pageModel && hist.model && L.fc.resolveModel(hist.model).info ? hist.model : null;
     const model = pageModel || convModel;
+    const modelSeen = pageModel; // su/enerji taslak izi yalnızca sayfadan okunan modelle tutulur
     const effort = L.page.detectEffort();
     // Plan henüz hiç denenmediyse (sayfa yeni açıldı) bekle; denendi ve yoksa "okunamadı"
     if (!S.tier && !S.orgTried) return null;
@@ -301,8 +302,19 @@
     const fam = L.fc.resolveModel(model).info?.family;
     const fw = fam === "fable" ? L.usage.familyWindow(usage, "fable") : null;
     const fableShare = fw ? { pct: fw.pct, resetsAt: fw.resetsAt, near: fw.pct >= L.usage.FAMILY_SHARE_WARN_PCT } : null;
+    // Taslak izi ("kurtarılan su ve enerji" için, lib/eco.js): mesaj kutusu doluyken sayfadan ilk okunan ayar
+    // (model + effort) ve bu taslakta "daha hafif model / daha düşük effort" önerisi gösterildi mi. Metin tutulmaz.
+    if (empty) S.draft = null;
+    else if (modelSeen && fam) {
+      const d0 = (S.draft ||= { model, tier: fam, effort: fc.effort, effRead: !fc.effortAssumed, save: false, lower: false });
+      const ef = adv?.effort;
+      const shown = S.settings.panel !== false, modelAdv = shown && S.settings.advisor !== false;
+      if (adv?.kind === "save" && modelAdv) d0.save = true;
+      if (shown && (ef?.kind === "lower" || (ef?.kind === "with_switch" && modelAdv && L.eco.effortBelow(ef.to, d0.effort)))) d0.lower = true;
+    }
+    const draft = S.draft && modelSeen ? { ...S.draft } : null;
     const r = { at: Date.now(), prompt, pt, att, analyzing, hist, cls, dom, input, fc, fit, rec, ctxLevel, adv, empty, langLimited: !!cls.langLimited, fableShare,
-      unread, usage, usageLost, modelFrom: pageModel ? "page" : convModel ? "chat" : null };
+      unread, usage, usageLost, modelFrom: pageModel ? "page" : convModel ? "chat" : null, draft };
     S.last = r;
     if (!r.empty && !unread.length) S.lastFull = r;
     window.__tokenForecastLast = r;
@@ -662,6 +674,23 @@
     return null;
   }
 
+  // Gönderim anındaki tahmin (r) için: taslağın ilk ayarıyla gönderilen ayar arasındaki maliyet farkı (lib/eco.js draftDelta)
+  function ecoOf(r, fam) {
+    const dr = r.draft;
+    if (!dr || !fam || r.empty) return null;
+    const a = r.adv;
+    const histMid = r.hist?.tokens?.mid || 0;
+    return L.eco.draftDelta({
+      base: dr,
+      cur: { model: r.input.model, tier: fam, effort: r.fc.effort, effRead: !r.fc.effortAssumed },
+      floor: a ? { tier: a.tier, model: a.suggested, effort: a.effort?.to || null } : null,
+      saw: dr,
+      costOf: (model, effort) => L.fc.forecastMessage({ ...r.input, model, effort }).cost.mid,
+      // Sohbet ortasında model değişirse geçmiş yeni modelin önbelleğinde yoktur, baştan okunur (advisor.js ile aynı varsayım)
+      switchUnits: (model) => (r.fc.cache === "warm" && histMid > 0 ? L.fc.modelWeight(L.fc.resolveModel(model).info, r.fc.context?.usedLow || 0) * histMid : 0)
+    });
+  }
+
   async function onSend(d) {
     await loading;
     tiko?.send();
@@ -704,6 +733,12 @@
       effSave: r.adv?.effort?.kind === "lower" && r.adv.effort.savedPct > 0 ? r3(r.adv.effort.savedPct) : 0,
       outHi: Math.round(r.fc.output.high || 0)
     };
+    // Kaçınılan (ya da fazladan) işlem: taslağın başındaki ayar ↔ gönderilen ayar (yalnızca iki sayı/etiket; metin yok)
+    try {
+      const eco = ecoOf(r, fam);
+      if (eco) { snap.log.ecoU = Math.round(eco.u) || 0; if (eco.k) snap.log.ecoK = eco.k; }
+    } catch (e) { console.debug("[Token Forecast] eco", e); }
+    S.draft = null;
     send({ type: "log:send", entry: snap.log });
     S.pending = [];
     // Önceki değeri hemen iste; cevap bundan önce biterse onDone bu sözü bekler

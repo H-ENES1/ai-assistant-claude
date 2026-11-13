@@ -406,7 +406,7 @@ dbasis_education	I compiti di studio sono per lo più spiegazioni; lo sforzo sal
 dbasis_language	I compiti linguistici (traduzione, grammatica) sono di solito leggeri; basta un livello di sforzo in meno.
 dbasis_humanities	Le spiegazioni di storia e filosofia richiedono un ragionamento moderato.
 dbasis_daily	I compiti quotidiani sono leggeri; basta un livello di sforzo in meno.
-dbasis_general
+dbasis_general	
 eff_low	Basso
 eff_medium	Medio
 eff_high	Alto
@@ -493,6 +493,37 @@ welLaterNote	L’estensione resta disattivata finché non accetti. Puoi farlo pi
 consentChip	Token Forecast è disattivato · Attiva
 consentPopup	Token Forecast ha bisogno del tuo permesso prima di leggere qualcosa su claude.ai.
 consentPopupBtn	Rivedi e attiva
+ecoTitle	Acqua ed energia che hai risparmiato questa settimana
+ecoLeadPos	Ben fatto: questa settimana sei passato $1× all'impostazione più leggera suggerita. Stesso lavoro, meno calcolo.
+ecoLeadNet	L'extra dovuto a $1× passaggio a un'impostazione più potente è stato sottratto.
+ecoLeadZero	Questa settimana nessuna differenza dovuta ai cambi di impostazione: niente risparmiato, niente in più. Se modello ed effort sono già adatti al lavoro, è così che deve apparire.
+ecoLeadNeg	Questa settimana nessun risparmio netto. Sei passato $1× a un modello più potente o a un effort più alto; la differenza corrisponde più o meno a questa quantità in più di acqua ed energia. Se il lavoro lo richiedeva, era la scelta giusta.
+ecoLeadNone	Per questa settimana non è stato ancora contato nulla. Comparirà qui quando applicherai un suggerimento di modello o di effort e invierai un messaggio.
+ecoWater	Acqua
+ecoEnergy	Energia
+ecoExtra	in più
+ecoRange	intervallo stimato $1 – $2
+ecoU_drop	goccia (≈ 0,05 mL)
+ecoU_tsp	cucchiaino (5 mL)
+ecoU_glass	bicchiere d'acqua (250 mL)
+ecoU_bottle	bottiglia (0,5 L)
+ecoU_bucket	secchio (10 L)
+ecoU_tub	vasca da bagno (≈ 136 L)
+ecoU_phone	ricarica del telefono (19 Wh)
+ecoU_kettle	1 L d'acqua portato a ebollizione nel bollitore (93 Wh)
+ecoU_led	di luce di una lampadina LED da 9 W
+ecoSecs	$1 s
+ecoTotalTitle	Da quando l'hai installata
+ecoTotalSince	Il conteggio è iniziato il $1; i messaggi precedenti non sono inclusi.
+ecoTotalZero	Non si è ancora accumulata alcuna differenza.
+ecoTotalNeg	Nessun risparmio netto; differenza totale:
+ecoHow	Come viene calcolato?
+ecoFormulaTok	token = calcolo evitato ÷ $1 (equivalente in token di output di Sonnet 5.5)
+ecoFormulaE	e_token = $1 / $2 / $3 mWh (basso / medio / alto)
+ecoFormulaW	WUE = $1 / $2 / $3 L/kWh (basso / medio / alto; raffreddamento del data center + produzione di elettricità)
+ecoFormulaWeek	Questa settimana: token ≈ $1 → E ≈ $2 → W ≈ $3
+ecoAssume	Il calcolo evitato è la differenza stimata tra il modello e l'effort che avevi quando hai iniziato a scrivere il messaggio e l'impostazione con cui l'hai inviato; conta solo il messaggio in cui hai cambiato impostazione. Il passaggio a un'impostazione più leggera conta solo se l'estensione l'ha suggerito, e solo fino al livello suggerito; il passaggio a un'impostazione più potente viene sempre sottratto. Si assume che l'energia per modello sia proporzionale al suo peso nel limite (prezzo dell'API). Anthropic non pubblica dati su energia e acqua per Claude: sono stime, non misure.
+ecoSources	Fonti. Energia per token: Epoch AI, 2025 (GPT-4o, 500 token di output ≈ 0,3 Wh); Jegham et al., 2025, arXiv:2505.09598 (Claude 3.7 Sonnet, 300 token di output 0,95 Wh). Acqua per kWh, raffreddamento + produzione di elettricità: Li et al., 2023, arXiv:2304.03271 (media USA 0,55 + 3,14 L/kWh); Google, 2025, arXiv:2508.15734 (in sede 1,15 L/kWh); Jegham et al. (AWS 0,18 + 5,11 L/kWh). Confronti: goccia metrica 0,05 mL; cucchiaino 5 mL (US 21 CFR 101.9); vasca piena 136 L (USGS); ricarica del telefono 19 Wh (US EPA); LED da 9 W ≈ 800 lumen (US FTC); scaldare 1 L d'acqua da 20 °C a 100 °C richiede 93 Wh (c = 4,186 kJ/kg·K). Bicchiere, bottiglia e secchio sono misure nominali.
 pillUnread	Non leggibile
 unreadModel	Impossibile leggere il modello selezionato. La previsione è nascosta invece di mostrare un numero sbagliato.
 unreadPlan	Impossibile leggere il tuo piano da claude.ai. La previsione è nascosta invece di mostrare un numero sbagliato.

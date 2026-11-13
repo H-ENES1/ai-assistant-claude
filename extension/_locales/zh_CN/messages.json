@@ -1509,6 +1509,99 @@
   "fableShareNear": {
     "message": "你的 Fable 配额即将用完（$1）。请切换到 $2。"
   },
+  "ecoTitle": {
+    "message": "本周你节省的水和能源"
+  },
+  "ecoLeadPos": {
+    "message": "做得好：本周你有 $1× 切换到了建议的更轻设置。同样的任务，更少的计算。"
+  },
+  "ecoLeadNet": {
+    "message": "切换到更强设置（$1×）带来的增量已经扣除。"
+  },
+  "ecoLeadZero": {
+    "message": "本周没有因更改设置而产生的差异：没有节省，也没有额外消耗。如果模型和 effort 本来就适合任务，这正是应有的样子。"
+  },
+  "ecoLeadNeg": {
+    "message": "本周没有净节省。你有 $1× 切换到了更强的模型或更高的 effort；差异大约相当于这么多额外的水和能源。如果任务确实需要，这就是正确的选择。"
+  },
+  "ecoLeadNone": {
+    "message": "本周还没有统计。当你采纳模型或 effort 建议并发送消息后，这里就会显示。"
+  },
+  "ecoWater": {
+    "message": "水"
+  },
+  "ecoEnergy": {
+    "message": "能源"
+  },
+  "ecoExtra": {
+    "message": "额外"
+  },
+  "ecoRange": {
+    "message": "估计范围 $1 – $2"
+  },
+  "ecoU_drop": {
+    "message": "滴（约 0.05 mL）"
+  },
+  "ecoU_tsp": {
+    "message": "茶匙（5 mL）"
+  },
+  "ecoU_glass": {
+    "message": "杯水（250 mL）"
+  },
+  "ecoU_bottle": {
+    "message": "瓶（0.5 L）"
+  },
+  "ecoU_bucket": {
+    "message": "桶（10 L）"
+  },
+  "ecoU_tub": {
+    "message": "浴缸（约 136 L）"
+  },
+  "ecoU_phone": {
+    "message": "手机充电（19 Wh）"
+  },
+  "ecoU_kettle": {
+    "message": "用电水壶烧开 1 L 水（93 Wh）"
+  },
+  "ecoU_led": {
+    "message": "9 W LED 灯泡的照明时间"
+  },
+  "ecoSecs": {
+    "message": "$1 秒"
+  },
+  "ecoTotalTitle": {
+    "message": "自安装以来"
+  },
+  "ecoTotalSince": {
+    "message": "统计从 $1 开始；此前的消息不包含在内。"
+  },
+  "ecoTotalZero": {
+    "message": "还没有累积出差异。"
+  },
+  "ecoTotalNeg": {
+    "message": "没有净节省；总差异："
+  },
+  "ecoHow": {
+    "message": "这是怎么算的？"
+  },
+  "ecoFormulaTok": {
+    "message": "token = 避免的计算量 ÷ $1（折合 Sonnet 5.5 输出 token）"
+  },
+  "ecoFormulaE": {
+    "message": "e_token = $1 / $2 / $3 mWh（低 / 中 / 高）"
+  },
+  "ecoFormulaW": {
+    "message": "WUE = $1 / $2 / $3 L/kWh（低 / 中 / 高；数据中心冷却 + 发电）"
+  },
+  "ecoFormulaWeek": {
+    "message": "本周：token ≈ $1 → E ≈ $2 → W ≈ $3"
+  },
+  "ecoAssume": {
+    "message": "避免的计算量，是你开始写消息时的模型和 effort 与发送时的设置之间的估计差异；只统计你更改设置的那条消息。切换到更轻的设置，只有在扩展给出过建议时才计入，并且只计到建议的级别；切换到更强的设置则始终扣除。假设每个模型的能耗与其在限额中的权重（API 价格）成正比。Anthropic 没有公布 Claude 的能耗和用水数据：这些是估计值，不是测量值。"
+  },
+  "ecoSources": {
+    "message": "来源。每 token 能耗：Epoch AI，2025（GPT-4o，500 个输出 token ≈ 0.3 Wh）；Jegham et al.，2025，arXiv:2505.09598（Claude 3.7 Sonnet，300 个输出 token 0.95 Wh）。每 kWh 用水（冷却 + 发电）：Li et al.，2023，arXiv:2304.03271（美国平均 0.55 + 3.14 L/kWh）；Google，2025，arXiv:2508.15734（现场 1.15 L/kWh）；Jegham et al.（AWS 0.18 + 5.11 L/kWh）。对照值：公制滴 0.05 mL；茶匙 5 mL（US 21 CFR 101.9）；满浴缸 136 L（USGS）；手机充电 19 Wh（US EPA）；9 W LED ≈ 800 流明（US FTC）；把 1 L 水从 20 °C 加热到 100 °C 需要 93 Wh（c = 4.186 kJ/kg·K）。杯、瓶和桶为标称容量。"
+  },
   "setTiko": {
     "message": "显示 Tiko（消息框旁的小机器人）"
   },

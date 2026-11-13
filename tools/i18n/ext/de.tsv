@@ -406,7 +406,7 @@ dbasis_education	Lernaufgaben sind meist Erklärungen; der Aufwand steigt mit de
 dbasis_language	Sprachaufgaben (Übersetzung, Grammatik) sind meist leicht; eine Aufwandsstufe weniger reicht.
 dbasis_humanities	Erklärungen zu Geschichte und Philosophie brauchen mäßiges Nachdenken.
 dbasis_daily	Alltagsaufgaben sind leicht; eine Aufwandsstufe weniger reicht.
-dbasis_general
+dbasis_general	
 eff_low	Niedrig
 eff_medium	Mittel
 eff_high	Hoch
@@ -493,6 +493,37 @@ welLaterNote	Die Erweiterung bleibt aus, bis du zustimmst. Das geht auch später
 consentChip	Token Forecast ist aus · Einschalten
 consentPopup	Token Forecast braucht deine Erlaubnis, bevor es etwas auf claude.ai liest.
 consentPopupBtn	Ansehen und einschalten
+ecoTitle	Wasser und Energie, die du diese Woche gespart hast
+ecoLeadPos	Gut gemacht: Diese Woche bist du $1× auf die vorgeschlagene leichtere Einstellung gewechselt. Gleiche Aufgabe, weniger Rechenaufwand.
+ecoLeadNet	Der Mehraufwand aus $1× Wechsel auf eine stärkere Einstellung wurde abgezogen.
+ecoLeadZero	Diese Woche gibt es keinen Unterschied durch geänderte Einstellungen: nichts gespart, nichts zusätzlich. Wenn Modell und Effort schon zur Aufgabe passen, soll es genau so aussehen.
+ecoLeadNeg	Diese Woche keine Netto-Ersparnis. Du bist $1× auf ein stärkeres Modell oder einen höheren Effort gewechselt; der Unterschied entspricht ungefähr so viel zusätzlichem Wasser und Energie. Wenn die Aufgabe es verlangt hat, war das die richtige Wahl.
+ecoLeadNone	Für diese Woche wurde noch nichts gezählt. Es erscheint hier, sobald du einen Modell- oder Effort-Vorschlag übernimmst und eine Nachricht sendest.
+ecoWater	Wasser
+ecoEnergy	Energie
+ecoExtra	zusätzlich
+ecoRange	geschätzter Bereich $1 – $2
+ecoU_drop	Tropfen (≈ 0,05 mL)
+ecoU_tsp	Teelöffel (5 mL)
+ecoU_glass	Glas Wasser (250 mL)
+ecoU_bottle	Flasche (0,5 L)
+ecoU_bucket	Eimer (10 L)
+ecoU_tub	Badewanne (≈ 136 L)
+ecoU_phone	Handyladung (19 Wh)
+ecoU_kettle	1 L Wasser im Wasserkocher aufkochen (93 Wh)
+ecoU_led	Licht einer 9-W-LED-Lampe
+ecoSecs	$1 s
+ecoTotalTitle	Seit der Installation
+ecoTotalSince	Die Zählung begann am $1; frühere Nachrichten sind nicht enthalten.
+ecoTotalZero	Bisher hat sich kein Unterschied angesammelt.
+ecoTotalNeg	Keine Netto-Ersparnis; Unterschied insgesamt:
+ecoHow	Wie wird das berechnet?
+ecoFormulaTok	token = vermiedener Rechenaufwand ÷ $1 (Äquivalent in Sonnet-5.5-Ausgabetoken)
+ecoFormulaE	e_token = $1 / $2 / $3 mWh (niedrig / mittel / hoch)
+ecoFormulaW	WUE = $1 / $2 / $3 L/kWh (niedrig / mittel / hoch; Kühlung des Rechenzentrums + Stromerzeugung)
+ecoFormulaWeek	Diese Woche: Token ≈ $1 → E ≈ $2 → W ≈ $3
+ecoAssume	Der vermiedene Rechenaufwand ist der geschätzte Unterschied zwischen Modell und Effort zu Beginn des Schreibens und der Einstellung beim Senden; gezählt wird nur die Nachricht, bei der du die Einstellung geändert hast. Ein Wechsel auf eine leichtere Einstellung zählt nur, wenn die Erweiterung ihn vorgeschlagen hat, und nur bis zur vorgeschlagenen Stufe; ein Wechsel auf eine stärkere Einstellung wird immer abgezogen. Die Energie pro Modell wird als proportional zu seinem Limitgewicht (API-Preis) angenommen. Anthropic veröffentlicht keine Energie- und Wasserwerte für Claude: Das sind Schätzungen, keine Messungen.
+ecoSources	Quellen. Energie pro Token: Epoch AI, 2025 (GPT-4o, 500 Ausgabetoken ≈ 0,3 Wh); Jegham et al., 2025, arXiv:2505.09598 (Claude 3.7 Sonnet, 300 Ausgabetoken 0,95 Wh). Wasser pro kWh, Kühlung + Stromerzeugung: Li et al., 2023, arXiv:2304.03271 (US-Durchschnitt 0,55 + 3,14 L/kWh); Google, 2025, arXiv:2508.15734 (vor Ort 1,15 L/kWh); Jegham et al. (AWS 0,18 + 5,11 L/kWh). Vergleichswerte: metrischer Tropfen 0,05 mL; Teelöffel 5 mL (US 21 CFR 101.9); volle Badewanne 136 L (USGS); Handyladung 19 Wh (US EPA); 9-W-LED ≈ 800 Lumen (US FTC); 1 L Wasser von 20 °C auf 100 °C zu erwärmen braucht 93 Wh (c = 4,186 kJ/kg·K). Glas, Flasche und Eimer sind Nenngrößen.
 pillUnread	Nicht lesbar
 unreadModel	Das gewählte Modell konnte nicht gelesen werden. Die Prognose wird ausgeblendet, statt eine falsche Zahl zu zeigen.
 unreadPlan	Dein Tarif konnte nicht von claude.ai gelesen werden. Die Prognose wird ausgeblendet, statt eine falsche Zahl zu zeigen.

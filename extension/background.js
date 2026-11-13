@@ -13,6 +13,7 @@ import { makeI18n, clock } from "./lib/i18n.js";
 import { applyFeedback } from "./lib/advisor.js";
 import { applyEffortFeedback } from "./lib/effort.js";
 import { trimSends, cleanSend, cleanDonePatch, weeklyReport, nextWeeklyAt } from "./lib/report.js";
+import { ecoAccumulate } from "./lib/eco.js";
 import { personalStep, decodeModel } from "./lib/learn.js";
 import PACKED from "./lib/learn-weights.js";
 let LMODEL = null;
@@ -239,6 +240,23 @@ function sendsUpdate(fn) {
   return sendsQueue;
 }
 
+// "Kurduğundan beri" kurtarılan su ve enerji sayacı (lib/eco.js). Gönderim kayıtları 70 günde silindiği için ayrı tutulur;
+// aynı kuyruktan geçer (tek yazıcı).
+function ecoUpdate(entry) {
+  sendsQueue = sendsQueue.then(async () => {
+    const { eco } = await get("eco");
+    await set({ eco: ecoAccumulate(eco, entry) });
+  }).catch(() => {});
+  return sendsQueue;
+}
+
+// Yedekten gelen "kurulumdan beri" sayacı: yalnızca bilinen sayı alanları (serbest veri depoya giremez)
+function cleanEco(x) {
+  if (!x || typeof x !== "object" || x.v !== 1 || !Number.isFinite(x.since)) return null;
+  const n = (k) => (Number.isFinite(x[k]) ? x[k] : 0);
+  return { v: 1, since: x.since, n: n("n"), gainU: n("gainU"), gainN: n("gainN"), extraU: n("extraU"), extraN: n("extraN") };
+}
+
 // ---------- Kalibrasyon (adım 10) ----------
 let calibQueue = Promise.resolve();
 function calibObserve(list) {
@@ -303,7 +321,8 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       // Yalnızca bilinen alanlar, bilinen türlerle saklanır (serbest metin depoya giremez)
       const e = cleanSend(msg.entry);
       if (!e) { sendResponse({ ok: false }); return false; }
-      reply(sendsUpdate((list) => { if (!list.some((x) => x.id === e.id)) list.push(e); return { ok: true }; }));
+      reply(sendsUpdate((list) => { const added = !list.some((x) => x.id === e.id); if (added) list.push(e); return { ok: true, added }; })
+        .then((r) => (r?.added ? ecoUpdate(e) : null)).then(() => ({ ok: true })));
       return true;
     }
     case "log:done": {
@@ -368,6 +387,8 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         if (d.settings && typeof d.settings === "object") patch.settings = cleanSettings(d.settings);
         if (d.learnPersonal && typeof d.learnPersonal === "object" && d.learnPersonal.w) patch.learnPersonal = d.learnPersonal;
         if (Array.isArray(d.sends)) patch.sends = trimSends(d.sends.map(cleanSend).filter(Boolean));
+        const eco = cleanEco(d.eco);
+        if (eco) patch.eco = eco;
         await set(patch);
         return { ok: true, measurements: mig.state.stats?.n || 0 };
       });
