@@ -27,6 +27,7 @@ for (const f of fails) console.log("  ✗ " + f);
 // Set 3: sözlük bittikten sonra yazıldı; ilk ölçüm %72 kabul edilebilir, 6 yanlış alan. Ardından yalnızca
 // 4 yanlış tetikleme hatası düzeltildi ("edebilir"→edebi, "Roman Empire"→roman, OOP kalıtım, çeviri ipucu);
 // eksik kelime eklenmedi. Bilgi amaçlı, eşik yok.
+// Set 4 (kör, 350 istem, 12.11.2026): alt ajanlar depoyu görmeden yazdı; ölçümü tests/blind4.mjs yapar (dört set yan yana).
 const blind = {};
 for (const [name, file] of [["set 2 (görüldü)", "./domain-cases2.json"], ["set 3 (neredeyse kör)", "./domain-cases3.json"]]) {
   const cs = JSON.parse(readFileSync(new URL(file, import.meta.url)));

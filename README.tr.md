@@ -89,11 +89,14 @@ limit %  = k_plan × maliyet   (yoğun saatte ayrı öğrenilen k)
 |---|---|---|
 | İş türü, test 2 (120 gündelik mesaj, hiç bakılmadan yazıldı) | %64 | %88 |
 | İş türü, test 1 (120 mesaj; eğitim verisi genişletilirken görüldü) | %61 | %90 |
+| İş türü, **kör set 4** (350 mesaj, 250 Türkçe + 100 İngilizce; kodu ve diğer testleri hiç görmeyen alt ajanlar yazdı; 12.11.2026) | %41 | **%49** |
 | Tehlikeli hata (zor işi hafif tip sanmak), iki test | 16 | 4 |
 | Doğru Haiku önerisi / yanlış Haiku önerisi (iki test) | 32/80 · 0 | 66/80 · 1 |
 | Öneri test seti (60 prompt): uygunluk · gerekenden hafif | %100 · 0 | %100 · 0 |
 
-**Konu alanı (0.11, anahtar kelime):** geliştirme seti 159 istek %99; set 2 ilk ölçümde kördü, %59 (sonra sözlük buna bakarak genişletildi); set 3 sözlük bittikten sonra yazıldı, ilk ölçüm **%72 kabul edilebilir, 6 yanlış alan**; 4 yanlış tetikleme hatası düzeltildikten sonra %71, 1 yanlış alan. Hataların çoğu "Genel"e düşmek (alan yok sayılır, öneri değişmez); yanlış alana gitmek seyrek.
+**Konu alanı (0.11, anahtar kelime):** geliştirme seti 159 istek %99; set 2 ilk ölçümde kördü, %59 (sonra sözlük buna bakarak genişletildi); set 3 sözlük bittikten sonra yazıldı, ilk ölçüm **%72 kabul edilebilir, 6 yanlış alan**; 4 yanlış tetikleme hatası düzeltildikten sonra %71, 1 yanlış alan. Hataların çoğu "Genel"e düşmek (alan yok sayılır, öneri değişmez); yanlış alana gitmek seyrek. **Kör set 4** (350 mesaj) bu son cümleyi doğrulamadı: %66 kabul edilebilir, 64 mesajda yanlış alan, 55 mesajda "Genel".
+
+**Kör set 4 neden bu kadar zor:** mesajlar gerçek kullanıma benziyor; %45'i 20 kelimeden uzun ve birçoğunda yapıştırılmış e-posta, tablo ya da kod var. Eğitim verisinde ise 20 kelimeden uzun tek örnek yok. Önceki testleri proje, eğitim verisiyle aynı kısa üslupta yazmıştı; bu yüzden doğruluğu olduğundan yüksek gösteriyorlardı. Ayrıntı: `node tests/blind4.mjs`.
 
 **Effort önerisi:** kural tabanlı, 29 birim testi (çeviri → Düşük, kavram açıklama → Orta, ispat → en az Yüksek, Opus'ta zor kodlama → Çok yüksek, riskli alanlarda hiç Düşük yok, sıradan işte hiç Maksimum yok). Önerilen effort'un cevap kalitesini gerçekten koruduğu ölçülmedi; dayanak Anthropic'in belgesi ve destek makalesi.
 
