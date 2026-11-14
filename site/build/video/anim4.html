@@ -296,7 +296,7 @@ function poseTiko(el, o) {
 function makeCap(list) { // list: [[başlangıç saniyesi, [üst yazı, başlık, metin]], …]
   const el = $(`<div class="cap"></div>`); box(el, LAY.cap);
   const items = list.map(([at, c]) => {
-    const ci = $(`<div class="ci"><div class="k">${esc(c[0])}</div><div class="h">${esc(c[1])}</div>${c[2] ? `<div class="p">${esc(c[2])}</div>` : ""}</div>`);
+    const ci = $(`<div class="ci"><div class="k">${esc(c[0])}</div><div class="h">${esc(c[1])}</div>${c[2] ? `<div class="p">${esc(c[2]).replace(/(Opus|Haiku|Sonnet|Fable) (\d)/g, "$1 $2")}</div>` : ""}</div>`); // model adı satır sonunda bölünmesin
     el.append(ci); return { at, ci };
   });
   el._upd = (u, d) => items.forEach((it, i) => {
