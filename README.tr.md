@@ -134,3 +134,5 @@ npm run proof   # sanal kullanıcılarla öğrenme kanıtı
 npm run build   # dist/ içinde küçültülmüş mağaza paketi
 ```
 Ayrıntılı proje kuralları ve yapı için `CLAUDE.md`. Katkılar (hata bildirimi, seçici düzeltmeleri, **çeviri düzeltmeleri**, topluluk özetleri) memnuniyetle karşılanır.
+
+Hayrettin Enes Karalı tarafından geliştirildi; geliştirme sürecinde Claude Code'dan yardım alındı.

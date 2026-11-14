@@ -244,3 +244,5 @@ Sources and attributions:
 - **Peak hours:** TechRadar (27 March 2026).
 
 Token Forecast is an independent project and is not affiliated with Anthropic. "Claude" is a trademark of Anthropic PBC.
+
+Developed by Hayrettin Enes Karalı, with help from Claude Code during development.
