@@ -315,6 +315,6 @@ d.ec1v	≈ 40%
 d.ec1	Less compute when following the suggestions, across 240 sample messages (between 38% and 50%).
 d.ec2v	10–50 <small>MWh</small>
 d.ec2	Energy saved per week if 1 million people sent 100 messages each. A week of electricity for hundreds of homes.
-d.ec3v	40–200 <small>tons</small>
+d.ec3v	35–250 <small>tons</small>
 d.ec3	Water saved per week in the same scenario. 100 tons is a day's drinking water for 50,000 people.
-d.ecF	These are estimates. We assumed 0.24–1.2 Wh of energy and ≈ 1–5 mL of water per message (Google's Gemini measurement, August 2025, including power plant water; long messages with thinking use more). Anthropic doesn't publish these figures for Claude. For one person: ≈ 10–50 Wh a week, enough to run a 10 W LED bulb for 1–5 hours.
+d.ecF	These are estimates. We assumed an answer of ≈ 400 tokens per message, 0.6–3 mWh of energy per token (0.24–1.2 Wh per message) and 3.6–5.3 L of water per kWh (≈ 0.9–6 mL per message; data center cooling plus power generation). Sources: Epoch AI 2025, Jegham et al. 2025, Li et al. 2023, Google's Gemini measurement (August 2025: median prompt 0.24 Wh). Long messages with thinking use more. Anthropic doesn't publish these figures for Claude. For one person: ≈ 10–50 Wh a week, enough to run a 9 W LED bulb for 1–5 hours.

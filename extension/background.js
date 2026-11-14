@@ -13,6 +13,7 @@ import { makeI18n, clock } from "./lib/i18n.js";
 import { applyFeedback } from "./lib/advisor.js";
 import { applyEffortFeedback } from "./lib/effort.js";
 import { trimSends, weeklyReport, nextWeeklyAt } from "./lib/report.js";
+import { ecoAccumulate } from "./lib/eco.js";
 import { personalStep, decodeModel } from "./lib/learn.js";
 import PACKED from "./lib/learn-weights.js";
 let LMODEL = null;
@@ -208,6 +209,16 @@ function sendsUpdate(fn) {
   return sendsQueue;
 }
 
+// "Kurduğundan beri" kurtarılan su ve enerji sayacı (lib/eco.js). Gönderim kayıtları 70 günde silindiği için ayrı tutulur;
+// aynı kuyruktan geçer (tek yazıcı).
+function ecoUpdate(entry) {
+  sendsQueue = sendsQueue.then(async () => {
+    const { eco } = await get("eco");
+    await set({ eco: ecoAccumulate(eco, entry) });
+  }).catch(() => {});
+  return sendsQueue;
+}
+
 // ---------- Kalibrasyon (adım 10) ----------
 let calibQueue = Promise.resolve();
 function calibObserve(list) {
@@ -266,7 +277,8 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     case "calib:observe": reply(calibObserve(msg.list || [])); return true;
     case "log:send": {
       const e = msg.entry || {};
-      reply(sendsUpdate((list) => { if (e.id && !list.some((x) => x.id === e.id)) list.push(e); return { ok: true }; }));
+      reply(sendsUpdate((list) => { const added = !!e.id && !list.some((x) => x.id === e.id); if (added) list.push(e); return { ok: true, added }; })
+        .then((r) => (r?.added ? ecoUpdate(e) : null)).then(() => ({ ok: true })));
       return true;
     }
     case "log:done": {
@@ -328,6 +340,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         if (d.settings && typeof d.settings === "object") patch.settings = { ...DEFAULT_SETTINGS, ...d.settings };
         if (d.learnPersonal && typeof d.learnPersonal === "object" && d.learnPersonal.w) patch.learnPersonal = d.learnPersonal;
         if (Array.isArray(d.sends)) patch.sends = trimSends(d.sends.filter((x) => x && Number.isFinite(x.at)));
+        if (d.eco && d.eco.v === 1 && Number.isFinite(d.eco.since)) patch.eco = d.eco;
         await set(patch);
         return { ok: true, measurements: d.calib.stats?.n || 0 };
       });

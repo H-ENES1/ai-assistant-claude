@@ -1508,5 +1508,98 @@
   },
   "fableShareNear": {
     "message": "Your Fable share is almost used up ($1). Switch to $2."
+  },
+  "ecoTitle": {
+    "message": "Water and energy you saved this week"
+  },
+  "ecoLeadPos": {
+    "message": "Nicely done: this week you switched to the suggested lighter setting $1×. Same job, less compute."
+  },
+  "ecoLeadNet": {
+    "message": "The extra from switching to a stronger setting $1× has been subtracted."
+  },
+  "ecoLeadZero": {
+    "message": "No difference from setting changes this week: nothing saved, nothing extra. If your model and effort already fit the work, that is how it should look."
+  },
+  "ecoLeadNeg": {
+    "message": "No net saving this week. You switched to a stronger model or a higher effort $1×; the difference is roughly this much extra water and energy. If the work needed it, that was the right call."
+  },
+  "ecoLeadNone": {
+    "message": "Nothing counted yet this week. It shows up here once you apply a model or effort suggestion and send a message."
+  },
+  "ecoWater": {
+    "message": "Water"
+  },
+  "ecoEnergy": {
+    "message": "Energy"
+  },
+  "ecoExtra": {
+    "message": "extra"
+  },
+  "ecoRange": {
+    "message": "estimated range $1 – $2"
+  },
+  "ecoU_drop": {
+    "message": "drop (≈ 0.05 mL)"
+  },
+  "ecoU_tsp": {
+    "message": "teaspoon (5 mL)"
+  },
+  "ecoU_glass": {
+    "message": "glass of water (250 mL)"
+  },
+  "ecoU_bottle": {
+    "message": "bottle (0.5 L)"
+  },
+  "ecoU_bucket": {
+    "message": "bucket (10 L)"
+  },
+  "ecoU_tub": {
+    "message": "bathtub (≈ 136 L)"
+  },
+  "ecoU_phone": {
+    "message": "phone charge (19 Wh)"
+  },
+  "ecoU_kettle": {
+    "message": "boiling 1 L in a kettle (93 Wh)"
+  },
+  "ecoU_led": {
+    "message": "of light from a 9 W LED bulb"
+  },
+  "ecoSecs": {
+    "message": "$1 s"
+  },
+  "ecoTotalTitle": {
+    "message": "Since you installed"
+  },
+  "ecoTotalSince": {
+    "message": "Counting started on $1; earlier messages are not included."
+  },
+  "ecoTotalZero": {
+    "message": "No difference has built up yet."
+  },
+  "ecoTotalNeg": {
+    "message": "No net saving; total difference:"
+  },
+  "ecoHow": {
+    "message": "How is this calculated?"
+  },
+  "ecoFormulaTok": {
+    "message": "token = avoided compute ÷ $1 (Sonnet 5.5 output-token equivalent)"
+  },
+  "ecoFormulaE": {
+    "message": "e_token = $1 / $2 / $3 mWh (low / mid / high)"
+  },
+  "ecoFormulaW": {
+    "message": "WUE = $1 / $2 / $3 L/kWh (low / mid / high; data center cooling + power generation)"
+  },
+  "ecoFormulaWeek": {
+    "message": "This week: tokens ≈ $1 → E ≈ $2 → W ≈ $3"
+  },
+  "ecoAssume": {
+    "message": "Avoided compute is the estimated difference between the model and effort you had when you started writing a message and the setting you sent it with; only the message where you changed the setting is counted. Switching to a lighter setting counts only if the extension suggested it, and only down to the suggested level; switching to a stronger setting is always subtracted. Energy per model is assumed proportional to its limit weight (API price). Anthropic does not publish energy or water figures for Claude: these are estimates, not measurements."
+  },
+  "ecoSources": {
+    "message": "Sources. Energy per token: Epoch AI, 2025 (GPT-4o, 500 output tokens ≈ 0.3 Wh); Jegham et al., 2025, arXiv:2505.09598 (Claude 3.7 Sonnet, 300 output tokens 0.95 Wh). Water per kWh, cooling + power generation: Li et al., 2023, arXiv:2304.03271 (US average 0.55 + 3.14 L/kWh); Google, 2025, arXiv:2508.15734 (on-site 1.15 L/kWh); Jegham et al. (AWS 0.18 + 5.11 L/kWh). Comparisons: metric drop 0.05 mL; teaspoon 5 mL (US 21 CFR 101.9); full bathtub 136 L (USGS); phone charge 19 Wh (US EPA); 9 W LED ≈ 800 lumens (US FTC); heating 1 L of water from 20 °C to 100 °C takes 93 Wh (c = 4.186 kJ/kg·K). Glass, bottle and bucket are nominal sizes."
   }
 }

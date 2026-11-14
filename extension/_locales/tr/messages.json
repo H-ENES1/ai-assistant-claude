@@ -1508,5 +1508,98 @@
   },
   "fableShareNear": {
     "message": "Fable payın dolmak üzere ($1). $2'e geç."
+  },
+  "ecoTitle": {
+    "message": "Bu hafta kurtardığın su ve enerji"
+  },
+  "ecoLeadPos": {
+    "message": "Eline sağlık: bu hafta $1 kez önerilen daha hafif ayara geçtin. Aynı iş, daha az işlem."
+  },
+  "ecoLeadNet": {
+    "message": "Daha güçlü ayara geçtiğin $1 mesajın farkı toplamdan düşüldü."
+  },
+  "ecoLeadZero": {
+    "message": "Bu hafta ayar değişikliğinden gelen bir fark yok: ne tasarruf ne ek harcama. Model ve effort zaten işine uygunsa olması gereken de bu."
+  },
+  "ecoLeadNeg": {
+    "message": "Bu hafta net tasarruf yok. $1 kez daha güçlü bir modele ya da daha yüksek effort'a geçtin; fark aşağı yukarı bu kadar ek su ve enerji. İş bunu gerektirdiyse doğru seçim buydu."
+  },
+  "ecoLeadNone": {
+    "message": "Bu hafta için henüz sayım yok. Bir model ya da effort önerisini uygulayıp mesaj gönderdiğinde burada görünür."
+  },
+  "ecoWater": {
+    "message": "Su"
+  },
+  "ecoEnergy": {
+    "message": "Enerji"
+  },
+  "ecoExtra": {
+    "message": "fazladan"
+  },
+  "ecoRange": {
+    "message": "tahmin aralığı $1 – $2"
+  },
+  "ecoU_drop": {
+    "message": "damla (≈ 0,05 mL)"
+  },
+  "ecoU_tsp": {
+    "message": "çay kaşığı (5 mL)"
+  },
+  "ecoU_glass": {
+    "message": "su bardağı (250 mL)"
+  },
+  "ecoU_bottle": {
+    "message": "şişe (0,5 L)"
+  },
+  "ecoU_bucket": {
+    "message": "kova (10 L)"
+  },
+  "ecoU_tub": {
+    "message": "küvet (≈ 136 L)"
+  },
+  "ecoU_phone": {
+    "message": "telefon şarjı (19 Wh)"
+  },
+  "ecoU_kettle": {
+    "message": "çaydanlıkta 1 L su kaynatma (93 Wh)"
+  },
+  "ecoU_led": {
+    "message": "9 W LED ampulün yanma süresi"
+  },
+  "ecoSecs": {
+    "message": "$1 sn"
+  },
+  "ecoTotalTitle": {
+    "message": "Kurduğundan beri"
+  },
+  "ecoTotalSince": {
+    "message": "Sayım $1 tarihinde başladı; önceki mesajlar dahil değil."
+  },
+  "ecoTotalZero": {
+    "message": "Henüz bir fark birikmedi."
+  },
+  "ecoTotalNeg": {
+    "message": "Net tasarruf yok; toplam fark:"
+  },
+  "ecoHow": {
+    "message": "Nasıl hesaplandı?"
+  },
+  "ecoFormulaTok": {
+    "message": "token = kaçınılan işlem ÷ $1 (Sonnet 5.5 çıktı tokenı eşdeğeri)"
+  },
+  "ecoFormulaE": {
+    "message": "e_token = $1 / $2 / $3 mWh (düşük / orta / yüksek)"
+  },
+  "ecoFormulaW": {
+    "message": "WUE = $1 / $2 / $3 L/kWh (düşük / orta / yüksek; veri merkezi soğutması + elektrik üretimi)"
+  },
+  "ecoFormulaWeek": {
+    "message": "Bu hafta: token ≈ $1 → E ≈ $2 → W ≈ $3"
+  },
+  "ecoAssume": {
+    "message": "Kaçınılan işlem, mesajı yazmaya başladığındaki model ve effort ile gönderdiğin ayar arasındaki tahmini farktır; yalnızca ayarı değiştirdiğin mesaj sayılır. Daha hafif ayara geçiş, eklenti önerdiyse ve önerilen seviyeye kadar sayılır; daha güçlü ayara geçiş her zaman düşülür. Model başına enerjinin limit ağırlığıyla (API fiyatı) orantılı olduğu varsayıldı. Anthropic, Claude için enerji ve su rakamı yayımlamıyor: bunlar ölçüm değil, tahmin."
+  },
+  "ecoSources": {
+    "message": "Kaynaklar. Token başına enerji: Epoch AI, 2025 (GPT-4o, 500 çıktı tokenı ≈ 0,3 Wh); Jegham ve ark., 2025, arXiv:2505.09598 (Claude 3.7 Sonnet, 300 çıktı tokenı 0,95 Wh). kWh başına su, soğutma + elektrik üretimi: Li ve ark., 2023, arXiv:2304.03271 (ABD ortalaması 0,55 + 3,14 L/kWh); Google, 2025, arXiv:2508.15734 (yerinde 1,15 L/kWh); Jegham ve ark. (AWS 0,18 + 5,11 L/kWh). Karşılıklar: metrik damla 0,05 mL; çay kaşığı 5 mL (ABD 21 CFR 101.9); dolu küvet 136 L (USGS); telefon şarjı 19 Wh (US EPA); 9 W LED ≈ 800 lümen (US FTC); 1 L suyu 20 °C'den 100 °C'ye ısıtmak 93 Wh (c = 4,186 kJ/kg·K). Bardak, şişe ve kova anma boyutlarıdır."
   }
 }
