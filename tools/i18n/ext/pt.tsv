@@ -406,7 +406,7 @@ dbasis_education	Tarefas de estudo são em geral explicações; o esforço sobe 
 dbasis_language	Tarefas de idiomas (tradução, gramática) costumam ser leves; um nível a menos de esforço basta.
 dbasis_humanities	Explicações de história e filosofia pedem raciocínio moderado.
 dbasis_daily	Tarefas do dia a dia são leves; um nível a menos de esforço basta.
-dbasis_general
+dbasis_general	
 eff_low	Baixo
 eff_medium	Médio
 eff_high	Alto
@@ -479,10 +479,10 @@ welTitle	Boas-vindas ao Token Forecast
 welLead	Antes de começar, veja exatamente o que a extensão lê e guarda. Nada sai do seu dispositivo.
 welReadTitle	O que ela lê no claude.ai
 welRead1	O texto e os anexos da caixa de mensagem, para contar tokens e estimar o custo. Não são guardados.
-welRead2	O histórico do chat aberto, para calcular cache e contexto. Contado localmente, não guardado.
-welRead3	Suas porcentagens de uso de 5 horas e semanal, lidas do claude.ai com a sua própria sessão.
+welRead2	O histórico do chat aberto (suas mensagens e as respostas do Claude), lido da página e do claude.ai com a sua própria sessão, para calcular cache, contexto e tamanho das respostas. Contado localmente, não guardado.
+welRead3	Suas porcentagens de uso de 5 horas e semanal e o tipo do seu plano, lidos do claude.ai com a sua própria sessão.
 welStoreTitle	O que ela guarda neste dispositivo
-welStore	Suas configurações, valores aprendidos (como o tamanho do seu plano) e um registro de envios para o relatório semanal que contém só números e rótulos, nunca texto. Você pode exportá-lo ou redefini-lo nas configurações; ao desinstalar, ele é apagado.
+welStore	Suas configurações, valores aprendidos (como o tamanho do seu plano) e um registro de envios para o relatório semanal que contém só números e rótulos, nunca texto. Para ler o seu uso, também guarda o ID da sua organização no claude.ai e o tipo do seu plano, além dos IDs (não os títulos) dos chats recentes com o horário da sua última mensagem. Você pode exportá-lo ou redefini-lo nas configurações; ao desinstalar, ele é apagado.
 welNeverTitle	O que ela nunca faz
 welNever	Sem servidor, sem análise, sem rastreamento. Nunca envia suas mensagens para lugar nenhum, nunca envia mensagens por você e nunca altera suas configurações do claude.ai.
 welPolicy	Ler a política de privacidade completa
@@ -493,3 +493,43 @@ welLaterNote	A extensão fica desligada até você aceitar. Você pode fazer iss
 consentChip	Token Forecast está desligado · Ligar
 consentPopup	O Token Forecast precisa da sua permissão antes de ler qualquer coisa no claude.ai.
 consentPopupBtn	Revisar e ligar
+ecoTitle	Água e energia que você economizou esta semana
+ecoLeadPos	Muito bem: esta semana você mudou $1× para a configuração mais leve sugerida. O mesmo trabalho com menos computação.
+ecoLeadNet	O extra de mudar $1× para uma configuração mais potente foi descontado.
+ecoLeadZero	Nesta semana não há diferença por mudanças de configuração: nada economizado, nada a mais. Se o modelo e o esforço já combinam com o trabalho, é assim que deve ser.
+ecoLeadNeg	Sem economia líquida esta semana. Você mudou $1× para um modelo mais potente ou um esforço mais alto; a diferença equivale mais ou menos a esta quantidade extra de água e energia. Se o trabalho pedia isso, foi a escolha certa.
+ecoLeadNone	Nada foi contado ainda nesta semana. Vai aparecer aqui quando você aplicar uma sugestão de modelo ou de esforço e enviar uma mensagem.
+ecoWater	Água
+ecoEnergy	Energia
+ecoExtra	a mais
+ecoRange	faixa estimada $1 – $2
+ecoU_drop	gota (≈ 0,05 mL)
+ecoU_tsp	colher de chá (5 mL)
+ecoU_glass	copo de água (250 mL)
+ecoU_bottle	garrafa (0,5 L)
+ecoU_bucket	balde (10 L)
+ecoU_tub	banheira (≈ 136 L)
+ecoU_phone	carga de celular (19 Wh)
+ecoU_kettle	ferver 1 L de água na chaleira elétrica (93 Wh)
+ecoU_led	de luz de uma lâmpada LED de 9 W
+ecoSecs	$1 s
+ecoTotalTitle	Desde que você instalou
+ecoTotalSince	A contagem começou em $1; mensagens anteriores não estão incluídas.
+ecoTotalZero	Nenhuma diferença se acumulou ainda.
+ecoTotalNeg	Sem economia líquida; diferença total:
+ecoHow	Como isso é calculado?
+ecoFormulaTok	token = computação evitada ÷ $1 (equivalente em tokens de saída do Sonnet 5.5)
+ecoFormulaE	e_token = $1 / $2 / $3 mWh (baixo / médio / alto)
+ecoFormulaW	WUE = $1 / $2 / $3 L/kWh (baixo / médio / alto; resfriamento do data center + geração de eletricidade)
+ecoFormulaWeek	Esta semana: tokens ≈ $1 → E ≈ $2 → W ≈ $3
+ecoAssume	A computação evitada é a diferença estimada entre o modelo e o esforço que você tinha ao começar a escrever a mensagem e a configuração com que a enviou; só conta a mensagem em que você mudou a configuração. Mudar para uma configuração mais leve só conta se a extensão sugeriu, e só até o nível sugerido; mudar para uma configuração mais potente é sempre descontado. Supõe-se que a energia por modelo é proporcional ao seu peso no limite (preço da API). A Anthropic não publica números de energia e água para o Claude: são estimativas, não medições.
+ecoSources	Fontes. Energia por token: Epoch AI, 2025 (GPT-4o, 500 tokens de saída ≈ 0,3 Wh); Jegham et al., 2025, arXiv:2505.09598 (Claude 3.7 Sonnet, 300 tokens de saída 0,95 Wh). Água por kWh, resfriamento + geração de eletricidade: Li et al., 2023, arXiv:2304.03271 (média dos EUA 0,55 + 3,14 L/kWh); Google, 2025, arXiv:2508.15734 (no local 1,15 L/kWh); Jegham et al. (AWS 0,18 + 5,11 L/kWh). Comparações: gota métrica 0,05 mL; colher de chá 5 mL (US 21 CFR 101.9); banheira cheia 136 L (USGS); carga de celular 19 Wh (US EPA); LED de 9 W ≈ 800 lúmens (US FTC); aquecer 1 L de água de 20 °C a 100 °C exige 93 Wh (c = 4,186 kJ/kg·K). Copo, garrafa e balde são tamanhos nominais.
+pillUnread	Não foi possível ler
+unreadModel	Não foi possível ler o modelo selecionado. A previsão fica oculta em vez de mostrar um número errado.
+unreadPlan	Não foi possível ler o seu plano no claude.ai. A previsão fica oculta em vez de mostrar um número errado.
+unreadHint	O claude.ai pode ter mudado: veja “Verificação do sistema” em “Detalhes e configurações”.
+usageUnread	O uso não pôde ser lido ou está desatualizado; fica oculto em vez de ser mostrado errado.
+histPartial	Não foi possível ler o histórico do chat no claude.ai; só as mensagens visíveis na página foram contadas. Em um chat longo a previsão pode ficar baixa demais.
+modelFromChat	(lido do chat)
+modelApproxMark	(versão não reconhecida)
+rowPlan	Plano

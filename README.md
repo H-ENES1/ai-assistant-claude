@@ -7,7 +7,7 @@
 A free browser extension for [claude.ai](https://claude.ai) that predicts how much of your 5-hour and weekly Claude limit a message will use, tells you which model and effort level are enough (with reasons), and learns your plan over time. Everything runs in your browser.
 
 [![License: AGPL v3](https://img.shields.io/badge/license-AGPL--3.0--or--later-blue.svg)](LICENSE)
-![Version](https://img.shields.io/badge/version-0.12.1-d97757)
+![Version](https://img.shields.io/badge/version-0.13.0-d97757)
 ![Manifest V3](https://img.shields.io/badge/Manifest-V3-555)
 ![Chromium 116+](https://img.shields.io/badge/Chromium-116%2B-555)
 ![UI languages](https://img.shields.io/badge/UI%20languages-10-2a7b57)
@@ -17,11 +17,11 @@ A free browser extension for [claude.ai](https://claude.ai) that predicts how mu
 
 [Chrome Web Store](https://chromewebstore.google.com/detail/chbjpjhmkpgfocnfpdafkakjicdicige) · [Website](https://h-enes1.github.io/ai-assistant-claude/) · [Releases](https://github.com/H-ENES1/ai-assistant-claude/releases) · [Türkçe README](README.tr.md)
 
-<a href="https://h-enes1.github.io/ai-assistant-claude/"><img src="site/video/kapak-en.jpg" alt="Token Forecast intro video cover. Click to open the website with the 47-second video and a live demo." width="720"></a>
+<a href="https://h-enes1.github.io/ai-assistant-claude/"><img src="site/video/kapak-en.jpg" alt="Token Forecast intro video cover. Click to open the website with the 75-second video and a live demo." width="720"></a>
 
 ▶ **[Watch the full walkthrough on YouTube (4 min)](https://www.youtube.com/watch?v=TKogrZgveAM)** · [Türkçe](https://www.youtube.com/watch?v=6Y4qZ-G2AS0)
 
-<sub>47-second intro video and a live demo of the real prediction engine are on the website. The interface in the video is illustrative; the numbers come from the extension's own engine.</sub>
+<sub>75-second intro video and a live demo of the real prediction engine are on the website. The interface in the video is illustrative; the numbers come from the extension's own engine.</sub>
 
 </div>
 
@@ -78,7 +78,7 @@ Your 5-hour and weekly limits, what the remaining limit still allows (short ques
 
 <img src="site/img/en/rapor.png" alt="Weekly report page: spending cards, tips, model, task, topic and effort mix, hourly heatmap, learning-proof chart, most expensive messages" width="760">
 
-Messages, limit spent, peak-hour share, model and task mix, topic and effort mix, a 7×24 hourly heatmap, the most expensive messages, forecast accuracy, a learning-proof chart and personal tips. Computed only in your browser from text-free records. Monday-morning notification, CSV export.
+Messages, limit spent, peak-hour share, model and task mix, topic and effort mix, a 7×24 hourly heatmap, the most expensive messages, forecast accuracy, a learning-proof chart and personal tips. It also shows the **water and energy you saved this week** by taking lighter-model or lower-effort suggestions, as everyday equivalents (drops, glasses of water, phone charges), always labelled as an estimate with a range, with the formula and sources one click away. Computed only in your browser from text-free records. Monday-morning notification, CSV export.
 
 ---
 
@@ -172,11 +172,14 @@ Reproduce with `npm run proof` and `npm run proof:classifier`.
 |---|---|---|
 | Task type, test 2 (120 everyday messages, written without looking) | 64% | **88%** |
 | Task type, test 1 (120 messages; seen while the training data was being extended) | 61% | 90% |
+| Task type, **blind set 4** (350 messages, 250 Turkish + 100 English, written by sub-agents that never saw the code or the other tests; 12 Nov 2026) | 41% | **49%** |
 | Dangerous mistakes (taking a hard task for an easy one), two tests | 16 | 4 |
 | Correct Haiku suggestions / wrong Haiku suggestions (two tests) | 32/80 · 0 | 66/80 · 1 |
 | Suggestion test set (60 prompts): suitable · lighter than needed | 100% · 0 | 100% · 0 |
 
-Topic recognition is keyword-based: on a nearly blind set of 90 messages written after the rules were finished, it found 71% with 1 wrong area; when it finds nothing it says "General" and the suggestion does not change.
+Topic recognition is keyword-based: on a nearly blind set of 90 messages written after the rules were finished, it found 71% with 1 wrong area; when it finds nothing it says "General" and the suggestion does not change. On blind set 4 (350 messages) it found an acceptable area for 66%, picked a wrong area for 64 messages and fell back to "General" for 55.
+
+Blind set 4 is much harder than the earlier tests because its messages look like real use: 45% are longer than 20 words and many paste an e-mail, a table or code, while the training data has no example longer than 20 words. Earlier tests were written by the project in the same short style as the training data, so they overstated accuracy. Details: `node tests/blind4.mjs`.
 
 The training and test messages were also written by the project, and accuracy on **real users' messages has not been measured**. Whether the suggested model or effort actually keeps the answer quality **has not been measured either**: the basis is Anthropic's documentation and support articles.
 
@@ -241,3 +244,5 @@ Sources and attributions:
 - **Peak hours:** TechRadar (27 March 2026).
 
 Token Forecast is an independent project and is not affiliated with Anthropic. "Claude" is a trademark of Anthropic PBC.
+
+Developed by Hayrettin Enes Karalı, with help from Claude Code during development.

@@ -1,0 +1,11 @@
+r05.haiku: ajan cevabı dönüş mesajında tekrar etti (hakem gördü) → dosya silindi, yeniden cevaplatıldı
+r10.haiku: dönüş mesajı cevabın niteliğini sezdirdi (istemin kendisini sadeleştirmiş); içerik görülmedi, yeniden çalıştırılmadı (bağlamsız istem)
+r12.haiku: dönüş mesajı cevabın niteliğini sezdirdi (bir TL;DR yazmış); içerik görülmedi, yeniden çalıştırılmadı (bağlamsız istem)
+r48.haiku: dönüş mesajı cevabın tek satır olduğunu söyledi; içerik görülmedi (bağlamsız istem)
+r50.haiku: dönüş mesajı cevabın özünü söyledi (hangi iddia olduğunu soruyor); yeniden çalıştırılmadı (bağlamsız istem)
+c01–c03 (9 ajan): oturum limiti doldu (HTTP 429), cevap yazılamadı → limit yenilenince yeniden başlatıldı
+dal karışıklığı: başka bir oturum aynı klasörde fable-5-2 dalına geçti; ara commit yanlış dala gitti, gönderilmeden geri alındı ve iş ayrı worktree'ye taşındı. prompts.json o geçişten ÖNCE, main (456c011) koduyla üretildi.
+c02.haiku: dönüş mesajı cevabın özünü söyledi (olası nedenler listesi, ~260 kelime); yeniden çalıştırılmadı (bağlamsız istem)
+not: bir alt ajan, Write sonucunda CLAUDE.md içeriği ve belge aracı talimatları gördüğünü bildirdi → alt ajanlar depo bağlamını görüyor
+r12: A etiketli cevap metninin içinde kendi dosya adını ve modelini yazıyordu → hakem bu istemde A'nın haiku olduğunu puanlamadan önce gördü (bağlamsız istem; puan içerik nedeniyle düşük)
+r10: iki cevap ölçüm düzeninin alt ajana eklediği dönüş talimatını 'sadeleştirilecek metin' sandı (düzenin kendi kusuru; bağlamsız istem). Önceki dönüş mesajından bunlardan birinin haiku olduğu biliniyordu, hangisi olduğu değil.

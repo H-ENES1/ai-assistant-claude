@@ -13,24 +13,41 @@ extension/              ← tarayıcıya yüklenen klasör (manifest.json burada
   lib/                  usage, tokens, classify, forecast, calibrate, conversation,
                         attachments, context, page, i18n, panel, advisor (model önerisi), config (bağlantılar),
                         report (haftalık rapor, harcama hızı, "neden bu kadar"), learn + learn-weights (öğrenen model),
-                        contrib (topluluk katkısı + birleştirme), community-priors (topluluk önselleri; aggregate üretir)
+                        contrib (topluluk katkısı + birleştirme), community-priors (topluluk önselleri; aggregate üretir),
+                        tiko-state (maskotun durum makinesi, saf) + tiko (çizim ve hareket, Shadow DOM)
   popup/report.*        haftalık rapor sayfası
+  lib/eco.js            kurtarılan su ve enerji: kaçınılan işlem → token → Wh → mL, birim seçimi (rapor-su)
   _locales/{en,tr}/     tüm kullanıcı metinleri
-tests/                  unit, learn, report, contrib, advisor (+rec-cases.json) testleri, e2e.cjs (Playwright, 43 kontrol)
-tests/ml/               train.tsv (600), test.tsv + test2.tsv (120+120, ayrı yazılmış), train.mjs (eğit + karşılaştır)
-tools/                  build-release.mjs (küçültülmüş mağaza paketi), aggregate.mjs (topluluk katkılarını birleştir)
+tests/                  unit, learn, report, contrib, advisor (+rec-cases.json), denetim, privacy, tiko, eco testleri;
+                        e2e.cjs + tiko.e2e.cjs + rapor-su.e2e.cjs (Playwright, sahte claude.ai)
+tests/quality/          öneri kalitesi ölçümü: RAPOR.md (sonuç), run.md (yeniden çalıştırma), build-prompts/blind/analyze betikleri
+tests/ml/               train.tsv (600 kısa), train2.tsv (633 uzun/yapıştırılmış içerikli; train2.meta.tsv: dil, alan, kaynak),
+                        test.tsv + test2.tsv (120+120, ayrı yazılmış), test3.tsv (350, set 4: YANMIŞ, bilgi amaçlı),
+                        test4.tsv (300, KÖR SET 5), train.mjs (eğit + karşılaştır; ağırlığı yalnız --write ile yazar)
+tests/blind4.mjs        set 4 ölçümü (domain-cases4.json + ml/test3.tsv): iş türü, alan, model/effort; eşik yok, yalnız set bütünlüğü denetlenir
+tests/blind5.mjs        kör set 5 ölçümü (domain-cases5.json + ml/test4.tsv); --base=<klasör> ile "önce" sürümü yan yana; --check yalnız bütünlük
+tools/                  build-release.mjs (küçültülmüş mağaza paketi), aggregate.mjs (topluluk katkılarını birleştir),
+                        domain-dict.mjs (+domain-dict/sozluk.json: kör yazılmış alan sözlüğünü eleyip lib/domain.js'e yazar)
+promo/                  tanıtım taslakları (platform başına), TAKVIM.md
 .github/ISSUE_TEMPLATE/ katki.yml (topluluk verisi), anket.yml, hata.yml
-site/                   index.html (tanıtım sitesi, tek dosya) + build/ (kaynak, demo motoru esbuild ile gömülür)
+site/                   index.html (artifact sürümü, tek dosya) + build/ (kaynak; `python site/build/build.py` → docs/, ayrıntı build/OKU.md)
+docs/                   GitHub Pages çıktısı (elle düzenlenmez, build.py üretir): / = tr, /en/ … /zh/, app.js, sitemap.xml
 ```
 
 ## Testler (her değişiklikten sonra çalıştır)
 
 ```
 npm install   # kökte: esbuild + playwright
-npm run test   # birim + öğrenme + rapor + katkı + model önerisi (60 prompt: uygunluk ≥ %96, "gerekenden hafif öneri" = 0 olmalı)
-node tests/ml/train.mjs   # sınıflandırıcıyı yeniden eğit; test2'de karma < kurallar olursa ağırlıkları YAZMA (--no-write)
-npm run e2e    # Playwright, sahte claude.ai (43 kontrol). PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 şart:
+npm run test   # birim + öğrenme + rapor + katkı + model önerisi (72 prompt: uygunluk ≥ %96, "gerekenden hafif öneri" = 0 olmalı)
+               # + denetim, gizlilik, Tiko, su/enerji testleri + set 4 ve set 5 bütünlük denetimi (set 5 burada ÖLÇÜLMEZ)
+node tests/ml/train.mjs   # sınıflandırıcıyı eğit ve karşılaştır; ağırlık YAZMAZ. Yazmak için --write (test2'de doğruluk düşmemeli,
+                          # tehlikeli hata artmamalı) VE yazılan ağırlık yeni bir kör setle ölçülmeden yayımlanmaz (aşağıda kör set 5 notu)
+npm run blind5            # kör set 5 ölçümü; sonuca bakarak ayar yapılırsa set 5 yanar
+npm run e2e    # Playwright, sahte claude.ai: e2e.cjs (93 kontrol) + tiko.e2e.cjs (48) + rapor-su.e2e.cjs (33).
+               # PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 şart (0.12.2'den beri e2e.cjs kendisi ayarlar);
                # yoksa arka plan servisinin istekleri sahte sunucuya gitmez ve 4-5 kontrol yanlışlıkla kırmızı olur.
+               # Tiko uykusu 2 dk bekleyiş ister, varsayılan koşuda atlanır: cd tests && TIKO_SLEEP=1 node tiko.e2e.cjs (50 kontrol).
+npm run perf   # ölçüm (test değil): 60 ve 600 mesajlık sohbette boşta ve tuş başına sayfa maliyeti
 ```
 
 ## Kurallar
@@ -47,9 +64,28 @@ npm run e2e    # Playwright, sahte claude.ai (43 kontrol). PW_EXPERIMENTAL_SERVI
 ## Bilinen durum
 
 - Gerçek claude.ai'de (Ekim 2026) doğrulandı: mesaj kutusu, model ve effort seçicileri, kullanım okuma, sayfa yoluyla ölçüm (v0.9.5'te 3 ölçüm). claude.ai mesajı bir Web Worker'dan gönderiyor; fetch kancası gönderimi görmez, asıl ölçüm yolu sayfa yapısıdır (content.js domTick). Uzun sohbetlerde eski mesajlar sayfadan kaldırılır: mesaj SAYISINA güvenme.
-- Öneri kalitesi (Haiku gerçekten yeterli mi) ölçülmedi. Plan limit büyüklükleri (k) kaba önsel (topluluk önselleri gelene kadar).
+- Öneri kalitesi ilk kez ölçüldü (11.11.2026, `tests/quality/RAPOR.md`; 80 istem × Haiku/Sonnet/Opus, kör model hakem). Kendi başına cevaplanabilir 58 istemde: Haiku önerilen 13'ün 13'ünde Haiku cevabı ≥ 4; gerekenden hafif öneri 5 (%9, aralık %4–19); gereksiz ağır öneri 33 (%57; cevaplar 400 kelimeyle sınırlı olduğu için üst sınır). Eşikler değişmedi (kanıt yetersiz). Ölçülmeyenler: effort önerisi, Fable kademesi, uzun cevap isteyen işler, insan hakem. Yeniden çalıştırma: `tests/quality/run.md` (abonelik limitini harcar, `npm run test`'e dahil değil).
+- Plan limit büyüklükleri (k) kaba önsel (topluluk önselleri gelene kadar).
 - Lisans (22.10.2026 kararı): GNU AGPL-3.0-or-later (LICENSE, NOTICE). Kod açık kaynak; ad ve logo lisans dışı (AGPL madde 7(e), NOTICE). Derlenmiş JS dosya başlığında SPDX ve kaynak adresi var (https://github.com/H-ENES1/ai-assistant-claude; depo 23.10.2026 tarihinde ai-assistant-claude olarak yeniden adlandırıldı). Önceki "tüm hakları saklı" kararı ve BSL fikri terk edildi.
 - Sınıflandırıcı: test2 (gündelik dil) kurallar %64 → karma %88. Gerçek kullanıcı mesajlarıyla ölçülmedi.
+- **Kör set 4 (12.11.2026, 250 TR + 100 EN):** depoyu görmeyen alt ajanlar yazdı (`tests/ml/test3.tsv`, `tests/domain-cases4.json`; ölçüm `npm run blind`). İş türü: kurallar %41, yalnız metin %50, karma %50, ürün %49 (test/test2'de ürün %92/%89). Konu alanı: %66 kabul edilebilir, 64 yanlış alan, 55 "genel". Ana neden: train.tsv'de 20 kelimeden uzun örnek yok, kör setin %45'i 20 kelimeden uzun; uzun ve yapıştırılmış içerikli mesajlar `code_fix`'e kayıyor. Güven işe yarıyor: high %75, medium %60, low %23 doğru. **Bu sete bakarak kural, ağırlık ya da sözlük EKLEME**; iyileştirme yapılacaksa önce ayrı eğitim verisi yaz, sonra yeni bir kör setle ölç. (Aynı gün yapıldı: aşağıdaki kör set 5 notu; set 4 artık yanmıştır.)
+- **Kör set 5 ve "uzun mesaj" denemesi (12.11.2026, dal `egitim-uzun`):**
+  - **Set 4 yanmıştır:** train2.tsv onun toplu sonuçlarına göre yazıldı; artık yalnız "önce" değeri, tablolarda "bilgi amaçlı".
+  - **Kör set 5** (200 TR + 100 EN, %60'ı 20–150 kelime, yapıştırılmış e-posta/tablo/makale/kod/hata çıktısı): depoyu görmeyen alt ajanlar yazdı, bağımsız ikinci etiketleyiciyle anlaşma iş türü %95,7, alan %94,3, model ailesi %85,3, effort %72,7 (model ve effort etiketleri tahmindir). Mühür commit'inden sonra içeriğine bakılmadı, **tek kez ölçüldü**, sonuca göre ayar yapılmadı. **Bu sete bakarak kural, ağırlık ya da sözlük EKLEME.**
+  - Yapılanlar: train2.tsv (633 örnek), yeniden eğitim, hafif tür koruması (`classify.js` LIGHT_*: uzun mesajda model tek başına hafif tür diyemez; "yapım işi kısa soru olamaz"), Haiku kapısı `rules_heavy` (`advisor.js`: kurallar güvenle ağır tür diyorsa Haiku yok), sözlük 2 (`domain.js` SOZLUK2 bloğu, 64 kural satırı, `tools/domain-dict.mjs` üretir).
+  - Sonuç (ürün; iş türü katı doğruluk · tehlikeli hata | hafif-öneri [iki etiketleyiciden de hafif] · Haiku yanlış öneri · riskli alanda Haiku · (Haiku toplam)):
+
+    | sürüm | test | test2 | set 4 (bilgi amaçlı) | set 5 (kör) |
+    |---|---|---|---|---|
+    | önce (kor-set-4) | %91,7 · 2 \| 1 [1] · 1 | %89,2 · 2 \| 0 · 0 | %49,1 · 10 \| 21 [12] · 5 · 4 · (24) | %38,7 · 5 \| 26 [15] · 3 · 1 · (12) |
+    | yeni ağırlık + yeni kod (**geri alındı**) | %89,2 · 1 \| 0 · 0 | %89,2 · 1 \| 0 · 0 | %63,4 · 14 \| 27 [16] · 9 · 3 · (37) | %67,3 · 5 \| 37 [26] · **12** · 1 · (34) |
+    | **eski ağırlık + yeni kod (dalda kalan)** | %81,7 · 1 \| 0 · 0 | %88,3 · 0 \| 0 · 0 | %46,0 · 0 \| 18 [9] · 2 · 2 · (15) | %36,3 · 2 \| 26 [15] · 2 · 1 · (10) |
+
+    Konu alanı (kabul edilebilir · yanlış alan · "genel"): set 5 %79,7 · 44 · 17 → %84,0 · 37 · 11; set 4 %66,0 · 64 · 55 → %72,3 · 55 · 42; set 3 %71 → %78; set 1–2 aynı ya da daha iyi.
+  - **Karar (ölçümden önce yazılmış kuralla):** yeni ağırlıklar set 5'te doğruluğu %39 → %67 yaptı ama Haiku yanlış öneriyi 3 → 12, hafif-öneri hatasını 15 → 26 çıkardı; tek yönlü güvenlik kuralı gereği **ağırlıklar geri alındı** (`learn-weights.js` = kor-set-4). Koruma, kapı ve sözlük güvenlik sayılarını kötüleştirmediği için kaldı. Bedeli: koruma eski ağırlıklarla kısa mesajlarda bazı hafif işleri ağır türe itiyor (test %91,7 → %81,7; Haiku önerilen 34 → 25), yani uzun mesaj sorunu ÇÖZÜLMEDİ, ürün yalnızca daha temkinli oldu. main'e birleştirilmedi.
+  - Dersler: (1) test2 yazma ölçütü tek başına yetmiyor, yeni ağırlık kör sette Haiku'yu 12 → 34 kez önerdi ve bunların 12'si yanlıştı; ağırlık değiştirirken ölçüt "Haiku yanlış öneri" olmalı. (2) Koruma eşikleri yeni ağırlıkların olasılıklarına göre seçilmişti; eski ağırlıklarla yeniden ayarlanmadı (ayarlanırsa yeni kör set gerekir). (3) Aynı model ailesinden yazarlar benzer örneklere yakınsıyor (train2'den 13 yakın kopya atıldı); kör set sonuçları gerçek kullanıcıya göre iyimser olabilir. (4) Ham model geliştirme verisinde tehlikeli hatayı 70'e çıkarıyordu; doğruluk kazancı hafif türleri (çeviri, özet, yeniden yazım) tanımaktan geliyor ve aynı şey riski de getiriyor.
+  - Sonraki adım fikirleri (kodlanmadı): talimat penceresi (yapıştırılan gövdeyi ayırıp türü talimattan okumak), Haiku kararı için ayrı "hafif mi" ölçütü/olasılık kalibrasyonu, alan tespitini talimat kısmına ağırlıklandırmak.
+- `tests/ml/train.mjs`: "kurallar" satırı `useModel:false` ile ölçülür (classify() öğrenen modeli kullanmaya başladığından beri bu satır yanlışlıkla ürünün karma kararını ölçüyordu; betik ayrıca eski `ext/` yolu yüzünden çalışmıyordu); "ürün" satırı yayındaki ağırlıklardır. Ağırlık yazma ölçütü test2 olarak kaldı, test3 karara karışmaz.
 - Topluluk verisi: claude.ai artifact veritabanına kuruluş dışı ziyaretçi yazamıyor; bu yüzden GitHub konu formu (katki.yml) + tools/aggregate.mjs. Katkı metin içermez (contrib.test.mjs bunu denetler).
 
 ## Yapılacaklar (öncelik sırasıyla; her biri ayrı commit/PR)
@@ -64,7 +100,7 @@ npm run e2e    # Playwright, sahte claude.ai (43 kontrol). PW_EXPERIMENTAL_SERVI
 8. Tek tıkla model değiştirme: kırılgan, en sona; yapılırsa seçici yoksa sessizce gizle.
 
 ## 0.11.0 (22.10.2026)
-- **Konu alanı** `lib/domain.js`: 17 alan + alt başlıklar, 173 kural (TR kökler başta sınırlı, EN tam sınırlı). İş türü ipucu yalnızca kurallar ve öğrenen model aynı türdeyse. Test: `tests/domain.test.mjs` (set 1 geliştirme, set 2 görüldü, set 3 neredeyse kör: ilk ölçüm %72 kabul edilebilir / 6 yanlış alan; 4 tetikleme hatası düzeltildi → %71 / 1). Yeni sözlük eklerken set 3'e bakarak ekleme YAPMA; yeni kör set yaz.
+- **Konu alanı** `lib/domain.js`: 17 alan + alt başlıklar, 173 kural (TR kökler başta sınırlı, EN tam sınırlı). İş türü ipucu yalnızca kurallar ve öğrenen model aynı türdeyse. Test: `tests/domain.test.mjs` (set 1 geliştirme, set 2 görüldü, set 3 neredeyse kör: ilk ölçüm %72 kabul edilebilir / 6 yanlış alan; 4 tetikleme hatası düzeltildi → %71 / 1). Yeni sözlük eklerken set 3'e ya da set 4'e bakarak ekleme YAPMA; yeni kör set yaz.
 - **Effort** `lib/effort.js`: öneri (iş türü + alan profili + karmaşıklık + kişisel effOff), `compareEffort` (düşür/yükselt, tasarruf = düşünme payı × (1 − oran)), `applyEffortFeedback`. Model desteği `forecast.js` MODELS[].eff (def, x). Okunamayan effort → modelin varsayılanı (`fc.effortAssumed`). Kaynaklar: Anthropic effort belgesi + destek makalesi 8664678.
 - **Hap** sürüklenebilir (`pillOffset`, varsayılan yere göre fark), Alt+ok, kartta sıfırlama; claude.ai menüsü üstüne açılınca `.yield` ile gizlenir.
 - **Rapor**: alan/alt başlık/effort dağılımı, `tip_effort_over`, `tip_domain_save`, `tip_domain_stakes`; CSV'de domain, subdomain, effort_suggested.
@@ -97,3 +133,68 @@ npm run e2e    # Playwright, sahte claude.ai (43 kontrol). PW_EXPERIMENTAL_SERVI
 ## Chrome Web Store (28.10.2026)
 - Yayında: https://chromewebstore.google.com/detail/chbjpjhmkpgfocnfpdafkakjicdicige ("Token Forecast for Claude", 0.12.1). Sitedeki "Chrome'a ekle" düğmeleri (10 dil), README'ler ve yapısal veri (installUrl) bu adrese gider; elle kurulum (zip) ikinci seçenek olarak kaldı.
 - Güncelleme: manifest sürümünü artır → main'e gönder (GitHub sürümü otomatik) → `tools/build-release.mjs` mağaza zip'i → geliştirici panelinde Paket → Yeni paket yükle → İncelemeye gönder.
+
+## 0.12.2 (11.11.2026) — Fable 5.2
+- **Fable 5.2** (`claude-fable-5-2`, 1M bağlam, Opus 4.7 tokenizer'ı): `forecast.js` MODELS, aile varsayılanı ve öneri etiketi; `advisor.js`, `context.js`. Ağırlık 10 = 5.1 ile aynı **varsayım** (API fiyatı $8/$40, 5.1 $10/$50; abonelik limitindeki ağırlığı yayımlanmadı, kalibrasyon düzeltir). claude.ai'de varsayılan effort medium (API'de high).
+- **Fable payı** `lib/usage.js familyWindow`: claude.ai Fable'a özel haftalık pencere döndürürse (anahtar adı bilinmiyor: seven_day_fable, seven_day_fable_models, seven_day_fable_5_2 ya da adında "fable" geçen her seven_day_*; alt nesnedeki pencereler düzleştirilir) Fable seçiliyken hapta ve popup'ta "Fable payı: %X"; %80'i (`FAMILY_SHARE_WARN_PCT`) geçince "Fable payın dolmak üzere, Opus 5.5'e geç" (limit uyarısı sayılır). Pencere yoksa hiçbir şey gösterilmez. `seven_day_opus` Fable sayılmaz.
+- Kaynak notu: "Pro'da Fable haftalık limitin %50'si" kuralı anthropic.com'da "**up to** 50%" ve destek makalesi 17506494'e göre **9–16 Kasım 2026 lansman promosyonu** (Pro + standart Team). Bu yüzden metinlerde oran ve plan adı yok; gösterge yalnızca claude.ai'nin döndürdüğü pencereye bağlı.
+- Gerçek claude.ai cevabında Fable penceresinin anahtar adı **doğrulanmadı**: ilk fırsatta Pro hesapla /usage cevabına bak, farklıysa `FAMILY_WINDOW_KEYS`'e ekle.
+- `tokens.js`: CJK_PER_CHAR (0,73) o200k ile ölçülmüş (b789b13); CLAUDE_FACTOR CJK'ya uygulanmaya devam.
+- e2e: sahte /usage `seven_day_fable` %85; 5 yeni kontrol (toplam 69). `PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS` artık e2e.cjs içinde ayarlanıyor: Windows'ta npm betikleri cmd.exe ile çalıştığı için `VAR=1 node …` önekli betik orada bozuluyordu.
+- Ortam: Node 22 LTS kullan. Node 26'da Playwright 1.56'nın tarayıcı kurulumu bozuluyor (`fs.rmdir` `recursive` seçeneği kaldırıldı).
+
+## Denetim (12.11.2026, dal `denetim`) — ayrıntı: DENETIM.md
+- **Onaydan önce okuma yok, kanca dahil:** `inject/hook.js` `enabled = false` ile uykuda başlar; içerik betiği onaydan sonra `__tokenForecastCmd: "enable"` yollar. Kanca istem metnini ve dosya adlarını asla yaymaz (yalnızca sayılar).
+- **Sayfadan gelen her mesaj güvenilmez:** `content.js cleanHookMessage` sınırda doğrular (alan, tür, uzunluk; yol/etiket yalnızca tanımlayıcı biçiminde); `estimate`, `prePromise`, `via` dışarıdan alınmaz. Arka planda `report.js cleanSend/cleanDonePatch` ikinci süzgeç. Yeni mesaj alanı eklerken ikisini de güncelle.
+- **Yanlış sayı yerine "Okunamadı":** model, plan, kullanım ya da geçmiş okunamazsa varsayım yapma (Sonnet/Pro/free yok). `compute()` `unread` döndürür; okunamadıyken gönderim kaydı ve kalibrasyon gözlemi üretilmez. Kullanım yalnızca `usage.js liveUsage` üzerinden gösterilir (yenilenme zamanı geçmiş ya da 20 dk'dır okunamayan veri gösterilmez, rozet "?").
+- **Kalibrasyon taşıma:** her okuma `calibrate.js migrateCalib` üzerinden; okunamayan/yeni sürüm veri `calibBackup`'a yedeklenir, silinmez. Şema değişirse `MIGRATIONS`'a adım ekle ve `tests/fixtures/calib-*.json` (eski sürümlerin gerçek koduyla üretildi) testini genişlet.
+- **CSP:** eklenti sayfaları yalnızca `https://claude.ai`'ye bağlanabilir (manifest). Yeni bir uç nokta ya da `fetch` eklemek = `tests/privacy.test.mjs` listesi + gizlilik politikası (`site/build/static/privacy.html` ve `docs/privacy.html`, aynı kalmalı) + onay metinleri.
+- Testler: `tests/denetim.test.mjs` (taşıma, okunamadı, süzgeçler), `tests/privacy.test.mjs` (statik gizlilik denetimi + politika–kod eşleşmesi), e2e'de metin sızıntısı (adres/gövde/depo), WebSocket, onay öncesi kanca, sahte mesaj, CSP.
+- `CONSENT_VERSION` artırılmadı (okunan veri türleri aynı, yalnızca metin düzeltildi); karar DENETIM.md'de.
+## Site ve arama motoru (12.11.2026, dal site-seo)
+- Dil başına statik sayfa: `/` = tr, `/en/` … `/zh/`; metin HTML'de hazır (prerender.cjs), hreflang + x-default=/en/, dile özel title/description (`site/build/seo.json`), OG/Twitter, JSON-LD SoftwareApplication + FAQPage. Tarayıcı diline göre yönlendirme YOK (yalnızca öneri şeridi). Ayrıntı ve Lighthouse önce/sonra: `SITE-SEO.md`.
+- Site metni değişince: `python site/build/build.py`, sonra `node site/build/site-test.cjs` ve `node site/build/multilang-test.cjs`.
+- Proje sitesinde `robots.txt` alan kökünde değil, tarayıcılar okumaz; site haritası Search Console'dan gönderilir.
+## Tiko mini (dal: tiko-mini, 13.11.2026; 0.13.0'a girecek, sürüm numarası değişmedi)
+- **Ne:** Sitedeki piksel Tiko'nun 28 px'lik sürümü claude.ai'de mesaj kutusunun yanında yaşar; eklentinin zaten bildiği üç şeyi gösterir: tahmin, öneri, limit. Çizim `site/build/index.src.html` ile aynı ızgara ve renkler (`tests/tiko.test.mjs` karşılaştırır); yeni Tiko çizme, yalnızca yüz/poz ekle.
+- **İki dosya:** `lib/tiko-state.js` saf durum makinesi (DOM, saat, rastlantı yok; hepsi dışarıdan gelir), `lib/tiko.js` çizim + yay + sürükleme. Davranış değişikliği önce durum makinesinde ve `tiko.test.mjs`'te yapılır.
+- **Davranış:** yazarken imlecin biraz üstünde süzülür ve yay gibi geç kalarak izler · yazma durunca etrafa bakınır; tahmin ağırsa (5 saatlik limitin ≥ %5'i ya da "sığmayabilir" uyarısı; `TIKO.HEAVY_PCT`, seçilmiş eşik, ölçülmedi) zorlanır, hafif model önerildiyse (`adv.kind === "save"`) bir kez baş sallar · gönderince zarfla yukarı uçar · cevap yazılırken cevabın üst kenarına oturur, ayak sallar, okur · bitince alkışlar/gerinir, mesaj kutusuna döner · 2 dk hareketsizlikte uyur · haftalık (ya da Fable payı) ≥ %80 endişeli · tıklanınca el sallar ve tahmini baloncukta söyler · sürükleyince park eder (`tikoPark`, ekran oranı), çift tıkla ya da evine yakın bırak: geri döner.
+- **Nadir sürprizler (en fazla 4, yenisi için birini çıkar):** boşta dans, 5 hızlı tıkta baş dönmesi, 1 dakikadan uzun cevap bitince "oh be", uyanınca esneme.
+- **Kurallar (testler denetler):** Tiko metin okumaz, yalnızca kutu koordinatı (imleç = seçim aralığının kutusu, mesaj kutusu, hap/bildirim, cevabın üst kenarı); sinyaller content.js'ten hazır gelir. Yeni izin yok. Shadow DOM, her şey `pointer-events:none`, yalnız gövde tıklanabilir. rAF yalnız yer değiştirirken (ve olaydan sonra tek seferlik ölçüm için); duruşlar CSS animasyonu; sekme gizliyken kare, zamanlayıcı ve animasyon yok. `prefers-reduced-motion`: animasyonsuz, %75 boyutta, imleci izlemeyen ikon (yalnızca bildirim çıkınca üstüne tek adımda geçer). Mesaj kutusu bulunamazsa ya da beklenmedik hata olursa sessizce gizlenir/kaldırılır.
+- **Örtmeme:** yazının üstüne inmez (çok satırda kutunun üst kenarında kalır, yalnızca yatayda izler); hap ve bildirimin üstüne biner gibi durur, içine girmez; claude.ai menüsü üstüne açılırsa gizlenir; cevabın üstünde kullanıcı mesajını örtecekse sağ uca, o da olmazsa mesaj kutusuna oturup yukarı bakar. Yine de altında sohbet mesajı ya da tıklanabilir bir öğe kalırsa (sayfa kayınca olur) saydamlaşır ve tıklamayı alttakine geçirir (`page.isBusySpot`: yalnızca seçici eşleşmesi, içerik okunmaz; park edilmişken uygulanmaz, kullanıcı oraya kendi koymuştur).
+- **Ayar:** `settings.tiko` (varsayılan açık), popup → Ayarlar → "Tiko'yu göster". İlk görünüşte bir kez baloncuk (`tikoHintSeen`).
+- **Ölçüm:** e2e'de kare başına ortalama ≈ 0,09 ms (başsız Chromium, bu makine, ölçüm kareleri dahil ~420 kare; `performance.now` çözünürlüğü 0,1 ms olduğu için kaba bir ortalama). Sınır 1 ms, e2e denetler.
+- **Doğrulanmadı:** gerçek claude.ai'de denenmedi (yalnızca sahte sayfa). Bakılacaklar: cevabın üst kenarı gerçekte nerede (`[data-is-streaming="true"]` kutusu), mesaj kutusunun üstünde ek/dosya satırı varken konum, koyu tema, dar pencere.
+## rapor-su: "Bu hafta kurtardığın su ve enerji" (14.11.2026, dal: rapor-su; sürüm Prompt C'de 0.13.0 ile)
+- **Ne:** Haftalık raporda (`popup/report.*`, çizim `popup/report-eco.js`) kabul edilen daha hafif model / daha düşük effort önerileriyle kaçınılan işlemin su ve enerji karşılığı; "kurduğundan beri" toplamı ayrı. Hesap `lib/eco.js` (saf fonksiyonlar), test `tests/eco.test.mjs` (79 kontrol) + `tests/rapor-su.e2e.cjs` (33 kontrol, `npm run e2e` içinde), ekran görüntüleri `tests/shots/rapor-su/` (`git add -f`).
+- **Formül:** `token = kaçınılan işlem ÷ 10` (Sonnet 5.5 çıktı tokenı eşdeğeri; 1 çıktı tokenı = ağırlık 2 × 5 = 10 maliyet birimi), `E = token × e_token`, `W = E × WUE`. Her sayı DÜŞÜK / ORTA / YÜKSEK aralıklı ve "tahmin" etiketli. Model başına enerjinin limit ağırlığıyla (API fiyatı) orantılı olduğu **varsayım**dır; Anthropic, Claude için enerji/su rakamı yayımlamıyor.
+- **Katsayılar ve kaynakları** (değiştirirsen `lib/eco.js`, rapor dipnotu `ecoSources` (10 dil), sitedeki `ecF` (10 dil) ve bu liste birlikte değişir):
+  - `e_token` 0,6 / 1,3 / 3,0 mWh. Düşük: Epoch AI, J. You, 7.2.2025, "How much energy does ChatGPT use?" (GPT-4o, 500 çıktı tokenı ≈ 0,3 Wh). Yüksek: Jegham ve ark. 2025, arXiv:2505.09598v5, Tablo 4 (Claude 3.7 Sonnet: 0,950 Wh @ 100/300 token, 2,989 Wh @ 1.000/1.000). Orta: ikisinin geometrik ortası, ölçüm değil. Karşılaştırma: Google 2025, arXiv:2508.15734 (medyan Gemini istemi 0,24 Wh; token sayısı açıklanmadı).
+  - `WUE` 3,6 / 4,2 / 5,3 L/kWh = yerinde ÷ PUE + elektrik üretimi. Düşük: Li ve ark. 2023, arXiv:2304.03271 (CACM 2025), ABD ortalaması 0,55 + 3,14. Orta: Google yerinde 1,15 (PUE 1,09; arXiv:2508.15734) + 3,14. Yüksek: Jegham ve ark. Tablo 1, Anthropic/AWS 0,18 (PUE 1,14) + 5,11.
+  - Karşılıklar: damla 0,05 mL (metrik damla, 20 damla/mL); çay kaşığı 5 mL (ABD 21 CFR 101.9(b)(5)(viii)); su bardağı 250 mL, şişe 0,5 L, kova 10 L (anma boyutu, tanım); küvet 136 L (USGS Water Science School, "full tub" 36 galon); telefon şarjı 19 Wh (US EPA Greenhouse Gas Equivalencies Calculator, 0,019 kWh/şarj); LED 9 W ≈ 800 lümen (US FTC, "Shopping for Light Bulbs", 8.2023); çaydanlık 93 Wh = 1 L suyu 20→100 °C ısıtmak (c = 4,186 kJ/kg·K, kayıpsız).
+- **Kaçınılan işlem nasıl bulunur** (`eco.js draftDelta`, `content.js ecoOf`): mesaj kutusu doluyken sayfadan ilk okunan model + effort ("taslağın başı") ile gönderilen ayar arasındaki tahmini maliyet farkı (aynı tahmin motoru, iki ayarla). Daha hafife geçiş yalnızca o taslakta eklenti bunu önerdiyse ve **önerilen seviyeye kadar** sayılır (önerilenden hafife inmek kutlanmaz: hafif model önermek en kötü hata); daha ağıra geçiş her zaman düşülür (negatif). Sohbet ortasında model değişince baştan okunan geçmiş düşülür (advisor.js ile aynı varsayım). Yalnızca ayarın değiştiği mesaj sayılır, sonraki mesajlar sayılmaz (temkinli). Model sayfadan okunamadıysa kayıt sayılmaz; effort okunamadıysa effort farkı sayılmaz.
+- **Veri:** gönderim kaydına iki alan eklendi: `ecoU` (işaretli maliyet birimi) ve `ecoK` (`model` / `effort` / `both`); yeni depo anahtarı `eco` = kurulumdan beri sayaç `{ v, since, n, gainU, gainN, extraU, extraN }` (gönderim kayıtları 70 günde silindiği için ayrı; yedeğe girer). Metin yok, yeni okunan veri yok, `CONSENT_VERSION` ve `CALIB_VERSION` değişmedi. Alanı olmayan eski kayıtlar "sayılmamış"tır; sayım bu sürümle başlar ve raporda başlangıç tarihi yazar.
+- **CSV:** `avoided_tokens_eq, avoided_by, energy_wh_low/mid/high, water_ml_low/mid/high` (işaretli; sayılmamış satırda boş).
+- **Site "Doğa" düzeltmesi:** dipnot "≈ 1–5 mL su (Google'ın Gemini ölçümü, santral suyu dahil)" diyordu; Google'ın rakamı 0,26 mL ve yalnızca yerinde soğutma suyudur (santral suyu yok). Enerji aralığı (mesaj başına 0,24–1,2 Wh) aynı kaldı: = ≈ 400 token × 0,6–3 mWh. Su artık rapordaki WUE aralığıyla hesaplanıyor: mesaj başına ≈ 0,9–6 mL, 1 milyon kişi senaryosunda 40–200 ton → **35–250 ton**; LED 10 W → 9 W (kaynaklı değer). Site `build.py` bu makinede çalışmadığı için (Linux yolları) kaynaklar ve üretilmiş `site/index.html`, `docs/index.html` aynı betikle birlikte yamalandı.
+- **Bilinen sınırlar:** e_token ve WUE başka şirketlerin modelleri/altyapısı için yayımlanmış değerlerdir, Claude 5 ailesi için ölçüm yok. "Kabul" doğrudan ölçülmez, taslak içindeki ayar değişikliğinden çıkarılır: kullanıcı öneriyi görüp bir sonraki mesajda uygularsa sayılmaz. Gerçek claude.ai'de denenmedi (yalnızca sahte sayfa e2e'si).
+
+## 0.13.0 (14.11.2026, dal `yayin-0-13`) — birleşik sürüm
+- Birleşen dallar (sırayla): fable-5-2, kalite-olcumu, kor-set-4, egitim-uzun, denetim, site-seo, tanitim, tiko-mini, rapor-su. Ayrıntılar yukarıdaki dal notlarında.
+- Birleştirmede düzeltilenler: `page.js lastUserEl` denetimin yeniden adlandırdığı yardımcıyı kullanıyor (Tiko cevabın üstüne oturamıyordu); `report.js cleanSend` su/enerji alanlarını (`ecoU`, `ecoK`) koruyor; yedekten gelen `eco` sayacı yalnız bilinen sayı alanlarıyla alınır; gizlilik testi SVG ad alanını ve Tiko'nun sabit şablonunu tanıyor.
+- `CONSENT_VERSION` 2: onay metni ve gizlilik politikası denetimde yeniden yazıldı; güncelleyen kullanıcı karşılama sayfasını bir kez daha görür.
+- Windows: `tools/build-release.mjs` zip'i Node içinde üretir (`tools/zip.mjs`, PATH'te zip gerekmez), `build-release` ve `aggregate` yolları `fileURLToPath` ile; `site/build/build.py` esbuild'i Linux/macOS'ta da doğru çağırır.
+- Testler (birleşik dalda): `npm run test` geçti; `npm run e2e` → e2e 93/93, tiko 48/48, rapor-su 33/33 (Türkçe tarayıcı diliyle; e2e'deki popup metin kontrolü Türkçe arayüz bekler).
+- Henüz yapılmadı: gerçek claude.ai'de Tiko ve su raporu denemesi. Site tasarımı ve videolar yapıldı (aşağıdaki not).
+
+## Site yeniden tasarımı ve videolar (14.11.2026, dal `yayin-0-13`; sürüm numarası değişmedi)
+- **Site** (`site/build/index.src.html`): canlı kahraman sahnesi (temsili sohbette mesaj yazılır, hap çıkar, Tiko cevabın üstüne oturur; fare sahnedeyken Tiko fareyi izler), kaydırma hikâyesi (yaz → tahmin → model önerisi → Tiko → haftalık rapor → Doğa), "Ölçüm" bölümü (`tests/quality/RAPOR.md` ve kör set sonuçları olduğu gibi; eski testlerin neden yüksek göründüğü de yazıyor). Çerçeve yok. Sahnedeki sayılar derlemede eklentinin kendi motorundan hesaplanır. `prefers-reduced-motion`'da sahne durağan; dokunmatik ekranda gezen Tiko'nun karşılama balonu yok.
+- **Sınırlar (testler ve ölçüm denetler):** eklenen betik < 100 KB (`site-test.cjs`; şu an ≈ +25 KB), Lighthouse puanları düşmez, LCP < 2,5 sn. Son ölçüm (SITE-SEO.md, sondaki bölüm): mobil performans 98–100, masaüstü 100, öteki üç kategori her dilde 100, mobil LCP ≤ 1,7 sn. Yeniden ölçmek: `site/build/lighthouse.cjs` (başındaki yoruma bak).
+- **Performans tuzakları (ilk hâlinde mobil puan 76–92'ye düşmüştü):** blokları döngüde `getBoundingClientRect` ile ölçüp arada stil yazma (yerleşim her seferinde yeniden hesaplanır; `IntersectionObserver` kullan); yeni bölümü `content-visibility: auto` dışında bırakma; sahne kutusundan `contain: strict`'i kaldırma; yazı tipi gelince satır sayısı değişebilen ve alttaki bölümü iten metin (sahne notuna bu yüzden 3 satırlık yer ayrıldı).
+- **Videolar** (`site/build/video/`, ayrıntı `site/build/OKU.md`): tek sahne dosyası `anim4.html` (`window.render(t)`, durum tutmaz; yatay, dikey, 4:5 ve kare yerleşim), `render4.cjs` hepsini üretir. Ana tanıtım 75 sn (16:9, TR+EN), üç Shorts (9:16, 24–27 sn, TR+EN: Tiko, su raporu, model önerisi), LinkedIn (4:5, 56 sn, TR+EN), 30 sn'lik İngilizce demo (1920×1080 ve 1080×1080 + 800 px GIF).
+  - Sayılar `data.mjs` ile eklentinin kendi tahmin, öneri ve su/enerji kodundan gelir. Ölçüm sahnesindeki sayılar (13/13, 5/58, %36, 82–88) RAPOR.md ve yukarıdaki kör set tablosundan **elle** yazılmıştır: o sayılar değişirse `anim4.html`'deki `m1`–`m3` ve `mL` de değişir.
+  - Sohbet penceresi geneldir, claude.ai'nin kopyası değildir, üstünde "claude.ai'de · temsili arayüz" yazar; Anthropic logosu, yazı tipi, marka ögesi yok. Tiko sitedeki ızgaranın aynısı. Ses yok; müzik `music.py` ile sentezlenir. Her videonun son karesinde mağaza bağlantısı ve QR (`python qr.py kare.png` doğrular).
+  - Büyük çıktılar `site/build/video/out/` altında kalır (git'e girmez). Depoda: `site/video/tanitim-{tr,en}.mp4` (1280×720) + kapak, `promo/video/` altında iki demo MP4'ü; GIF yerelde kalır (`.gitignore`).
+  - Eski 47 sn'lik kare video ve hattı (`anim3.html`, `rec3.cjs`, `render3.sh`) kaldırıldı.
+- **`tests/site-shots.cjs` onarıldı:** açık onay (0.12.1) geldiğinden beri zaman aşımına düşüyordu; artık onayı depoya yazıyor. `site/img/{tr,en}` yeniden üretildi.
+- **Mağaza açıklamaları** (`store/descriptions/*.txt`, 10 dil, ve `store/LISTING.md`): Tiko ve "kurtarılan su ve enerji" bölümleri eklendi; metinler sitedeki özellik kartlarıyla aynı.
+- **Doğrulanmadı:** müziği insan dinlemedi (yalnız ses düzeyi ölçüldü: ortalama ≈ −16…−17 dB, tepe ≈ −2 dB); videolar bu makinenin sistem yazı tipleriyle (Segoe UI Variable, Cascadia Mono) çizildi, başka makinede görünüm biraz değişir; Lighthouse laboratuvar ölçümüdür, gerçek telefonda ölçülmedi.

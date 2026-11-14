@@ -1,0 +1,406 @@
+{
+ "created": "2026-11-11T02:57:34.038Z",
+ "nonce": "dc6484921581b658",
+ "labels": {
+  "r46": {
+   "A": "sonnet",
+   "B": "opus",
+   "C": "haiku"
+  },
+  "t09": {
+   "A": "haiku",
+   "B": "sonnet",
+   "C": "opus"
+  },
+  "k01": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "r48": {
+   "A": "haiku",
+   "B": "sonnet",
+   "C": "opus"
+  },
+  "r20": {
+   "A": "sonnet",
+   "B": "haiku",
+   "C": "opus"
+  },
+  "r39": {
+   "A": "sonnet",
+   "B": "opus",
+   "C": "haiku"
+  },
+  "r14": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "r44": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "t13": {
+   "A": "haiku",
+   "B": "sonnet",
+   "C": "opus"
+  },
+  "r27": {
+   "A": "sonnet",
+   "B": "haiku",
+   "C": "opus"
+  },
+  "c06": {
+   "A": "sonnet",
+   "B": "haiku",
+   "C": "opus"
+  },
+  "t15": {
+   "A": "haiku",
+   "B": "sonnet",
+   "C": "opus"
+  },
+  "r35": {
+   "A": "haiku",
+   "B": "opus",
+   "C": "sonnet"
+  },
+  "r40": {
+   "A": "haiku",
+   "B": "opus",
+   "C": "sonnet"
+  },
+  "t11": {
+   "A": "sonnet",
+   "B": "opus",
+   "C": "haiku"
+  },
+  "r29": {
+   "A": "sonnet",
+   "B": "haiku",
+   "C": "opus"
+  },
+  "r24": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "r36": {
+   "A": "haiku",
+   "B": "sonnet",
+   "C": "opus"
+  },
+  "k04": {
+   "A": "sonnet",
+   "B": "haiku",
+   "C": "opus"
+  },
+  "t12": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "r13": {
+   "A": "haiku",
+   "B": "sonnet",
+   "C": "opus"
+  },
+  "k02": {
+   "A": "sonnet",
+   "B": "haiku",
+   "C": "opus"
+  },
+  "c02": {
+   "A": "haiku",
+   "B": "opus",
+   "C": "sonnet"
+  },
+  "r04": {
+   "A": "sonnet",
+   "B": "haiku",
+   "C": "opus"
+  },
+  "r32": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "r37": {
+   "A": "haiku",
+   "B": "opus",
+   "C": "sonnet"
+  },
+  "r22": {
+   "A": "sonnet",
+   "B": "haiku",
+   "C": "opus"
+  },
+  "t05": {
+   "A": "haiku",
+   "B": "opus",
+   "C": "sonnet"
+  },
+  "c10": {
+   "A": "sonnet",
+   "B": "haiku",
+   "C": "opus"
+  },
+  "r43": {
+   "A": "haiku",
+   "B": "sonnet",
+   "C": "opus"
+  },
+  "r11": {
+   "A": "haiku",
+   "B": "opus",
+   "C": "sonnet"
+  },
+  "r31": {
+   "A": "sonnet",
+   "B": "opus",
+   "C": "haiku"
+  },
+  "r17": {
+   "A": "opus",
+   "B": "sonnet",
+   "C": "haiku"
+  },
+  "c04": {
+   "A": "opus",
+   "B": "sonnet",
+   "C": "haiku"
+  },
+  "c09": {
+   "A": "opus",
+   "B": "sonnet",
+   "C": "haiku"
+  },
+  "r50": {
+   "A": "opus",
+   "B": "sonnet",
+   "C": "haiku"
+  },
+  "k05": {
+   "A": "sonnet",
+   "B": "haiku",
+   "C": "opus"
+  },
+  "r38": {
+   "A": "opus",
+   "B": "sonnet",
+   "C": "haiku"
+  },
+  "r23": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "r16": {
+   "A": "haiku",
+   "B": "sonnet",
+   "C": "opus"
+  },
+  "r08": {
+   "A": "opus",
+   "B": "sonnet",
+   "C": "haiku"
+  },
+  "r19": {
+   "A": "opus",
+   "B": "sonnet",
+   "C": "haiku"
+  },
+  "r33": {
+   "A": "opus",
+   "B": "sonnet",
+   "C": "haiku"
+  },
+  "r34": {
+   "A": "opus",
+   "B": "sonnet",
+   "C": "haiku"
+  },
+  "r15": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "k03": {
+   "A": "haiku",
+   "B": "opus",
+   "C": "sonnet"
+  },
+  "c05": {
+   "A": "sonnet",
+   "B": "haiku",
+   "C": "opus"
+  },
+  "r12": {
+   "A": "haiku",
+   "B": "sonnet",
+   "C": "opus"
+  },
+  "t08": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "t07": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "t14": {
+   "A": "haiku",
+   "B": "sonnet",
+   "C": "opus"
+  },
+  "t01": {
+   "A": "sonnet",
+   "B": "haiku",
+   "C": "opus"
+  },
+  "r18": {
+   "A": "haiku",
+   "B": "opus",
+   "C": "sonnet"
+  },
+  "r09": {
+   "A": "opus",
+   "B": "sonnet",
+   "C": "haiku"
+  },
+  "r28": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "r03": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "r25": {
+   "A": "opus",
+   "B": "sonnet",
+   "C": "haiku"
+  },
+  "r02": {
+   "A": "sonnet",
+   "B": "opus",
+   "C": "haiku"
+  },
+  "t06": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "r47": {
+   "A": "opus",
+   "B": "sonnet",
+   "C": "haiku"
+  },
+  "c01": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "c08": {
+   "A": "haiku",
+   "B": "sonnet",
+   "C": "opus"
+  },
+  "r10": {
+   "A": "sonnet",
+   "B": "haiku",
+   "C": "opus"
+  },
+  "r06": {
+   "A": "opus",
+   "B": "sonnet",
+   "C": "haiku"
+  },
+  "c07": {
+   "A": "haiku",
+   "B": "sonnet",
+   "C": "opus"
+  },
+  "r05": {
+   "A": "opus",
+   "B": "sonnet",
+   "C": "haiku"
+  },
+  "r26": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "r07": {
+   "A": "opus",
+   "B": "sonnet",
+   "C": "haiku"
+  },
+  "t10": {
+   "A": "haiku",
+   "B": "sonnet",
+   "C": "opus"
+  },
+  "t04": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "r30": {
+   "A": "opus",
+   "B": "haiku",
+   "C": "sonnet"
+  },
+  "r01": {
+   "A": "sonnet",
+   "B": "opus",
+   "C": "haiku"
+  },
+  "t02": {
+   "A": "haiku",
+   "B": "opus",
+   "C": "sonnet"
+  },
+  "c03": {
+   "A": "haiku",
+   "B": "opus",
+   "C": "sonnet"
+  },
+  "r21": {
+   "A": "sonnet",
+   "B": "opus",
+   "C": "haiku"
+  },
+  "r41": {
+   "A": "sonnet",
+   "B": "haiku",
+   "C": "opus"
+  },
+  "r49": {
+   "A": "sonnet",
+   "B": "opus",
+   "C": "haiku"
+  },
+  "r45": {
+   "A": "sonnet",
+   "B": "opus",
+   "C": "haiku"
+  },
+  "r42": {
+   "A": "haiku",
+   "B": "sonnet",
+   "C": "opus"
+  },
+  "t03": {
+   "A": "haiku",
+   "B": "sonnet",
+   "C": "opus"
+  }
+ }
+}

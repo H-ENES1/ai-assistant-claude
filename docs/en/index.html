@@ -1,0 +1,1097 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Token Forecast – Claude usage limit &amp; token counter</title>
+<meta name="description" content="See your Claude usage limit before you send. Free Chrome extension: counts tokens, forecasts how much of your 5-hour and weekly limit a message uses, suggests a model.">
+<link rel="canonical" href="https://h-enes1.github.io/ai-assistant-claude/en/">
+<link rel="alternate" hreflang="tr" href="https://h-enes1.github.io/ai-assistant-claude/">
+<link rel="alternate" hreflang="en" href="https://h-enes1.github.io/ai-assistant-claude/en/">
+<link rel="alternate" hreflang="de" href="https://h-enes1.github.io/ai-assistant-claude/de/">
+<link rel="alternate" hreflang="fr" href="https://h-enes1.github.io/ai-assistant-claude/fr/">
+<link rel="alternate" hreflang="es" href="https://h-enes1.github.io/ai-assistant-claude/es/">
+<link rel="alternate" hreflang="it" href="https://h-enes1.github.io/ai-assistant-claude/it/">
+<link rel="alternate" hreflang="pt" href="https://h-enes1.github.io/ai-assistant-claude/pt/">
+<link rel="alternate" hreflang="ru" href="https://h-enes1.github.io/ai-assistant-claude/ru/">
+<link rel="alternate" hreflang="ja" href="https://h-enes1.github.io/ai-assistant-claude/ja/">
+<link rel="alternate" hreflang="zh" href="https://h-enes1.github.io/ai-assistant-claude/zh/">
+<link rel="alternate" hreflang="x-default" href="https://h-enes1.github.io/ai-assistant-claude/en/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Token Forecast">
+<meta property="og:title" content="Token Forecast — Know before you send">
+<meta property="og:description" content="See your Claude usage limit before you send. Free Chrome extension: counts tokens, forecasts how much of your 5-hour and weekly limit a message uses, suggests a model.">
+<meta property="og:url" content="https://h-enes1.github.io/ai-assistant-claude/en/">
+<meta property="og:image" content="https://h-enes1.github.io/ai-assistant-claude/img/og-en.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Token Forecast — Know before you send">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="it_IT">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Token Forecast — Know before you send">
+<meta name="twitter:description" content="See your Claude usage limit before you send. Free Chrome extension: counts tokens, forecasts how much of your 5-hour and weekly limit a message uses, suggests a model.">
+<meta name="twitter:image" content="https://h-enes1.github.io/ai-assistant-claude/img/og-en.png">
+<meta name="author" content="Hayrettin Enes Karalı">
+<meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#262624" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 26 26%22%3E%3Ccircle cx=%2213%22 cy=%2213%22 r=%2211.5%22 fill=%22none%22 stroke=%22%23141413%22 stroke-width=%222%22/%3E%3Cpath d=%22M13 13 L19.5 7.5%22 stroke=%22%23d97757%22 stroke-width=%222.6%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2213%22 cy=%2213%22 r=%222%22 fill=%22%23141413%22/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Token Forecast","alternateName":["Token Forecast for Claude","Token Tahmini"],"description":"See your Claude usage limit before you send. Free Chrome extension: counts tokens, forecasts how much of your 5-hour and weekly limit a message uses, suggests a model.","inLanguage":"en","url":"https://h-enes1.github.io/ai-assistant-claude/en/","image":"https://h-enes1.github.io/ai-assistant-claude/img/og-en.png","screenshot":"https://h-enes1.github.io/ai-assistant-claude/img/en/oneri.webp","applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Edge, Opera, Brave","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Hayrettin Enes Karalı","url":"https://github.com/H-ENES1"},"license":"https://www.gnu.org/licenses/agpl-3.0.html","downloadUrl":"https://chromewebstore.google.com/detail/chbjpjhmkpgfocnfpdafkakjicdicige","installUrl":"https://chromewebstore.google.com/detail/chbjpjhmkpgfocnfpdafkakjicdicige","isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"What is the Claude usage limit (rate limit), and when does it reset?","acceptedAnswer":{"@type":"Answer","text":"claude.ai has two limits: a 5-hour session limit and a weekly limit. Anthropic doesn’t publish their exact size; Settings → Usage shows how much you’ve used and when it resets. Token Forecast shows the same percentage inside the chat and estimates how much of it a message will use before you send it."}},{"@type":"Question","name":"Does it work as a Claude token counter?","acceptedAnswer":{"@type":"Answer","text":"Yes. It counts the tokens of your message, attachments and chat history in your browser; in the demo above you see them in the “INPUT → REPLY” row. Claude’s tokenizer isn’t public, so the count is an estimate, tuned per language. Its real job is telling you what share of your limit those tokens are."}},{"@type":"Question","name":"Does it cost anything?","acceptedAnswer":{"@type":"Answer","text":"No. You don't need an account either."}},{"@type":"Question","name":"Does it read my messages and send them somewhere?","acceptedAnswer":{"@type":"Answer","text":"It reads the message box in your browser to count tokens, but sends nothing anywhere. The extension has no server, no analytics, no tracking. The weekly report and learned values contain no message text."}},{"@type":"Question","name":"How accurate are the estimates?","acceptedAnswer":{"@type":"Answer","text":"Ranges are wide for the first messages because limit sizes start as rough guesses. It narrows by measuring every message; in simulation the error drops to 1.13× after 20 messages and 1.08× after 100. The window shows how many measurements fell inside the range."}},{"@type":"Question","name":"How is it different from Claude's own usage screen?","acceptedAnswer":{"@type":"Answer","text":"Settings → Usage shows what you've already used. Token Forecast tells you, before you send, how much this message will use, which model is enough, and why something cost so much."}},{"@type":"Question","name":"Could it harm my account?","acceptedAnswer":{"@type":"Answer","text":"It isn't an official Anthropic tool. It reads the usage data claude.ai's own pages use, with your session; it never sends messages, changes settings or automates anything."}},{"@type":"Question","name":"Which browsers?","acceptedAnswer":{"@type":"Answer","text":"Chrome, Opera, Edge and Brave (Chromium 116 or later). A Firefox version is on the roadmap."}},{"@type":"Question","name":"Is the source code open?","acceptedAnswer":{"@type":"Answer","text":"Yes. The code is open under the GNU AGPL-3.0: you can read, run, modify and share it. If you distribute a modified version, you must release it under the same license with its source code and keep the copyright notice. The name and logo “Token Tahmini / Token Forecast” are not covered by the license; modified versions must use a different name."}},{"@type":"Question","name":"Why doesn't it suggest Haiku when my message contains “translate”?","acceptedAnswer":{"@type":"Answer","text":"It looks at the task, not the word. “Translate this: …” is a translation request and Haiku is enough. “I need a site with a translation system built” is a build job and at least Sonnet is suggested. 15 such trap sentences and real translation requests are in the automated tests."}},{"@type":"Question","name":"How do I see that it really learns?","acceptedAnswer":{"@type":"Answer","text":"Extension window → Weekly report → Proof of learning. After 30 measurements it compares the error of the first and the latest measurements, and says so if it did not drop. The experiment we ran with simulated users is in the Proof section above."}},{"@type":"Question","name":"Which languages does it work in?","acceptedAnswer":{"@type":"Answer","text":"The extension and this site come in Turkish, English, German, French, Spanish, Italian, Portuguese, Russian, Japanese and Chinese; pick one in the settings. Message analysis (task type, topic, model and effort suggestions) is done only for Turkish and English messages. If you write in another language, the token and limit forecast still works, no suggestion is shown and the extension tells you so. The intro video and screenshots are in Turkish and English; the other languages see the English ones."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap&text=%20%25%26%27%28%29%2B%2C-.%2F0123456789%3A%3B%3C%3E%3FABCDEFGHIKLMNOPRSTVWabcdefghijklmnopqrstuvwxyz%C3%97%E2%80%93%E2%80%9C%E2%80%9D%E2%86%92%E2%89%88"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap&text=%20%21%22%23%24%25%26%27%28%29%2A%2B%2C-.%2F0123456789%3A%3B%3C%3D%3E%3F%40ABCDEFGHIJKLMNOPQRSTUVWXYZ%5B%5C%5D%5E_%60abcdefghijklmnopqrstuvwxyz%7B%7C%7D~%C2%A9%C2%B7%C3%96%C3%97%C3%9C%C3%9F%C3%A1%C3%A2%C3%A7%C3%A8%C3%A9%C3%AA%C3%B1%C3%B6%C3%BC%C4%9F%C4%B1%C5%9F%D0%97%D0%9E%D0%A0%D0%AD%D0%B0%D0%B5%D0%B8%D0%B9%D0%BA%D0%BC%D0%BD%D0%BE%D1%80%D1%81%D1%82%D1%83%D1%86%D1%8B%D1%8C%E2%80%93%E2%80%94%E2%80%99%E2%80%9C%E2%80%9D%E2%80%A6%E2%86%91%E2%86%92%E2%86%93%E2%89%88"></noscript>
+<style>
+/* Düzen: bir ölçü aletinin ekranı — üstte tek bir canlı gösterge (demo), altında sakin bir teknik kılavuz.
+   Renk ve yazı: Claude'un kendi görünümüne yakın (krem yüzey, sıcak gri çizgi, turuncu vurgu, serif başlık). */
+/* Web yazı tipi gelene kadar kullanılan yedekler, aynı genişliğe ayarlı (size-adjust, sayfa metniyle ölçüldü:
+   Newsreader/Georgia başlık boyutunda 0,94 × 1,034 ≈ 0,97 (optik boyut ekseni yüzünden) · Inter/Arial 1,062 · IBM Plex Mono/Consolas 1,091). Yazı tipi değişince satırlar kırılmaz, sayfa kaymaz. */
+@font-face { font-family: "Newsreader fb"; src: local("Georgia"); size-adjust: 97%; }
+@font-face { font-family: "Inter fb"; src: local("Arial"), local("Arimo"), local("Liberation Sans"); size-adjust: 106.2%; }
+@font-face { font-family: "Plex fb"; src: local("Consolas"); size-adjust: 109.1%; }
+:root {
+  --bg: #faf9f5; --surface: #ffffff; --sunk: #f0eee6; --ink: #141413; --muted: #6b6a64; --line: #e8e6dc;
+  --accent: #b5502f; --accent-ink: #ffffff; --meter: #d97757; --used: #a8a69d;
+  --water: #2f7fb5; --ok: #2f7d57; --warn: #a8680f; --crit: #b9382a;
+  --f-display: "Newsreader", "Newsreader fb", ui-serif, Georgia, "Times New Roman", serif;
+  --f-body: "Inter", "Inter fb", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono: "IBM Plex Mono", "Plex fb", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --r: 12px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #262624; --surface: #30302e; --sunk: #3d3d3a; --ink: #faf9f5; --muted: #b0aea5; --line: #44433f;
+    --accent: #e8896a; --accent-ink: #141413; --meter: #d97757; --used: #77756d;
+    --water: #7fc1ea; --ok: #5fb98a; --warn: #e0a24a; --crit: #ef7d6d; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #262624; --surface: #30302e; --sunk: #3d3d3a; --ink: #faf9f5; --muted: #b0aea5; --line: #44433f;
+  --accent: #e8896a; --accent-ink: #141413; --meter: #d97757; --used: #77756d;
+  --water: #7fc1ea; --ok: #5fb98a; --warn: #e0a24a; --crit: #ef7d6d; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+body { background: var(--bg); color: var(--ink); font: 16px/1.6 var(--f-body); margin: 0; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; font-weight: 500; }
+h2 { font-size: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem); font-weight: 500; line-height: 1.15; }
+h3 { font-size: 1.2rem; font-weight: 500; }
+p { margin: 0; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+.eyebrow { font-family: var(--f-mono); font-size: .78rem; letter-spacing: .06em; color: var(--muted); }
+
+/* Üst çubuk */
+header.top { border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 600; font-size: 1.3rem; color: var(--ink); text-decoration: none; }
+.brand svg { flex: none; }
+nav.links { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+nav.links a { color: var(--muted); text-decoration: none; font-size: .92rem; }
+nav.links a:hover { color: var(--ink); }
+.lang { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+.lang select { appearance: none; -webkit-appearance: none; border: 0; background: transparent; color: var(--ink); font: 500 .8rem var(--f-mono); padding: 4px 26px 4px 12px; border-radius: 999px; cursor: pointer; max-width: 150px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23888' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
+.lang select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.lang select option { color: #141413; background: #fff; }
+@media (max-width: 720px) { nav.links a.hide-s { display: none; } }
+/* Telefonda üst çubuk sabit iki satır: marka, altında kurulum + dil. Tek satıra sığıp sığmaması yazı tipine bağlıydı;
+   web yazı tipi gelince satır sayısı değişip bütün sayfa kayıyordu (CLS). */
+@media (max-width: 560px) {
+  header.top .wrap { flex-wrap: wrap; row-gap: 6px; padding-block: 10px; }
+  .brand { white-space: nowrap; }
+  nav.links { width: 100%; flex-wrap: nowrap; justify-content: space-between; gap: 12px; }
+}
+
+/* Açılış */
+.hero { padding-block: 48px 56px; }
+.hero .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: 48px; align-items: start; }
+@media (max-width: 940px) { .hero .grid { grid-template-columns: minmax(0, 1fr); gap: 32px; } }
+.hero h1 { font-size: clamp(2.7rem, 1.7rem + 4vw, 4.8rem); line-height: 1; font-weight: 500; margin-top: 14px; letter-spacing: -0.025em; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.lede { font-size: 1.12rem; color: var(--ink); margin-top: 20px; max-width: 34em; }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 12px; transition: background .15s, border-color .15s; font-weight: 600; text-decoration: none; font-size: .98rem; border: 1px solid transparent; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); }
+.btn.primary:hover { filter: brightness(.93); }
+.btn.ghost { border-color: var(--line); color: var(--ink); background: var(--surface); }
+.btn.ghost:hover { border-color: var(--muted); }
+.trust { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 22px; color: var(--muted); font-size: .9rem; }
+.trust span::before { content: "✓"; color: var(--ok); font-weight: 700; margin-right: 6px; }
+
+/* Demo (gösterge) */
+.demo { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 18px 44px -26px rgba(20, 20, 19, .35); overflow: hidden; }
+.demo-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.demo-head .eyebrow { color: var(--accent); }
+.demo-body { padding: 16px; display: grid; gap: 14px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { all: unset; cursor: pointer; font-size: .82rem; padding: 4px 10px; border-radius: 999px; background: var(--sunk); color: var(--ink); }
+.chip:hover { background: var(--line); }
+.chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+textarea#prompt { width: 100%; min-height: 96px; resize: vertical; font: 15px/1.5 var(--f-body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.controls { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+@media (max-width: 520px) { .controls { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.controls label { display: grid; gap: 3px; font-size: .75rem; color: var(--muted); font-family: var(--f-mono); min-width: 0; }
+.controls select { font: 14px var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 7px; padding: 6px 8px; min-width: 0; width: 100%; }
+.usedrow { display: flex; align-items: center; gap: 6px 10px; font-size: .8rem; color: var(--muted); font-family: var(--f-mono); flex-wrap: wrap; }
+.usedrow input { flex: 1 1 140px; min-width: 0; accent-color: var(--used); }
+@media (max-width: 520px) { .usedrow label { flex-basis: 100%; } }
+.readout { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 18px; align-items: end; padding-top: 4px; }
+.big { font-family: var(--f-display); font-weight: 500; font-size: clamp(2.6rem, 2.1rem + 2.2vw, 3.5rem); line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.big small { font-size: .4em; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-left: 4px; }
+.readout .sub { color: var(--muted); font-size: .88rem; }
+.meter { position: relative; height: 12px; border-radius: 6px; background: var(--sunk); overflow: hidden; grid-column: 1 / -1; margin-top: 8px; }
+.meter i { position: absolute; top: 0; bottom: 0; }
+.meter .u { left: 0; background: var(--used); opacity: .55; }
+.meter .p { background: var(--meter); }
+.meter .r { background: var(--meter); opacity: .3; }
+.scale { grid-column: 1 / -1; display: flex; justify-content: space-between; font: .72rem var(--f-mono); color: var(--muted); }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+@media (max-width: 520px) { .facts { grid-template-columns: minmax(0, 1fr); } }
+.fact { background: var(--bg); border-radius: 8px; padding: 8px 10px; min-width: 0; }
+.fact b { display: block; font: 500 .72rem var(--f-mono); color: var(--muted); letter-spacing: .02em; }
+.fact span { font-size: .92rem; overflow-wrap: anywhere; }
+.alert { font-size: .88rem; padding: 8px 10px; border-radius: 8px; background: var(--sunk); }
+.alert.crit { color: var(--crit); } .alert.warn { color: var(--warn); }
+
+/* Öneri bildirimi (eklentidekinin aynısı) */
+.banner { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); padding: 9px 12px; font-size: .9rem; }
+@supports (background: color-mix(in srgb, red 10%, white)) { .banner { background: linear-gradient(color-mix(in srgb, var(--tone, var(--ok)) 6%, transparent), color-mix(in srgb, var(--tone, var(--ok)) 6%, transparent)), var(--surface); border-color: color-mix(in srgb, var(--tone, var(--ok)) 30%, var(--line)); } }
+.banner.t-save { --tone: var(--ok); } .banner.t-next { --tone: var(--accent); } .banner.t-up { --tone: var(--warn); } .banner.t-ok { --tone: var(--ok); }
+.banner .line { display: flex; align-items: center; gap: 8px; }
+.banner .ic { flex: none; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--accent-ink); background: var(--tone, var(--ok)); }
+.banner.t-ok .ic { background: var(--ok); }
+.banner .ttl { flex: 1; font-weight: 600; min-width: 0; }
+.banner button { all: unset; cursor: pointer; color: var(--muted); font-size: .82rem; padding: 2px 8px; border-radius: 6px; }
+.banner button:hover { background: var(--sunk); color: var(--ink); }
+.banner button:focus-visible { outline: 2px solid var(--accent); }
+.banner .body { margin-top: 8px; display: grid; gap: 8px; }
+.banner .body[hidden] { display: none; }
+.banner .lbl { font-size: .75rem; font-weight: 600; color: var(--muted); }
+.banner .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 2px; }
+.banner .tag { background: var(--sunk); border-radius: 6px; padding: 1px 7px; font-size: .82rem; }
+.banner .cav { font-size: .78rem; color: var(--muted); }
+
+/* Bölümler */
+section.band { padding-block: 64px; border-top: 1px solid var(--line); }
+/* Uzun sayfa: ekran dışındaki bölümlerin düzeni ve boyaması görünene kadar ertelenir (telefonda ilk boyama hızlanır) */
+@supports (content-visibility: auto) { section.band { content-visibility: auto; contain-intrinsic-size: auto 900px; } }
+.sec-head { display: grid; gap: 10px; max-width: 46em; margin-bottom: 32px; }
+.sec-head p { color: var(--muted); font-size: 1.05rem; }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+@media (max-width: 860px) { .two { grid-template-columns: minmax(0, 1fr); } }
+
+/* Karşılaştırma tablosu */
+.tablebox { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: .95rem; }
+th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font: 500 .78rem var(--f-mono); color: var(--muted); letter-spacing: .02em; background: var(--bg); }
+th.us, td.us { background: color-mix(in srgb, var(--accent) 7%, var(--surface)); }
+td.c, th.c { text-align: center; width: 18%; font-weight: 600; }
+@media (max-width: 600px) { table { min-width: 0; font-size: .88rem; } th, td { padding: 10px 8px; } th.c { font-size: .68rem; width: 20%; } }
+.y { color: var(--ok); } .n { color: var(--muted); font-weight: 400; } .h { color: var(--warn); font-weight: 500; font-size: .85rem; }
+.foot { font-size: .82rem; color: var(--muted); margin-top: 10px; }
+
+/* Nasıl çalışır */
+.formula { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; font: 500 .95rem/1.8 var(--f-mono); overflow-x: auto; white-space: pre; }
+.terms { display: grid; gap: 12px; margin-top: 20px; }
+.terms { margin: 20px 0 0; }
+.terms div { display: grid; grid-template-columns: 7.5em minmax(0, 1fr); gap: 12px; font-size: .95rem; }
+.terms dd { margin: 0; }
+.terms dt, .terms b { font-family: var(--f-mono); font-weight: 500; font-size: .85rem; color: var(--ink); }
+@media (max-width: 520px) { .terms div { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
+figure { margin: 0; }
+figcaption { font-size: .85rem; color: var(--muted); margin-top: 8px; }
+.storecta { margin: 18px 0 8px; }
+.ytl { margin: 10px 0 0; } .ytl a { display: inline-block; font-weight: 600; color: var(--accent); text-decoration: none; border: 1.5px solid currentColor; border-radius: 999px; padding: 6px 16px; } .ytl a:hover { background: rgba(217,119,87,.08); }
+.chart { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+.chart svg { display: block; width: 100%; height: auto; }
+.loop { margin-top: 28px; }
+
+/* Ekran görüntüleri */
+.shots { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+@media (max-width: 860px) { .shots { grid-template-columns: minmax(0, 1fr); } }
+.shot { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px; }
+.shot img { display: block; border-radius: 6px; width: 100%; height: auto; }
+.shot.narrow img { max-width: 340px; margin: 0 auto; }
+
+/* Modeller */
+.models { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 900px) { .models { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .models { grid-template-columns: minmax(0, 1fr); } }
+.model { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.model .w { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.model .w b { font: 600 1.5rem var(--f-display); }
+.model .bar { height: 6px; background: var(--sunk); border-radius: 3px; overflow: hidden; }
+.model .bar i { display: block; height: 100%; background: var(--meter); }
+.model p { font-size: .9rem; }
+.model .when { font-size: .85rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; }
+
+/* Kurulum adımları (gerçek sıra) */
+ol.steps { list-style: none; counter-reset: s; margin: 0; padding: 0; display: grid; gap: 14px; }
+ol.steps li { counter-increment: s; display: grid; grid-template-columns: 2.2em minmax(0, 1fr); gap: 12px; align-items: start; }
+ol.steps li::before { content: counter(s); font: 600 .9rem var(--f-mono); width: 2em; height: 2em; border-radius: 50%; border: 1px solid var(--line); display: inline-flex; align-items: center; justify-content: center; background: var(--surface); }
+ol.steps code, p code, li code { font-family: var(--f-mono); font-size: .88em; background: var(--sunk); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+.note { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; font-size: .95rem; display: grid; gap: 6px; }
+
+ul.plain { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; }
+.cols { columns: 2 22em; column-gap: 40px; }
+.cols li { break-inside: avoid; }
+
+.support { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
+/* Özellikler */
+.features { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 12px; }
+.feat { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 16px 18px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.feat h3 { font-size: 1.12rem; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.feat p { font-size: .92rem; color: var(--muted); }
+.feat .k { font: 500 .7rem var(--f-mono); letter-spacing: .06em; color: var(--muted); }
+.new { font: 600 .66rem var(--f-mono); letter-spacing: .06em; color: var(--accent-ink); background: var(--accent); border-radius: 999px; padding: 2px 7px; }
+/* Video */
+.vid { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 10px; margin-bottom: 24px; max-width: 760px; }
+.vid video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 10px; background: #000; }
+.shot.wide { grid-column: 1 / -1; }
+.shot.wide img { max-width: 880px; margin: 0 auto; }
+/* Öğrenme */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 20px; }
+@media (max-width: 720px) { .stats { grid-template-columns: minmax(0, 1fr); } }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+.stat .v { font: 500 2rem/1.1 var(--f-display); letter-spacing: -.01em; }
+.stat .v small { font-size: .55em; color: var(--muted); }
+.stat .v .arrow { color: var(--muted); font-size: .7em; margin: 0 4px; }
+.stat .v .good { color: var(--accent); }
+.stat .v.good { color: var(--ok); } .stat .v.water { color: var(--water); } .stat .v.good small, .stat .v.water small { color: var(--muted); }
+.stat p { font-size: .9rem; color: var(--muted); margin-top: 6px; }
+.layers { counter-reset: l; list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.layers li { counter-increment: l; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px 14px 56px; position: relative; }
+.layers li::before { content: counter(l); position: absolute; left: 16px; top: 14px; width: 28px; height: 28px; border-radius: 50%; background: var(--sunk); display: grid; place-items: center; font: 600 .85rem var(--f-mono); }
+.layers b { display: block; margin-bottom: 2px; }
+.layers span { color: var(--muted); font-size: .92rem; }
+/* SSS */
+.faq { display: grid; gap: 8px; max-width: 860px; }
+.faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; }
+.faq summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--muted); font-family: var(--f-mono); }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { margin-top: 8px; color: var(--muted); }
+/* Yol haritası */
+.road { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 12px; }
+.road div { border-top: 3px solid var(--line); padding-top: 10px; }
+.road div.now { border-top-color: var(--accent); }
+.road b { display: block; }
+.road span { color: var(--muted); font-size: .9rem; }
+
+/* v0.11: ekran görüntüleri ızgarası, kanıt, alanlar, effort, bot */
+.shots { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.shot a.zoom { display: block; cursor: zoom-in; }
+#lbox { position: fixed; inset: 0; z-index: 100; background: rgba(20,20,19,.82); display: flex; align-items: flex-start; justify-content: center; overflow: auto; padding: 48px 16px 24px; cursor: zoom-out; }
+#lbox[hidden] { display: none; }
+#lbox img { max-width: min(1100px, 100%); height: auto; border-radius: 10px; box-shadow: 0 20px 60px rgba(0,0,0,.4); background: #fff; }
+#lbox button { position: fixed; top: 10px; right: 12px; font: 600 1rem var(--f-sans, sans-serif); background: #fff; color: #141413; border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+.shot.narrow { grid-column: auto; }
+.shot.narrow img { max-width: 300px; }
+.shot figcaption { padding: 6px 4px 2px; }
+@media (max-width: 860px) { .shots { grid-template-columns: minmax(0, 1fr); } }
+.dgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 12px; }
+.dcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.dcard h3 { font-size: 1.1rem; display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.dcard .badge { font: 600 .62rem var(--f-mono); letter-spacing: .05em; border-radius: 999px; padding: 2px 7px; background: var(--sunk); color: var(--muted); white-space: nowrap; }
+.dcard .badge.risk { background: color-mix(in srgb, var(--crit) 14%, var(--surface)); color: color-mix(in srgb, var(--crit) 72%, var(--ink)); }
+.dcard .subs { display: flex; flex-wrap: wrap; gap: 4px; }
+.dcard .subs span { font-size: .78rem; background: var(--sunk); border-radius: 999px; padding: 1px 8px; }
+.dcard .kw { font-size: .82rem; color: var(--muted); font-family: var(--f-mono); line-height: 1.5; }
+.efftable { display: grid; gap: 8px; margin-top: 24px; }
+.effrow { display: grid; grid-template-columns: 9.5em minmax(0, 1fr) 4.5em; gap: 14px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
+.effrow b { font-family: var(--f-display); font-size: 1.1rem; font-weight: 500; }
+.effrow span.d { font-size: .92rem; color: var(--muted); }
+.effrow .r { font-family: var(--f-mono); font-size: .8rem; text-align: right; color: var(--ink); }
+@media (max-width: 640px) { .effrow { grid-template-columns: minmax(0, 1fr) auto; } .effrow span.d { grid-column: 1 / -1; order: 3; } }
+.proofchart { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+.proofchart svg { display: block; width: 100%; height: auto; }
+.honest { background: color-mix(in srgb, var(--warn) 9%, var(--surface)); border: 1px solid color-mix(in srgb, var(--warn) 35%, var(--line)); border-radius: 12px; padding: 14px 18px; margin-top: 18px; }
+.honest h3 { font-size: 1.05rem; margin-bottom: 6px; }
+.honest ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; font-size: .93rem; }
+.ftbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.linkbtn { background: none; border: 0; padding: 0; font: inherit; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+/* Tiko: piksel bot */
+#tfbot { position: absolute; left: 0; top: 0; z-index: 50; pointer-events: none; width: calc(14px * var(--px, 4)); height: calc(17px * var(--px, 4)); will-change: transform; --px: 4; --lx: 0; --ly: 0; }
+@media (max-width: 600px) { #tfbot { --px: 3; } }
+#tfbot[hidden] { display: none; }
+#tfbot .shadow { position: absolute; left: 12%; right: 12%; bottom: -3px; height: 6px; border-radius: 50%; background: rgba(0,0,0,.22); filter: blur(1px); }
+#tfbot .sp { position: absolute; inset: 0; transform-origin: 50% 100%; }
+#tfbot svg { width: 100%; height: 100%; display: block; shape-rendering: crispEdges; overflow: visible; }
+#tfbot .body { animation: tfbob 1.1s steps(1) infinite; }
+@keyframes tfbob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(0.6px); } }
+#tfbot .lt { animation: tflt 1.6s steps(1) infinite; }
+@keyframes tflt { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+#tfbot .pupil { transform: translate(calc(var(--lx) * 1px), calc(var(--ly) * 1px)); transition: transform .12s steps(2); }
+#tfbot .lid { opacity: 0; animation: tfblink 4.2s steps(1) infinite; }
+@keyframes tfblink { 0%, 93%, 100% { opacity: 0; } 94%, 97% { opacity: 1; } }
+#tfbot.sleep .lid { animation: none; opacity: 1; }
+#tfbot .lgB { display: none; }
+#tfbot.go .lgA { animation: tfstepA .26s steps(1) infinite; }
+#tfbot.go .lgB { display: block; animation: tfstepB .26s steps(1) infinite; }
+@keyframes tfstepA { 0% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes tfstepB { 0% { opacity: 0; } 50% { opacity: 1; } }
+#tfbot.go .armL { transform-origin: 3px 12px; animation: tfarm .26s steps(1) infinite; }
+#tfbot.go .armR { transform-origin: 11px 12px; animation: tfarm .26s steps(1) infinite reverse; }
+@keyframes tfarm { 0% { transform: translateY(0); } 50% { transform: translateY(-1px); } }
+#tfbot.wave .armR { animation: tfwave .5s steps(1) 3; }
+@keyframes tfwave { 0% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+#tfbot .z { position: absolute; right: -10px; top: -10px; font: 600 12px var(--f-mono); color: var(--muted); opacity: 0; }
+#tfbot.sleep .z { opacity: 1; animation: tfz 2s steps(4) infinite; }
+@keyframes tfz { 0% { transform: translate(0, 0); opacity: 0; } 30% { opacity: 1; } 100% { transform: translate(6px, -12px); opacity: 0; } }
+#tfbot .bub { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); width: max-content; max-width: min(240px, 70vw); background: var(--surface); color: var(--ink); border: 2px solid var(--ink); font: 500 .78rem/1.4 var(--f-mono); padding: 6px 9px; opacity: 0; transition: opacity .15s; box-shadow: 3px 3px 0 rgba(0,0,0,.18); }
+#tfbot .bub::after { content: ""; position: absolute; left: 50%; bottom: -8px; width: 8px; height: 8px; margin-left: -4px; background: var(--surface); border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg) translate(-3px, -3px); }
+#tfbot.say .bub { opacity: 1; }
+#tfbot.bub-r .bub { left: auto; right: -8px; transform: none; }
+#tfbot.bub-l .bub { left: -8px; transform: none; }
+@media print { #tfbot { display: none; } }
+
+footer { border-top: 1px solid var(--line); padding-block: 28px 40px; font-size: .85rem; color: var(--muted); }
+footer .wrap { display: grid; gap: 8px; }
+footer .langs { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0; padding: 0; list-style: none; }
+footer .langs a { color: var(--muted); }
+footer .langs a[aria-current] { color: var(--ink); font-weight: 600; text-decoration: none; }
+/* Dil önerisi şeridi: yönlendirme yok, yalnızca öneri */
+.langhint { background: var(--sunk); border-bottom: 1px solid var(--line); font-size: .9rem; }
+.langhint[hidden] { display: none; }
+.langhint .wrap { display: flex; align-items: center; justify-content: center; gap: 4px 14px; flex-wrap: wrap; padding-block: 8px; text-align: center; }
+.langhint a { font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 2px; } /* vurgu rengi bu zeminde 4,5 kontrastın altında kalıyordu */
+.langhint button { background: none; border: 0; color: var(--muted); font: inherit; font-size: 1.15rem; line-height: 1; padding: 6px 10px; cursor: pointer; border-radius: 6px; }
+.langhint button:hover { color: var(--ink); }
+
+/* ---- 0.13: kahraman sahnesi, hikâye, ölçüm ---- */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.hero { position: relative; overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background: radial-gradient(60% 70% at 78% 40%, color-mix(in srgb, var(--meter) 16%, transparent), transparent 70%),
+    radial-gradient(var(--line) 1px, transparent 1.2px) 0 0 / 22px 22px;
+  -webkit-mask-image: linear-gradient(#000 55%, transparent); mask-image: linear-gradient(#000 55%, transparent); }
+.hero .wrap { position: relative; }
+.stagebox { min-width: 0; }
+.stage { position: relative; height: 500px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 26px 60px -32px rgba(20, 20, 19, .5); overflow: hidden; contain: strict; /* sahnedeki her kare yalnız bu kutunun yerleşimini yeniden hesaplar */ font-size: .86rem; line-height: 1.45; --tp: 6; }
+@media (max-width: 600px) { .stage { --tp: 4; } }
+.st-bar { height: 34px; display: flex; align-items: center; gap: 6px; padding: 0 12px; border-bottom: 1px solid var(--line); background: var(--bg); font: 500 .72rem var(--f-mono); color: var(--muted); white-space: nowrap; }
+.st-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); flex: none; }
+.st-on { margin-left: 8px; color: var(--ink); }
+.st-rep { margin-left: auto; overflow: hidden; text-overflow: ellipsis; }
+.st-user { position: absolute; right: 16px; top: 48px; max-width: 72%; background: var(--sunk); border-radius: 14px 14px 4px 14px; padding: 8px 12px 0; border-bottom: 8px solid var(--sunk); display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; white-space: pre-wrap; overflow-wrap: anywhere; transition: opacity .3s, transform .3s; }
+.st-ans { position: absolute; left: 16px; right: 16px; top: 178px; display: grid; gap: 9px; padding: 13px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg); transition: opacity .3s; }
+.st-ans i { height: 9px; border-radius: 5px; background: var(--line); transform-origin: left center; }
+.st-ans i:nth-child(1) { width: 92%; } .st-ans i:nth-child(2) { width: 78%; } .st-ans i:nth-child(3) { width: 86%; } .st-ans i:nth-child(4) { width: 52%; }
+.st-pill { position: absolute; left: 14px; bottom: 122px; width: min(330px, calc(100% - 28px)); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 8px 11px 9px; box-shadow: 0 10px 22px -14px rgba(0, 0, 0, .45); transition: opacity .25s, transform .25s; }
+.st-pl { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.st-pl b { font: 500 1.5rem/1.1 var(--f-display); font-variant-numeric: tabular-nums; }
+.st-pl span { color: var(--muted); font-size: .78rem; }
+.st-rg { font: .7rem var(--f-mono); color: var(--muted); }
+.st-meter { position: relative; height: 7px; border-radius: 4px; background: var(--sunk); overflow: hidden; margin-top: 6px; }
+.st-meter i { position: absolute; top: 0; bottom: 0; }
+.st-meter .u { left: 0; background: var(--used); opacity: .55; } .st-meter .r { background: var(--meter); opacity: .3; } .st-meter .p { background: var(--meter); }
+.st-adv { display: flex; align-items: center; gap: 7px; margin-top: 7px; font-weight: 600; font-size: .8rem; transition: opacity .25s; --tone: var(--ok); }
+.st-adv.t-up { --tone: var(--warn); } .st-adv.t-next { --tone: var(--accent); }
+.st-adv .ic { flex: none; width: 17px; height: 17px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--accent-ink); background: var(--tone); }
+.st-comp { position: absolute; left: 14px; right: 14px; bottom: 14px; height: 100px; border: 1px solid var(--line); border-radius: 16px; background: var(--bg); padding: 9px 12px; display: flex; flex-direction: column; justify-content: space-between; }
+.st-text { height: 3.05em; overflow: hidden; white-space: pre-wrap; overflow-wrap: anywhere; display: flex; flex-direction: column; justify-content: flex-end; }
+.st-text > span { display: block; }
+.st-ph { color: var(--muted); }
+.st-caret { display: inline-block; width: 2px; height: 1em; background: var(--accent); vertical-align: -2px; margin-left: 1px; animation: stcaret 1s steps(1) infinite; }
+@keyframes stcaret { 50% { opacity: 0; } }
+.st-row { display: flex; align-items: center; gap: 6px; font: 500 .72rem var(--f-mono); color: var(--muted); }
+.st-row span { border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; background: var(--surface); white-space: nowrap; }
+.st-row .st-send { margin-left: auto; width: 26px; height: 26px; padding: 0; display: inline-flex; align-items: center; justify-content: center; background: var(--accent); color: var(--accent-ink); border-color: transparent; font-size: .9rem; }
+/* Tiko (sahnede): varsayılan yer cevabın üst kenarı; canlıyken JS taşır */
+.tk { width: calc(14px * var(--tp, 5)); height: calc(17px * var(--tp, 5)); --lx: 0; --ly: 0; }
+.tk svg { width: 100%; height: 100%; display: block; shape-rendering: crispEdges; overflow: visible; }
+.tk .lgB { display: none; } .tk .lid { opacity: 0; }
+.tk .pupil { transform: translate(calc(var(--lx) * 1px), calc(var(--ly) * 1px)); }
+.tk.sit .lgA { animation: tfstepA .9s steps(1) infinite; } .tk.sit .lgB { display: block; animation: tfstepB .9s steps(1) infinite; }
+.tk.fly .body { animation: tfbob .5s steps(1) infinite; }
+.tk.nod .body { animation: tknod .32s steps(2) 3; }
+@keyframes tknod { 50% { transform: translateY(1px); } }
+.tk.clap .armL, .tk.clap .armR { animation: tfwave .3s steps(1) 4; }
+.tk .lid { animation: tfblink 4.2s steps(1) infinite; }
+.st-tiko { position: absolute; left: 22px; top: calc(178px - 15px * var(--tp)); z-index: 3; pointer-events: none; transition: opacity .25s; will-change: transform; }
+.stage.live .st-tiko { left: 0; top: 0; }
+.stage.tk-out .st-tiko { opacity: 0; }
+/* aşamalar (JS yokken ve az hareket tercihinde: "done") */
+.stage[data-ph="type"] .st-user, .stage[data-ph="hold"] .st-user { opacity: 0; transform: translateY(40px); }
+.stage[data-ph="type"] .st-ans, .stage[data-ph="hold"] .st-ans, .stage[data-ph="send"] .st-ans { opacity: 0; }
+.stage[data-ph="ans"] .st-ans i { animation: stln .7s ease-out both; }
+.stage[data-ph="ans"] .st-ans i:nth-child(2) { animation-delay: .7s; } .stage[data-ph="ans"] .st-ans i:nth-child(3) { animation-delay: 1.4s; } .stage[data-ph="ans"] .st-ans i:nth-child(4) { animation-delay: 2.1s; }
+@keyframes stln { from { transform: scaleX(0); } }
+.stage:not(.pill-on) .st-pill { opacity: 0; transform: translateY(8px); }
+.stage:not(.adv-on) .st-adv { opacity: 0; }
+.stage:not([data-ph="type"]) .st-caret { display: none; }
+.st-ctl { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.st-ctl .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.st-play { all: unset; cursor: pointer; margin-left: auto; font: 500 .78rem var(--f-mono); color: var(--muted); padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); }
+.st-play:hover { color: var(--ink); border-color: var(--muted); } .st-play:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.st-note { font-size: .8rem; color: var(--muted); margin-top: 8px; }
+@media (min-width: 941px) { .st-note { min-height: 4.8em; min-height: 3lh; } } /* yazı tipi gelince 2 → 3 satıra çıkıp alttaki bölümü itmesin (it: CLS 0,05) */
+.st-note a { white-space: nowrap; font-weight: 600; }
+#tfbot { transition: opacity .2s; } #tfbot.away { opacity: 0; }
+
+/* Hikâye: kaydırdıkça ilerler (--f: 0 → 1; JS yokken ve az hareket tercihinde 1 = son durum) */
+@supports (content-visibility: auto) { section.story { contain-intrinsic-size: auto 3200px; } } /* ekran dışındayken yerleşimi ertelenir (ilk boyama hızlansın); gerçek yükseklik telefonda ≈ 3300, masaüstünde ≈ 4300 px */
+.chaps { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
+.chap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
+.chap-txt { display: grid; gap: 8px; align-content: start; max-width: 30em; }
+.chap-txt .k { font: 500 .78rem var(--f-mono); letter-spacing: .06em; color: var(--accent); }
+.chap-txt h3 { font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem); line-height: 1.15; }
+.chap-txt p { color: var(--muted); font-size: 1.02rem; }
+.scene { --f: 1; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px; min-height: 250px; display: grid; align-content: center; gap: 12px; position: relative; overflow: hidden; font-size: .9rem; box-shadow: 0 18px 44px -32px rgba(20, 20, 19, .4); }
+@media (min-width: 900px) {
+  .chaps { gap: 0; }
+  .chap { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 56px; min-height: 78vh; }
+  .chap-txt { position: sticky; top: 30vh; }
+  .scene { position: sticky; top: 20vh; min-height: min(380px, 56vh); padding: 26px; }
+}
+.sc-comp { border: 1px solid var(--line); border-radius: 14px; background: var(--bg); padding: 10px 12px; min-height: 5.6em; white-space: pre-wrap; overflow-wrap: anywhere; }
+.sc-count { display: flex; justify-content: space-between; gap: 12px; font: 500 .78rem var(--f-mono); color: var(--muted); }
+.sc-count b { color: var(--ink); font-weight: 500; }
+.sc-big { font: 500 clamp(2.6rem, 2rem + 2.4vw, 3.6rem)/1 var(--f-display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.sc-sub { color: var(--muted); }
+.sc-meter { position: relative; height: 14px; border-radius: 7px; background: var(--sunk); overflow: hidden; }
+.sc-meter i { position: absolute; top: 0; bottom: 0; }
+.sc-meter .u { left: 0; width: 62%; background: var(--used); opacity: .55; }
+.sc-meter .r { left: 62%; background: var(--meter); opacity: .3; width: calc(var(--w-r, 2%) * var(--f)); }
+.sc-meter .p { left: 62%; background: var(--meter); width: calc(var(--w-p, 1%) * var(--f)); }
+.sc-fade { opacity: clamp(0, calc((var(--f) - .55) * 4), 1); }
+.sc-card { border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; display: grid; gap: 6px; background: var(--bg); }
+.sc-card .q { color: var(--muted); font-size: .84rem; }
+.sc-card .a { display: flex; gap: 8px; align-items: center; font-weight: 600; --tone: var(--ok); }
+.sc-card .a.t-up { --tone: var(--warn); }
+.sc-card .a .ic { flex: none; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; color: var(--accent-ink); background: var(--tone); }
+.sc-card .n { font: .76rem var(--f-mono); color: var(--muted); }
+.s3a { opacity: clamp(0, calc(var(--f) * 3), 1); transform: translateY(calc((1 - clamp(0, calc(var(--f) * 3), 1)) * 16px)); }
+.s3b { opacity: clamp(0, calc((var(--f) - .45) * 3), 1); transform: translateY(calc((1 - clamp(0, calc((var(--f) - .45) * 3), 1)) * 16px)); }
+.sc-tk { position: relative; height: 230px; }
+.sc-tk .sc-ans { position: absolute; left: 0; right: 0; top: 96px; display: grid; gap: 8px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+.sc-tk .sc-ans i { height: 8px; border-radius: 4px; background: var(--line); } .sc-tk .sc-ans i:nth-child(1) { width: 88%; } .sc-tk .sc-ans i:nth-child(2) { width: 64%; }
+.sc-tk .sc-box { position: absolute; left: 0; right: 0; bottom: 0; height: 44px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+.sc-tk .tk { position: absolute; left: 18px; top: calc(96px - 15px * var(--tp)); --tp: 5; transform: translate(calc((1 - var(--f)) * 46%), calc((1 - var(--f)) * 96px)); }
+.sc-eco { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 18px; align-items: center; }
+.sc-eco svg { width: 100%; height: auto; display: block; overflow: visible; }
+.sc-eco .wtr { transform-box: fill-box; transform-origin: bottom; transform: scaleY(var(--f)); }
+.sc-eco dl { margin: 0; display: grid; gap: 10px; }
+.sc-eco dt { font: 500 .72rem var(--f-mono); letter-spacing: .05em; color: var(--muted); text-transform: uppercase; }
+.sc-eco dd { margin: 0; }
+.sc-eco dd b { font: 500 1.7rem/1.1 var(--f-display); color: var(--water); display: block; }
+.sc-eco dd.en b { color: var(--ok); }
+.sc-eco dd span { font-size: .8rem; color: var(--muted); display: block; }
+.sc-tag { justify-self: start; font: 600 .66rem var(--f-mono); letter-spacing: .06em; color: var(--muted); background: var(--sunk); border-radius: 999px; padding: 2px 8px; }
+.sc-ex { font-size: .82rem; color: var(--muted); }
+.sc-nat { display: grid; gap: 8px; }
+.sc-nat .sc-big { color: var(--ok); transform-origin: left bottom; transform: scale(calc(.6 + .4 * var(--f))); }
+/* Kendin dene */
+.lab { display: grid; grid-template-columns: minmax(0, 1fr); max-width: 760px; }
+/* Ölçüm */
+.mgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+@media (max-width: 860px) { .mgrid { grid-template-columns: minmax(0, 1fr); } }
+.mcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.mcard h3 { font-size: 1.25rem; }
+.mcard p { font-size: .93rem; color: var(--muted); }
+.mtiles { display: grid; gap: 10px; }
+.mtile { display: grid; grid-template-columns: 6.2em minmax(0, 1fr); gap: 12px; align-items: baseline; }
+.mtile b { font: 500 1.5rem/1.1 var(--f-display); white-space: nowrap; }
+.mtile b.g { color: var(--ok); } .mtile b.w { color: var(--warn); } .mtile b.c { color: var(--crit); }
+.mtile span { font-size: .9rem; color: var(--muted); }
+.dots { display: flex; flex-wrap: wrap; gap: 4px; }
+.dots i { width: 11px; height: 11px; border-radius: 3px; background: var(--used); }
+.dots i.g { background: var(--ok); } .dots i.c { background: var(--crit); } .dots i.w { background: var(--warn); }
+.mleg { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .78rem; color: var(--muted); }
+.mleg i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; background: var(--used); }
+.mleg i.g { background: var(--ok); } .mleg i.c { background: var(--crit); } .mleg i.w { background: var(--warn); }
+.mbars { display: grid; gap: 9px; }
+.mbar { display: grid; grid-template-columns: minmax(0, 1fr) 4.2em; gap: 4px 10px; align-items: center; font-size: .84rem; }
+.mbar .l { grid-column: 1 / -1; color: var(--muted); }
+.mbar .t { height: 12px; border-radius: 6px; background: var(--sunk); overflow: hidden; }
+.mbar .t i { display: block; height: 100%; border-radius: 6px; background: var(--used); }
+.mbar.b .t i { background: var(--meter); }
+.mbar .v { font: 500 .88rem var(--f-mono); text-align: right; }
+/* Görünürken beliren bloklar (yalnızca JS ve hareket tercihi uygunken eklenir) */
+.rv { opacity: 0; transform: translateY(14px); transition: opacity .5s ease-out, transform .5s ease-out; transition-delay: var(--rd, 0ms); }
+.rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<div id="langHint" class="langhint" hidden=""><div class="wrap"><span id="lhT"></span><a id="lhA" href="./"></a><button type="button" id="lhX">×</button></div></div>
+<script>(function(){var P="en",H={"tr":{"a":"Bu sayfa Türkçe de var.","g":"Türkçe sayfaya geç","c":"Kapat","u":"../","l":"tr"},"en":{"a":"This page is also available in English.","g":"Switch to English","c":"Close","u":"../en/","l":"en"},"de":{"a":"Diese Seite gibt es auch auf Deutsch.","g":"Zur deutschen Seite","c":"Schließen","u":"../de/","l":"de"},"fr":{"a":"Cette page existe aussi en français.","g":"Voir la page en français","c":"Fermer","u":"../fr/","l":"fr"},"es":{"a":"Esta página también está en español.","g":"Ver en español","c":"Cerrar","u":"../es/","l":"es"},"it":{"a":"Questa pagina è disponibile anche in italiano.","g":"Vai alla pagina in italiano","c":"Chiudi","u":"../it/","l":"it"},"pt":{"a":"Esta página também está em português.","g":"Ver em português","c":"Fechar","u":"../pt/","l":"pt-BR"},"ru":{"a":"Эта страница есть и на русском.","g":"Открыть на русском","c":"Закрыть","u":"../ru/","l":"ru"},"ja":{"a":"このページは日本語でもご覧いただけます。","g":"日本語ページへ","c":"閉じる","u":"../ja/","l":"ja"},"zh":{"a":"本页面也有简体中文版本。","g":"切换到中文","c":"关闭","u":"../zh/","l":"zh-CN"}};var el=document.getElementById("langHint"),s=null,w=null;try{if(localStorage.getItem("tf-hint-off")==="1")return;s=localStorage.getItem("tf-lang");}catch(e){}if(s&&H[s])w=s;else{var L=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||""];for(var i=0;i<L.length;i++){var b=String(L[i]).toLowerCase().split(/[-_]/)[0];if(H[b]){w=b;break;}}}if(!w||w===P)return;var h=H[w],a=document.getElementById("lhA"),x=document.getElementById("lhX");el.lang=h.l;document.getElementById("lhT").textContent=h.a;a.textContent=h.g;a.href=h.u;x.setAttribute("aria-label",h.c);x.title=h.c;el.hidden=false;a.addEventListener("click",function(){try{localStorage.setItem("tf-lang",w);}catch(e){}});x.addEventListener("click",function(){el.hidden=true;try{localStorage.setItem("tf-hint-off","1");}catch(e){}});})();</script>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11.5" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M13 13 L19.5 7.5" stroke="var(--meter)" stroke-width="2.6" stroke-linecap="round"></path><circle cx="13" cy="13" r="2" fill="currentColor"></circle></svg>
+      <span data-i="brand">Token Forecast</span>
+    </a>
+    <nav class="links" aria-label="Sayfa">
+      <a href="#ozellikler" class="hide-s" data-i="nav0">Features</a>
+      <a href="#nasil" class="hide-s" data-i="nav1">How it works</a>
+      <a href="#ogrenme" class="hide-s" data-i="nav2">Learning</a>
+      <a href="#olcum" class="hide-s" data-i="nav5">Measurement</a>
+      <a href="#doga" class="hide-s" data-i="nav6">Nature</a>
+      <a href="#gizlilik" class="hide-s" data-i="nav3">Privacy</a>
+      <a href="#kurulum" data-i="nav4">Install</a>
+      <span class="lang"><select id="langSel" aria-label="Dil / Language"><option value="tr">Türkçe</option><option value="en" selected="">English</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="es">Español</option><option value="it">Italiano</option><option value="pt">Português</option><option value="ru">Русский</option><option value="ja">日本語</option><option value="zh">简体中文</option></select></span>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap grid">
+      <div>
+        <p class="eyebrow" data-i="eyebrow">Free browser extension for your Claude usage limit</p>
+        <h1 data-i="h1">Know <em>before</em> you send.</h1>
+        <p class="lede" data-i="lede">Token Forecast tells you how much of your 5-hour and weekly Claude limit a message will use before you hit send. It also shows which model and which effort setting are enough, with reasons, and learns your plan over time.</p>
+        <div class="cta">
+          <a class="btn primary" href="https://chromewebstore.google.com/detail/chbjpjhmkpgfocnfpdafkakjicdicige" target="_blank" rel="noopener noreferrer" data-i="cta1">Add to Chrome · free</a>
+          <a class="btn ghost" href="#nasil" data-i="cta2">How it works</a>
+        </div>
+        <div class="trust">
+          <span data-i="tr1">No account</span><span data-i="tr2">No server</span><span data-i="tr3">Your messages never leave your device</span><span data-i="tr4">10 interface languages</span>
+        </div>
+      </div>
+
+      <div class="stagebox">
+        <div class="stage pill-on adv-on" id="stage" data-ph="done" aria-hidden="true">
+          <div class="st-bar"><i></i><i></i><i></i><span class="st-on" data-i="stOn">on claude.ai</span><span class="st-rep" data-i="stRep">illustrative interface</span></div>
+          <div class="st-user" id="stUser">Translate this paragraph into Turkish: I can't make tomorrow morning's meeting, I'll share my notes in the evening.</div>
+          <div class="st-ans" id="stAns"><i></i><i></i><i></i><i></i></div>
+          <div class="st-pill" id="stPill">
+            <div class="st-pl"><b id="stBig">≈ 0.2%</b><span id="stSub">of your 5-hour limit</span></div>
+            <div class="st-rg" id="stRg">80% range: 0.03%–1.7%</div>
+            <div class="st-meter"><i class="u" id="stU" style="width: 62%;"></i><i class="r" id="stR" style="left: 62%; width: 1.72812%;"></i><i class="p" id="stP" style="left: 62%; width: 0.8%;"></i></div>
+            <div class="st-adv t-save" id="stAdv"><span class="ic" id="stIc">↓</span><span id="stAdvT">Haiku 5.5 is enough for this task · effort: Low</span></div>
+          </div>
+          <div class="st-comp">
+            <div class="st-text"><span><span id="stType"></span><span class="st-caret"></span><span class="st-ph" id="stPh" data-i="stPh">Write your message…</span></span></div>
+            <div class="st-row"><span id="stModel">Opus 5.5</span><span id="stEff">High</span><span class="st-send">↑</span></div>
+          </div>
+          <div class="st-tiko tk sit" id="stTiko"><svg viewBox="0 0 14 17" aria-hidden="true" focusable="false">
+    <g class="lgA"><rect x="4" y="15" width="1" height="1" fill="#3b2415"></rect><rect x="5" y="15" width="1" height="1" fill="#f28c28"></rect><rect x="8" y="15" width="1" height="1" fill="#f28c28"></rect><rect x="9" y="15" width="1" height="1" fill="#3b2415"></rect><rect x="3" y="16" width="3" height="1" fill="#3b2415"></rect><rect x="8" y="16" width="3" height="1" fill="#3b2415"></rect></g><g class="lgB"><rect x="3" y="15" width="3" height="1" fill="#3b2415"></rect><rect x="8" y="15" width="1" height="1" fill="#f28c28"></rect><rect x="9" y="15" width="1" height="1" fill="#3b2415"></rect><rect x="7" y="16" width="3" height="1" fill="#3b2415"></rect></g>
+    <g class="body">
+      <g class="armL"><rect x="1" y="11" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="11" width="1" height="1" fill="#f28c28"></rect><rect x="1" y="12" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="12" width="1" height="1" fill="#f28c28"></rect><rect x="1" y="13" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="13" width="1" height="1" fill="#f28c28"></rect><rect x="1" y="14" width="2" height="1" fill="#3b2415"></rect></g><g class="armR"><rect x="11" y="11" width="1" height="1" fill="#f28c28"></rect><rect x="12" y="11" width="1" height="1" fill="#3b2415"></rect><rect x="11" y="12" width="1" height="1" fill="#f28c28"></rect><rect x="12" y="12" width="1" height="1" fill="#3b2415"></rect><rect x="11" y="13" width="1" height="1" fill="#f28c28"></rect><rect x="12" y="13" width="1" height="1" fill="#3b2415"></rect><rect x="11" y="14" width="2" height="1" fill="#3b2415"></rect></g>
+      <rect x="3" y="11" width="1" height="1" fill="#3b2415"></rect><rect x="4" y="11" width="6" height="1" fill="#f28c28"></rect><rect x="10" y="11" width="1" height="1" fill="#3b2415"></rect><rect x="3" y="12" width="1" height="1" fill="#3b2415"></rect><rect x="4" y="12" width="1" height="1" fill="#f28c28"></rect><rect x="5" y="12" width="2" height="1" fill="#6fcf8a"></rect><rect x="7" y="12" width="1" height="1" fill="#ffd84a"></rect><rect x="8" y="12" width="1" height="1" fill="#e0533a"></rect><rect x="9" y="12" width="1" height="1" fill="#f28c28"></rect><rect x="10" y="12" width="1" height="1" fill="#3b2415"></rect><rect x="3" y="13" width="1" height="1" fill="#3b2415"></rect><rect x="4" y="13" width="6" height="1" fill="#f28c28"></rect><rect x="10" y="13" width="1" height="1" fill="#3b2415"></rect><rect x="3" y="14" width="8" height="1" fill="#3b2415"></rect><rect x="2" y="2" width="10" height="1" fill="#3b2415"></rect><rect x="1" y="3" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="3" width="10" height="1" fill="#f28c28"></rect><rect x="12" y="3" width="1" height="1" fill="#3b2415"></rect><rect x="1" y="4" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="4" width="1" height="1" fill="#f28c28"></rect><rect x="3" y="4" width="2" height="1" fill="#ffc98b"></rect><rect x="5" y="4" width="7" height="1" fill="#f28c28"></rect><rect x="12" y="4" width="1" height="1" fill="#3b2415"></rect><rect x="1" y="5" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="5" width="10" height="1" fill="#f28c28"></rect><rect x="12" y="5" width="1" height="1" fill="#3b2415"></rect><rect x="1" y="6" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="6" width="10" height="1" fill="#f28c28"></rect><rect x="12" y="6" width="1" height="1" fill="#3b2415"></rect><rect x="1" y="7" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="7" width="1" height="1" fill="#ff8f70"></rect><rect x="3" y="7" width="1" height="1" fill="#f28c28"></rect><rect x="4" y="7" width="1" height="1" fill="#3b2415"></rect><rect x="5" y="7" width="4" height="1" fill="#f28c28"></rect><rect x="9" y="7" width="1" height="1" fill="#3b2415"></rect><rect x="10" y="7" width="1" height="1" fill="#f28c28"></rect><rect x="11" y="7" width="1" height="1" fill="#ff8f70"></rect><rect x="12" y="7" width="1" height="1" fill="#3b2415"></rect><rect x="1" y="8" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="8" width="3" height="1" fill="#f28c28"></rect><rect x="5" y="8" width="4" height="1" fill="#3b2415"></rect><rect x="9" y="8" width="3" height="1" fill="#f28c28"></rect><rect x="12" y="8" width="1" height="1" fill="#3b2415"></rect><rect x="1" y="9" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="9" width="10" height="1" fill="#f28c28"></rect><rect x="12" y="9" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="10" width="10" height="1" fill="#3b2415"></rect>
+      <g class="lt"><rect x="6" y="0" width="2" height="1" fill="#ffd84a"></rect></g><rect x="6" y="1" width="2" height="1" fill="#3b2415"></rect>
+      <g class="pupil"><rect x="3" y="5" width="2" height="2" fill="#3b2415"></rect><rect x="9" y="5" width="2" height="2" fill="#3b2415"></rect><rect x="3" y="5" width="1" height="1" fill="#ffffff"></rect><rect x="9" y="5" width="1" height="1" fill="#ffffff"></rect></g>
+      <g class="lid"><rect x="2" y="5" width="4" height="2" fill="#f28c28"></rect><rect x="8" y="5" width="4" height="2" fill="#f28c28"></rect><rect x="3" y="6" width="2" height="1" fill="#3b2415"></rect><rect x="9" y="6" width="2" height="1" fill="#3b2415"></rect></g>
+    </g></svg></div>
+        </div>
+        <div class="st-ctl"><span class="chips" id="stTabs" role="group" aria-label="Example messages"><button type="button" class="chip" aria-pressed="true">Translate</button><button type="button" class="chip" aria-pressed="false">Code bug</button><button type="button" class="chip" aria-pressed="false">Derivation</button></span><button type="button" class="st-play" id="stPlay" aria-pressed="true">▶ Play</button></div>
+        <p class="st-note"><span data-i="stNote">The interface is illustrative; the numbers come from the extension's real forecasting engine (assuming a Pro plan, a new chat and 62% of the 5-hour limit used).</span> <a href="#dene" data-i="stTry">Try your own message ↓</a></p>
+        <p class="sr-only" id="stSr">Translate (Opus 5.5): ≈ 0.2% of your 5-hour limit. Haiku 5.5 is enough for this task · effort: Low. Code bug (Sonnet 5.5): ≈ 0.2% of your 5-hour limit. Sonnet 5.5 fits this task · effort: Medium. Derivation (Sonnet 5.5): ≈ 0.4% of your 5-hour limit. This may be hard for Sonnet 5.5: Opus 5.5 is recommended · effort: High.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band story" id="hikaye">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="syE">A MESSAGE'S JOURNEY</p>
+        <h2 data-i="syH">From the first keystroke to the end of the week.</h2>
+        <p data-i="syP">Scroll down to see, step by step, what the extension does with a single message.</p>
+      </div>
+      <ol class="chaps" id="chaps">
+        <li class="chap"><div class="chap-txt"><span class="k" data-i="sy1k">1 · TYPE</span><h3 data-i="sy1h">Start typing.</h3><p data-i="sy1p">While you type, the extension counts your message, attachments and chat history in your browser. Nothing you write leaves your device.</p></div>
+          <div class="scene" data-sc="1" aria-hidden="true"><div class="sc-comp" id="sc1T">Translate this paragraph into Turkish: I can't make tomorrow morning's meeting, I'll share my notes in the evening.</div><div class="sc-count"><span id="sc1L"></span><b id="sc1N">≈ 33 token</b></div></div></li>
+        <li class="chap"><div class="chap-txt"><span class="k" data-i="sy2k">2 · FORECAST</span><h3 data-i="sy2h">See what it will cost before you send.</h3><p data-i="sy2p">The pill shows the share of your 5-hour and weekly limit this message will take, with an 80% range. A range rather than a single number, because the length of the answer can't be known in advance.</p></div>
+          <div class="scene" data-sc="2" aria-hidden="true"><div><div class="sc-big" id="sc2B">≈ 0.2%</div><div class="sc-sub" id="sc2S">of your 5-hour limit</div></div><div class="sc-meter" id="sc2M" style="--w-r: 1.7281168148371955%; --w-p: 0.8%;"><i class="u"></i><i class="r"></i><i class="p"></i></div><div class="sc-count sc-fade"><span id="sc2R">80% range: 0.03%–1.7%</span><b id="sc2W">WEEKLY ≈ 0.02%</b></div></div></li>
+        <li class="chap"><div class="chap-txt"><span class="k" data-i="sy3k">3 · MODEL SUGGESTION</span><h3 data-i="sy3h">The lightest model that's enough.</h3><p data-i="sy3p">For a simple translation it says Haiku is enough and how much you'd save. When unsure it doesn't suggest a light model: “a site with a translation system” is a build job, not a translation.</p></div>
+          <div class="scene" data-sc="3" aria-hidden="true"><div class="sc-card s3a"><div class="q" id="sc3Q1">Translate this paragraph into Turkish: I can't make tomorrow morning's meeting, I'll share my notes in the evening.</div><div class="a t-save" id="sc3A1"><span class="ic">↓</span><span>Haiku 5.5 is enough for this task · effort: Low</span></div><div class="n" id="sc3N1">0.2% → 0.03%</div></div><div class="sc-card s3b"><div class="q" id="sc3Q2">I need a website built with a translation system, it is a hard job</div><div class="a t-up" id="sc3A2"><span class="ic">↑</span><span>This may be hard for Haiku 5.5: Sonnet 5.5 is recommended · effort: Medium</span></div><div class="n" id="sc3N2">Writing code · low confidence</div></div></div></li>
+        <li class="chap"><div class="chap-txt"><span class="k" data-i="sy4k">4 · TIKO</span><h3 data-i="sy4h">Tiko sits next to you.</h3><p data-i="sy4p">The tiny bot beside the message box shows three things the extension already knows: the forecast, the suggestion, the limit. It follows your cursor while you type and sits on top of the answer, swinging its feet, while it arrives. It reads no text, and you can turn it off in the settings.</p></div>
+          <div class="scene" data-sc="4" aria-hidden="true"><div class="sc-tk"><div class="sc-ans"><i></i><i></i></div><div class="sc-box"></div><div class="tk sit" id="sc4K"><svg viewBox="0 0 14 17" aria-hidden="true" focusable="false">
+    <g class="lgA"><rect x="4" y="15" width="1" height="1" fill="#3b2415"></rect><rect x="5" y="15" width="1" height="1" fill="#f28c28"></rect><rect x="8" y="15" width="1" height="1" fill="#f28c28"></rect><rect x="9" y="15" width="1" height="1" fill="#3b2415"></rect><rect x="3" y="16" width="3" height="1" fill="#3b2415"></rect><rect x="8" y="16" width="3" height="1" fill="#3b2415"></rect></g><g class="lgB"><rect x="3" y="15" width="3" height="1" fill="#3b2415"></rect><rect x="8" y="15" width="1" height="1" fill="#f28c28"></rect><rect x="9" y="15" width="1" height="1" fill="#3b2415"></rect><rect x="7" y="16" width="3" height="1" fill="#3b2415"></rect></g>
+    <g class="body">
+      <g class="armL"><rect x="1" y="11" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="11" width="1" height="1" fill="#f28c28"></rect><rect x="1" y="12" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="12" width="1" height="1" fill="#f28c28"></rect><rect x="1" y="13" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="13" width="1" height="1" fill="#f28c28"></rect><rect x="1" y="14" width="2" height="1" fill="#3b2415"></rect></g><g class="armR"><rect x="11" y="11" width="1" height="1" fill="#f28c28"></rect><rect x="12" y="11" width="1" height="1" fill="#3b2415"></rect><rect x="11" y="12" width="1" height="1" fill="#f28c28"></rect><rect x="12" y="12" width="1" height="1" fill="#3b2415"></rect><rect x="11" y="13" width="1" height="1" fill="#f28c28"></rect><rect x="12" y="13" width="1" height="1" fill="#3b2415"></rect><rect x="11" y="14" width="2" height="1" fill="#3b2415"></rect></g>
+      <rect x="3" y="11" width="1" height="1" fill="#3b2415"></rect><rect x="4" y="11" width="6" height="1" fill="#f28c28"></rect><rect x="10" y="11" width="1" height="1" fill="#3b2415"></rect><rect x="3" y="12" width="1" height="1" fill="#3b2415"></rect><rect x="4" y="12" width="1" height="1" fill="#f28c28"></rect><rect x="5" y="12" width="2" height="1" fill="#6fcf8a"></rect><rect x="7" y="12" width="1" height="1" fill="#ffd84a"></rect><rect x="8" y="12" width="1" height="1" fill="#e0533a"></rect><rect x="9" y="12" width="1" height="1" fill="#f28c28"></rect><rect x="10" y="12" width="1" height="1" fill="#3b2415"></rect><rect x="3" y="13" width="1" height="1" fill="#3b2415"></rect><rect x="4" y="13" width="6" height="1" fill="#f28c28"></rect><rect x="10" y="13" width="1" height="1" fill="#3b2415"></rect><rect x="3" y="14" width="8" height="1" fill="#3b2415"></rect><rect x="2" y="2" width="10" height="1" fill="#3b2415"></rect><rect x="1" y="3" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="3" width="10" height="1" fill="#f28c28"></rect><rect x="12" y="3" width="1" height="1" fill="#3b2415"></rect><rect x="1" y="4" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="4" width="1" height="1" fill="#f28c28"></rect><rect x="3" y="4" width="2" height="1" fill="#ffc98b"></rect><rect x="5" y="4" width="7" height="1" fill="#f28c28"></rect><rect x="12" y="4" width="1" height="1" fill="#3b2415"></rect><rect x="1" y="5" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="5" width="10" height="1" fill="#f28c28"></rect><rect x="12" y="5" width="1" height="1" fill="#3b2415"></rect><rect x="1" y="6" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="6" width="10" height="1" fill="#f28c28"></rect><rect x="12" y="6" width="1" height="1" fill="#3b2415"></rect><rect x="1" y="7" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="7" width="1" height="1" fill="#ff8f70"></rect><rect x="3" y="7" width="1" height="1" fill="#f28c28"></rect><rect x="4" y="7" width="1" height="1" fill="#3b2415"></rect><rect x="5" y="7" width="4" height="1" fill="#f28c28"></rect><rect x="9" y="7" width="1" height="1" fill="#3b2415"></rect><rect x="10" y="7" width="1" height="1" fill="#f28c28"></rect><rect x="11" y="7" width="1" height="1" fill="#ff8f70"></rect><rect x="12" y="7" width="1" height="1" fill="#3b2415"></rect><rect x="1" y="8" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="8" width="3" height="1" fill="#f28c28"></rect><rect x="5" y="8" width="4" height="1" fill="#3b2415"></rect><rect x="9" y="8" width="3" height="1" fill="#f28c28"></rect><rect x="12" y="8" width="1" height="1" fill="#3b2415"></rect><rect x="1" y="9" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="9" width="10" height="1" fill="#f28c28"></rect><rect x="12" y="9" width="1" height="1" fill="#3b2415"></rect><rect x="2" y="10" width="10" height="1" fill="#3b2415"></rect>
+      <g class="lt"><rect x="6" y="0" width="2" height="1" fill="#ffd84a"></rect></g><rect x="6" y="1" width="2" height="1" fill="#3b2415"></rect>
+      <g class="pupil"><rect x="3" y="5" width="2" height="2" fill="#3b2415"></rect><rect x="9" y="5" width="2" height="2" fill="#3b2415"></rect><rect x="3" y="5" width="1" height="1" fill="#ffffff"></rect><rect x="9" y="5" width="1" height="1" fill="#ffffff"></rect></g>
+      <g class="lid"><rect x="2" y="5" width="4" height="2" fill="#f28c28"></rect><rect x="8" y="5" width="4" height="2" fill="#f28c28"></rect><rect x="3" y="6" width="2" height="1" fill="#3b2415"></rect><rect x="9" y="6" width="2" height="1" fill="#3b2415"></rect></g>
+    </g></svg></div></div></div></li>
+        <li class="chap"><div class="chap-txt"><span class="k" data-i="sy5k">5 · WEEKLY REPORT</span><h3 data-i="sy5h">By the end of the week, the glass fills.</h3><p data-i="sy5p">For the messages where you switched to the lighter setting it suggested, the weekly report shows the water and energy equivalent of the compute you avoided. Every figure is an estimate with a low, middle and high range; Anthropic doesn't publish these numbers.</p></div>
+          <div class="scene" data-sc="5" aria-hidden="true"><span class="sc-tag" id="sc5T">Water and energy you saved this week</span><div class="sc-eco"><svg viewBox="0 0 110 150" id="sc5G"><defs><clipPath id="gcl"><path d="M14 10 L96 10 L86 140 L24 140 Z"></path></clipPath></defs><g clip-path="url(#gcl)"><rect class="wtr" x="0" y="54.9" width="110" height="85.1" fill="var(--water)" opacity=".8"></rect></g><path d="M14 10 L96 10 L86 140 L24 140 Z" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"></path><path d="M27 24 L31 96" stroke="var(--line)" stroke-width="3" stroke-linecap="round"></path></svg><dl><div><dt id="sc5WL">Water</dt><dd><b id="sc5W">≈ 170 mL</b><span id="sc5WR">estimated range 69 mL – 510 mL</span><span id="sc5WU">≈ 0.7 × glass of water (250 mL)</span></dd></div><div><dt id="sc5EL">Energy</dt><dd class="en"><b id="sc5E">≈ 42 Wh</b><span id="sc5ER">estimated range 19 Wh – 96 Wh</span><span id="sc5EU">≈ 2.2 × phone charge (19 Wh)</span></dd></div></dl></div><p class="sc-ex" id="sc5X">Example: if you send 50 short translations with the suggested Haiku 5.5 and Low effort instead of Opus 5.5. An estimate.</p></div></li>
+        <li class="chap"><div class="chap-txt"><span class="k" data-i="sy6k">6 · NATURE</span><h3 data-i="sy6h">Small choices add up.</h3><p data-i="sy6p">Not picking the strongest model for a simple task is the easiest saving. The assumptions and sources behind the math are in the Nature section.</p><p><a href="#doga" data-i="syGo">Go to the Nature section ↓</a></p></div>
+          <div class="scene" data-sc="6" aria-hidden="true"><div class="sc-nat"><div class="sc-big" data-i="ec1v">≈ 40%</div><p class="sc-sub" data-i="ec1">Less compute when following the suggestions, across 240 sample messages (between 38% and 50%).</p></div></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band" id="dene">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="dnE">TRY IT YOURSELF</p>
+        <h2 data-i="dnH">Try it with your own message.</h2>
+        <p data-i="dnP">The box below runs the extension's real forecasting engine. Type your message; change the model, effort and plan. The forecast and suggestion update instantly, and nothing you type leaves your browser.</p>
+      </div>
+      <div class="lab">
+        <div class="demo" aria-labelledby="demo-title">
+          <div class="demo-head">
+            <span class="eyebrow" id="demo-title" data-i="demoT">TRY IT LIVE</span>
+            <span class="muted" style="font-size:.8rem" data-i="demoS">The extension's real forecasting engine, running in your browser</span>
+          </div>
+          <div class="demo-body">
+            <div class="chips" id="presets" aria-label="Örnekler"><button type="button" class="chip" id="preset-0">Translate</button><button type="button" class="chip" id="preset-1">Code bug</button><button type="button" class="chip" id="preset-2">Derivation</button><button type="button" class="chip" id="preset-3">Article</button><button type="button" class="chip" id="preset-4">Architecture</button></div>
+            <label for="prompt" class="eyebrow" data-i="demoL">YOUR MESSAGE</label>
+            <textarea id="prompt" spellcheck="false">I get an IndexError when I run this, why?
+```py
+for i in range(len(a)+1):
+    print(a[i])
+```</textarea>
+            <div class="controls">
+              <label><span data-i="cModel">Model</span>
+                <select id="model"><option>Haiku 5.5</option><option selected="">Sonnet 5.5</option><option>Opus 5.5</option><option>Fable 5.2</option></select></label>
+              <label><span data-i="cEffort">Effort</span>
+                <select id="effort"><option value="low" data-i="eLow">Low</option><option value="medium" selected="" data-i="eMed">Medium</option><option value="high" data-i="eHigh">High</option><option value="xhigh" data-i="eXh">Extra high</option><option value="max" data-i="eMax">Max</option></select></label>
+              <label><span data-i="cPlan">Plan</span>
+                <select id="plan"><option value="claude_free">Free</option><option value="claude_pro" selected="">Pro</option><option value="claude_max_5x">Max 5x</option><option value="claude_max_20x">Max 20x</option></select></label>
+              <label><span data-i="cChat">Chat</span>
+                <select id="chat"><option value="new" data-i="chNew" selected="">New chat</option><option value="mid" data-i="chMid">Short history (8K)</option><option value="long" data-i="chLong">Long history (190K)</option></select></label>
+            </div>
+            <div class="usedrow"><label for="used" data-i="usedL">5-hour limit used now</label><input type="range" id="used" min="0" max="99" value="62"><span id="usedV" class="mono">62%</span></div>
+
+            <div class="readout" aria-live="polite">
+              <div class="big" id="big">≈ 0.2%</div>
+              <div class="sub" id="bigSub">of your 5-hour limit<br><span class="mono">80% range: 0.06%–0.8%</span></div>
+              <div class="meter" aria-hidden="true"><i class="u" id="mU" style="width: 62%;"></i><i class="r" id="mR" style="left: 62%; width: 0.818418%;"></i><i class="p" id="mP" style="left: 62%; width: 0.6%;"></i></div>
+              <div class="scale"><span>0</span><span id="scaleNote">grey: used · orange: this message</span><span>100</span></div>
+            </div>
+            <div class="facts">
+              <div class="fact"><b data-i="fType">TASK</b><span id="fType">Debugging / code · high confidence</span></div>
+              <div class="fact"><b data-i="fDomL">TOPIC</b><span id="fDom">Software</span></div>
+              <div class="fact"><b data-i="fTok">INPUT → REPLY</b><span id="fTok" class="mono">46 → 183–1,028</span></div>
+              <div class="fact"><b data-i="fWeek">WEEKLY</b><span id="fWeek" class="mono">≈ 0.02%</span></div>
+            </div>
+            <div id="alerts"></div>
+            <div id="banner"><div class="banner t-ok">
+    <div class="line"><span class="ic" aria-hidden="true">✓</span><span class="ttl">Sonnet 5.5 fits this task · effort: Medium</span>
+      <button type="button" id="whyBtn" aria-expanded="false" aria-controls="whyBody">Why?</button></div>
+    <div class="body" id="whyBody" hidden="">
+      
+      <div><div class="lbl">Detected task</div>Debugging / code · easy · confidence: high</div>
+      <div><div class="lbl">Topic</div>Software. Effort rises with code complexity; for hard coding on Opus, Anthropic suggests trying Extra high first.</div>
+      <div><div class="lbl">Signals I saw</div><div class="tags"><span class="tag">the phrase “ndexError”</span><span class="tag">code block / code lines</span><span class="tag">learned model 99% sure</span><span class="tag">19 words</span></div></div>
+      <div><div class="lbl">Effort suggestion</div>I suggest Medium. Now: Medium.<div class="tags"><span class="tag">moderate task</span></div></div>
+      <div><div class="lbl">Basis</div>Sonnet handles single-file bugs; Opus for hard or system-wide bugs. Per Anthropic, Sonnet 5.5 offers "speed and capability for everyday workloads": code generation, data analysis, content creation. Effort basis: per Anthropic, Low and Medium stretch usage on routine tasks, High is the best balance, Extra high is for long coding and agent work, Max for the deepest reasoning.</div>
+      <div><div class="lbl">When to switch</div>Switch to Opus if the answer falls short or the task grows.</div>
+      <p class="cav">This suggestion is an estimate from rules plus a small learned model running on your device; answer quality was not measured. Your feedback and corrections tune it to you. <a href="https://platform.claude.com/docs/en/about-claude/models/choosing-a-model" target="_blank" rel="noopener noreferrer">Source: Anthropic's model selection guide</a></p>
+    </div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="neden">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="gapE">WHAT'S MISSING</p>
+        <h2 data-i="gapH">Claude Code shows your usage. The chat screen doesn't.</h2>
+        <p data-i="gapP">On claude.ai you have to open Settings → Usage, and it only tells you what you've already used. Limits often run out in the middle of a task, on a message you didn't expect. Token Forecast brings this into the chat and goes one step further: before you send.</p>
+      </div>
+      <div class="tablebox">
+        <table>
+          <thead><tr><th data-i="t0">Feature</th><th class="c" data-i="t1">Settings → Usage</th><th class="c" data-i="t2">Usage meters*</th><th class="c us" data-i="t3">Token Forecast</th></tr></thead>
+          <tbody>
+            <tr><td data-i="r1">5-hour and weekly percentage, reset time</td><td class="c y">✓</td><td class="c y">✓</td><td class="c us y">✓</td></tr>
+            <tr><td data-i="r2">Inside the chat, next to the message box</td><td class="c n">–</td><td class="c y">✓</td><td class="c us y">✓</td></tr>
+            <tr><td data-i="r3">What this message will cost, before sending</td><td class="c n">–</td><td class="c n">–</td><td class="c us y">✓</td></tr>
+            <tr><td data-i="r4">Which model is enough, and why</td><td class="c n">–</td><td class="c n">–</td><td class="c us y">✓</td></tr>
+            <tr><td data-i="r5">The hidden cost of switching models mid-chat</td><td class="c n">–</td><td class="c n">–</td><td class="c us y">✓</td></tr>
+            <tr><td data-i="r6">Roughly how many tasks your remaining limit allows</td><td class="c n">–</td><td class="c n">–</td><td class="c us y">✓</td></tr>
+            <tr><td data-i="r7">Learns from your plan and habits</td><td class="c n">–</td><td class="c n">–</td><td class="c us y">✓</td></tr>
+            <tr><td data-i="r8">“Why did this message cost so much?” explanation</td><td class="c n">–</td><td class="c n">–</td><td class="c us y">✓</td></tr>
+            <tr><td data-i="r9">Weekly report, hour heatmap and personal tips</td><td class="c n">–</td><td class="c h" data-i="part">partly</td><td class="c us y">✓</td></tr>
+            <tr><td data-i="r10">Cache and peak-hour countdowns</td><td class="c n">–</td><td class="c h" data-i="part2">partly</td><td class="c us y">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="foot" data-i="gapF">* None of the eight usage extensions whose pages we reviewed in October 2026 offers a per-message estimate before sending or a reasoned model suggestion; all show usage after you send. One has a cache countdown, one a peak-hour countdown, one a heatmap.</p>
+    </div>
+  </section>
+
+  <section class="band" id="ozellikler">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="ftE">WHAT IT DOES</p>
+        <h2 data-i="ftH">Before, while and after you spend your limit.</h2>
+        <p data-i="ftP">Everything runs in your browser. Features added in this release are marked.</p>
+      </div>
+      <div class="features">
+        <div class="feat"><span class="k" data-i="fk1">BEFORE</span><h3 data-i="f1h">Estimate before sending</h3><p data-i="f1p">While you type, it shows how much of your 5-hour and weekly limit will go, with an 80% range. It accounts for attachments, chat history, model and thinking effort.</p></div>
+        <div class="feat"><span class="k" data-i="fk1">BEFORE</span><h3 data-i="f2h">Model suggestion with reasons</h3><p data-i="f2p">It tells you which model is enough, what it looked at and how much you'd save. When unsure it never suggests a light model.</p></div>
+        <div class="feat"><span class="k" data-i="fk1">BEFORE</span><h3><span data-i="f3h">Cost breakdown</span></h3><p data-i="f3p">How much of the cost comes from the answer, thinking, history and attachments, at a glance on the card.</p></div>
+        <div class="feat"><span class="k" data-i="fk1">BEFORE</span><h3><span data-i="f4h">Cache and peak-hour countdowns</span></h3><p data-i="f4p">How many more minutes the chat history is read for free, and when peak hours end.</p></div>
+        <div class="feat"><span class="k" data-i="fk2">WHILE</span><h3><span data-i="f5h">When will it run out at this pace?</span></h3><p data-i="f5p">Looking at your last hour, it tells you whether the 5-hour limit will fill before it resets.</p></div>
+        <div class="feat"><span class="k" data-i="fk2">WHILE</span><h3><span data-i="f6h">Handoff summary</span></h3><p data-i="f6p">When a chat gets too long, one click copies a ready prompt asking Claude for a short summary to carry into a new chat.</p></div>
+        <div class="feat"><span class="k" data-i="fk3">AFTER</span><h3><span data-i="f7h">“Why did that cost so much?”</span></h3><p data-i="f7p">If a message uses far more than estimated, it tells you why: history re-read after a long break, peak hours, a long answer, or use on another device.</p></div>
+        <div class="feat"><span class="k" data-i="fk3">AFTER</span><h3><span data-i="f8h">Weekly report</span></h3><p data-i="f8p">Messages, limit used, peak-hour share, model and task mix, an hour heatmap and tips made for you. Monday-morning notification, CSV export.</p></div>
+        <div class="feat"><span class="k" data-i="fk4">LEARNS</span><h3><span data-i="f9h">On-device learned model</span></h3><p data-i="f9p">It recognizes the task type with rules plus a small learned model. When you correct it, it learns on your device.</p></div>
+        <div class="feat"><span class="k" data-i="fk4">LEARNS</span><h3 data-i="f10h">Personal calibration</h3><p data-i="f10p">After every message it measures how your limit actually changed, learning your plan's size and the answer lengths Claude gives you.</p></div>
+
+        <div class="feat"><span class="k" data-i="fk1">BEFORE</span><h3><span data-i="f11h">Recognizes the topic</span></h3><p data-i="f11p">Sorts a message into 16 topic areas and sub-topics (Science · Physics, Engineering · Electrical…) with about 2,600 keywords. For health, law and money questions it never suggests a light model.</p></div>
+        <div class="feat"><span class="k" data-i="fk1">BEFORE</span><h3><span data-i="f12h">Effort suggestion</span></h3><p data-i="f12p">From Low to Max: which effort level is enough for this task, and how much limit you save if your current setting is higher. It knows each model's default and the Extra high level.</p></div>
+        <div class="feat"><span class="k" data-i="fk1">BEFORE</span><h3><span data-i="f13h">Looks at the task, not the word</span></h3><p data-i="f13p">“I need a website with a translation system built” is a build job, not a translation. The extension tells the difference and does not suggest Haiku.</p></div>
+        <div class="feat"><span class="k" data-i="fk2">WHILE</span><h3><span data-i="f14h">A pill you can move</span></h3><p data-i="f14p">Drag the pill wherever you like. It steps aside by itself when claude.ai's effort or model menu opens, and Alt + arrow keys move it too.</p></div>
+        <div class="feat"><span class="k" data-i="fk3">AFTER</span><h3><span data-i="f15h">Proof of learning</span></h3><p data-i="f15p">The report shows, from your own measurements, whether the forecast error is shrinking over time. If it isn't, it says so.</p></div>
+        <div class="feat"><span class="k" data-i="fk2">WHILE</span><h3><span data-i="f16h">Tiko</span><span class="new" data-i="nw">NEW</span></h3><p data-i="f16p">A tiny pixel bot that lives next to the message box. It strains when the forecast is heavy, nods when a lighter model is enough, sits on top of the answer while it arrives and gets worried as your limit fills. It reads no text and can be turned off in the settings.</p></div>
+        <div class="feat"><span class="k" data-i="fk3">AFTER</span><h3><span data-i="f17h">Water and energy you saved</span><span class="new" data-i="nw">NEW</span></h3><p data-i="f17p">In the weekly report: the water and energy equivalent of the compute you avoided on messages where you switched to the suggested lighter setting, in drops, glasses and phone charges. All estimates with ranges; sources are in the report.</p></div>
+        <div class="feat"><span class="k" data-i="fk1">BEFORE</span><h3><span data-i="f18h">Fable 5.2</span><span class="new" data-i="nw">NEW</span></h3><p data-i="f18p">The top model is covered by the forecast and the suggestions too. If claude.ai reports a separate weekly share for Fable, the extension shows it and warns you before it runs out.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="ekran">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="shE">IN THE EXTENSION</p>
+        <h2 data-i="shH">A forecast while you type, a measurement when you send.</h2>
+        <p data-i="shP">A small pill and a reasoned suggestion above the message box; in the toolbar, your limits, what your remaining limit allows, and learning status.</p>
+      </div>
+      <figure class="vid" id="vidBox"><video id="vid" controls="" playsinline="" preload="none" poster="../video/kapak-en.webp" data-k="video/tanitim-en.mp4" src="../video/tanitim-en.mp4"></video><figcaption data-i="vidC">75-second intro. The interface shown is illustrative; the numbers come from the extension's own engine.</figcaption></figure>
+      <p class="ytl"><a id="ytA" href="https://www.youtube.com/watch?v=TKogrZgveAM" target="_blank" rel="noopener noreferrer">▶ Full walkthrough video (YouTube, 4 min)</a></p>
+      <div class="shots">
+        <figure class="shot"><a class="zoom" data-img="oneri" href="../img/en/oneri.webp" target="_blank" rel="noopener"><img data-img="oneri" data-alt-i="alt1" src="../img/en/oneri.webp" srcset="../img/en/oneri-1x.webp 746w, ../img/en/oneri.webp 1492w" sizes="(max-width: 860px) calc(100vw - 54px), 512px" alt="Suggestion notice for a translation request: Haiku 5.5 is enough, effort Low; sections for detected task, topic, effort suggestion, signals and basis" width="746" height="491" loading="lazy" decoding="async"></a><figcaption data-i="sh1">A translation request: Haiku and Low effort. With “Why?” open you see the detected task, topic, effort suggestion, signals and basis.</figcaption></figure>
+        <figure class="shot"><a class="zoom" data-img="effort" href="../img/en/effort.webp" target="_blank" rel="noopener"><img data-img="effort" data-alt-i="alt2" src="../img/en/effort.webp" srcset="../img/en/effort-1x.webp 746w, ../img/en/effort.webp 1492w" sizes="(max-width: 860px) calc(100vw - 54px), 512px" alt="Effort suggestion notice: Medium is enough instead of Max, with the amount of limit saved" width="746" height="491" loading="lazy" decoding="async"></a><figcaption data-i="sh4">Effort suggestion: if Medium is enough instead of Max, it tells you how much limit you would save.</figcaption></figure>
+        <figure class="shot"><a class="zoom" data-img="tuzak" href="../img/en/tuzak.webp" target="_blank" rel="noopener"><img data-img="tuzak" data-alt-i="alt3" src="../img/en/tuzak.webp" srcset="../img/en/tuzak-1x.webp 746w, ../img/en/tuzak.webp 1492w" sizes="(max-width: 860px) calc(100vw - 54px), 512px" alt="Sonnet 5.5 suggestion for a request to build a website that includes a translation system; Haiku is not suggested" width="746" height="491" loading="lazy" decoding="async"></a><figcaption data-i="sh5">It looks at the task, not the word: “a site with a translation system” is a build job, so Haiku is not suggested.</figcaption></figure>
+        <figure class="shot narrow"><a class="zoom" data-img="popup" href="../img/en/popup.webp" target="_blank" rel="noopener"><img data-img="popup" data-alt-i="alt4" src="../img/en/popup.webp" srcset="../img/en/popup-1x.webp 340w, ../img/en/popup.webp 680w" sizes="300px" alt="Extension window: 5-hour session, weekly limit, what the remaining limit can do, weekly report row and personal calibration status" width="340" height="720" loading="lazy" decoding="async"></a><figcaption data-i="sh2">Toolbar window.</figcaption></figure>
+        <figure class="shot wide"><a class="zoom" data-img="rapor" href="../img/en/rapor.webp" target="_blank" rel="noopener"><img data-img="rapor" data-alt-i="alt5" src="../img/en/rapor.webp" srcset="../img/en/rapor-1x.webp 920w, ../img/en/rapor.webp 1840w" sizes="(max-width: 920px) calc(100vw - 54px), 880px" alt="Weekly report page: spending tiles, tips, model, task, topic and effort mix, hour heat map, proof-of-learning chart, most expensive messages" width="920" height="2268" loading="lazy" decoding="async"></a><figcaption data-i="sh3">Weekly report (with simulated sample data): topics, effort mix and proof of learning. Computed only in your browser, from records with no message text.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="nasil">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="hwE">HOW IT WORKS</p>
+        <h2 data-i="hwH">Less like a price list, more like a measuring instrument.</h2>
+        <p data-i="hwP">Anthropic doesn't publish exact limit sizes. So the extension starts from a rough prior and corrects itself on every message by measuring how your real usage percentage changes before and after.</p>
+      </div>
+      <div class="two">
+        <div>
+          <div class="formula" aria-label="Maliyet formülü">maliyet = w_model × [ yeni girdi
+                    + önbellekte olmayan geçmiş
+                    + araç girdisi
+                    + 5 × (cevap + düşünme) ]
+
+limit %  = k × maliyet</div>
+          <dl class="terms">
+            <div><dt>w_model</dt><dd data-i="d1">The model's relative price. The gap between Haiku, Sonnet, Opus and Fable shows up in your limit at the same ratio (an assumption, corrected by measurement).</dd></div>
+            <div><dt data-i="d2t">history</dt><dd data-i="d2">A chat used within the last hour is read from cache and doesn't count against your limit. Wait an hour and the whole history counts again; the extension warns you.</dd></div>
+            <div><dt data-i="d3t">reply</dt><dd data-i="d3">Reply length comes from a distribution per task type (CASTILLO dataset, 12 task types). That's why you see an 80% range, not a single number.</dd></div>
+            <div><dt data-i="d4t">5 ×</dt><dd data-i="d4">Output tokens cost five times input tokens. Thinking (effort) tokens are invisible but they count.</dd></div>
+            <div><dt>k</dt><dd data-i="d5">“What percentage of my limit is one cost unit?” Specific to your plan. Learned after every message with a Gamma-Poisson update; tracked separately for peak hours.</dd></div>
+          </dl>
+        </div>
+        <figure class="chart">
+          <svg id="simChart" viewBox="0 0 520 300" role="img" aria-labelledby="simTitle"><title id="simTitle">Calibration simulation</title><line x1="52" x2="502" y1="254" y2="254" stroke="var(--line)"></line><text x="44" y="258" text-anchor="end" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">1×</text><line x1="52" x2="502" y1="195" y2="195" stroke="var(--line)"></line><text x="44" y="199" text-anchor="end" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">1.2×</text><line x1="52" x2="502" y1="136.00000000000003" y2="136.00000000000003" stroke="var(--line)"></line><text x="44" y="140.00000000000003" text-anchor="end" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">1.4×</text><line x1="52" x2="502" y1="76.99999999999997" y2="76.99999999999997" stroke="var(--line)"></line><text x="44" y="80.99999999999997" text-anchor="end" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">1.6×</text><line x1="52" x2="502" y1="18" y2="18" stroke="var(--line)"></line><text x="44" y="22" text-anchor="end" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">1.8×</text><text x="52" y="272" text-anchor="middle" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">0</text><text x="142" y="272" text-anchor="middle" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">20</text><text x="232" y="272" text-anchor="middle" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">40</text><text x="322" y="272" text-anchor="middle" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">60</text><text x="412" y="272" text-anchor="middle" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">80</text><text x="502" y="272" text-anchor="middle" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">100</text><text x="277" y="292" text-anchor="middle" font-size="12" fill="var(--muted)">messages sent</text><text x="14" y="136" text-anchor="middle" font-size="12" fill="var(--muted)" transform="rotate(-90 14 136)">estimate error (×)</text><path d="M52.0,54.3 L56.5,74.6 L61.0,126.3 L65.5,152.5 L70.0,157.2 L74.5,169.9 L97.0,198.2 L119.5,210.9 L142.0,216.2 L164.5,217.7 L187.0,217.4 L209.5,221.5 L232.0,223.9 L254.5,223.6 L277.0,225.4 L299.5,226.0 L322.0,226.6 L344.5,227.4 L367.0,228.3 L389.5,228.6 L412.0,228.9 L434.5,229.8 L457.0,229.8 L479.5,230.4 L502.0,230.7 L502,254 L52,254 Z" fill="var(--meter)" opacity=".12"></path><path d="M52.0,54.3 L56.5,74.6 L61.0,126.3 L65.5,152.5 L70.0,157.2 L74.5,169.9 L97.0,198.2 L119.5,210.9 L142.0,216.2 L164.5,217.7 L187.0,217.4 L209.5,221.5 L232.0,223.9 L254.5,223.6 L277.0,225.4 L299.5,226.0 L322.0,226.6 L344.5,227.4 L367.0,228.3 L389.5,228.6 L412.0,228.9 L434.5,229.8 L457.0,229.8 L479.5,230.4 L502.0,230.7" fill="none" stroke="var(--meter)" stroke-width="2.5" stroke-linejoin="round"></path><circle cx="52" cy="54.28499999999999" r="4.5" fill="var(--surface)" stroke="var(--meter)" stroke-width="2"></circle><text x="61" y="45.28499999999999" text-anchor="start" font-size="13" font-weight="600" fill="var(--ink)" font-family="IBM Plex Mono, monospace">1.68×</text><circle cx="142" cy="216.24" r="4.5" fill="var(--surface)" stroke="var(--meter)" stroke-width="2"></circle><text x="151" y="207.24" text-anchor="start" font-size="13" font-weight="600" fill="var(--ink)" font-family="IBM Plex Mono, monospace">1.13×</text><circle cx="502" cy="230.69500000000002" r="4.5" fill="var(--surface)" stroke="var(--meter)" stroke-width="2"></circle><text x="494" y="221.69500000000002" text-anchor="end" font-size="13" font-weight="600" fill="var(--ink)" font-family="IBM Plex Mono, monospace">1.08×</text></svg>
+          <figcaption data-i="simC">Simulation: 300 virtual plans deviating up to 2× from the prior, using the extension's real calibration code. Median estimate error is 1.68× on the first message, 1.13× after 20 messages, 1.08× after 100.</figcaption>
+        </figure>
+      </div>
+      <figure class="loop">
+        <svg viewBox="0 0 1000 124" role="img" aria-labelledby="loopT" style="width:100%;height:auto;display:block"><title id="loopT">Döngü: yaz, tahmin et, gönder, ölç, öğren</title>
+          <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"></path></marker></defs>
+          <g font-family="IBM Plex Mono, monospace" font-size="15" fill="var(--ink)" text-anchor="middle">
+            <g id="loopNodes"><rect x="10" y="22" width="180" height="46" rx="23" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"></rect><text x="100" y="50">Type</text><line x1="192" y1="45" x2="206" y2="45" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#ar)"></line><rect x="210" y="22" width="180" height="46" rx="23" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"></rect><text x="300" y="50">Forecast</text><line x1="392" y1="45" x2="406" y2="45" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#ar)"></line><rect x="410" y="22" width="180" height="46" rx="23" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"></rect><text x="500" y="50">Send</text><line x1="592" y1="45" x2="606" y2="45" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#ar)"></line><rect x="610" y="22" width="180" height="46" rx="23" fill="var(--surface)" stroke="var(--meter)" stroke-width="1.5"></rect><text x="700" y="50">Measure</text><line x1="792" y1="45" x2="806" y2="45" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#ar)"></line><rect x="810" y="22" width="180" height="46" rx="23" fill="var(--surface)" stroke="var(--meter)" stroke-width="1.5"></rect><text x="900" y="50">Learn</text><path d="M900 68 C900 100, 300 100, 300 72" fill="none" stroke="var(--meter)" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#ar)"></path><text x="600" y="117" font-size="13" fill="var(--muted)">k and reply length are updated</text></g>
+          </g>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="band" id="modeller">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="mdE">MODEL SUGGESTION</p>
+        <h2 data-i="mdH">Not the lightest model. The lightest model that's enough.</h2>
+        <p data-i="mdP">Suggesting a light model is a worse mistake than suggesting an expensive one: a bad answer means asking again. The extension suggests Haiku only for clearly simple tasks it's confident about; when unsure it says at least Sonnet. Its basis is Anthropic's model selection guide, a 72-prompt suggestion test set (zero too-light suggestions) and the on-device learned model. We also measured whether the suggested model is really enough; the results are in the Measurement section.</p>
+      </div>
+      <div class="models" id="modelCards"><article class="model"><h3>Haiku 5.5</h3>
+      <div class="w"><b class="mono">0.25×</b><span class="muted" style="font-size:.8rem">vs Sonnet</span></div>
+      <div class="bar" aria-hidden="true"><i style="width:5%"></i></div>
+      <p>The lowest latency and price. Translation, proofreading, short summaries, single-answer questions.</p><p class="when">Suggested only for clearly simple tasks it's confident about.</p></article><article class="model"><h3>Sonnet 5.5</h3>
+      <div class="w"><b class="mono">1×</b><span class="muted" style="font-size:.8rem">vs Sonnet</span></div>
+      <div class="bar" aria-hidden="true"><i style="width:20%"></i></div>
+      <p>Speed and capability for everyday work: code, data analysis, writing, explanations.</p><p class="when">The default suggestion for most tasks; the safe side when unsure.</p></article><article class="model"><h3>Opus 5.5</h3>
+      <div class="w"><b class="mono">2×</b><span class="muted" style="font-size:.8rem">vs Sonnet</span></div>
+      <div class="bar" aria-hidden="true"><i style="width:40%"></i></div>
+      <p>Complex coding and enterprise work: large refactors, systems design, long agent runs.</p><p class="when">When difficulty cues (prove, architecture, comprehensive…) are high.</p></article><article class="model"><h3>Fable 5.2</h3>
+      <div class="w"><b class="mono">5×</b><span class="muted" style="font-size:.8rem">vs Sonnet</span></div>
+      <div class="bar" aria-hidden="true"><i style="width:100%"></i></div>
+      <p>The highest capability: multi-hour agent sessions, multistep deep research.</p><p class="when">Only for very hard derivations, designs and research.</p></article></div>
+      <p class="foot" data-i="mdF">Relative cost: assumed proportional to API price and corrected by calibration. On claude.ai the system prompt and memory push the context above 100K tokens, so Haiku's long-context price applies. Switching models in a long chat means the new model re-reads the whole history; in that case the extension says “pick it in your next new chat”.</p>
+    </div>
+  </section>
+
+  <section class="band" id="alanlar">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="dmE">TOPIC AND EFFORT</p>
+        <h2 data-i="dmH">Same question, different topic: different model, different effort.</h2>
+        <p data-i="dmP">A second axis next to the task type: it sorts a message into 16 topic areas and sub-topics (on your device, by keywords). For health, law and money questions it never suggests a light model and keeps effort at Medium or above. In science, math and engineering it raises effort one level for explanations. In poetry and fiction it caps effort at Medium, because long thinking adds little there.</p>
+      </div>
+      <div class="dgrid" id="domGrid"><article class="dcard"><h3><span>Science</span><span class="badge">DEEP REASONING</span></h3><div class="subs"><span>Physics</span><span>Chemistry</span><span>Biology</span><span>Astronomy</span><span>Earth science</span></div><p class="kw">quantum · cell · reaction · galaxy · experiment</p></article><article class="dcard"><h3><span>Mathematics</span><span class="badge">DEEP REASONING</span></h3><div class="subs"><span>Algebra &amp; calculus</span><span>Statistics</span></div><p class="kw">derivative · proof · matrix · probability · integral</p></article><article class="dcard"><h3><span>Engineering</span><span class="badge">DEEP REASONING</span></h3><div class="subs"><span>Electrical &amp; electronics</span><span>Mechanical</span><span>Civil</span><span>Control &amp; industrial</span></div><p class="kw">circuit · Arduino · voltage · statics · PID</p></article><article class="dcard"><h3><span>Software</span></h3><div class="subs"><span>Web</span><span>Mobile</span><span>Systems &amp; databases</span><span>Programming</span></div><p class="kw">bug · API · React · Python · server</p></article><article class="dcard"><h3><span>Data &amp; AI</span></h3><div class="subs"><span>Machine learning</span><span>Language models</span><span>Data analysis</span></div><p class="kw">dataset · LLM · classifier · regression</p></article><article class="dcard"><h3><span>Academic writing</span></h3><div class="subs"><span>Papers</span><span>Thesis</span><span>Grants &amp; applications</span></div><p class="kw">paper · thesis · citation · reviewer · abstract</p></article><article class="dcard"><h3><span>Projects &amp; planning</span><span class="badge">PLANNING</span></h3><div class="subs"><span>Planning</span><span>Agile</span><span>Startup</span></div><p class="kw">roadmap · milestone · sprint · task list</p></article><article class="dcard"><h3><span>Literature &amp; creative writing</span><span class="badge">CREATIVE</span></h3><div class="subs"><span>Poetry</span><span>Fiction</span><span>Literary analysis</span><span>Screen &amp; stage</span></div><p class="kw">poem · story · novel · character · dialogue</p></article><article class="dcard"><h3><span>Business &amp; career</span></h3><div class="subs"><span>Career</span><span>Marketing</span><span>Management</span></div><p class="kw">customer · marketing · interview · résumé · pitch</p></article><article class="dcard"><h3><span>Economics &amp; finance</span><span class="badge risk">HIGH STAKES</span></h3><div class="subs"><span>Investing</span><span>Personal finance</span><span>Accounting &amp; tax</span><span>Economics</span></div><p class="kw">investing · loan · tax · inflation · budget</p></article><article class="dcard"><h3><span>Law</span><span class="badge risk">HIGH STAKES</span></h3><div class="subs"><span>Contracts</span><span>General law</span><span>Privacy</span><span>Intellectual property</span></div><p class="kw">contract · lease · lawsuit · consumer rights · GDPR</p></article><article class="dcard"><h3><span>Health</span><span class="badge risk">HIGH STAKES</span></h3><div class="subs"><span>Medical</span><span>Nutrition</span><span>Fitness</span><span>Mental health</span></div><p class="kw">medication · symptoms · exercise · nutrition · sleep</p></article><article class="dcard"><h3><span>Study &amp; exams</span></h3><div class="subs"><span>Exams</span><span>Homework</span><span>Teaching</span></div><p class="kw">exam · homework · studying · teacher · quiz</p></article><article class="dcard"><h3><span>Language</span><span class="badge">LIGHT</span></h3><div class="subs"><span>Grammar</span><span>Language learning</span><span>Translation</span></div><p class="kw">translation · grammar · vocabulary · English · pronunciation</p></article><article class="dcard"><h3><span>History, philosophy &amp; society</span></h3><div class="subs"><span>History</span><span>Philosophy</span><span>Society</span><span>Psychology</span></div><p class="kw">history · philosophy · sociology · psychology · war</p></article><article class="dcard"><h3><span>Everyday life</span><span class="badge">LIGHT</span></h3><div class="subs"><span>Food</span><span>Travel</span><span>Home</span><span>Fun</span><span>People</span></div><p class="kw">recipe · trip · home · hobby · shopping</p></article></div>
+      <p class="foot" data-i="dmF">Keywords are shortened examples for each area. If it can't find an area it says “General” and the suggestion doesn't change.</p>
+      <div class="efftable" id="effTable" aria-label="Effort"><div class="effrow" style="background:none;border:0;padding-bottom:0"><span class="muted mono" style="font-size:.75rem">EFFORT</span><span></span><span class="r muted" style="font-size:.72rem">thinking / reply</span></div><div class="effrow"><b>Low</b><span class="d">Routine tasks: translation, short questions, proofreading. Uses the least limit.</span><span class="r">0.25×</span></div><div class="effrow"><b>Medium</b><span class="d">Most everyday tasks: explanations, writing, simple code. The default for Opus 5.5 and Haiku 5.5.</span><span class="r">0.7×</span></div><div class="effrow"><b>High</b><span class="d">The best general balance, the default for other models. Proofs, hard explanations, planning.</span><span class="r">1.6×</span></div><div class="effrow"><b>Extra high</b><span class="d">Long coding and agent work. Only on Opus 4.7 and later, and Fable.</span><span class="r">2.2×</span></div><div class="effrow"><b>Max</b><span class="d">The deepest reasoning: the hardest math and research. Slowest and most expensive.</span><span class="r">3×</span></div></div>
+      <p class="foot" data-i="efF">Basis: Anthropic's effort documentation and support article. The thinking-cost ratios (relative to the visible reply length) are the extension's assumption and get corrected by your own measurements. Whether the suggested effort preserves answer quality has not been measured.</p>
+    </div>
+  </section>
+
+  <section class="band" id="ogrenme">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="mlE">MACHINE LEARNING</p>
+        <h2 data-i="mlH">Rules start it, a model learns, you correct it.</h2>
+        <p data-i="mlP">Knowing what kind of task a message is underpins both the estimate and the model suggestion. The old version recognized it with rules only. Now the rule scores feed a small learned model that runs on your device. The model is 128 KB, never goes online and runs within a keystroke.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="v" data-i="st1v">64%<span class="arrow">→</span><span class="good">88%</span></div><p data-i="st1">Task type recognized correctly: rules → rules + model. On 120 everyday messages written without looking (no diacritics, greetings, typos).</p></div>
+        <div class="stat"><div class="v">15<span class="arrow">→</span><span class="good">1</span></div><p data-i="st2">Dangerous errors: taking a hard task (code, math, research) for a simple one. On the same two test sets, 240 messages: rules → the released version.</p></div>
+        <div class="stat"><div class="v" data-i="st3v">36%</div><p data-i="st3">The same version on 300 long messages written by people who never saw the repository (blind set 5). Good on short messages, weak on long and pasted content; details in the Measurement section.</p></div>
+      </div>
+      <ol class="layers">
+        <li><b data-i="ly1h">Personal calibration</b><span data-i="ly1p">From your limit percentage read before and after every message, it learns your plan's size, the peak-hour effect and the answer lengths Claude gives you.</span></li>
+        <li><b data-i="ly2h">Personal corrections</b><span data-i="ly2p">When you say “wrong task type?” in the suggestion and pick the right one, the model updates on your device; 👍/👎 tune the suggestion bounds. What's stored is weight differences, not text.</span></li>
+        <li><b data-i="ly3h">Community (optional)</b><span data-i="ly3p">If you share a text-free summary of what was learned, new users start from real measurements instead of guesses.</span></li>
+      </ol>
+      <p class="foot" data-i="mlF">Honest note: the project wrote the test messages in the first two tiles itself, and they are short. Accuracy on real user messages hasn't been measured yet; that's exactly what community contributions are for. The first measurement of whether the suggested model is really enough is in the Measurement section.</p>
+    </div>
+  </section>
+
+  <section class="band" id="kanit">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="pfE">PROOF</p>
+        <h2 data-i="pfH">Does it learn over time? We measured.</h2>
+        <p data-i="pfP">200 simulated users with hidden true values (120 messages each), running the extension's real forecast and calibration code. Each message is forecast first, then the truth is seen and learned. A copy that doesn't learn and a perfect forecaster that knows the true values run on the same message stream.</p>
+      </div>
+      <div class="two">
+        <figure class="proofchart"><svg id="proofChart" viewBox="0 0 520 350" role="img" aria-labelledby="pfT"><title id="pfT">Learning curve</title><line x1="62" x2="506" y1="294" y2="294" stroke="var(--line)"></line><text x="54" y="298" text-anchor="end" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">1.00×</text><line x1="62" x2="506" y1="228.8571428571429" y2="228.8571428571429" stroke="var(--line)"></line><text x="54" y="232.8571428571429" text-anchor="end" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">1.40×</text><line x1="62" x2="506" y1="163.7142857142857" y2="163.7142857142857" stroke="var(--line)"></line><text x="54" y="167.7142857142857" text-anchor="end" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">1.80×</text><line x1="62" x2="506" y1="98.57142857142853" y2="98.57142857142853" stroke="var(--line)"></line><text x="54" y="102.57142857142853" text-anchor="end" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">2.20×</text><text x="99" y="312" text-anchor="middle" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">1–3</text><text x="173" y="312" text-anchor="middle" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">4–10</text><text x="247" y="312" text-anchor="middle" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">11–20</text><text x="321" y="312" text-anchor="middle" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">21–40</text><text x="395" y="312" text-anchor="middle" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">41–80</text><text x="469" y="312" text-anchor="middle" font-size="12" fill="var(--muted)" font-family="IBM Plex Mono, monospace">81–120</text><text x="284" y="332" text-anchor="middle" font-size="12" fill="var(--muted)">message block</text><text x="12" y="180" text-anchor="middle" font-size="12" fill="var(--muted)" transform="rotate(-90 12 180)">error (×)</text><path d="M99.0,96.1 L173.0,120.5 L247.0,105.3 L321.0,98.1 L395.0,114.8 L469.0,110.2" fill="none" stroke="var(--used)" stroke-width="2.5" stroke-linejoin="round"></path><circle cx="99.0" cy="96.1" r="3.5" fill="var(--surface)" stroke="var(--used)" stroke-width="2"></circle><circle cx="173.0" cy="120.5" r="3.5" fill="var(--surface)" stroke="var(--used)" stroke-width="2"></circle><circle cx="247.0" cy="105.3" r="3.5" fill="var(--surface)" stroke="var(--used)" stroke-width="2"></circle><circle cx="321.0" cy="98.1" r="3.5" fill="var(--surface)" stroke="var(--used)" stroke-width="2"></circle><circle cx="395.0" cy="114.8" r="3.5" fill="var(--surface)" stroke="var(--used)" stroke-width="2"></circle><circle cx="469.0" cy="110.2" r="3.5" fill="var(--surface)" stroke="var(--used)" stroke-width="2"></circle><path d="M99.0,184.1 L173.0,208.6 L247.0,217.4 L321.0,231.5 L395.0,227.3 L469.0,233.3" fill="none" stroke="var(--ok)" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"></path><circle cx="99.0" cy="184.1" r="3.5" fill="var(--surface)" stroke="var(--ok)" stroke-width="2"></circle><circle cx="173.0" cy="208.6" r="3.5" fill="var(--surface)" stroke="var(--ok)" stroke-width="2"></circle><circle cx="247.0" cy="217.4" r="3.5" fill="var(--surface)" stroke="var(--ok)" stroke-width="2"></circle><circle cx="321.0" cy="231.5" r="3.5" fill="var(--surface)" stroke="var(--ok)" stroke-width="2"></circle><circle cx="395.0" cy="227.3" r="3.5" fill="var(--surface)" stroke="var(--ok)" stroke-width="2"></circle><circle cx="469.0" cy="233.3" r="3.5" fill="var(--surface)" stroke="var(--ok)" stroke-width="2"></circle><path d="M99.0,124.5 L173.0,200.8 L247.0,206.1 L321.0,222.5 L395.0,227.8 L469.0,229.2" fill="none" stroke="var(--meter)" stroke-width="3" stroke-linejoin="round"></path><circle cx="99.0" cy="124.5" r="3.5" fill="var(--surface)" stroke="var(--meter)" stroke-width="2"></circle><circle cx="173.0" cy="200.8" r="3.5" fill="var(--surface)" stroke="var(--meter)" stroke-width="2"></circle><circle cx="247.0" cy="206.1" r="3.5" fill="var(--surface)" stroke="var(--meter)" stroke-width="2"></circle><circle cx="321.0" cy="222.5" r="3.5" fill="var(--surface)" stroke="var(--meter)" stroke-width="2"></circle><circle cx="395.0" cy="227.8" r="3.5" fill="var(--surface)" stroke="var(--meter)" stroke-width="2"></circle><circle cx="469.0" cy="229.2" r="3.5" fill="var(--surface)" stroke="var(--meter)" stroke-width="2"></circle><text x="107" y="114.4624497712404" font-size="12.5" font-weight="600" fill="var(--ink)" font-family="IBM Plex Mono, monospace">2.04×</text><text x="463" y="251.20263314862993" text-anchor="end" font-size="12.5" font-weight="600" fill="var(--ink)" font-family="IBM Plex Mono, monospace">1.40×</text><text x="463" y="100.23944439439208" text-anchor="end" font-size="12.5" fill="var(--muted)" font-family="IBM Plex Mono, monospace">2.13×</text><line x1="68" x2="86" y1="76" y2="76" stroke="var(--meter)" stroke-width="3"></line><text x="92" y="80" font-size="12" fill="var(--ink)">Learning</text><line x1="68" x2="86" y1="93" y2="93" stroke="var(--used)" stroke-width="3"></line><text x="92" y="97" font-size="12" fill="var(--ink)">Copy that doesn't learn</text><line x1="68" x2="86" y1="110" y2="110" stroke="var(--ok)" stroke-width="3" stroke-dasharray="5 4"></line><text x="92" y="114" font-size="12" fill="var(--ink)">Perfect forecaster (floor)</text></svg><figcaption data-i="pfC">In the total limit of the messages in each block, how many times off the forecast was (1.00× is perfect). Lower is better.</figcaption></figure>
+        <div class="stats" style="grid-template-columns:minmax(0,1fr);margin:0" id="proofStats"><div class="stat"><div class="v">2.04× → 1.40×</div><p>Block-total error: first 3 messages → last 40 messages. The copy that doesn't learn stays around 2.1–2.2×.</p></div><div class="stat"><div class="v">≈ 79%</div><p>The 80% forecast range covers the truth about 79% of the time (target 80%). The ranges are neither too narrow nor too wide.</p></div><div class="stat"><div class="v">1.74× / 1.71×</div><p>Single-message error: learning / perfect forecaster floor. The remaining error is the randomness of reply length; learning can't fix it.</p></div></div>
+      </div>
+      <div class="honest">
+        <h3 data-i="hnH">What this does not prove</h3>
+        <ul>
+          <li data-i="hn1">The users are simulated. Real accounts may differ, which is why the report's “Proof of learning” section checks you against your own measurements.</li>
+          <li data-i="hn2">The spend of one message can't be known in advance: reply length and hidden thinking are random. The learning forecast comes down to this randomness floor (1.7×) and can't go below it. The goal is to keep the total and the range right.</li>
+          <li data-i="hn3">For task recognition, personal corrections did not give a measurable accuracy gain on 240 varied messages (it stayed around 90%). Corrections are for fixing your own recurring patterns, they don't raise general accuracy.</li>
+          <li data-i="hn4">The experiments are reproducible: tests/learning-proof.mjs and tests/classifier-learning.mjs.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="olcum">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="mzE">MEASUREMENT</p>
+        <h2 data-i="mzH">How accurate is it? The numbers as they are.</h2>
+        <p data-i="mzP">In November 2026 we measured two things from the outside for the first time: is the suggested model really enough, and how well does the extension recognize the task type in messages it has never seen. The results are clearly lower than our older tests; we report both.</p>
+      </div>
+      <div class="mgrid">
+        <div class="mcard">
+          <h3 data-i="mzAh">Is the suggested model enough?</h3>
+          <div class="dots" id="mzDots" aria-hidden="true"><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="c"></i><i class="c"></i><i class="c"></i><i class="c"></i><i class="c"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class=""></i></div>
+          <div class="mleg" aria-hidden="true"><span><i class="g"></i><span data-i="mzLg1">fits</span> 19</span><span><i class="c"></i><span data-i="mzLg2">too light</span> 5</span><span><i class="w"></i><span data-i="mzLg3">heavier than needed</span> 33</span><span><i></i><span data-i="mzLg4">not measurable</span> 1</span></div>
+          <div class="mtiles">
+            <div class="mtile"><b class="g">13 / 13</b><span data-i="mz1">In all 13 prompts where Haiku was suggested, Haiku's answer scored 4 out of 5 or higher.</span></div>
+            <div class="mtile"><b class="c">5 / 58</b><span data-i="mz2">Too-light suggestions (9%; 95% confidence interval 4–19%). In four of them Sonnet was suggested and only Opus was enough.</span></div>
+            <div class="mtile"><b class="w">33 / 58</b><span data-i="mz3">Suggestions heavier than needed (57%). Read this as an upper bound: answers were capped at 400 words, and at that length a stronger model's advantage on long tasks doesn't show.</span></div>
+          </div>
+          <p data-i="mzAf">Method: 80 prompts were answered separately by Haiku 5.5, Sonnet 5.5 and Opus 5.5; the answers were shuffled without labels and scored by a model (Fable 5.2). The numbers cover the 58 prompts that can be answered on their own. The judge is not a human and scored once; effort suggestions and the Fable tier were not measured.</p>
+        </div>
+        <div class="mcard">
+          <h3 data-i="mzBh">Task type on messages it has never seen</h3>
+          <div class="mbars" id="mzBars"><div class="mbar"><span class="l" data-i="mzL1">Old test 1 · 120 short messages we wrote ourselves</span><div class="t"><i style="width:81.7%"></i></div><span class="v" data-v="81.7">81.7%</span></div><div class="mbar"><span class="l" data-i="mzL2">Old test 2 · 120 everyday messages we wrote ourselves</span><div class="t"><i style="width:88.3%"></i></div><span class="v" data-v="88.3">88.3%</span></div><div class="mbar b"><span class="l" data-i="mzL3">Blind set 4 · 350 messages written by others</span><div class="t"><i style="width:46%"></i></div><span class="v" data-v="46">46.0%</span></div><div class="mbar b"><span class="l" data-i="mzL4">Blind set 5 · 300 long messages written by others</span><div class="t"><i style="width:36.3%"></i></div><span class="v" data-v="36.3">36.3%</span></div></div>
+          <p data-i="mzBp">Why did the old tests look so high? The project wrote the first two sets itself, while writing the rules, and every message is short. The blind sets were written by authors who never saw the repository: 45–60% of the messages are longer than 20 words, with an email, table, code or error output pasted in. Real use is closer to the second kind. The long-message problem is not solved.</p>
+          <p data-i="mzS1">The safety side: on blind set 5 (300 messages) Haiku was suggested 10 times and 2 of those were wrong. We did not ship new weights that raised accuracy from 36% to 67%, because they raised wrong Haiku suggestions to 12.</p>
+          <p data-i="mzS2">The confidence label works: on blind set 4 the extension was right 75% of the time when it said “high confidence”, 60% for “medium” and 23% for “low”; with low confidence no light model is suggested. Topic recognition was acceptable for 84% of blind set 5.</p>
+        </div>
+      </div>
+      <p class="foot" data-i="mzF">Raw results and the limits of the method are in the repository: tests/quality/RAPOR.md (suggestion quality), tests/blind4.mjs and tests/blind5.mjs (blind sets). No rule or weight was added by looking at the blind sets.</p>
+    </div>
+  </section>
+
+  <section class="band" id="doga">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="ecE">NATURE</p>
+        <h2 data-i="ecH">Not wasting compute is the easiest saving.</h2>
+        <p data-i="ecP">Every Claude answer is made in data centers that use electricity, and water for cooling. Picking the strongest model and the highest effort for a simple task means more compute than needed. In our tests, following the suggestions cut compute by <b>≈ 40%</b>.</p>
+      </div>
+      <div class="stats eco">
+        <div class="stat"><div class="v good" data-i="ec1v">≈ 40%</div><p data-i="ec1">Less compute when following the suggestions, across 240 sample messages (between 38% and 50%).</p></div>
+        <div class="stat"><div class="v good" data-i="ec2v">10–50 <small>MWh</small></div><p data-i="ec2">Energy saved per week if 1 million people sent 100 messages each. A week of electricity for hundreds of homes.</p></div>
+        <div class="stat"><div class="v water" data-i="ec3v">35–250 <small>tons</small></div><p data-i="ec3">Water saved per week in the same scenario. 100 tons is a day's drinking water for 50,000 people.</p></div>
+      </div>
+      <p class="foot" data-i="ecF">These are estimates. We assumed an answer of ≈ 400 tokens per message, 0.6–3 mWh of energy per token (0.24–1.2 Wh per message) and 3.6–5.3 L of water per kWh (≈ 0.9–6 mL per message; data center cooling plus power generation). Sources: Epoch AI 2025, Jegham et al. 2025, Li et al. 2023, Google's Gemini measurement (August 2025: median prompt 0.24 Wh). Long messages with thinking use more. Anthropic doesn't publish these figures for Claude. For one person: ≈ 10–50 Wh a week, enough to run a 9 W LED bulb for 1–5 hours.</p>
+    </div>
+  </section>
+
+  <section class="band" id="topluluk">
+    <div class="wrap two">
+      <div class="sec-head" style="margin:0">
+        <p class="eyebrow" data-i="cmE">COMMUNITY</p>
+        <h2 data-i="cmH">More accurate, together.</h2>
+        <p data-i="cmP">Anthropic doesn't publish limit sizes; every user learns their plan by measuring. Combine those measurements and a newcomer gets accurate estimates from their first message. Nothing is sent automatically.</p>
+      </div>
+      <div class="note">
+        <h3 data-i="cmL">How to contribute</h3>
+        <ol class="steps">
+          <li data-i="cm1"><span>In the extension window, <b>Contribute to the community</b> → <b>Show contribution summary</b>. It contains only numbers and labels.</span></li>
+          <li data-i="cm2"><span><b>Copy and open the form</b>, paste it into the form and submit.</span></li>
+          <li data-i="cm3"><span>Summaries are combined; the next release ships better starting values for everyone.</span></li>
+        </ol>
+        <p class="muted" id="cmLinks" data-i="cmSoon"><a href="https://github.com/H-ENES1/ai-assistant-claude/issues/new?template=katki.yml" target="_blank" rel="noopener noreferrer">Contribution form</a> · <a href="https://github.com/H-ENES1/ai-assistant-claude/issues/new?template=anket.yml" target="_blank" rel="noopener noreferrer">2-minute survey</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="gizlilik">
+    <div class="wrap two">
+      <div class="sec-head" style="margin:0">
+        <p class="eyebrow" data-i="pvE">PRIVACY</p>
+        <h2 data-i="pvH">Everything is computed in your browser.</h2>
+        <p data-i="pvP">The extension has no server. Your messages, attachments and chats never leave your device; no analytics, no tracking. It only runs on claude.ai, with your own session.</p>
+      </div>
+      <div class="note">
+        <h3 data-i="pvL">What it reads, and why</h3>
+        <ul class="plain">
+          <li data-i="pv1">claude.ai's usage page data: your 5-hour and weekly percentage.</li>
+          <li data-i="pv2">The open chat's history length: for cache and context math (text is counted locally).</li>
+          <li data-i="pv3">The text and attachments in the message box: only to count tokens, locally.</li>
+          <li data-i="pv4">Permissions: storage, alarms, notifications, and only the <code>claude.ai</code> site.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="kurulum">
+    <div class="wrap two">
+      <div>
+        <div class="sec-head">
+          <p class="eyebrow" data-i="inE">INSTALL</p>
+          <h2 data-i="inH">Installs in two minutes.</h2>
+          <p data-i="inP">Install it in one click from the Chrome Web Store; Edge and Brave can use the same page, and Opera works with the “Install Chrome Extensions” add-on. If you'd rather install it by hand, the steps are below.</p>
+          <p class="storecta"><a class="btn primary" href="https://chromewebstore.google.com/detail/chbjpjhmkpgfocnfpdafkakjicdicige" target="_blank" rel="noopener noreferrer" data-i="cta1">Add to Chrome · free</a></p>
+        </div>
+        <ol class="steps">
+          <li data-i="s1"><span>Download the release zip: <span id="dl"><a href="https://github.com/H-ENES1/ai-assistant-claude/releases" target="_blank" rel="noopener noreferrer">download page</a></span>.</span></li>
+          <li data-i="s2"><span>Right-click the zip → <b>Extract all</b>. You get a folder with <code>manifest.json</code> directly inside.</span></li>
+          <li data-i="s3"><span>Go to <code>chrome://extensions</code> (Opera: <code>opera://extensions</code>) and turn on <b>Developer mode</b>.</span></li>
+          <li data-i="s4"><span><b>Load unpacked</b> → choose the extracted folder.</span></li>
+          <li data-i="s5"><span>Reload your claude.ai tab. A pill appears above the message box; start typing.</span></li>
+        </ol>
+      </div>
+      <div class="note">
+        <h3 data-i="upH">Don't lose what it learned when updating</h3>
+        <p data-i="upP">Before removing the old version, open the extension window: Settings → <b>Export my data</b>. After installing the new one, use <b>Import my data</b>.</p>
+        <h3 data-i="hcH" style="margin-top:10px">If something doesn't work</h3>
+        <p data-i="hcP"><b>Health check</b> in the window shows the state of every step. Use <b>Copy log</b> when reporting a bug; the log contains no message text.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="sinirlar">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="lmE">LIMITATIONS</p>
+        <h2 data-i="lmH">We also tell you what we don't know.</h2>
+      </div>
+      <ul class="plain cols">
+        <li data-i="l1">It relies on claude.ai's undocumented internals. If Anthropic changes the page, an update is needed; the health check shows it right away.</li>
+        <li data-i="l2">Ranges are wide for the first messages; limit sizes start as rough estimates.</li>
+        <li data-i="l3">Model suggestions come from rules plus a small learned model. Answer quality was measured only once, on 58 prompts with a model as judge (Measurement section); it has not been measured with human judges. Your 👍/👎 and task-type corrections tune the suggestions to you.</li>
+        <li data-i="l4">During peak hours (weekdays 05:00–11:00 Pacific) the 5-hour limit fills faster; Anthropic hasn't published the multiplier, so the extension learns it by measuring.</li>
+        <li data-i="l5">Using the same account on another device or in Claude Code at the same time can disturb measurements; the outlier filter removes most of them.</li>
+        <li data-i="l7">Topic recognition is keyword-based. On a nearly blind set of 90 messages written after the rules were finished, it found 71% with 1 wrong area; when it can't find one it says “General” and the suggestion doesn't change. Whether the suggested effort preserves answer quality has not been measured.</li>
+        <li data-i="l6">Thinking tokens are never visible on claude.ai; they're only learned indirectly from usage changes.</li>
+        <li data-i="l8">The interface comes in 10 languages, but message analysis (task type, topic, model and effort suggestions) currently works only for Turkish and English messages. In other languages you still get the token and limit forecast (the token count is tuned per language, though measured on fewer samples), but no suggestions.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" id="sss">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="fqE">FAQ</p>
+        <h2 data-i="fqH">Things you might wonder.</h2>
+      </div>
+      <div class="faq">
+        <details><summary data-i="q11">What is the Claude usage limit (rate limit), and when does it reset?</summary><p data-i="a11">claude.ai has two limits: a 5-hour session limit and a weekly limit. Anthropic doesn’t publish their exact size; Settings → Usage shows how much you’ve used and when it resets. Token Forecast shows the same percentage inside the chat and estimates how much of it a message will use before you send it.</p></details>
+        <details><summary data-i="q12">Does it work as a Claude token counter?</summary><p data-i="a12">Yes. It counts the tokens of your message, attachments and chat history in your browser; in the demo above you see them in the “INPUT → REPLY” row. Claude’s tokenizer isn’t public, so the count is an estimate, tuned per language. Its real job is telling you what share of your limit those tokens are.</p></details>
+        <details><summary data-i="q1">Does it cost anything?</summary><p data-i="a1">No. You don't need an account either.</p></details>
+        <details><summary data-i="q2">Does it read my messages and send them somewhere?</summary><p data-i="a2">It reads the message box in your browser to count tokens, but sends nothing anywhere. The extension has no server, no analytics, no tracking. The weekly report and learned values contain no message text.</p></details>
+        <details><summary data-i="q3">How accurate are the estimates?</summary><p data-i="a3">Ranges are wide for the first messages because limit sizes start as rough guesses. It narrows by measuring every message; in simulation the error drops to 1.13× after 20 messages and 1.08× after 100. The window shows how many measurements fell inside the range.</p></details>
+        <details><summary data-i="q4">How is it different from Claude's own usage screen?</summary><p data-i="a4">Settings → Usage shows what you've already used. Token Forecast tells you, before you send, how much this message will use, which model is enough, and why something cost so much.</p></details>
+        <details><summary data-i="q5">Could it harm my account?</summary><p data-i="a5">It isn't an official Anthropic tool. It reads the usage data claude.ai's own pages use, with your session; it never sends messages, changes settings or automates anything.</p></details>
+        <details><summary data-i="q6">Which browsers?</summary><p data-i="a6">Chrome, Opera, Edge and Brave (Chromium 116 or later). A Firefox version is on the roadmap.</p></details>
+        <details><summary data-i="q7">Is the source code open?</summary><p data-i="a7">Yes. The code is open under the GNU AGPL-3.0: you can read, run, modify and share it. If you distribute a modified version, you must release it under the same license with its source code and keep the copyright notice. The name and logo “Token Tahmini / Token Forecast” are not covered by the license; modified versions must use a different name.</p></details>
+        <details><summary data-i="q8">Why doesn't it suggest Haiku when my message contains “translate”?</summary><p data-i="a8">It looks at the task, not the word. “Translate this: …” is a translation request and Haiku is enough. “I need a site with a translation system built” is a build job and at least Sonnet is suggested. 15 such trap sentences and real translation requests are in the automated tests.</p></details>
+        <details><summary data-i="q9">How do I see that it really learns?</summary><p data-i="a9">Extension window → Weekly report → Proof of learning. After 30 measurements it compares the error of the first and the latest measurements, and says so if it did not drop. The experiment we ran with simulated users is in the Proof section above.</p></details>
+        <details><summary data-i="q10">Which languages does it work in?</summary><p data-i="a10">The extension and this site come in Turkish, English, German, French, Spanish, Italian, Portuguese, Russian, Japanese and Chinese; pick one in the settings. Message analysis (task type, topic, model and effort suggestions) is done only for Turkish and English messages. If you write in another language, the token and limit forecast still works, no suggestion is shown and the extension tells you so. The intro video and screenshots are in Turkish and English; the other languages see the English ones.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="yol">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="rmE">ROADMAP</p>
+        <h2 data-i="rmH">What's next?</h2>
+      </div>
+      <div class="road">
+        <div class="now"><b data-i="rm1h">Opera and Firefox</b><span data-i="rm1p">Live on the Chrome Web Store; Opera add-ons and Firefox are next.</span></div>
+        <div><b data-i="rm2h">First community starting values</b><span data-i="rm2p">Limit sizes per plan and answer lengths, from contributions.</span></div>
+        <div><b data-i="rm3h">Blind quality test</b><span data-i="rm3p">Compare different models' answers to the same question without labels; tune suggestion thresholds from it.</span></div>
+        <div><b data-i="rm4h">Shared report for teams</b><span data-i="rm4p">Team-wide usage and shared tips on Team plans, still text-free.</span></div>
+        <div><b data-i="rm6h">A learned model for topics</b><span data-i="rm6p">For messages where keywords are not enough; with user corrections.</span></div>
+        <div><b data-i="rm5h">Multiple accounts</b><span data-i="rm5p">Separate limits and learned values per account.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="destek" hidden="">
+    <div class="wrap">
+      <div class="support">
+        <div><h3 data-i="spH">Support the project</h3><p class="muted" data-i="spP">Token Forecast will stay free. If you'd like to help it keep going:</p></div>
+        <a class="btn primary" id="supportBtn" href="#" target="_blank" rel="noopener noreferrer" data-i="spB">Support ☕</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p data-i="ft1">Token Forecast is an independent project and is not affiliated with Anthropic. Claude is a trademark of Anthropic.</p>
+    <p class="ftbar"><span data-i="ft4">Version 0.13.0 · November 2026</span><button type="button" class="linkbtn" id="botToggle">Hide the bot</button></p>
+    <nav aria-label="Language"><ul class="langs"><li><a href="../" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="../en/" hreflang="en" lang="en" aria-current="page">English</a></li><li><a href="../de/" hreflang="de" lang="de">Deutsch</a></li><li><a href="../fr/" hreflang="fr" lang="fr">Français</a></li><li><a href="../es/" hreflang="es" lang="es">Español</a></li><li><a href="../it/" hreflang="it" lang="it">Italiano</a></li><li><a href="../pt/" hreflang="pt" lang="pt-BR">Português</a></li><li><a href="../ru/" hreflang="ru" lang="ru">Русский</a></li><li><a href="../ja/" hreflang="ja" lang="ja">日本語</a></li><li><a href="../zh/" hreflang="zh" lang="zh-CN">简体中文</a></li></ul></nav>
+    <p><a href="https://github.com/H-ENES1/ai-assistant-claude" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://h-enes1.github.io/ai-assistant-claude/privacy.html" target="_blank" rel="noopener noreferrer">Privacy / Gizlilik</a></p>
+    <p data-i="ft3">© 2026 Hayrettin Enes Karalı. Open source under the GNU AGPL-3.0.</p>
+    <p data-i="ft2">Sources: Anthropic's model selection guide and docs · CASTILLO dataset (CC BY 4.0) · lugia19/Claude-Usage-Extension measurements (GPL-3.0; observations only, no code copied).</p>
+  </div>
+</footer>
+
+<script id="tfPage">window.TF_PAGE={"done":true,"lang":"en","root":"../","ext":"webp","urls":{"tr":"../","en":"../en/","de":"../de/","fr":"../fr/","es":"../es/","it":"../it/","pt":"../pt/","ru":"../ru/","ja":"../ja/","zh":"../zh/"},"msg":{"en":{"popupTitle":"Token Forecast","sessionLimit":"5-hour session","weeklyLimit":"Weekly limit","resetsAt":"Resets at $TIME$","noData":"No usage data yet. Open claude.ai while signed in.","settings":"Settings","language":"Language","languageAuto":"Browser default","thresholds":"Warning thresholds","panelEstimate":"Estimated use: $LOW$–$HIGH$% of your session","confidenceLow":"confidence: low","confidenceMedium":"confidence: medium","confidenceHigh":"confidence: high","panelLoading":"Estimating…","pct":"$1%","resetsIn":"Resets in $1 ($2)","durDH":"$1 d $2 h","durHM":"$1 h $2 min","durM":"$1 min","bottleneck":"This limit will run out first","fetchError":"Couldn't read usage. Make sure you're signed in to claude.ai.","otherLimits":"Other limits","updatedJustNow":"Updated just now","updatedAgo":"Updated $1 ago","staleWarning":"latest refresh failed","refresh":"Refresh","dbgPrompt":"Prompt","dbgHistory":"Conversation","dbgMessages":"$1 messages","dbgNotFound":"not detected","dbgAttachments":"Attachments","dbgTotal":"Input total","dbgTokens":"tokens","dbgNoInput":"Message box not found","dbgAnalyzing":"analyzing…","dbgPasted":"pasted text","dbgPages":"$1 pages","dbgConvAttachments":"Attachments sent in this chat ($1)","dbgContext":"Context window ($1, $2)","dbgModelUnknown":"model not detected","ctxOver":"This won't fit in Claude's context window. Send only the parts you need.","ctxNear":"This may not fit in Claude's context window. Consider splitting it or starting a new chat.","pdfTextOnly":"PDF over 100 pages: Claude reads its text only, not images or charts.","pdfTooLarge":"PDF over 1000 pages: claude.ai won't accept it.","lessThan":"under $1","warnNoFit":"This will likely not fit in your $1 ($2 left).","warnMaybeFit":"This might not fit in your $1 ($2 left).","ctxWorkspace":"On paid plans claude.ai may move a very large file into a workspace instead, where Claude reads it with code rather than all at once.","warnCacheCold":"You haven't used this chat for $1 min, so the cache has expired: the whole history (~$2 tokens) will count again. A new chat may be much cheaper.","warnCacheUnknown":"If this chat was idle for over an hour, its history (~$1 tokens) will count again.","tipNewChat":"This chat is long (~$1 tokens). Starting a new chat with a short summary keeps answers sharper and cheaper.","warnPeak":"Peak hours (weekdays $1–$2 your time): on claude.ai the 5-hour limit fills faster right now. Consider moving long tasks outside this window.","recDowngrade":"$1 would likely be enough and use about $2% less of your limit.","recUpgrade":"This looks demanding; $1 may give a noticeably better answer.","rec_short_qa":"Short factual questions rarely need a large model.","rec_translate":"Light models translate well.","rec_rewrite":"Editing a given text is a light task.","rec_summarize":"Summaries are a strength of lighter models.","rec_explain":"Explanations are handled well by mid-size models.","rec_writing":"Mid-size models write well.","rec_data_analysis":"Standard analysis fits a mid-size model.","rec_file_create":"Documents and decks fit a mid-size model.","rec_code_write":"Everyday coding fits a mid-size model.","rec_code_fix":"Most debugging fits a mid-size model.","rec_research":"Routine research fits a mid-size model.","rec_math":"Routine problems fit a mid-size model.","rec_complex":"The task looks complex.","rec_hardest":"This is among the hardest kinds of task.","effLower":"Low effort is usually enough for this; high effort mostly adds hidden thinking tokens.","effRaise":"For a hard problem like this, higher effort may be worth it.","type_short_qa":"Short question","type_explain":"Explanation","type_math":"Problem solving","type_code_write":"Writing code","type_code_fix":"Debugging / code","type_translate":"Translation","type_writing":"Writing","type_rewrite":"Editing text","type_summarize":"Summary","type_data_analysis":"Data analysis","type_research":"Research","type_file_create":"Creating a file","rowWeekly":"Weekly limit","rowType":"Request type","rowModel":"Model","modelName":"$1","rowInput":"Input (new)","rowOutput":"Expected answer","rowCache":"Cache","rowContext":"Context window","cache_none":"new chat","cache_warm":"active (history is free)","cache_cold":"expired (history counts)","cache_unknown":"unknown","effort_low":"low effort","effort_medium":"medium effort","effort_high":"high effort","effort_max":"max effort","effort_off":"thinking off","effort_auto":"auto","footCalibrated":"Learned from $1 of your messages · $2% landed inside the range.","footLearning":"Still learning: estimates get sharper after a few messages.","pillIdle":"Token Forecast","pillUsed":"5h: $1 used","pillSub":"of 5-hour limit","cardTitle":"This message will use","cardSub":"of your 5-hour limit · likely range $1","cardIdleSub":"5-hour limit used so far. Start typing to see an estimate.","close":"Close","notifResets":"Resets at $1.","notifThresholdTitle":"$1 at $2%","notifThresholdBody":"Plan bigger tasks with the forecast before sending.","notifThresholdBodyHigh":"Almost out: finish what's important first.","notifResetTitle":"$1 has reset","notifResetBody":"You can continue where you left off.","notifTestBody":"Notifications are working.","freePlanWait":"On the free plan, usage appears after you send your first message in claude.ai.","capTitle":"With what you have left","capSub":"Roughly one of these, in a new chat with $1 (cautious estimate).","cap_short_qa":"short questions","cap_explain":"explanations","cap_code_fix":"code fixes","cap_writing":"pieces of writing","cap_summarize":"document summaries","cap_research":"research tasks","calTitle":"Personal calibration","calNone":"No measurements yet. Each message you send teaches the extension how your plan really behaves.","calFew":"$1 measurements so far; a few more and estimates sharpen.","calSome":"$1 measurements · $2% of actual values fell inside the forecast range.","setNotif":"Notifications","setPanel":"Show estimate on claude.ai","setMemory":"Claude memory (context size)","memAuto":"Assume on","memOn":"On","memOff":"Off","btnTestNotif":"Test notification","btnExport":"Export my data","btnResetCal":"Reset calibration","btnResetConfirm":"Click again to reset","privacyNote":"Everything is computed in your browser. Message text never leaves your device.","moreDetails":"Details & settings","detailsTitle":"Token Forecast — details","healthTitle":"Health check","hHook":"Page hook (sees sent messages)","hSend":"Last send detected","hDone":"Last reply stream read","hUsage":"Usage is being read","hPage":"Page: input / model / effort","hLast":"Last measurement","hNone":"none yet","hHookNoReply":"no reply – reload the claude.ai tab","hHookReplaced":"fetch was replaced by the site","hProbe":"sends go to a different address","hSendWait":"no message sent yet, or not detected","hSseYes":"stream OK","hSseNo":"stream read but no usage data in it","hCopyLog":"Copy log","hCopied":"Copied","hLogTitle":"Measurement log","hHint":"If a row shows a problem, copy the log and send it to the developer.","hDomPath":"detected from the page (backup path)","advSave":"$1 is enough for this task","advSaveDetail":"This message will use about $1 of your limit; with $2 about $3 ($4% saving).","advSaveNext":"$1 is enough for tasks like this, but don't switch in this chat","advSaveNextDetail":"The chat history ($1 tokens) isn't in the new model's cache and would be re-read, so this message would cost more. Pick $2 when you start your next new chat.","advUpgrade":"This may be hard for $1: $2 is recommended","advUpgradeDetail":"$1 uses your limit about $2× as fast. If you'd rather try $3 first, upgrade if the answer falls short.","advOk":"$1 fits this task","advOkTiny":"$1 would also do, but the difference is tiny ($2 of your limit).","advWhy":"Why?","advHide":"Hide","advDetected":"Detected task","advSignals":"Signals I saw","advBasis":"Basis","advWhen":"When to switch","advDetectedVal":"$1 · $2 · $3","level_low":"easy","level_mid":"medium","level_high":"hard","ev_trigger":"the phrase $1","ev_hard":"difficulty cues: $1","ev_code":"code block / code lines","ev_attach":"attachment: $1 tokens","ev_bullets":"$1-point request","ev_long":"a detailed answer is requested","ev_short":"a short answer is requested","ev_words":"$1 words","why_simple_task":"A simple, clear task; the classifier is confident.","why_unsure_safe":"I'm not sure about the task type, so I stay on the safe side and suggest at least Sonnet.","why_complex":"High complexity.","why_hardest":"A very hard derivation, design or research task.","why_pref_floor":"Based on your feedback I pick a stronger model for tasks like this.","why_pref_ceil":"Based on your feedback I don't push a stronger model for tasks like this.","basis_haiku":"Anthropic positions Haiku 5.5 as \"the lowest latency and price\" model, for high-volume, simple tasks and sub-agent work.","basis_sonnet":"Per Anthropic, Sonnet 5.5 offers \"speed and capability for everyday workloads\": code generation, data analysis, content creation.","basis_opus":"Anthropic recommends Opus 5.5 for complex coding and enterprise work: large refactors, systems engineering, multi-hour agents.","basis_fable":"Fable 5.1 is \"the highest available capability\": multi-hour agent sessions, multistep deep research.","tbasis_short_qa":"Single-answer factual questions need short replies; light models do them well. Questions about people or events can be made up — verify if it matters.","tbasis_translate":"In translation the text is already there; the model keeps the meaning and changes the language. Light models do this well.","tbasis_rewrite":"When editing or simplifying, the content is given; the model only improves the form.","tbasis_summarize":"In a summary the information is in the text; a light model is fine for short texts, a mid model is safer for long or technical documents.","tbasis_explain":"Explaining concepts needs accuracy and good examples; a mid model is usually enough, Opus helps on advanced topics.","tbasis_writing":"For writing and emails, a mid model balances tone and fluency well.","tbasis_data_analysis":"Data analysis mixes calculation and interpretation; a mid model is usually enough.","tbasis_file_create":"Creating files or decks is multi-step work; a mid model is usually enough, Opus for long documents.","tbasis_code_write":"Sonnet is strong at everyday coding; Opus is recommended for architecture and multi-file work.","tbasis_code_fix":"Sonnet handles single-file bugs; Opus for hard or system-wide bugs.","tbasis_research":"Research means finding and synthesizing sources; Opus or Fable for deep, multistep research.","tbasis_math":"Calculations and standard problems suit a mid model; proofs and long derivations suit Opus or Fable.","when_haiku":"Switch to Sonnet if the answer is shallow or wrong.","when_sonnet":"Switch to Opus if the answer falls short or the task grows.","when_opus":"Use Fable for multi-hour agent work or if Opus isn't enough.","when_fable":"Fable is the strongest and most expensive model; use it only for truly hard tasks.","advCaveat":"This suggestion is an estimate from rules plus a small learned model running on your device; answer quality was not measured. Your feedback and corrections tune it to you.","advFbQ":"Was this suggestion right?","advFbGood":"👍 Right","advFbBad":"👎 Wrong","advFbThanks":"Thanks, saved.","advSource":"Source: Anthropic's model selection guide","setAdvisor":"Show model suggestion notice","btnImport":"Import my data","btnImportConfirm":"Yes, restore backup","importReady":"Backup read: $1 measurements ($2). It will replace what's learned now; press the button again to confirm.","importDone":"Backup restored: $1 measurements are back.","importBad":"This file isn't a valid Token Forecast backup.","supportLink":"Support the project ☕","cacheWarmLeft":"warm · history free for $1 more min","cacheColdAgo":"cold (last message $1 ago) · history is re-read","tipHandoff":"This chat is long ($1 tokens) and grows with every message. To move to a new chat, you can ask Claude for a short handoff summary.","tipHandoffWarm":"This chat is long ($1 tokens). Asking for a handoff summary is cheap while the cache is warm; paste it into a new chat and continue there.","btnHandoff":"Copy handoff prompt","handoffPrompt":"I'm moving this conversation to a new chat. Write a short handoff summary: the goal, decisions made so far, important details (file names, numbers, code snippets), open questions and the next step. Make it ready to paste into a new chat, 300 words max.","peakLeft":"Ends in $1.","warnSurprise":"Your last message used more than expected: $1 (estimate $2). Possible reasons: $3.","cr_cold":"you wrote after a long break, so the history was re-read","cr_long_chat":"the chat is very long","cr_peak":"peak hours","cr_effort":"high effort (hidden thinking)","cr_long_answer":"the answer was longer than expected","cr_big_model":"large model","cr_elsewhere":"the same account may have been used in another tab, device or Claude Code","bdTitle":"Where the cost comes from (estimate)","bd_output":"Answer","bd_thinking":"Thinking","bd_input":"Message & files","bd_history":"History","bd_tool":"Tools","wkNotifTitle":"Your weekly report is ready","wkNotifMsgs":"$1 messages","wkNotifSpent":"$1 full 5-hour limits","wkNotifPeak":"$1% of it at peak hours","rpTitle":"Weekly report","rpRange":"Last 7 days · $1 – $2","rpMsgs":"Messages","rpChats":"in $1 chats","rpChangeUp":"$1% more than last week","rpChangeDown":"$1% fewer than last week","rpChangeSame":"same as last week","rpChangeNone":"no records last week","rpSpent":"5-hour limit used","rpSessions":"$1 limits","rpSpentSub":"$1 of 5-hour limits in total","rpPeak":"At peak hours","rpPeakSub":"$1 of messages","rpSave":"Missed savings","rpSaveSub":"a lighter model would have done for $1 messages","rpSaveNone":"you followed the suggestions","rpTips":"My suggestions","tip_peak":"$1% of your usage happened at peak hours ($2, weekdays). claude.ai fills the 5-hour limit faster then; moving long tasks outside that window gets the same work done with less of your limit.","tip_cold":"$1 messages went into a long chat after a break of more than an hour, so the whole history was re-read each time ($2% of your usage). After a break, a new chat or a handoff summary is cheaper.","tip_advice":"A lighter model would have been enough for $2 messages. Following the suggestion would have saved about $1 of a session limit.","tip_long":"$1 messages were sent in chats over 100K tokens. Context that long strains both your limit and answer quality; splitting topics into new chats helps.","tip_effort":"High thinking effort was on for $1 simple tasks (translation, quick questions). Low effort gives the same result for less there.","tip_upgrade":"A stronger model was suggested for $1 messages. If answers fell short, starting such tasks on the stronger model is cheaper than asking again and again.","tip_good":"Your usage looks balanced this week: no clear problem with peak hours, long chats or oversized models.","rpByModel":"Models (by usage)","rpByType":"Task types (by usage)","rpHeat":"When do you write? (last 4 weeks, your time)","rpHeatPeak":"Outlined cells: peak hours","rpTop":"Most expensive messages","rpMeasured":"measured","rpEstimated":"estimate","rpAcc":"Forecast accuracy","rpAccVal":"$2 of $1 measured messages fell within the forecast range.","rpAccNone":"No measured messages this week; values are estimates.","rpMeasuredShare":"$1 of the values were measured; the rest are send-time estimates.","rpCsv":"Download CSV","rpPrivacy":"This report is computed only in this browser, from records that contain no message text.","rpOpen":"Weekly report","rpWeekLine":"Last 7 days: $1 messages · $2 full 5-hour limits","rpDays":"Mon,Tue,Wed,Thu,Fri,Sat,Sun","rpNoData":"Not enough records for a report yet. After a few days of writing on claude.ai this page fills up.","rpOther":"Other","setWeekly":"Weekly report notification on Monday morning","burnEta":"At the last hour's pace it fills around $1 (resets $2).","burnSafe":"At this pace it won't fill before it resets.","burnIdle":"No notable usage in the last hour.","rpBack":"Details and settings","advRelabel":"Wrong task type? Pick the right one:","advRelabelThanks":"Thanks — learning from this on this device.","ev_ml":"learned model $1% sure","comTitle":"Contribute to the community (optional)","comText":"Sharing what was learned on this device makes forecasts accurate from day one for new users. The summary contains no message text, chat names, dates or account details. You see the content before sending; nothing is sent automatically.","comBuild":"Show contribution summary","comCopy":"Copy and open the form","comCopyOnly":"Copy","comCopied":"Copied. Paste it into the box in the form that opened and submit.","comNoUrl":"Copied. The community form opens soon; you can keep the text for now.","comEmpty":"Nothing to share yet. Try again after sending a few messages.","feedbackLink":"Send feedback or a suggestion","rpOpenBtn":"Open report →","rpWeekLinePct":"Last 7 days: $1 messages · $2 of 5-hour limits used in total","rpSpentSmall":"in total (1 full limit = 100%)","rowDomain":"Topic","dom_science":"Science","dom_math":"Mathematics","dom_engineering":"Engineering","dom_software":"Software","dom_data_ai":"Data & AI","dom_academic":"Academic writing","dom_project":"Projects & planning","dom_literature":"Literature & creative writing","dom_business":"Business & career","dom_finance":"Economics & finance","dom_law":"Law","dom_health":"Health","dom_education":"Study & exams","dom_language":"Language","dom_humanities":"History, philosophy & society","dom_daily":"Everyday life","dom_general":"General","sub_science_physics":"Physics","sub_science_chemistry":"Chemistry","sub_science_biology":"Biology","sub_science_astronomy":"Astronomy","sub_science_earth":"Earth science","sub_math_pure":"Algebra & calculus","sub_math_statistics":"Statistics","sub_engineering_electrical":"Electrical & electronics","sub_engineering_mechanical":"Mechanical","sub_engineering_civil":"Civil","sub_engineering_control":"Control & industrial","sub_software_web":"Web","sub_software_mobile":"Mobile","sub_software_systems":"Systems & databases","sub_software_general":"Programming","sub_data_ai_ml":"Machine learning","sub_data_ai_llm":"Language models","sub_data_ai_data":"Data analysis","sub_academic_paper":"Papers","sub_academic_thesis":"Thesis","sub_academic_grant":"Grants & applications","sub_project_planning":"Planning","sub_project_agile":"Agile","sub_project_startup":"Startup","sub_literature_poetry":"Poetry","sub_literature_fiction":"Fiction","sub_literature_analysis":"Literary analysis","sub_literature_screen":"Screen & stage","sub_business_career":"Career","sub_business_marketing":"Marketing","sub_business_management":"Management","sub_finance_investing":"Investing","sub_finance_personal":"Personal finance","sub_finance_accounting":"Accounting & tax","sub_finance_economics":"Economics","sub_law_contract":"Contracts","sub_law_civil":"General law","sub_law_privacy":"Privacy","sub_law_ip":"Intellectual property","sub_health_medical":"Medical","sub_health_nutrition":"Nutrition","sub_health_fitness":"Fitness","sub_health_mental":"Mental health","sub_education_exam":"Exams","sub_education_homework":"Homework","sub_education_teaching":"Teaching","sub_language_grammar":"Grammar","sub_language_learning":"Language learning","sub_language_translation":"Translation","sub_humanities_history":"History","sub_humanities_philosophy":"Philosophy","sub_humanities_society":"Society","sub_humanities_psychology":"Psychology","sub_daily_food":"Food","sub_daily_travel":"Travel","sub_daily_home":"Home","sub_daily_fun":"Fun","sub_daily_people":"People","dbasis_science":"In science, accuracy and consistency matter; detailed explanations get one effort level more.","dbasis_math":"Math needs step-by-step reasoning; proofs and derivations get at least High effort.","dbasis_engineering":"Mistakes in engineering calculations are costly; design and calculation work gets one effort level more.","dbasis_software":"Effort rises with code complexity; for hard coding on Opus, Anthropic suggests trying Extra high first.","dbasis_data_ai":"Data and AI tasks usually need moderate reasoning.","dbasis_academic":"Consistency matters in academic text; edits usually need little effort, literature reviews and methods more.","dbasis_project":"Anthropic recommends raising effort for project planning; planning gets at least Medium.","dbasis_literature":"Long thinking rarely improves creative writing; effort is capped at Medium.","dbasis_business":"Business writing is usually routine; the default or lighter setting is enough.","dbasis_finance":"Wrong money advice can hurt: no light model, effort at least Medium.","dbasis_law":"Wrong legal information can hurt: no light model, effort at least Medium. Ask a lawyer for important decisions.","dbasis_health":"Wrong health information can hurt: no light model, effort at least Medium. In an emergency, see a doctor.","dbasis_education":"Study tasks are mostly explanations; effort rises with difficulty.","dbasis_language":"Language tasks (translation, grammar) are usually light; one effort level lower is enough.","dbasis_humanities":"History and philosophy explanations need moderate reasoning.","dbasis_daily":"Everyday tasks are light; one effort level lower is enough.","dbasis_general":"","eff_low":"Low","eff_medium":"Medium","eff_high":"High","eff_xhigh":"Extra high","eff_max":"Max","effort_xhigh":"extra high effort","effDefaultMark":"(default)","effLowerX":"Setting effort to $1 saves about $2 of the limit on this message.","effAssumedNote":"(Couldn't read the effort setting on the page; assumed the model default, $1.)","effRaiseX":"Setting effort to $1 may give a more reliable answer for this task.","advEffWith":"effort: $1","advEffLowerTitle":"Set effort to $1: ≈ $2 less","advEffLowerDetail":"Now: $1. For this kind of task $2 effort usually gives the same answer; less hidden thinking cuts this message's cost by about $3%.","advEffRaiseTitle":"Set effort to $1 for this task","advEffRaiseDetail":"Now: $1. This task needs deep reasoning; $2 effort gives a more reliable answer but this message costs about $3% more. A weak answer means asking again, which costs more.","advEffAlsoLower":"Effort $1 is also enough.","advDomain":"Topic","advEffort":"Effort suggestion","advEffortVal":"I suggest $1.","advEffForModel":"(for $1)","advEffNow":"Now: $1.","advFbQEff":"Was this effort suggestion right?","effBasis":"Effort basis: per Anthropic, Low and Medium stretch usage on routine tasks, High is the best balance, Extra high is for long coding and agent work, Max for the deepest reasoning.","ev_domain":"topic words: $1","why_stakes":"In high-stakes topics (health, law, money) I don't suggest a light model.","ewhy_e_light_type":"light task type","ewhy_e_mid_type":"moderate task","ewhy_e_deep_type":"task needing deep reasoning","ewhy_e_big_doc":"large document","ewhy_e_stakes":"high stakes: at least Medium","ewhy_e_depth":"scientific/technical depth","ewhy_e_plan":"planning task","ewhy_e_complex":"complex request","ewhy_e_hardest":"very hard problem","ewhy_e_proof":"proof/derivation","ewhy_e_creative":"creative writing: capped at Medium","ewhy_e_light_domain":"everyday/language task","ewhy_e_short":"short answer requested","ewhy_e_pref":"your feedback","ewhy_e_long_code":"hard coding: Extra high","rpByDomain":"Topics (by spend)","rpByEffort":"Effort settings (by spend)","rpDomainNote":"Topic is guessed on your device from the words in the message; no text is stored.","tip_effort_over":"Effort was above the suggestion on $1 messages. The suggested setting would have used about $2 less of the limit.","tip_domain_save":"Most of the saving potential is in $1: a lighter model would have done for $2 messages.","tip_domain_stakes":"$1 messages were about health, law or money. I don't suggest a light model or Low effort there; for important decisions also ask an expert.","pillDragTitle":"Drag to move","pillReset":"Reset pill position","rpEffOver":"Effort was above the suggestion on $1 messages (missed saving ≈ $2).","rpEffOk":"Your effort settings look in line with the suggestions.","rpLearn":"Proof of learning","rpLearnFew":"$1 measured messages so far. Every 10 measurements make one bar, and a trend shows after 30 (about $2 more messages).","rpLearnBetter":"In the first measurements the predicted total limit was off by a factor of $1, in the latest ones by $2. The extension is learning you.","rpLearnSame":"Forecast error is $1× in the first measurements and $2× in the latest: no clear change. If it was already accurate, that is expected.","rpLearnWorse":"The latest measurements are further off ($2×) than the first ($1×). Using the same account on another device or in Claude Code disturbs measurement; if so, try resetting calibration.","rpLearnRange":"Staying inside the forecast range: $1 in the first measurements, $2 in the latest (target about 80%).","rpLearnBar":"Measurements $1–$2: $3×","rpLearnNote":"Each bar is 10 consecutive measured messages. It shows how far the predicted total limit was from what was actually spent (1.00 = perfect). Percentages are rounded to whole numbers, so 10-message totals are used instead of single messages.","setEffortAdvice":"Show effort advice","setTips":"Show tips (cache, peak hours, long chats, handoff summary)","setExplain":"Show the “why did it cost this much?” explanation","setView":"View","viewFull":"Full: forecast and all suggestions","viewSimple":"Simple: forecast and limit warnings only","viewCustom":"Custom (choices below)","viewNote":"The simple view hides model and effort suggestions, tips and cost explanations. The forecast and warnings about limits and context size always stay.","warnLangLimited":"Message analysis (task type, topic, model and effort advice) currently works for Turkish and English messages only. In this language you get the token and limit forecast, but no advice.","typeNA":"Not analyzed in this language","ecoTitle":"Water and energy you saved this week","ecoWater":"Water","ecoEnergy":"Energy","ecoRange":"estimated range $1 – $2","ecoU_glass":"glass of water (250 mL)","ecoU_phone":"phone charge (19 Wh)"}},"sx":{}};</script>
+<script>(function(){var P=window.TF_PAGE,s=document.getElementById("langSel");s.addEventListener("change",function(){try{localStorage.setItem("tf-lang",s.value);}catch(e){}if(s.value!==P.lang&&P.urls[s.value])location.href=P.urls[s.value];});var F={"links":["https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap&text=%20%25%26%27%28%29%2B%2C-.%2F0123456789%3A%3B%3C%3E%3FABCDEFGHIKLMNOPRSTVWabcdefghijklmnopqrstuvwxyz%C3%97%E2%80%93%E2%80%9C%E2%80%9D%E2%86%92%E2%89%88","https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap&text=%20%21%22%23%24%25%26%27%28%29%2A%2B%2C-.%2F0123456789%3A%3B%3C%3D%3E%3F%40ABCDEFGHIJKLMNOPQRSTUVWXYZ%5B%5C%5D%5E_%60abcdefghijklmnopqrstuvwxyz%7B%7C%7D~%C2%A9%C2%B7%C3%96%C3%97%C3%9C%C3%9F%C3%A1%C3%A2%C3%A7%C3%A8%C3%A9%C3%AA%C3%B1%C3%B6%C3%BC%C4%9F%C4%B1%C5%9F%D0%97%D0%9E%D0%A0%D0%AD%D0%B0%D0%B5%D0%B8%D0%B9%D0%BA%D0%BC%D0%BD%D0%BE%D1%80%D1%81%D1%82%D1%83%D1%86%D1%8B%D1%8C%E2%80%93%E2%80%94%E2%80%99%E2%80%9C%E2%80%9D%E2%80%A6%E2%86%91%E2%86%92%E2%86%93%E2%89%88"]},done=0;function go(){if(done++)return;(F.links||[]).forEach(function(u){var l=document.createElement("link");l.rel="stylesheet";l.href=u;document.head.appendChild(l);});var j=document.createElement("script");j.src="../app.js?v=f723b5e8c5";document.body.appendChild(j);}function later(){setTimeout(go,0);}try{var po=new PerformanceObserver(function(l){if(l.getEntriesByName("first-contentful-paint").length){po.disconnect();later();}});po.observe({type:"paint",buffered:true});}catch(e){requestAnimationFrame(later);}setTimeout(go,4000);})();</script>
+
+
+<script type="application/json" id="tfStage">{"ex":[{"label":"Translate","text":"Translate this paragraph into Turkish: I can't make tomorrow morning's meeting, I'll share my notes in the evening.","model":"Opus 5.5","eff":"High","big":"≈ 0.2%","mid":0.23495999706657728,"sub":"of your 5-hour limit","range":"80% range: 0.03%–1.7%","m":[62,0.23495999706657728,1.7281168148371955],"tone":"save","icon":"↓","adv":"Haiku 5.5 is enough for this task · effort: Low","nod":true,"tokN":33,"week":"≈ 0.02%","move":"0.2% → 0.03%"},{"label":"Code bug","text":"I get an IndexError when I run this, why?\n```py\nfor i in range(len(a)+1):\n    print(a[i])\n```","model":"Sonnet 5.5","eff":"Medium","big":"≈ 0.2%","mid":0.24660404268823338,"sub":"of your 5-hour limit","range":"80% range: 0.06%–0.8%","m":[62,0.24660404268823338,0.8184181238421414],"tone":"ok","icon":"✓","adv":"Sonnet 5.5 fits this task · effort: Medium","nod":false,"tokN":46,"week":"≈ 0.02%","move":""},{"label":"Derivation","text":"Derive the radial wave functions of the hydrogen atom step by step and prove their relation to Laguerre polynomials.","model":"Sonnet 5.5","eff":"Medium","big":"≈ 0.4%","mid":0.38123652014532106,"sub":"of your 5-hour limit","range":"80% range: 0.08%–1.8%","m":[62,0.38123652014532106,1.752332026281775],"tone":"up","icon":"↑","adv":"This may be hard for Sonnet 5.5: Opus 5.5 is recommended · effort: High","nod":false,"tokN":30,"week":"≈ 0.04%","move":"0.4% → 0.8%"}],"trap":{"text":"I need a website built with a translation system, it is a hard job","tone":"up","icon":"↑","adv":"This may be hard for Haiku 5.5: Sonnet 5.5 is recommended · effort: Medium","note":"Writing code · low confidence"},"eco":{"n":50,"title":"Water and energy you saved this week","wL":"Water","w":"≈ 170 mL","wR":"estimated range 69 mL – 510 mL","wU":"≈ 0.7 × glass of water (250 mL)","fill":0.6972794698127441,"eL":"Energy","e":"≈ 42 Wh","eR":"estimated range 19 Wh – 96 Wh","eU":"≈ 2.2 × phone charge (19 Wh)","ex":"Example: if you send 50 short translations with the suggested Haiku 5.5 and Low effort instead of Opus 5.5. An estimate."},"week":"WEEKLY","pause":"⏸ Pause","play":"▶ Play","exL":"Example messages"}</script>
+</body>
+</html>

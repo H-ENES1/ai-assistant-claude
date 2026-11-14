@@ -2,8 +2,9 @@
 // Copyright (c) 2026 Hayrettin Enes Karalı
 // Açılır pencere: limitler, kalan limitle yapılabilecekler (adım 7), kalibrasyon (adım 10), ayarlar.
 import { makeI18n, duration, clock, LANGS } from "../lib/i18n.js";
-import { capacity } from "../lib/forecast.js";
-import { makeCalib, CALIB_VERSION } from "../lib/calibrate.js";
+import { capacity, resolveModel, RECOMMEND_LABEL } from "../lib/forecast.js";
+import { familyWindow, liveUsage, FAMILY_SHARE_WARN_PCT } from "../lib/usage.js";
+import { makeCalib, migrateCalib } from "../lib/calibrate.js";
 import { SUPPORT_URL, CONTRIB_URL, FEEDBACK_URL } from "../lib/config.js";
 import { isConsented } from "../lib/consent.js";
 import { buildContribution, contributionText } from "../lib/contrib.js";
@@ -11,7 +12,7 @@ import { weeklyReport, burnRate } from "../lib/report.js";
 
 if (new URLSearchParams(location.search).get("view") === "tab") document.documentElement.classList.add("tab");
 const VIEW_KEYS = ["advisor", "effortAdvice", "tips", "explain"];
-const DEFAULTS = { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto", advisor: true, effortAdvice: true, tips: true, explain: true, weeklyReport: true };
+const DEFAULTS = { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto", advisor: true, effortAdvice: true, tips: true, explain: true, weeklyReport: true, tiko: true };
 const $ = (id) => document.getElementById(id);
 const store = chrome.storage.local;
 let I = null;
@@ -37,6 +38,7 @@ function staticTexts() {
   $("lblTh").textContent = t("thresholds");
   $("lblNotif").textContent = t("setNotif");
   $("lblPanel").textContent = t("setPanel");
+  $("lblTiko").textContent = t("setTiko");
   $("lblAdvisor").textContent = t("setAdvisor");
   $("lblEffortAdvice").textContent = t("setEffortAdvice"); $("lblTips").textContent = t("setTips"); $("lblExplain").textContent = t("setExplain");
   $("lblView").textContent = t("setView"); $("viewFull").textContent = t("viewFull"); $("viewSimple").textContent = t("viewSimple"); $("viewCustom").textContent = t("viewCustom"); $("viewNote").textContent = t("viewNote");
@@ -63,11 +65,11 @@ function labelFor(key) {
   return `${base} · ${name.charAt(0).toUpperCase()}${name.slice(1)}`;
 }
 
-function limitRow(w, isBottleneck) {
+function limitRow(w, isBottleneck, label = null) {
   const el = document.createElement("div");
   el.className = "limit" + (isBottleneck ? " bottleneck" : "");
   const head = document.createElement("div"); head.className = "limit-head";
-  const name = document.createElement("span"); name.textContent = labelFor(w.key);
+  const name = document.createElement("span"); name.textContent = label || labelFor(w.key);
   const pct = document.createElement("strong"); pct.textContent = I.pct(w.pct);
   head.append(name, pct);
   const bar = document.createElement("div"); bar.className = "bar";
@@ -88,13 +90,16 @@ async function render() {
   const d = await data();
   I = await makeI18n(d.settings.language);
   staticTexts();
-  const { usage, usageMeta } = d;
+  const { usageMeta } = d;
+  // Yalnızca gösterilebilir kullanım: yenilenme zamanı geçmiş pencere ya da bayat veri sayı olarak gösterilmez
+  const usage = liveUsage(d.usage, usageMeta);
   const limits = $("limits");
   limits.replaceChildren();
 
   if (!usage) {
     const p = document.createElement("p"); p.className = "muted";
-    p.textContent = usageMeta?.freePlanNoUsage ? I.t("freePlanWait") : usageMeta?.error ? I.t("fetchError") : I.t("noData");
+    p.textContent = d.usage ? I.t("usageUnread") : usageMeta?.freePlanNoUsage ? I.t("freePlanWait") : usageMeta?.error ? I.t("fetchError") : I.t("noData");
+    if (d.usage) p.dataset.usageUnread = "";
     limits.append(p);
   } else {
     const showB = (w) => w.key === usage.bottleneck && w.pct >= 50;
@@ -112,9 +117,22 @@ async function render() {
       }
       limits.append(row);
     }
-    if (usage.extras?.length) {
+    // Fable seçiliyken Fable'a özel haftalık pencere "Fable payı" olarak ana bölümde gösterilir (pencere yoksa hiçbir şey)
+    const fw = resolveModel(d.lastContext?.model).info?.family === "fable" ? familyWindow(usage, "fable") : null;
+    if (fw) {
+      const row = limitRow(fw, showB(fw), I.t("fableShareLabel"));
+      row.dataset.fableShare = "";
+      if (fw.pct >= FAMILY_SHARE_WARN_PCT) {
+        const n = document.createElement("p"); n.className = "small note";
+        n.textContent = I.t("fableShareNear", [I.pct(fw.pct), RECOMMEND_LABEL.opus]);
+        row.append(n);
+      }
+      limits.append(row);
+    }
+    const extras = (usage.extras || []).filter((w) => w !== fw);
+    if (extras.length) {
       const h = document.createElement("h2"); h.textContent = I.t("otherLimits"); limits.append(h);
-      for (const w of usage.extras) limits.append(limitRow(w, showB(w)));
+      for (const w of extras) limits.append(limitRow(w, showB(w)));
     }
   }
 
@@ -122,9 +140,10 @@ async function render() {
   const calib = makeCalib(d.calib);
   const ctx = d.lastContext || {};
   const capSec = $("capacity");
-  if (usage) {
+  // Plan bilinmiyorsa bu liste hesaplanmaz (plan varsaymak sayıları katlarca saptırır); model adı alt başlıkta yazar
+  if (usage && (d.tier || ctx.tier)) {
     const memoryOn = d.settings.memory !== false;
-    const rows = capacity(usage, { model: ctx.model || "Sonnet 5.5", effort: ctx.effort, tier: d.tier || ctx.tier || "claude_pro", calib, memoryOn });
+    const rows = capacity(usage, { model: ctx.model || "Sonnet 5.5", effort: ctx.effort, tier: d.tier || ctx.tier, calib, memoryOn });
     const list = $("capList"); list.replaceChildren();
     for (const r of rows) {
       const li = document.createElement("li");
@@ -160,6 +179,7 @@ async function render() {
   d.settings.thresholds.forEach((v, i) => { const el = $(`th${i}`); if (el) el.value = v; });
   $("notif").checked = !!d.settings.notifications;
   $("panel").checked = !!d.settings.panel;
+  $("tiko").checked = d.settings.tiko !== false;
   $("advisor").checked = d.settings.advisor !== false;
   $("effortAdvice").checked = d.settings.effortAdvice !== false;
   $("tips").checked = d.settings.tips !== false;
@@ -229,6 +249,7 @@ for (let i = 0; i < 3; i++) {
 }
 $("notif").addEventListener("change", (e) => saveSettings({ notifications: e.target.checked }));
 $("panel").addEventListener("change", (e) => saveSettings({ panel: e.target.checked }));
+$("tiko").addEventListener("change", (e) => saveSettings({ tiko: e.target.checked }));
 $("advisor").addEventListener("change", (e) => saveSettings({ advisor: e.target.checked }));
 $("effortAdvice").addEventListener("change", (e) => saveSettings({ effortAdvice: e.target.checked }));
 $("tips").addEventListener("change", (e) => saveSettings({ tips: e.target.checked }));
@@ -254,7 +275,7 @@ $("resetCal").addEventListener("click", async () => {
   render();
 });
 $("export").addEventListener("click", async () => {
-  const d = await store.get(["calib", "settings", "tier", "usage", "lastContext", "recPrefs", "sends", "learnPersonal"]);
+  const d = await store.get(["calib", "settings", "tier", "usage", "lastContext", "recPrefs", "sends", "learnPersonal", "eco"]);
   const blob = new Blob([JSON.stringify({ format: "token-forecast-backup", formatVersion: 1, extVersion: chrome.runtime.getManifest().version, exportedAt: new Date().toISOString(), ...d }, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
@@ -282,9 +303,11 @@ $("importFile").addEventListener("change", async (e) => {
   try {
     if (f.size > 5e6) throw new Error("size");
     const j = JSON.parse(await f.text());
-    if (!j || typeof j !== "object" || !j.calib || j.calib.version !== CALIB_VERSION || typeof j.calib.k !== "object") throw new Error("format");
-    pendingImport = { calib: j.calib, settings: j.settings || null, recPrefs: j.recPrefs || null, sends: Array.isArray(j.sends) ? j.sends : null, learnPersonal: j.learnPersonal || null };
-    const n = j.calib.stats?.n || 0;
+    // Eski sürüm yedekleri taşınır; daha yeni sürümün ya da bozuk dosyanın verisi reddedilir (lib/calibrate.js)
+    const mig = j && typeof j === "object" && j.calib ? migrateCalib(j.calib) : null;
+    if (!mig || !mig.state) throw new Error("format");
+    pendingImport = { calib: j.calib, settings: j.settings || null, recPrefs: j.recPrefs || null, sends: Array.isArray(j.sends) ? j.sends : null, learnPersonal: j.learnPersonal || null, eco: j.eco || null };
+    const n = mig.state.stats?.n || 0;
     $("import").textContent = I.t("btnImportConfirm");
     importMsg(I.t("importReady", [String(n), j.exportedAt ? new Date(j.exportedAt).toLocaleDateString(I.locale) : "?"]), true);
   } catch (_) { pendingImport = null; importMsg(I.t("importBad"), false); }
@@ -294,8 +317,10 @@ $("importFile").addEventListener("change", async (e) => {
 let contribText = "";
 $("comBuild").addEventListener("click", async () => {
   const d = await store.get(["calib", "sends", "recPrefs", "learnFixes", "tier", "settings"]);
-  const c = buildContribution({ calib: d.calib, sends: d.sends || [], recPrefs: d.recPrefs, learnFixes: d.learnFixes, tier: d.tier || "claude_pro", extVersion: chrome.runtime.getManifest().version, lang: I.lang });
   const pre = $("comPreview");
+  // Plan okunamadıysa katkı üretilmez: yanlış plan etiketi topluluk önsellerini bozar (Pro varsayma)
+  if (!d.tier) { pre.hidden = true; $("comCopy").hidden = true; $("comNote").hidden = false; $("comNote").textContent = I.t("unreadPlan"); return; }
+  const c = buildContribution({ calib: d.calib, sends: d.sends || [], recPrefs: d.recPrefs, learnFixes: d.learnFixes, tier: d.tier, extVersion: chrome.runtime.getManifest().version, lang: I.lang });
   if (!Object.keys(c.k).length && !(c.acc.n > 0)) { pre.hidden = true; $("comCopy").hidden = true; $("comNote").hidden = false; $("comNote").textContent = I.t("comEmpty"); return; }
   contribText = contributionText(c);
   pre.textContent = JSON.stringify(c, null, 1); pre.hidden = false;

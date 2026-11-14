@@ -8,9 +8,9 @@
 
 [English README](README.md) · [Web sitesi](https://h-enes1.github.io/ai-assistant-claude/) · [Sürümler](https://github.com/H-ENES1/ai-assistant-claude/releases)
 
-Sürüm 0.12.1 · [GNU AGPL-3.0-or-later](LICENSE)
+Sürüm 0.13.0 · [GNU AGPL-3.0-or-later](LICENSE)
 
-<a href="https://h-enes1.github.io/ai-assistant-claude/"><img src="site/video/kapak-tr.jpg" alt="Tanıtım videosunun kapağı. Tıklayınca 47 saniyelik video ve canlı demo olan web sitesi açılır." width="720"></a>
+<a href="https://h-enes1.github.io/ai-assistant-claude/"><img src="site/video/kapak-tr.jpg" alt="Tanıtım videosunun kapağı. Tıklayınca 75 saniyelik video ve canlı demo olan web sitesi açılır." width="720"></a>
 
 ▶ **[Ayrıntılı tanıtım videosunu YouTube'da izle (4 dk)](https://www.youtube.com/watch?v=6Y4qZ-G2AS0)** · [English](https://www.youtube.com/watch?v=TKogrZgveAM)
 
@@ -48,7 +48,7 @@ claude.ai'de bir mesajın 5 saatlik ve haftalık Claude limitinin ne kadarını 
 
 **Sonra**
 - **"Neden bu kadar harcadı?" (yeni):** Ölçülen değer tahminin çok üstündeyse olası nedenleri söyler.
-- **Haftalık rapor:** Mesaj sayısı, harcanan limit, yoğun saat payı, model ve iş dağılımı, **alan ve alt başlık dağılımı, effort dağılımı ve "effort önerilenden yüksekti" tasarrufu (0.11)**, 7×24 saat haritası, en pahalı mesajlar, tahmin isabeti ve kişisel öneriler. Pazartesi sabahı bildirim, CSV dışa aktarma.
+- **Haftalık rapor:** Mesaj sayısı, harcanan limit, yoğun saat payı, model ve iş dağılımı, **alan ve alt başlık dağılımı, effort dağılımı ve "effort önerilenden yüksekti" tasarrufu (0.11)**, 7×24 saat haritası, en pahalı mesajlar, tahmin isabeti ve kişisel öneriler. Pazartesi sabahı bildirim, CSV dışa aktarma. Ayrıca **bu hafta kurtardığın su ve enerji**: kabul ettiğin daha hafif model ve daha düşük effort önerilerinin karşılığı, gündelik birimlerle (damla, su bardağı, telefon şarjı); her sayı aralıklı ve "tahmin" etiketli, formül ve kaynaklar bir tık uzakta.
 
 **Öğrenir**
 - **Kişisel kalibrasyon:** Her mesajdan önce ve sonra okunan kullanım yüzdesinden planın büyüklüğünü (k), yoğun saat etkisini ve cevap uzunluklarını öğrenir.
@@ -89,11 +89,14 @@ limit %  = k_plan × maliyet   (yoğun saatte ayrı öğrenilen k)
 |---|---|---|
 | İş türü, test 2 (120 gündelik mesaj, hiç bakılmadan yazıldı) | %64 | %88 |
 | İş türü, test 1 (120 mesaj; eğitim verisi genişletilirken görüldü) | %61 | %90 |
+| İş türü, **kör set 4** (350 mesaj, 250 Türkçe + 100 İngilizce; kodu ve diğer testleri hiç görmeyen alt ajanlar yazdı; 12.11.2026) | %41 | **%49** |
 | Tehlikeli hata (zor işi hafif tip sanmak), iki test | 16 | 4 |
 | Doğru Haiku önerisi / yanlış Haiku önerisi (iki test) | 32/80 · 0 | 66/80 · 1 |
 | Öneri test seti (60 prompt): uygunluk · gerekenden hafif | %100 · 0 | %100 · 0 |
 
-**Konu alanı (0.11, anahtar kelime):** geliştirme seti 159 istek %99; set 2 ilk ölçümde kördü, %59 (sonra sözlük buna bakarak genişletildi); set 3 sözlük bittikten sonra yazıldı, ilk ölçüm **%72 kabul edilebilir, 6 yanlış alan**; 4 yanlış tetikleme hatası düzeltildikten sonra %71, 1 yanlış alan. Hataların çoğu "Genel"e düşmek (alan yok sayılır, öneri değişmez); yanlış alana gitmek seyrek.
+**Konu alanı (0.11, anahtar kelime):** geliştirme seti 159 istek %99; set 2 ilk ölçümde kördü, %59 (sonra sözlük buna bakarak genişletildi); set 3 sözlük bittikten sonra yazıldı, ilk ölçüm **%72 kabul edilebilir, 6 yanlış alan**; 4 yanlış tetikleme hatası düzeltildikten sonra %71, 1 yanlış alan. Hataların çoğu "Genel"e düşmek (alan yok sayılır, öneri değişmez); yanlış alana gitmek seyrek. **Kör set 4** (350 mesaj) bu son cümleyi doğrulamadı: %66 kabul edilebilir, 64 mesajda yanlış alan, 55 mesajda "Genel".
+
+**Kör set 4 neden bu kadar zor:** mesajlar gerçek kullanıma benziyor; %45'i 20 kelimeden uzun ve birçoğunda yapıştırılmış e-posta, tablo ya da kod var. Eğitim verisinde ise 20 kelimeden uzun tek örnek yok. Önceki testleri proje, eğitim verisiyle aynı kısa üslupta yazmıştı; bu yüzden doğruluğu olduğundan yüksek gösteriyorlardı. Ayrıntı: `node tests/blind4.mjs`.
 
 **Effort önerisi:** kural tabanlı, 29 birim testi (çeviri → Düşük, kavram açıklama → Orta, ispat → en az Yüksek, Opus'ta zor kodlama → Çok yüksek, riskli alanlarda hiç Düşük yok, sıradan işte hiç Maksimum yok). Önerilen effort'un cevap kalitesini gerçekten koruduğu ölçülmedi; dayanak Anthropic'in belgesi ve destek makalesi.
 
@@ -131,3 +134,5 @@ npm run proof   # sanal kullanıcılarla öğrenme kanıtı
 npm run build   # dist/ içinde küçültülmüş mağaza paketi
 ```
 Ayrıntılı proje kuralları ve yapı için `CLAUDE.md`. Katkılar (hata bildirimi, seçici düzeltmeleri, **çeviri düzeltmeleri**, topluluk özetleri) memnuniyetle karşılanır.
+
+Hayrettin Enes Karalı tarafından geliştirildi; geliştirme sürecinde Claude Code'dan yardım alındı.

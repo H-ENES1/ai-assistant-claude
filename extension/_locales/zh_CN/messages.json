@@ -1456,16 +1456,16 @@
     "message": "消息输入框中的文本和附件：用于统计 token 并估算成本。不会保存。"
   },
   "welRead2": {
-    "message": "已打开聊天的历史：用于计算缓存和上下文。在本地统计，不会保存。"
+    "message": "已打开聊天的历史（你的消息和 Claude 的回复）：用于计算缓存、上下文和回复长度，从页面并用你自己的会话从 claude.ai 读取。在本地统计，不会保存。"
   },
   "welRead3": {
-    "message": "你的 5 小时和每周用量百分比：用你自己的会话从 claude.ai 读取。"
+    "message": "你的 5 小时和每周用量百分比以及套餐类型：用你自己的会话从 claude.ai 读取。"
   },
   "welStoreTitle": {
     "message": "它在这台设备上保存什么"
   },
   "welStore": {
-    "message": "你的设置、学到的数值（例如你的套餐大小），以及用于每周报告的发送记录；记录只包含数字和标签，从不包含文本。你可以在设置中导出或重置；卸载扩展会将其删除。"
+    "message": "你的设置、学到的数值（例如你的套餐大小），以及用于每周报告的发送记录；记录只包含数字和标签，从不包含文本。为了读取用量，它还会保存你的 claude.ai 组织 ID 和套餐类型，以及最近聊天的 ID（不是标题）和你最后一条消息的时间。你可以在设置中导出或重置；卸载扩展会将其删除。"
   },
   "welNeverTitle": {
     "message": "它绝不会做什么"
@@ -1496,5 +1496,146 @@
   },
   "consentPopupBtn": {
     "message": "查看并开启"
+  },
+  "rowFableShare": {
+    "message": "Fable 配额"
+  },
+  "fableSharePill": {
+    "message": "Fable 配额 $1"
+  },
+  "fableShareLabel": {
+    "message": "Fable 配额（每周）"
+  },
+  "fableShareNear": {
+    "message": "你的 Fable 配额即将用完（$1）。请切换到 $2。"
+  },
+  "ecoTitle": {
+    "message": "本周你节省的水和能源"
+  },
+  "ecoLeadPos": {
+    "message": "做得好：本周你有 $1× 切换到了建议的更轻设置。同样的任务，更少的计算。"
+  },
+  "ecoLeadNet": {
+    "message": "切换到更强设置（$1×）带来的增量已经扣除。"
+  },
+  "ecoLeadZero": {
+    "message": "本周没有因更改设置而产生的差异：没有节省，也没有额外消耗。如果模型和 effort 本来就适合任务，这正是应有的样子。"
+  },
+  "ecoLeadNeg": {
+    "message": "本周没有净节省。你有 $1× 切换到了更强的模型或更高的 effort；差异大约相当于这么多额外的水和能源。如果任务确实需要，这就是正确的选择。"
+  },
+  "ecoLeadNone": {
+    "message": "本周还没有统计。当你采纳模型或 effort 建议并发送消息后，这里就会显示。"
+  },
+  "ecoWater": {
+    "message": "水"
+  },
+  "ecoEnergy": {
+    "message": "能源"
+  },
+  "ecoExtra": {
+    "message": "额外"
+  },
+  "ecoRange": {
+    "message": "估计范围 $1 – $2"
+  },
+  "ecoU_drop": {
+    "message": "滴（约 0.05 mL）"
+  },
+  "ecoU_tsp": {
+    "message": "茶匙（5 mL）"
+  },
+  "ecoU_glass": {
+    "message": "杯水（250 mL）"
+  },
+  "ecoU_bottle": {
+    "message": "瓶（0.5 L）"
+  },
+  "ecoU_bucket": {
+    "message": "桶（10 L）"
+  },
+  "ecoU_tub": {
+    "message": "浴缸（约 136 L）"
+  },
+  "ecoU_phone": {
+    "message": "手机充电（19 Wh）"
+  },
+  "ecoU_kettle": {
+    "message": "用电水壶烧开 1 L 水（93 Wh）"
+  },
+  "ecoU_led": {
+    "message": "9 W LED 灯泡的照明时间"
+  },
+  "ecoSecs": {
+    "message": "$1 秒"
+  },
+  "ecoTotalTitle": {
+    "message": "自安装以来"
+  },
+  "ecoTotalSince": {
+    "message": "统计从 $1 开始；此前的消息不包含在内。"
+  },
+  "ecoTotalZero": {
+    "message": "还没有累积出差异。"
+  },
+  "ecoTotalNeg": {
+    "message": "没有净节省；总差异："
+  },
+  "ecoHow": {
+    "message": "这是怎么算的？"
+  },
+  "ecoFormulaTok": {
+    "message": "token = 避免的计算量 ÷ $1（折合 Sonnet 5.5 输出 token）"
+  },
+  "ecoFormulaE": {
+    "message": "e_token = $1 / $2 / $3 mWh（低 / 中 / 高）"
+  },
+  "ecoFormulaW": {
+    "message": "WUE = $1 / $2 / $3 L/kWh（低 / 中 / 高；数据中心冷却 + 发电）"
+  },
+  "ecoFormulaWeek": {
+    "message": "本周：token ≈ $1 → E ≈ $2 → W ≈ $3"
+  },
+  "ecoAssume": {
+    "message": "避免的计算量，是你开始写消息时的模型和 effort 与发送时的设置之间的估计差异；只统计你更改设置的那条消息。切换到更轻的设置，只有在扩展给出过建议时才计入，并且只计到建议的级别；切换到更强的设置则始终扣除。假设每个模型的能耗与其在限额中的权重（API 价格）成正比。Anthropic 没有公布 Claude 的能耗和用水数据：这些是估计值，不是测量值。"
+  },
+  "ecoSources": {
+    "message": "来源。每 token 能耗：Epoch AI，2025（GPT-4o，500 个输出 token ≈ 0.3 Wh）；Jegham et al.，2025，arXiv:2505.09598（Claude 3.7 Sonnet，300 个输出 token 0.95 Wh）。每 kWh 用水（冷却 + 发电）：Li et al.，2023，arXiv:2304.03271（美国平均 0.55 + 3.14 L/kWh）；Google，2025，arXiv:2508.15734（现场 1.15 L/kWh）；Jegham et al.（AWS 0.18 + 5.11 L/kWh）。对照值：公制滴 0.05 mL；茶匙 5 mL（US 21 CFR 101.9）；满浴缸 136 L（USGS）；手机充电 19 Wh（US EPA）；9 W LED ≈ 800 流明（US FTC）；把 1 L 水从 20 °C 加热到 100 °C 需要 93 Wh（c = 4.186 kJ/kg·K）。杯、瓶和桶为标称容量。"
+  },
+  "setTiko": {
+    "message": "显示 Tiko（消息框旁的小机器人）"
+  },
+  "tikoHint": {
+    "message": "你好，我是 Tiko！如果我碍事，可以在扩展弹窗的“设置”里把我关掉。"
+  },
+  "tikoTitle": {
+    "message": "Tiko · 拖动可停放 · 双击回到原位"
+  },
+  "pillUnread": {
+    "message": "无法读取"
+  },
+  "unreadModel": {
+    "message": "无法读取所选模型。为避免显示错误数字，已隐藏预测。"
+  },
+  "unreadPlan": {
+    "message": "无法从 claude.ai 读取你的套餐。为避免显示错误数字，已隐藏预测。"
+  },
+  "unreadHint": {
+    "message": "claude.ai 可能已更改：请查看“详情与设置”中的“系统自检”。"
+  },
+  "usageUnread": {
+    "message": "用量无法读取或已过期；为避免显示错误，已将其隐藏。"
+  },
+  "histPartial": {
+    "message": "无法从 claude.ai 读取聊天历史；只统计了页面上可见的消息。在长聊天中预测可能偏低。"
+  },
+  "modelFromChat": {
+    "message": "（读取自聊天）"
+  },
+  "modelApproxMark": {
+    "message": "（版本未识别）"
+  },
+  "rowPlan": {
+    "message": "套餐"
   }
 }

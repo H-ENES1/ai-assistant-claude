@@ -406,7 +406,7 @@ dbasis_education	Les tâches d'étude sont surtout des explications ; l'effort m
 dbasis_language	Les tâches de langue (traduction, grammaire) sont en général légères ; un niveau d'effort de moins suffit.
 dbasis_humanities	Les explications d'histoire et de philosophie demandent une réflexion modérée.
 dbasis_daily	Les tâches du quotidien sont légères ; un niveau d'effort de moins suffit.
-dbasis_general
+dbasis_general	
 eff_low	Faible
 eff_medium	Moyen
 eff_high	Élevé
@@ -479,10 +479,10 @@ welTitle	Bienvenue dans Token Forecast
 welLead	Avant de commencer, voici exactement ce que l’extension lit et conserve. Rien ne quitte votre appareil.
 welReadTitle	Ce qu’elle lit sur claude.ai
 welRead1	Le texte et les pièces jointes de la zone de message, pour compter les tokens et estimer le coût. Non conservés.
-welRead2	L’historique de la conversation ouverte, pour calculer le cache et le contexte. Compté localement, non conservé.
-welRead3	Vos pourcentages d’utilisation sur 5 heures et hebdomadaires, lus sur claude.ai avec votre propre session.
+welRead2	L’historique de la conversation ouverte (vos messages et les réponses de Claude), lu sur la page et sur claude.ai avec votre propre session, pour calculer le cache, le contexte et la longueur des réponses. Compté localement, non conservé.
+welRead3	Vos pourcentages d’utilisation sur 5 heures et hebdomadaires ainsi que votre type de forfait, lus sur claude.ai avec votre propre session.
 welStoreTitle	Ce qu’elle conserve sur cet appareil
-welStore	Vos réglages, des valeurs apprises (comme la taille de votre forfait) et un journal des envois pour le rapport hebdomadaire, qui ne contient que des nombres et des libellés, jamais de texte. Vous pouvez l’exporter ou le réinitialiser dans les réglages ; la désinstallation le supprime.
+welStore	Vos réglages, des valeurs apprises (comme la taille de votre forfait) et un journal des envois pour le rapport hebdomadaire, qui ne contient que des nombres et des libellés, jamais de texte. Pour lire votre utilisation, elle conserve aussi l’identifiant de votre organisation claude.ai et votre type de forfait, ainsi que les identifiants (pas les titres) des conversations récentes avec l’heure de votre dernier message. Vous pouvez l’exporter ou le réinitialiser dans les réglages ; la désinstallation le supprime.
 welNeverTitle	Ce qu’elle ne fait jamais
 welNever	Aucun serveur, aucune analyse, aucun pistage. Elle n’envoie jamais vos messages nulle part, n’envoie jamais de messages à votre place et ne modifie jamais vos réglages claude.ai.
 welPolicy	Lire la politique de confidentialité complète
@@ -493,3 +493,43 @@ welLaterNote	L’extension reste désactivée tant que vous n’avez pas accept�
 consentChip	Token Forecast est désactivé · Activer
 consentPopup	Token Forecast a besoin de votre autorisation avant de lire quoi que ce soit sur claude.ai.
 consentPopupBtn	Examiner et activer
+ecoTitle	L'eau et l'énergie que tu as économisées cette semaine
+ecoLeadPos	Bien joué : cette semaine, tu es passé $1× au réglage plus léger suggéré. Même tâche, moins de calcul.
+ecoLeadNet	Le surplus dû à $1× passage à un réglage plus puissant a été déduit.
+ecoLeadZero	Aucune différence liée aux changements de réglage cette semaine : rien d'économisé, rien en plus. Si ton modèle et ton effort conviennent déjà à la tâche, c'est exactement ce qu'il faut.
+ecoLeadNeg	Pas d'économie nette cette semaine. Tu es passé $1× à un modèle plus puissant ou à un effort plus élevé ; la différence représente à peu près cette quantité d'eau et d'énergie en plus. Si la tâche le demandait, c'était le bon choix.
+ecoLeadNone	Rien n'a encore été compté cette semaine. Cela apparaîtra ici dès que tu appliqueras une suggestion de modèle ou d'effort et que tu enverras un message.
+ecoWater	Eau
+ecoEnergy	Énergie
+ecoExtra	en plus
+ecoRange	fourchette estimée $1 – $2
+ecoU_drop	goutte (≈ 0,05 mL)
+ecoU_tsp	cuillère à café (5 mL)
+ecoU_glass	verre d'eau (250 mL)
+ecoU_bottle	bouteille (0,5 L)
+ecoU_bucket	seau (10 L)
+ecoU_tub	baignoire (≈ 136 L)
+ecoU_phone	recharge de téléphone (19 Wh)
+ecoU_kettle	1 L d'eau porté à ébullition à la bouilloire (93 Wh)
+ecoU_led	d'éclairage d'une ampoule LED de 9 W
+ecoSecs	$1 s
+ecoTotalTitle	Depuis l'installation
+ecoTotalSince	Le décompte a commencé le $1 ; les messages antérieurs ne sont pas inclus.
+ecoTotalZero	Aucune différence ne s'est encore accumulée.
+ecoTotalNeg	Pas d'économie nette ; différence totale :
+ecoHow	Comment est-ce calculé ?
+ecoFormulaTok	token = calcul évité ÷ $1 (équivalent en tokens de sortie Sonnet 5.5)
+ecoFormulaE	e_token = $1 / $2 / $3 mWh (bas / moyen / haut)
+ecoFormulaW	WUE = $1 / $2 / $3 L/kWh (bas / moyen / haut ; refroidissement du centre de données + production d'électricité)
+ecoFormulaWeek	Cette semaine : tokens ≈ $1 → E ≈ $2 → W ≈ $3
+ecoAssume	Le calcul évité est la différence estimée entre le modèle et l'effort que tu avais en commençant à écrire le message et le réglage avec lequel tu l'as envoyé ; seul le message où tu as changé le réglage est compté. Le passage à un réglage plus léger ne compte que si l'extension l'a suggéré, et seulement jusqu'au niveau suggéré ; le passage à un réglage plus puissant est toujours déduit. L'énergie par modèle est supposée proportionnelle à son poids dans la limite (prix de l'API). Anthropic ne publie pas de chiffres d'énergie ni d'eau pour Claude : ce sont des estimations, pas des mesures.
+ecoSources	Sources. Énergie par token : Epoch AI, 2025 (GPT-4o, 500 tokens de sortie ≈ 0,3 Wh) ; Jegham et al., 2025, arXiv:2505.09598 (Claude 3.7 Sonnet, 300 tokens de sortie 0,95 Wh). Eau par kWh, refroidissement + production d'électricité : Li et al., 2023, arXiv:2304.03271 (moyenne des États-Unis 0,55 + 3,14 L/kWh) ; Google, 2025, arXiv:2508.15734 (sur site 1,15 L/kWh) ; Jegham et al. (AWS 0,18 + 5,11 L/kWh). Comparaisons : goutte métrique 0,05 mL ; cuillère à café 5 mL (US 21 CFR 101.9) ; baignoire pleine 136 L (USGS) ; recharge de téléphone 19 Wh (US EPA) ; LED de 9 W ≈ 800 lumens (US FTC) ; chauffer 1 L d'eau de 20 °C à 100 °C demande 93 Wh (c = 4,186 kJ/kg·K). Verre, bouteille et seau sont des tailles nominales.
+pillUnread	Illisible
+unreadModel	Impossible de lire le modèle sélectionné. La prévision est masquée plutôt que d’afficher un chiffre faux.
+unreadPlan	Impossible de lire votre forfait sur claude.ai. La prévision est masquée plutôt que d’afficher un chiffre faux.
+unreadHint	claude.ai a peut-être changé : voir « Vérification du système » dans « Détails et réglages ».
+usageUnread	L’utilisation n’a pas pu être lue ou est périmée ; elle est masquée plutôt qu’affichée à tort.
+histPartial	Impossible de lire l’historique sur claude.ai ; seuls les messages visibles sur la page ont été comptés. Dans une longue conversation, la prévision peut être trop basse.
+modelFromChat	(lu dans la conversation)
+modelApproxMark	(version non reconnue)
+rowPlan	Forfait

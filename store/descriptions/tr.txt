@@ -22,6 +22,12 @@ CİHAZINDA ÖĞRENİR
 • Kendi kullanımından plan büyüklüğünü ve tipik cevap uzunluklarını öğrenen kişisel kalibrasyon.
 • Düzeltmelerinden öğrenen küçük, cihaz içi iş türü modeli.
 
+TIKO
+• Mesaj kutusunun yanında yaşayan minik piksel bot. Tahmin ağırsa zorlanır, hafif model yetiyorsa baş sallar, cevap gelirken cevabın üstüne oturur, limit dolarken endişelenir. Metin okumaz, ayarlardan kapatılır.
+
+KURTARDIĞIN SU VE ENERJİ
+• Haftalık raporda, önerilen daha hafif ayara geçtiğin mesajlarda kaçınılan işlemin su ve enerji karşılığı: damla, bardak, telefon şarjı. Hepsi aralıklı tahmin, kaynakları raporda.
+
 GİZLİLİK
 Her şey tarayıcında hesaplanır. Mesajların, eklerin ve sohbetlerin cihazından çıkmaz. Sunucu yok, analitik yok, izleme yok. Yalnızca claude.ai'de, kendi oturumunla çalışır; senin yerine mesaj göndermez, ayar değiştirmez. Bir şey okumadan önce onayını ister.
 

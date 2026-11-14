@@ -406,7 +406,7 @@ dbasis_education	学习类任务多为讲解；努力程度随难度上升。
 dbasis_language	语言类任务（翻译、语法）通常较轻；降低一档努力程度即可。
 dbasis_humanities	历史和哲学的讲解需要适度的思考。
 dbasis_daily	日常任务较轻；降低一档努力程度即可。
-dbasis_general
+dbasis_general	
 eff_low	低
 eff_medium	中等
 eff_high	高
@@ -479,10 +479,10 @@ welTitle	欢迎使用 Token Forecast
 welLead	开始之前，请看清这个扩展具体会读取和保存什么。任何数据都不会离开你的设备。
 welReadTitle	它在 claude.ai 上读取什么
 welRead1	消息输入框中的文本和附件：用于统计 token 并估算成本。不会保存。
-welRead2	已打开聊天的历史：用于计算缓存和上下文。在本地统计，不会保存。
-welRead3	你的 5 小时和每周用量百分比：用你自己的会话从 claude.ai 读取。
+welRead2	已打开聊天的历史（你的消息和 Claude 的回复）：用于计算缓存、上下文和回复长度，从页面并用你自己的会话从 claude.ai 读取。在本地统计，不会保存。
+welRead3	你的 5 小时和每周用量百分比以及套餐类型：用你自己的会话从 claude.ai 读取。
 welStoreTitle	它在这台设备上保存什么
-welStore	你的设置、学到的数值（例如你的套餐大小），以及用于每周报告的发送记录；记录只包含数字和标签，从不包含文本。你可以在设置中导出或重置；卸载扩展会将其删除。
+welStore	你的设置、学到的数值（例如你的套餐大小），以及用于每周报告的发送记录；记录只包含数字和标签，从不包含文本。为了读取用量，它还会保存你的 claude.ai 组织 ID 和套餐类型，以及最近聊天的 ID（不是标题）和你最后一条消息的时间。你可以在设置中导出或重置；卸载扩展会将其删除。
 welNeverTitle	它绝不会做什么
 welNever	没有服务器，没有分析，没有追踪。它绝不会把你的消息发送到任何地方，绝不会替你发送消息，也绝不会更改你的 claude.ai 设置。
 welPolicy	阅读完整的隐私政策
@@ -493,3 +493,43 @@ welLaterNote	在你同意之前，扩展会保持关闭。你也可以稍后在�
 consentChip	Token Forecast 已关闭 · 开启
 consentPopup	Token Forecast 在读取 claude.ai 上的任何内容之前需要你的许可。
 consentPopupBtn	查看并开启
+ecoTitle	本周你节省的水和能源
+ecoLeadPos	做得好：本周你有 $1× 切换到了建议的更轻设置。同样的任务，更少的计算。
+ecoLeadNet	切换到更强设置（$1×）带来的增量已经扣除。
+ecoLeadZero	本周没有因更改设置而产生的差异：没有节省，也没有额外消耗。如果模型和 effort 本来就适合任务，这正是应有的样子。
+ecoLeadNeg	本周没有净节省。你有 $1× 切换到了更强的模型或更高的 effort；差异大约相当于这么多额外的水和能源。如果任务确实需要，这就是正确的选择。
+ecoLeadNone	本周还没有统计。当你采纳模型或 effort 建议并发送消息后，这里就会显示。
+ecoWater	水
+ecoEnergy	能源
+ecoExtra	额外
+ecoRange	估计范围 $1 – $2
+ecoU_drop	滴（约 0.05 mL）
+ecoU_tsp	茶匙（5 mL）
+ecoU_glass	杯水（250 mL）
+ecoU_bottle	瓶（0.5 L）
+ecoU_bucket	桶（10 L）
+ecoU_tub	浴缸（约 136 L）
+ecoU_phone	手机充电（19 Wh）
+ecoU_kettle	用电水壶烧开 1 L 水（93 Wh）
+ecoU_led	9 W LED 灯泡的照明时间
+ecoSecs	$1 秒
+ecoTotalTitle	自安装以来
+ecoTotalSince	统计从 $1 开始；此前的消息不包含在内。
+ecoTotalZero	还没有累积出差异。
+ecoTotalNeg	没有净节省；总差异：
+ecoHow	这是怎么算的？
+ecoFormulaTok	token = 避免的计算量 ÷ $1（折合 Sonnet 5.5 输出 token）
+ecoFormulaE	e_token = $1 / $2 / $3 mWh（低 / 中 / 高）
+ecoFormulaW	WUE = $1 / $2 / $3 L/kWh（低 / 中 / 高；数据中心冷却 + 发电）
+ecoFormulaWeek	本周：token ≈ $1 → E ≈ $2 → W ≈ $3
+ecoAssume	避免的计算量，是你开始写消息时的模型和 effort 与发送时的设置之间的估计差异；只统计你更改设置的那条消息。切换到更轻的设置，只有在扩展给出过建议时才计入，并且只计到建议的级别；切换到更强的设置则始终扣除。假设每个模型的能耗与其在限额中的权重（API 价格）成正比。Anthropic 没有公布 Claude 的能耗和用水数据：这些是估计值，不是测量值。
+ecoSources	来源。每 token 能耗：Epoch AI，2025（GPT-4o，500 个输出 token ≈ 0.3 Wh）；Jegham et al.，2025，arXiv:2505.09598（Claude 3.7 Sonnet，300 个输出 token 0.95 Wh）。每 kWh 用水（冷却 + 发电）：Li et al.，2023，arXiv:2304.03271（美国平均 0.55 + 3.14 L/kWh）；Google，2025，arXiv:2508.15734（现场 1.15 L/kWh）；Jegham et al.（AWS 0.18 + 5.11 L/kWh）。对照值：公制滴 0.05 mL；茶匙 5 mL（US 21 CFR 101.9）；满浴缸 136 L（USGS）；手机充电 19 Wh（US EPA）；9 W LED ≈ 800 流明（US FTC）；把 1 L 水从 20 °C 加热到 100 °C 需要 93 Wh（c = 4.186 kJ/kg·K）。杯、瓶和桶为标称容量。
+pillUnread	无法读取
+unreadModel	无法读取所选模型。为避免显示错误数字，已隐藏预测。
+unreadPlan	无法从 claude.ai 读取你的套餐。为避免显示错误数字，已隐藏预测。
+unreadHint	claude.ai 可能已更改：请查看“详情与设置”中的“系统自检”。
+usageUnread	用量无法读取或已过期；为避免显示错误，已将其隐藏。
+histPartial	无法从 claude.ai 读取聊天历史；只统计了页面上可见的消息。在长聊天中预测可能偏低。
+modelFromChat	（读取自聊天）
+modelApproxMark	（版本未识别）
+rowPlan	套餐

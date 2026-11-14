@@ -1,0 +1,7 @@
+{"group": 1, "items": [
+ {"id": "r46", "A": 5, "B": 4.5, "C": 4.5, "note": "Üçü de çeyrekli plan, tutarlı bütçe ve risk veriyor; A gelir kaynakları ve ölçütlerle en eksiksiz."},
+ {"id": "t09", "A": 4, "B": 3.5, "C": 4.5, "langSlip": ["B"], "note": "C kurulum + dört dilde örnek dosya veriyor (çoğul anahtar biçimi eski); A'da örnek çeviri yok; B içerik iyi ama İngilizce isteme Türkçe cevap."},
+ {"id": "k01", "A": 5, "B": 5, "C": 5, "note": "Üç çeviri de doğru."},
+ {"id": "r48", "A": 5, "B": 5, "C": 5, "note": "Üçü de uygun kısa karşılık."},
+ {"id": "r20", "A": 4, "B": 4.5, "C": 5, "note": "C en sıkı ve özgün; B iyi imgeler; A 'kısa' için uzun ve dolgu kafiyeli."}
+]}
