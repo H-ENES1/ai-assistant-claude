@@ -1508,5 +1508,14 @@
   },
   "fableShareNear": {
     "message": "你的 Fable 配额即将用完（$1）。请切换到 $2。"
+  },
+  "setTiko": {
+    "message": "显示 Tiko（消息框旁的小机器人）"
+  },
+  "tikoHint": {
+    "message": "你好，我是 Tiko！如果我碍事，可以在扩展弹窗的“设置”里把我关掉。"
+  },
+  "tikoTitle": {
+    "message": "Tiko · 拖动可停放 · 双击回到原位"
   }
 }

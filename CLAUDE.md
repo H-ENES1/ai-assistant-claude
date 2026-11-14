@@ -13,7 +13,8 @@ extension/              ← tarayıcıya yüklenen klasör (manifest.json burada
   lib/                  usage, tokens, classify, forecast, calibrate, conversation,
                         attachments, context, page, i18n, panel, advisor (model önerisi), config (bağlantılar),
                         report (haftalık rapor, harcama hızı, "neden bu kadar"), learn + learn-weights (öğrenen model),
-                        contrib (topluluk katkısı + birleştirme), community-priors (topluluk önselleri; aggregate üretir)
+                        contrib (topluluk katkısı + birleştirme), community-priors (topluluk önselleri; aggregate üretir),
+                        tiko-state (maskotun durum makinesi, saf) + tiko (çizim ve hareket, Shadow DOM)
   popup/report.*        haftalık rapor sayfası
   _locales/{en,tr}/     tüm kullanıcı metinleri
 tests/                  unit, learn, report, contrib, advisor (+rec-cases.json) testleri, e2e.cjs (Playwright, 43 kontrol)
@@ -31,6 +32,8 @@ npm run test   # birim + öğrenme + rapor + katkı + model önerisi (60 prompt:
 node tests/ml/train.mjs   # sınıflandırıcıyı yeniden eğit; test2'de karma < kurallar olursa ağırlıkları YAZMA (--no-write)
 npm run e2e    # Playwright, sahte claude.ai (69 kontrol). PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 şart (0.12.2'den beri e2e.cjs kendisi ayarlar):
                # yoksa arka plan servisinin istekleri sahte sunucuya gitmez ve 4-5 kontrol yanlışlıkla kırmızı olur.
+               # Ardından tests/tiko.e2e.cjs çalışır (48 kontrol; ekran görüntüleri tests/shots/tiko/, depoda tutulur).
+               # Uyku 2 dk bekleyiş ister, varsayılan koşuda atlanır: cd tests && TIKO_SLEEP=1 node tiko.e2e.cjs (50 kontrol).
 ```
 
 ## Kurallar
@@ -106,3 +109,14 @@ npm run e2e    # Playwright, sahte claude.ai (69 kontrol). PW_EXPERIMENTAL_SERVI
 - `tokens.js`: CJK_PER_CHAR (0,73) o200k ile ölçülmüş (b789b13); CLAUDE_FACTOR CJK'ya uygulanmaya devam.
 - e2e: sahte /usage `seven_day_fable` %85; 5 yeni kontrol (toplam 69). `PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS` artık e2e.cjs içinde ayarlanıyor: Windows'ta npm betikleri cmd.exe ile çalıştığı için `VAR=1 node …` önekli betik orada bozuluyordu.
 - Ortam: Node 22 LTS kullan. Node 26'da Playwright 1.56'nın tarayıcı kurulumu bozuluyor (`fs.rmdir` `recursive` seçeneği kaldırıldı).
+
+## Tiko mini (dal: tiko-mini, 13.11.2026; 0.13.0'a girecek, sürüm numarası değişmedi)
+- **Ne:** Sitedeki piksel Tiko'nun 28 px'lik sürümü claude.ai'de mesaj kutusunun yanında yaşar; eklentinin zaten bildiği üç şeyi gösterir: tahmin, öneri, limit. Çizim `site/build/index.src.html` ile aynı ızgara ve renkler (`tests/tiko.test.mjs` karşılaştırır); yeni Tiko çizme, yalnızca yüz/poz ekle.
+- **İki dosya:** `lib/tiko-state.js` saf durum makinesi (DOM, saat, rastlantı yok; hepsi dışarıdan gelir), `lib/tiko.js` çizim + yay + sürükleme. Davranış değişikliği önce durum makinesinde ve `tiko.test.mjs`'te yapılır.
+- **Davranış:** yazarken imlecin biraz üstünde süzülür ve yay gibi geç kalarak izler · yazma durunca etrafa bakınır; tahmin ağırsa (5 saatlik limitin ≥ %5'i ya da "sığmayabilir" uyarısı; `TIKO.HEAVY_PCT`, seçilmiş eşik, ölçülmedi) zorlanır, hafif model önerildiyse (`adv.kind === "save"`) bir kez baş sallar · gönderince zarfla yukarı uçar · cevap yazılırken cevabın üst kenarına oturur, ayak sallar, okur · bitince alkışlar/gerinir, mesaj kutusuna döner · 2 dk hareketsizlikte uyur · haftalık (ya da Fable payı) ≥ %80 endişeli · tıklanınca el sallar ve tahmini baloncukta söyler · sürükleyince park eder (`tikoPark`, ekran oranı), çift tıkla ya da evine yakın bırak: geri döner.
+- **Nadir sürprizler (en fazla 4, yenisi için birini çıkar):** boşta dans, 5 hızlı tıkta baş dönmesi, 1 dakikadan uzun cevap bitince "oh be", uyanınca esneme.
+- **Kurallar (testler denetler):** Tiko metin okumaz, yalnızca kutu koordinatı (imleç = seçim aralığının kutusu, mesaj kutusu, hap/bildirim, cevabın üst kenarı); sinyaller content.js'ten hazır gelir. Yeni izin yok. Shadow DOM, her şey `pointer-events:none`, yalnız gövde tıklanabilir. rAF yalnız yer değiştirirken (ve olaydan sonra tek seferlik ölçüm için); duruşlar CSS animasyonu; sekme gizliyken kare, zamanlayıcı ve animasyon yok. `prefers-reduced-motion`: animasyonsuz, %75 boyutta, imleci izlemeyen ikon (yalnızca bildirim çıkınca üstüne tek adımda geçer). Mesaj kutusu bulunamazsa ya da beklenmedik hata olursa sessizce gizlenir/kaldırılır.
+- **Örtmeme:** yazının üstüne inmez (çok satırda kutunun üst kenarında kalır, yalnızca yatayda izler); hap ve bildirimin üstüne biner gibi durur, içine girmez; claude.ai menüsü üstüne açılırsa gizlenir; cevabın üstünde kullanıcı mesajını örtecekse sağ uca, o da olmazsa mesaj kutusuna oturup yukarı bakar. Yine de altında sohbet mesajı ya da tıklanabilir bir öğe kalırsa (sayfa kayınca olur) saydamlaşır ve tıklamayı alttakine geçirir (`page.isBusySpot`: yalnızca seçici eşleşmesi, içerik okunmaz; park edilmişken uygulanmaz, kullanıcı oraya kendi koymuştur).
+- **Ayar:** `settings.tiko` (varsayılan açık), popup → Ayarlar → "Tiko'yu göster". İlk görünüşte bir kez baloncuk (`tikoHintSeen`).
+- **Ölçüm:** e2e'de kare başına ortalama ≈ 0,09 ms (başsız Chromium, bu makine, ölçüm kareleri dahil ~420 kare; `performance.now` çözünürlüğü 0,1 ms olduğu için kaba bir ortalama). Sınır 1 ms, e2e denetler.
+- **Doğrulanmadı:** gerçek claude.ai'de denenmedi (yalnızca sahte sayfa). Bakılacaklar: cevabın üst kenarı gerçekte nerede (`[data-is-streaming="true"]` kutusu), mesaj kutusunun üstünde ek/dosya satırı varken konum, koyu tema, dar pencere.

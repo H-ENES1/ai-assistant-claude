@@ -408,6 +408,15 @@ export function createPanel({ getAnchor, getAnchorTop, onMore, onBannerFeedback,
     isOpen: () => open,
     getOffset: () => offset,
     setOffset: (o) => setOffset(o, false),
+    // Ekranda görünen parçaların kutuları (Tiko bunların üstüne binmesin diye)
+    rects() {
+      const out = [];
+      if (!vmCache || wrap.style.display === "none" || wrap.classList.contains("yield")) return out;
+      out.push(pill.getBoundingClientRect());
+      if (open) out.push(card.getBoundingClientRect());
+      if (banner.classList.contains("show")) out.push(banner.getBoundingClientRect());
+      return out;
+    },
     host
   };
 }

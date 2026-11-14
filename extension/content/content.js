@@ -52,12 +52,14 @@
       mod("lib/classify.js"), mod("lib/forecast.js"), mod("lib/calibrate.js"), mod("lib/conversation.js"),
       mod("lib/i18n.js"), mod("lib/panel.js"), mod("lib/advisor.js"), mod("lib/report.js"), mod("lib/learn.js"), mod("lib/domain.js")
     ]);
+    // Tiko süs: yüklenemezse eklentinin geri kalanı etkilenmez
+    [L.tiko, L.tikoState] = await Promise.all([mod("lib/tiko.js"), mod("lib/tiko-state.js")]).catch(() => [null, null]);
   })().catch((e) => { console.debug("[Token Forecast] yüklenemedi", e); try { chrome.runtime.sendMessage({ type: "trace", step: "load:error", info: { message: String(e?.message || e).slice(0, 160) }, at: Date.now() }); } catch (_) {} });
 
   // ---------- Durum ----------
   const S = {
-    settings: { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto", advisor: true, effortAdvice: true, tips: true, explain: true },
-    recPrefs: null, bannerHidden: null, pillOffset: null,
+    settings: { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto", advisor: true, effortAdvice: true, tips: true, explain: true, tiko: true },
+    recPrefs: null, bannerHidden: null, pillOffset: null, tikoPark: null, tikoHintSeen: false,
     i18n: null, usage: null, tier: null, orgId: null, calib: null,
     conv: { id: null, summary: null, fetchedAt: 0, error: null },
     activity: {}, // sohbet → son gönderim zamanı (bu cihazda görülen)
@@ -68,8 +70,9 @@
   const store = chrome.storage.local;
 
   async function loadState() {
-    const r = await store.get(["settings", "usage", "tier", "orgId", "calib", "convActivity", "recPrefs", "lastSurprise", "learnPersonal", "pillOffset"]);
+    const r = await store.get(["settings", "usage", "tier", "orgId", "calib", "convActivity", "recPrefs", "lastSurprise", "learnPersonal", "pillOffset", "tikoPark", "tikoHintSeen"]);
     S.pillOffset = r.pillOffset || null;
+    S.tikoPark = r.tikoPark || null; S.tikoHintSeen = !!r.tikoHintSeen;
     S.learnPersonal = r.learnPersonal || null;
     S.recPrefs = r.recPrefs || null;
     S.surprise = r.lastSurprise || null;
@@ -91,6 +94,8 @@
     if (ch.lastSurprise) S.surprise = ch.lastSurprise.newValue || null;
     if (ch.learnPersonal) { S.learnPersonal = ch.learnPersonal.newValue || null; memo = null; }
     if (ch.pillOffset) { S.pillOffset = ch.pillOffset.newValue || null; const cur = panel?.getOffset?.(); if (panel && JSON.stringify(cur) !== JSON.stringify(S.pillOffset)) panel.setOffset(S.pillOffset); }
+    if (ch.tikoPark) { S.tikoPark = ch.tikoPark.newValue || null; if (JSON.stringify(S.tikoPark) !== tikoParkSaved) { tikoParkSaved = JSON.stringify(S.tikoPark); tiko?.setPark(S.tikoPark); } }
+    if (ch.tikoHintSeen) { S.tikoHintSeen = !!ch.tikoHintSeen.newValue; tiko?.setHintSeen(S.tikoHintSeen); }
     if (ch.settings) {
       S.settings = { ...S.settings, ...(ch.settings.newValue || {}) };
       S.i18n = await L.i18n.makeI18n(S.settings.language);
@@ -462,7 +467,51 @@
     };
   }
 
+  // ---------- Tiko (minik maskot) ----------
+  // Tiko mesaj metnini görmez: buradan yalnızca hazır sinyaller gider (tahmin ağır mı, hafif model önerildi mi,
+  // haftalık yüzde) ve tıklanınca göstereceği kısa durum satırı. Konum için koordinatları kendisi okur (lib/tiko.js).
+  let tiko = null, tikoParkSaved = "null", tikoAvoidEl = null, tikoFails = 0;
+  function syncTiko(r) {
+    try {
+      if (S.settings.tiko === false || !L.tiko || !S.i18n) { tiko?.destroy(); tiko = null; return; }
+      const { t, pct } = S.i18n;
+      // Tiko beklenmedik bir hatada kendini kaldırır. Üç kez olduysa bu sayfada bir daha kurulmaz (sessizce yok).
+      if (tiko?.dead) { tiko = null; tikoFails++; }
+      if (tikoFails >= 3) return;
+      if (!tiko) {
+        tikoParkSaved = JSON.stringify(S.tikoPark);
+        tiko = L.tiko.createTiko({
+          getInput: () => L.page.getInputElement(),
+          getComposer: () => L.page.getComposer(),
+          getComposerTop: () => L.page.composerTop(),
+          getObstacles: () => panel?.rects?.() || [],
+          getAvoid: () => (tikoAvoidEl?.isConnected ? tikoAvoidEl.getBoundingClientRect() : null),
+          isBusy: (el) => L.page.isBusySpot(el),
+          park: S.tikoPark, hintSeen: S.tikoHintSeen,
+          onPark: (p) => { S.tikoPark = p; tikoParkSaved = JSON.stringify(p); store.set({ tikoPark: p }); },
+          onHintShown: () => { S.tikoHintSeen = true; store.set({ tikoHintSeen: true }); }
+        });
+      }
+      const used = S.usage?.fiveHour?.pct ?? null, week = S.usage?.sevenDay?.pct ?? null;
+      const sess = r && !r.empty ? r.fc.pct.session : null;
+      const heavy = !!sess && (sess.mid >= L.tikoState.TIKO.HEAVY_PCT || r.fit.windows.some((w) => w.status !== "ok"));
+      const light = !!sess && S.settings.advisor !== false && r.adv?.kind === "save";
+      const status = sess ? `≈ ${pct(sess.mid)} ${t("pillSub")}` + (light ? ` · ${t("advSave", [r.adv.suggested])}` : "")
+        : [used !== null ? t("pillUsed", [pct(used)]) : "", week !== null ? `${t("weeklyLimit")}: ${pct(week)}` : ""].filter(Boolean).join(" · ");
+      tiko.setTexts({ hint: t("tikoHint"), title: t("tikoTitle") });
+      tiko.sync({ composer: !!r && !!L.page.getInputElement(), heavy, light, weeklyPct: Math.max(week ?? 0, r?.fableShare?.pct ?? 0), status });
+    } catch (_) { try { tiko?.destroy(); } catch (_e) {} tiko = null; tikoFails++; }
+  }
+  // Cevap yazılıyor mu? (domTick ile aynı 700 ms'lik saat; sekme gizliyken bakılmaz)
+  function tikoTick() {
+    if (!tiko || document.hidden) return;
+    const s = L.page.streamingReply();
+    if (s.streaming) tikoAvoidEl = L.page.lastUserEl(); // cevabın üstüne otururken örtmemesi gereken kutu (kare başına aranmaz)
+    tiko.stream(s.streaming, s.el);
+  }
+
   function render(r) {
+    syncTiko(r);
     if (!S.settings.panel || !r) { panel?.update(null); panel?.updateBanner(null); return; }
     if (!panel) panel = L.panel.createPanel({
       getAnchor: () => L.page.getComposer(),
@@ -518,6 +567,7 @@
 
   async function onSend(d) {
     await loading;
+    tiko?.send();
     if (d.via !== "dom") {
       S.hookSends = (S.hookSends || 0) + 1; S.hookSendAt = Date.now();
       // Sayfa yolu bu gönderimi bir an önce yakaladıysa onu iptal et: kanca daha ayrıntılı veri verir
@@ -704,7 +754,7 @@
       onDone({ kind: "done", via: "dom", id: p.id, text: a.text, messageLimit: null, at: Date.now() });
     }
   }
-  setInterval(() => { try { domTick(); } catch (_) {} }, 700);
+  setInterval(() => { try { domTick(); } catch (_) {} try { tikoTick(); } catch (_) {} }, 700);
 
   // ---------- Tetikleyiciler ----------
   let timer = null;
