@@ -60,6 +60,13 @@ const file = (l) => path.join(DOCS, l === "tr" ? "index.html" : l + "/index.html
     ok(`${T} başka dilin metni sızmamış`, l === "tr" ? !/Know <em>before/.test(body) : !/Hesap yok|Sıkça|Aklına takılabilecekler/.test(body));
     ok(`${T} SSS yapısal verisi görünen SSS ile aynı`, faq && faq.mainEntity[0].name === ((body.match(/<summary data-i="q11">([^<]+)</) || [])[1] || "").replace(/&amp;/g, "&").replace(/&#39;/g, "'").replace(/&quot;/g, '"'));
 
+    {
+      const st = (body.match(/<script type="application\/json" id="tfStage">(.*?)<\/script>/s) || [])[1];
+      let sj = null; try { sj = JSON.parse(st); } catch (_) {}
+      ok(`${T} sahne HTML'de son durumda (JS'siz): tahmin, öneri, Tiko, veri`, /id="stage"[^>]*data-ph="done"/.test(body) && /id="stBig">≈[^<]*\d[^<]*</.test(body) && /id="stAdvT">[^<]{8,}</.test(body) && /id="stTiko"[^>]*><svg/.test(body) && sj && sj.ex.length === 3 && sj.ex.every((x) => x.text.length > 20 && /\d/.test(x.big) && x.adv.length > 8), (body.match(/id="stBig">([^<]*)</) || [])[1]);
+      ok(`${T} hikâye 6 bölüm, su örneği ve ölçüm çubukları HTML'de`, (body.match(/<li class="chap">/g) || []).length === 6 && /id="sc5W">≈[^<]*\d[^<]*(mL|L)</.test(body) && (body.match(/class="v" data-v="[\d.]+">[^<]*\d[^<]*</g) || []).length === 4 && (body.match(/<i class="(g|c|w|)"><\/i>/g) || []).length >= 58, (body.match(/id="sc5W">([^<]*)</) || [])[1]);
+    }
+
     // ---- tarayıcıda ----
     const ctx = await b.newContext({ viewport: { width: 1280, height: 860 }, locale: HTML_LANG[l] || l, colorScheme: "light" });
     const p = await ctx.newPage(); watch(p, l);
@@ -94,8 +101,32 @@ const file = (l) => path.join(DOCS, l === "tr" ? "index.html" : l + "/index.html
     ok(`${T} alan kartları 16, effort 5(+başlık), kanıt grafiği ve 3 kutu`, cards === 16 && rows === 6 && pbar === 18 && stats === 3, `${cards}/${rows}/${pbar}/${stats}`);
     // Tiko: her dilde konar, seninle iner, konuşur
     await p.evaluate(() => scrollTo(0, 0)); await p.waitForTimeout(300);
-    const vis = await p.evaluate(() => { const x = document.getElementById("tfbot"); const r = x.getBoundingClientRect(); return { hidden: x.hidden, w: r.width }; });
-    ok(`${T} Tiko görünür`, !vis.hidden && vis.w >= 40, JSON.stringify(vis));
+    {
+      // kahraman sahnesi: oynar, durdurulur, Tiko fareyi izler ve cevabın üstüne oturur
+      await p.evaluate(() => scrollTo({ top: 0, behavior: "instant" })); await p.waitForTimeout(200);
+      const sb = await p.locator("#stage").boundingBox();
+      await p.mouse.move(sb.x - 200, sb.y + 120, { steps: 3 }); await p.waitForTimeout(500);
+      const vis = await p.evaluate(() => { const x = document.getElementById("tfbot"), k = document.getElementById("stTiko"), st = document.getElementById("stage"); const r = k.getBoundingClientRect(); return { away: x.classList.contains("away"), hidden: x.hidden, w: r.width, out: st.classList.contains("tk-out"), op: getComputedStyle(k).opacity }; });
+      ok(`${T} kahramanda büyük Tiko görünür, gezen bot sahnede`, !vis.hidden && vis.away && vis.w >= 70 && !vis.out && vis.op === "1", JSON.stringify(vis));
+      await p.click("#stTabs button >> nth=0"); await p.waitForTimeout(1500);
+      const ty = await p.evaluate(() => ({ ph: document.getElementById("stage").dataset.ph, typed: document.getElementById("stType").textContent.length, pressed: document.querySelector("#stTabs button").getAttribute("aria-pressed") }));
+      ok(`${T} sahne: örnek mesaj yazılıyor`, ty.ph === "type" && ty.typed > 5 && ty.pressed === "true", JSON.stringify(ty));
+      await p.mouse.move(sb.x + sb.width * 0.7, sb.y + sb.height * 0.45, { steps: 4 }); await p.waitForTimeout(900);
+      const fol = await p.evaluate(() => { const r = document.getElementById("stTiko").getBoundingClientRect(); return { x: r.left + r.width / 2, bottom: r.bottom }; });
+      ok(`${T} sahne: Tiko fareyi izliyor`, Math.abs(fol.x - (sb.x + sb.width * 0.7)) < 40 && Math.abs(fol.bottom + 16 - (sb.y + sb.height * 0.45)) < 40, JSON.stringify(fol));
+      await p.waitForFunction(() => document.getElementById("stage").dataset.ph === "ans", null, { timeout: 9000 }); await p.waitForTimeout(1300);
+      const sit = await p.evaluate(() => { const k = document.getElementById("stTiko"), a = document.getElementById("stAns"), st = document.getElementById("stage"); const kr = k.getBoundingClientRect(), ar = a.getBoundingClientRect(); const tp = parseFloat(getComputedStyle(st).getPropertyValue("--tp")); return { d: kr.bottom - 2 * tp - ar.top, cls: k.className, pill: st.classList.contains("pill-on"), big: document.getElementById("stBig").textContent }; });
+      ok(`${T} sahne: tahmin hapı görünür, Tiko cevabın üstünde oturuyor`, Math.abs(sit.d) < 4 && /\bsit\b/.test(sit.cls) && sit.pill && /\d/.test(sit.big), JSON.stringify(sit));
+      await p.click("#stPlay"); const ph1 = await p.evaluate(() => document.getElementById("stage").dataset.ph + document.getElementById("stPlay").getAttribute("aria-pressed")); await p.waitForTimeout(2600);
+      const ph2 = await p.evaluate(() => document.getElementById("stage").dataset.ph + document.getElementById("stPlay").getAttribute("aria-pressed"));
+      ok(`${T} sahne: durdur düğmesi durduruyor`, ph1 === ph2 && /true$/.test(ph2), ph1 + " → " + ph2);
+      await p.click("#stPlay");
+      // hikâye: kaydırdıkça ilerler
+      const f = async (frac) => p.evaluate(async (frac) => { const li = document.querySelectorAll(".chap")[1]; scrollTo({ top: li.getBoundingClientRect().top + scrollY - innerHeight * frac, behavior: "instant" }); await new Promise((r) => setTimeout(r, 350)); return Number(li.lastElementChild.style.getPropertyValue("--f")); }, frac);
+      const f0 = await f(0.8), f1 = await f(0.2);
+      ok(`${T} hikâye: sahne kaydırdıkça ilerliyor (--f)`, f0 < 0.3 && f1 >= 0.95, `${f0} → ${f1}`);
+      await p.evaluate(() => scrollTo({ top: 0, behavior: "instant" })); await p.waitForTimeout(300);
+    }
     {
       await p.evaluate(() => document.getElementById("ozellikler").scrollIntoView()); await p.waitForTimeout(500);
       const card = p.locator(".feat").nth(4); await card.scrollIntoViewIfNeeded(); await p.waitForTimeout(300); const cb = await card.boundingBox();
@@ -105,7 +136,8 @@ const file = (l) => path.join(DOCS, l === "tr" ? "index.html" : l + "/index.html
       await p.mouse.wheel(0, 900); await p.waitForTimeout(1800);
       const under = await p.evaluate(() => document.getElementById("tfbot").getBoundingClientRect().bottom);
       const hover = await p.evaluate(({ x, y }) => { const el = document.elementsFromPoint(x, y).find((e) => e.id !== "tfbot"); const blk = el.closest(".feat,.stat,.shot,.fact,.model,.dcard,.effrow,.note,.tablebox,.chart,.proofchart,.honest,.loop,.faq details,.road > div,.demo,.sec-head,.formula,.terms > div,.layers li") || el.closest(".wrap > *") || el.closest("section") || el; return blk.getBoundingClientRect().top; }, { x: cb.x + cb.width / 2, y: cb.y + cb.height / 2 });
-      ok(`${T} kaydırınca Tiko seninle indi`, Math.abs(under - Math.max(hover + 3, 0)) < 110, `bot alt ${under.toFixed(0)} · blok üst ${hover.toFixed(0)}`);
+      const cy = cb.y + cb.height / 2, exp = hover < 78 ? Math.max(cy - 30, 82) : hover + 3; // blok tepesi ekran dışındaysa imlecin yanında yürür
+      ok(`${T} kaydırınca Tiko seninle indi`, Math.abs(under - exp) < 110, `bot alt ${under.toFixed(0)} · beklenen ${exp.toFixed(0)} · blok üst ${hover.toFixed(0)}`);
     }
     const bb = await p.evaluate(() => { const r = document.getElementById("tfbot").getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; });
     await p.mouse.click(bb.x, bb.y); await p.waitForTimeout(300);
@@ -144,6 +176,21 @@ const file = (l) => path.join(DOCS, l === "tr" ? "index.html" : l + "/index.html
     await Promise.all([q.waitForURL(srv.base + "ja/"), q.click("#lhA")]);
     ok("şerit: bağlantı Japonca sayfaya götürüyor, orada şerit yok", (await q.evaluate(() => document.getElementById("langHint").hidden)) && (await q.evaluate(() => document.documentElement.lang)) === "ja");
     await c2.close();
+  }
+  // ---- az hareket tercihi: sahne ve hikâye hareketsiz, son durumda ----
+  {
+    const ctx = await b.newContext({ viewport: { width: 1280, height: 860 }, locale: "tr-TR", reducedMotion: "reduce" });
+    const p = await ctx.newPage(); watch(p, "az hareket");
+    await p.goto(srv.base); await p.waitForTimeout(3500);
+    const r = await p.evaluate(() => { const st = document.getElementById("stage"); return { ph: st.dataset.ph, live: st.classList.contains("live"), rv: document.querySelectorAll(".rv").length, f: document.querySelector(".scene").style.getPropertyValue("--f"), play: document.getElementById("stPlay").getAttribute("aria-pressed"), big: document.getElementById("stBig").textContent, tk: document.getElementById("stTiko").getBoundingClientRect().width }; });
+    ok("az hareket: sahne son durumda duruyor, oynatma kapalı, bloklar görünür", r.ph === "done" && !r.live && r.rv === 0 && r.f === "" && r.play === "true" && /\d/.test(r.big) && r.tk >= 70, JSON.stringify(r));
+    await p.keyboard.press("Tab");
+    const keys = await p.evaluate(() => ({ tabs: [...document.querySelectorAll("#stTabs button")].every((x) => x.tabIndex === 0), play: document.getElementById("stPlay").tabIndex === 0, sr: document.getElementById("stSr").textContent.length, hid: document.getElementById("stage").getAttribute("aria-hidden") }));
+    ok("erişim: sahne düğmeleri klavyeyle ulaşılır, sahnenin metin karşılığı var", keys.tabs && keys.play && keys.sr > 60 && keys.hid === "true", JSON.stringify(keys));
+    await ctx.close();
+    // 0.13 öncesi app.js 299.340 bayttı (site-seo); yeni sahne, hikâye ve ölçüm kodu 100 KB'ı geçmemeli
+    const added = fs.statSync(path.join(DOCS, "app.js")).size - 299340;
+    ok("ek betik 100 KB'ın altında", added < 100 * 1024, `${(added / 1024).toFixed(1)} KB`);
   }
   // ---- JS kapalı ----
   {
