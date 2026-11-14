@@ -3,7 +3,7 @@
 
 ---
 
-**Video:** `site/video/tanitim-tr.mp4` (kare, 47 sn, 1080×1080). Dikey istersen `tanitim-tr-v.mp4`. Kapak: `site/video/kapak-tr.jpg`. Videoda arayüz temsilidir; altyazı gerekmiyor ama LinkedIn'de çoğu kişi sessiz izliyor, videodaki yazıların okunduğunu telefonda bir kez kontrol et.
+**Video:** `site/build/video/out/linkedin-tr.mp4` (4:5, 1080×1350, 56 sn, müzikli; İngilizcesi `linkedin-en.mp4`). Dosya büyük olduğu için depoya girmez; klasörde yoksa `node site/build/video/render4.cjs linkedin` ile üretilir (bkz. `site/build/OKU.md`). Kapak: `site/video/kapak-tr.jpg`. Videoda arayüz temsilidir ve üstünde böyle yazar; ses şart değil, bütün anlatım ekrandaki yazılarda. LinkedIn'de çoğu kişi sessiz izliyor, yazıların okunduğunu telefonda bir kez kontrol et.
 
 ## Gönderi metni
 

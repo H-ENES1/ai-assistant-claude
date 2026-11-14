@@ -33,6 +33,7 @@ Chrome Extensions · Productivity · Artificial Intelligence · Open Source
 | # | Dosya | Neden bu sırada |
 |---|---|---|
 | Video | YouTube EN: https://www.youtube.com/watch?v=TKogrZgveAM | PH videoyu galerinin başında gösterir; 4 dakikalık tam anlatım |
+| Video (kısa seçenek) | `promo/video/demo-en-1920x1080.mp4` (30 sn; önce YouTube'a yüklenir) | İlk izlenim için 4 dakikalık anlatımdan daha uygun; hangisini koyacağına sen karar ver |
 | 1 | `store/en/screenshot-1-forecast.png` | Ana fikir tek karede: tahmin + gerekçeli öneri |
 | 2 | `store/en/screenshot-3-task.png` | Farkı gösterir: "çeviri sistemi olan site" çeviri değil, Haiku önerilmez |
 | 3 | `store/en/screenshot-2-effort.png` | Effort önerisi ve tasarruf |

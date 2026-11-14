@@ -49,7 +49,9 @@ Taslaklarda yalnızca depoda kaynağı olan sayılar var. Her biri sınırıyla 
 - Site: https://h-enes1.github.io/ai-assistant-claude/
 - Gizlilik politikası: https://h-enes1.github.io/ai-assistant-claude/privacy.html
 - YouTube (EN, 4 dk): https://www.youtube.com/watch?v=TKogrZgveAM · (TR): https://www.youtube.com/watch?v=6Y4qZ-G2AS0
-- Videolar (depoda): `site/video/tanitim-tr.mp4` (kare, 47 sn), `tanitim-tr-v.mp4` (dikey), `tanitim-en.mp4`, `tanitim-en-v.mp4`
+- Videolar (depoda): `site/video/tanitim-{tr,en}.mp4` (16:9, 75 sn, 1280×720; sitedeki sürüm); `promo/video/demo-en-1920x1080.mp4` ve `demo-en-1080x1080.mp4` (30 sn'lik İngilizce demo: Reddit, Product Hunt, Show HN)
+- GIF (depoda değil, yerelde `promo/video/demo-en-800.gif`; 800 px, 30 sn, 8 MB'ın altında; `node site/build/video/render4.cjs --son` yeniden üretir): yalnız görsel kabul eden yerler için
+- Videolar (depoda değil, `site/build/video/out/`; `node site/build/video/render4.cjs` üretir): `tanitim-{tr,en}.mp4` (1920×1080), `shorts-tiko-`, `shorts-su-`, `shorts-model-{tr,en}.mp4` (9:16, 24–27 sn), `linkedin-{tr,en}.mp4` (4:5, 56 sn)
 - Görseller: `store/en/`, `store/tr/` (1280×800 ekran görüntüleri, 1400×560 ve 440×280 tanıtım görselleri)
 
 ## Genel uyarı: kendi sesinle yaz

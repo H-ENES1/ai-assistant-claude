@@ -4,7 +4,7 @@
 ---
 
 **Flair:** Built with Claude (yoksa: Productivity / Showcase benzeri olanı)
-**Tür:** Görsel + metin gönderisi (ilk görsel: `store/en/screenshot-1-forecast.png`), ya da kısa video (`site/video/tanitim-en.mp4`)
+**Tür:** Görsel + metin gönderisi (ilk görsel: `store/en/screenshot-1-forecast.png`), ya da 30 saniyelik demo (`promo/video/demo-en-1080x1080.mp4`; yalnız görsel kabul eden yerde `promo/video/demo-en-800.gif`)
 
 ## Title
 
