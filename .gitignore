@@ -6,3 +6,4 @@ tests/shots/*
 site/standalone.html
 tests/quality/answers/raw/
 package-lock.json
+site/build/video/out/
