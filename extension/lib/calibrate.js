@@ -15,9 +15,15 @@
 // Önsel değerler forecast.js'den gelir. Durum chrome.storage.local'da "calib" anahtarında saklanır
 // ve yalnızca arka plan servisi tarafından yazılır (sekmeler arası çakışma olmasın diye).
 
-import { kPrior, peakPrior, communityK, CLAUDE_OUTPUT_PRIOR } from "./forecast.js";
+import { kPrior, peakPrior, communityK, CLAUDE_OUTPUT_PRIOR, PLAN_CAPS } from "./forecast.js";
 
+// Şema geçmişi (şema değişirse CALIB_VERSION artır ve MIGRATIONS'a adım ekle; eski veriyi SİLME):
+//   1 — 0.9.x–0.12.x: { version, k: { plan: { session | weekly | session_peak: { a, b, n, at } } },
+//        out: { global: { w, s, at }, types: { tür: { w, s, at } } }, log: [...], stats: { n, inRange } }
+//        0.9.x'te session_peak kovası yoktu (sonradan eklendi; ek alan olduğu için taşıma gerekmedi).
 export const CALIB_VERSION = 1;
+// MIGRATIONS[n]: n sürümündeki durumu n+1'e çevirir. Şimdilik boş (tek sürüm var).
+const MIGRATIONS = {};
 const MAX_LOG = 300;
 const TYPE_SHRINK_SD = 0.3;   // tip sapmasının genel sapmadan ne kadar uzaklaşabileceği
 const OBS_SD = 0.9;           // tek bir cevabın log uzunluğundaki doğal gürültü (CASTILLO ~0.6–1.3)
@@ -45,10 +51,97 @@ function decayFactor(lastAt, now) {
   return Math.pow(0.5, days / HALF_LIFE_DAYS);
 }
 
+const isObj = (x) => !!x && typeof x === "object" && !Array.isArray(x);
+const fin = (x, d = 0) => (Number.isFinite(x) ? x : d);
+const SAFE_KEY = /^[a-z0-9_]{1,32}$/;
+
+// Depodaki kalibrasyonu bu sürümün şemasına getirir. Hiçbir zaman hata fırlatmaz, girdiyi değiştirmez.
+// Döner: { state, status }
+//   "empty"    : veri yok → boş durum
+//   "ok"       : bu sürümün şeması, dokunulmadı
+//   "repaired" : bu sürüm ama eksik/bozuk alan vardı; okunabilen her şey korundu
+//   "migrated" : eski sürümden taşındı
+//   "newer"    : daha YENİ bir sürümün verisi (eklenti eski sürüme döndü) → state = null, çağıran veriyi yedeklemeli
+//   "invalid"  : nesne ama kalibrasyona benzemiyor → state = null, çağıran veriyi yedeklemeli
+export function migrateCalib(raw) {
+  if (raw === null || raw === undefined) return { state: emptyState(), status: "empty" };
+  if (!isObj(raw) || !isObj(raw.k)) return { state: null, status: "invalid" };
+  let v = raw.version === undefined ? 1 : raw.version; // sürüm alanı olmayan çok eski biçim: v1 düzeni
+  if (!Number.isInteger(v) || v < 1) return { state: null, status: "invalid" };
+  if (v > CALIB_VERSION) return { state: null, status: "newer" };
+  let cur = raw, migrated = raw.version !== CALIB_VERSION;
+  while (v < CALIB_VERSION) {
+    const step = MIGRATIONS[v];
+    if (!step) return { state: null, status: "invalid" };
+    cur = step(cur); v++;
+  }
+  // Onarım: eksik alanlar boş değerle tamamlanır, sayı olmayan kovalar atılır (gerisi korunur)
+  let repaired = false;
+  const k = {};
+  for (const [tier, wins] of Object.entries(cur.k)) {
+    if (!SAFE_KEY.test(tier) || !isObj(wins)) { repaired = true; continue; }
+    for (const [win, b] of Object.entries(wins)) {
+      if (!SAFE_KEY.test(win) || !isObj(b) || !(b.a >= 0) || !(b.b >= 0) || !Number.isFinite(b.a) || !Number.isFinite(b.b)) { repaired = true; continue; }
+      (k[tier] ||= {})[win] = b;
+    }
+    if (!k[tier] && Object.keys(wins).length === 0) k[tier] = {};
+  }
+  const cell = (c) => (isObj(c) && Number.isFinite(c.w) && Number.isFinite(c.s) && c.w >= 0 ? c : null);
+  const g = cell(cur.out?.global);
+  const types = {};
+  for (const [t, c] of Object.entries(isObj(cur.out?.types) ? cur.out.types : {})) {
+    if (SAFE_KEY.test(t) && cell(c)) types[t] = c; else repaired = true;
+  }
+  if (!g || !isObj(cur.out?.types)) repaired = true;
+  const log = Array.isArray(cur.log) ? cur.log.filter(isObj).slice(-MAX_LOG) : [];
+  if (!Array.isArray(cur.log) || log.length !== cur.log.length) repaired = true;
+  const statsOk = isObj(cur.stats) && Number.isFinite(cur.stats.n) && Number.isFinite(cur.stats.inRange);
+  if (!statsOk) repaired = true;
+  if (!migrated && !repaired) return { state: cur, status: "ok" };
+  const state = {
+    ...cur, version: CALIB_VERSION, k,
+    out: { global: g || { w: 0, s: 0 }, types },
+    log,
+    stats: { n: Math.max(0, fin(cur.stats?.n)), inRange: Math.max(0, fin(cur.stats?.inRange)) }
+  };
+  return { state, status: migrated ? "migrated" : "repaired" };
+}
+
+// Arka planın tek yazma yolu: depodaki durumu taşır, gözlemleri işler. Depodaki veri okunamıyorsa
+// (daha yeni sürüm ya da bozuk) SESSİZCE SİLİNMEZ: `backup` döner, çağıran onu "calibBackup" anahtarına yazar.
+export function applyObservations(stored, list, now = Date.now()) {
+  const m = migrateCalib(stored);
+  const backup = m.state ? null : { at: now, status: m.status, version: stored?.version ?? null, data: stored };
+  let calib = m.state || emptyState();
+  const results = [];
+  for (const obs of Array.isArray(list) ? list.slice(0, 8) : []) {
+    const r = observe(calib, obs);
+    calib = r.state;
+    results.push({ accepted: r.accepted, reason: r.reason });
+  }
+  return { calib, backup, results, status: m.status };
+}
+
+// Gözlem biçimi doğru mu? (içerik betiğinden gelir; sayfa betikleri sahte veri sokmaya çalışabilir)
+export function validObservation(obs) {
+  if (!isObj(obs)) return false;
+  if (typeof obs.tier !== "string" || !PLAN_CAPS[obs.tier]) return false;
+  if (!(obs.window === "session" || obs.window === "weekly" || obs.window === null || obs.window === undefined)) return false;
+  if (obs.type !== undefined && obs.type !== null && !(typeof obs.type === "string" && SAFE_KEY.test(obs.type))) return false;
+  if (obs.model !== undefined && obs.model !== null && !(typeof obs.model === "string" && obs.model.length <= 32)) return false;
+  for (const key of ["delta", "cost", "outTokens", "outMuNoAdj", "at", "peakMul"]) {
+    if (obs[key] !== undefined && obs[key] !== null && !Number.isFinite(obs[key])) return false;
+  }
+  if (obs.predicted !== undefined && obs.predicted !== null && !isObj(obs.predicted)) return false;
+  return true;
+}
+
 // Durum nesnesini saran, tahmin motorunun beklediği arayüz.
 export function makeCalib(state) {
-  const st = state && state.version === CALIB_VERSION ? state : emptyState();
+  const mig = migrateCalib(state);
+  const st = mig.state || emptyState();
   return {
+    status: mig.status,
     state: st,
     kPosterior(tier, win) {
       // Yoğun saat k'sı: önseli, normal saatlerde öğrenilen k × 1,5 (belirsizliği artırılmış)
@@ -85,7 +178,9 @@ export function makeCalib(state) {
 //   type, outTokens, outMuNoAdj, conv, model }
 // Döner: { state, accepted, reason }
 export function observe(state, obs) {
-  const st = state && state.version === CALIB_VERSION ? structuredClone(state) : emptyState();
+  const mig = migrateCalib(state);
+  const st = mig.state ? structuredClone(mig.state) : emptyState();
+  if (!validObservation(obs)) return { state: st, accepted: false, reason: "invalid" };
   const now = obs.at || Date.now();
   let accepted = true, reason = "ok";
 

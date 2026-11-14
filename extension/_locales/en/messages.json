@@ -1456,16 +1456,16 @@
     "message": "The text and attachments in the message box, to count tokens and estimate the cost. Not stored."
   },
   "welRead2": {
-    "message": "The open chat's history, to calculate cache and context. Counted locally, not stored."
+    "message": "The open chat's history (your messages and Claude's replies), read from the page and from claude.ai with your own session, to calculate cache, context and answer length. Counted locally, not stored."
   },
   "welRead3": {
-    "message": "Your 5-hour and weekly usage percentages, read from claude.ai with your own session."
+    "message": "Your 5-hour and weekly usage percentages and your plan type, read from claude.ai with your own session."
   },
   "welStoreTitle": {
     "message": "What it keeps on this device"
   },
   "welStore": {
-    "message": "Your settings, learned numbers (such as your plan size) and a log of sends for the weekly report that contains only numbers and labels, never text. You can export it or reset it in Settings; uninstalling removes it."
+    "message": "Your settings, learned numbers (such as your plan size) and a log of sends for the weekly report that contains only numbers and labels, never text. To read your usage it also keeps your claude.ai organization ID and plan type, and the IDs (not the titles) of recent chats with the time of your last message. You can export it or reset it in Settings; uninstalling removes it."
   },
   "welNeverTitle": {
     "message": "What it never does"
@@ -1508,5 +1508,32 @@
   },
   "fableShareNear": {
     "message": "Your Fable share is almost used up ($1). Switch to $2."
+  },
+  "pillUnread": {
+    "message": "Can't read"
+  },
+  "unreadModel": {
+    "message": "Couldn't read the selected model. The forecast is hidden rather than shown wrong."
+  },
+  "unreadPlan": {
+    "message": "Couldn't read your plan from claude.ai. The forecast is hidden rather than shown wrong."
+  },
+  "unreadHint": {
+    "message": "claude.ai may have changed: see \"Health check\" under \"Details & settings\"."
+  },
+  "usageUnread": {
+    "message": "Usage couldn't be read or is out of date, so it is hidden rather than shown wrong."
+  },
+  "histPartial": {
+    "message": "Couldn't read the chat history from claude.ai; only the messages visible on the page were counted. In a long chat the forecast may be too low."
+  },
+  "modelFromChat": {
+    "message": "(read from the chat)"
+  },
+  "modelApproxMark": {
+    "message": "(unrecognized version)"
+  },
+  "rowPlan": {
+    "message": "Plan"
   }
 }

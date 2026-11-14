@@ -310,7 +310,12 @@ export function createPanel({ getAnchor, getAnchorTop, onMore, onBannerFeedback,
   };
   const soon = () => { setTimeout(checkYield, 40); setTimeout(checkYield, 220); };
   document.addEventListener("pointerdown", soon, true);
-  document.addEventListener("keydown", soon, true);
+  // Mesaj kutusuna harf yazmak menü açmaz: her tuşta yerleşimi zorlayan denetimi çalıştırma (tests/perf.cjs).
+  // Kısayollar (Ctrl/Alt/Meta), Enter/Escape/ok tuşları ve odak düğmedeyken yine denetlenir; body'ye eklenen menüleri ayrıca MutationObserver yakalar.
+  document.addEventListener("keydown", (e) => {
+    if (e.target?.isContentEditable && e.key && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) return;
+    soon();
+  }, true);
   const mo = new MutationObserver(soon);
   try { mo.observe(document.body, { childList: true }); } catch (_) {}
   const timer = setInterval(() => { applyTheme(); schedulePlace(); checkYield(); }, 500);

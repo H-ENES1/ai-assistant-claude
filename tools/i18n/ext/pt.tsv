@@ -479,10 +479,10 @@ welTitle	Boas-vindas ao Token Forecast
 welLead	Antes de começar, veja exatamente o que a extensão lê e guarda. Nada sai do seu dispositivo.
 welReadTitle	O que ela lê no claude.ai
 welRead1	O texto e os anexos da caixa de mensagem, para contar tokens e estimar o custo. Não são guardados.
-welRead2	O histórico do chat aberto, para calcular cache e contexto. Contado localmente, não guardado.
-welRead3	Suas porcentagens de uso de 5 horas e semanal, lidas do claude.ai com a sua própria sessão.
+welRead2	O histórico do chat aberto (suas mensagens e as respostas do Claude), lido da página e do claude.ai com a sua própria sessão, para calcular cache, contexto e tamanho das respostas. Contado localmente, não guardado.
+welRead3	Suas porcentagens de uso de 5 horas e semanal e o tipo do seu plano, lidos do claude.ai com a sua própria sessão.
 welStoreTitle	O que ela guarda neste dispositivo
-welStore	Suas configurações, valores aprendidos (como o tamanho do seu plano) e um registro de envios para o relatório semanal que contém só números e rótulos, nunca texto. Você pode exportá-lo ou redefini-lo nas configurações; ao desinstalar, ele é apagado.
+welStore	Suas configurações, valores aprendidos (como o tamanho do seu plano) e um registro de envios para o relatório semanal que contém só números e rótulos, nunca texto. Para ler o seu uso, também guarda o ID da sua organização no claude.ai e o tipo do seu plano, além dos IDs (não os títulos) dos chats recentes com o horário da sua última mensagem. Você pode exportá-lo ou redefini-lo nas configurações; ao desinstalar, ele é apagado.
 welNeverTitle	O que ela nunca faz
 welNever	Sem servidor, sem análise, sem rastreamento. Nunca envia suas mensagens para lugar nenhum, nunca envia mensagens por você e nunca altera suas configurações do claude.ai.
 welPolicy	Ler a política de privacidade completa
@@ -493,3 +493,12 @@ welLaterNote	A extensão fica desligada até você aceitar. Você pode fazer iss
 consentChip	Token Forecast está desligado · Ligar
 consentPopup	O Token Forecast precisa da sua permissão antes de ler qualquer coisa no claude.ai.
 consentPopupBtn	Revisar e ligar
+pillUnread	Não foi possível ler
+unreadModel	Não foi possível ler o modelo selecionado. A previsão fica oculta em vez de mostrar um número errado.
+unreadPlan	Não foi possível ler o seu plano no claude.ai. A previsão fica oculta em vez de mostrar um número errado.
+unreadHint	O claude.ai pode ter mudado: veja “Verificação do sistema” em “Detalhes e configurações”.
+usageUnread	O uso não pôde ser lido ou está desatualizado; fica oculto em vez de ser mostrado errado.
+histPartial	Não foi possível ler o histórico do chat no claude.ai; só as mensagens visíveis na página foram contadas. Em um chat longo a previsão pode ficar baixa demais.
+modelFromChat	(lido do chat)
+modelApproxMark	(versão não reconhecida)
+rowPlan	Plano
