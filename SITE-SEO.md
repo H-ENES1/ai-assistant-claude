@@ -158,3 +158,73 @@ PR `main`'e girip GitHub Pages yayını bittikten sonra (Actions sekmesinde "pag
    Performans raporunda "Ülkeler" ve "Sayfalar" sekmelerinde dil sayfalarının ayrı göründüğünü kontrol et; (c) istersen
    ücretsiz bir hreflang denetleyicisiyle (ör. Merkle / technicalseo.com hreflang tester) `/en/` adresini sına.
 4. Bing için (isteğe bağlı): Bing Webmaster Tools → "Google Search Console'dan içe aktar" → site haritası otomatik gelir.
+
+## Yeniden tasarım sonrası ölçüm (14.11.2026, dal `yayin-0-13`)
+
+Site yeniden tasarlandı: canlı kahraman sahnesi, kaydırma hikâyesi, "Ölçüm" bölümü, 75 saniyelik yeni video. Koşul: bu belgedeki
+puanlar düşmesin, LCP 2,5 saniyenin altında kalsın, eklenen betik 100 KB'ı geçmesin.
+
+**Yöntem.** Yukarıdakiyle aynı (Lighthouse 12.8.2, Playwright'ın Chromium 141'i, GitHub Pages gibi davranan yerel sunucu, her sayfa ve
+biçim 3 koşu, performansa göre medyan); bu kez betik depoda: `site/build/lighthouse.cjs`. "Önce" = yeniden tasarımdan hemen önceki
+`docs/` (commit `5225a74`), aynı gün aynı makinede yalnız tr, en, ru, ja için yeniden ölçüldü; öteki dillerde "önce" sütunu yok
+(12.11.2026 değerleri yukarıdaki tabloda). Ölçerken makinede başka iş çalışmadı. Makine koyu temada olduğu için sayfalar koyu temayla ölçüldü.
+
+### Mobil
+
+| Dil | Performans | Erişilebilirlik | En iyi uygulamalar | SEO | LCP (sn) | CLS | TBT (ms) | Aktarılan |
+|---|---|---|---|---|---|---|---|---|
+| tr | 98 → **100** | 97 → **100** | 100 → **100** | 100 → **100** | 1,5 → 1,3 | 0,000 → 0,000 | 114 → 50 | 383 → 252 KB |
+| en | 99 → **100** | 100 → **100** | 100 → **100** | 100 → **100** | 1,2 → 1,3 | 0,000 → 0,000 | 117 → 81 | 362 → 381 KB |
+| de | **100** | **100** | **100** | **100** | 1,3 | 0,000 | 53 | 407 KB |
+| fr | **100** | **100** | **100** | **100** | 1,3 | 0,000 | 42 | 397 KB |
+| es | **99** | **100** | **100** | **100** | 1,3 | 0,000 | 48 | 411 KB |
+| it | **99** | **100** | **100** | **100** | 1,4 | 0,000 | 46 | 404 KB |
+| pt | **100** | **100** | **100** | **100** | 1,3 | 0,000 | 48 | 413 KB |
+| ru | 99 → **99** | 97 → **100** | 100 → **100** | 100 → **100** | 1,4 → 1,5 | 0,000 → 0,000 | 101 → 47 | 359 → 381 KB |
+| ja | 98 → **98** | 97 → **100** | 100 → **100** | 100 → **100** | 1,6 → 1,7 | 0,000 → 0,000 | 93 → 70 | 357 → 353 KB |
+| zh | **98** | **100** | **100** | **100** | 1,6 | 0,000 | 70 | 378 KB |
+
+Sonra, performans koşuları (3 koşu, medyan seçildi): tr [99, 100, 100], en [100, 100, 100], de [99, 100, 100], fr [100, 100, 99], es [99, 100, 99], it [99, 99, 99], pt [100, 100, 100], ru [99, 99, 99], ja [98, 96, 98], zh [98, 98, 98]
+
+Önce, performans koşuları: tr [95, 98, 99], en [96, 99, 99], ru [99, 99, 99], ja [99, 96, 98]
+
+Özet (sonra, medyan koşu): performans en düşük 98, erişilebilirlik en düşük 100, en iyi uygulamalar en düşük 100, SEO en düşük 100, LCP en yüksek 1,69 sn, CLS en yüksek 0,000. Tek koşularda en düşük performans: 96.
+
+### Masaüstü
+
+| Dil | Performans | Erişilebilirlik | En iyi uygulamalar | SEO | LCP (sn) | CLS | TBT (ms) | Aktarılan |
+|---|---|---|---|---|---|---|---|---|
+| tr | 100 → **100** | 97 → **100** | 100 → **100** | 100 → **100** | 0,4 → 0,4 | 0,001 → 0,001 | 8 → 5 | 383 → 400 KB |
+| en | 100 → **100** | 100 → **100** | 100 → **100** | 100 → **100** | 0,3 → 0,4 | 0,001 → 0,002 | 2 → 9 | 363 → 381 KB |
+| de | **100** | **100** | **100** | **100** | 0,4 | 0,002 | 9 | 407 KB |
+| fr | **100** | **100** | **100** | **100** | 0,4 | 0,005 | 10 | 423 KB |
+| es | **100** | **100** | **100** | **100** | 0,3 | 0,006 | 4 | 411 KB |
+| it | **100** | **100** | **100** | **100** | 0,3 | 0,005 | 3 | 404 KB |
+| pt | **100** | **100** | **100** | **100** | 0,4 | 0,002 | 4 | 413 KB |
+| ru | 100 → **100** | 97 → **100** | 100 → **100** | 100 → **100** | 0,4 → 0,4 | 0,000 → 0,006 | 10 → 4 | 345 → 381 KB |
+| ja | 100 → **100** | 97 → **100** | 100 → **100** | 100 → **100** | 0,4 → 0,4 | 0,000 → 0,002 | 2 → 4 | 357 → 378 KB |
+| zh | **100** | **100** | **100** | **100** | 0,4 | 0,002 | 2 | 378 KB |
+
+Sonra, performans koşuları (3 koşu, medyan seçildi): tr [100, 100, 100], en [100, 100, 100], de [100, 100, 100], fr [100, 100, 100], es [100, 100, 100], it [100, 100, 100], pt [100, 100, 100], ru [100, 100, 100], ja [100, 100, 100], zh [100, 100, 100]
+
+Önce, performans koşuları: tr [100, 100, 100], en [100, 100, 100], ru [100, 100, 100], ja [100, 100, 100]
+
+Özet (sonra, medyan koşu): performans en düşük 100, erişilebilirlik en düşük 100, en iyi uygulamalar en düşük 100, SEO en düşük 100, LCP en yüksek 0,41 sn, CLS en yüksek 0,006. Tek koşularda en düşük performans: 100.
+
+**İlk ölçüm kötüydü; ne düzeltildi.** Yeniden tasarımın ilk hâlinde mobil performans 76–92'ye düşmüştü (TBT 316–1012 ms; ja ve zh 76),
+masaüstünde ja 94, it'te CLS 0,046. Nedenler ve düzeltmeler:
+
+- "Görünürken belir" kodu her bloğu tek tek `getBoundingClientRect` ile ölçüp arada stil yazıyordu; her ölçüm yerleşimi yeniden
+  hesaplattı (4× yavaşlatılmış işlemcide tek görev ≈ 1,3 sn). Aynı bilgi artık ilk `IntersectionObserver` bildiriminden geliyor.
+- Hikâye bölümü `content-visibility: visible` idi; ekran dışındayken de ilk yerleşime giriyordu. Artık öteki bölümler gibi `auto`.
+- Sahne kutusu `contain: strict`: animasyonun her karesi yalnız o kutunun yerleşimini yeniler.
+- İtalyancada sahnenin altındaki not, Inter gelince 2 satırdan 3 satıra çıkıp alttaki bölümü 20 px itiyordu; nota 3 satırlık yer ayrıldı.
+- Erişilebilirlik 97 → 100: dil öneri şeridindeki bağlantının kontrastı 4,26 idi (yeniden tasarımdan önce de; şerit yalnız tarayıcı
+  dili sayfa dilinden farklıyken göründüğü için İngilizce sayfada 100 çıkıyordu). Bağlantı artık metin renginde ve altı çizili.
+
+**Sonuç.** Mobil performans 98–100 (aynı gün ölçülen önceki sürüm 98–99), masaüstü 100; erişilebilirlik, en iyi uygulamalar ve SEO
+her dilde 100; mobil LCP en çok 1,7 sn. Sayfa ağırlaştı: HTML tr 163 → 205 KB (gzip 49 → 57 KB), `app.js` 300 → 325 KB (gzip 154 → 162 KB;
+`site-test.cjs` 100 KB sınırını denetler). "Aktarılan" sütunu koşudan koşuya oynuyor (nedeni incelenmedi; tahmin: yazı tipi istekleri her koşuda aynı sayıda
+tamamlanmıyor; tr mobilin medyan koşusunda 252 KB, masaüstünde 400 KB). Laboratuvar ölçümüdür; gerçek telefonda ölçülmedi.
+
+Testler (bu sürümde): `node site/build/site-test.cjs` 339 kontrol, `node site/build/multilang-test.cjs` 104 kontrol, hepsi geçti.
