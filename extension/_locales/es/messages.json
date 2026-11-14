@@ -1496,5 +1496,17 @@
   },
   "consentPopupBtn": {
     "message": "Revisar y activar"
+  },
+  "rowFableShare": {
+    "message": "Cuota de Fable"
+  },
+  "fableSharePill": {
+    "message": "Cuota de Fable $1"
+  },
+  "fableShareLabel": {
+    "message": "Cuota de Fable (semanal)"
+  },
+  "fableShareNear": {
+    "message": "Tu cuota de Fable casi se ha agotado ($1). Cambia a $2."
   }
 }

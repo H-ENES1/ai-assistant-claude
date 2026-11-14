@@ -61,9 +61,40 @@ export function normalizeUsage(raw) {
     if (key === "five_hour" || key === "seven_day") continue;
     if (!key.startsWith("seven_day_") && !key.startsWith("five_hour_")) continue;
     const w = toWindow(key, value);
-    if (w) extras.push(w);
+    if (w) { extras.push(w); continue; }
+    // Bilinmeyen biçim: pencereler bir alt nesnede olabilir ({ seven_day_models: { fable: {...} } }) → seven_day_models_fable
+    if (value && typeof value === "object" && !Array.isArray(value) && !("utilization" in value)) {
+      for (const [sub, v] of Object.entries(value)) {
+        const ws = toWindow(`${key}_${sub}`.toLowerCase().replace(/[^a-z0-9_]+/g, "_"), v);
+        if (ws) extras.push(ws);
+      }
+    }
   }
   return finalize({ fiveHour, sevenDay, extras });
+}
+
+// Model ailesine özel haftalık pencere. Kasım 2026'da Fable 5.2 lansman haftasında Pro ve standart Team
+// koltuklarında Fable, haftalık limitin bir payıyla ("up to 50%") sınırlandı (support.claude.com/en/articles/17506494).
+// claude.ai bunu hangi anahtarla döndürüyor bilinmiyor: önce bilinen adlar, sonra aile adını içeren her
+// seven_day_* anahtarı (seven_day_fable_5_2, seven_day_models_fable …) kabul edilir.
+// seven_day_opus Fable sayılmaz: Opus'un kendi penceresi olabilir. Gerçek cevapta Fable başka adla gelirse listeye ekle.
+export const FAMILY_WINDOW_KEYS = {
+  fable: ["seven_day_fable", "seven_day_fable_models", "seven_day_fable_5_2"],
+  opus: ["seven_day_opus"],
+  sonnet: ["seven_day_sonnet"],
+  haiku: ["seven_day_haiku"]
+};
+export const FAMILY_SHARE_WARN_PCT = 80;
+
+export function familyWindow(usage, family) {
+  if (!family) return null;
+  const extras = (usage?.extras || []).filter(Boolean);
+  for (const k of FAMILY_WINDOW_KEYS[family] || []) {
+    const w = extras.find((x) => x.key === k);
+    if (w) return w;
+  }
+  const re = new RegExp(`^seven_day_(?:[a-z0-9]+_)*${family}(?:_|$)`);
+  return extras.find((x) => re.test(x.key)) || null;
 }
 
 function finalize(u) {

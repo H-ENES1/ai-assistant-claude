@@ -29,7 +29,7 @@ site/                   index.html (tanıtım sitesi, tek dosya) + build/ (kayna
 npm install   # kökte: esbuild + playwright
 npm run test   # birim + öğrenme + rapor + katkı + model önerisi (60 prompt: uygunluk ≥ %96, "gerekenden hafif öneri" = 0 olmalı)
 node tests/ml/train.mjs   # sınıflandırıcıyı yeniden eğit; test2'de karma < kurallar olursa ağırlıkları YAZMA (--no-write)
-npm run e2e    # Playwright, sahte claude.ai (43 kontrol). PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 şart:
+npm run e2e    # Playwright, sahte claude.ai (69 kontrol). PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 şart (0.12.2'den beri e2e.cjs kendisi ayarlar):
                # yoksa arka plan servisinin istekleri sahte sunucuya gitmez ve 4-5 kontrol yanlışlıkla kırmızı olur.
 ```
 
@@ -97,3 +97,12 @@ npm run e2e    # Playwright, sahte claude.ai (43 kontrol). PW_EXPERIMENTAL_SERVI
 ## Chrome Web Store (28.10.2026)
 - Yayında: https://chromewebstore.google.com/detail/chbjpjhmkpgfocnfpdafkakjicdicige ("Token Forecast for Claude", 0.12.1). Sitedeki "Chrome'a ekle" düğmeleri (10 dil), README'ler ve yapısal veri (installUrl) bu adrese gider; elle kurulum (zip) ikinci seçenek olarak kaldı.
 - Güncelleme: manifest sürümünü artır → main'e gönder (GitHub sürümü otomatik) → `tools/build-release.mjs` mağaza zip'i → geliştirici panelinde Paket → Yeni paket yükle → İncelemeye gönder.
+
+## 0.12.2 (11.11.2026) — Fable 5.2
+- **Fable 5.2** (`claude-fable-5-2`, 1M bağlam, Opus 4.7 tokenizer'ı): `forecast.js` MODELS, aile varsayılanı ve öneri etiketi; `advisor.js`, `context.js`. Ağırlık 10 = 5.1 ile aynı **varsayım** (API fiyatı $8/$40, 5.1 $10/$50; abonelik limitindeki ağırlığı yayımlanmadı, kalibrasyon düzeltir). claude.ai'de varsayılan effort medium (API'de high).
+- **Fable payı** `lib/usage.js familyWindow`: claude.ai Fable'a özel haftalık pencere döndürürse (anahtar adı bilinmiyor: seven_day_fable, seven_day_fable_models, seven_day_fable_5_2 ya da adında "fable" geçen her seven_day_*; alt nesnedeki pencereler düzleştirilir) Fable seçiliyken hapta ve popup'ta "Fable payı: %X"; %80'i (`FAMILY_SHARE_WARN_PCT`) geçince "Fable payın dolmak üzere, Opus 5.5'e geç" (limit uyarısı sayılır). Pencere yoksa hiçbir şey gösterilmez. `seven_day_opus` Fable sayılmaz.
+- Kaynak notu: "Pro'da Fable haftalık limitin %50'si" kuralı anthropic.com'da "**up to** 50%" ve destek makalesi 17506494'e göre **9–16 Kasım 2026 lansman promosyonu** (Pro + standart Team). Bu yüzden metinlerde oran ve plan adı yok; gösterge yalnızca claude.ai'nin döndürdüğü pencereye bağlı.
+- Gerçek claude.ai cevabında Fable penceresinin anahtar adı **doğrulanmadı**: ilk fırsatta Pro hesapla /usage cevabına bak, farklıysa `FAMILY_WINDOW_KEYS`'e ekle.
+- `tokens.js`: CJK_PER_CHAR (0,73) o200k ile ölçülmüş (b789b13); CLAUDE_FACTOR CJK'ya uygulanmaya devam.
+- e2e: sahte /usage `seven_day_fable` %85; 5 yeni kontrol (toplam 69). `PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS` artık e2e.cjs içinde ayarlanıyor: Windows'ta npm betikleri cmd.exe ile çalıştığı için `VAR=1 node …` önekli betik orada bozuluyordu.
+- Ortam: Node 22 LTS kullan. Node 26'da Playwright 1.56'nın tarayıcı kurulumu bozuluyor (`fs.rmdir` `recursive` seçeneği kaldırıldı).

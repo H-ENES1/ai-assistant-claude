@@ -9,7 +9,7 @@
 //     Haiku 5.5  → "en düşük gecikme ve fiyat": gerçek zamanlı, yüksek hacimli, alt görevler
 //     Sonnet 5.5 → "günlük işler için hız ve yetenek": kod üretme, veri analizi, içerik yazma
 //     Opus 5.5   → "karmaşık ajan kodlama ve kurumsal işler": büyük refactor, sistem mühendisliği
-//     Fable 5.1  → "en yüksek yetenek": saatler süren ajan işleri, çok adımlı derin araştırma
+//     Fable 5.2  → "en yüksek yetenek": saatler süren ajan işleri, çok adımlı derin araştırma
 //  2) Bu projenin 50 örnekli öneri test seti (tests/rec-cases.json): her örnek için "yeterli" modeller.
 //  3) Kullanıcının kendi 👍/👎 geri bildirimi (yerelde tutulur, tip başına alt/üst sınırı kaydırır).
 //
@@ -21,7 +21,7 @@ import { PROFILE } from "./domain.js";
 import { recommendEffort, compareEffort } from "./effort.js";
 
 export const TIERS = ["haiku", "sonnet", "opus", "fable"];
-const FAMILY_MODEL = { haiku: "haiku 5.5", sonnet: "sonnet 5.5", opus: "opus 5.5", fable: "fable 5.1" };
+const FAMILY_MODEL = { haiku: "haiku 5.5", sonnet: "sonnet 5.5", opus: "opus 5.5", fable: "fable 5.2" };
 
 // Haiku'nun yetebileceği tipler ve kuralları
 const HAIKU_TYPES = new Set(["translate", "rewrite", "summarize", "short_qa"]);

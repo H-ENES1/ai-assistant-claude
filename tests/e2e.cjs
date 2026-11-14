@@ -2,6 +2,9 @@
 // Copyright (c) 2026 Hayrettin Enes Karalı
 // Uçtan uca test: eklentiyi Chromium'a yükler, claude.ai'yi taklit eden sahte bir sayfa ve
 // sahte API ile çalıştırır. Çalıştır: node e2e.cjs
+// Arka plan servisinin istekleri sahte sunucuya gitsin (yoksa 4-5 kontrol yanlışlıkla kırmızı olur).
+// Burada ayarlanır ki Windows'ta da (npm betikleri cmd.exe ile çalışır) "npm run e2e" çalışsın.
+process.env.PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS ||= "1";
 const { chromium } = require("playwright");
 const path = require("path");
 const fs = require("fs");
@@ -12,7 +15,7 @@ const OUT = path.resolve(__dirname, "shots");
 fs.mkdirSync(OUT, { recursive: true });
 const CONV = "0b1c2d3e-0000-4000-8000-123456789abc";
 const now = Date.now();
-const state = { usage5h: 19, usage7d: 17, completions: 0, lastPrompt: null };
+const state = { usage5h: 19, usage7d: 17, usageFable: 85, completions: 0, lastPrompt: null };
 
 const PAGE = `<!doctype html><html><head><meta charset="utf-8"><title>Claude</title>
 <style>body{font-family:sans-serif;margin:0;background:#faf9f5} main{max-width:760px;margin:0 auto;padding:20px 20px 220px}
@@ -75,7 +78,7 @@ const check = (name, ok, info = "") => { results.push({ name, ok: !!ok, info });
     const req = route.request(); const u = new URL(req.url());
     const json = (o) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(o) });
     if (u.pathname === "/api/organizations") return json([{ uuid: "org1", capabilities: ["chat", "claude_pro"], rate_limit_tier: "default_claude_ai" }]);
-    if (u.pathname === "/api/organizations/org1/usage") return json({ five_hour: { utilization: state.usage5h, resets_at: new Date(now + 3 * 3600e3).toISOString() }, seven_day: { utilization: state.usage7d, resets_at: new Date(now + 3 * 86400e3).toISOString() }, seven_day_opus: null });
+    if (u.pathname === "/api/organizations/org1/usage") return json({ five_hour: { utilization: state.usage5h, resets_at: new Date(now + 3 * 3600e3).toISOString() }, seven_day: { utilization: state.usage7d, resets_at: new Date(now + 3 * 86400e3).toISOString() }, seven_day_opus: null, seven_day_fable: { utilization: state.usageFable, resets_at: new Date(now + 5 * 86400e3).toISOString() } });
     if (u.pathname.endsWith(`/chat_conversations/${CONV}`)) return json({
       uuid: CONV, model: "claude-opus-5-5", current_leaf_message_uuid: "m1",
       chat_messages: [
@@ -271,6 +274,18 @@ const check = (name, ok, info = "") => { results.push({ name, ok: !!ok, info });
   await sw.evaluate(() => chrome.storage.local.get("settings").then(({ settings }) => chrome.storage.local.set({ settings: { ...settings, advisor: true } })));
   await page.evaluate(() => { [...document.querySelectorAll("fieldset button")].find((b) => b.textContent === "Sonnet 5.5").textContent = "Opus 5.5"; });
 
+  // 3f) Fable payı: sahte /usage seven_day_fable %85 döndürür; yalnızca Fable seçiliyken görünür
+  await page.waitForTimeout(800);
+  const tOpus = await cardText();
+  check("Opus seçiliyken Fable payı görünmez", !/Fable payı/.test(tOpus), (tOpus.match(/.*Fable.*/) || [""])[0]);
+  await page.evaluate(() => { [...document.querySelectorAll("fieldset button")].find((b) => b.textContent === "Opus 5.5").textContent = "Fable 5.2"; });
+  await page.waitForFunction(() => /Fable payı/.test(document.querySelector("[data-token-forecast]").shadowRoot.querySelector(".card").innerText), null, { timeout: 5000 }).catch(() => {});
+  const tFable = await cardText();
+  check("Fable 5.2 seçili: kartta Fable payı %85", /Fable payı\s*%85/.test(tFable) && /Fable 5\.2/.test(tFable), (tFable.match(/.*Fable.*/g) || []).join(" | "));
+  check("Fable payı %80'i geçince Opus 5.5'e geç uyarısı", /Fable payın dolmak üzere \(%85\)\. Opus 5\.5'e geç/.test(tFable), (tFable.match(/.*dolmak.*/) || [""])[0]);
+  await page.evaluate(() => { [...document.querySelectorAll("fieldset button")].find((b) => b.textContent === "Fable 5.2").textContent = "Opus 5.5"; });
+  await page.waitForTimeout(800);
+
   // 4) Görsel ekle
   fs.writeFileSync(path.join(OUT, "img.png"), pngOf(1000, 1000));
   await page.setInputFiles("#file", path.join(OUT, "img.png"));
@@ -358,6 +373,14 @@ const check = (name, ok, info = "") => { results.push({ name, ok: !!ok, info });
   const capItems = await pop.locator("#capList li").count();
   check("popup: kalan limitle yapılabilecekler (6 satır)", capItems === 6, (await pop.locator("#capList").innerText()).replace(/\n/g, " · "));
   check("popup: kalibrasyon metni", /ölçüm/.test(popText), (popText.match(/.*ölçüm.*/) || [""])[0]);
+  check("popup: Opus seçiliyken Fable penceresi yalnızca 'Diğer limitler'de", !/Fable payı/.test(popText) && /Diğer limitler/.test(popText) && /Haftalık limit · Fable/.test(popText), (popText.match(/.*Fable.*/g) || []).join(" | "));
+  const ctxBefore = (await storage("lastContext")).lastContext;
+  await sw.evaluate(() => chrome.storage.local.get("lastContext").then(({ lastContext }) => chrome.storage.local.set({ lastContext: { ...lastContext, model: "Fable 5.2", at: Date.now() } })));
+  await pop.reload(); await pop.waitForTimeout(1000);
+  const popFable = await pop.evaluate(() => document.body.innerText);
+  check("popup: Fable seçiliyken 'Fable payı' ve Opus 5.5 uyarısı", /Fable payı \(haftalık\)/.test(popFable) && /Opus 5\.5'e geç/.test(popFable) && !/Haftalık limit · Fable/.test(popFable), (popFable.match(/.*Fable.*/g) || []).join(" | "));
+  await sw.evaluate((c) => chrome.storage.local.set({ lastContext: c }), ctxBefore);
+  await pop.reload(); await pop.waitForTimeout(800);
   const tr = (await storage("trace")).trace || [];
   const steps = tr.map((x) => x.step);
   check("tanı günlüğü: gönderim ve cevap adımları", ["send:seen", "send:pre", "done:seen", "done:observed"].every((x) => steps.includes(x)), steps.join(","));

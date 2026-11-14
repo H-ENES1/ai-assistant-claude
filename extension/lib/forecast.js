@@ -25,6 +25,9 @@ import COMMUNITY from "./community-priors.js";
 //   def = varsayılan seviye (Opus 5.5 ve Haiku 5.5: medium; diğerleri high), x = "extra high" (xhigh) var mı.
 //   Seçicisi olmayan modellerde eff yok.
 export const MODELS = {
+  // Fable 5.2: ağırlık 5.1 ile aynı varsayıldı (abonelik limitindeki ağırlığı yayımlanmadı; API fiyatı $8/$40), kalibrasyon düzeltir.
+  // claude.ai uygulamalarında varsayılan effort medium (anthropic.com/claude-fable-and-mythos-5-2).
+  "fable 5.2":  { id: "claude-fable-5-2",  family: "fable",  weight: 10,  ctx: 1_000_000, eff: { def: "medium", x: true } },
   "fable 5.1":  { id: "claude-fable-5-1",  family: "fable",  weight: 10,  ctx: 1_000_000, eff: { def: "high", x: true } },
   "fable 5":    { id: "claude-fable-5",    family: "fable",  weight: 10,  ctx: 500_000,   eff: { def: "high", x: true } },
   "opus 5.5":   { id: "claude-opus-5-5",   family: "opus",   weight: 4,   ctx: 1_000_000, eff: { def: "medium", x: true } },
@@ -40,8 +43,8 @@ export const MODELS = {
   "haiku 5.5":  { id: "claude-haiku-5-5",  family: "haiku",  weight: 0.1, longWeight: 0.5, longAbove: 100_000, ctx: 1_000_000, eff: { def: "medium", x: false } },
   "haiku 4.5":  { id: "claude-haiku-4-5",  family: "haiku",  weight: 1,   ctx: 200_000 }
 };
-const FAMILY_DEFAULT = { fable: "fable 5.1", opus: "opus 5.5", sonnet: "sonnet 5.5", haiku: "haiku 5.5" };
-export const RECOMMEND_LABEL = { haiku: "Haiku 5.5", sonnet: "Sonnet 5.5", opus: "Opus 5.5", fable: "Fable 5.1" };
+const FAMILY_DEFAULT = { fable: "fable 5.2", opus: "opus 5.5", sonnet: "sonnet 5.5", haiku: "haiku 5.5" };
+export const RECOMMEND_LABEL = { haiku: "Haiku 5.5", sonnet: "Sonnet 5.5", opus: "Opus 5.5", fable: "Fable 5.2" };
 const TIER_ORDER = ["haiku", "sonnet", "opus", "fable"];
 
 // claude.ai'nin her sohbette taşıdığı sabit sistem talimatı + araç tanımları (lugia19 ölçümü,

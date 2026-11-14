@@ -2,13 +2,13 @@
 // Copyright (c) 2026 Hayrettin Enes Karalı
 // Bağlam penceresi (context window) boyutları ve uyarı seviyesi.
 // Kaynak: https://support.claude.com/en/articles/8606394 (Ekim 2026, ücretli planlar, sohbet)
-//   1M  : Fable 5.1, Opus 5.5, Opus 5, Sonnet 5.5, Sonnet 5, Haiku 5.5
+//   1M  : Fable 5.2, Fable 5.1, Opus 5.5, Opus 5, Sonnet 5.5, Sonnet 5, Haiku 5.5
 //   500K: Fable 5, Opus 4.8, Opus 4.7, Opus 4.6, Sonnet 4.6
 //   diğer: 200K
 // Ücretsiz plan için resmi değer yayınlanmadığından, model algılanamazsa temkinli
 // olarak 200K varsayılır.
 
-const ONE_M = ["fable 5.1", "opus 5.5", "opus 5", "sonnet 5.5", "sonnet 5", "haiku 5.5"];
+const ONE_M = ["fable 5.2", "fable 5.1", "opus 5.5", "opus 5", "sonnet 5.5", "sonnet 5", "haiku 5.5"];
 const HALF_M = ["fable 5", "opus 4.8", "opus 4.7", "opus 4.6", "sonnet 4.6"];
 export const DEFAULT_WINDOW = 200_000;
 
