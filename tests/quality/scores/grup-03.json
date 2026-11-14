@@ -1,0 +1,7 @@
+{"group": 3, "items": [
+ {"id": "c06", "A": 4.5, "B": 4.5, "C": 4.5, "note": "Üçü de '9.4'ün ne olduğunu bilmediğini söyleyip model/bellek/veri ayrımını doğru anlatıyor; fark yok."},
+ {"id": "t15", "A": 4, "B": 4.5, "C": 5, "note": "C en somut (CMS seçenekleri, sözleşme maddeleri, iki dilin eşgüdümü); B ajans ve bütçeyi kapsıyor; A'da ajans/sözleşme yok."},
+ {"id": "r35", "A": 4, "B": 5, "C": 5, "langSlip": ["A"], "note": "Üçünün içeriği güçlü (bölümleme, yedeklilik, devralma); A İngilizce isteme Türkçe cevap verdiği için düşük."},
+ {"id": "r40", "A": 4.5, "B": 5, "C": 5, "note": "Üçü de doğru formülleri ve örneklem/anakütle ayrımını veriyor; A daha yalın ve tablonun eksik olduğunu söylemiyor."},
+ {"id": "t11", "A": 4.5, "B": 4.5, "C": 4.5, "note": "Üç betik de çalışır görünüyor; A ve B özeti çeviriyor (parçalı özet), C tüm metni çeviriyor ama özeti kırpıyor; hiçbiri çoklu dosya almıyor."}
+]}

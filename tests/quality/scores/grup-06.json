@@ -1,0 +1,7 @@
+{"group": 6, "items": [
+ {"id": "r37", "A": 4.5, "B": 5, "C": 4.5, "note": "Üçü de kodu isteyip göç yol haritası veriyor; B önce/sonra kod örneği ve kapsam sorusuyla en somut."},
+ {"id": "r22", "A": 5, "B": 5, "C": 5, "note": "Üçü de x = 2 ve x = 3'ü iki yöntemle doğru buluyor."},
+ {"id": "t05", "A": 4.5, "B": 5, "C": 5, "note": "B ve C seçenekleri (kütüphane, CMS, yönetim platformu, widget) ve tuzakları tam kapsıyor; A doğru ama daha dar."},
+ {"id": "c10", "A": 5, "B": 5, "C": 5, "note": "Üçü de cümleyi doğru düzeltiyor."},
+ {"id": "r43", "A": 5, "B": 5, "C": 5, "note": "Üçü de konunun verilmediğini söyleyip genel iskelet öneriyor."}
+]}

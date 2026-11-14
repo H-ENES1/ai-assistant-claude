@@ -1,0 +1,7 @@
+{"group": 9, "items": [
+ {"id": "r08", "A": 5, "B": 5, "C": 5, "note": "Üçü de iki hatayı doğru düzeltiyor."},
+ {"id": "r19", "A": 3.5, "B": 3.5, "C": 3, "note": "İstem 1500 kelime istiyor, ölçüm düzeni cevabı 400 kelimeyle sınırlıyor: üçü de doğru ama kısaltılmış; A bunu açıkça söylüyor, C en kısa ve başlıksız."},
+ {"id": "r33", "A": 5, "B": 4, "C": 3.5, "langSlip": ["B", "C"], "note": "Üçünün içeriği doğru (nedenler, varsayılan dizi, kök neden uyarısı); B ve C İngilizce isteme Türkçe cevap veriyor, C ayrıca daha kısa."},
+ {"id": "r34", "A": 4.5, "B": 5, "C": 5, "note": "Üçü de modüler monolit başlangıcı, saga/outbox, PCI ve gözlemlenebilirliği kapsıyor; B ve C veri katmanı ve yol haritasında daha eksiksiz."},
+ {"id": "r15", "A": 5, "B": 3.5, "C": 5, "langSlip": ["B"], "note": "A ve C katkılama, BJT ve MOSFET'i doğru ve anlaşılır anlatıyor; B doğru ama daha kısa ve İngilizce isteme Türkçe cevap."}
+]}
