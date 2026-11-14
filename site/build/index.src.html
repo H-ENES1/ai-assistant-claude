@@ -330,6 +330,159 @@ footer .langs a[aria-current] { color: var(--ink); font-weight: 600; text-decora
 .langhint a { font-weight: 600; }
 .langhint button { background: none; border: 0; color: var(--muted); font: inherit; font-size: 1.15rem; line-height: 1; padding: 6px 10px; cursor: pointer; border-radius: 6px; }
 .langhint button:hover { color: var(--ink); }
+
+/* ---- 0.13: kahraman sahnesi, hikâye, ölçüm ---- */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.hero { position: relative; overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background: radial-gradient(60% 70% at 78% 40%, color-mix(in srgb, var(--meter) 16%, transparent), transparent 70%),
+    radial-gradient(var(--line) 1px, transparent 1.2px) 0 0 / 22px 22px;
+  -webkit-mask-image: linear-gradient(#000 55%, transparent); mask-image: linear-gradient(#000 55%, transparent); }
+.hero .wrap { position: relative; }
+.stagebox { min-width: 0; }
+.stage { position: relative; height: 500px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 26px 60px -32px rgba(20, 20, 19, .5); overflow: hidden; font-size: .86rem; line-height: 1.45; --tp: 6; }
+@media (max-width: 600px) { .stage { --tp: 4; } }
+.st-bar { height: 34px; display: flex; align-items: center; gap: 6px; padding: 0 12px; border-bottom: 1px solid var(--line); background: var(--bg); font: 500 .72rem var(--f-mono); color: var(--muted); white-space: nowrap; }
+.st-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); flex: none; }
+.st-on { margin-left: 8px; color: var(--ink); }
+.st-rep { margin-left: auto; overflow: hidden; text-overflow: ellipsis; }
+.st-user { position: absolute; right: 16px; top: 48px; max-width: 72%; background: var(--sunk); border-radius: 14px 14px 4px 14px; padding: 8px 12px 0; border-bottom: 8px solid var(--sunk); display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; white-space: pre-wrap; overflow-wrap: anywhere; transition: opacity .3s, transform .3s; }
+.st-ans { position: absolute; left: 16px; right: 16px; top: 178px; display: grid; gap: 9px; padding: 13px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg); transition: opacity .3s; }
+.st-ans i { height: 9px; border-radius: 5px; background: var(--line); transform-origin: left center; }
+.st-ans i:nth-child(1) { width: 92%; } .st-ans i:nth-child(2) { width: 78%; } .st-ans i:nth-child(3) { width: 86%; } .st-ans i:nth-child(4) { width: 52%; }
+.st-pill { position: absolute; left: 14px; bottom: 122px; width: min(330px, calc(100% - 28px)); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 8px 11px 9px; box-shadow: 0 10px 22px -14px rgba(0, 0, 0, .45); transition: opacity .25s, transform .25s; }
+.st-pl { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.st-pl b { font: 500 1.5rem/1.1 var(--f-display); font-variant-numeric: tabular-nums; }
+.st-pl span { color: var(--muted); font-size: .78rem; }
+.st-rg { font: .7rem var(--f-mono); color: var(--muted); }
+.st-meter { position: relative; height: 7px; border-radius: 4px; background: var(--sunk); overflow: hidden; margin-top: 6px; }
+.st-meter i { position: absolute; top: 0; bottom: 0; }
+.st-meter .u { left: 0; background: var(--used); opacity: .55; } .st-meter .r { background: var(--meter); opacity: .3; } .st-meter .p { background: var(--meter); }
+.st-adv { display: flex; align-items: center; gap: 7px; margin-top: 7px; font-weight: 600; font-size: .8rem; transition: opacity .25s; --tone: var(--ok); }
+.st-adv.t-up { --tone: var(--warn); } .st-adv.t-next { --tone: var(--accent); }
+.st-adv .ic { flex: none; width: 17px; height: 17px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--accent-ink); background: var(--tone); }
+.st-comp { position: absolute; left: 14px; right: 14px; bottom: 14px; height: 100px; border: 1px solid var(--line); border-radius: 16px; background: var(--bg); padding: 9px 12px; display: flex; flex-direction: column; justify-content: space-between; }
+.st-text { height: 3.05em; overflow: hidden; white-space: pre-wrap; overflow-wrap: anywhere; display: flex; flex-direction: column; justify-content: flex-end; }
+.st-text > span { display: block; }
+.st-ph { color: var(--muted); }
+.st-caret { display: inline-block; width: 2px; height: 1em; background: var(--accent); vertical-align: -2px; margin-left: 1px; animation: stcaret 1s steps(1) infinite; }
+@keyframes stcaret { 50% { opacity: 0; } }
+.st-row { display: flex; align-items: center; gap: 6px; font: 500 .72rem var(--f-mono); color: var(--muted); }
+.st-row span { border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; background: var(--surface); white-space: nowrap; }
+.st-row .st-send { margin-left: auto; width: 26px; height: 26px; padding: 0; display: inline-flex; align-items: center; justify-content: center; background: var(--accent); color: var(--accent-ink); border-color: transparent; font-size: .9rem; }
+/* Tiko (sahnede): varsayılan yer cevabın üst kenarı; canlıyken JS taşır */
+.tk { width: calc(14px * var(--tp, 5)); height: calc(17px * var(--tp, 5)); --lx: 0; --ly: 0; }
+.tk svg { width: 100%; height: 100%; display: block; shape-rendering: crispEdges; overflow: visible; }
+.tk .lgB { display: none; } .tk .lid { opacity: 0; }
+.tk .pupil { transform: translate(calc(var(--lx) * 1px), calc(var(--ly) * 1px)); }
+.tk.sit .lgA { animation: tfstepA .9s steps(1) infinite; } .tk.sit .lgB { display: block; animation: tfstepB .9s steps(1) infinite; }
+.tk.fly .body { animation: tfbob .5s steps(1) infinite; }
+.tk.nod .body { animation: tknod .32s steps(2) 3; }
+@keyframes tknod { 50% { transform: translateY(1px); } }
+.tk.clap .armL, .tk.clap .armR { animation: tfwave .3s steps(1) 4; }
+.tk .lid { animation: tfblink 4.2s steps(1) infinite; }
+.st-tiko { position: absolute; left: 22px; top: calc(178px - 15px * var(--tp)); z-index: 3; pointer-events: none; transition: opacity .25s; will-change: transform; }
+.stage.live .st-tiko { left: 0; top: 0; }
+.stage.tk-out .st-tiko { opacity: 0; }
+/* aşamalar (JS yokken ve az hareket tercihinde: "done") */
+.stage[data-ph="type"] .st-user, .stage[data-ph="hold"] .st-user { opacity: 0; transform: translateY(40px); }
+.stage[data-ph="type"] .st-ans, .stage[data-ph="hold"] .st-ans, .stage[data-ph="send"] .st-ans { opacity: 0; }
+.stage[data-ph="ans"] .st-ans i { animation: stln .7s ease-out both; }
+.stage[data-ph="ans"] .st-ans i:nth-child(2) { animation-delay: .7s; } .stage[data-ph="ans"] .st-ans i:nth-child(3) { animation-delay: 1.4s; } .stage[data-ph="ans"] .st-ans i:nth-child(4) { animation-delay: 2.1s; }
+@keyframes stln { from { transform: scaleX(0); } }
+.stage:not(.pill-on) .st-pill { opacity: 0; transform: translateY(8px); }
+.stage:not(.adv-on) .st-adv { opacity: 0; }
+.stage:not([data-ph="type"]) .st-caret { display: none; }
+.st-ctl { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.st-ctl .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.st-play { all: unset; cursor: pointer; margin-left: auto; font: 500 .78rem var(--f-mono); color: var(--muted); padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); }
+.st-play:hover { color: var(--ink); border-color: var(--muted); } .st-play:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.st-note { font-size: .8rem; color: var(--muted); margin-top: 8px; }
+.st-note a { white-space: nowrap; font-weight: 600; }
+#tfbot { transition: opacity .2s; } #tfbot.away { opacity: 0; }
+
+/* Hikâye: kaydırdıkça ilerler (--f: 0 → 1; JS yokken ve az hareket tercihinde 1 = son durum) */
+section.story { content-visibility: visible; }
+.chaps { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
+.chap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
+.chap-txt { display: grid; gap: 8px; align-content: start; max-width: 30em; }
+.chap-txt .k { font: 500 .78rem var(--f-mono); letter-spacing: .06em; color: var(--accent); }
+.chap-txt h3 { font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem); line-height: 1.15; }
+.chap-txt p { color: var(--muted); font-size: 1.02rem; }
+.scene { --f: 1; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px; min-height: 250px; display: grid; align-content: center; gap: 12px; position: relative; overflow: hidden; font-size: .9rem; box-shadow: 0 18px 44px -32px rgba(20, 20, 19, .4); }
+@media (min-width: 900px) {
+  .chaps { gap: 0; }
+  .chap { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 56px; min-height: 78vh; }
+  .chap-txt { position: sticky; top: 30vh; }
+  .scene { position: sticky; top: 20vh; min-height: min(380px, 56vh); padding: 26px; }
+}
+.sc-comp { border: 1px solid var(--line); border-radius: 14px; background: var(--bg); padding: 10px 12px; min-height: 5.6em; white-space: pre-wrap; overflow-wrap: anywhere; }
+.sc-count { display: flex; justify-content: space-between; gap: 12px; font: 500 .78rem var(--f-mono); color: var(--muted); }
+.sc-count b { color: var(--ink); font-weight: 500; }
+.sc-big { font: 500 clamp(2.6rem, 2rem + 2.4vw, 3.6rem)/1 var(--f-display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.sc-sub { color: var(--muted); }
+.sc-meter { position: relative; height: 14px; border-radius: 7px; background: var(--sunk); overflow: hidden; }
+.sc-meter i { position: absolute; top: 0; bottom: 0; }
+.sc-meter .u { left: 0; width: 62%; background: var(--used); opacity: .55; }
+.sc-meter .r { left: 62%; background: var(--meter); opacity: .3; width: calc(var(--w-r, 2%) * var(--f)); }
+.sc-meter .p { left: 62%; background: var(--meter); width: calc(var(--w-p, 1%) * var(--f)); }
+.sc-fade { opacity: clamp(0, calc((var(--f) - .55) * 4), 1); }
+.sc-card { border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; display: grid; gap: 6px; background: var(--bg); }
+.sc-card .q { color: var(--muted); font-size: .84rem; }
+.sc-card .a { display: flex; gap: 8px; align-items: center; font-weight: 600; --tone: var(--ok); }
+.sc-card .a.t-up { --tone: var(--warn); }
+.sc-card .a .ic { flex: none; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; color: var(--accent-ink); background: var(--tone); }
+.sc-card .n { font: .76rem var(--f-mono); color: var(--muted); }
+.s3a { opacity: clamp(0, calc(var(--f) * 3), 1); transform: translateY(calc((1 - clamp(0, calc(var(--f) * 3), 1)) * 16px)); }
+.s3b { opacity: clamp(0, calc((var(--f) - .45) * 3), 1); transform: translateY(calc((1 - clamp(0, calc((var(--f) - .45) * 3), 1)) * 16px)); }
+.sc-tk { position: relative; height: 230px; }
+.sc-tk .sc-ans { position: absolute; left: 0; right: 0; top: 96px; display: grid; gap: 8px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+.sc-tk .sc-ans i { height: 8px; border-radius: 4px; background: var(--line); } .sc-tk .sc-ans i:nth-child(1) { width: 88%; } .sc-tk .sc-ans i:nth-child(2) { width: 64%; }
+.sc-tk .sc-box { position: absolute; left: 0; right: 0; bottom: 0; height: 44px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+.sc-tk .tk { position: absolute; left: 18px; top: calc(96px - 15px * var(--tp)); --tp: 5; transform: translate(calc((1 - var(--f)) * 46%), calc((1 - var(--f)) * 96px)); }
+.sc-eco { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 18px; align-items: center; }
+.sc-eco svg { width: 100%; height: auto; display: block; overflow: visible; }
+.sc-eco .wtr { transform-box: fill-box; transform-origin: bottom; transform: scaleY(var(--f)); }
+.sc-eco dl { margin: 0; display: grid; gap: 10px; }
+.sc-eco dt { font: 500 .72rem var(--f-mono); letter-spacing: .05em; color: var(--muted); text-transform: uppercase; }
+.sc-eco dd { margin: 0; }
+.sc-eco dd b { font: 500 1.7rem/1.1 var(--f-display); color: var(--water); display: block; }
+.sc-eco dd.en b { color: var(--ok); }
+.sc-eco dd span { font-size: .8rem; color: var(--muted); display: block; }
+.sc-tag { justify-self: start; font: 600 .66rem var(--f-mono); letter-spacing: .06em; color: var(--muted); background: var(--sunk); border-radius: 999px; padding: 2px 8px; }
+.sc-ex { font-size: .82rem; color: var(--muted); }
+.sc-nat { display: grid; gap: 8px; }
+.sc-nat .sc-big { color: var(--ok); transform-origin: left bottom; transform: scale(calc(.6 + .4 * var(--f))); }
+/* Kendin dene */
+.lab { display: grid; grid-template-columns: minmax(0, 1fr); max-width: 760px; }
+/* Ölçüm */
+.mgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+@media (max-width: 860px) { .mgrid { grid-template-columns: minmax(0, 1fr); } }
+.mcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.mcard h3 { font-size: 1.25rem; }
+.mcard p { font-size: .93rem; color: var(--muted); }
+.mtiles { display: grid; gap: 10px; }
+.mtile { display: grid; grid-template-columns: 6.2em minmax(0, 1fr); gap: 12px; align-items: baseline; }
+.mtile b { font: 500 1.5rem/1.1 var(--f-display); white-space: nowrap; }
+.mtile b.g { color: var(--ok); } .mtile b.w { color: var(--warn); } .mtile b.c { color: var(--crit); }
+.mtile span { font-size: .9rem; color: var(--muted); }
+.dots { display: flex; flex-wrap: wrap; gap: 4px; }
+.dots i { width: 11px; height: 11px; border-radius: 3px; background: var(--used); }
+.dots i.g { background: var(--ok); } .dots i.c { background: var(--crit); } .dots i.w { background: var(--warn); }
+.mleg { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .78rem; color: var(--muted); }
+.mleg i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; background: var(--used); }
+.mleg i.g { background: var(--ok); } .mleg i.c { background: var(--crit); } .mleg i.w { background: var(--warn); }
+.mbars { display: grid; gap: 9px; }
+.mbar { display: grid; grid-template-columns: minmax(0, 1fr) 4.2em; gap: 4px 10px; align-items: center; font-size: .84rem; }
+.mbar .l { grid-column: 1 / -1; color: var(--muted); }
+.mbar .t { height: 12px; border-radius: 6px; background: var(--sunk); overflow: hidden; }
+.mbar .t i { display: block; height: 100%; border-radius: 6px; background: var(--used); }
+.mbar.b .t i { background: var(--meter); }
+.mbar .v { font: 500 .88rem var(--f-mono); text-align: right; }
+/* Görünürken beliren bloklar (yalnızca JS ve hareket tercihi uygunken eklenir) */
+.rv { opacity: 0; transform: translateY(14px); transition: opacity .5s ease-out, transform .5s ease-out; transition-delay: var(--rd, 0ms); }
+.rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; } }
 </style>
 <!--LANGHINT-->
 <header class="top">
@@ -342,7 +495,7 @@ footer .langs a[aria-current] { color: var(--ink); font-weight: 600; text-decora
       <a href="#ozellikler" class="hide-s" data-i="nav0">Özellikler</a>
       <a href="#nasil" class="hide-s" data-i="nav1">Nasıl çalışır</a>
       <a href="#ogrenme" class="hide-s" data-i="nav2">Öğrenme</a>
-      <a href="#kanit" class="hide-s" data-i="nav5">Kanıt</a>
+      <a href="#olcum" class="hide-s" data-i="nav5">Ölçüm</a>
       <a href="#doga" class="hide-s" data-i="nav6">Doğa</a>
       <a href="#gizlilik" class="hide-s" data-i="nav3">Gizlilik</a>
       <a href="#kurulum" data-i="nav4">Kurulum</a>
@@ -367,41 +520,98 @@ footer .langs a[aria-current] { color: var(--ink); font-weight: 600; text-decora
         </div>
       </div>
 
-      <div class="demo" aria-labelledby="demo-title">
-        <div class="demo-head">
-          <span class="eyebrow" id="demo-title" data-i="demoT">CANLI DENE</span>
-          <span class="muted" style="font-size:.8rem" data-i="demoS">Eklentinin gerçek tahmin motoru, tarayıcında çalışır</span>
+      <div class="stagebox">
+        <div class="stage" id="stage" data-ph="done" aria-hidden="true">
+          <div class="st-bar"><i></i><i></i><i></i><span class="st-on" data-i="stOn">claude.ai'de</span><span class="st-rep" data-i="stRep">temsili arayüz</span></div>
+          <div class="st-user" id="stUser"></div>
+          <div class="st-ans" id="stAns"><i></i><i></i><i></i><i></i></div>
+          <div class="st-pill" id="stPill">
+            <div class="st-pl"><b id="stBig"></b><span id="stSub"></span></div>
+            <div class="st-rg" id="stRg"></div>
+            <div class="st-meter"><i class="u" id="stU"></i><i class="r" id="stR"></i><i class="p" id="stP"></i></div>
+            <div class="st-adv" id="stAdv"><span class="ic" id="stIc"></span><span id="stAdvT"></span></div>
+          </div>
+          <div class="st-comp">
+            <div class="st-text"><span><span id="stType"></span><span class="st-caret"></span><span class="st-ph" id="stPh" data-i="stPh">Mesajını yaz…</span></span></div>
+            <div class="st-row"><span id="stModel"></span><span id="stEff"></span><span class="st-send">↑</span></div>
+          </div>
+          <div class="st-tiko tk sit" id="stTiko"></div>
         </div>
-        <div class="demo-body">
-          <div class="chips" id="presets" aria-label="Örnekler"></div>
-          <label for="prompt" class="eyebrow" data-i="demoL">MESAJIN</label>
-          <textarea id="prompt" spellcheck="false"></textarea>
-          <div class="controls">
-            <label><span data-i="cModel">Model</span>
-              <select id="model"><option>Haiku 5.5</option><option selected>Sonnet 5.5</option><option>Opus 5.5</option><option>Fable 5.2</option></select></label>
-            <label><span data-i="cEffort">Effort</span>
-              <select id="effort"><option value="low" data-i="eLow">Düşük</option><option value="medium" selected data-i="eMed">Orta</option><option value="high" data-i="eHigh">Yüksek</option><option value="xhigh" data-i="eXh">Çok yüksek</option><option value="max" data-i="eMax">Maksimum</option></select></label>
-            <label><span data-i="cPlan">Plan</span>
-              <select id="plan"><option value="claude_free">Free</option><option value="claude_pro" selected>Pro</option><option value="claude_max_5x">Max 5x</option><option value="claude_max_20x">Max 20x</option></select></label>
-            <label><span data-i="cChat">Sohbet</span>
-              <select id="chat"><option value="new" data-i="chNew">Yeni sohbet</option><option value="mid" data-i="chMid">Kısa geçmiş (8K)</option><option value="long" data-i="chLong">Uzun geçmiş (190K)</option></select></label>
-          </div>
-          <div class="usedrow"><label for="used" data-i="usedL">Şu an kullanılan 5 saatlik limit</label><input type="range" id="used" min="0" max="99" value="62"><span id="usedV" class="mono">%62</span></div>
+        <div class="st-ctl"><span class="chips" id="stTabs" role="group"></span><button type="button" class="st-play" id="stPlay" aria-pressed="false"></button></div>
+        <p class="st-note"><span data-i="stNote">Arayüz temsilidir; sayılar eklentinin gerçek tahmin motorundan gelir (Pro plan, yeni sohbet, 5 saatlik limitin %62'si dolu varsayımıyla).</span> <a href="#dene" data-i="stTry">Kendi mesajınla dene ↓</a></p>
+        <p class="sr-only" id="stSr"></p>
+      </div>
+    </div>
+  </section>
 
-          <div class="readout" aria-live="polite">
-            <div class="big" id="big">≈ %0,3</div>
-            <div class="sub" id="bigSub">5 saatlik limitinin</div>
-            <div class="meter" aria-hidden="true"><i class="u" id="mU"></i><i class="r" id="mR"></i><i class="p" id="mP"></i></div>
-            <div class="scale"><span>0</span><span id="scaleNote"></span><span>100</span></div>
+  <section class="band story" id="hikaye">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="syE">BİR MESAJIN YOLCULUĞU</p>
+        <h2 data-i="syH">İlk tuştan hafta sonuna.</h2>
+        <p data-i="syP">Aşağı kaydır: eklentinin tek bir mesajla ne yaptığını adım adım gör.</p>
+      </div>
+      <ol class="chaps" id="chaps">
+        <li class="chap"><div class="chap-txt"><span class="k" data-i="sy1k">1 · YAZ</span><h3 data-i="sy1h">Yazmaya başla.</h3><p data-i="sy1p">Sen yazarken eklenti mesajını, eklerini ve sohbet geçmişini tarayıcında sayar. Yazdığın hiçbir şey cihazından çıkmaz.</p></div>
+          <div class="scene" data-sc="1" aria-hidden="true"><div class="sc-comp" id="sc1T"></div><div class="sc-count"><span id="sc1L"></span><b id="sc1N"></b></div></div></li>
+        <li class="chap"><div class="chap-txt"><span class="k" data-i="sy2k">2 · TAHMİN</span><h3 data-i="sy2h">Göndermeden önce ne kadar harcayacağını gör.</h3><p data-i="sy2p">Hap, bu mesajın 5 saatlik ve haftalık limitinden alacağı payı %80 aralıkla gösterir. Tek sayı değil aralık, çünkü cevabın uzunluğu önceden bilinemez.</p></div>
+          <div class="scene" data-sc="2" aria-hidden="true"><div><div class="sc-big" id="sc2B"></div><div class="sc-sub" id="sc2S"></div></div><div class="sc-meter" id="sc2M"><i class="u"></i><i class="r"></i><i class="p"></i></div><div class="sc-count sc-fade"><span id="sc2R"></span><b id="sc2W"></b></div></div></li>
+        <li class="chap"><div class="chap-txt"><span class="k" data-i="sy3k">3 · MODEL ÖNERİSİ</span><h3 data-i="sy3h">Yeten en hafif model.</h3><p data-i="sy3p">Basit bir çeviri için Haiku yeter der ve ne kadar kazandıracağını yazar. Emin değilse hafif model önermez: “çeviri sistemi olan bir site” çeviri değil, yapım işidir.</p></div>
+          <div class="scene" data-sc="3" aria-hidden="true"><div class="sc-card s3a"><div class="q" id="sc3Q1"></div><div class="a" id="sc3A1"><span class="ic"></span><span></span></div><div class="n" id="sc3N1"></div></div><div class="sc-card s3b"><div class="q" id="sc3Q2"></div><div class="a" id="sc3A2"><span class="ic"></span><span></span></div><div class="n" id="sc3N2"></div></div></div></li>
+        <li class="chap"><div class="chap-txt"><span class="k" data-i="sy4k">4 · TİKO</span><h3 data-i="sy4h">Tiko yanında oturur.</h3><p data-i="sy4p">Mesaj kutusunun yanındaki minik bot, eklentinin zaten bildiği üç şeyi gösterir: tahmin, öneri, limit. Sen yazarken imleci izler, cevap gelirken cevabın üstüne oturup ayak sallar. Metin okumaz; istemezsen ayarlardan kapatırsın.</p></div>
+          <div class="scene" data-sc="4" aria-hidden="true"><div class="sc-tk"><div class="sc-ans"><i></i><i></i></div><div class="sc-box"></div><div class="tk sit" id="sc4K"></div></div></div></li>
+        <li class="chap"><div class="chap-txt"><span class="k" data-i="sy5k">5 · HAFTALIK RAPOR</span><h3 data-i="sy5h">Hafta sonunda bardak dolar.</h3><p data-i="sy5p">Önerilen daha hafif ayara geçtiğin mesajlarda kaçınılan işlemin su ve enerji karşılığını haftalık raporda görürsün. Her sayı düşük, orta ve yüksek aralıklı bir tahmindir; Anthropic bu rakamları yayımlamıyor.</p></div>
+          <div class="scene" data-sc="5" aria-hidden="true"><span class="sc-tag" id="sc5T"></span><div class="sc-eco"><svg viewBox="0 0 110 150" id="sc5G"></svg><dl><div><dt id="sc5WL"></dt><dd><b id="sc5W"></b><span id="sc5WR"></span><span id="sc5WU"></span></dd></div><div><dt id="sc5EL"></dt><dd class="en"><b id="sc5E"></b><span id="sc5ER"></span><span id="sc5EU"></span></dd></div></dl></div><p class="sc-ex" id="sc5X"></p></div></li>
+        <li class="chap"><div class="chap-txt"><span class="k" data-i="sy6k">6 · DOĞA</span><h3 data-i="sy6h">Küçük seçimler birikir.</h3><p data-i="sy6p">Basit bir iş için en güçlü modeli seçmemek, en kolay tasarruf. Hesabın varsayımları ve kaynakları Doğa bölümünde.</p><p><a href="#doga" data-i="syGo">Doğa bölümüne git ↓</a></p></div>
+          <div class="scene" data-sc="6" aria-hidden="true"><div class="sc-nat"><div class="sc-big" data-i="ec1v">≈ %40</div><p class="sc-sub" data-i="ec1">Önerilere uyunca daha az işlem gücü; 240 örnek mesajda (%38 ile %50 arası).</p></div></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band" id="dene">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="dnE">KENDİN DENE</p>
+        <h2 data-i="dnH">Kendi mesajınla dene.</h2>
+        <p data-i="dnP">Aşağıdaki kutu eklentinin gerçek tahmin motorunu çalıştırır. Mesajını yaz; modeli, effort'u ve planı değiştir. Tahmin ve öneri anında güncellenir, yazdığın hiçbir şey tarayıcından çıkmaz.</p>
+      </div>
+      <div class="lab">
+        <div class="demo" aria-labelledby="demo-title">
+          <div class="demo-head">
+            <span class="eyebrow" id="demo-title" data-i="demoT">CANLI DENE</span>
+            <span class="muted" style="font-size:.8rem" data-i="demoS">Eklentinin gerçek tahmin motoru, tarayıcında çalışır</span>
           </div>
-          <div class="facts">
-            <div class="fact"><b data-i="fType">İŞ TÜRÜ</b><span id="fType">–</span></div>
-            <div class="fact"><b data-i="fDomL">KONU</b><span id="fDom">–</span></div>
-            <div class="fact"><b data-i="fTok">GİRDİ → CEVAP</b><span id="fTok" class="mono">–</span></div>
-            <div class="fact"><b data-i="fWeek">HAFTALIK</b><span id="fWeek" class="mono">–</span></div>
+          <div class="demo-body">
+            <div class="chips" id="presets" aria-label="Örnekler"></div>
+            <label for="prompt" class="eyebrow" data-i="demoL">MESAJIN</label>
+            <textarea id="prompt" spellcheck="false"></textarea>
+            <div class="controls">
+              <label><span data-i="cModel">Model</span>
+                <select id="model"><option>Haiku 5.5</option><option selected>Sonnet 5.5</option><option>Opus 5.5</option><option>Fable 5.2</option></select></label>
+              <label><span data-i="cEffort">Effort</span>
+                <select id="effort"><option value="low" data-i="eLow">Düşük</option><option value="medium" selected data-i="eMed">Orta</option><option value="high" data-i="eHigh">Yüksek</option><option value="xhigh" data-i="eXh">Çok yüksek</option><option value="max" data-i="eMax">Maksimum</option></select></label>
+              <label><span data-i="cPlan">Plan</span>
+                <select id="plan"><option value="claude_free">Free</option><option value="claude_pro" selected>Pro</option><option value="claude_max_5x">Max 5x</option><option value="claude_max_20x">Max 20x</option></select></label>
+              <label><span data-i="cChat">Sohbet</span>
+                <select id="chat"><option value="new" data-i="chNew">Yeni sohbet</option><option value="mid" data-i="chMid">Kısa geçmiş (8K)</option><option value="long" data-i="chLong">Uzun geçmiş (190K)</option></select></label>
+            </div>
+            <div class="usedrow"><label for="used" data-i="usedL">Şu an kullanılan 5 saatlik limit</label><input type="range" id="used" min="0" max="99" value="62"><span id="usedV" class="mono">%62</span></div>
+
+            <div class="readout" aria-live="polite">
+              <div class="big" id="big">≈ %0,3</div>
+              <div class="sub" id="bigSub">5 saatlik limitinin</div>
+              <div class="meter" aria-hidden="true"><i class="u" id="mU"></i><i class="r" id="mR"></i><i class="p" id="mP"></i></div>
+              <div class="scale"><span>0</span><span id="scaleNote"></span><span>100</span></div>
+            </div>
+            <div class="facts">
+              <div class="fact"><b data-i="fType">İŞ TÜRÜ</b><span id="fType">–</span></div>
+              <div class="fact"><b data-i="fDomL">KONU</b><span id="fDom">–</span></div>
+              <div class="fact"><b data-i="fTok">GİRDİ → CEVAP</b><span id="fTok" class="mono">–</span></div>
+              <div class="fact"><b data-i="fWeek">HAFTALIK</b><span id="fWeek" class="mono">–</span></div>
+            </div>
+            <div id="alerts"></div>
+            <div id="banner"></div>
           </div>
-          <div id="alerts"></div>
-          <div id="banner"></div>
         </div>
       </div>
     </div>
@@ -445,20 +655,23 @@ footer .langs a[aria-current] { color: var(--ink); font-weight: 600; text-decora
       <div class="features">
         <div class="feat"><span class="k" data-i="fk1">ÖNCE</span><h3 data-i="f1h">Göndermeden önce tahmin</h3><p data-i="f1p">Yazarken 5 saatlik ve haftalık limitin ne kadarının gideceğini %80 aralıkla gösterir. Ekleri, sohbet geçmişini, modeli ve düşünme ayarını hesaba katar.</p></div>
         <div class="feat"><span class="k" data-i="fk1">ÖNCE</span><h3 data-i="f2h">Gerekçeli model önerisi</h3><p data-i="f2p">Hangi modelin yeteceğini, neye baktığını ve ne kadar kazandıracağını söyler. Emin değilse hafif model önermez.</p></div>
-        <div class="feat"><span class="k" data-i="fk1">ÖNCE</span><h3><span data-i="f3h">Harcamanın dökümü</span><span class="new" data-i="nw">YENİ</span></h3><p data-i="f3p">Maliyetin ne kadarı cevaptan, düşünmeden, geçmişten ve eklerden geliyor; kartta tek bakışta.</p></div>
-        <div class="feat"><span class="k" data-i="fk1">ÖNCE</span><h3><span data-i="f4h">Önbellek ve yoğun saat geri sayımı</span><span class="new" data-i="nw">YENİ</span></h3><p data-i="f4p">Sohbet geçmişinin kaç dakika daha ücretsiz okunacağını ve yoğun saatin ne zaman biteceğini gösterir.</p></div>
-        <div class="feat"><span class="k" data-i="fk2">HARCARKEN</span><h3><span data-i="f5h">Bu hızla ne zaman dolar?</span><span class="new" data-i="nw">YENİ</span></h3><p data-i="f5p">Son bir saatteki hızına bakıp 5 saatlik limitin yenilenmeden önce dolup dolmayacağını söyler.</p></div>
-        <div class="feat"><span class="k" data-i="fk2">HARCARKEN</span><h3><span data-i="f6h">Devir özeti</span><span class="new" data-i="nw">YENİ</span></h3><p data-i="f6p">Sohbet çok uzadığında, yeni sohbete taşımak için Claude'dan kısa özet isteyen hazır metni tek tıkla kopyalar.</p></div>
-        <div class="feat"><span class="k" data-i="fk3">SONRA</span><h3><span data-i="f7h">“Neden bu kadar harcadı?”</span><span class="new" data-i="nw">YENİ</span></h3><p data-i="f7p">Bir mesaj tahminin çok üstünde yerse sebebini söyler: uzun aradan sonra baştan okunan geçmiş, yoğun saat, uzun cevap ya da başka bir cihazda kullanım.</p></div>
-        <div class="feat"><span class="k" data-i="fk3">SONRA</span><h3><span data-i="f8h">Haftalık rapor</span><span class="new" data-i="nw">YENİ</span></h3><p data-i="f8p">Mesaj sayısı, harcanan limit, yoğun saat payı, model ve iş dağılımı, saat haritası ve sana özel öneriler. Pazartesi sabahı bildirim, CSV dışa aktarma.</p></div>
-        <div class="feat"><span class="k" data-i="fk4">ÖĞRENİR</span><h3><span data-i="f9h">Cihazda öğrenen model</span><span class="new" data-i="nw">YENİ</span></h3><p data-i="f9p">İş türünü kurallar ve küçük bir öğrenen modelle birlikte tanır. Yanlışı düzelttiğinde bunu cihazında öğrenir.</p></div>
+        <div class="feat"><span class="k" data-i="fk1">ÖNCE</span><h3><span data-i="f3h">Harcamanın dökümü</span></h3><p data-i="f3p">Maliyetin ne kadarı cevaptan, düşünmeden, geçmişten ve eklerden geliyor; kartta tek bakışta.</p></div>
+        <div class="feat"><span class="k" data-i="fk1">ÖNCE</span><h3><span data-i="f4h">Önbellek ve yoğun saat geri sayımı</span></h3><p data-i="f4p">Sohbet geçmişinin kaç dakika daha ücretsiz okunacağını ve yoğun saatin ne zaman biteceğini gösterir.</p></div>
+        <div class="feat"><span class="k" data-i="fk2">HARCARKEN</span><h3><span data-i="f5h">Bu hızla ne zaman dolar?</span></h3><p data-i="f5p">Son bir saatteki hızına bakıp 5 saatlik limitin yenilenmeden önce dolup dolmayacağını söyler.</p></div>
+        <div class="feat"><span class="k" data-i="fk2">HARCARKEN</span><h3><span data-i="f6h">Devir özeti</span></h3><p data-i="f6p">Sohbet çok uzadığında, yeni sohbete taşımak için Claude'dan kısa özet isteyen hazır metni tek tıkla kopyalar.</p></div>
+        <div class="feat"><span class="k" data-i="fk3">SONRA</span><h3><span data-i="f7h">“Neden bu kadar harcadı?”</span></h3><p data-i="f7p">Bir mesaj tahminin çok üstünde yerse sebebini söyler: uzun aradan sonra baştan okunan geçmiş, yoğun saat, uzun cevap ya da başka bir cihazda kullanım.</p></div>
+        <div class="feat"><span class="k" data-i="fk3">SONRA</span><h3><span data-i="f8h">Haftalık rapor</span></h3><p data-i="f8p">Mesaj sayısı, harcanan limit, yoğun saat payı, model ve iş dağılımı, saat haritası ve sana özel öneriler. Pazartesi sabahı bildirim, CSV dışa aktarma.</p></div>
+        <div class="feat"><span class="k" data-i="fk4">ÖĞRENİR</span><h3><span data-i="f9h">Cihazda öğrenen model</span></h3><p data-i="f9p">İş türünü kurallar ve küçük bir öğrenen modelle birlikte tanır. Yanlışı düzelttiğinde bunu cihazında öğrenir.</p></div>
         <div class="feat"><span class="k" data-i="fk4">ÖĞRENİR</span><h3 data-i="f10h">Kişisel kalibrasyon</h3><p data-i="f10p">Her mesajdan sonra limitinin gerçekte nasıl değiştiğini ölçer; planının büyüklüğünü ve Claude'un sana verdiği cevap uzunluklarını öğrenir.</p></div>
 
-        <div class="feat"><span class="k" data-i="fk1">ÖNCE</span><h3><span data-i="f11h">Konu alanını tanır</span><span class="new" data-i="nw">YENİ</span></h3><p data-i="f11p">Mesajın konusunu 16 alan ve alt başlıkta (Bilim · Fizik, Mühendislik · Elektrik…) yaklaşık 2.600 anahtar kelimeyle tanır. Sağlık, hukuk ve para sorularında hafif model önermez.</p></div>
-        <div class="feat"><span class="k" data-i="fk1">ÖNCE</span><h3><span data-i="f12h">Effort önerisi</span><span class="new" data-i="nw">YENİ</span></h3><p data-i="f12p">Düşük'ten Maksimum'a: bu iş için hangi effort yeter, şu anki ayar fazlaysa ne kadar limit kurtarırsın. Modelin varsayılanını ve Çok yüksek seviyesini bilir.</p></div>
-        <div class="feat"><span class="k" data-i="fk1">ÖNCE</span><h3><span data-i="f13h">Kelimeye değil işe bakar</span><span class="new" data-i="nw">YENİ</span></h3><p data-i="f13p">“Çeviri sistemi olan bir site yaptıracağım” cümlesi çeviri değil, yapım işidir. Eklenti bunu ayırt eder ve Haiku önermez.</p></div>
-        <div class="feat"><span class="k" data-i="fk2">HARCARKEN</span><h3><span data-i="f14h">Taşınabilir hap</span><span class="new" data-i="nw">YENİ</span></h3><p data-i="f14p">Hapı sürükleyip istediğin yere koy. claude.ai'nin effort ya da model menüsü açılınca kendiliğinden çekilir; Alt + ok tuşlarıyla da taşınır.</p></div>
-        <div class="feat"><span class="k" data-i="fk3">SONRA</span><h3><span data-i="f15h">Öğrenme kanıtı</span><span class="new" data-i="nw">YENİ</span></h3><p data-i="f15p">Raporda, kendi ölçümlerinden tahmin hatasının zamanla düşüp düşmediğini görürsün. Düşmüyorsa bunu da söyler.</p></div>
+        <div class="feat"><span class="k" data-i="fk1">ÖNCE</span><h3><span data-i="f11h">Konu alanını tanır</span></h3><p data-i="f11p">Mesajın konusunu 16 alan ve alt başlıkta (Bilim · Fizik, Mühendislik · Elektrik…) yaklaşık 2.600 anahtar kelimeyle tanır. Sağlık, hukuk ve para sorularında hafif model önermez.</p></div>
+        <div class="feat"><span class="k" data-i="fk1">ÖNCE</span><h3><span data-i="f12h">Effort önerisi</span></h3><p data-i="f12p">Düşük'ten Maksimum'a: bu iş için hangi effort yeter, şu anki ayar fazlaysa ne kadar limit kurtarırsın. Modelin varsayılanını ve Çok yüksek seviyesini bilir.</p></div>
+        <div class="feat"><span class="k" data-i="fk1">ÖNCE</span><h3><span data-i="f13h">Kelimeye değil işe bakar</span></h3><p data-i="f13p">“Çeviri sistemi olan bir site yaptıracağım” cümlesi çeviri değil, yapım işidir. Eklenti bunu ayırt eder ve Haiku önermez.</p></div>
+        <div class="feat"><span class="k" data-i="fk2">HARCARKEN</span><h3><span data-i="f14h">Taşınabilir hap</span></h3><p data-i="f14p">Hapı sürükleyip istediğin yere koy. claude.ai'nin effort ya da model menüsü açılınca kendiliğinden çekilir; Alt + ok tuşlarıyla da taşınır.</p></div>
+        <div class="feat"><span class="k" data-i="fk3">SONRA</span><h3><span data-i="f15h">Öğrenme kanıtı</span></h3><p data-i="f15p">Raporda, kendi ölçümlerinden tahmin hatasının zamanla düşüp düşmediğini görürsün. Düşmüyorsa bunu da söyler.</p></div>
+        <div class="feat"><span class="k" data-i="fk2">HARCARKEN</span><h3><span data-i="f16h">Tiko</span><span class="new" data-i="nw">YENİ</span></h3><p data-i="f16p">Mesaj kutusunun yanında yaşayan minik piksel bot. Tahmin ağırsa zorlanır, hafif model yetiyorsa baş sallar, cevap gelirken cevabın üstüne oturur, limit dolarken endişelenir. Metin okumaz, ayarlardan kapatılır.</p></div>
+        <div class="feat"><span class="k" data-i="fk3">SONRA</span><h3><span data-i="f17h">Kurtardığın su ve enerji</span><span class="new" data-i="nw">YENİ</span></h3><p data-i="f17p">Haftalık raporda, önerilen daha hafif ayara geçtiğin mesajlarda kaçınılan işlemin su ve enerji karşılığı: damla, bardak, telefon şarjı. Hepsi aralıklı tahmin, kaynakları raporda.</p></div>
+        <div class="feat"><span class="k" data-i="fk1">ÖNCE</span><h3><span data-i="f18h">Fable 5.2</span><span class="new" data-i="nw">YENİ</span></h3><p data-i="f18p">En üst model de tahminde ve öneride. claude.ai Fable için ayrı bir haftalık pay bildiriyorsa onu da gösterir ve dolmadan uyarır.</p></div>
       </div>
     </div>
   </section>
@@ -470,7 +683,7 @@ footer .langs a[aria-current] { color: var(--ink); font-weight: 600; text-decora
         <h2 data-i="shH">Yazarken tahmin, gönderince ölçüm.</h2>
         <p data-i="shP">Mesaj kutusunun üstünde küçük bir hap ve gerekçeli öneri bildirimi; araç çubuğunda limitlerin, kalan limitle yapılabilecekler ve öğrenme durumu.</p>
       </div>
-      <figure class="vid" id="vidBox" hidden><video id="vid" controls playsinline preload="none" poster="video/kapak-tr.jpg"></video><figcaption data-i="vidC">47 saniyelik tanıtım. Ekrandaki arayüz temsilidir; rakamlar eklentinin kendi hesabıdır.</figcaption></figure>
+      <figure class="vid" id="vidBox" hidden><video id="vid" controls playsinline preload="none" poster="video/kapak-tr.jpg"></video><figcaption data-i="vidC">75 saniyelik tanıtım. Ekrandaki arayüz temsilidir; rakamlar eklentinin kendi hesabıdır.</figcaption></figure>
       <p class="ytl"><a id="ytA" href="https://www.youtube.com/watch?v=6Y4qZ-G2AS0" target="_blank" rel="noopener noreferrer">▶ Ayrıntılı tanıtım videosu (YouTube, 4 dk)</a></p>
       <div class="shots">
         <figure class="shot"><a class="zoom" data-img="oneri" href="img/tr/oneri.png" target="_blank" rel="noopener"><img data-img="oneri" data-alt-i="alt1" src="img/tr/oneri.png" alt="Çeviri isteği için açılmış öneri bildirimi: Haiku 5.5 yeterli, effort Düşük; algılanan iş, konu alanı, effort önerisi, işaretler ve dayanak bölümleri" width="746" height="491" loading="lazy"></a><figcaption data-i="sh1">Çeviri isteği: Haiku ve Düşük effort. “Neden?” açık; algılanan iş, konu alanı, effort önerisi, işaretler ve dayanak görünür.</figcaption></figure>
@@ -526,7 +739,7 @@ limit %  = k × maliyet</div>
       <div class="sec-head">
         <p class="eyebrow" data-i="mdE">MODEL ÖNERİSİ</p>
         <h2 data-i="mdH">En hafif model değil, yeten en hafif model.</h2>
-        <p data-i="mdP">Hafif model önermek, pahalı model önermekten daha kötü bir hatadır: kötü cevap, tekrar sorman demek. Eklenti Haiku'yu yalnızca açıkça basit ve emin olduğu işlerde önerir; emin değilse en az Sonnet der. Dayanağı Anthropic'in model seçme rehberi, 60 örnekli öneri test seti (uygunluk %100, gerekenden hafif öneri 0) ve cihazda çalışan öğrenen model.</p>
+        <p data-i="mdP">Hafif model önermek, pahalı model önermekten daha kötü bir hatadır: kötü cevap, tekrar sorman demek. Eklenti Haiku'yu yalnızca açıkça basit ve emin olduğu işlerde önerir; emin değilse en az Sonnet der. Dayanağı Anthropic'in model seçme rehberi, 72 örnekli öneri test seti (gerekenden hafif öneri 0) ve cihazda çalışan öğrenen model. Önerilen modelin gerçekten yetip yetmediğini de ölçtük; sonuçlar Ölçüm bölümünde.</p>
       </div>
       <div class="models" id="modelCards"></div>
       <p class="foot" data-i="mdF">Göreli maliyet: API fiyatıyla orantılı varsayılır ve kalibrasyonla düzeltilir. claude.ai'de sistem talimatı ve hafıza bağlamı 100K tokenın üstüne çıkardığı için Haiku'nun uzun bağlam fiyatı geçerlidir. Uzun bir sohbette model değiştirmek, geçmişin yeni modelde baştan okunması demektir; eklenti bu durumda “bir sonraki yeni sohbette seç” der.</p>
@@ -556,15 +769,15 @@ limit %  = k × maliyet</div>
       </div>
       <div class="stats">
         <div class="stat"><div class="v" data-i="st1v">%64<span class="arrow">→</span><span class="good">%88</span></div><p data-i="st1">İş türünü doğru tanıma: kurallar → kurallar + model. Hiç bakılmadan yazılmış 120 gündelik mesajda (aksansız, selamlı, yazım hatalı).</p></div>
-        <div class="stat"><div class="v">16<span class="arrow">→</span><span class="good">4</span></div><p data-i="st2">Tehlikeli hata: zor bir işi (kod, matematik, araştırma) basit iş sanmak. İki test setinde, 240 mesaj.</p></div>
-        <div class="stat"><div class="v">32<span class="arrow">→</span><span class="good">66</span><small>/80</small></div><p data-i="st3">Gerçekten basit işlerde doğru Haiku önerisi. Yanlış Haiku önerisi 0 → 1 (“2350'nin %17'si”).</p></div>
+        <div class="stat"><div class="v">15<span class="arrow">→</span><span class="good">1</span></div><p data-i="st2">Tehlikeli hata: zor bir işi (kod, matematik, araştırma) basit iş sanmak. Aynı iki test setinde, 240 mesaj: kurallar → yayındaki sürüm.</p></div>
+        <div class="stat"><div class="v" data-i="st3v">%36</div><p data-i="st3">Aynı sürüm, depoyu görmeyenlerin yazdığı 300 uzun mesajda (kör set 5). Kısa mesajda iyi, uzun ve yapıştırılmış içerikte zayıf; ayrıntısı Ölçüm bölümünde.</p></div>
       </div>
       <ol class="layers">
         <li><b data-i="ly1h">Kişisel kalibrasyon</b><span data-i="ly1p">Her mesajdan önce ve sonra okunan limit yüzdesinden planının büyüklüğünü, yoğun saat etkisini ve Claude'un sana verdiği cevap uzunluklarını öğrenir.</span></li>
         <li><b data-i="ly2h">Kişisel düzeltmeler</b><span data-i="ly2p">Öneri bildiriminde “iş türü yanlış mı?” deyip doğrusunu seçtiğinde model cihazında güncellenir; 👍/👎 öneri sınırlarını ayarlar. Saklanan şey metin değil, ağırlık farklarıdır.</span></li>
         <li><b data-i="ly3h">Topluluk (isteğe bağlı)</b><span data-i="ly3p">Öğrenilen değerlerin metin içermeyen özetini paylaşırsan, yeni kullanıcıların başlangıç değerleri ortalamayla değil gerçek ölçümlerle gelir.</span></li>
       </ol>
-      <p class="foot" data-i="mlF">Dürüst not: eğitim ve test mesajlarını da proje yazdı; gerçek kullanıcı mesajlarıyla doğruluk henüz ölçülmedi. Topluluk katkısı tam olarak bunun için. Cevap kalitesi (Haiku gerçekten yeterli miydi?) ölçülmedi.</p>
+      <p class="foot" data-i="mlF">Dürüst not: ilk iki kutudaki test mesajlarını proje kendisi yazdı ve mesajlar kısa. Gerçek kullanıcı mesajlarıyla doğruluk henüz ölçülmedi; topluluk katkısı tam olarak bunun için. Önerilen modelin gerçekten yetip yetmediğinin ilk ölçümü Ölçüm bölümünde.</p>
     </div>
   </section>
 
@@ -588,6 +801,37 @@ limit %  = k × maliyet</div>
           <li data-i="hn4">Deney tekrarlanabilir: tests/learning-proof.mjs ve tests/classifier-learning.mjs.</li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <section class="band" id="olcum">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i="mzE">ÖLÇÜM</p>
+        <h2 data-i="mzH">Ne kadar isabetli? Sayılar olduğu gibi.</h2>
+        <p data-i="mzP">Kasım 2026'da iki şeyi ilk kez dışarıdan ölçtük: önerilen model gerçekten yetiyor mu, ve eklenti hiç görmediği mesajlarda iş türünü ne kadar tanıyor. Sonuçlar eski testlerimizden belirgin biçimde düşük; ikisini de yazıyoruz.</p>
+      </div>
+      <div class="mgrid">
+        <div class="mcard">
+          <h3 data-i="mzAh">Önerilen model yetiyor mu?</h3>
+          <div class="dots" id="mzDots" aria-hidden="true"></div>
+          <div class="mleg" aria-hidden="true"><span><i class="g"></i><span data-i="mzLg1">uygun</span> 19</span><span><i class="c"></i><span data-i="mzLg2">gerekenden hafif</span> 5</span><span><i class="w"></i><span data-i="mzLg3">gereksiz ağır</span> 33</span><span><i></i><span data-i="mzLg4">ölçülemedi</span> 1</span></div>
+          <div class="mtiles">
+            <div class="mtile"><b class="g">13 / 13</b><span data-i="mz1">Haiku önerilen 13 istemin 13'ünde Haiku'nun cevabı 5 üzerinden 4 ve üstü aldı.</span></div>
+            <div class="mtile"><b class="c">5 / 58</b><span data-i="mz2">Gerekenden hafif öneri (%9; %95 güven aralığı %4–19). Dördünde Sonnet önerildi, yalnızca Opus yetti.</span></div>
+            <div class="mtile"><b class="w">33 / 58</b><span data-i="mz3">Gereksiz ağır öneri (%57). Üst sınır gibi okunmalı: cevaplar 400 kelimeyle sınırlıydı, uzun işlerde güçlü modelin farkı bu uzunlukta görünmez.</span></div>
+          </div>
+          <p data-i="mzAf">Yöntem: 80 istem Haiku 5.5, Sonnet 5.5 ve Opus 5.5'e ayrı ayrı cevaplatıldı; cevaplar etiketsiz karıştırılıp bir modele (Fable 5.2) puanlatıldı. Sayılar, kendi başına cevaplanabilen 58 istem içindir. Hakem insan değil ve tek tur; effort önerisi ve Fable kademesi ölçülmedi.</p>
+        </div>
+        <div class="mcard">
+          <h3 data-i="mzBh">Hiç görmediği mesajlarda iş türü</h3>
+          <div class="mbars" id="mzBars"><div class="mbar"><span class="l" data-i="mzL1">Eski test 1 · kendi yazdığımız 120 kısa mesaj</span><div class="t"><i style="width:81.7%"></i></div><span class="v" data-v="81.7"></span></div><div class="mbar"><span class="l" data-i="mzL2">Eski test 2 · kendi yazdığımız 120 gündelik mesaj</span><div class="t"><i style="width:88.3%"></i></div><span class="v" data-v="88.3"></span></div><div class="mbar b"><span class="l" data-i="mzL3">Kör set 4 · başkalarının yazdığı 350 mesaj</span><div class="t"><i style="width:46%"></i></div><span class="v" data-v="46"></span></div><div class="mbar b"><span class="l" data-i="mzL4">Kör set 5 · başkalarının yazdığı 300 uzun mesaj</span><div class="t"><i style="width:36.3%"></i></div><span class="v" data-v="36.3"></span></div></div>
+          <p data-i="mzBp">Eski testler neden yüksek görünüyordu? İlk iki seti proje kendisi, kuralları yazarken yazdı ve mesajların hepsi kısa. Kör setleri depoyu görmeyen yazarlar yazdı: mesajların %45–60'ı 20 kelimeden uzun; içine e-posta, tablo, kod ya da hata çıktısı yapıştırılmış. Gerçek kullanım ikincisine daha yakın. Uzun mesaj sorunu çözülmedi.</p>
+          <p data-i="mzS1">Güvenlik tarafı: kör set 5'te (300 mesaj) Haiku 10 kez önerildi, 2'si yanlıştı. Doğruluğu %36'dan %67'ye çıkaran yeni ağırlıkları yayımlamadık, çünkü yanlış Haiku önerisini 12'ye çıkarıyordu.</p>
+          <p data-i="mzS2">Güven etiketi işe yarıyor: kör set 4'te eklenti “güven yüksek” dediğinde %75, “orta” dediğinde %60, “düşük” dediğinde %23 doğruydu; düşük güvende hafif model önerilmez. Konu alanı kör set 5'te %84 kabul edilebilir çıktı.</p>
+        </div>
+      </div>
+      <p class="foot" data-i="mzF">Ham sonuçlar ve yöntemin sınırları depoda: tests/quality/RAPOR.md (öneri kalitesi), tests/blind4.mjs ve tests/blind5.mjs (kör setler). Kör setlere bakılarak kural ya da ağırlık eklenmedi.</p>
     </div>
   </section>
 
@@ -680,7 +924,7 @@ limit %  = k × maliyet</div>
       <ul class="plain cols">
         <li data-i="l1">claude.ai'nin belgelenmemiş iç yapısına dayanır. Anthropic sayfayı değiştirirse bir güncelleme gerekir; sağlık kontrolü bunu hemen gösterir.</li>
         <li data-i="l2">İlk mesajlarda aralık geniştir; limit büyüklükleri başlangıçta kaba tahmindir.</li>
-        <li data-i="l3">Model önerisi kurallar ve küçük bir öğrenen modelle yapılır; cevap kalitesi ölçülmedi. 👍/👎 ve iş türü düzeltmelerin önerileri sana göre ayarlar.</li>
+        <li data-i="l3">Model önerisi kurallar ve küçük bir öğrenen modelle yapılır. Cevap kalitesi yalnızca bir kez, 58 istemle ve model hakemle ölçüldü (Ölçüm bölümü); insan hakemle ölçülmedi. 👍/👎 ve iş türü düzeltmelerin önerileri sana göre ayarlar.</li>
         <li data-i="l4">Yoğun saatlerde (hafta içi 05:00–11:00 Pasifik) 5 saatlik limit daha hızlı dolar; Anthropic çarpanı yayımlamadı, eklenti ölçerek öğrenir.</li>
         <li data-i="l5">Aynı hesabı başka bir cihazda ya da Claude Code'da aynı anda kullanırsan ölçüm bozulabilir; aykırı değer filtresi çoğunu eler.</li>
         <li data-i="l7">Konu alanı tanıma anahtar kelimeye dayanır. Kurallar bittikten sonra yazılan, neredeyse kör 90 mesajlık sette %71'ini buldu, 1 yanlış alan; bulamayınca “Genel” der ve öneri değişmez. Effort önerisinin cevap kalitesini koruyup korumadığı ölçülmedi.</li>
@@ -917,6 +1161,75 @@ Object.assign(EN, {
   rm6h: "A learned model for topics", rm6p: "For messages where keywords are not enough; with user corrections.",
   ft4: "Version 0.13.0 · November 2026"
 });
+/*EN13*/
+Object.assign(EN, {
+ "stOn": "on claude.ai",
+ "stRep": "illustrative interface",
+ "stPh": "Write your message…",
+ "stNote": "The interface is illustrative; the numbers come from the extension's real forecasting engine (assuming a Pro plan, a new chat and 62% of the 5-hour limit used).",
+ "stTry": "Try your own message ↓",
+ "syE": "A MESSAGE'S JOURNEY",
+ "syH": "From the first keystroke to the end of the week.",
+ "syP": "Scroll down to see, step by step, what the extension does with a single message.",
+ "sy1k": "1 · TYPE",
+ "sy1h": "Start typing.",
+ "sy1p": "While you type, the extension counts your message, attachments and chat history in your browser. Nothing you write leaves your device.",
+ "sy2k": "2 · FORECAST",
+ "sy2h": "See what it will cost before you send.",
+ "sy2p": "The pill shows the share of your 5-hour and weekly limit this message will take, with an 80% range. A range rather than a single number, because the length of the answer can't be known in advance.",
+ "sy3k": "3 · MODEL SUGGESTION",
+ "sy3h": "The lightest model that's enough.",
+ "sy3p": "For a simple translation it says Haiku is enough and how much you'd save. When unsure it doesn't suggest a light model: “a site with a translation system” is a build job, not a translation.",
+ "sy4k": "4 · TIKO",
+ "sy4h": "Tiko sits next to you.",
+ "sy4p": "The tiny bot beside the message box shows three things the extension already knows: the forecast, the suggestion, the limit. It follows your cursor while you type and sits on top of the answer, swinging its feet, while it arrives. It reads no text, and you can turn it off in the settings.",
+ "sy5k": "5 · WEEKLY REPORT",
+ "sy5h": "By the end of the week, the glass fills.",
+ "sy5p": "For the messages where you switched to the lighter setting it suggested, the weekly report shows the water and energy equivalent of the compute you avoided. Every figure is an estimate with a low, middle and high range; Anthropic doesn't publish these numbers.",
+ "sy6k": "6 · NATURE",
+ "sy6h": "Small choices add up.",
+ "sy6p": "Not picking the strongest model for a simple task is the easiest saving. The assumptions and sources behind the math are in the Nature section.",
+ "syGo": "Go to the Nature section ↓",
+ "dnE": "TRY IT YOURSELF",
+ "dnH": "Try it with your own message.",
+ "dnP": "The box below runs the extension's real forecasting engine. Type your message; change the model, effort and plan. The forecast and suggestion update instantly, and nothing you type leaves your browser.",
+ "mzE": "MEASUREMENT",
+ "mzH": "How accurate is it? The numbers as they are.",
+ "mzP": "In November 2026 we measured two things from the outside for the first time: is the suggested model really enough, and how well does the extension recognize the task type in messages it has never seen. The results are clearly lower than our older tests; we report both.",
+ "mzAh": "Is the suggested model enough?",
+ "mzLg1": "fits",
+ "mzLg2": "too light",
+ "mzLg3": "heavier than needed",
+ "mzLg4": "not measurable",
+ "mz1": "In all 13 prompts where Haiku was suggested, Haiku's answer scored 4 out of 5 or higher.",
+ "mz2": "Too-light suggestions (9%; 95% confidence interval 4–19%). In four of them Sonnet was suggested and only Opus was enough.",
+ "mz3": "Suggestions heavier than needed (57%). Read this as an upper bound: answers were capped at 400 words, and at that length a stronger model's advantage on long tasks doesn't show.",
+ "mzAf": "Method: 80 prompts were answered separately by Haiku 5.5, Sonnet 5.5 and Opus 5.5; the answers were shuffled without labels and scored by a model (Fable 5.2). The numbers cover the 58 prompts that can be answered on their own. The judge is not a human and scored once; effort suggestions and the Fable tier were not measured.",
+ "mzBh": "Task type on messages it has never seen",
+ "mzL1": "Old test 1 · 120 short messages we wrote ourselves",
+ "mzL2": "Old test 2 · 120 everyday messages we wrote ourselves",
+ "mzL3": "Blind set 4 · 350 messages written by others",
+ "mzL4": "Blind set 5 · 300 long messages written by others",
+ "mzBp": "Why did the old tests look so high? The project wrote the first two sets itself, while writing the rules, and every message is short. The blind sets were written by authors who never saw the repository: 45–60% of the messages are longer than 20 words, with an email, table, code or error output pasted in. Real use is closer to the second kind. The long-message problem is not solved.",
+ "mzS1": "The safety side: on blind set 5 (300 messages) Haiku was suggested 10 times and 2 of those were wrong. We did not ship new weights that raised accuracy from 36% to 67%, because they raised wrong Haiku suggestions to 12.",
+ "mzS2": "The confidence label works: on blind set 4 the extension was right 75% of the time when it said “high confidence”, 60% for “medium” and 23% for “low”; with low confidence no light model is suggested. Topic recognition was acceptable for 84% of blind set 5.",
+ "mzF": "Raw results and the limits of the method are in the repository: tests/quality/RAPOR.md (suggestion quality), tests/blind4.mjs and tests/blind5.mjs (blind sets). No rule or weight was added by looking at the blind sets.",
+ "f16h": "Tiko",
+ "f16p": "A tiny pixel bot that lives next to the message box. It strains when the forecast is heavy, nods when a lighter model is enough, sits on top of the answer while it arrives and gets worried as your limit fills. It reads no text and can be turned off in the settings.",
+ "f17h": "Water and energy you saved",
+ "f17p": "In the weekly report: the water and energy equivalent of the compute you avoided on messages where you switched to the suggested lighter setting, in drops, glasses and phone charges. All estimates with ranges; sources are in the report.",
+ "f18h": "Fable 5.2",
+ "f18p": "The top model is covered by the forecast and the suggestions too. If claude.ai reports a separate weekly share for Fable, the extension shows it and warns you before it runs out.",
+ "st2": "Dangerous errors: taking a hard task (code, math, research) for a simple one. On the same two test sets, 240 messages: rules → the released version.",
+ "st3v": "36%",
+ "st3": "The same version on 300 long messages written by people who never saw the repository (blind set 5). Good on short messages, weak on long and pasted content; details in the Measurement section.",
+ "mlF": "Honest note: the project wrote the test messages in the first two tiles itself, and they are short. Accuracy on real user messages hasn't been measured yet; that's exactly what community contributions are for. The first measurement of whether the suggested model is really enough is in the Measurement section.",
+ "mdP": "Suggesting a light model is a worse mistake than suggesting an expensive one: a bad answer means asking again. The extension suggests Haiku only for clearly simple tasks it's confident about; when unsure it says at least Sonnet. Its basis is Anthropic's model selection guide, a 72-prompt suggestion test set (zero too-light suggestions) and the on-device learned model. We also measured whether the suggested model is really enough; the results are in the Measurement section.",
+ "l3": "Model suggestions come from rules plus a small learned model. Answer quality was measured only once, on 58 prompts with a model as judge (Measurement section); it has not been measured with human judges. Your 👍/👎 and task-type corrections tune the suggestions to you.",
+ "vidC": "75-second intro. The interface shown is illustrative; the numbers come from the extension's own engine.",
+ "nav5": "Measurement"
+});
+/*END13*/
 const UI = {
   tr: { of5h: "5 saatlik limitinin", range: "%80 aralık: $1–$2", week: "$1", noFit: "Bu mesaj kalan limitine sığmayabilir (kalan $1).", maybeFit: "Kötü durumda kalan limitini aşabilir (kalan $1).", peak: "Şu an yoğun saatler: 5 saatlik limit daha hızlı doluyor.", empty: "Bir şey yaz ya da yukarıdan bir örnek seç.", tok: "$1 → $2", conf: { high: "güven yüksek", medium: "güven orta", low: "güven düşük" }, scale: "gri: kullanılan · turuncu: bu mesaj",
     presets: [["Çeviri", "Bu paragrafı İngilizceye çevir: Yarın sabahki toplantıya katılamayacağım, notları akşam paylaşırım."], ["Kod hatası", "Bu kodu çalıştırınca IndexError alıyorum, neden?\n```py\nfor i in range(len(a)+1):\n    print(a[i])\n```"], ["Türetme", "Hidrojen atomu için radyal dalga fonksiyonlarını adım adım türet ve Laguerre polinomlarıyla ilişkisini kanıtla."], ["Makale", "Kara delikler hakkında popüler bilim dergisi için 1500 kelimelik, örneklerle dolu bir makale yaz."], ["Mimari", "Bir milyon kullanıcılı gerçek zamanlı sohbet uygulaması için ölçeklenebilir bir mimari tasarla; veritabanı bölümleme ve yedeklilik dahil."]],
@@ -962,8 +1275,8 @@ function Xx() {
   return (MERGED["x" + lang] = { ...X.en, ...o });
 }
 const STR = {
-  tr: { title: "Token Tahmini – Claude limit tahmini eklentisi", ytL: "▶ Ayrıntılı tanıtım videosu (YouTube, 4 dk)", dlPage: "indirme sayfası", contribForm: "Katkı formu", survey: "2 dakikalık anket", curve: "Öğrenme eğrisi", loopNote: "k ve cevap uzunluğu güncellenir", simTitle: "Kalibrasyon simülasyonu", close: "Kapat ✕", vidEn: "" },
-  en: { title: "Token Forecast – Claude usage limit forecast extension", ytL: "▶ Full walkthrough video (YouTube, 4 min)", dlPage: "download page", contribForm: "Contribution form", survey: "2-minute survey", curve: "Learning curve", loopNote: "k and reply length are updated", simTitle: "Calibration simulation", close: "Close ✕", vidEn: "The video is in English." }
+  tr: { title: "Token Tahmini – Claude limit tahmini eklentisi", ytL: "▶ Ayrıntılı tanıtım videosu (YouTube, 4 dk)", dlPage: "indirme sayfası", contribForm: "Katkı formu", survey: "2 dakikalık anket", curve: "Öğrenme eğrisi", loopNote: "k ve cevap uzunluğu güncellenir", simTitle: "Kalibrasyon simülasyonu", close: "Kapat ✕", vidEn: "", pause: "⏸ Durdur", play: "▶ Oynat", exL: "Örnek mesajlar", ecoEx: "Örnek: $1 kısa çeviride Opus 5.5 yerine önerilen Haiku 5.5 ve Düşük effort ile gönderirsen. Tahmin." },
+  en: { title: "Token Forecast – Claude usage limit forecast extension", ytL: "▶ Full walkthrough video (YouTube, 4 min)", dlPage: "download page", contribForm: "Contribution form", survey: "2-minute survey", curve: "Learning curve", loopNote: "k and reply length are updated", simTitle: "Calibration simulation", close: "Close ✕", vidEn: "The video is in English.", pause: "⏸ Pause", play: "▶ Play", exL: "Example messages", ecoEx: "Example: if you send $1 short translations with the suggested Haiku 5.5 and Low effort instead of Opus 5.5. An estimate." }
 };
 const S = (k) => (lang === "tr" ? STR.tr : { ...STR.en, ...((SX[lang] && SX[lang].s) || {}) })[k];
 const u = (s, subs = []) => s.replace(/\$(\d)/g, (_, d) => subs[d - 1] ?? "");
@@ -1002,7 +1315,7 @@ function applyLang() {
       if (k) { if (!(("alt:" + k) in TRtext)) TRtext["alt:" + k] = el.alt; el.alt = lang === "tr" ? TRtext["alt:" + k] : (((SX[lang] && SX[lang].d && SX[lang].d[k]) ?? EN[k]) ?? TRtext["alt:" + k]); }
     }
   });
-  renderPresets(); renderModels(); renderLoop(); renderSim(); renderDomains(); renderEffort(); renderProof(); compute();
+  renderPresets(); renderModels(); renderLoop(); renderSim(); renderDomains(); renderEffort(); renderProof(); compute(); paintAll();
   if (window.__tikoLang) window.__tikoLang();
 }
 function setLang(l) {
@@ -1080,9 +1393,7 @@ function domLabel(d) {
   if (d.second) x += " + " + t("dom_" + d.second);
   return x;
 }
-function renderBanner(a) {
-  const box = $("banner");
-  if (!a) { box.replaceChildren(); return; }
+function advHead(a) {
   const ef = a.effort || null, effName = (l) => t("eff_" + l);
   let tone = { save: "save", save_next: "next", upgrade: "up", ok: "ok" }[a.kind];
   let icon = { save: "↓", save_next: "i", upgrade: "↑", ok: "✓" }[a.kind];
@@ -1102,6 +1413,12 @@ function renderBanner(a) {
     detail = t("advEffRaiseDetail", [effName(ef.from) + (ef.assumed ? " " + t("effDefaultMark") : ""), effName(ef.to), ef.extra != null ? String(Math.round(ef.extra * 100)) : "–"]);
   } else if (a.kind === "ok" && ef?.kind === "ok") title += " · " + t("advEffWith", [effName(ef.to)]);
   else if (a.kind !== "ok" && ef?.kind === "lower") detail += (detail ? " " : "") + t("advEffAlsoLower", [effName(ef.to)]);
+  return { tone, icon, title, detail, ef, effName };
+}
+function renderBanner(a) {
+  const box = $("banner");
+  if (!a) { box.replaceChildren(); return; }
+  const { tone, icon, title, detail, ef, effName } = advHead(a);
   const conf = t(a.confidence === "high" ? "confidenceHigh" : a.confidence === "medium" ? "confidenceMedium" : "confidenceLow");
   const chips = a.evidence.map((e) => t(e.key, e.params.map((x) => (typeof x === "number" ? num(x) : x))));
   const basis = [t(a.typeBasisKey), t(a.basisKey), ...a.why.map((wk) => t("why_" + wk))].join(" ") + (ef ? " " + t("effBasis") : "");
@@ -1262,11 +1579,122 @@ function renderSim() {
   svg.innerHTML = s;
 }
 
+// Tiko'nun çizimi (14 × 17 ızgara). Gezen bot, sahnedeki büyük Tiko ve eklentideki mini Tiko aynı ızgarayı kullanır.
+const TIKO_SVG = (function () {
+  const PAL = { K: "#3b2415", O: "#f28c28", H: "#ffc98b", D: "#c9661a", W: "#ffffff", P: "#ff8f70", Y: "#ffd84a", G: "#6fcf8a", R: "#e0533a" };
+  const rects = (rows, x0 = 0, y0 = 0) => {
+    let o = "";
+    rows.forEach((row, y) => { let x = 0; while (x < row.length) { const c = row[x]; if (c === "." || c === " ") { x++; continue; } let e = x; while (e < row.length && row[e] === c) e++; o += `<rect x="${x0 + x}" y="${y0 + y}" width="${e - x}" height="1" fill="${PAL[c]}"/>`; x = e; } });
+    return o;
+  };
+  const HEAD = [
+    "..KKKKKKKKKK..",
+    ".KOOOOOOOOOOK.",
+    ".KOHHOOOOOOOK.",
+    ".KOOOOOOOOOOK.",
+    ".KOOOOOOOOOOK.",
+    ".KPOKOOOOKOPK.",
+    ".KOOOKKKKOOOK.",
+    ".KOOOOOOOOOOK.",
+    "..KKKKKKKKKK.."];          // satır 2..10
+  const BODY = [
+    "...KOOOOOOK...",
+    "...KOGGYROK...",
+    "...KOOOOOOK...",
+    "...KKKKKKKK..."];           // satır 11..14
+  const ARM_L = ["KO", "KO", "KO", "KK"], ARM_R = ["OK", "OK", "OK", "KK"];
+  const LEG_A = ["....KO..OK....", "...KKK..KKK..."];
+  const LEG_B = ["...KKK..OK....", ".......KKK...."];
+  return `<svg viewBox="0 0 14 17" aria-hidden="true" focusable="false">
+    <g class="lgA">${rects(LEG_A, 0, 15)}</g><g class="lgB">${rects(LEG_B, 0, 15)}</g>
+    <g class="body">
+      <g class="armL">${rects(ARM_L, 1, 11)}</g><g class="armR">${rects(ARM_R, 11, 11)}</g>
+      ${rects(BODY, 0, 11)}${rects(HEAD, 0, 2)}
+      <g class="lt">${rects(["YY"], 6, 0)}</g>${rects(["KK"], 6, 1)}
+      <g class="pupil"><rect x="3" y="5" width="2" height="2" fill="${PAL.K}"/><rect x="9" y="5" width="2" height="2" fill="${PAL.K}"/><rect x="3" y="5" width="1" height="1" fill="${PAL.W}"/><rect x="9" y="5" width="1" height="1" fill="${PAL.W}"/></g>
+      <g class="lid"><rect x="2" y="5" width="4" height="2" fill="${PAL.O}"/><rect x="8" y="5" width="4" height="2" fill="${PAL.O}"/><rect x="3" y="6" width="2" height="1" fill="${PAL.K}"/><rect x="9" y="6" width="2" height="1" fill="${PAL.K}"/></g>
+    </g></svg>`;
+})();
+
+// ---- Kahraman sahnesi, hikâye ve ölçüm: veriler eklentinin gerçek motorundan ----
+// Statik sayfada motor ilk boyamada çalışmaz: sayılar derlemede hesaplanıp sayfaya (tfStage) yazılır.
+let STAGE = null;
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+function analyze(text, model, effort) {
+  const cls = TF.classify(text), dom = TF.detectDomain(text, cls), pt = TF.estimateTokens(text);
+  const fc = TF.forecastMessage({ promptTokens: pt, model, effort, tier: "claude_pro", cls, history: { messages: 0 }, memoryOn: true });
+  const a = TF.advise({ cls, dom, fc, currentModel: model, effort: fc.effort, effortAssumed: fc.effortAssumed, historyTokens: 0, cacheWarm: false, attachmentTokens: 0, emptyPrompt: false });
+  return { cls, dom, pt, fc, a };
+}
+function buildStage() {
+  const L = Ui(), P = L.presets, used = 62;
+  const sig = (v) => new Intl.NumberFormat(LOCALE[lang], { maximumSignificantDigits: 2 }).format(v);
+  const mk = (i, model, effort) => {
+    const text = P[i][1], r = analyze(text, model, effort), se = r.fc.pct.session, h = advHead(r.a);
+    return { label: P[i][0], text, model, eff: t("eff_" + r.fc.effort), big: "≈ " + pct(se.mid), mid: se.mid, sub: L.of5h, range: u(L.range, [pct(se.low), pct(se.high)]),
+      m: [used, se.mid, se.high], tone: h.tone, icon: h.icon, adv: h.title, nod: r.a.kind === "save", tokN: r.pt.mid, week: "≈ " + pct(r.fc.pct.weekly.mid),
+      move: r.a.sugPct != null ? pct(r.a.curPct) + " → " + pct(r.a.sugPct) : "", cost: r.fc.cost.mid };
+  };
+  const ex = [mk(0, "Opus 5.5", "high"), mk(1, "Sonnet 5.5", "medium"), mk(2, "Sonnet 5.5", "medium")];
+  const trapText = CL() === "tr" ? "Çeviri sistemi olan bir web sitesi yaptıracağım, bu zor bir iş" : "I need a website built with a translation system, it is a hard job";
+  const tr = analyze(trapText, "Haiku 5.5", "medium"), th = advHead(tr.a);
+  const trap = { text: trapText, tone: th.tone, icon: th.icon, adv: th.title, note: t("type_" + tr.cls.type) + " · " + L.conf[tr.cls.confidence] };
+  // Su örneği: aynı çeviri, Opus 5.5 (Yüksek) yerine önerilen Haiku 5.5 (Düşük); N mesaj. Hesap eklentideki lib/eco.js.
+  const N = 50, light = analyze(P[0][1], "Haiku 5.5", "low"), ec = TF.ecoFromUnits(N * (ex[0].cost - light.fc.cost.mid));
+  const ml = (v) => (v >= 1000 ? sig(v / 1000) + " L" : sig(v) + " mL"), wh = (v) => sig(v) + " Wh";
+  const eco = { n: N, title: t("ecoTitle"), wL: t("ecoWater"), w: "≈ " + ml(ec.water.mid), wR: t("ecoRange", [ml(ec.water.low), ml(ec.water.high)]), wU: "≈ " + sig(ec.water.mid / 250) + " × " + t("ecoU_glass"), fill: clamp(ec.water.mid / 250, 0, 1),
+    eL: t("ecoEnergy"), e: "≈ " + wh(ec.energy.mid), eR: t("ecoRange", [wh(ec.energy.low), wh(ec.energy.high)]), eU: "≈ " + sig(ec.energy.mid / 19) + " × " + t("ecoU_phone"), ex: u(S("ecoEx") || STR.en.ecoEx, [String(N)]) };
+  ex.forEach((d) => delete d.cost);
+  return { ex, trap, eco, week: tx("fWeek"), pause: S("pause") || STR.en.pause, play: S("play") || STR.en.play, exL: S("exL") || STR.en.exL };
+}
+function stageShow(i) {
+  const d = STAGE.ex[i];
+  $("stUser").textContent = d.text; $("stBig").textContent = d.big; $("stSub").textContent = d.sub; $("stRg").textContent = d.range;
+  $("stU").style.width = d.m[0] + "%"; $("stR").style.left = d.m[0] + "%"; $("stR").style.width = (clamp(d.m[0] + d.m[2], 0, 100) - d.m[0]) + "%";
+  $("stP").style.left = d.m[0] + "%"; $("stP").style.width = Math.max(0.8, clamp(d.m[0] + d.m[1], 0, 100) - d.m[0]) + "%";
+  $("stAdv").className = "st-adv t-" + d.tone; $("stIc").textContent = d.icon; $("stAdvT").textContent = d.adv;
+  $("stModel").textContent = d.model; $("stEff").textContent = d.eff;
+}
+function paintAll() {
+  if (!$("stage")) return;
+  if (STATIC) { try { STAGE = JSON.parse($("tfStage").textContent); } catch (_) { STAGE = null; } return; }
+  STAGE = buildStage();
+  let js = $("tfStage");
+  if (!js) { js = document.createElement("script"); js.type = "application/json"; js.id = "tfStage"; document.body.append(js); }
+  js.textContent = JSON.stringify(STAGE).replace(/</g, "\\u003c");
+  const d = STAGE.ex[0], E = STAGE.eco, T = STAGE.trap;
+  // sahne: son durum (JS'siz ve az hareket tercihinde görünen)
+  stageShow(0);
+  const st = $("stage"); st.dataset.ph = "done"; st.classList.add("pill-on", "adv-on");
+  $("stTiko").innerHTML = TIKO_SVG; $("stType").textContent = "";
+  $("stTabs").setAttribute("aria-label", STAGE.exL);
+  $("stTabs").innerHTML = STAGE.ex.map((x, i) => `<button type="button" class="chip" aria-pressed="${i === 0}">${esc(x.label)}</button>`).join("");
+  $("stPlay").textContent = STAGE.pause;
+  $("stSr").textContent = STAGE.ex.map((x) => `${x.label} (${x.model}): ${x.big} ${x.sub}. ${x.adv}.`).join(" ");
+  // hikâye sahneleri
+  $("sc1T").textContent = d.text; $("sc1N").textContent = "≈ " + num(d.tokN) + " token";
+  $("sc2B").textContent = d.big; $("sc2S").textContent = d.sub; $("sc2R").textContent = d.range; $("sc2W").textContent = STAGE.week + " " + d.week;
+  $("sc2M").style.setProperty("--w-r", clamp(d.m[2], 0, 38) + "%"); $("sc2M").style.setProperty("--w-p", Math.max(0.8, clamp(d.m[1], 0, 38)) + "%");
+  const adv = (id, x) => { const el = $(id); el.className = "a t-" + x.tone; el.children[0].textContent = x.icon; el.children[1].textContent = x.adv; };
+  $("sc3Q1").textContent = d.text; adv("sc3A1", d); $("sc3N1").textContent = d.move;
+  $("sc3Q2").textContent = T.text; adv("sc3A2", T); $("sc3N2").textContent = T.note;
+  $("sc4K").innerHTML = TIKO_SVG;
+  const H = 122 * E.fill;
+  $("sc5G").innerHTML = `<defs><clipPath id="gcl"><path d="M14 10 L96 10 L86 140 L24 140 Z"/></clipPath></defs><g clip-path="url(#gcl)"><rect class="wtr" x="0" y="${(140 - H).toFixed(1)}" width="110" height="${H.toFixed(1)}" fill="var(--water)" opacity=".8"/></g><path d="M14 10 L96 10 L86 140 L24 140 Z" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/><path d="M27 24 L31 96" stroke="var(--line)" stroke-width="3" stroke-linecap="round"/>`;
+  $("sc5T").textContent = E.title; $("sc5WL").textContent = E.wL; $("sc5W").textContent = E.w; $("sc5WR").textContent = E.wR; $("sc5WU").textContent = E.wU;
+  $("sc5EL").textContent = E.eL; $("sc5E").textContent = E.e; $("sc5ER").textContent = E.eR; $("sc5EU").textContent = E.eU; $("sc5X").textContent = E.ex;
+  // ölçüm
+  $("mzDots").innerHTML = [["g", 19], ["c", 5], ["w", 33], ["", 1]].map(([c, n]) => `<i class="${c}"></i>`.repeat(n)).join("");
+  const p1 = new Intl.NumberFormat(LOCALE[lang], { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  document.querySelectorAll("#mzBars .v").forEach((el) => { el.textContent = t("pct", [p1.format(Number(el.dataset.v))]); });
+  if (window.__stageRefresh) window.__stageRefresh();
+}
+
 if (SUPPORT_URL) { $("destek").hidden = false; $("supportBtn").href = SUPPORT_URL; }
 if (STATIC) {
   // Metin, bölümler ve demonun ilk çıktısı HTML'de hazır. Motorun ilk çalışması (sınıflandırıcı regex'leri) yavaş
   // telefonda ilk boyamayı saniyelerce geciktiriyordu; o yüzden demoya ilk dokunuşta (fare, odak, dokunma) çalışır.
-  renderPresets();
+  renderPresets(); paintAll();
   const demo = document.querySelector(".demo"), EV = ["pointerover", "focusin", "touchstart"];
   const arm = () => { EV.forEach((e) => demo.removeEventListener(e, arm)); computeNow(); };
   EV.forEach((e) => demo.addEventListener(e, arm, { passive: true }));
@@ -1295,41 +1723,123 @@ if (STATIC) {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !box.hidden) close(); });
 })();
 
-// ---- Tiko: piksel bot. Fareyle (ya da dokunuşla) işaret ettiğin bloğun üstüne konar, sen kaydırdıkça seninle iner. ----
+// ---- Kahraman sahnesi: örnek mesaj yazılır, hap belirir, Tiko cevabın üstüne oturur. Fare sahnedeyken Tiko fareyi izler. ----
 (function () {
-  const PAL = { K: "#3b2415", O: "#f28c28", H: "#ffc98b", D: "#c9661a", W: "#ffffff", P: "#ff8f70", Y: "#ffd84a", G: "#6fcf8a", R: "#e0533a" };
-  const rects = (rows, x0 = 0, y0 = 0) => {
-    let o = "";
-    rows.forEach((row, y) => { let x = 0; while (x < row.length) { const c = row[x]; if (c === "." || c === " ") { x++; continue; } let e = x; while (e < row.length && row[e] === c) e++; o += `<rect x="${x0 + x}" y="${y0 + y}" width="${e - x}" height="1" fill="${PAL[c]}"/>`; x = e; } });
-    return o;
+  const stage = $("stage");
+  if (!stage || !STAGE) return;
+  const tiko = $("stTiko"), playBtn = $("stPlay"), hero = stage.closest("section"), ans = $("stAns"), pill = $("stPill"), caret = stage.querySelector(".st-caret");
+  if (!tiko.firstChild) tiko.innerHTML = TIKO_SVG;
+  const mq = matchMedia("(prefers-reduced-motion: reduce)");
+  const T = [3200, 1900, 450, 3400, 1700], PH = ["type", "hold", "send", "ans", "done"], TOT = T.reduce((x, y) => x + y);
+  let ex = 0, e = TOT - T[4], last = 0, playing = !mq.matches, vis = false, raf = 0, ptr = null, ptrIn = false, ptrAt = 0, pos = null, shown = 0, chars = 0, ph = "done", pose = "sit", nodUntil = 0, tp = 5;
+  const tabs = () => [...$("stTabs").children];
+  const label = () => { playBtn.textContent = playing ? STAGE.pause : STAGE.play; playBtn.setAttribute("aria-pressed", String(!playing)); };
+  const measure = () => { tp = parseFloat(getComputedStyle(stage).getPropertyValue("--tp")) || 5; };
+  function render() {
+    let x = e, i = 0; while (i < 4 && x >= T[i]) { x -= T[i]; i++; }
+    const d = STAGE.ex[ex];
+    if (shown !== ex) { shown = ex; stageShow(ex); tabs().forEach((b, k) => b.setAttribute("aria-pressed", String(k === ex))); chars = -1; }
+    if (PH[i] !== ph) { ph = PH[i]; stage.dataset.ph = ph; if (ph === "hold" && d.nod) nodUntil = performance.now() + 1100; }
+    const n = ph === "type" ? Math.floor(d.text.length * x / T[0]) : ph === "hold" ? d.text.length : 0;
+    if (n !== chars) { chars = n; $("stType").textContent = d.text.slice(0, n); }
+    $("stPh").hidden = ph === "type" || ph === "hold";
+    stage.classList.toggle("pill-on", !(ph === "type" && x < T[0] * 0.22));
+    stage.classList.toggle("adv-on", ph !== "type");
+  }
+  function seat(now) { // Tiko'nun hedefi: [x, y, poz] (sahne koordinatı)
+    const w = 14 * tp, h = 17 * tp, W = stage.clientWidth, Hh = stage.clientHeight;
+    if (ptrIn && ptr && (ph === "type" || ph === "hold")) return [clamp(ptr.x - w / 2, 4, W - w - 4), clamp(ptr.y - h - 16, 38, Hh - h - 4), "fly"];
+    if (ph === "ans" || ph === "done") return [22, ans.offsetTop - 15 * tp, ph === "done" ? "sit clap" : "sit"];
+    if (ph === "send") return [22, ans.offsetTop - 15 * tp, "fly"];
+    if (stage.classList.contains("pill-on")) return [pill.offsetLeft + pill.offsetWidth - w - 8, pill.offsetTop - h + tp, now < nodUntil ? "nod" : ""];
+    const sr = stage.getBoundingClientRect(), cr = caret.getBoundingClientRect();
+    return [clamp(cr.left - sr.left - w / 2, 4, W - w - 4), cr.top - sr.top - h - 12, "fly"];
+  }
+  function frame(now) {
+    raf = 0;
+    const dt = Math.min(64, now - last); last = now;
+    if (playing) { e += dt; if (e >= TOT) { e = 0; ex = (ex + 1) % STAGE.ex.length; } }
+    render();
+    const [gx, gy, p] = seat(now);
+    if (!pos) { pos = { x: gx, y: gy }; stage.classList.add("live"); }
+    pos.x += (gx - pos.x) * 0.15; pos.y += (gy - pos.y) * 0.15;
+    const moving = Math.abs(gx - pos.x) + Math.abs(gy - pos.y) > 2;
+    if (!moving) { pos.x = gx; pos.y = gy; }
+    tiko.style.transform = `translate(${pos.x.toFixed(1)}px,${pos.y.toFixed(1)}px)`;
+    const np = moving ? "fly" : p;
+    if (np !== pose) { pose = np; tiko.className = "st-tiko tk " + np; }
+    // bakış: fare yakındaysa fareye, değilse işine (yazı ya da cevap)
+    let lx = 1, ly = 1;
+    if (ptr && now - ptrAt < 4000) { const dx = ptr.x - (pos.x + 7 * tp), dy = ptr.y - (pos.y + 6 * tp); lx = dx > 30 ? 1 : dx < -30 ? -1 : 0; ly = dy > 40 ? 1 : dy < -40 ? -1 : 0; }
+    else if (ph === "type" || ph === "hold") { lx = -1; ly = 1; }
+    tiko.style.setProperty("--lx", lx); tiko.style.setProperty("--ly", ly);
+    if (vis && !document.hidden && (playing || moving || now - ptrAt < 1500)) raf = requestAnimationFrame(frame);
+  }
+  const kick = () => {
+    if (raf || !vis || document.hidden) return;
+    if (mq.matches && !playing) { render(); return; } // az hareket tercihi: Tiko yerinde kalır, yalnızca metinler değişir
+    last = performance.now(); raf = requestAnimationFrame(frame);
   };
-  const HEAD = [
-    "..KKKKKKKKKK..",
-    ".KOOOOOOOOOOK.",
-    ".KOHHOOOOOOOK.",
-    ".KOOOOOOOOOOK.",
-    ".KOOOOOOOOOOK.",
-    ".KPOKOOOOKOPK.",
-    ".KOOOKKKKOOOK.",
-    ".KOOOOOOOOOOK.",
-    "..KKKKKKKKKK.."];          // satır 2..10
-  const BODY = [
-    "...KOOOOOOK...",
-    "...KOGGYROK...",
-    "...KOOOOOOK...",
-    "...KKKKKKKK..."];           // satır 11..14
-  const ARM_L = ["KO", "KO", "KO", "KK"], ARM_R = ["OK", "OK", "OK", "KK"];
-  const LEG_A = ["....KO..OK....", "...KKK..KKK..."];
-  const LEG_B = ["...KKK..OK....", ".......KKK...."];
-  const svg = `<svg viewBox="0 0 14 17" aria-hidden="true" focusable="false">
-    <g class="lgA">${rects(LEG_A, 0, 15)}</g><g class="lgB">${rects(LEG_B, 0, 15)}</g>
-    <g class="body">
-      <g class="armL">${rects(ARM_L, 1, 11)}</g><g class="armR">${rects(ARM_R, 11, 11)}</g>
-      ${rects(BODY, 0, 11)}${rects(HEAD, 0, 2)}
-      <g class="lt">${rects(["YY"], 6, 0)}</g>${rects(["KK"], 6, 1)}
-      <g class="pupil"><rect x="3" y="5" width="2" height="2" fill="${PAL.K}"/><rect x="9" y="5" width="2" height="2" fill="${PAL.K}"/><rect x="3" y="5" width="1" height="1" fill="${PAL.W}"/><rect x="9" y="5" width="1" height="1" fill="${PAL.W}"/></g>
-      <g class="lid"><rect x="2" y="5" width="4" height="2" fill="${PAL.O}"/><rect x="8" y="5" width="4" height="2" fill="${PAL.O}"/><rect x="3" y="6" width="2" height="1" fill="${PAL.K}"/><rect x="9" y="6" width="2" height="1" fill="${PAL.K}"/></g>
-    </g></svg>`;
+  $("stTabs").addEventListener("click", (ev) => {
+    const b = ev.target.closest("button"); if (!b) return;
+    ex = tabs().indexOf(b); e = playing ? 0 : TOT - T[4]; shown = -1; ptrAt = performance.now(); kick();
+  });
+  playBtn.addEventListener("click", () => { playing = !playing; label(); ptrAt = performance.now(); kick(); });
+  hero.addEventListener("pointermove", (ev) => {
+    if (ev.pointerType === "touch") return;
+    const r = stage.getBoundingClientRect();
+    ptr = { x: ev.clientX - r.left, y: ev.clientY - r.top }; ptrIn = ptr.x >= 0 && ptr.y >= 0 && ptr.x <= r.width && ptr.y <= r.height; ptrAt = performance.now(); kick();
+  }, { passive: true });
+  hero.addEventListener("pointerleave", () => { ptrIn = false; });
+  addEventListener("resize", () => { measure(); kick(); });
+  document.addEventListener("visibilitychange", kick);
+  if ("IntersectionObserver" in window) new IntersectionObserver((es) => { vis = es[0].isIntersecting; kick(); }).observe(stage); else vis = true;
+  window.__stageRefresh = () => { shown = -1; label(); kick(); };
+  measure(); label();
+})();
+
+// ---- Hikâye: sahneler kaydırdıkça ilerler (--f). Az hareket tercihinde ve JS'siz: son durum. ----
+(function () {
+  const chaps = [...document.querySelectorAll(".chap")];
+  if (!chaps.length || !STAGE || !("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const live = new Set(); let raf = 0;
+  const upd = {
+    1: (f) => { const d = STAGE.ex[0], g = Math.min(1, f * 1.2); $("sc1T").textContent = d.text.slice(0, Math.round(d.text.length * g)); $("sc1N").textContent = "≈ " + num(d.tokN * g) + " token"; },
+    2: (f) => { const d = STAGE.ex[0], g = Math.min(1, f * 1.25); $("sc2B").textContent = g >= 1 ? d.big : "≈ " + pct(d.mid * g * g); },
+    4: (f) => { const k = $("sc4K"), c = "tk " + (f > 0.96 ? "sit" : "fly"); if (k.className !== c) k.className = c; }
+  };
+  function tick() {
+    raf = 0;
+    const vh = innerHeight, wide = innerWidth >= 900;
+    live.forEach((li) => {
+      const sc = li.lastElementChild, top = (wide ? li : sc).getBoundingClientRect().top;
+      const f = Math.round(clamp((vh * (wide ? 0.84 : 0.94) - top) / (vh * (wide ? 0.62 : 0.5)), 0, 1) * 200) / 200;
+      if (sc._f === f) return;
+      sc._f = f; sc.style.setProperty("--f", f);
+      const fn = upd[sc.dataset.sc]; if (fn) fn(f);
+    });
+  }
+  const sched = () => { if (!raf) raf = requestAnimationFrame(tick); };
+  const io = new IntersectionObserver((es) => { es.forEach((x) => (x.isIntersecting ? live.add(x.target) : live.delete(x.target))); sched(); }, { rootMargin: "25% 0px" });
+  chaps.forEach((c) => io.observe(c));
+  addEventListener("scroll", sched, { passive: true }); addEventListener("resize", sched);
+})();
+
+// ---- Görünürken beliren bloklar (ekranın altında kalanlar; JS ve hareket tercihi uygunken) ----
+(function () {
+  if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const io = new IntersectionObserver((es) => es.forEach((x) => { if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target); } }), { rootMargin: "0px 0px -6% 0px" });
+  const arm = () => document.querySelectorAll(".band .sec-head, .feat, .stat, .model, .dcard, .mcard, .shot, .note, .road > div, .layers li, .chap-txt").forEach((el) => {
+    if (el.classList.contains("rv") || el.getBoundingClientRect().top < innerHeight) return;
+    el.style.setProperty("--rd", ([...el.parentNode.children].indexOf(el) % 4) * 60 + "ms"); el.classList.add("rv"); io.observe(el);
+  });
+  if (document.readyState === "complete") arm(); else addEventListener("load", arm);
+})();
+
+// ---- Tiko: piksel bot. Fareyle (ya da dokunuşla) işaret ettiğin bloğun üstüne konar, sen kaydırdıkça seninle iner. ----
+// Kahraman bölümündeyken sahnedeki büyük Tiko odur; fare bölümden çıkınca sahneden atlayıp sayfada gezer (tek Tiko).
+(function () {
+  const svg = TIKO_SVG;
 
   const bot = document.createElement("div");
   bot.id = "tfbot"; bot.setAttribute("aria-hidden", "true");
@@ -1337,7 +1847,7 @@ if (STATIC) {
   document.body.append(bot);
   const sp = bot.querySelector(".sp"), bub = bot.querySelector(".bub");
   const reduce = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const PERCH = ".feat,.stat,.shot,.fact,.model,.dcard,.effrow,.note,.tablebox,.chart,.proofchart,.honest,.loop,.layers li,.faq details,.road > div,.support,.demo,.vid,.readout,.formula,.terms > div,.sec-head,.alert,.banner,.lede,.hero h1,.cta,.trust";
+  const PERCH = ".scene,.chap-txt,.mcard,.feat,.stat,.shot,.fact,.model,.dcard,.effrow,.note,.tablebox,.chart,.proofchart,.honest,.loop,.layers li,.faq details,.road > div,.support,.demo,.vid,.readout,.formula,.terms > div,.sec-head,.alert,.banner,.lede,.hero h1,.cta,.trust";
   const size = () => { const p = parseFloat(getComputedStyle(bot).getPropertyValue("--px")) || 4; return { w: 14 * p, h: 17 * p }; };
   let enabled = true, ptr = null, cur = null, raf = 0, lastAct = Date.now(), landT = 0, sayT = 0, lineI = 0, started = false;
   try { enabled = localStorage.getItem("tf-bot") !== "off"; } catch (_) {}
@@ -1375,11 +1885,24 @@ if (STATIC) {
     clearTimeout(landT);
     landT = setTimeout(() => { bot.classList.remove("go"); look(); if (!reduce()) sp.animate([{ transform: "scale(1.18,.8)" }, { transform: "scale(1,1)" }], { duration: 200, easing: "ease-out" }); }, dur);
   }
+  const stageEl = document.getElementById("stage"), heroEl = stageEl && stageEl.closest("section");
+  let greeted = false;
+  const canHover = matchMedia("(hover: hover)").matches; // dokunmatik ekranda karşılama balonu metni örter ve "fare" der; yalnız dokununca konuşur
+  const inHero = (p) => { if (!heroEl) return false; const r = heroEl.getBoundingClientRect(); return r.bottom > 90 && p.y < r.bottom; };
   function update() {
     raf = 0;
     if (!enabled) return;
     const p = ptr || { x: innerWidth * 0.82, y: innerHeight * 0.5 };
+    const was = bot.classList.contains("away");
+    if (inHero(p)) { bot.classList.add("away"); bot.classList.remove("say"); stageEl.classList.remove("tk-out"); return; }
     const t = targetFor(p);
+    if (was) { // sahnedeki Tiko'nun yerinden atlar
+      bot.classList.remove("away");
+      const r = document.getElementById("stTiko").getBoundingClientRect();
+      if (t && r.bottom > 0 && r.top < innerHeight) { cur = { x: r.left + scrollX, y: r.top + scrollY }; bot.style.transition = "none"; bot.style.transform = `translate(${cur.x}px,${cur.y}px)`; void bot.offsetWidth; }
+      if (!greeted) { greeted = true; if (canHover) setTimeout(() => { if (enabled && !bot.classList.contains("away")) say(Xx().bot[0], 5200); }, 1100); }
+    }
+    if (stageEl) stageEl.classList.add("tk-out");
     if (t) go(t.x, t.y);
     look();
   }
@@ -1399,7 +1922,7 @@ if (STATIC) {
     bot.classList.add("say"); clearTimeout(sayT); sayT = setTimeout(() => bot.classList.remove("say"), ms);
   }
   document.addEventListener("click", (e) => {
-    if (!enabled || e.target.closest("a,button,input,select,textarea,summary,label")) return;
+    if (!enabled || bot.classList.contains("away") || e.target.closest("a,button,input,select,textarea,summary,label")) return;
     const b = bot.getBoundingClientRect();
     if (e.clientX >= b.left - 8 && e.clientX <= b.right + 8 && e.clientY >= b.top - 8 && e.clientY <= b.bottom + 8) {
       bot.classList.add("wave"); setTimeout(() => bot.classList.remove("wave"), 1700);
@@ -1411,18 +1934,20 @@ if (STATIC) {
     enabled = on; bot.hidden = !on;
     if (persist) { try { localStorage.setItem("tf-bot", on ? "on" : "off"); } catch (_) {} }
     const btn = document.getElementById("botToggle"); if (btn) btn.textContent = on ? Xx().off : Xx().on;
+    if (!on && stageEl) stageEl.classList.remove("tk-out");
     if (on) { cur = null; start(true); }
   }
   function start(again) {
     if (!enabled) return;
     // yukarıdan düşerek gelir
     const p = ptr || { x: innerWidth * 0.82, y: innerHeight * 0.5 }, t = targetFor(p);
+    if (inHero(p)) { started = true; bot.classList.add("away"); return; } // kahraman bölümünde sahnedeki Tiko yeter
     if (!t) return;
-    cur = null; started = true;
+    cur = null; started = true; greeted = true;
     const { w, h } = size();
     bot.style.transition = "none"; bot.style.transform = `translate(${t.x}px,${scrollY - h - 30}px)`; cur = { x: t.x, y: scrollY - h - 30 };
     void bot.offsetWidth;
-    requestAnimationFrame(() => { go(t.x, t.y); setTimeout(() => { if (enabled) say(Xx().bot[0], 5200); }, reduce() ? 100 : 1100); });
+    requestAnimationFrame(() => { go(t.x, t.y); if (canHover) setTimeout(() => { if (enabled) say(Xx().bot[0], 5200); }, reduce() ? 100 : 1100); });
   }
   window.__tikoLang = () => { const btn = document.getElementById("botToggle"); if (btn) btn.textContent = enabled ? Xx().off : Xx().on; };
   document.getElementById("botToggle").addEventListener("click", () => setEnabled(!enabled, true));

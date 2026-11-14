@@ -79,22 +79,22 @@ d.f9h	Modèle appris sur l’appareil
 d.f9p	Elle reconnaît le type de tâche avec des règles et un petit modèle appris. Quand vous la corrigez, elle l’apprend sur votre appareil.
 d.f10h	Calibrage personnel
 d.f10p	Après chaque message, elle mesure comment votre limite a réellement évolué et apprend la taille de votre offre ainsi que la longueur des réponses que Claude vous donne.
-d.vidC	Présentation de 47 secondes. L’interface montrée est illustrative ; les chiffres viennent du moteur même de l’extension.
+d.vidC	Présentation de 75 secondes. L’interface montrée est illustrative ; les chiffres viennent du moteur même de l’extension.
 d.sh3	Rapport hebdomadaire (avec des données d’exemple simulées) : sujets, répartition de l’effort et preuve d’apprentissage. Calculé uniquement dans votre navigateur, à partir d’entrées sans texte de message.
 d.mlE	APPRENTISSAGE AUTOMATIQUE
 d.mlH	Les règles démarrent, un modèle apprend, vous corrigez.
 d.mlP	Savoir de quel type de tâche il s’agit sert de base à l’estimation comme à la suggestion de modèle. L’ancienne version le reconnaissait uniquement avec des règles. Désormais, les scores des règles alimentent un petit modèle appris qui tourne sur votre appareil. Le modèle pèse 128 Ko, ne se connecte jamais et s’exécute plus vite qu’une frappe de touche.
 d.st1v	64 %<span class="arrow">→</span><span class="good">88 %</span>
 d.st1	Type de tâche correctement reconnu : règles → règles + modèle. Sur 120 messages courants écrits sans regarder (sans accents, avec formules de politesse et fautes de frappe).
-d.st2	Erreurs dangereuses : prendre une tâche difficile (code, maths, recherche) pour une tâche simple. Deux jeux de test, 240 messages.
-d.st3	Suggestions Haiku correctes sur des tâches vraiment simples. Suggestions Haiku erronées 0 → 1 (« 17 % de 2350 »).
+d.st2	Erreurs dangereuses : prendre une tâche difficile (code, maths, recherche) pour une tâche simple. Sur les deux mêmes jeux de test, 240 messages : règles → version publiée.
+d.st3	La même version sur 300 messages longs écrits par des personnes qui n’ont jamais vu le dépôt (jeu aveugle 5). Bonne sur les messages courts, faible sur les contenus longs et collés ; détails dans la section Mesure.
 d.ly1h	Calibrage personnel
 d.ly1p	À partir du pourcentage de limite lu avant et après chaque message, elle apprend la taille de votre offre, l’effet des heures de pointe et la longueur des réponses que Claude vous donne.
 d.ly2h	Corrections personnelles
 d.ly2p	Quand vous dites « mauvais type de tâche ? » dans la suggestion et choisissez le bon, le modèle se met à jour sur votre appareil ; 👍/👎 règlent les seuils de la suggestion. Ce qui est stocké, ce sont des écarts de poids, pas du texte.
 d.ly3h	Communauté (facultatif)
 d.ly3p	Si vous partagez un résumé sans texte de ce qui a été appris, les nouveaux utilisateurs partent de mesures réelles plutôt que de suppositions.
-d.mlF	Remarque honnête : les messages d’entraînement et de test ont aussi été écrits par le projet ; la précision sur de vrais messages d’utilisateurs n’a pas encore été mesurée. C’est précisément à cela que servent les contributions de la communauté. La qualité des réponses (Haiku suffisait-il vraiment ?) n’a pas été mesurée.
+d.mlF	Note honnête : le projet a écrit lui-même les messages de test des deux premières tuiles, et ils sont courts. La précision sur de vrais messages d’utilisateurs n’a pas encore été mesurée ; c’est exactement à cela que servent les contributions de la communauté. La première mesure pour savoir si le modèle suggéré suffit vraiment est dans la section Mesure.
 d.cmE	COMMUNAUTÉ
 d.cmH	Plus précis, ensemble.
 d.cmP	Anthropic ne publie pas la taille des limites ; chaque utilisateur apprend son offre en mesurant. En combinant ces mesures, un nouvel arrivant obtient des estimations précises dès son premier message. Rien n’est envoyé automatiquement.
@@ -151,7 +151,7 @@ d.d5	« Quel pourcentage de ma limite représente une unité de coût ? » Cela 
 d.simC	Simulation : 300 offres virtuelles s’écartant jusqu’à 2× de l’hypothèse de départ, avec le vrai code de calibrage de l’extension. L’erreur d’estimation médiane est de 1,68× au premier message, 1,13× après 20 messages et 1,08× après 100.
 d.mdE	SUGGESTION DE MODÈLE
 d.mdH	Pas le modèle le plus léger. Le plus léger qui suffit.
-d.mdP	Proposer un modèle léger est une erreur plus grave que d’en proposer un coûteux : une mauvaise réponse oblige à redemander. L’extension ne propose Haiku que pour des tâches clairement simples dont elle est sûre ; dans le doute, elle dit au moins Sonnet. Sa base est le guide de choix de modèle d’Anthropic, un jeu de test de 60 prompts (100 % adaptés, aucune suggestion trop légère) et le modèle appris sur l’appareil.
+d.mdP	Suggérer un modèle léger est une erreur plus grave que d’en suggérer un coûteux : une mauvaise réponse oblige à reposer la question. L’extension ne suggère Haiku que pour des tâches clairement simples dont elle est sûre ; en cas de doute, elle dit au moins Sonnet. Elle s’appuie sur le guide de choix de modèle d’Anthropic, un jeu de test de 72 prompts (aucune suggestion trop légère) et le modèle appris sur l’appareil. Nous avons aussi mesuré si le modèle suggéré suffit vraiment ; les résultats sont dans la section Mesure.
 d.mdF	Coût relatif : supposé proportionnel au prix de l’API et corrigé par le calibrage. Sur claude.ai, le prompt système et la mémoire poussent le contexte au-delà de 100K jetons, donc le tarif longue contexte de Haiku s’applique. Changer de modèle dans un long chat signifie que le nouveau modèle relit tout l’historique ; dans ce cas, l’extension dit « choisissez-le dans votre prochain nouveau chat ».
 d.pvE	CONFIDENTIALITÉ
 d.pvH	Tout est calculé dans votre navigateur.
@@ -177,7 +177,7 @@ d.lmE	LIMITES
 d.lmH	Nous disons aussi ce que nous ne savons pas.
 d.l1	Elle s’appuie sur le fonctionnement interne non documenté de claude.ai. Si Anthropic modifie la page, une mise à jour est nécessaire ; la vérification du système le montre aussitôt.
 d.l2	Les fourchettes sont larges pour les premiers messages ; la taille des limites démarre comme une estimation grossière.
-d.l3	Les suggestions de modèle viennent de règles et d’un petit modèle appris ; la qualité des réponses n’a pas été mesurée. Vos 👍/👎 et vos corrections du type de tâche les ajustent à vous.
+d.l3	Les suggestions de modèle viennent de règles et d’un petit modèle appris. La qualité des réponses n’a été mesurée qu’une fois, sur 58 prompts avec un modèle comme juge (section Mesure) ; elle n’a pas été mesurée avec des juges humains. Vos 👍/👎 et vos corrections du type de tâche adaptent les suggestions à vous.
 d.l4	Aux heures de pointe (jours ouvrés 05:00–11:00 heure du Pacifique), la limite de 5 heures se remplit plus vite ; Anthropic n’a pas publié le coefficient, l’extension l’apprend en mesurant.
 d.l5	Utiliser le même compte en même temps sur un autre appareil ou dans Claude Code peut perturber les mesures ; le filtre des valeurs aberrantes en écarte la plupart.
 d.l6	Les jetons de réflexion ne sont jamais visibles sur claude.ai ; ils ne s’apprennent qu’indirectement à partir des variations d’utilisation.
@@ -187,7 +187,7 @@ d.spB	Soutenir ☕
 d.ft1	Token Forecast est un projet indépendant, non affilié à Anthropic. Claude est une marque d’Anthropic.
 d.ft2	Sources : guide de choix de modèle et documentation d’Anthropic · jeu de données CASTILLO (CC BY 4.0) · mesures de lugia19/Claude-Usage-Extension (GPL-3.0 ; observations uniquement, aucun code copié).
 d.fDomL	SUJET
-d.nav5	Preuve
+d.nav5	Mesure
 d.eXh	Très élevé
 d.f11h	Reconnaît le sujet
 d.f11p	Classe un message dans 16 domaines et sous-domaines (Sciences · Physique, Ingénierie · Électricité…) avec environ 2 600 mots-clés. Pour les questions de santé, de droit et d’argent, elle ne propose jamais un modèle léger.
@@ -322,3 +322,65 @@ d.q11	Qu’est-ce que la limite d’utilisation de Claude et quand se réinitial
 d.a11	claude.ai a deux limites : une limite de session de 5 heures et une limite hebdomadaire. Anthropic ne publie pas leur taille exacte ; Paramètres → Utilisation montre ce que vous avez consommé et quand la limite se réinitialise. Token Forecast affiche ce même pourcentage dans la conversation et estime, avant l’envoi, la part qu’un message va consommer.
 d.q12	Fonctionne-t-elle comme compteur de tokens pour Claude ?
 d.a12	Oui. Elle compte dans votre navigateur les tokens de votre message, des pièces jointes et de l’historique ; dans la démo ci-dessus, ils apparaissent sur la ligne « ENTRÉE → RÉPONSE ». Le tokenizer de Claude n’est pas public : le nombre est donc une estimation, ajustée selon la langue. Son vrai rôle est de vous dire quelle part de votre limite représentent ces tokens.
+d.stOn	sur claude.ai
+d.stRep	interface illustrative
+d.stPh	Écrivez votre message…
+d.stNote	L’interface est illustrative ; les chiffres viennent du vrai moteur de prévision de l’extension (hypothèses : forfait Pro, nouvelle conversation, 62 % de la limite de 5 heures utilisés).
+d.stTry	Essayer avec votre message ↓
+d.syE	LE PARCOURS D’UN MESSAGE
+d.syH	De la première frappe à la fin de la semaine.
+d.syP	Faites défiler pour voir, étape par étape, ce que l’extension fait d’un seul message.
+d.sy1k	1 · ÉCRIRE
+d.sy1h	Commencez à écrire.
+d.sy1p	Pendant que vous écrivez, l’extension compte votre message, vos pièces jointes et l’historique de la conversation dans votre navigateur. Rien de ce que vous écrivez ne quitte votre appareil.
+d.sy2k	2 · PRÉVISION
+d.sy2h	Voyez ce que cela coûtera avant d’envoyer.
+d.sy2p	La pastille indique la part de vos limites de 5 heures et hebdomadaire que ce message prendra, avec une fourchette à 80 %. Une fourchette plutôt qu’un seul chiffre, car la longueur de la réponse ne peut pas être connue à l’avance.
+d.sy3k	3 · SUGGESTION DE MODÈLE
+d.sy3h	Le modèle le plus léger qui suffit.
+d.sy3p	Pour une simple traduction, elle dit que Haiku suffit et combien vous économisez. En cas de doute, elle ne suggère pas de modèle léger : « un site avec un système de traduction » est un travail de construction, pas une traduction.
+d.sy4k	4 · TIKO
+d.sy4h	Tiko s’assoit à côté de vous.
+d.sy4p	Le petit robot à côté de la zone de message montre trois choses que l’extension sait déjà : la prévision, la suggestion, la limite. Il suit votre curseur pendant que vous écrivez et s’assoit sur la réponse, en balançant les pieds, pendant qu’elle arrive. Il ne lit aucun texte et vous pouvez le désactiver dans les paramètres.
+d.sy5k	5 · RAPPORT HEBDOMADAIRE
+d.sy5h	À la fin de la semaine, le verre se remplit.
+d.sy5p	Pour les messages où vous êtes passé au réglage plus léger suggéré, le rapport hebdomadaire montre l’équivalent en eau et en énergie du calcul évité. Chaque chiffre est une estimation avec une valeur basse, moyenne et haute ; Anthropic ne publie pas ces chiffres.
+d.sy6k	6 · NATURE
+d.sy6h	Les petits choix s’additionnent.
+d.sy6p	Ne pas choisir le modèle le plus puissant pour une tâche simple est l’économie la plus facile. Les hypothèses et les sources du calcul sont dans la section Nature.
+d.syGo	Aller à la section Nature ↓
+d.dnE	ESSAYEZ VOUS-MÊME
+d.dnH	Essayez avec votre propre message.
+d.dnP	Le cadre ci-dessous exécute le vrai moteur de prévision de l’extension. Écrivez votre message ; changez le modèle, l’effort et le forfait. La prévision et la suggestion se mettent à jour instantanément, et rien de ce que vous tapez ne quitte votre navigateur.
+d.mzE	MESURE
+d.mzH	Quelle précision ? Les chiffres tels quels.
+d.mzP	En novembre 2026, nous avons mesuré deux choses de l’extérieur pour la première fois : le modèle suggéré suffit-il vraiment, et l’extension reconnaît-elle bien le type de tâche dans des messages qu’elle n’a jamais vus. Les résultats sont nettement inférieurs à nos anciens tests ; nous publions les deux.
+d.mzAh	Le modèle suggéré suffit-il ?
+d.mzLg1	adapté
+d.mzLg2	trop léger
+d.mzLg3	plus lourd que nécessaire
+d.mzLg4	non mesurable
+d.mz1	Dans les 13 prompts où Haiku était suggéré, la réponse de Haiku a obtenu 4 sur 5 ou plus.
+d.mz2	Suggestions trop légères (9 % ; intervalle de confiance à 95 % : 4–19 %). Dans quatre cas, Sonnet était suggéré et seul Opus suffisait.
+d.mz3	Suggestions plus lourdes que nécessaire (57 %). À lire comme une borne supérieure : les réponses étaient limitées à 400 mots, et à cette longueur l’avantage d’un modèle plus puissant sur les tâches longues ne se voit pas.
+d.mzAf	Méthode : 80 prompts ont reçu des réponses séparées de Haiku 5.5, Sonnet 5.5 et Opus 5.5 ; les réponses ont été mélangées sans étiquette et notées par un modèle (Fable 5.2). Les chiffres portent sur les 58 prompts auxquels on peut répondre seuls. Le juge n’est pas un humain et a noté une seule fois ; les suggestions d’effort et le niveau Fable n’ont pas été mesurés.
+d.mzBh	Type de tâche sur des messages jamais vus
+d.mzL1	Ancien test 1 · 120 messages courts écrits par nous
+d.mzL2	Ancien test 2 · 120 messages du quotidien écrits par nous
+d.mzL3	Jeu aveugle 4 · 350 messages écrits par d’autres
+d.mzL4	Jeu aveugle 5 · 300 messages longs écrits par d’autres
+d.mzBp	Pourquoi les anciens tests semblaient-ils si bons ? Le projet a écrit lui-même les deux premiers jeux, en écrivant les règles, et chaque message est court. Les jeux aveugles ont été écrits par des auteurs qui n’ont jamais vu le dépôt : 45 à 60 % des messages dépassent 20 mots, avec un e-mail, un tableau, du code ou une sortie d’erreur collés. L’usage réel ressemble davantage au second cas. Le problème des messages longs n’est pas résolu.
+d.mzS1	Côté sécurité : sur le jeu aveugle 5 (300 messages), Haiku a été suggéré 10 fois, dont 2 à tort. Nous n’avons pas publié de nouveaux poids qui faisaient passer la précision de 36 % à 67 %, car ils portaient les mauvaises suggestions de Haiku à 12.
+d.mzS2	L’étiquette de confiance fonctionne : sur le jeu aveugle 4, l’extension avait raison dans 75 % des cas quand elle disait « confiance élevée », 60 % pour « moyenne » et 23 % pour « faible » ; avec une confiance faible, aucun modèle léger n’est suggéré. La reconnaissance du sujet était acceptable pour 84 % du jeu aveugle 5.
+d.mzF	Les résultats bruts et les limites de la méthode sont dans le dépôt : tests/quality/RAPOR.md (qualité des suggestions), tests/blind4.mjs et tests/blind5.mjs (jeux aveugles). Aucune règle ni aucun poids n’a été ajouté en regardant les jeux aveugles.
+d.f16h	Tiko
+d.f16p	Un petit robot en pixels qui vit à côté de la zone de message. Il peine quand la prévision est lourde, hoche la tête quand un modèle plus léger suffit, s’assoit sur la réponse pendant qu’elle arrive et s’inquiète quand votre limite se remplit. Il ne lit aucun texte et se désactive dans les paramètres.
+d.f17h	L’eau et l’énergie économisées
+d.f17p	Dans le rapport hebdomadaire : l’équivalent en eau et en énergie du calcul évité sur les messages où vous êtes passé au réglage plus léger suggéré, en gouttes, verres et recharges de téléphone. Uniquement des estimations avec fourchettes ; les sources sont dans le rapport.
+d.f18h	Fable 5.2
+d.f18p	Le modèle le plus avancé est lui aussi couvert par la prévision et les suggestions. Si claude.ai indique une part hebdomadaire distincte pour Fable, l’extension l’affiche et vous prévient avant qu’elle ne s’épuise.
+d.st3v	36 %
+s.pause	⏸ Pause
+s.play	▶ Lecture
+s.exL	Exemples de messages
+s.ecoEx	Exemple : si vous envoyez $1 courtes traductions avec le Haiku 5.5 suggéré et un effort faible au lieu d’Opus 5.5. Une estimation.

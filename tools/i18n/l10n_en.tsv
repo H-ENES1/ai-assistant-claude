@@ -79,22 +79,22 @@ d.f9h	On-device learned model
 d.f9p	It recognizes the task type with rules plus a small learned model. When you correct it, it learns on your device.
 d.f10h	Personal calibration
 d.f10p	After every message it measures how your limit actually changed, learning your plan's size and the answer lengths Claude gives you.
-d.vidC	47-second intro. The interface shown is illustrative; the numbers come from the extension's own engine.
+d.vidC	75-second intro. The interface shown is illustrative; the numbers come from the extension's own engine.
 d.sh3	Weekly report (with simulated sample data): topics, effort mix and proof of learning. Computed only in your browser, from records with no message text.
 d.mlE	MACHINE LEARNING
 d.mlH	Rules start it, a model learns, you correct it.
 d.mlP	Knowing what kind of task a message is underpins both the estimate and the model suggestion. The old version recognized it with rules only. Now the rule scores feed a small learned model that runs on your device. The model is 128 KB, never goes online and runs within a keystroke.
 d.st1v	64%<span class="arrow">→</span><span class="good">88%</span>
 d.st1	Task type recognized correctly: rules → rules + model. On 120 everyday messages written without looking (no diacritics, greetings, typos).
-d.st2	Dangerous errors: taking a hard task (code, math, research) for a simple one. Two test sets, 240 messages.
-d.st3	Correct Haiku suggestions on truly simple tasks. Wrong Haiku suggestions 0 → 1 (“17% of 2350”).
+d.st2	Dangerous errors: taking a hard task (code, math, research) for a simple one. On the same two test sets, 240 messages: rules → the released version.
+d.st3	The same version on 300 long messages written by people who never saw the repository (blind set 5). Good on short messages, weak on long and pasted content; details in the Measurement section.
 d.ly1h	Personal calibration
 d.ly1p	From your limit percentage read before and after every message, it learns your plan's size, the peak-hour effect and the answer lengths Claude gives you.
 d.ly2h	Personal corrections
 d.ly2p	When you say “wrong task type?” in the suggestion and pick the right one, the model updates on your device; 👍/👎 tune the suggestion bounds. What's stored is weight differences, not text.
 d.ly3h	Community (optional)
 d.ly3p	If you share a text-free summary of what was learned, new users start from real measurements instead of guesses.
-d.mlF	Honest note: the training and test messages were also written by the project; accuracy on real user messages hasn't been measured yet. That's exactly what community contributions are for. Answer quality (was Haiku really enough?) wasn't measured.
+d.mlF	Honest note: the project wrote the test messages in the first two tiles itself, and they are short. Accuracy on real user messages hasn't been measured yet; that's exactly what community contributions are for. The first measurement of whether the suggested model is really enough is in the Measurement section.
 d.cmE	COMMUNITY
 d.cmH	More accurate, together.
 d.cmP	Anthropic doesn't publish limit sizes; every user learns their plan by measuring. Combine those measurements and a newcomer gets accurate estimates from their first message. Nothing is sent automatically.
@@ -151,7 +151,7 @@ d.d5	“What percentage of my limit is one cost unit?” Specific to your plan. 
 d.simC	Simulation: 300 virtual plans deviating up to 2× from the prior, using the extension's real calibration code. Median estimate error is 1.68× on the first message, 1.13× after 20 messages, 1.08× after 100.
 d.mdE	MODEL SUGGESTION
 d.mdH	Not the lightest model. The lightest model that's enough.
-d.mdP	Suggesting a light model is a worse mistake than suggesting an expensive one: a bad answer means asking again. The extension suggests Haiku only for clearly simple tasks it's confident about; when unsure it says at least Sonnet. Its basis is Anthropic's model selection guide, a 60-prompt suggestion test set (100% fit, zero too-light suggestions) and the on-device learned model.
+d.mdP	Suggesting a light model is a worse mistake than suggesting an expensive one: a bad answer means asking again. The extension suggests Haiku only for clearly simple tasks it's confident about; when unsure it says at least Sonnet. Its basis is Anthropic's model selection guide, a 72-prompt suggestion test set (zero too-light suggestions) and the on-device learned model. We also measured whether the suggested model is really enough; the results are in the Measurement section.
 d.mdF	Relative cost: assumed proportional to API price and corrected by calibration. On claude.ai the system prompt and memory push the context above 100K tokens, so Haiku's long-context price applies. Switching models in a long chat means the new model re-reads the whole history; in that case the extension says “pick it in your next new chat”.
 d.pvE	PRIVACY
 d.pvH	Everything is computed in your browser.
@@ -177,7 +177,7 @@ d.lmE	LIMITATIONS
 d.lmH	We also tell you what we don't know.
 d.l1	It relies on claude.ai's undocumented internals. If Anthropic changes the page, an update is needed; the health check shows it right away.
 d.l2	Ranges are wide for the first messages; limit sizes start as rough estimates.
-d.l3	Model suggestions come from rules plus a small learned model; answer quality was not measured. Your 👍/👎 and task-type corrections tune them to you.
+d.l3	Model suggestions come from rules plus a small learned model. Answer quality was measured only once, on 58 prompts with a model as judge (Measurement section); it has not been measured with human judges. Your 👍/👎 and task-type corrections tune the suggestions to you.
 d.l4	During peak hours (weekdays 05:00–11:00 Pacific) the 5-hour limit fills faster; Anthropic hasn't published the multiplier, so the extension learns it by measuring.
 d.l5	Using the same account on another device or in Claude Code at the same time can disturb measurements; the outlier filter removes most of them.
 d.l6	Thinking tokens are never visible on claude.ai; they're only learned indirectly from usage changes.
@@ -187,7 +187,7 @@ d.spB	Support ☕
 d.ft1	Token Forecast is an independent project and is not affiliated with Anthropic. Claude is a trademark of Anthropic.
 d.ft2	Sources: Anthropic's model selection guide and docs · CASTILLO dataset (CC BY 4.0) · lugia19/Claude-Usage-Extension measurements (GPL-3.0; observations only, no code copied).
 d.fDomL	TOPIC
-d.nav5	Proof
+d.nav5	Measurement
 d.eXh	Extra high
 d.f11h	Recognizes the topic
 d.f11p	Sorts a message into 16 topic areas and sub-topics (Science · Physics, Engineering · Electrical…) with about 2,600 keywords. For health, law and money questions it never suggests a light model.
@@ -322,3 +322,65 @@ d.q11	What is the Claude usage limit (rate limit), and when does it reset?
 d.a11	claude.ai has two limits: a 5-hour session limit and a weekly limit. Anthropic doesn’t publish their exact size; Settings → Usage shows how much you’ve used and when it resets. Token Forecast shows the same percentage inside the chat and estimates how much of it a message will use before you send it.
 d.q12	Does it work as a Claude token counter?
 d.a12	Yes. It counts the tokens of your message, attachments and chat history in your browser; in the demo above you see them in the “INPUT → REPLY” row. Claude’s tokenizer isn’t public, so the count is an estimate, tuned per language. Its real job is telling you what share of your limit those tokens are.
+d.stOn	on claude.ai
+d.stRep	illustrative interface
+d.stPh	Write your message…
+d.stNote	The interface is illustrative; the numbers come from the extension's real forecasting engine (assuming a Pro plan, a new chat and 62% of the 5-hour limit used).
+d.stTry	Try your own message ↓
+d.syE	A MESSAGE'S JOURNEY
+d.syH	From the first keystroke to the end of the week.
+d.syP	Scroll down to see, step by step, what the extension does with a single message.
+d.sy1k	1 · TYPE
+d.sy1h	Start typing.
+d.sy1p	While you type, the extension counts your message, attachments and chat history in your browser. Nothing you write leaves your device.
+d.sy2k	2 · FORECAST
+d.sy2h	See what it will cost before you send.
+d.sy2p	The pill shows the share of your 5-hour and weekly limit this message will take, with an 80% range. A range rather than a single number, because the length of the answer can't be known in advance.
+d.sy3k	3 · MODEL SUGGESTION
+d.sy3h	The lightest model that's enough.
+d.sy3p	For a simple translation it says Haiku is enough and how much you'd save. When unsure it doesn't suggest a light model: “a site with a translation system” is a build job, not a translation.
+d.sy4k	4 · TIKO
+d.sy4h	Tiko sits next to you.
+d.sy4p	The tiny bot beside the message box shows three things the extension already knows: the forecast, the suggestion, the limit. It follows your cursor while you type and sits on top of the answer, swinging its feet, while it arrives. It reads no text, and you can turn it off in the settings.
+d.sy5k	5 · WEEKLY REPORT
+d.sy5h	By the end of the week, the glass fills.
+d.sy5p	For the messages where you switched to the lighter setting it suggested, the weekly report shows the water and energy equivalent of the compute you avoided. Every figure is an estimate with a low, middle and high range; Anthropic doesn't publish these numbers.
+d.sy6k	6 · NATURE
+d.sy6h	Small choices add up.
+d.sy6p	Not picking the strongest model for a simple task is the easiest saving. The assumptions and sources behind the math are in the Nature section.
+d.syGo	Go to the Nature section ↓
+d.dnE	TRY IT YOURSELF
+d.dnH	Try it with your own message.
+d.dnP	The box below runs the extension's real forecasting engine. Type your message; change the model, effort and plan. The forecast and suggestion update instantly, and nothing you type leaves your browser.
+d.mzE	MEASUREMENT
+d.mzH	How accurate is it? The numbers as they are.
+d.mzP	In November 2026 we measured two things from the outside for the first time: is the suggested model really enough, and how well does the extension recognize the task type in messages it has never seen. The results are clearly lower than our older tests; we report both.
+d.mzAh	Is the suggested model enough?
+d.mzLg1	fits
+d.mzLg2	too light
+d.mzLg3	heavier than needed
+d.mzLg4	not measurable
+d.mz1	In all 13 prompts where Haiku was suggested, Haiku's answer scored 4 out of 5 or higher.
+d.mz2	Too-light suggestions (9%; 95% confidence interval 4–19%). In four of them Sonnet was suggested and only Opus was enough.
+d.mz3	Suggestions heavier than needed (57%). Read this as an upper bound: answers were capped at 400 words, and at that length a stronger model's advantage on long tasks doesn't show.
+d.mzAf	Method: 80 prompts were answered separately by Haiku 5.5, Sonnet 5.5 and Opus 5.5; the answers were shuffled without labels and scored by a model (Fable 5.2). The numbers cover the 58 prompts that can be answered on their own. The judge is not a human and scored once; effort suggestions and the Fable tier were not measured.
+d.mzBh	Task type on messages it has never seen
+d.mzL1	Old test 1 · 120 short messages we wrote ourselves
+d.mzL2	Old test 2 · 120 everyday messages we wrote ourselves
+d.mzL3	Blind set 4 · 350 messages written by others
+d.mzL4	Blind set 5 · 300 long messages written by others
+d.mzBp	Why did the old tests look so high? The project wrote the first two sets itself, while writing the rules, and every message is short. The blind sets were written by authors who never saw the repository: 45–60% of the messages are longer than 20 words, with an email, table, code or error output pasted in. Real use is closer to the second kind. The long-message problem is not solved.
+d.mzS1	The safety side: on blind set 5 (300 messages) Haiku was suggested 10 times and 2 of those were wrong. We did not ship new weights that raised accuracy from 36% to 67%, because they raised wrong Haiku suggestions to 12.
+d.mzS2	The confidence label works: on blind set 4 the extension was right 75% of the time when it said “high confidence”, 60% for “medium” and 23% for “low”; with low confidence no light model is suggested. Topic recognition was acceptable for 84% of blind set 5.
+d.mzF	Raw results and the limits of the method are in the repository: tests/quality/RAPOR.md (suggestion quality), tests/blind4.mjs and tests/blind5.mjs (blind sets). No rule or weight was added by looking at the blind sets.
+d.f16h	Tiko
+d.f16p	A tiny pixel bot that lives next to the message box. It strains when the forecast is heavy, nods when a lighter model is enough, sits on top of the answer while it arrives and gets worried as your limit fills. It reads no text and can be turned off in the settings.
+d.f17h	Water and energy you saved
+d.f17p	In the weekly report: the water and energy equivalent of the compute you avoided on messages where you switched to the suggested lighter setting, in drops, glasses and phone charges. All estimates with ranges; sources are in the report.
+d.f18h	Fable 5.2
+d.f18p	The top model is covered by the forecast and the suggestions too. If claude.ai reports a separate weekly share for Fable, the extension shows it and warns you before it runs out.
+d.st3v	36%
+s.pause	⏸ Pause
+s.play	▶ Play
+s.exL	Example messages
+s.ecoEx	Example: if you send $1 short translations with the suggested Haiku 5.5 and Low effort instead of Opus 5.5. An estimate.

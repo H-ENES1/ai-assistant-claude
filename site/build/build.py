@@ -55,6 +55,13 @@ engine = subprocess.run(ESB_CMD + [os.path.join(HERE, 'entry.js'),
                         check=True, capture_output=True, encoding='utf8').stdout.strip()
 src = rd(os.path.join(HERE, 'index.src.html'))
 MSGS = json.loads(rd(os.path.join(HERE, 'msgs.json')))
+# Sahne ve hikâyede kullanılan su/enerji metinleri doğrudan eklentiden (10 dil); msgs.json'da olmayan anahtarlar eklenir.
+EXT_DIR = {'pt': 'pt_BR', 'zh': 'zh_CN'}
+EXT_KEYS = ('ecoTitle', 'ecoWater', 'ecoEnergy', 'ecoRange', 'ecoU_glass', 'ecoU_phone')
+for _l in LANGS:
+    _m = json.loads(rd(os.path.join(REPO, 'extension', '_locales', EXT_DIR.get(_l, _l), 'messages.json')))
+    for _k in EXT_KEYS:
+        MSGS[_l][_k] = _m[_k]['message']
 SIM = rd(os.path.join(HERE, 'sim.json')).strip()
 LEARN = rd(os.path.join(HERE, 'learn.json')).strip()
 SX = {os.path.basename(f)[:-5]: json.loads(rd(os.path.join(HERE, 'l10n', f)))

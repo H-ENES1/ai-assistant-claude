@@ -54,19 +54,21 @@ h1 em{color:#e8896a}
   const bots = {}, h1s = {};
   for (const l of LANGS) {
     const file = l === "tr" ? path.join(DOCS, "index.html") : path.join(DOCS, l, "index.html");
-    const ctx = await browser.newContext({ locale: HTML_LANG[l] || l, viewport: { width: 1280, height: 900 } });
+    // reducedMotion: sahne ve hikâye son durumlarında (hareketsiz) yazılır; JS'siz okuyucu ve az hareket tercihi bunu görür.
+    const ctx = await browser.newContext({ locale: HTML_LANG[l] || l, viewport: { width: 1280, height: 900 }, reducedMotion: "reduce" });
     const page = await ctx.newPage();
     page.on("pageerror", (e) => errs.push(`${l}: ${e}`));
     page.on("console", (m) => m.type() === "error" && !/fonts|favicon|net::ERR/.test(m.text()) && errs.push(`${l}: ${m.text()}`));
     await page.clock.setFixedTime(FIXED_TIME);
     await page.goto(base + (l === "tr" ? "" : l + "/"), { waitUntil: "domcontentloaded" });
-    await page.waitForFunction(() => document.querySelectorAll("#modelCards article").length === 4 && document.getElementById("tfbot") && document.querySelector("#proofStats .stat"), null, { timeout: 30000 });
+    await page.waitForFunction(() => document.querySelectorAll("#modelCards article").length === 4 && document.getElementById("tfbot") && document.querySelector("#proofStats .stat") && document.getElementById("tfStage") && document.querySelector("#stTiko svg"), null, { timeout: 30000 });
     await page.waitForTimeout(300);
     const r = await page.evaluate(() => {
       const bot = document.querySelector("#tfbot svg").outerHTML;
       document.getElementById("tfbot").remove();
       const lb = document.getElementById("lbox"); if (lb) lb.remove();
       const hint = document.getElementById("langHint"); hint.hidden = true;
+      document.getElementById("stage").classList.remove("tk-out", "live"); document.getElementById("stTiko").removeAttribute("style");
       // form durumunu özniteliğe yaz (innerHTML yalnızca öznitelikleri taşır)
       document.querySelectorAll("textarea").forEach((t) => { t.textContent = t.value; });
       document.querySelectorAll("select").forEach((s) => [...s.options].forEach((o) => o.toggleAttribute("selected", o.selected)));

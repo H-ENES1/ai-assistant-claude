@@ -5,3 +5,4 @@ export { advise } from "../../extension/lib/advisor.js";
 export { format } from "../../extension/lib/i18n.js";
 export { detectDomain, DOMAINS, SUBS, PROFILE } from "../../extension/lib/domain.js";
 export { effortSupport, recommendEffort, LEVELS } from "../../extension/lib/effort.js";
+export { ecoFromUnits } from "../../extension/lib/eco.js";

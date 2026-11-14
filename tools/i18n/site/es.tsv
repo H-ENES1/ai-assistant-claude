@@ -79,22 +79,22 @@ d.f9h	Modelo aprendido en el dispositivo
 d.f9p	Reconoce el tipo de tarea con reglas y un pequeño modelo aprendido. Cuando lo corriges, lo aprende en tu dispositivo.
 d.f10h	Calibración personal
 d.f10p	Tras cada mensaje mide cómo cambió realmente tu límite y aprende el tamaño de tu plan y la longitud de las respuestas que Claude te da.
-d.vidC	Presentación de 47 segundos. La interfaz mostrada es ilustrativa; las cifras salen del propio motor de la extensión.
+d.vidC	Presentación de 75 segundos. La interfaz mostrada es ilustrativa; las cifras salen del propio motor de la extensión.
 d.sh3	Informe semanal (con datos de ejemplo simulados): temas, mezcla de esfuerzo y prueba de aprendizaje. Se calcula solo en tu navegador, a partir de registros sin texto de mensajes.
 d.mlE	APRENDIZAJE AUTOMÁTICO
 d.mlH	Las reglas arrancan, un modelo aprende, tú corriges.
 d.mlP	Saber qué tipo de tarea es un mensaje sustenta tanto la estimación como la sugerencia de modelo. La versión anterior lo reconocía solo con reglas. Ahora las puntuaciones de las reglas alimentan un pequeño modelo aprendido que se ejecuta en tu dispositivo. El modelo pesa 128 KB, nunca se conecta a internet y se ejecuta en menos que una pulsación de tecla.
 d.st1v	64 %<span class="arrow">→</span><span class="good">88 %</span>
 d.st1	Tipo de tarea reconocido correctamente: reglas → reglas + modelo. En 120 mensajes cotidianos escritos sin mirar (sin tildes, con saludos y erratas).
-d.st2	Errores peligrosos: tomar una tarea difícil (código, mates, investigación) por una simple. Dos conjuntos de prueba, 240 mensajes.
-d.st3	Sugerencias de Haiku correctas en tareas realmente simples. Sugerencias erróneas de Haiku 0 → 1 («17 % de 2350»).
+d.st2	Errores peligrosos: tomar una tarea difícil (código, matemáticas, investigación) por una sencilla. En los mismos dos conjuntos de prueba, 240 mensajes: reglas → versión publicada.
+d.st3	La misma versión en 300 mensajes largos escritos por personas que nunca vieron el repositorio (conjunto ciego 5). Buena en mensajes cortos, floja en contenido largo y pegado; detalles en la sección Medición.
 d.ly1h	Calibración personal
 d.ly1p	A partir del porcentaje de límite leído antes y después de cada mensaje, aprende el tamaño de tu plan, el efecto de las horas punta y la longitud de las respuestas que Claude te da.
 d.ly2h	Correcciones personales
 d.ly2p	Cuando dices «¿tipo de tarea equivocado?» en la sugerencia y eliges el correcto, el modelo se actualiza en tu dispositivo; 👍/👎 ajustan los límites de la sugerencia. Lo que se guarda son diferencias de pesos, no texto.
 d.ly3h	Comunidad (opcional)
 d.ly3p	Si compartes un resumen sin texto de lo aprendido, los usuarios nuevos empiezan con mediciones reales en vez de suposiciones.
-d.mlF	Nota honesta: los mensajes de entrenamiento y prueba también los escribió el proyecto; la precisión con mensajes reales de usuarios aún no se ha medido. Para eso sirven precisamente las contribuciones de la comunidad. La calidad de las respuestas (¿bastaba de verdad Haiku?) no se ha medido.
+d.mlF	Nota honesta: el proyecto escribió los mensajes de prueba de los dos primeros recuadros, y son cortos. La precisión con mensajes de usuarios reales aún no se ha medido; para eso son exactamente las contribuciones de la comunidad. La primera medición de si el modelo sugerido realmente basta está en la sección Medición.
 d.cmE	COMUNIDAD
 d.cmH	Más precisos, juntos.
 d.cmP	Anthropic no publica el tamaño de los límites; cada usuario aprende su plan midiendo. Si se combinan esas mediciones, un recién llegado obtiene estimaciones precisas desde su primer mensaje. No se envía nada automáticamente.
@@ -151,7 +151,7 @@ d.d5	«¿Qué porcentaje de mi límite es una unidad de coste?» Depende de tu p
 d.simC	Simulación: 300 planes virtuales que se desvían hasta 2× de la suposición inicial, con el código de calibración real de la extensión. El error mediano de estimación es 1,68× en el primer mensaje, 1,13× tras 20 mensajes y 1,08× tras 100.
 d.mdE	SUGERENCIA DE MODELO
 d.mdH	No el modelo más ligero. El más ligero que baste.
-d.mdP	Sugerir un modelo ligero es un error peor que sugerir uno caro: una mala respuesta obliga a preguntar de nuevo. La extensión sugiere Haiku solo para tareas claramente simples de las que está segura; ante la duda, dice al menos Sonnet. Su base es la guía de elección de modelo de Anthropic, un conjunto de prueba de 60 prompts (100 % de acierto, ninguna sugerencia demasiado ligera) y el modelo aprendido en el dispositivo.
+d.mdP	Sugerir un modelo ligero es un error peor que sugerir uno caro: una mala respuesta significa volver a preguntar. La extensión sugiere Haiku solo para tareas claramente sencillas en las que está segura; si duda, dice al menos Sonnet. Se basa en la guía de selección de modelos de Anthropic, un conjunto de prueba de 72 prompts (ninguna sugerencia demasiado ligera) y el modelo aprendido en el dispositivo. También medimos si el modelo sugerido realmente basta; los resultados están en la sección Medición.
 d.mdF	Coste relativo: se supone proporcional al precio de la API y se corrige con la calibración. En claude.ai el prompt del sistema y la memoria llevan el contexto por encima de 100K tokens, así que se aplica el precio de contexto largo de Haiku. Cambiar de modelo en un chat largo significa que el modelo nuevo relee todo el historial; en ese caso la extensión dice «elígelo en tu próximo chat nuevo».
 d.pvE	PRIVACIDAD
 d.pvH	Todo se calcula en tu navegador.
@@ -177,7 +177,7 @@ d.lmE	LIMITACIONES
 d.lmH	También te decimos lo que no sabemos.
 d.l1	Se apoya en el funcionamiento interno no documentado de claude.ai. Si Anthropic cambia la página, hace falta una actualización; la comprobación del sistema lo muestra al instante.
 d.l2	Los rangos son amplios en los primeros mensajes; el tamaño de los límites empieza como una estimación aproximada.
-d.l3	Las sugerencias de modelo salen de reglas y un pequeño modelo aprendido; la calidad de las respuestas no se midió. Tus 👍/👎 y tus correcciones del tipo de tarea las ajustan a ti.
+d.l3	Las sugerencias de modelo salen de reglas y de un pequeño modelo aprendido. La calidad de las respuestas se midió una sola vez, con 58 prompts y un modelo como juez (sección Medición); no se ha medido con jueces humanos. Tus 👍/👎 y tus correcciones del tipo de tarea ajustan las sugerencias a ti.
 d.l4	En las horas punta (días laborables 05:00–11:00 hora del Pacífico) el límite de 5 horas se llena más rápido; Anthropic no ha publicado el multiplicador, así que la extensión lo aprende midiendo.
 d.l5	Usar la misma cuenta a la vez en otro dispositivo o en Claude Code puede alterar las mediciones; el filtro de valores atípicos elimina la mayoría.
 d.l6	Los tokens de razonamiento nunca son visibles en claude.ai; solo se aprenden de forma indirecta a partir de los cambios de uso.
@@ -187,7 +187,7 @@ d.spB	Apoyar ☕
 d.ft1	Token Forecast es un proyecto independiente y no está afiliado a Anthropic. Claude es una marca de Anthropic.
 d.ft2	Fuentes: guía de elección de modelo y documentación de Anthropic · conjunto de datos CASTILLO (CC BY 4.0) · mediciones de lugia19/Claude-Usage-Extension (GPL-3.0; solo observaciones, sin copiar código).
 d.fDomL	TEMA
-d.nav5	Prueba
+d.nav5	Medición
 d.eXh	Muy alto
 d.f11h	Reconoce el tema
 d.f11p	Clasifica un mensaje en 16 áreas temáticas y subtemas (Ciencias · Física, Ingeniería · Eléctrica…) con unas 2600 palabras clave. En preguntas de salud, derecho y dinero nunca sugiere un modelo ligero.
@@ -322,3 +322,65 @@ d.q11	¿Qué es el límite de uso de Claude y cuándo se restablece?
 d.a11	claude.ai tiene dos límites: uno de sesión de 5 horas y otro semanal. Anthropic no publica su tamaño exacto; Ajustes → Uso muestra cuánto has gastado y cuándo se restablece. Token Forecast muestra ese mismo porcentaje dentro del chat y estima, antes de enviar, cuánto gastará un mensaje.
 d.q12	¿Sirve como contador de tokens de Claude?
 d.a12	Sí. Cuenta en tu navegador los tokens de tu mensaje, los adjuntos y el historial del chat; en la demo de arriba los ves en la fila «ENTRADA → RESPUESTA». El tokenizador de Claude no es público, así que la cifra es una estimación ajustada a cada idioma. Su verdadera función es decirte qué parte de tu límite suponen esos tokens.
+d.stOn	en claude.ai
+d.stRep	interfaz ilustrativa
+d.stPh	Escribe tu mensaje…
+d.stNote	La interfaz es ilustrativa; las cifras salen del motor de previsión real de la extensión (suponiendo plan Pro, chat nuevo y el 62 % del límite de 5 horas usado).
+d.stTry	Prueba con tu propio mensaje ↓
+d.syE	EL VIAJE DE UN MENSAJE
+d.syH	De la primera tecla al final de la semana.
+d.syP	Desplázate hacia abajo para ver, paso a paso, qué hace la extensión con un solo mensaje.
+d.sy1k	1 · ESCRIBE
+d.sy1h	Empieza a escribir.
+d.sy1p	Mientras escribes, la extensión cuenta tu mensaje, los adjuntos y el historial del chat en tu navegador. Nada de lo que escribes sale de tu dispositivo.
+d.sy2k	2 · PREVISIÓN
+d.sy2h	Mira cuánto costará antes de enviar.
+d.sy2p	La píldora muestra la parte de tu límite de 5 horas y semanal que usará este mensaje, con un rango del 80 %. Un rango y no una sola cifra, porque la longitud de la respuesta no se puede saber de antemano.
+d.sy3k	3 · SUGERENCIA DE MODELO
+d.sy3h	El modelo más ligero que basta.
+d.sy3p	Para una traducción sencilla dice que Haiku basta y cuánto ahorrarías. Si no está segura, no sugiere un modelo ligero: «un sitio con un sistema de traducción» es un trabajo de construcción, no una traducción.
+d.sy4k	4 · TIKO
+d.sy4h	Tiko se sienta a tu lado.
+d.sy4p	El pequeño bot junto al cuadro de mensaje muestra tres cosas que la extensión ya sabe: la previsión, la sugerencia y el límite. Sigue tu cursor mientras escribes y se sienta sobre la respuesta, balanceando los pies, mientras llega. No lee ningún texto y puedes desactivarlo en los ajustes.
+d.sy5k	5 · INFORME SEMANAL
+d.sy5h	Al final de la semana, el vaso se llena.
+d.sy5p	Para los mensajes en los que cambiaste al ajuste más ligero sugerido, el informe semanal muestra el equivalente en agua y energía del cómputo evitado. Cada cifra es una estimación con valor bajo, medio y alto; Anthropic no publica estos datos.
+d.sy6k	6 · NATURALEZA
+d.sy6h	Las pequeñas decisiones suman.
+d.sy6p	No elegir el modelo más potente para una tarea sencilla es el ahorro más fácil. Los supuestos y las fuentes del cálculo están en la sección Naturaleza.
+d.syGo	Ir a la sección Naturaleza ↓
+d.dnE	PRUÉBALO TÚ
+d.dnH	Prueba con tu propio mensaje.
+d.dnP	El cuadro de abajo ejecuta el motor de previsión real de la extensión. Escribe tu mensaje; cambia el modelo, el esfuerzo y el plan. La previsión y la sugerencia se actualizan al instante, y nada de lo que escribes sale de tu navegador.
+d.mzE	MEDICIÓN
+d.mzH	¿Qué tan precisa es? Las cifras tal cual.
+d.mzP	En noviembre de 2026 medimos dos cosas desde fuera por primera vez: si el modelo sugerido realmente basta, y qué tan bien reconoce la extensión el tipo de tarea en mensajes que nunca ha visto. Los resultados son claramente más bajos que los de nuestras pruebas anteriores; publicamos ambos.
+d.mzAh	¿Basta el modelo sugerido?
+d.mzLg1	adecuado
+d.mzLg2	demasiado ligero
+d.mzLg3	más pesado de lo necesario
+d.mzLg4	no medible
+d.mz1	En los 13 prompts en los que se sugirió Haiku, la respuesta de Haiku obtuvo 4 de 5 o más.
+d.mz2	Sugerencias demasiado ligeras (9 %; intervalo de confianza del 95 %: 4–19 %). En cuatro de ellas se sugirió Sonnet y solo Opus bastó.
+d.mz3	Sugerencias más pesadas de lo necesario (57 %). Léelo como un límite superior: las respuestas estaban limitadas a 400 palabras, y con esa longitud no se aprecia la ventaja de un modelo más potente en tareas largas.
+d.mzAf	Método: Haiku 5.5, Sonnet 5.5 y Opus 5.5 respondieron por separado a 80 prompts; las respuestas se mezclaron sin etiquetas y las puntuó un modelo (Fable 5.2). Las cifras corresponden a los 58 prompts que pueden responderse por sí solos. El juez no es humano y puntuó una sola vez; no se midieron las sugerencias de esfuerzo ni el nivel Fable.
+d.mzBh	Tipo de tarea en mensajes nunca vistos
+d.mzL1	Prueba antigua 1 · 120 mensajes cortos escritos por nosotros
+d.mzL2	Prueba antigua 2 · 120 mensajes cotidianos escritos por nosotros
+d.mzL3	Conjunto ciego 4 · 350 mensajes escritos por otros
+d.mzL4	Conjunto ciego 5 · 300 mensajes largos escritos por otros
+d.mzBp	¿Por qué las pruebas antiguas parecían tan buenas? El proyecto escribió los dos primeros conjuntos mientras escribía las reglas, y todos los mensajes son cortos. Los conjuntos ciegos los escribieron autores que nunca vieron el repositorio: entre el 45 y el 60 % de los mensajes supera las 20 palabras, con un correo, una tabla, código o una salida de error pegados. El uso real se parece más al segundo caso. El problema de los mensajes largos no está resuelto.
+d.mzS1	El lado de la seguridad: en el conjunto ciego 5 (300 mensajes) se sugirió Haiku 10 veces y 2 fueron erróneas. No publicamos unos pesos nuevos que subían la precisión del 36 % al 67 %, porque elevaban las sugerencias erróneas de Haiku a 12.
+d.mzS2	La etiqueta de confianza funciona: en el conjunto ciego 4 la extensión acertó el 75 % de las veces cuando decía «confianza alta», el 60 % con «media» y el 23 % con «baja»; con confianza baja no se sugiere un modelo ligero. El reconocimiento del tema fue aceptable en el 84 % del conjunto ciego 5.
+d.mzF	Los resultados en bruto y los límites del método están en el repositorio: tests/quality/RAPOR.md (calidad de las sugerencias), tests/blind4.mjs y tests/blind5.mjs (conjuntos ciegos). No se añadió ninguna regla ni peso mirando los conjuntos ciegos.
+d.f16h	Tiko
+d.f16p	Un pequeño bot de píxeles que vive junto al cuadro de mensaje. Se esfuerza cuando la previsión es pesada, asiente cuando basta un modelo más ligero, se sienta sobre la respuesta mientras llega y se preocupa cuando tu límite se llena. No lee ningún texto y se desactiva en los ajustes.
+d.f17h	El agua y la energía que ahorraste
+d.f17p	En el informe semanal: el equivalente en agua y energía del cómputo que evitaste en los mensajes en los que cambiaste al ajuste más ligero sugerido, en gotas, vasos y cargas de teléfono. Todo son estimaciones con rangos; las fuentes están en el informe.
+d.f18h	Fable 5.2
+d.f18p	El modelo más avanzado también entra en la previsión y en las sugerencias. Si claude.ai informa de una cuota semanal propia para Fable, la extensión la muestra y te avisa antes de que se agote.
+d.st3v	36 %
+s.pause	⏸ Pausa
+s.play	▶ Reproducir
+s.exL	Mensajes de ejemplo
+s.ecoEx	Ejemplo: si envías $1 traducciones cortas con el Haiku 5.5 sugerido y esfuerzo bajo en lugar de Opus 5.5. Una estimación.
