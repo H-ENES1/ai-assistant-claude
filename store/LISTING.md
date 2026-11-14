@@ -44,6 +44,12 @@ IT LEARNS ON YOUR DEVICE
 • Personal calibration of your plan size and typical answer lengths, from your own usage.
 • A small on-device task model that learns from your corrections.
 
+TIKO
+• A tiny pixel bot that lives next to the message box. It strains when the forecast is heavy, nods when a lighter model is enough, sits on top of the answer while it arrives and gets worried as your limit fills. It reads no text and can be turned off in the settings.
+
+WATER AND ENERGY YOU SAVED
+• In the weekly report: the water and energy equivalent of the compute you avoided on messages where you switched to the suggested lighter setting, in drops, glasses and phone charges. All estimates with ranges; sources are in the report.
+
 PRIVACY
 Everything is computed in your browser. Your messages, attachments and chats never leave your device. No server, no analytics, no tracking. It runs only on claude.ai with your own session and never sends messages or changes settings for you. It asks for your consent before reading anything.
 
@@ -82,6 +88,12 @@ SONRA
 CİHAZINDA ÖĞRENİR
 • Kendi kullanımından plan büyüklüğünü ve tipik cevap uzunluklarını öğrenen kişisel kalibrasyon.
 • Düzeltmelerinden öğrenen küçük, cihaz içi iş türü modeli.
+
+TIKO
+• Mesaj kutusunun yanında yaşayan minik piksel bot. Tahmin ağırsa zorlanır, hafif model yetiyorsa baş sallar, cevap gelirken cevabın üstüne oturur, limit dolarken endişelenir. Metin okumaz, ayarlardan kapatılır.
+
+KURTARDIĞIN SU VE ENERJİ
+• Haftalık raporda, önerilen daha hafif ayara geçtiğin mesajlarda kaçınılan işlemin su ve enerji karşılığı: damla, bardak, telefon şarjı. Hepsi aralıklı tahmin, kaynakları raporda.
 
 GİZLİLİK
 Her şey tarayıcında hesaplanır. Mesajların, eklerin ve sohbetlerin cihazından çıkmaz. Sunucu yok, analitik yok, izleme yok. Yalnızca claude.ai'de, kendi oturumunla çalışır; senin yerine mesaj göndermez, ayar değiştirmez. Bir şey okumadan önce onayını ister.
