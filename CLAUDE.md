@@ -20,7 +20,8 @@ tests/                  unit, learn, report, contrib, advisor (+rec-cases.json) 
 tests/ml/               train.tsv (600), test.tsv + test2.tsv (120+120, ayrı yazılmış), train.mjs (eğit + karşılaştır)
 tools/                  build-release.mjs (küçültülmüş mağaza paketi), aggregate.mjs (topluluk katkılarını birleştir)
 .github/ISSUE_TEMPLATE/ katki.yml (topluluk verisi), anket.yml, hata.yml
-site/                   index.html (tanıtım sitesi, tek dosya) + build/ (kaynak, demo motoru esbuild ile gömülür)
+site/                   index.html (artifact sürümü, tek dosya) + build/ (kaynak; `python site/build/build.py` → docs/, ayrıntı build/OKU.md)
+docs/                   GitHub Pages çıktısı (elle düzenlenmez, build.py üretir): / = tr, /en/ … /zh/, app.js, sitemap.xml
 ```
 
 ## Testler (her değişiklikten sonra çalıştır)
@@ -106,3 +107,8 @@ npm run e2e    # Playwright, sahte claude.ai (69 kontrol). PW_EXPERIMENTAL_SERVI
 - `tokens.js`: CJK_PER_CHAR (0,73) o200k ile ölçülmüş (b789b13); CLAUDE_FACTOR CJK'ya uygulanmaya devam.
 - e2e: sahte /usage `seven_day_fable` %85; 5 yeni kontrol (toplam 69). `PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS` artık e2e.cjs içinde ayarlanıyor: Windows'ta npm betikleri cmd.exe ile çalıştığı için `VAR=1 node …` önekli betik orada bozuluyordu.
 - Ortam: Node 22 LTS kullan. Node 26'da Playwright 1.56'nın tarayıcı kurulumu bozuluyor (`fs.rmdir` `recursive` seçeneği kaldırıldı).
+
+## Site ve arama motoru (12.11.2026, dal site-seo)
+- Dil başına statik sayfa: `/` = tr, `/en/` … `/zh/`; metin HTML'de hazır (prerender.cjs), hreflang + x-default=/en/, dile özel title/description (`site/build/seo.json`), OG/Twitter, JSON-LD SoftwareApplication + FAQPage. Tarayıcı diline göre yönlendirme YOK (yalnızca öneri şeridi). Ayrıntı ve Lighthouse önce/sonra: `SITE-SEO.md`.
+- Site metni değişince: `python site/build/build.py`, sonra `node site/build/site-test.cjs` ve `node site/build/multilang-test.cjs`.
+- Proje sitesinde `robots.txt` alan kökünde değil, tarayıcılar okumaz; site haritası Search Console'dan gönderilir.

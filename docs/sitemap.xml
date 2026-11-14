@@ -1,5 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://h-enes1.github.io/ai-assistant-claude/</loc><lastmod>2026-10-30</lastmod><priority>1.0</priority></url>
-  <url><loc>https://h-enes1.github.io/ai-assistant-claude/privacy.html</loc><lastmod>2026-10-23</lastmod><priority>0.3</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://h-enes1.github.io/ai-assistant-claude/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://h-enes1.github.io/ai-assistant-claude/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://h-enes1.github.io/ai-assistant-claude/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://h-enes1.github.io/ai-assistant-claude/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://h-enes1.github.io/ai-assistant-claude/es/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://h-enes1.github.io/ai-assistant-claude/it/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://h-enes1.github.io/ai-assistant-claude/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://h-enes1.github.io/ai-assistant-claude/ru/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://h-enes1.github.io/ai-assistant-claude/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://h-enes1.github.io/ai-assistant-claude/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+  </url>
+  <url>
+    <loc>https://h-enes1.github.io/ai-assistant-claude/en/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://h-enes1.github.io/ai-assistant-claude/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://h-enes1.github.io/ai-assistant-claude/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://h-enes1.github.io/ai-assistant-claude/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://h-enes1.github.io/ai-assistant-claude/es/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://h-enes1.github.io/ai-assistant-claude/it/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://h-enes1.github.io/ai-assistant-claude/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://h-enes1.github.io/ai-assistant-claude/ru/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://h-enes1.github.io/ai-assistant-claude/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://h-enes1.github.io/ai-assistant-claude/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+  </url>
+  <url>
+    <loc>https://h-enes1.github.io/ai-assistant-claude/de/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://h-enes1.github.io/ai-assistant-claude/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://h-enes1.github.io/ai-assistant-claude/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://h-enes1.github.io/ai-assistant-claude/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://h-enes1.github.io/ai-assistant-claude/es/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://h-enes1.github.io/ai-assistant-claude/it/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://h-enes1.github.io/ai-assistant-claude/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://h-enes1.github.io/ai-assistant-claude/ru/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://h-enes1.github.io/ai-assistant-claude/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://h-enes1.github.io/ai-assistant-claude/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+  </url>
+  <url>
+    <loc>https://h-enes1.github.io/ai-assistant-claude/fr/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://h-enes1.github.io/ai-assistant-claude/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://h-enes1.github.io/ai-assistant-claude/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://h-enes1.github.io/ai-assistant-claude/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://h-enes1.github.io/ai-assistant-claude/es/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://h-enes1.github.io/ai-assistant-claude/it/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://h-enes1.github.io/ai-assistant-claude/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://h-enes1.github.io/ai-assistant-claude/ru/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://h-enes1.github.io/ai-assistant-claude/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://h-enes1.github.io/ai-assistant-claude/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+  </url>
+  <url>
+    <loc>https://h-enes1.github.io/ai-assistant-claude/es/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://h-enes1.github.io/ai-assistant-claude/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://h-enes1.github.io/ai-assistant-claude/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://h-enes1.github.io/ai-assistant-claude/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://h-enes1.github.io/ai-assistant-claude/es/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://h-enes1.github.io/ai-assistant-claude/it/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://h-enes1.github.io/ai-assistant-claude/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://h-enes1.github.io/ai-assistant-claude/ru/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://h-enes1.github.io/ai-assistant-claude/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://h-enes1.github.io/ai-assistant-claude/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+  </url>
+  <url>
+    <loc>https://h-enes1.github.io/ai-assistant-claude/it/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://h-enes1.github.io/ai-assistant-claude/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://h-enes1.github.io/ai-assistant-claude/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://h-enes1.github.io/ai-assistant-claude/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://h-enes1.github.io/ai-assistant-claude/es/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://h-enes1.github.io/ai-assistant-claude/it/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://h-enes1.github.io/ai-assistant-claude/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://h-enes1.github.io/ai-assistant-claude/ru/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://h-enes1.github.io/ai-assistant-claude/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://h-enes1.github.io/ai-assistant-claude/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+  </url>
+  <url>
+    <loc>https://h-enes1.github.io/ai-assistant-claude/pt/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://h-enes1.github.io/ai-assistant-claude/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://h-enes1.github.io/ai-assistant-claude/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://h-enes1.github.io/ai-assistant-claude/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://h-enes1.github.io/ai-assistant-claude/es/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://h-enes1.github.io/ai-assistant-claude/it/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://h-enes1.github.io/ai-assistant-claude/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://h-enes1.github.io/ai-assistant-claude/ru/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://h-enes1.github.io/ai-assistant-claude/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://h-enes1.github.io/ai-assistant-claude/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+  </url>
+  <url>
+    <loc>https://h-enes1.github.io/ai-assistant-claude/ru/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://h-enes1.github.io/ai-assistant-claude/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://h-enes1.github.io/ai-assistant-claude/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://h-enes1.github.io/ai-assistant-claude/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://h-enes1.github.io/ai-assistant-claude/es/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://h-enes1.github.io/ai-assistant-claude/it/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://h-enes1.github.io/ai-assistant-claude/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://h-enes1.github.io/ai-assistant-claude/ru/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://h-enes1.github.io/ai-assistant-claude/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://h-enes1.github.io/ai-assistant-claude/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+  </url>
+  <url>
+    <loc>https://h-enes1.github.io/ai-assistant-claude/ja/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://h-enes1.github.io/ai-assistant-claude/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://h-enes1.github.io/ai-assistant-claude/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://h-enes1.github.io/ai-assistant-claude/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://h-enes1.github.io/ai-assistant-claude/es/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://h-enes1.github.io/ai-assistant-claude/it/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://h-enes1.github.io/ai-assistant-claude/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://h-enes1.github.io/ai-assistant-claude/ru/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://h-enes1.github.io/ai-assistant-claude/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://h-enes1.github.io/ai-assistant-claude/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+  </url>
+  <url>
+    <loc>https://h-enes1.github.io/ai-assistant-claude/zh/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://h-enes1.github.io/ai-assistant-claude/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://h-enes1.github.io/ai-assistant-claude/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://h-enes1.github.io/ai-assistant-claude/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://h-enes1.github.io/ai-assistant-claude/es/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://h-enes1.github.io/ai-assistant-claude/it/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://h-enes1.github.io/ai-assistant-claude/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://h-enes1.github.io/ai-assistant-claude/ru/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://h-enes1.github.io/ai-assistant-claude/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://h-enes1.github.io/ai-assistant-claude/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://h-enes1.github.io/ai-assistant-claude/en/"/>
+  </url>
+  <url>
+    <loc>https://h-enes1.github.io/ai-assistant-claude/privacy.html</loc>
+    <lastmod>2026-10-23</lastmod>
+  </url>
 </urlset>
