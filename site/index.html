@@ -216,8 +216,8 @@ ul.plain { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; }
 .feat .k { font: 500 .7rem var(--f-mono); letter-spacing: .06em; color: var(--muted); }
 .new { font: 600 .66rem var(--f-mono); letter-spacing: .06em; color: var(--accent-ink); background: var(--accent); border-radius: 999px; padding: 2px 7px; }
 /* Video */
-.vid { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 10px; margin-bottom: 24px; max-width: 640px; }
-.vid video { display: block; width: 100%; height: auto; border-radius: 10px; background: #000; }
+.vid { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 10px; margin-bottom: 24px; max-width: 760px; }
+.vid video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 10px; background: #000; }
 .shot.wide { grid-column: 1 / -1; }
 .shot.wide img { max-width: 880px; margin: 0 auto; }
 /* Öğrenme */
@@ -327,7 +327,7 @@ footer .langs a[aria-current] { color: var(--ink); font-weight: 600; text-decora
 .langhint { background: var(--sunk); border-bottom: 1px solid var(--line); font-size: .9rem; }
 .langhint[hidden] { display: none; }
 .langhint .wrap { display: flex; align-items: center; justify-content: center; gap: 4px 14px; flex-wrap: wrap; padding-block: 8px; text-align: center; }
-.langhint a { font-weight: 600; }
+.langhint a { font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 2px; } /* vurgu rengi bu zeminde 4,5 kontrastın altında kalıyordu */
 .langhint button { background: none; border: 0; color: var(--muted); font: inherit; font-size: 1.15rem; line-height: 1; padding: 6px 10px; cursor: pointer; border-radius: 6px; }
 .langhint button:hover { color: var(--ink); }
 
@@ -340,7 +340,7 @@ footer .langs a[aria-current] { color: var(--ink); font-weight: 600; text-decora
   -webkit-mask-image: linear-gradient(#000 55%, transparent); mask-image: linear-gradient(#000 55%, transparent); }
 .hero .wrap { position: relative; }
 .stagebox { min-width: 0; }
-.stage { position: relative; height: 500px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 26px 60px -32px rgba(20, 20, 19, .5); overflow: hidden; font-size: .86rem; line-height: 1.45; --tp: 6; }
+.stage { position: relative; height: 500px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 26px 60px -32px rgba(20, 20, 19, .5); overflow: hidden; contain: strict; /* sahnedeki her kare yalnız bu kutunun yerleşimini yeniden hesaplar */ font-size: .86rem; line-height: 1.45; --tp: 6; }
 @media (max-width: 600px) { .stage { --tp: 4; } }
 .st-bar { height: 34px; display: flex; align-items: center; gap: 6px; padding: 0 12px; border-bottom: 1px solid var(--line); background: var(--bg); font: 500 .72rem var(--f-mono); color: var(--muted); white-space: nowrap; }
 .st-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); flex: none; }
@@ -398,11 +398,12 @@ footer .langs a[aria-current] { color: var(--ink); font-weight: 600; text-decora
 .st-play { all: unset; cursor: pointer; margin-left: auto; font: 500 .78rem var(--f-mono); color: var(--muted); padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); }
 .st-play:hover { color: var(--ink); border-color: var(--muted); } .st-play:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .st-note { font-size: .8rem; color: var(--muted); margin-top: 8px; }
+@media (min-width: 941px) { .st-note { min-height: 4.8em; min-height: 3lh; } } /* yazı tipi gelince 2 → 3 satıra çıkıp alttaki bölümü itmesin (it: CLS 0,05) */
 .st-note a { white-space: nowrap; font-weight: 600; }
 #tfbot { transition: opacity .2s; } #tfbot.away { opacity: 0; }
 
 /* Hikâye: kaydırdıkça ilerler (--f: 0 → 1; JS yokken ve az hareket tercihinde 1 = son durum) */
-section.story { content-visibility: visible; }
+@supports (content-visibility: auto) { section.story { contain-intrinsic-size: auto 3200px; } } /* ekran dışındayken yerleşimi ertelenir (ilk boyama hızlansın); gerçek yükseklik telefonda ≈ 3300, masaüstünde ≈ 4300 px */
 .chaps { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
 .chap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
 .chap-txt { display: grid; gap: 8px; align-content: start; max-width: 30em; }
@@ -1835,10 +1836,17 @@ if (STATIC) {
 (function () {
   if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const io = new IntersectionObserver((es) => es.forEach((x) => { if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target); } }), { rootMargin: "0px 0px -6% 0px" });
-  const arm = () => document.querySelectorAll(".band .sec-head, .feat, .stat, .model, .dcard, .mcard, .shot, .note, .road > div, .layers li, .chap-txt").forEach((el) => {
-    if (el.classList.contains("rv") || el.getBoundingClientRect().top < innerHeight) return;
-    el.style.setProperty("--rd", ([...el.parentNode.children].indexOf(el) % 4) * 60 + "ms"); el.classList.add("rv"); io.observe(el);
+  // Hangi blok ekranın dışında? Tek tek ölçmek (getBoundingClientRect) her blokta yerleşimi yeniden hesaplatıyordu (açılışta ~1 sn'lik
+  // uzun görev); ilk IntersectionObserver bildirimi aynı bilgiyi yerleşimi zorlamadan verir. Görünen bloklara dokunulmaz.
+  const first = new IntersectionObserver((es) => {
+    first.disconnect();
+    es.forEach((x) => {
+      const el = x.target;
+      if (x.isIntersecting || el.classList.contains("rv")) return;
+      el.style.setProperty("--rd", ([...el.parentNode.children].indexOf(el) % 4) * 60 + "ms"); el.classList.add("rv"); io.observe(el);
+    });
   });
+  const arm = () => document.querySelectorAll(".band .sec-head, .feat, .stat, .model, .dcard, .mcard, .shot, .note, .road > div, .layers li, .chap-txt").forEach((el) => first.observe(el));
   if (document.readyState === "complete") arm(); else addEventListener("load", arm);
 })();
 

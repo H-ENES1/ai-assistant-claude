@@ -838,10 +838,17 @@ if (STATIC) {
 (function () {
   if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const io = new IntersectionObserver((es) => es.forEach((x) => { if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target); } }), { rootMargin: "0px 0px -6% 0px" });
-  const arm = () => document.querySelectorAll(".band .sec-head, .feat, .stat, .model, .dcard, .mcard, .shot, .note, .road > div, .layers li, .chap-txt").forEach((el) => {
-    if (el.classList.contains("rv") || el.getBoundingClientRect().top < innerHeight) return;
-    el.style.setProperty("--rd", ([...el.parentNode.children].indexOf(el) % 4) * 60 + "ms"); el.classList.add("rv"); io.observe(el);
+  // Hangi blok ekranın dışında? Tek tek ölçmek (getBoundingClientRect) her blokta yerleşimi yeniden hesaplatıyordu (açılışta ~1 sn'lik
+  // uzun görev); ilk IntersectionObserver bildirimi aynı bilgiyi yerleşimi zorlamadan verir. Görünen bloklara dokunulmaz.
+  const first = new IntersectionObserver((es) => {
+    first.disconnect();
+    es.forEach((x) => {
+      const el = x.target;
+      if (x.isIntersecting || el.classList.contains("rv")) return;
+      el.style.setProperty("--rd", ([...el.parentNode.children].indexOf(el) % 4) * 60 + "ms"); el.classList.add("rv"); io.observe(el);
+    });
   });
+  const arm = () => document.querySelectorAll(".band .sec-head, .feat, .stat, .model, .dcard, .mcard, .shot, .note, .road > div, .layers li, .chap-txt").forEach((el) => first.observe(el));
   if (document.readyState === "complete") arm(); else addEventListener("load", arm);
 })();
 
