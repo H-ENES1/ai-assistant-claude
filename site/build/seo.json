@@ -1,0 +1,73 @@
+{
+  "_": "Dil başına arama motoru metinleri (build.py kullanır). title ≈ 60, desc ≈ 160 karakteri geçmesin. hint: başka dil sayfasındaki ziyaretçiye bu dili öneren şerit (o dilin kendisiyle yazılır).",
+  "tr": {
+    "name": "Türkçe", "locale": "tr_TR",
+    "title": "Token Tahmini – Claude limit ve token sayacı eklentisi",
+    "desc": "Claude kullanım limitini göndermeden önce gör. Ücretsiz Chrome eklentisi: token sayar, 5 saatlik ve haftalık limitten ne gideceğini tahmin eder, yeten modeli önerir.",
+    "ogTitle": "Token Tahmini — Göndermeden önce bil",
+    "hint": { "avail": "Bu sayfa Türkçe de var.", "go": "Türkçe sayfaya geç", "close": "Kapat" }
+  },
+  "en": {
+    "name": "English", "locale": "en_US",
+    "title": "Token Forecast – Claude usage limit & token counter",
+    "desc": "See your Claude usage limit before you send. Free Chrome extension: counts tokens, forecasts how much of your 5-hour and weekly limit a message uses, suggests a model.",
+    "ogTitle": "Token Forecast — Know before you send",
+    "hint": { "avail": "This page is also available in English.", "go": "Switch to English", "close": "Close" }
+  },
+  "de": {
+    "name": "Deutsch", "locale": "de_DE",
+    "title": "Token Forecast – Claude-Nutzungslimit und Token-Zähler",
+    "desc": "Sieh dein Claude-Nutzungslimit vor dem Senden. Kostenlose Chrome-Erweiterung: zählt Tokens, schätzt den Verbrauch vom 5-Stunden- und Wochenlimit, empfiehlt ein Modell.",
+    "ogTitle": "Token Forecast — Wissen, bevor du sendest",
+    "hint": { "avail": "Diese Seite gibt es auch auf Deutsch.", "go": "Zur deutschen Seite", "close": "Schließen" }
+  },
+  "fr": {
+    "name": "Français", "locale": "fr_FR",
+    "title": "Token Forecast – limite d’utilisation Claude et compteur de tokens",
+    "desc": "Voyez votre limite d’utilisation de Claude avant d’envoyer. Extension Chrome gratuite : compte les tokens, estime la part des limites de 5 heures et hebdomadaire, suggère un modèle.",
+    "ogTitle": "Token Forecast — Sachez avant d’envoyer",
+    "hint": { "avail": "Cette page existe aussi en français.", "go": "Voir la page en français", "close": "Fermer" }
+  },
+  "es": {
+    "name": "Español", "locale": "es_ES",
+    "title": "Token Forecast – límite de uso de Claude y contador de tokens",
+    "desc": "Mira tu límite de uso de Claude antes de enviar. Extensión gratuita para Chrome: cuenta tokens, estima cuánto gasta un mensaje del límite de 5 horas y semanal, sugiere un modelo.",
+    "ogTitle": "Token Forecast — Sábelo antes de enviar",
+    "hint": { "avail": "Esta página también está en español.", "go": "Ver en español", "close": "Cerrar" }
+  },
+  "it": {
+    "name": "Italiano", "locale": "it_IT",
+    "title": "Token Forecast – limite di utilizzo di Claude e contatore di token",
+    "desc": "Vedi il tuo limite di utilizzo di Claude prima di inviare. Estensione Chrome gratuita: conta i token, stima quanto consuma un messaggio del limite di 5 ore e settimanale.",
+    "ogTitle": "Token Forecast — Sappilo prima di inviare",
+    "hint": { "avail": "Questa pagina è disponibile anche in italiano.", "go": "Vai alla pagina in italiano", "close": "Chiudi" }
+  },
+  "pt": {
+    "name": "Português", "locale": "pt_BR",
+    "title": "Token Forecast – limite de uso do Claude e contador de tokens",
+    "desc": "Veja seu limite de uso do Claude antes de enviar. Extensão gratuita para Chrome: conta tokens, estima quanto uma mensagem gasta do limite de 5 horas e semanal, sugere um modelo.",
+    "ogTitle": "Token Forecast — Saiba antes de enviar",
+    "hint": { "avail": "Esta página também está em português.", "go": "Ver em português", "close": "Fechar" }
+  },
+  "ru": {
+    "name": "Русский", "locale": "ru_RU",
+    "title": "Token Forecast – лимит Claude и счётчик токенов",
+    "desc": "Узнайте лимит Claude до отправки. Бесплатное расширение для Chrome: считает токены, оценивает расход 5-часового и недельного лимита на сообщение, подсказывает модель.",
+    "ogTitle": "Token Forecast — Узнайте до отправки",
+    "hint": { "avail": "Эта страница есть и на русском.", "go": "Открыть на русском", "close": "Закрыть" }
+  },
+  "ja": {
+    "name": "日本語", "locale": "ja_JP",
+    "title": "Token Forecast – Claude の使用制限とトークンカウンター",
+    "desc": "送信前に Claude の使用制限を確認。無料の Chrome 拡張機能：トークンを数え、5 時間制限と週間制限のどれだけを使うかを見積もり、十分なモデルを提案します。",
+    "ogTitle": "Token Forecast — 送信する前に知る",
+    "hint": { "avail": "このページは日本語でもご覧いただけます。", "go": "日本語ページへ", "close": "閉じる" }
+  },
+  "zh": {
+    "name": "简体中文", "locale": "zh_CN",
+    "title": "Token Forecast – Claude 使用限额与 token 计数器",
+    "desc": "发送前就看到 Claude 使用限额。免费 Chrome 扩展：统计 token，估算一条消息会用掉多少 5 小时限额和每周限额，并推荐够用的模型。",
+    "ogTitle": "Token Forecast — 发送之前就知道",
+    "hint": { "avail": "本页面也有简体中文版本。", "go": "切换到中文", "close": "关闭" }
+  }
+}

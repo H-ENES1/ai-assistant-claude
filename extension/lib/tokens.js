@@ -26,6 +26,8 @@ const SPREAD = { tr: 0.22, en: 0.12, code: 0.18, other: 0.22 };
 //   Kiril (ru)                                                          ≈ 1,54 kat
 //   Japonca, Çince (CJK karakterleri)                                   ≈ 0,73 token / karakter
 // Örnek sayısı küçük; kalibrasyon (k) kalan farkı emer ve aralık geniş tutulur.
+// Bu üç değer o200k ölçeğindedir; Claude tokenizer'ına geçmek için CLAUDE_FACTOR CJK dahil hepsine uygulanır.
+// (1,4 İngilizce metinden ölçüldü; CJK'da Claude/o200k oranı ayrıca ölçülmedi.)
 const OTHER_LATIN = 1.22, CYRILLIC = 1.54, CJK_PER_CHAR = 0.73;
 const CJK_RE = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/gu;
 const CYR_RE = /\p{Script=Cyrillic}/gu;

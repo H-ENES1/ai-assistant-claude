@@ -1,0 +1,7 @@
+{"group": 16, "items": [
+ {"id": "r41", "A": 4, "B": 3.5, "C": 4.5, "note": "Arama olmadan üçü de tahmini dolar fiyatı veriyor; C model, bölüm ve fiyatı en dengeli eşliyor; A somut ama doğrulanamayan model adları içeriyor; B yalnızca seri adları ve geniş aralıklar."},
+ {"id": "r49", "A": 4.5, "B": 5, "C": 4.5, "note": "Üçü de neyin devam edeceğini soruyor; A gereğinden uzun, C sohbet asistanı için dosya yolu istiyor."},
+ {"id": "r45", "A": 5, "B": 5, "C": 4, "note": "A ve B seçeneklerin eksik olduğunu söyleyip gereken bilgileri ve çerçeveyi veriyor; C seçenekleri bilmeden genel bir analiz yazıyor."},
+ {"id": "r42", "A": 3.5, "B": 4, "C": 5, "note": "C terimi etkin kırılma indisinin artırılması olarak okuyup yöntemleri ve sınırları somut karşılaştırıyor; A ve B algılayıcı duyarlılığı olarak yorumluyor (B bunu açıkça belirtip seçenek sunuyor, A daha yüzeysel)."},
+ {"id": "t03", "A": 4.5, "B": 5, "C": 5, "note": "Üçü de sağlayıcı soyutlaması, önbellek ve asenkron belge işini içeriyor; B ve C şema ve ödünleşimlerle daha eksiksiz."}
+]}

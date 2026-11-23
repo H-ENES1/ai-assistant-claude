@@ -5,11 +5,13 @@
 // Girdi: chrome.storage.local'daki "sends" listesi. Her kayıt bir gönderimdir ve METİN İÇERMEZ:
 //   { id, at, conv, fam, model, type, eff, peak, cache, hist, pred, predLo, predHi, predW,
 //     adv: { k, t } | null, save, d, dw, out, outHi, ok,
-//     dom, sub (konu alanı), effRec (önerilen effort), effAs (effort okunamadı, varsayılan sayıldı), effSave }
+//     dom, sub (konu alanı), effRec (önerilen effort), effAs (effort okunamadı, varsayılan sayıldı), effSave,
+//     ecoU, ecoK (taslağın başındaki ayara göre kaçınılan/fazladan işlem; lib/eco.js) }
 //   pred*: gönderim anındaki tahmin (5 saatlik limit yüzdesi; predW haftalık), d / dw: ölçülen fark.
 // Bütün fonksiyonlar saftır (yan etkisiz), birim testlerinde doğrudan denenir.
 
 import { isPeak, peakWindow } from "./forecast.js";
+import { ecoCsvCells, ECO_CSV_COLS } from "./eco.js";
 
 export const SENDS_MAX = 2000;
 export const SENDS_DAYS = 70;
@@ -20,6 +22,39 @@ export function trimSends(list, now = Date.now()) {
   const cut = now - SENDS_DAYS * DAY;
   const out = list.filter((x) => x && x.at >= cut);
   return out.length > SENDS_MAX ? out.slice(out.length - SENDS_MAX) : out;
+}
+
+// Gönderim kaydını depoya yazmadan önce süzer: yalnızca bilinen alanlar, bilinen türde ve kısa etiketlerle.
+// Amaç: kayıtlara serbest metin (mesaj içeriği, sayfa betiğinin soktuğu dize) hiçbir yoldan girememesi ve
+// kayıt başına boyutun sınırlı kalması. Geçersiz kayıt → null.
+const LABEL = /^[a-z0-9_]{1,24}$/;
+const MODEL_LABEL = /^[a-z0-9 ._-]{1,32}$/;
+const label = (v) => (typeof v === "string" && LABEL.test(v) ? v : null);
+const numOrNull = (v) => (Number.isFinite(v) ? v : null);
+export function cleanSend(e) {
+  if (!e || typeof e !== "object" || !Number.isFinite(e.at)) return null;
+  const id = typeof e.id === "string" && /^[\w:.-]{1,80}$/.test(e.id) ? e.id : null;
+  if (!id) return null;
+  const adv = e.adv && typeof e.adv === "object" ? { k: label(e.adv.k), t: label(e.adv.t) } : null;
+  return {
+    id, at: e.at,
+    conv: typeof e.conv === "string" && /^[\w-]{1,8}$/.test(e.conv) ? e.conv : "",
+    fam: label(e.fam), model: typeof e.model === "string" && MODEL_LABEL.test(e.model) ? e.model : null,
+    type: label(e.type), eff: label(e.eff), peak: !!e.peak, cache: label(e.cache), hist: Math.max(0, Math.round(numOrNull(e.hist) || 0)),
+    pred: numOrNull(e.pred), predLo: numOrNull(e.predLo), predHi: numOrNull(e.predHi), predW: numOrNull(e.predW),
+    adv: adv && adv.k ? adv : null, save: numOrNull(e.save) || 0,
+    dom: label(e.dom), sub: label(e.sub), effRec: label(e.effRec), effAs: !!e.effAs, effSave: numOrNull(e.effSave) || 0,
+    outHi: Math.max(0, Math.round(numOrNull(e.outHi) || 0)),
+    // Ölçüm sonradan eklenir (log:done); yedekten gelen kayıtta zaten varsa korunur
+    // Su/enerji (lib/eco.js): işaretli maliyet birimi ve neyin değiştiği; metin değil
+    ...(Number.isFinite(e.ecoU) ? { ecoU: Math.round(e.ecoU) } : {}), ...(e.ecoK === "model" || e.ecoK === "effort" || e.ecoK === "both" ? { ecoK: e.ecoK } : {}),
+    ...(Number.isFinite(e.d) ? { d: e.d } : {}), ...(Number.isFinite(e.dw) ? { dw: e.dw } : {}), ...(Number.isFinite(e.out) ? { out: e.out } : {})
+  };
+}
+// Ölçüm yaması: yalnızca üç sayı alanı
+export function cleanDonePatch(p) {
+  const src = p && typeof p === "object" ? p : {};
+  return { out: numOrNull(src.out), d: numOrNull(src.d), dw: numOrNull(src.dw) };
 }
 
 const spentOf = (x) => (Number.isFinite(x.d) ? x.d : x.pred || 0);
@@ -220,9 +255,11 @@ export function nextWeeklyAt(now = Date.now(), hour = 9) {
 
 // CSV dışa aktarma (metin yok; yalnızca sayılar ve etiketler)
 export function sendsCsv(sends) {
-  const cols = ["at", "model", "type", "domain", "subdomain", "effort", "effort_suggested", "peak", "cache", "history_tokens", "pred_pct", "pred_low", "pred_high", "measured_pct", "weekly_pred_pct", "weekly_measured_pct", "advice", "advice_model"];
+  const cols = ["at", "model", "type", "domain", "subdomain", "effort", "effort_suggested", "peak", "cache", "history_tokens", "pred_pct", "pred_low", "pred_high", "measured_pct", "weekly_pred_pct", "weekly_measured_pct", "advice", "advice_model",
+    // Kaçınılan (+) ya da fazladan (−) işlem ve tahmini karşılığı; sayılmamış (eski) kayıtlarda boş (lib/eco.js)
+    ...ECO_CSV_COLS];
   const rows = (sends || []).map((x) => [new Date(x.at).toISOString(), x.model || "", x.type || "", x.dom || "", x.sub || "", x.eff || "", x.effRec || "", x.peak ? 1 : 0, x.cache || "", Math.round(x.hist || 0),
-    r2(x.pred), r2(x.predLo), r2(x.predHi), Number.isFinite(x.d) ? x.d : "", r2(x.predW), Number.isFinite(x.dw) ? x.dw : "", x.adv?.k || "", x.adv?.t || ""]);
+    r2(x.pred), r2(x.predLo), r2(x.predHi), Number.isFinite(x.d) ? x.d : "", r2(x.predW), Number.isFinite(x.dw) ? x.dw : "", x.adv?.k || "", x.adv?.t || "", ...ecoCsvCells(x)]);
   return [cols, ...rows].map((r) => r.join(",")).join("\n");
 }
 const r2 = (v) => (Number.isFinite(v) ? Math.round(v * 100) / 100 : "");

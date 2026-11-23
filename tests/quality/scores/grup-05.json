@@ -1,0 +1,7 @@
+{"group": 5, "items": [
+ {"id": "r13", "A": 4, "B": 5, "C": 5, "note": "B ve C somut bulgulara (barınak çalışması, sıcaklık aralığı, çizili kare) dayanıyor; A doğru ama genel ve yer yer dolgu."},
+ {"id": "k02", "A": 5, "B": 5, "C": 5, "note": "Üç çeviri de doğru."},
+ {"id": "c02", "A": 4, "B": 4.5, "C": 4.5, "note": "Üçü de bağlam istiyor; A sohbet sürüyormuş gibi başlayıp teknik varsayım yapıyor, B ve C bilmediğini açıkça söylüyor."},
+ {"id": "r04", "A": 5, "B": 5, "C": 5, "note": "Üçü de Çarşamba ve Salı'yı doğru veriyor."},
+ {"id": "r32", "A": 5, "B": 5, "C": 5, "note": "Üçü de bir fazla indeks hatasını doğru açıklayıp düzeltiyor."}
+]}

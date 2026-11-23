@@ -1,12 +1,16 @@
 import re,json,sys,os
+# Site çevirileri: tools/i18n/l10n_en.tsv + tools/i18n/site/<dil>.tsv -> site/build/l10n/<dil>.json
+# Kullanım: python tools/i18n/mk.py de fr es it pt ru ja zh
+HERE=os.path.dirname(os.path.abspath(__file__))
+OUT=os.path.join(HERE,'..','..','site','build','l10n')
 EN={}
-for l in open('/tmp/st/l10n_en.tsv',encoding='utf8').read().split('\n'):
+for l in open(os.path.join(HERE,'l10n_en.tsv'),encoding='utf8').read().split('\n'):
     if l: k,_,v=l.partition('\t'); EN[k]=v
 tags=lambda s: sorted(re.findall(r'</?[a-z]+(?: [^>]*)?>',s))
 phs=lambda s: sorted(re.findall(r'\$\d',s))
 def load(lang):
     T={}
-    for l in open(f'/tmp/st/l10n/{lang}.tsv',encoding='utf8').read().split('\n'):
+    for l in open(os.path.join(HERE,'site',f'{lang}.tsv'),encoding='utf8').read().split('\n'):
         if l.strip():
             k,_,v=l.partition('\t'); T[k]=v
     return T
@@ -49,7 +53,7 @@ if __name__=='__main__':
     for lang in sys.argv[1:]:
         T=load(lang); b=check(lang,T); tot+=b
         if not b: out[lang]=nest(T); print(lang,'ok',len(T))
-    os.makedirs('/home/claude/site/l10n',exist_ok=True)
+    os.makedirs(OUT,exist_ok=True)
     for lang,o in out.items():
-        json.dump(o,open(f'/home/claude/site/l10n/{lang}.json','w',encoding='utf8'),ensure_ascii=False)
+        json.dump(o,open(os.path.join(OUT,f'{lang}.json'),'w',encoding='utf8'),ensure_ascii=False)
     print('problems',tot)

@@ -1,0 +1,7 @@
+{"group": 10, "items": [
+ {"id": "k03", "A": 5, "B": 5, "C": 5, "note": "Üç çeviri de doğru; A ayrıca eş anlamlıları belirtiyor."},
+ {"id": "c05", "A": 5, "B": 4.5, "C": 5, "note": "Üçü de kodun gelmediğini söyleyip neyin gerektiğini soruyor; B sohbet asistanı olarak 'dosyayı açıp bakarım' diyor."},
+ {"id": "r12", "A": 2, "B": 5, "C": 5, "unblinded": ["A"], "note": "B ve C ortada konuşma olmadığını söyleyip metni istiyor; A kendi sistem bağlamını 'konuşma' sanıp özetliyor ve ortam ayrıntılarını döküyor."},
+ {"id": "t08", "A": 5, "B": 4.5, "C": 5, "note": "A ve C somut motor seçenekleri, boyutlar, lisans ve yol haritası veriyor; B doğru ama daha genel."},
+ {"id": "t07", "A": 5, "B": 4.5, "C": 5, "note": "Üçü de doğru sırayı veriyor; A ve C önce kararları netleştirip ince dilim öneriyor, B daha çok kontrol listesi."}
+]}

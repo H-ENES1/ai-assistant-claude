@@ -22,7 +22,7 @@ claude.ai'de bir mesajın 5 saatlik ve haftalık Claude limitinin ne kadarını 
 
 **Sonra**
 - **"Neden bu kadar harcadı?" (yeni):** Ölçülen değer tahminin çok üstündeyse olası nedenleri söyler.
-- **Haftalık rapor:** Mesaj sayısı, harcanan limit, yoğun saat payı, model ve iş dağılımı, **alan ve alt başlık dağılımı, effort dağılımı ve "effort önerilenden yüksekti" tasarrufu (0.11)**, 7×24 saat haritası, en pahalı mesajlar, tahmin isabeti ve kişisel öneriler. Pazartesi sabahı bildirim, CSV dışa aktarma.
+- **Haftalık rapor:** Mesaj sayısı, harcanan limit, yoğun saat payı, model ve iş dağılımı, **alan ve alt başlık dağılımı, effort dağılımı ve "effort önerilenden yüksekti" tasarrufu (0.11)**, 7×24 saat haritası, en pahalı mesajlar, tahmin isabeti ve kişisel öneriler. Pazartesi sabahı bildirim, CSV dışa aktarma. Ayrıca **bu hafta kurtardığın su ve enerji**: kabul ettiğin daha hafif model ve daha düşük effort önerilerinin karşılığı, gündelik birimlerle (damla, su bardağı, telefon şarjı); her sayı aralıklı ve "tahmin" etiketli, formül ve kaynaklar bir tık uzakta.
 
 **Öğrenir**
 - **Kişisel kalibrasyon:** Her mesajdan önce ve sonra okunan kullanım yüzdesinden planın büyüklüğünü (k), yoğun saat etkisini ve cevap uzunluklarını öğrenir.

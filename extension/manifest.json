@@ -3,7 +3,7 @@
   "name": "__MSG_extName__",
   "short_name": "__MSG_extShortName__",
   "description": "__MSG_extDescription__",
-  "version": "0.12.1",
+  "version": "0.13.0",
   "homepage_url": "https://h-enes1.github.io/ai-assistant-claude/",
   "default_locale": "en",
   "icons": {
@@ -20,6 +20,9 @@
   "host_permissions": [
     "https://claude.ai/*"
   ],
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; script-src 'self'; object-src 'none'; style-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://claude.ai; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+  },
   "background": {
     "service_worker": "background.js",
     "type": "module"

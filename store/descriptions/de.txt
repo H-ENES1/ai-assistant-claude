@@ -22,6 +22,12 @@ LERNT AUF DEINEM GERÄT
 • Persönliche Kalibrierung deiner Tarifgröße und typischen Antwortlängen aus deiner eigenen Nutzung.
 • Ein kleines Aufgabenmodell auf dem Gerät, das aus deinen Korrekturen lernt.
 
+TIKO
+• Ein winziger Pixel-Bot, der neben dem Nachrichtenfeld lebt. Er strengt sich an, wenn die Prognose schwer ist, nickt, wenn ein leichteres Modell reicht, setzt sich auf die Antwort, während sie eintrifft, und wird unruhig, wenn sich dein Limit füllt. Er liest keinen Text und lässt sich in den Einstellungen ausschalten.
+
+GESPARTES WASSER UND GESPARTE ENERGIE
+• Im Wochenbericht: der Wasser- und Energiegegenwert der Rechenleistung, die du bei Nachrichten mit der empfohlenen leichteren Einstellung vermieden hast, in Tropfen, Gläsern und Handyladungen. Alles Schätzungen mit Bereichen; die Quellen stehen im Bericht.
+
 DATENSCHUTZ
 Alles wird in deinem Browser berechnet. Deine Nachrichten, Anhänge und Chats verlassen nie dein Gerät. Kein Server, keine Analyse, kein Tracking. Die Erweiterung läuft nur auf claude.ai mit deiner eigenen Sitzung und sendet nie Nachrichten oder ändert Einstellungen für dich. Bevor sie etwas liest, bittet sie um deine Zustimmung.
 

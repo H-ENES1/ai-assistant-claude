@@ -1,0 +1,7 @@
+{"group": 8, "items": [
+ {"id": "r50", "A": 5, "B": 5, "C": 5, "note": "Üçü de neyin kastedildiğini soruyor ve körü körüne fikir değiştirmeyeceğini söylüyor."},
+ {"id": "k05", "A": 5, "B": 5, "C": 5, "note": "Üçü de ifadenin yer tutucu olduğunu fark edip metni istiyor."},
+ {"id": "r38", "A": 5, "B": 4.5, "C": 4, "note": "A maliyet modeli, limit mesajından kalibrasyon ve yol haritasıyla en eksiksiz; B iyi ama daha soyut; C tahmin modelinde yüzeysel ve elle girişe dayanıyor."},
+ {"id": "r23", "A": 5, "B": 5, "C": 5, "note": "Üçü de (x − 1)eˣ + C sonucunu türevle doğrulayarak veriyor."},
+ {"id": "r16", "A": 4.5, "B": 5, "C": 5, "note": "Üçü de doğru; B sayısal örnek, C ikinci örnek ekliyor, A tek örnekle daha yalın."}
+]}

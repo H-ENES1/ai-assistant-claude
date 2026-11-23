@@ -1,0 +1,7 @@
+{"group": 14, "items": [
+ {"id": "r05", "A": 5, "B": 5, "C": 5, "note": "Üç çeviri de doğru."},
+ {"id": "r26", "A": 5, "B": 5, "C": 5, "note": "Üç kanıt da tamlık aksiyomundan epsilon tanımıyla eksiksiz; azalan durum işaret değiştirerek doğru indirgeniyor."},
+ {"id": "r07", "A": 5, "B": 5, "C": 5, "note": "Üç çeviri de doğru."},
+ {"id": "t10", "A": 5, "B": 5, "C": 5, "note": "Üçü de kapsam, hazır model API'si, parçalayarak özetleme ve kalite kontrolünü içeren uygulanabilir başlangıç veriyor."},
+ {"id": "t04", "A": 5, "B": 4.5, "C": 5, "note": "A ve C eklenti türlerini, URL/hreflang ve yayın sonrası kontrolleri somut veriyor; B doğru ama eklenti karşılaştırmasında daha yüzeysel."}
+]}

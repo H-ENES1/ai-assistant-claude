@@ -22,6 +22,12 @@ IL APPREND SUR VOTRE APPAREIL
 • Calibration personnelle de la taille de votre forfait et de la longueur habituelle des réponses, à partir de votre propre utilisation.
 • Un petit modèle de tâches sur l’appareil qui apprend de vos corrections.
 
+TIKO
+• Un petit robot en pixels qui vit à côté de la zone de message. Il peine quand la prévision est lourde, hoche la tête quand un modèle plus léger suffit, s’assoit sur la réponse pendant qu’elle arrive et s’inquiète quand votre limite se remplit. Il ne lit aucun texte et se désactive dans les paramètres.
+
+L’EAU ET L’ÉNERGIE ÉCONOMISÉES
+• Dans le rapport hebdomadaire : l’équivalent en eau et en énergie du calcul évité sur les messages où vous êtes passé au réglage plus léger suggéré, en gouttes, verres et recharges de téléphone. Uniquement des estimations avec fourchettes ; les sources sont dans le rapport.
+
 CONFIDENTIALITÉ
 Tout est calculé dans votre navigateur. Vos messages, pièces jointes et conversations ne quittent jamais votre appareil. Aucun serveur, aucune analyse, aucun pistage. L’extension fonctionne uniquement sur claude.ai avec votre propre session et n’envoie jamais de messages ni ne modifie de réglages à votre place. Elle demande votre consentement avant de lire quoi que ce soit.
 

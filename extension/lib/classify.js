@@ -31,6 +31,11 @@ export const TYPES = [
   "file_create"    // rapor, sunum, doküman, Excel dosyası üretme
 ];
 
+// Hafif türler: yeten en hafif model ailesi Haiku olan türler (aşağıdaki MIN_TIER ile aynı küme).
+// Bu türlere yanlışlıkla ağır bir iş atanırsa kullanıcıya gereğinden hafif model önerilir ("tehlikeli hata").
+const LIGHT_TYPES = new Set(["short_qa", "translate", "rewrite", "summarize"]);
+const LIGHT_MIN_PROB = 0.7, LIGHT_SHORT_WORDS = 25, LIGHT_RULE_SCORE = 2, LIGHT_RULE_PROB = 0.5;
+
 // Her kalıp: [regex, puan]. TR kalıplar ek almaya açık köklerle yazılmıştır.
 const RULES = {
   short_qa: [
@@ -226,8 +231,10 @@ export function classify(prompt, ctx = {}) {
   // Öğrenen model: kural puanlarını da girdi olarak alır, son kararı verir
   const ruleType = best, ruleConfidence = confidence;
   let ml = null;
-  if (MODEL && ctx.useModel !== false && words >= 2) {
-    try { ml = predict(MODEL, featurize(text, scores, MODEL.dim), ctx.personal || null); } catch (_) { ml = null; }
+  // ctx.model: yalnız eğitim betiği kullanır (aday ağırlıkları yazmadan önce ürünün kararıyla ölçmek için)
+  const M = ctx.model || MODEL;
+  if (M && ctx.useModel !== false && words >= 2) {
+    try { ml = predict(M, featurize(text, scores, M.dim), ctx.personal || null); } catch (_) { ml = null; }
   }
   if (ml) {
     best = ml.type;
@@ -235,11 +242,31 @@ export function classify(prompt, ctx = {}) {
     confidence = (agree && (ruleConfidence !== "low" || ml.prob >= 0.5)) || ml.prob >= 0.75 ? "high"
       : ml.prob >= 0.5 || (agree && ml.prob >= 0.35) ? "medium" : "low";
     if (!agree) signals.push("model");
+    // Tek yönlü güvenlik (hafif tür koruması): ağır işi hafif türe atmak en pahalı hatadır (kullanıcıya hafif
+    // model önerilir). Öğrenen model hafif bir tür dediğinde şu üç anahtardan biri gerekir:
+    //   (a) kurallar da aynı türü söylüyor, ya da
+    //   (b) kurallar o tür için açık bir talimat kalıbı gördü (puan ≥ LIGHT_RULE_SCORE: "özetle", "çevir", "rewrite"…)
+    //       ve model en az yarı yarıya emin, ya da
+    //   (c) mesaj kısa (≤ LIGHT_SHORT_WORDS kelime) ve model yeterince emin (p ≥ LIGHT_MIN_PROB).
+    // Yani uzun mesajda model tek başına hafif tür diyemez: uzun ve yapıştırılmış içerikli mesajlarda model
+    // gördüğü eğitim verisinin dışında yüksek olasılıkla da yanılabiliyor ("şu paragrafa karşı deneme yaz" → düzenleme).
+    // Anahtar yoksa modelin en olası ağır türü seçilir ve güven "low" olur.
+    // Eşikler yalnız geliştirme verisiyle seçildi (eğitim seti çapraz doğrulaması + test + test2; kat dışı
+    // tahminlerde tehlikeli hata 70 → 12, doğruluk −1,8 puan); kör setlere bakılmadı.
+    // ctx.lightGuard === false: koruma kapalı (eğitim betiğinde koruma öncesi ürünle karşılaştırma).
+    const lightOk = agree || ((scores[ml.type] || 0) >= LIGHT_RULE_SCORE && ml.prob >= LIGHT_RULE_PROB)
+      || (words <= LIGHT_SHORT_WORDS && ml.prob >= LIGHT_MIN_PROB);
+    if (ctx.lightGuard !== false && LIGHT_TYPES.has(ml.type) && !lightOk) {
+      let alt = null;
+      for (const t of TYPES) if (!LIGHT_TYPES.has(t) && (alt === null || (ml.probs[t] || 0) > (ml.probs[alt] || 0))) alt = t;
+      best = alt; confidence = "low"; signals.push("light_guard");
+    }
   }
   // Yapım işi + hata/kod belirtisi yok → kod düzeltme değil, kod yazma
   if (building && best === "code_fix" && !signals.includes("code") && scores.code_fix < 1) best = "code_write";
   // Öğrenen model "çeviri" gibi kelimelere takılabilir; görev değil konu ise hafif tipe izin verilmez
-  if (notTask && ["translate", "summarize", "rewrite"].includes(best)) {
+  // (yapım işi "kısa soru" da olamaz: "sitem için çeviri sistemi kurmam gerekiyor, hangi yöntem iyi")
+  if ((notTask && ["translate", "summarize", "rewrite"].includes(best)) || (building && !direct && best === "short_qa")) {
     best = ["translate", "summarize", "rewrite"].includes(ruleType) ? (building ? "code_write" : "explain") : ruleType;
     if (confidence === "high") confidence = "medium";
   }
@@ -269,7 +296,7 @@ export function classify(prompt, ctx = {}) {
   if (bullets >= 3) lengthHint *= 1 + 0.08 * Math.min(8, bullets);
 
   return { type: best, confidence, scores, complexity, lengthHint, signals, words, hits: (hits[best] || []).slice(0, 3), hardWords, bullets, attTokens,
-    ruleType, source: ml ? "model" : "rules", modelProb: ml ? Math.round(ml.prob * 100) / 100 : null };
+    ruleType, ruleConfidence, source: ml ? "model" : "rules", modelProb: ml ? Math.round(ml.prob * 100) / 100 : null };
 }
 
 // ---------- Model önerisi ----------

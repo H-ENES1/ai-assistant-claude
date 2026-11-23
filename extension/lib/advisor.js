@@ -9,7 +9,7 @@
 //     Haiku 5.5  → "en düşük gecikme ve fiyat": gerçek zamanlı, yüksek hacimli, alt görevler
 //     Sonnet 5.5 → "günlük işler için hız ve yetenek": kod üretme, veri analizi, içerik yazma
 //     Opus 5.5   → "karmaşık ajan kodlama ve kurumsal işler": büyük refactor, sistem mühendisliği
-//     Fable 5.1  → "en yüksek yetenek": saatler süren ajan işleri, çok adımlı derin araştırma
+//     Fable 5.2  → "en yüksek yetenek": saatler süren ajan işleri, çok adımlı derin araştırma
 //  2) Bu projenin 50 örnekli öneri test seti (tests/rec-cases.json): her örnek için "yeterli" modeller.
 //  3) Kullanıcının kendi 👍/👎 geri bildirimi (yerelde tutulur, tip başına alt/üst sınırı kaydırır).
 //
@@ -21,7 +21,7 @@ import { PROFILE } from "./domain.js";
 import { recommendEffort, compareEffort } from "./effort.js";
 
 export const TIERS = ["haiku", "sonnet", "opus", "fable"];
-const FAMILY_MODEL = { haiku: "haiku 5.5", sonnet: "sonnet 5.5", opus: "opus 5.5", fable: "fable 5.1" };
+const FAMILY_MODEL = { haiku: "haiku 5.5", sonnet: "sonnet 5.5", opus: "opus 5.5", fable: "fable 5.2" };
 
 // Haiku'nun yetebileceği tipler ve kuralları
 const HAIKU_TYPES = new Set(["translate", "rewrite", "summarize", "short_qa"]);
@@ -51,6 +51,11 @@ export function haikuGate(cls, ctx = {}) {
   if ((cls.hardWords || []).length) reasons.push("hard_words");
   // Riskli alan (sağlık, hukuk, para): yanlış cevabın bedeli yüksek → hafif model önerilmez
   if ((PROFILE[ctx.domain]?.stakes || 0) >= 2) reasons.push("stakes");
+  // Kurallar açıkça ağır bir tür gördüyse (kalıp eşleşmiş, güven medium/high) ve hafif türü yalnız öğrenen model
+  // söylüyorsa Haiku önerilmez: model kısa mesajda yüksek olasılıkla da yanılabiliyor
+  // ("şu an en iyi fiyat performans ekran kartı hangisi" → kısa soru, oysa güncel araştırma).
+  if (HAIKU_TYPES.has(cls.type) && cls.ruleType && !HAIKU_TYPES.has(cls.ruleType) && cls.ruleConfidence && cls.ruleConfidence !== "low"
+    && !(cls.signals || []).includes("default")) reasons.push("rules_heavy");
   return { ok: reasons.length === 0, reasons };
 }
 
@@ -60,7 +65,7 @@ export function decideTier(cls, ctx = {}, prefs = null) {
   let t = MIN_TIER[cls.type] || "sonnet";
   const gate = haikuGate(cls, ctx);
   if (gate.ok) { t = "haiku"; why.push("simple_task"); }
-  else if (HAIKU_TYPES.has(cls.type) && gate.reasons.includes("confidence")) why.push("unsure_safe");
+  else if (HAIKU_TYPES.has(cls.type) && (gate.reasons.includes("confidence") || gate.reasons.includes("rules_heavy"))) why.push("unsure_safe");
   else if (HAIKU_TYPES.has(cls.type) && gate.reasons.includes("stakes")) why.push("stakes");
 
   const c = cls.complexity || 0;

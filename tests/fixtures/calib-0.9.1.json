@@ -1,0 +1,764 @@
+{
+ "note": "Token Forecast 0.9.1 kodunun (commit 4165ef6) lib/calibrate.js dosyasıyla üretildi: 40 oturum gözlemi + her üçüncüde haftalık gözlem. Elle düzenleme.",
+ "producedBy": "0.9.1",
+ "commit": "4165ef6",
+ "reasons": {
+  "ok": 38,
+  "outlier": 1,
+  "negative": 1
+ },
+ "summary": {
+  "measurements": 38,
+  "inRangePct": 84,
+  "tiers": [
+   "claude_pro",
+   "claude_max_5x"
+  ]
+ },
+ "outputAdjust": {
+  "explain": {
+   "mean": 0.6527316741471298,
+   "sd": 0.23485235766967624
+  },
+  "math": {
+   "mean": 0.583885748292396,
+   "sd": 0.23485235766967624
+  }
+ },
+ "posterior": {
+  "claude_pro/session": {
+   "mu": -10.226127907031335,
+   "sd": 0.08491757458478343
+  },
+  "claude_pro/weekly": {
+   "mu": -12.576475807714301,
+   "sd": 0.3901531071168864
+  },
+  "claude_max_5x/session": {
+   "mu": -10.230204057573504,
+   "sd": 0.17004006738797706
+  },
+  "claude_max_5x/weekly": {
+   "mu": -13.630954658343558,
+   "sd": 0.6104167016845471
+  }
+ },
+ "state": {
+  "version": 1,
+  "k": {
+   "claude_pro": {
+    "session": {
+     "a": 137.06225565868039,
+     "b": 3777796.403115724,
+     "n": 32,
+     "at": 1792646460000
+    },
+    "weekly": {
+     "a": 4.966670135174949,
+     "b": 1389663.4623946976,
+     "n": 12,
+     "at": 1792646460000
+    }
+   },
+   "claude_max_5x": {
+    "session": {
+     "a": 32.972707802684354,
+     "b": 810136.5443837013,
+     "n": 6,
+     "at": 1792659780000
+    },
+    "weekly": {
+     "a": 1.0992880214933942,
+     "b": 313496.76158044254,
+     "n": 2,
+     "at": 1792659780000
+    }
+   }
+  },
+  "out": {
+   "global": {
+    "w": 49.00357434051767,
+    "s": 30.624679651413093,
+    "at": 1792659780000
+   },
+   "types": {
+    "explain": {
+     "w": 8.580725317611822,
+     "s": 6.484908177064524,
+     "at": 1792653120000
+    },
+    "code_fix": {
+     "w": 8.580725317611822,
+     "s": 5.752833345877419,
+     "at": 1792655340000
+    },
+    "translate": {
+     "w": 8.580725317611822,
+     "s": 4.002868833467283,
+     "at": 1792657560000
+    },
+    "math": {
+     "w": 8.580725317611822,
+     "s": 5.129205466349119,
+     "at": 1792659780000
+    },
+    "writing": {
+     "w": 7.363622851717133,
+     "s": 5.84458429513935,
+     "at": 1792648680000
+    },
+    "short_qa": {
+     "w": 7.363622851717133,
+     "s": 3.4411082789142116,
+     "at": 1792650900000
+    }
+   }
+  },
+  "log": [
+   {
+    "at": 1792573200000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "explain",
+    "delta": 7,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 152090,
+    "out": 1463,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792575420000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "code_fix",
+    "delta": 9,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 193462,
+    "out": 918,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792577640000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "translate",
+    "delta": 3,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 145621,
+    "out": 826,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792579860000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "math",
+    "delta": 1,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 42630,
+    "out": 1171,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792582080000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "writing",
+    "delta": 2,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 61942,
+    "out": 1561,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792584300000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "short_qa",
+    "delta": 2,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 66768,
+    "out": 1697,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792586520000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "explain",
+    "delta": 3,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 123028,
+    "out": 1299,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792588740000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "code_fix",
+    "delta": 1,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 28845,
+    "out": 422,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792590960000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "translate",
+    "delta": 6,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 113793,
+    "out": 1653,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792593180000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "math",
+    "delta": 6,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 124087,
+    "out": 984,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792595400000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "writing",
+    "delta": 5,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 165871,
+    "out": 1511,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792597620000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "short_qa",
+    "delta": 4,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 93242,
+    "out": 1428,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792599840000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "explain",
+    "delta": 6,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 120658,
+    "out": 624,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792602060000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "code_fix",
+    "delta": 8,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 189562,
+    "out": 1477,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792604280000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "translate",
+    "delta": 3,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 136166,
+    "out": 802,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792606500000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "math",
+    "delta": 1,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 44879,
+    "out": 469,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792608720000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "writing",
+    "delta": 8,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 184291,
+    "out": 929,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792610940000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "short_qa",
+    "delta": 45,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 158694,
+    "out": 331,
+    "accepted": false,
+    "reason": "outlier"
+   },
+   {
+    "at": 1792613160000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "explain",
+    "delta": 6,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 198811,
+    "out": 382,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792615380000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "code_fix",
+    "delta": 6,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 194641,
+    "out": 1322,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792617600000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "translate",
+    "delta": 8,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 161639,
+    "out": 673,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792619820000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "math",
+    "delta": 4,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 139237,
+    "out": 215,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792622040000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "writing",
+    "delta": 3,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 63115,
+    "out": 283,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792624260000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "short_qa",
+    "delta": -1,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 23417,
+    "out": 329,
+    "accepted": false,
+    "reason": "negative"
+   },
+   {
+    "at": 1792626480000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "explain",
+    "delta": 3,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 80552,
+    "out": 516,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792628700000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "code_fix",
+    "delta": 2,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 86193,
+    "out": 299,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792630920000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "translate",
+    "delta": 3,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 130308,
+    "out": 708,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792633140000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "math",
+    "delta": 8,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 170128,
+    "out": 1286,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792635360000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "writing",
+    "delta": 4,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 82436,
+    "out": 755,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792637580000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "short_qa",
+    "delta": 5,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 131154,
+    "out": 414,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792639800000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "explain",
+    "delta": 1,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 36602,
+    "out": 1085,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792642020000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "code_fix",
+    "delta": 3,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 96824,
+    "out": 761,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792644240000,
+    "tier": "claude_pro",
+    "model": "sonnet 5.5",
+    "type": "translate",
+    "delta": 3,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 78681,
+    "out": 210,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792646460000,
+    "tier": "claude_pro",
+    "model": "opus 5.5",
+    "type": "math",
+    "delta": 4,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 165806,
+    "out": 484,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792648680000,
+    "tier": "claude_max_5x",
+    "model": "sonnet 5.5",
+    "type": "writing",
+    "delta": 1,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 25250,
+    "out": 1084,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792650900000,
+    "tier": "claude_max_5x",
+    "model": "opus 5.5",
+    "type": "short_qa",
+    "delta": 6,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 134844,
+    "out": 658,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792653120000,
+    "tier": "claude_max_5x",
+    "model": "sonnet 5.5",
+    "type": "explain",
+    "delta": 6,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 178858,
+    "out": 1363,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792655340000,
+    "tier": "claude_max_5x",
+    "model": "opus 5.5",
+    "type": "code_fix",
+    "delta": 7,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 148261,
+    "out": 1103,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792657560000,
+    "tier": "claude_max_5x",
+    "model": "sonnet 5.5",
+    "type": "translate",
+    "delta": 8,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 188740,
+    "out": 422,
+    "accepted": true,
+    "reason": "ok"
+   },
+   {
+    "at": 1792659780000,
+    "tier": "claude_max_5x",
+    "model": "opus 5.5",
+    "type": "math",
+    "delta": 5,
+    "pred": [
+     0.5,
+     2,
+     6
+    ],
+    "cost": 134851,
+    "out": 1577,
+    "accepted": true,
+    "reason": "ok"
+   }
+  ],
+  "stats": {
+   "n": 38,
+   "inRange": 32
+  }
+ }
+}

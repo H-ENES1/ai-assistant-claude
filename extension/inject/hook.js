@@ -11,6 +11,11 @@
 // Akışta token sayısı ve düşünme metni YOKTUR.
 //
 // Bulunanlar aynı sayfadaki içerik betiğine window.postMessage ile iletilir.
+//
+// AÇIK ONAY: Bu betik sayfa açılırken (document_start) yüklenir, yani kullanıcı onay vermeden ÖNCE de sayfadadır.
+// Bu yüzden "uykuda" başlar: fetch sarmalayıcısı yerine oturur ama hiçbir isteği/cevabı OKUMAZ ve hiçbir şey
+// bildirmez. İçerik betiği, onay verildiğini gördüğünde "enable" komutu yollar; okuma ancak ondan sonra başlar.
+// İstem (prompt) metni ve ek adları hiçbir durumda postMessage'a konmaz: içerik betiğinin onlara ihtiyacı yok.
 
 (() => {
   if (window.__tokenForecastHook) return;
@@ -22,6 +27,7 @@
   const nativeFetch = window.fetch;
   let origFetch = nativeFetch; // site fetch'i sonradan değiştirirse burası güncellenir (aşağıya bak)
   let seq = 0;
+  let enabled = false; // onay gelene kadar hiçbir şey okunmaz (yukarıdaki nota bak)
 
   const post = (payload) => {
     try { window.postMessage({ __tokenForecast: 1, ...payload }, location.origin); } catch (_) {}
@@ -31,14 +37,12 @@
     if (typeof body !== "string") return null;
     try {
       const j = JSON.parse(body);
+      // Yalnızca tanı için alan ADLARI ve sayılar; istem metni ve dosya adları buradan çıkmaz
       return {
-        prompt: typeof j.prompt === "string" ? j.prompt : "",
-        model: typeof j.model === "string" ? j.model : null,
-        attachments: Array.isArray(j.attachments)
-          ? j.attachments.map((a) => ({ name: a?.file_name || "", chars: (a?.extracted_content || "").length }))
-          : [],
+        promptChars: typeof j.prompt === "string" ? j.prompt.length : 0,
+        attachments: Array.isArray(j.attachments) ? j.attachments.length : 0,
         files: Array.isArray(j.files) ? j.files.length : 0,
-        keys: Object.keys(j).slice(0, 40)
+        keys: Object.keys(j).slice(0, 40).map((k) => String(k).slice(0, 40))
       };
     } catch (_) { return null; }
   }
@@ -84,7 +88,7 @@
     const OW = window.Worker;
     if (OW) window.Worker = new Proxy(OW, {
       construct(t, args) {
-        try { post({ kind: "worker", path: new URL(String(args[0]), location.href).pathname.slice(0, 120) }); } catch (_) {}
+        try { if (enabled) post({ kind: "worker", path: new URL(String(args[0]), location.href).pathname.slice(0, 120) }); } catch (_) {}
         return Reflect.construct(t, args);
       }
     });
@@ -104,6 +108,7 @@
     return out;
   };
   const wrapped = function (url, input, init, args) {
+    if (!enabled) return origFetch.apply(window, args); // onay yok: isteğe de cevaba da bakılmaz
     const m = url && COMPLETION_RE.exec(url);
     if (!m) {
       // Tanı: gönderim isteği beklediğimiz adrese uymuyor olabilir. Yalnızca yol (kimlikler maskeli) bildirilir.
@@ -145,7 +150,7 @@
         // claude.ai'nin API adresleri (tekilleştirilmiş, en fazla 20): gönderim nereye gidiyor görmek için
         let pth = ""; try { pth = new URL(e.name).pathname; } catch (_) {}
         // Yalnızca mesaj gönderimiyle ilgili olabilecek adresler (günlüğü doldurmasın)
-        if (!pth.startsWith("/api/") || perfSeen >= 10 || !/completion|append|message|stream|retry/i.test(pth)) continue;
+        if (!enabled || !pth.startsWith("/api/") || perfSeen >= 10 || !/completion|append|message|stream|retry/i.test(pth)) continue;
         const masked = pth.replace(/[0-9a-f]{8}-[0-9a-f-]{27}/gi, ":id");
         if (perfPaths.has(masked)) continue;
         if (true) {
@@ -156,9 +161,13 @@
     }).observe({ type: "resource", buffered: false });
   } catch (_) {}
   // İçerik betiği "ping" atınca kanca durumunu bildirir (fetch başkası tarafından değiştirilmiş mi?)
+  // "enable": kullanıcı onay verdi, okumaya başla. "disable": onay geri alındı.
   window.addEventListener("message", (e) => {
-    if (e.source !== window || e.data?.__tokenForecastCmd !== "ping") return;
-    post({ kind: "hello", wrapped: window.fetch === wrapper, sawCompletion, at: Date.now() });
+    if (e.source !== window || e.origin !== location.origin) return;
+    const cmd = e.data?.__tokenForecastCmd;
+    if (cmd === "enable") enabled = true;
+    else if (cmd === "disable") enabled = false;
+    else if (cmd === "ping") post({ kind: "hello", wrapped: window.fetch === wrapper, enabled, sawCompletion, at: Date.now() });
   });
   // Bazı kütüphaneler fetch.toString() ile yerel olup olmadığını kontrol eder
   try { wrapper.toString = () => origFetch.toString(); } catch (_) {}

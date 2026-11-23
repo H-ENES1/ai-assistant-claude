@@ -12,12 +12,13 @@
 // (eklenti kendi kaba önselini kullanmaya devam eder). Cevap uzunluğu sapması: ölçüm sayısıyla ağırlıklı ortanca.
 import { readFileSync, readdirSync, writeFileSync, statSync } from "node:fs";
 import { execFileSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { parseContribution, aggregate } from "../extension/lib/contrib.js";
 
 const args = process.argv.slice(2);
 const opt = (k) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : null; };
-const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = path.resolve(opt("--out") || path.join(root, "extension/lib/community-priors.js"));
 
 let texts = [];

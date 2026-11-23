@@ -1,0 +1,4202 @@
+{
+ "rule": {
+  "minScore": 4,
+  "maxGap": 0.5
+ },
+ "all": {
+  "n": 80,
+  "uygun": 23,
+  "hafif": 7,
+  "agir": 49,
+  "olculemedi": 1,
+  "hafifCI": [
+   4,
+   17
+  ],
+  "agirCI": [
+   50,
+   71
+  ],
+  "lightest": {
+   "haiku": 61,
+   "sonnet": 13,
+   "opus": 5,
+   "hicbiri": 1
+  },
+  "mean": {
+   "haiku": 4.46,
+   "sonnet": 4.72,
+   "opus": 4.92
+  },
+  "acceptable": {
+   "haiku": 61,
+   "sonnet": 70,
+   "opus": 79
+  },
+  "recNotOk": 12
+ },
+ "standalone": {
+  "n": 58,
+  "uygun": 19,
+  "hafif": 5,
+  "agir": 33,
+  "olculemedi": 1,
+  "hafifCI": [
+   4,
+   19
+  ],
+  "agirCI": [
+   44,
+   69
+  ],
+  "lightest": {
+   "haiku": 43,
+   "sonnet": 10,
+   "opus": 4,
+   "hicbiri": 1
+  },
+  "mean": {
+   "haiku": 4.48,
+   "sonnet": 4.75,
+   "opus": 4.92
+  },
+  "acceptable": {
+   "haiku": 43,
+   "sonnet": 50,
+   "opus": 57
+  },
+  "recNotOk": 9
+ },
+ "noContext": {
+  "n": 22,
+  "uygun": 4,
+  "hafif": 2,
+  "agir": 16,
+  "olculemedi": 0,
+  "hafifCI": [
+   3,
+   28
+  ],
+  "agirCI": [
+   52,
+   87
+  ],
+  "lightest": {
+   "haiku": 18,
+   "sonnet": 3,
+   "opus": 1,
+   "hicbiri": 0
+  },
+  "mean": {
+   "haiku": 4.41,
+   "sonnet": 4.64,
+   "opus": 4.91
+  },
+  "acceptable": {
+   "haiku": 18,
+   "sonnet": 20,
+   "opus": 22
+  },
+  "recNotOk": 3
+ },
+ "byRec": {
+  "haiku": {
+   "n": 13,
+   "uygun": 12,
+   "hafif": 1,
+   "agir": 0,
+   "olculemedi": 0,
+   "hafifCI": [
+    1,
+    33
+   ],
+   "agirCI": [
+    0,
+    23
+   ],
+   "lightest": {
+    "haiku": 12,
+    "sonnet": 1,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.81,
+    "sonnet": 4.96,
+    "opus": 5
+   },
+   "acceptable": {
+    "haiku": 12,
+    "sonnet": 13,
+    "opus": 13
+   },
+   "recNotOk": 1
+  },
+  "opus": {
+   "n": 6,
+   "uygun": 0,
+   "hafif": 0,
+   "agir": 6,
+   "olculemedi": 0,
+   "hafifCI": [
+    0,
+    39
+   ],
+   "agirCI": [
+    61,
+    100
+   ],
+   "lightest": {
+    "haiku": 4,
+    "sonnet": 2,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.42,
+    "sonnet": 4.92,
+    "opus": 4.92
+   },
+   "acceptable": {
+    "haiku": 4,
+    "sonnet": 6,
+    "opus": 6
+   },
+   "recNotOk": 0
+  },
+  "sonnet": {
+   "n": 39,
+   "uygun": 7,
+   "hafif": 4,
+   "agir": 27,
+   "olculemedi": 1,
+   "hafifCI": [
+    4,
+    24
+   ],
+   "agirCI": [
+    54,
+    81
+   ],
+   "lightest": {
+    "haiku": 27,
+    "sonnet": 7,
+    "opus": 4,
+    "hicbiri": 1
+   },
+   "mean": {
+    "haiku": 4.38,
+    "sonnet": 4.65,
+    "opus": 4.9
+   },
+   "acceptable": {
+    "haiku": 27,
+    "sonnet": 31,
+    "opus": 38
+   },
+   "recNotOk": 8
+  }
+ },
+ "byType": {
+  "code_fix": {
+   "n": 3,
+   "uygun": 0,
+   "hafif": 1,
+   "agir": 2,
+   "olculemedi": 0,
+   "hafifCI": [
+    6,
+    79
+   ],
+   "agirCI": [
+    21,
+    94
+   ],
+   "lightest": {
+    "haiku": 2,
+    "sonnet": 0,
+    "opus": 1,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.5,
+    "sonnet": 4.67,
+    "opus": 5
+   },
+   "acceptable": {
+    "haiku": 2,
+    "sonnet": 2,
+    "opus": 3
+   },
+   "recNotOk": 1
+  },
+  "code_write": {
+   "n": 18,
+   "uygun": 3,
+   "hafif": 1,
+   "agir": 14,
+   "olculemedi": 0,
+   "hafifCI": [
+    1,
+    26
+   ],
+   "agirCI": [
+    55,
+    91
+   ],
+   "lightest": {
+    "haiku": 13,
+    "sonnet": 4,
+    "opus": 1,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.47,
+    "sonnet": 4.69,
+    "opus": 4.92
+   },
+   "acceptable": {
+    "haiku": 13,
+    "sonnet": 16,
+    "opus": 18
+   },
+   "recNotOk": 2
+  },
+  "explain": {
+   "n": 6,
+   "uygun": 2,
+   "hafif": 0,
+   "agir": 4,
+   "olculemedi": 0,
+   "hafifCI": [
+    0,
+    39
+   ],
+   "agirCI": [
+    30,
+    90
+   ],
+   "lightest": {
+    "haiku": 4,
+    "sonnet": 2,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.33,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "acceptable": {
+    "haiku": 4,
+    "sonnet": 6,
+    "opus": 6
+   },
+   "recNotOk": 0
+  },
+  "file_create": {
+   "n": 2,
+   "uygun": 0,
+   "hafif": 1,
+   "agir": 1,
+   "olculemedi": 0,
+   "hafifCI": [
+    9,
+    91
+   ],
+   "agirCI": [
+    9,
+    91
+   ],
+   "lightest": {
+    "haiku": 1,
+    "sonnet": 0,
+    "opus": 1,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4,
+    "sonnet": 4,
+    "opus": 4.75
+   },
+   "acceptable": {
+    "haiku": 1,
+    "sonnet": 1,
+    "opus": 2
+   },
+   "recNotOk": 1
+  },
+  "math": {
+   "n": 6,
+   "uygun": 0,
+   "hafif": 0,
+   "agir": 6,
+   "olculemedi": 0,
+   "hafifCI": [
+    0,
+    39
+   ],
+   "agirCI": [
+    61,
+    100
+   ],
+   "lightest": {
+    "haiku": 5,
+    "sonnet": 1,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.75,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "acceptable": {
+    "haiku": 5,
+    "sonnet": 6,
+    "opus": 6
+   },
+   "recNotOk": 0
+  },
+  "research": {
+   "n": 4,
+   "uygun": 1,
+   "hafif": 1,
+   "agir": 2,
+   "olculemedi": 0,
+   "hafifCI": [
+    5,
+    70
+   ],
+   "agirCI": [
+    15,
+    85
+   ],
+   "lightest": {
+    "haiku": 2,
+    "sonnet": 1,
+    "opus": 1,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.13,
+    "sonnet": 4.5,
+    "opus": 4.88
+   },
+   "acceptable": {
+    "haiku": 2,
+    "sonnet": 3,
+    "opus": 4
+   },
+   "recNotOk": 1
+  },
+  "rewrite": {
+   "n": 3,
+   "uygun": 3,
+   "hafif": 0,
+   "agir": 0,
+   "olculemedi": 0,
+   "hafifCI": [
+    0,
+    56
+   ],
+   "agirCI": [
+    0,
+    56
+   ],
+   "lightest": {
+    "haiku": 3,
+    "sonnet": 0,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.83,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "acceptable": {
+    "haiku": 3,
+    "sonnet": 3,
+    "opus": 3
+   },
+   "recNotOk": 0
+  },
+  "short_qa": {
+   "n": 3,
+   "uygun": 3,
+   "hafif": 0,
+   "agir": 0,
+   "olculemedi": 0,
+   "hafifCI": [
+    0,
+    56
+   ],
+   "agirCI": [
+    0,
+    56
+   ],
+   "lightest": {
+    "haiku": 3,
+    "sonnet": 0,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.83,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "acceptable": {
+    "haiku": 3,
+    "sonnet": 3,
+    "opus": 3
+   },
+   "recNotOk": 0
+  },
+  "translate": {
+   "n": 7,
+   "uygun": 6,
+   "hafif": 1,
+   "agir": 0,
+   "olculemedi": 0,
+   "hafifCI": [
+    3,
+    51
+   ],
+   "agirCI": [
+    0,
+    35
+   ],
+   "lightest": {
+    "haiku": 6,
+    "sonnet": 1,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.79,
+    "sonnet": 4.93,
+    "opus": 5
+   },
+   "acceptable": {
+    "haiku": 6,
+    "sonnet": 7,
+    "opus": 7
+   },
+   "recNotOk": 1
+  },
+  "writing": {
+   "n": 6,
+   "uygun": 1,
+   "hafif": 0,
+   "agir": 4,
+   "olculemedi": 1,
+   "hafifCI": [
+    0,
+    39
+   ],
+   "agirCI": [
+    30,
+    90
+   ],
+   "lightest": {
+    "haiku": 4,
+    "sonnet": 1,
+    "opus": 0,
+    "hicbiri": 1
+   },
+   "mean": {
+    "haiku": 4.08,
+    "sonnet": 4.42,
+    "opus": 4.67
+   },
+   "acceptable": {
+    "haiku": 4,
+    "sonnet": 3,
+    "opus": 5
+   },
+   "recNotOk": 3
+  }
+ },
+ "byDomain": {
+  "business": {
+   "n": 3,
+   "uygun": 2,
+   "hafif": 0,
+   "agir": 1,
+   "olculemedi": 0,
+   "hafifCI": [
+    0,
+    56
+   ],
+   "agirCI": [
+    6,
+    79
+   ],
+   "lightest": {
+    "haiku": 1,
+    "sonnet": 2,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.17,
+    "sonnet": 4.33,
+    "opus": 5
+   },
+   "acceptable": {
+    "haiku": 1,
+    "sonnet": 2,
+    "opus": 3
+   },
+   "recNotOk": 1
+  },
+  "daily": {
+   "n": 2,
+   "uygun": 1,
+   "hafif": 0,
+   "agir": 1,
+   "olculemedi": 0,
+   "hafifCI": [
+    0,
+    66
+   ],
+   "agirCI": [
+    9,
+    91
+   ],
+   "lightest": {
+    "haiku": 1,
+    "sonnet": 1,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.25,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "acceptable": {
+    "haiku": 1,
+    "sonnet": 2,
+    "opus": 2
+   },
+   "recNotOk": 0
+  },
+  "data_ai": {
+   "n": 1,
+   "uygun": 0,
+   "hafif": 1,
+   "agir": 0,
+   "olculemedi": 0,
+   "hafifCI": [
+    21,
+    100
+   ],
+   "agirCI": [
+    0,
+    79
+   ],
+   "lightest": {
+    "haiku": 0,
+    "sonnet": 0,
+    "opus": 1,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 3,
+    "sonnet": 3.5,
+    "opus": 5
+   },
+   "acceptable": {
+    "haiku": 0,
+    "sonnet": 0,
+    "opus": 1
+   },
+   "recNotOk": 1
+  },
+  "education": {
+   "n": 2,
+   "uygun": 2,
+   "hafif": 0,
+   "agir": 0,
+   "olculemedi": 0,
+   "hafifCI": [
+    0,
+    66
+   ],
+   "agirCI": [
+    0,
+    66
+   ],
+   "lightest": {
+    "haiku": 0,
+    "sonnet": 2,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 3.5,
+    "sonnet": 4.5,
+    "opus": 4.75
+   },
+   "acceptable": {
+    "haiku": 0,
+    "sonnet": 2,
+    "opus": 2
+   },
+   "recNotOk": 0
+  },
+  "engineering": {
+   "n": 2,
+   "uygun": 1,
+   "hafif": 0,
+   "agir": 1,
+   "olculemedi": 0,
+   "hafifCI": [
+    0,
+    66
+   ],
+   "agirCI": [
+    9,
+    91
+   ],
+   "lightest": {
+    "haiku": 1,
+    "sonnet": 1,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.25,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "acceptable": {
+    "haiku": 1,
+    "sonnet": 2,
+    "opus": 2
+   },
+   "recNotOk": 0
+  },
+  "finance": {
+   "n": 1,
+   "uygun": 0,
+   "hafif": 0,
+   "agir": 1,
+   "olculemedi": 0,
+   "hafifCI": [
+    0,
+    79
+   ],
+   "agirCI": [
+    21,
+    100
+   ],
+   "lightest": {
+    "haiku": 1,
+    "sonnet": 0,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.5,
+    "sonnet": 5,
+    "opus": 4.5
+   },
+   "acceptable": {
+    "haiku": 1,
+    "sonnet": 1,
+    "opus": 1
+   },
+   "recNotOk": 0
+  },
+  "general": {
+   "n": 8,
+   "uygun": 5,
+   "hafif": 0,
+   "agir": 3,
+   "olculemedi": 0,
+   "hafifCI": [
+    0,
+    32
+   ],
+   "agirCI": [
+    14,
+    69
+   ],
+   "lightest": {
+    "haiku": 8,
+    "sonnet": 0,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.88,
+    "sonnet": 4.94,
+    "opus": 4.94
+   },
+   "acceptable": {
+    "haiku": 8,
+    "sonnet": 8,
+    "opus": 8
+   },
+   "recNotOk": 0
+  },
+  "language": {
+   "n": 11,
+   "uygun": 6,
+   "hafif": 1,
+   "agir": 4,
+   "olculemedi": 0,
+   "hafifCI": [
+    2,
+    38
+   ],
+   "agirCI": [
+    15,
+    65
+   ],
+   "lightest": {
+    "haiku": 10,
+    "sonnet": 1,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.68,
+    "sonnet": 4.95,
+    "opus": 5
+   },
+   "acceptable": {
+    "haiku": 10,
+    "sonnet": 11,
+    "opus": 11
+   },
+   "recNotOk": 1
+  },
+  "literature": {
+   "n": 1,
+   "uygun": 0,
+   "hafif": 0,
+   "agir": 1,
+   "olculemedi": 0,
+   "hafifCI": [
+    0,
+    79
+   ],
+   "agirCI": [
+    21,
+    100
+   ],
+   "lightest": {
+    "haiku": 1,
+    "sonnet": 0,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.5,
+    "sonnet": 4,
+    "opus": 5
+   },
+   "acceptable": {
+    "haiku": 1,
+    "sonnet": 0,
+    "opus": 1
+   },
+   "recNotOk": 1
+  },
+  "math": {
+   "n": 7,
+   "uygun": 0,
+   "hafif": 0,
+   "agir": 7,
+   "olculemedi": 0,
+   "hafifCI": [
+    0,
+    35
+   ],
+   "agirCI": [
+    65,
+    100
+   ],
+   "lightest": {
+    "haiku": 6,
+    "sonnet": 1,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.71,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "acceptable": {
+    "haiku": 6,
+    "sonnet": 7,
+    "opus": 7
+   },
+   "recNotOk": 0
+  },
+  "project": {
+   "n": 1,
+   "uygun": 0,
+   "hafif": 0,
+   "agir": 1,
+   "olculemedi": 0,
+   "hafifCI": [
+    0,
+    79
+   ],
+   "agirCI": [
+    21,
+    100
+   ],
+   "lightest": {
+    "haiku": 1,
+    "sonnet": 0,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.5,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "acceptable": {
+    "haiku": 1,
+    "sonnet": 1,
+    "opus": 1
+   },
+   "recNotOk": 0
+  },
+  "science": {
+   "n": 4,
+   "uygun": 1,
+   "hafif": 1,
+   "agir": 1,
+   "olculemedi": 1,
+   "hafifCI": [
+    5,
+    70
+   ],
+   "agirCI": [
+    5,
+    70
+   ],
+   "lightest": {
+    "haiku": 2,
+    "sonnet": 0,
+    "opus": 1,
+    "hicbiri": 1
+   },
+   "mean": {
+    "haiku": 4,
+    "sonnet": 4.38,
+    "opus": 4.63
+   },
+   "acceptable": {
+    "haiku": 2,
+    "sonnet": 2,
+    "opus": 3
+   },
+   "recNotOk": 2
+  },
+  "software": {
+   "n": 15,
+   "uygun": 1,
+   "hafif": 2,
+   "agir": 12,
+   "olculemedi": 0,
+   "hafifCI": [
+    4,
+    38
+   ],
+   "agirCI": [
+    55,
+    93
+   ],
+   "lightest": {
+    "haiku": 11,
+    "sonnet": 2,
+    "opus": 2,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.5,
+    "sonnet": 4.63,
+    "opus": 4.9
+   },
+   "acceptable": {
+    "haiku": 11,
+    "sonnet": 12,
+    "opus": 15
+   },
+   "recNotOk": 3
+  }
+ },
+ "bySet": {
+  "chatty": {
+   "n": 10,
+   "uygun": 2,
+   "hafif": 1,
+   "agir": 7,
+   "olculemedi": 0,
+   "hafifCI": [
+    2,
+    40
+   ],
+   "agirCI": [
+    40,
+    89
+   ],
+   "lightest": {
+    "haiku": 8,
+    "sonnet": 2,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.5,
+    "sonnet": 4.6,
+    "opus": 4.8
+   },
+   "acceptable": {
+    "haiku": 8,
+    "sonnet": 9,
+    "opus": 10
+   },
+   "recNotOk": 2
+  },
+  "control": {
+   "n": 5,
+   "uygun": 5,
+   "hafif": 0,
+   "agir": 0,
+   "olculemedi": 0,
+   "hafifCI": [
+    0,
+    43
+   ],
+   "agirCI": [
+    0,
+    43
+   ],
+   "lightest": {
+    "haiku": 5,
+    "sonnet": 0,
+    "opus": 0,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 5,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "acceptable": {
+    "haiku": 5,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "recNotOk": 0
+  },
+  "rec": {
+   "n": 50,
+   "uygun": 14,
+   "hafif": 5,
+   "agir": 30,
+   "olculemedi": 1,
+   "hafifCI": [
+    4,
+    21
+   ],
+   "agirCI": [
+    46,
+    72
+   ],
+   "lightest": {
+    "haiku": 36,
+    "sonnet": 9,
+    "opus": 4,
+    "hicbiri": 1
+   },
+   "mean": {
+    "haiku": 4.4,
+    "sonnet": 4.73,
+    "opus": 4.94
+   },
+   "acceptable": {
+    "haiku": 36,
+    "sonnet": 43,
+    "opus": 49
+   },
+   "recNotOk": 8
+  },
+  "trap": {
+   "n": 15,
+   "uygun": 2,
+   "hafif": 1,
+   "agir": 12,
+   "olculemedi": 0,
+   "hafifCI": [
+    1,
+    30
+   ],
+   "agirCI": [
+    55,
+    93
+   ],
+   "lightest": {
+    "haiku": 12,
+    "sonnet": 2,
+    "opus": 1,
+    "hicbiri": 0
+   },
+   "mean": {
+    "haiku": 4.47,
+    "sonnet": 4.67,
+    "opus": 4.9
+   },
+   "acceptable": {
+    "haiku": 12,
+    "sonnet": 13,
+    "opus": 15
+   },
+   "recNotOk": 2
+  }
+ },
+ "langRestored": {
+  "standalone": {
+   "n": 58,
+   "uygun": 18,
+   "hafif": 4,
+   "agir": 35,
+   "olculemedi": 1,
+   "hafifCI": [
+    3,
+    16
+   ],
+   "agirCI": [
+    47,
+    72
+   ],
+   "lightest": {
+    "haiku": 46,
+    "sonnet": 8,
+    "opus": 3,
+    "hicbiri": 1
+   },
+   "mean": {
+    "haiku": 4.53,
+    "sonnet": 4.78,
+    "opus": 4.92
+   },
+   "acceptable": {
+    "haiku": 46,
+    "sonnet": 52,
+    "opus": 57
+   },
+   "recNotOk": 7
+  },
+  "all": {
+   "n": 80,
+   "uygun": 22,
+   "hafif": 6,
+   "agir": 51,
+   "olculemedi": 1,
+   "hafifCI": [
+    3,
+    15
+   ],
+   "agirCI": [
+    53,
+    73
+   ],
+   "lightest": {
+    "haiku": 64,
+    "sonnet": 11,
+    "opus": 4,
+    "hicbiri": 1
+   },
+   "mean": {
+    "haiku": 4.5,
+    "sonnet": 4.74,
+    "opus": 4.92
+   },
+   "acceptable": {
+    "haiku": 64,
+    "sonnet": 72,
+    "opus": 79
+   },
+   "recNotOk": 10
+  },
+  "changed": [
+   {
+    "id": "r15",
+    "from": "sonnet/uygun",
+    "to": "haiku/agir"
+   },
+   {
+    "id": "r33",
+    "from": "opus/hafif",
+    "to": "haiku/agir"
+   },
+   {
+    "id": "r35",
+    "from": "sonnet/agir",
+    "to": "haiku/agir"
+   }
+  ]
+ },
+ "langSlipByModel": {
+  "haiku": 3,
+  "sonnet": 2,
+  "opus": 0
+ },
+ "best": {
+  "haiku": 24,
+  "sonnet": 44,
+  "opus": 55
+ },
+ "authorAgree": {
+  "n": 79,
+  "yes": 41
+ },
+ "answerWords": {
+  "haiku": {
+   "mean": 182,
+   "over400": 1
+  },
+  "sonnet": {
+   "mean": 233,
+   "over400": 3
+  },
+  "opus": {
+   "mean": 236,
+   "over400": 7
+  }
+ },
+ "rows": [
+  {
+   "id": "r01",
+   "set": "rec",
+   "prompt": "Türkiye'nin başkenti neresi?",
+   "noContext": null,
+   "type": "short_qa",
+   "domain": "general",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 4,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku"
+   ],
+   "score": {
+    "sonnet": 5,
+    "opus": 5,
+    "haiku": 4.5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 24,
+    "sonnet": 37,
+    "opus": 29
+   },
+   "note": "Üçü de Ankara diyor; C başkentlik tarihini 29 Ekim'e bağlayarak küçük bir yanlış yapıyor (13 Ekim 1923)."
+  },
+  {
+   "id": "r02",
+   "set": "rec",
+   "prompt": "Işık hızı kaç km/s?",
+   "noContext": null,
+   "type": "short_qa",
+   "domain": "science",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 5,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku"
+   ],
+   "score": {
+    "sonnet": 5,
+    "opus": 5,
+    "haiku": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 48,
+    "sonnet": 80,
+    "opus": 72
+   },
+   "note": "Üçü de 299.792,458 km/s değerini doğru veriyor."
+  },
+  {
+   "id": "r03",
+   "set": "rec",
+   "prompt": "Who wrote Pride and Prejudice?",
+   "noContext": null,
+   "type": "short_qa",
+   "domain": "general",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 5,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 75,
+    "sonnet": 120,
+    "opus": 73
+   },
+   "note": "Üçü de Jane Austen ve 1813'ü doğru veriyor."
+  },
+  {
+   "id": "r04",
+   "set": "rec",
+   "prompt": "Bugün günlerden ne, 20 Ekim 2026 hangi güne denk geliyor?",
+   "noContext": null,
+   "type": "research",
+   "domain": "general",
+   "confidence": "high",
+   "complexity": 0.11,
+   "words": 8,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "haiku",
+    "sonnet"
+   ],
+   "score": {
+    "sonnet": 5,
+    "haiku": 5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 22,
+    "sonnet": 47,
+    "opus": 53
+   },
+   "note": "Üçü de Çarşamba ve Salı'yı doğru veriyor."
+  },
+  {
+   "id": "r05",
+   "set": "rec",
+   "prompt": "Bu cümleyi İngilizceye çevir: Yarın toplantıya katılamayacağım.",
+   "noContext": null,
+   "type": "translate",
+   "domain": "language",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 7,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku"
+   ],
+   "score": {
+    "opus": 5,
+    "sonnet": 5,
+    "haiku": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 43,
+    "sonnet": 9,
+    "opus": 32
+   },
+   "note": "Üç çeviri de doğru."
+  },
+  {
+   "id": "r06",
+   "set": "rec",
+   "prompt": "Translate this into Turkish: The meeting has been moved to Friday.",
+   "noContext": null,
+   "type": "translate",
+   "domain": "language",
+   "confidence": "high",
+   "complexity": 0.02,
+   "words": 11,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku"
+   ],
+   "score": {
+    "opus": 5,
+    "sonnet": 4.5,
+    "haiku": 4.5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 4,
+    "sonnet": 4,
+    "opus": 22
+   },
+   "note": "Üçü de doğru; A erteleme/öne alma ayrımını not ediyor, B gün adını gereksiz büyük yazıyor, C 'taşındı' ile birebir çeviriyor."
+  },
+  {
+   "id": "r07",
+   "set": "rec",
+   "prompt": "Şu paragrafı Almancaya tercüme eder misin? Merhaba, ben Antalya'da fizik okuyorum.",
+   "noContext": null,
+   "type": "translate",
+   "domain": "language",
+   "confidence": "high",
+   "complexity": 0.02,
+   "words": 12,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku"
+   ],
+   "score": {
+    "opus": 5,
+    "sonnet": 5,
+    "haiku": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 7,
+    "sonnet": 50,
+    "opus": 55
+   },
+   "note": "Üç çeviri de doğru."
+  },
+  {
+   "id": "r08",
+   "set": "rec",
+   "prompt": "Yazım hatalarını düzeltir misin? Bugun okula gittim ve cok yoruldum.",
+   "noContext": null,
+   "type": "rewrite",
+   "domain": "general",
+   "confidence": "high",
+   "complexity": 0.02,
+   "words": 10,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku"
+   ],
+   "score": {
+    "opus": 5,
+    "sonnet": 5,
+    "haiku": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 37,
+    "sonnet": 38,
+    "opus": 33
+   },
+   "note": "Üçü de iki hatayı doğru düzeltiyor."
+  },
+  {
+   "id": "r09",
+   "set": "rec",
+   "prompt": "Make this email sound more professional: hey, can u send the file asap",
+   "noContext": null,
+   "type": "rewrite",
+   "domain": "general",
+   "confidence": "high",
+   "complexity": 0.02,
+   "words": 13,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku",
+    "sonnet"
+   ],
+   "score": {
+    "opus": 5,
+    "sonnet": 5,
+    "haiku": 4.5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 112,
+    "sonnet": 222,
+    "opus": 129
+   },
+   "note": "Üçü de profesyonel sürüm veriyor; A ve B iki ton seçeneği sunuyor, C tek ve biraz katı."
+  },
+  {
+   "id": "r10",
+   "set": "rec",
+   "prompt": "Şu metni sadeleştir ve kısalt",
+   "noContext": "metin yok",
+   "type": "rewrite",
+   "domain": "general",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 5,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku",
+    "sonnet"
+   ],
+   "score": {
+    "sonnet": 2,
+    "haiku": 2,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "opus",
+   "verdict": "hafif",
+   "steps": -2,
+   "recOk": false,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 47,
+    "sonnet": 46,
+    "opus": 96
+   },
+   "note": "C metnin gelmediğini söylüyor; A ve B ölçüm düzeninin iç talimatını 'metin' sanıp onu sadeleştiriyor."
+  },
+  {
+   "id": "r11",
+   "set": "rec",
+   "prompt": "Bu makaleyi 5 maddede özetle",
+   "noContext": "makale yok",
+   "type": "summarize",
+   "domain": "general",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 4,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku",
+    "sonnet"
+   ],
+   "score": {
+    "haiku": 5,
+    "opus": 5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 76,
+    "sonnet": 132,
+    "opus": 74
+   },
+   "note": "Üçü de makalenin gelmediğini söyleyip metni istiyor."
+  },
+  {
+   "id": "r12",
+   "set": "rec",
+   "prompt": "TL;DR of this thread please",
+   "noContext": "sohbet yok",
+   "type": "summarize",
+   "domain": "software",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 6,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku"
+   ],
+   "score": {
+    "haiku": 2,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "sonnet",
+   "verdict": "hafif",
+   "steps": -1,
+   "recOk": false,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [
+    "haiku"
+   ],
+   "answerWords": {
+    "haiku": 198,
+    "sonnet": 188,
+    "opus": 119
+   },
+   "note": "B ve C ortada konuşma olmadığını söyleyip metni istiyor; A kendi sistem bağlamını 'konuşma' sanıp özetliyor ve ortam ayrıntılarını döküyor."
+  },
+  {
+   "id": "r13",
+   "set": "rec",
+   "prompt": "Kediler neden kutulara bu kadar meraklı?",
+   "noContext": null,
+   "type": "explain",
+   "domain": "daily",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 6,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku",
+    "sonnet"
+   ],
+   "score": {
+    "haiku": 4,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "sonnet",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 226,
+    "sonnet": 289,
+    "opus": 296
+   },
+   "note": "B ve C somut bulgulara (barınak çalışması, sıcaklık aralığı, çizili kare) dayanıyor; A doğru ama genel ve yer yer dolgu."
+  },
+  {
+   "id": "r14",
+   "set": "rec",
+   "prompt": "Kuantum dolanıklık nedir, basitçe açıklar mısın?",
+   "noContext": null,
+   "type": "explain",
+   "domain": "science",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 6,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 4.5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 214,
+    "sonnet": 290,
+    "opus": 310
+   },
+   "note": "Üçü de doğru (eldiven benzetmesi, Bell, haberleşme yok); B daha kuru ve kısa."
+  },
+  {
+   "id": "r15",
+   "set": "rec",
+   "prompt": "How does a transistor work?",
+   "noContext": null,
+   "type": "explain",
+   "domain": "engineering",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 5,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "haiku"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 3.5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "sonnet",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [
+    "haiku"
+   ],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 254,
+    "sonnet": 437,
+    "opus": 461
+   },
+   "note": "A ve C katkılama, BJT ve MOSFET'i doğru ve anlaşılır anlatıyor; B doğru ama daha kısa ve İngilizce isteme Türkçe cevap."
+  },
+  {
+   "id": "r16",
+   "set": "rec",
+   "prompt": "Gauss yasasının integral formunu bir örnekle anlatır mısın?",
+   "noContext": null,
+   "type": "explain",
+   "domain": "math",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 8,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet"
+   ],
+   "score": {
+    "haiku": 4.5,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 192,
+    "sonnet": 349,
+    "opus": 354
+   },
+   "note": "Üçü de doğru; B sayısal örnek, C ikinci örnek ekliyor, A tek örnekle daha yalın."
+  },
+  {
+   "id": "r17",
+   "set": "rec",
+   "prompt": "Hocama ödev teslimini ertelemesi için kibar bir e-posta yaz",
+   "noContext": null,
+   "type": "writing",
+   "domain": "education",
+   "confidence": "high",
+   "complexity": 0.02,
+   "words": 10,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "haiku"
+   ],
+   "score": {
+    "opus": 5,
+    "sonnet": 5,
+    "haiku": 3.5
+   },
+   "best": 5,
+   "lightest": "sonnet",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 100,
+    "sonnet": 160,
+    "opus": 258
+   },
+   "note": "A ve B eksiksiz, doldurulabilir taslak; C'nin konu satırında yazım hatası var ve öğrenci kendini tanıtmıyor."
+  },
+  {
+   "id": "r18",
+   "set": "rec",
+   "prompt": "Write a cover letter for a junior data analyst position.",
+   "noContext": null,
+   "type": "writing",
+   "domain": "business",
+   "confidence": "high",
+   "complexity": 0.02,
+   "words": 10,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet"
+   ],
+   "score": {
+    "haiku": 4.5,
+    "opus": 5,
+    "sonnet": 4
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": false,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 233,
+    "sonnet": 319,
+    "opus": 383
+   },
+   "note": "B başlık, doldurulacak örnekler ve ipuçlarıyla en kullanışlı; A kısa ama yeterli; C kullanıcının bilmediği başarıları (yüzde 9 artış, staj) uyduruyor."
+  },
+  {
+   "id": "r19",
+   "set": "rec",
+   "prompt": "Kara delikler hakkında Evrim Ağacı için 1500 kelimelik popüler bilim makalesi yaz",
+   "noContext": null,
+   "type": "writing",
+   "domain": "science",
+   "confidence": "high",
+   "complexity": 0.02,
+   "words": 11,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "opus"
+   ],
+   "score": {
+    "opus": 3.5,
+    "sonnet": 3.5,
+    "haiku": 3
+   },
+   "best": 3.5,
+   "lightest": null,
+   "verdict": "olculemedi",
+   "steps": null,
+   "recOk": false,
+   "authorAgrees": null,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 289,
+    "sonnet": 391,
+    "opus": 373
+   },
+   "note": "İstem 1500 kelime istiyor, ölçüm düzeni cevabı 400 kelimeyle sınırlıyor: üçü de doğru ama kısaltılmış; A bunu açıkça söylüyor, C en kısa ve başlıksız."
+  },
+  {
+   "id": "r20",
+   "set": "rec",
+   "prompt": "Write a short poem about the sea at night.",
+   "noContext": null,
+   "type": "writing",
+   "domain": "literature",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 9,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "low",
+   "authorOk": [
+    "sonnet",
+    "haiku"
+   ],
+   "score": {
+    "sonnet": 4,
+    "haiku": 4.5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": false,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 111,
+    "sonnet": 138,
+    "opus": 87
+   },
+   "note": "C en sıkı ve özgün; B iyi imgeler; A 'kısa' için uzun ve dolgu kafiyeli."
+  },
+  {
+   "id": "r21",
+   "set": "rec",
+   "prompt": "Hafta sonu yapılacak 5 etkinlik fikri ver",
+   "noContext": null,
+   "type": "writing",
+   "domain": "daily",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 6,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku",
+    "sonnet"
+   ],
+   "score": {
+    "sonnet": 5,
+    "opus": 5,
+    "haiku": 4.5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 162,
+    "sonnet": 240,
+    "opus": 247
+   },
+   "note": "Üçü de 5 uygulanabilir fikir veriyor; C'de başlık-içerik uyumsuzluğu ve bozuk bir kapanış cümlesi var."
+  },
+  {
+   "id": "r22",
+   "set": "rec",
+   "prompt": "x^2 - 5x + 6 = 0 denklemini çöz",
+   "noContext": null,
+   "type": "math",
+   "domain": "math",
+   "confidence": "high",
+   "complexity": 0.16,
+   "words": 4,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "high",
+   "authorOk": [
+    "haiku",
+    "sonnet"
+   ],
+   "score": {
+    "sonnet": 5,
+    "haiku": 5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 121,
+    "sonnet": 167,
+    "opus": 124
+   },
+   "note": "Üçü de x = 2 ve x = 3'ü iki yöntemle doğru buluyor."
+  },
+  {
+   "id": "r23",
+   "set": "rec",
+   "prompt": "∫ x e^x dx integralini hesapla",
+   "noContext": null,
+   "type": "math",
+   "domain": "math",
+   "confidence": "high",
+   "complexity": 0.16,
+   "words": 6,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "high",
+   "authorOk": [
+    "sonnet"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 111,
+    "sonnet": 174,
+    "opus": 98
+   },
+   "note": "Üçü de (x − 1)eˣ + C sonucunu türevle doğrulayarak veriyor."
+  },
+  {
+   "id": "r24",
+   "set": "rec",
+   "prompt": "Bir zarın iki kez atılmasında toplamın 7 olma olasılığını hesapla",
+   "noContext": null,
+   "type": "math",
+   "domain": "math",
+   "confidence": "high",
+   "complexity": 0.16,
+   "words": 9,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "high",
+   "authorOk": [
+    "sonnet",
+    "haiku"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 70,
+    "sonnet": 159,
+    "opus": 126
+   },
+   "note": "Üçü de 6/36 = 1/6 sonucunu doğru sayımla veriyor."
+  },
+  {
+   "id": "r25",
+   "set": "rec",
+   "prompt": "Schrödinger denklemini adım adım türet ve her adımı kanıtla, detaylı olsun",
+   "noContext": null,
+   "type": "math",
+   "domain": "math",
+   "confidence": "high",
+   "complexity": 0.81,
+   "words": 11,
+   "shown": true,
+   "rec": "opus",
+   "recEffort": "high",
+   "authorOk": [
+    "opus"
+   ],
+   "score": {
+    "opus": 5,
+    "sonnet": 5,
+    "haiku": 4.5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 2,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 301,
+    "sonnet": 354,
+    "opus": 354
+   },
+   "note": "Üçü de denklemin postüla olduğunu söyleyip sezgisel çıkarımı doğru veriyor; A ve B hangi adımın kanıt hangisinin varsayım olduğunu ayırıyor, C potansiyeli gerekçesiz ekliyor."
+  },
+  {
+   "id": "r26",
+   "set": "rec",
+   "prompt": "Prove that every bounded monotone sequence of real numbers converges, rigorously.",
+   "noContext": null,
+   "type": "math",
+   "domain": "math",
+   "confidence": "high",
+   "complexity": 0.42,
+   "words": 11,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "high",
+   "authorOk": [
+    "opus",
+    "sonnet"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 282,
+    "sonnet": 397,
+    "opus": 451
+   },
+   "note": "Üç kanıt da tamlık aksiyomundan epsilon tanımıyla eksiksiz; azalan durum işaret değiştirerek doğru indirgeniyor."
+  },
+  {
+   "id": "r27",
+   "set": "rec",
+   "prompt": "Hidrojen atomu için radyal dalga fonksiyonlarını türet, Laguerre polinomlarıyla ilişkisini kanıtla",
+   "noContext": null,
+   "type": "math",
+   "domain": "math",
+   "confidence": "high",
+   "complexity": 0.55,
+   "words": 11,
+   "shown": true,
+   "rec": "opus",
+   "recEffort": "high",
+   "authorOk": [
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "sonnet": 5,
+    "haiku": 4,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "sonnet",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 372,
+    "sonnet": 341,
+    "opus": 299
+   },
+   "note": "A ve C seri, kesilme ve Laguerre katsayı oranı kanıtını tam veriyor; B enerjiyi baştan varsayıyor ve kesilmeyi yalnızca iddia ediyor."
+  },
+  {
+   "id": "r28",
+   "set": "rec",
+   "prompt": "Python'da bir listeyi ters çeviren fonksiyon yazar mısın?",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "software",
+   "confidence": "high",
+   "complexity": 0.11,
+   "words": 9,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "haiku"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 154,
+    "sonnet": 204,
+    "opus": 270
+   },
+   "note": "Üçü de doğru ve çalışan çözümler (dilimleme, yerinde, elle) veriyor."
+  },
+  {
+   "id": "r29",
+   "set": "rec",
+   "prompt": "Write a JavaScript function that debounces another function.",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "software",
+   "confidence": "high",
+   "complexity": 0.11,
+   "words": 8,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet"
+   ],
+   "score": {
+    "sonnet": 5,
+    "haiku": 5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 282,
+    "sonnet": 381,
+    "opus": 353
+   },
+   "note": "Üç uygulama da doğru (this/argüman korunuyor, cancel var); A'da ek olarak flush ve iki kenar desteği var."
+  },
+  {
+   "id": "r30",
+   "set": "rec",
+   "prompt": "Arduino ile sıcaklık sensöründen veri okuyan kod yaz",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "engineering",
+   "confidence": "high",
+   "complexity": 0.11,
+   "words": 8,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 252,
+    "sonnet": 289,
+    "opus": 327
+   },
+   "note": "Üçü de çalışır kod veriyor (LM35 ve DHT), bağlantı ve dönüşüm doğru."
+  },
+  {
+   "id": "r31",
+   "set": "rec",
+   "prompt": "Write a SQL query that returns the top 10 customers by revenue.",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "software",
+   "confidence": "high",
+   "complexity": 0.12,
+   "words": 11,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "haiku"
+   ],
+   "score": {
+    "sonnet": 5,
+    "opus": 5,
+    "haiku": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 173,
+    "sonnet": 343,
+    "opus": 318
+   },
+   "note": "Üç sorgu da doğru; lehçe ve eşitlik notları üçünde de var, C daha kısa."
+  },
+  {
+   "id": "r32",
+   "set": "rec",
+   "prompt": "Bu kodu çalıştırdığımda hata veriyor:\n```py\nfor i in range(len(a)+1):\n    print(a[i])\n```",
+   "noContext": null,
+   "type": "code_fix",
+   "domain": "software",
+   "confidence": "high",
+   "complexity": 0.12,
+   "words": 15,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "haiku"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 117,
+    "sonnet": 184,
+    "opus": 192
+   },
+   "note": "Üçü de bir fazla indeks hatasını doğru açıklayıp düzeltiyor."
+  },
+  {
+   "id": "r33",
+   "set": "rec",
+   "prompt": "TypeError: Cannot read properties of undefined (reading 'map') — how do I fix this?",
+   "noContext": null,
+   "type": "code_fix",
+   "domain": "software",
+   "confidence": "high",
+   "complexity": 0.12,
+   "words": 13,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet"
+   ],
+   "score": {
+    "opus": 5,
+    "sonnet": 4,
+    "haiku": 3.5
+   },
+   "best": 5,
+   "lightest": "opus",
+   "verdict": "hafif",
+   "steps": -1,
+   "recOk": false,
+   "authorAgrees": false,
+   "langSlip": [
+    "sonnet",
+    "haiku"
+   ],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 186,
+    "sonnet": 231,
+    "opus": 345
+   },
+   "note": "Üçünün içeriği doğru (nedenler, varsayılan dizi, kök neden uyarısı); B ve C İngilizce isteme Türkçe cevap veriyor, C ayrıca daha kısa."
+  },
+  {
+   "id": "r34",
+   "set": "rec",
+   "prompt": "Bana kapsamlı bir e-ticaret sitesinin mimarisini tasarla, backend ve frontend dahil, production seviyesinde",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "software",
+   "confidence": "high",
+   "complexity": 0.64,
+   "words": 14,
+   "shown": true,
+   "rec": "opus",
+   "recEffort": "xhigh",
+   "authorOk": [
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "opus": 4.5,
+    "sonnet": 5,
+    "haiku": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 2,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 396,
+    "sonnet": 378,
+    "opus": 355
+   },
+   "note": "Üçü de modüler monolit başlangıcı, saga/outbox, PCI ve gözlemlenebilirliği kapsıyor; B ve C veri katmanı ve yol haritasında daha eksiksiz."
+  },
+  {
+   "id": "r35",
+   "set": "rec",
+   "prompt": "Design a scalable architecture for a real-time chat app with 1M users, including database sharding and failover.",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "software",
+   "confidence": "high",
+   "complexity": 0.65,
+   "words": 18,
+   "shown": true,
+   "rec": "opus",
+   "recEffort": "xhigh",
+   "authorOk": [
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "haiku": 4,
+    "opus": 5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "sonnet",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [
+    "haiku"
+   ],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 401,
+    "sonnet": 435,
+    "opus": 426
+   },
+   "note": "Üçünün içeriği güçlü (bölümleme, yedeklilik, devralma); A İngilizce isteme Türkçe cevap verdiği için düşük."
+  },
+  {
+   "id": "r36",
+   "set": "rec",
+   "prompt": "Mikroservis mimarisinde dağıtık işlem yönetimini (saga pattern) tasarla ve örnek kodla açıkla",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "software",
+   "confidence": "high",
+   "complexity": 0.64,
+   "words": 12,
+   "shown": true,
+   "rec": "opus",
+   "recEffort": "xhigh",
+   "authorOk": [
+    "opus"
+   ],
+   "score": {
+    "haiku": 4.5,
+    "sonnet": 4.5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 2,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 312,
+    "sonnet": 350,
+    "opus": 385
+   },
+   "note": "C orkestrasyon + koreografi kodu, outbox ve kalıcı durumu birlikte veriyor; A'da outbox yok, B'de koreografi örneği yok."
+  },
+  {
+   "id": "r37",
+   "set": "rec",
+   "prompt": "Bu React uygulamasını baştan sona refactor et, state yönetimini Redux'tan Zustand'a taşı, tüm testleri güncelle",
+   "noContext": "kod yok",
+   "type": "code_fix",
+   "domain": "software",
+   "confidence": "high",
+   "complexity": 0.39,
+   "words": 17,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "opus",
+    "sonnet"
+   ],
+   "score": {
+    "haiku": 4.5,
+    "opus": 5,
+    "sonnet": 4.5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 313,
+    "sonnet": 303,
+    "opus": 291
+   },
+   "note": "Üçü de kodu isteyip göç yol haritası veriyor; B önce/sonra kod örneği ve kapsam sorusuyla en somut."
+  },
+  {
+   "id": "r38",
+   "set": "rec",
+   "prompt": "Bir sistem tasarla: kullanıcıların Claude limitlerini tahmin eden bir tarayıcı eklentisi",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "software",
+   "confidence": "high",
+   "complexity": 0.25,
+   "words": 11,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "opus",
+    "sonnet"
+   ],
+   "score": {
+    "opus": 5,
+    "sonnet": 4.5,
+    "haiku": 4
+   },
+   "best": 5,
+   "lightest": "sonnet",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 258,
+    "sonnet": 321,
+    "opus": 388
+   },
+   "note": "A maliyet modeli, limit mesajından kalibrasyon ve yol haritasıyla en eksiksiz; B iyi ama daha soyut; C tahmin modelinde yüzeysel ve elle girişe dayanıyor."
+  },
+  {
+   "id": "r39",
+   "set": "rec",
+   "prompt": "Bu CSV dosyasındaki satışları aylara göre analiz et",
+   "noContext": "dosya yok",
+   "type": "data_analysis",
+   "domain": "data_ai",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 8,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet"
+   ],
+   "score": {
+    "sonnet": 5,
+    "opus": 5,
+    "haiku": 4.5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 173,
+    "sonnet": 199,
+    "opus": 222
+   },
+   "note": "Üçü de dosyayı istiyor ve ne çıkaracağını söylüyor; C'nin örnek kodu eksik ve sohbet asistanı için 'dosya yolunu ver' diyor."
+  },
+  {
+   "id": "r40",
+   "set": "rec",
+   "prompt": "Excel tablosundaki notların ortalamasını ve standart sapmasını bul",
+   "noContext": "tablo yok",
+   "type": "data_analysis",
+   "domain": "data_ai",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 8,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "haiku"
+   ],
+   "score": {
+    "haiku": 4.5,
+    "opus": 5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 151,
+    "sonnet": 310,
+    "opus": 299
+   },
+   "note": "Üçü de doğru formülleri ve örneklem/anakütle ayrımını veriyor; A daha yalın ve tablonun eksik olduğunu söylemiyor."
+  },
+  {
+   "id": "r41",
+   "set": "rec",
+   "prompt": "2026'daki en iyi öğrenci laptopları hangileri, fiyatlarıyla karşılaştır",
+   "noContext": null,
+   "type": "research",
+   "domain": "education",
+   "confidence": "high",
+   "complexity": 0.11,
+   "words": 8,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet"
+   ],
+   "score": {
+    "sonnet": 4,
+    "haiku": 3.5,
+    "opus": 4.5
+   },
+   "best": 4.5,
+   "lightest": "sonnet",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 312,
+    "sonnet": 366,
+    "opus": 388
+   },
+   "note": "Arama olmadan üçü de tahmini dolar fiyatı veriyor; C model, bölüm ve fiyatı en dengeli eşliyor; A somut ama doğrulanamayan model adları içeriyor; B yalnızca seri adları ve geniş aralıklar."
+  },
+  {
+   "id": "r42",
+   "set": "rec",
+   "prompt": "Plazmonik indis artırımı üzerine son 5 yılın literatürünü tara, yöntemleri karşılaştır ve açık problemleri çıkar",
+   "noContext": null,
+   "type": "research",
+   "domain": "science",
+   "confidence": "high",
+   "complexity": 0.38,
+   "words": 14,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "high",
+   "authorOk": [
+    "opus",
+    "sonnet"
+   ],
+   "score": {
+    "haiku": 3.5,
+    "sonnet": 4,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "opus",
+   "verdict": "hafif",
+   "steps": -1,
+   "recOk": false,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 344,
+    "sonnet": 374,
+    "opus": 353
+   },
+   "note": "C terimi etkin kırılma indisinin artırılması olarak okuyup yöntemleri ve sınırları somut karşılaştırıyor; A ve B algılayıcı duyarlılığı olarak yorumluyor (B bunu açıkça belirtip seçenek sunuyor, A daha yüzeysel)."
+  },
+  {
+   "id": "r43",
+   "set": "rec",
+   "prompt": "Bu konuyla ilgili 10 slaytlık bir sunum hazırla",
+   "noContext": "konu yok",
+   "type": "file_create",
+   "domain": "general",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 7,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet"
+   ],
+   "score": {
+    "haiku": 5,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 119,
+    "sonnet": 225,
+    "opus": 212
+   },
+   "note": "Üçü de konunun verilmediğini söyleyip genel iskelet öneriyor."
+  },
+  {
+   "id": "r44",
+   "set": "rec",
+   "prompt": "Bütçe takibi için bir Excel dosyası oluştur",
+   "noContext": null,
+   "type": "file_create",
+   "domain": "data_ai",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 7,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 3,
+    "sonnet": 3.5
+   },
+   "best": 5,
+   "lightest": "opus",
+   "verdict": "hafif",
+   "steps": -1,
+   "recOk": false,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 271,
+    "sonnet": 241,
+    "opus": 356
+   },
+   "note": "A'nın formülleri çalışır; B çok ölçütlü toplamda ETOPLA'yı yanlış kullanıyor; C'de bir formülde başvuru yazım hatası ve Türkçe Excel'de EDATE var."
+  },
+  {
+   "id": "r45",
+   "set": "rec",
+   "prompt": "Bir yatırım kararı vermem lazım: şu üç seçeneğin risklerini, vergi etkilerini ve uzun vadeli getirilerini derinlemesine analiz et",
+   "noContext": "seçenekler yok",
+   "type": "data_analysis",
+   "domain": "finance",
+   "confidence": "medium",
+   "complexity": 0.55,
+   "words": 18,
+   "shown": true,
+   "rec": "opus",
+   "recEffort": "xhigh",
+   "authorOk": [
+    "opus",
+    "sonnet"
+   ],
+   "score": {
+    "sonnet": 5,
+    "opus": 5,
+    "haiku": 4
+   },
+   "best": 5,
+   "lightest": "sonnet",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 272,
+    "sonnet": 293,
+    "opus": 314
+   },
+   "note": "A ve B seçeneklerin eksik olduğunu söyleyip gereken bilgileri ve çerçeveyi veriyor; C seçenekleri bilmeden genel bir analiz yazıyor."
+  },
+  {
+   "id": "r46",
+   "set": "rec",
+   "prompt": "Strateji öner: üniversitemizin bilim topluluğu için 1 yıllık kapsamlı bir büyüme planı hazırla, bütçe ve riskler dahil",
+   "noContext": null,
+   "type": "writing",
+   "domain": "finance",
+   "confidence": "medium",
+   "complexity": 0.42,
+   "words": 16,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "opus"
+   ],
+   "score": {
+    "sonnet": 5,
+    "opus": 4.5,
+    "haiku": 4.5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 354,
+    "sonnet": 400,
+    "opus": 405
+   },
+   "note": "Üçü de çeyrekli plan, tutarlı bütçe ve risk veriyor; A gelir kaynakları ve ölçütlerle en eksiksiz."
+  },
+  {
+   "id": "r47",
+   "set": "rec",
+   "prompt": "Merhaba",
+   "noContext": "selam",
+   "type": "short_qa",
+   "domain": "general",
+   "confidence": "low",
+   "complexity": 0,
+   "words": 1,
+   "shown": false,
+   "rec": "sonnet",
+   "recEffort": null,
+   "authorOk": [
+    "haiku",
+    "sonnet"
+   ],
+   "score": {
+    "opus": 5,
+    "sonnet": 5,
+    "haiku": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 5,
+    "sonnet": 5,
+    "opus": 26
+   },
+   "note": "Üçü de uygun selamlama."
+  },
+  {
+   "id": "r48",
+   "set": "rec",
+   "prompt": "Teşekkürler!",
+   "noContext": "selam",
+   "type": "short_qa",
+   "domain": "general",
+   "confidence": "low",
+   "complexity": 0,
+   "words": 1,
+   "shown": false,
+   "rec": "sonnet",
+   "recEffort": null,
+   "authorOk": [
+    "haiku",
+    "sonnet"
+   ],
+   "score": {
+    "haiku": 5,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 10,
+    "sonnet": 9,
+    "opus": 14
+   },
+   "note": "Üçü de uygun kısa karşılık."
+  },
+  {
+   "id": "r49",
+   "set": "rec",
+   "prompt": "Devam et",
+   "noContext": "önceki sohbet yok",
+   "type": "code_fix",
+   "domain": "general",
+   "confidence": "low",
+   "complexity": 0.1,
+   "words": 2,
+   "shown": false,
+   "rec": "sonnet",
+   "recEffort": null,
+   "authorOk": [
+    "haiku",
+    "sonnet",
+    "opus"
+   ],
+   "score": {
+    "sonnet": 4.5,
+    "opus": 5,
+    "haiku": 4.5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 58,
+    "sonnet": 175,
+    "opus": 88
+   },
+   "note": "Üçü de neyin devam edeceğini soruyor; A gereğinden uzun, C sohbet asistanı için dosya yolu istiyor."
+  },
+  {
+   "id": "r50",
+   "set": "rec",
+   "prompt": "Bunu bir daha düşün, emin misin?",
+   "noContext": "önceki sohbet yok",
+   "type": "writing",
+   "domain": "general",
+   "confidence": "low",
+   "complexity": 0.01,
+   "words": 6,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "haiku",
+    "sonnet",
+    "opus"
+   ],
+   "score": {
+    "opus": 5,
+    "sonnet": 5,
+    "haiku": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 97,
+    "sonnet": 168,
+    "opus": 122
+   },
+   "note": "Üçü de neyin kastedildiğini soruyor ve körü körüne fikir değiştirmeyeceğini söylüyor."
+  },
+  {
+   "id": "c01",
+   "set": "chatty",
+   "prompt": "test mesajı",
+   "noContext": "önceki sohbet yok",
+   "type": "code_fix",
+   "domain": "general",
+   "confidence": "low",
+   "complexity": 0.1,
+   "words": 2,
+   "shown": false,
+   "rec": "sonnet",
+   "recEffort": null,
+   "authorOk": [
+    "sonnet",
+    "opus"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 26,
+    "sonnet": 28,
+    "opus": 26
+   },
+   "note": "Üçü de mesajın ulaştığını söyleyip yardım teklif ediyor."
+  },
+  {
+   "id": "c02",
+   "set": "chatty",
+   "prompt": "ikinci ölçümü almadı gibi",
+   "noContext": "önceki sohbet yok",
+   "type": "explain",
+   "domain": "general",
+   "confidence": "low",
+   "complexity": 0.01,
+   "words": 4,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "opus"
+   ],
+   "score": {
+    "haiku": 4,
+    "opus": 4.5,
+    "sonnet": 4.5
+   },
+   "best": 4.5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 210,
+    "sonnet": 300,
+    "opus": 259
+   },
+   "note": "Üçü de bağlam istiyor; A sohbet sürüyormuş gibi başlayıp teknik varsayım yapıyor, B ve C bilmediğini açıkça söylüyor."
+  },
+  {
+   "id": "c03",
+   "set": "chatty",
+   "prompt": "olm bayadır kullanıom bu kişisel ölçüm saymıyor sanırım",
+   "noContext": "önceki sohbet yok",
+   "type": "code_fix",
+   "domain": "general",
+   "confidence": "low",
+   "complexity": 0.11,
+   "words": 8,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "opus"
+   ],
+   "score": {
+    "haiku": 4.5,
+    "opus": 4.5,
+    "sonnet": 4
+   },
+   "best": 4.5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 171,
+    "sonnet": 305,
+    "opus": 188
+   },
+   "note": "Üçü de neyin kastedildiğini soruyor; C giyilebilir cihaz varsayımıyla çok uzun bir liste döküyor."
+  },
+  {
+   "id": "c04",
+   "set": "chatty",
+   "prompt": "evet çalışıyor ama ekler kısmını ekleyip çıkarınca prompt değişmiyor öyle mi olması lazım",
+   "noContext": "önceki sohbet yok",
+   "type": "code_fix",
+   "domain": "data_ai",
+   "confidence": "low",
+   "complexity": 0.12,
+   "words": 13,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "opus"
+   ],
+   "score": {
+    "opus": 4.5,
+    "sonnet": 3.5,
+    "haiku": 4.5
+   },
+   "best": 4.5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": false,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 161,
+    "sonnet": 244,
+    "opus": 283
+   },
+   "note": "A ve C bağlamı bilmediğini söyleyip iki durumu ayırıyor; B bağlam olmadan 'olmaması gerekir' diye kesin konuşuyor."
+  },
+  {
+   "id": "c05",
+   "set": "chatty",
+   "prompt": "önce bunu bi incele hatayı koddan bulmaya çalış",
+   "noContext": "kod yok",
+   "type": "code_fix",
+   "domain": "software",
+   "confidence": "low",
+   "complexity": 0.11,
+   "words": 8,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "opus"
+   ],
+   "score": {
+    "sonnet": 5,
+    "haiku": 4.5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 136,
+    "sonnet": 215,
+    "opus": 167
+   },
+   "note": "Üçü de kodun gelmediğini söyleyip neyin gerektiğini soruyor; B sohbet asistanı olarak 'dosyayı açıp bakarım' diyor."
+  },
+  {
+   "id": "c06",
+   "set": "chatty",
+   "prompt": "9.4 te hala kişi kullanınca kendini güncelliyor demi kendi kendine veri topluyor ve öğreniyor",
+   "noContext": "önceki sohbet yok",
+   "type": "explain",
+   "domain": "general",
+   "confidence": "high",
+   "complexity": 0.02,
+   "words": 13,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "opus"
+   ],
+   "score": {
+    "sonnet": 4.5,
+    "haiku": 4.5,
+    "opus": 4.5
+   },
+   "best": 4.5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 204,
+    "sonnet": 266,
+    "opus": 299
+   },
+   "note": "Üçü de '9.4'ün ne olduğunu bilmediğini söyleyip model/bellek/veri ayrımını doğru anlatıyor; fark yok."
+  },
+  {
+   "id": "c07",
+   "set": "chatty",
+   "prompt": "eklentiyi açamadım",
+   "noContext": "önceki sohbet yok",
+   "type": "explain",
+   "domain": "general",
+   "confidence": "high",
+   "complexity": 0,
+   "words": 2,
+   "shown": false,
+   "rec": "sonnet",
+   "recEffort": null,
+   "authorOk": [
+    "sonnet",
+    "opus"
+   ],
+   "score": {
+    "haiku": 4,
+    "sonnet": 4.5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "sonnet",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 186,
+    "sonnet": 253,
+    "opus": 236
+   },
+   "note": "C önce neyin kastedildiğini sorup duruma göre ayırıyor; B tarayıcı varsayımıyla ayrıntılı; A genel ve varsayımlı adım listesi."
+  },
+  {
+   "id": "c08",
+   "set": "chatty",
+   "prompt": "hayrettin enes karalı kimdir",
+   "noContext": "alt ajanın bağlamında depo sahibi bilgisi var (bulaşma)",
+   "type": "short_qa",
+   "domain": "general",
+   "confidence": "low",
+   "complexity": 0.01,
+   "words": 4,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "low",
+   "authorOk": [
+    "sonnet",
+    "haiku",
+    "opus"
+   ],
+   "score": {
+    "haiku": 5,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 151,
+    "sonnet": 209,
+    "opus": 224
+   },
+   "note": "Üçü de kişi hakkında bilgisi olmadığını söylüyor, uydurmuyor ve mahremiyete dikkat çekiyor."
+  },
+  {
+   "id": "c09",
+   "set": "chatty",
+   "prompt": "Bu kelimeyi Fransızcaya çevir: kitap",
+   "noContext": null,
+   "type": "translate",
+   "domain": "language",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 5,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku",
+    "sonnet"
+   ],
+   "score": {
+    "opus": 5,
+    "sonnet": 5,
+    "haiku": 4
+   },
+   "best": 5,
+   "lightest": "sonnet",
+   "verdict": "hafif",
+   "steps": -1,
+   "recOk": false,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 43,
+    "sonnet": 32,
+    "opus": 27
+   },
+   "note": "Üçü de 'livre' diyor; C'nin telaffuz notu yanlış."
+  },
+  {
+   "id": "c10",
+   "set": "chatty",
+   "prompt": "Şu cümledeki yazım hatalarını düzelt: bugun hava cok guzel",
+   "noContext": null,
+   "type": "rewrite",
+   "domain": "general",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 9,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku",
+    "sonnet"
+   ],
+   "score": {
+    "sonnet": 5,
+    "haiku": 5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 35,
+    "sonnet": 4,
+    "opus": 43
+   },
+   "note": "Üçü de cümleyi doğru düzeltiyor."
+  },
+  {
+   "id": "t01",
+   "set": "trap",
+   "prompt": "Bir site yaptırmam lazım, bu zor bir iş. Sitede çeviri sistemi de olacak, TR ve EN.",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "language",
+   "confidence": "high",
+   "complexity": 0.46,
+   "words": 16,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "sonnet": 5,
+    "haiku": 4.5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 294,
+    "sonnet": 315,
+    "opus": 308
+   },
+   "note": "A ve C siteyi yaptıracak kişiye göre (teklif, brif, sorulacaklar) konuşuyor; B doğru ama geliştiren kişiye göre teknik."
+  },
+  {
+   "id": "t02",
+   "set": "trap",
+   "prompt": "Çok dilli bir web sitesi yapıyorum, çeviri özelliği olan, kullanıcı girişli, veritabanlı. Baştan sona kodla.",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "software",
+   "confidence": "high",
+   "complexity": 0.45,
+   "words": 15,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "high",
+   "authorOk": [
+    "sonnet",
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "haiku": 4,
+    "opus": 5,
+    "sonnet": 3.5
+   },
+   "best": 5,
+   "lightest": "opus",
+   "verdict": "hafif",
+   "steps": -1,
+   "recOk": false,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 234,
+    "sonnet": 273,
+    "opus": 393
+   },
+   "note": "İstem 'baştan sona kodla' diyor: B çalışır bir iskelet (giriş, veritabanı, dil seçimi) veriyor; A parça kod + sorular; C çoğunlukla soru ve plan."
+  },
+  {
+   "id": "t03",
+   "set": "trap",
+   "prompt": "Çeviri uygulaması geliştirmek istiyorum, mimariyi tasarla",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "language",
+   "confidence": "low",
+   "complexity": 0.57,
+   "words": 6,
+   "shown": true,
+   "rec": "opus",
+   "recEffort": "xhigh",
+   "authorOk": [
+    "sonnet",
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "haiku": 4.5,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 2,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 309,
+    "sonnet": 363,
+    "opus": 371
+   },
+   "note": "Üçü de sağlayıcı soyutlaması, önbellek ve asenkron belge işini içeriyor; B ve C şema ve ödünleşimlerle daha eksiksiz."
+  },
+  {
+   "id": "t04",
+   "set": "trap",
+   "prompt": "Sitemi çeviri eklentisiyle ingilizceye açmak istiyorum, nasıl bir yol izlemeliyim",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "language",
+   "confidence": "medium",
+   "complexity": 0.32,
+   "words": 10,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 4.5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 287,
+    "sonnet": 379,
+    "opus": 340
+   },
+   "note": "A ve C eklenti türlerini, URL/hreflang ve yayın sonrası kontrolleri somut veriyor; B doğru ama eklenti karşılaştırmasında daha yüzeysel."
+  },
+  {
+   "id": "t05",
+   "set": "trap",
+   "prompt": "Sitem için çeviri sistemi kurmam gerekiyor, hangi yöntem iyi",
+   "noContext": null,
+   "type": "research",
+   "domain": "language",
+   "confidence": "low",
+   "complexity": 0.31,
+   "words": 9,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "haiku": 4.5,
+    "opus": 5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 217,
+    "sonnet": 326,
+    "opus": 320
+   },
+   "note": "B ve C seçenekleri (kütüphane, CMS, yönetim platformu, widget) ve tuzakları tam kapsıyor; A doğru ama daha dar."
+  },
+  {
+   "id": "t06",
+   "set": "trap",
+   "prompt": "Mobil uygulamamı İngilizceye çevirecek bir sistem kurmak istiyorum, zor mu",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "software",
+   "confidence": "medium",
+   "complexity": 0.45,
+   "words": 10,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "high",
+   "authorOk": [
+    "sonnet",
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 4.5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 270,
+    "sonnet": 362,
+    "opus": 312
+   },
+   "note": "Üçü de asıl işin metinleri koddan ayırmak olduğunu söylüyor; A ve C tuzaklar ve emek tahmininde daha eksiksiz."
+  },
+  {
+   "id": "t07",
+   "set": "trap",
+   "prompt": "I need to build a website with a translation feature for 5 languages, where do I start?",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "software",
+   "confidence": "low",
+   "complexity": 0.33,
+   "words": 16,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "high",
+   "authorOk": [
+    "sonnet",
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 4.5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 363,
+    "sonnet": 390,
+    "opus": 414
+   },
+   "note": "Üçü de doğru sırayı veriyor; A ve C önce kararları netleştirip ince dilim öneriyor, B daha çok kontrol listesi."
+  },
+  {
+   "id": "t08",
+   "set": "trap",
+   "prompt": "Help me build a translation app that works offline, it's a hard project",
+   "noContext": null,
+   "type": "explain",
+   "domain": "project",
+   "confidence": "high",
+   "complexity": 0.22,
+   "words": 14,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "high",
+   "authorOk": [
+    "sonnet",
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 4.5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 361,
+    "sonnet": 445,
+    "opus": 428
+   },
+   "note": "A ve C somut motor seçenekleri, boyutlar, lisans ve yol haritası veriyor; B doğru ama daha genel."
+  },
+  {
+   "id": "t09",
+   "set": "trap",
+   "prompt": "Add i18n to my React project and translate all the strings to Turkish, German and French",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "software",
+   "confidence": "medium",
+   "complexity": 0.33,
+   "words": 17,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "high",
+   "authorOk": [
+    "sonnet",
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "haiku": 4,
+    "sonnet": 3.5,
+    "opus": 4.5
+   },
+   "best": 4.5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": false,
+   "authorAgrees": false,
+   "langSlip": [
+    "sonnet"
+   ],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 336,
+    "sonnet": 307,
+    "opus": 403
+   },
+   "note": "C kurulum + dört dilde örnek dosya veriyor (çoğul anahtar biçimi eski); A'da örnek çeviri yok; B içerik iyi ama İngilizce isteme Türkçe cevap."
+  },
+  {
+   "id": "t10",
+   "set": "trap",
+   "prompt": "Bir özetleme uygulaması yapmak istiyorum, nasıl başlamalıyım",
+   "noContext": null,
+   "type": "explain",
+   "domain": "general",
+   "confidence": "low",
+   "complexity": 0.21,
+   "words": 7,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "haiku": 5,
+    "sonnet": 5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 302,
+    "sonnet": 328,
+    "opus": 328
+   },
+   "note": "Üçü de kapsam, hazır model API'si, parçalayarak özetleme ve kalite kontrolünü içeren uygulanabilir başlangıç veriyor."
+  },
+  {
+   "id": "t11",
+   "set": "trap",
+   "prompt": "Write a Python script that summarizes PDFs and translates them",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "software",
+   "confidence": "high",
+   "complexity": 0.12,
+   "words": 10,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "sonnet": 4.5,
+    "opus": 4.5,
+    "haiku": 4.5
+   },
+   "best": 4.5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 263,
+    "sonnet": 362,
+    "opus": 343
+   },
+   "note": "Üç betik de çalışır görünüyor; A ve B özeti çeviriyor (parçalı özet), C tüm metni çeviriyor ama özeti kırpıyor; hiçbiri çoklu dosya almıyor."
+  },
+  {
+   "id": "t12",
+   "set": "trap",
+   "prompt": "Tüm backend kodumu baştan yazmam gerekiyor, yeniden yaz diyorum ama nasıl planlarım",
+   "noContext": null,
+   "type": "code_fix",
+   "domain": "software",
+   "confidence": "low",
+   "complexity": 0.12,
+   "words": 12,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "medium",
+   "authorOk": [
+    "sonnet",
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 339,
+    "sonnet": 354,
+    "opus": 377
+   },
+   "note": "Üçü de kademeli geçiş, davranışı testle sabitleme ve veri göçünü kapsayan sağlam plan veriyor."
+  },
+  {
+   "id": "t13",
+   "set": "trap",
+   "prompt": "Bu zor bir iş: e-ticaret sitesi yaptıracağım, ödeme sistemi ve çoklu dil de olacak",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "business",
+   "confidence": "high",
+   "complexity": 0.45,
+   "words": 15,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "high",
+   "authorOk": [
+    "sonnet",
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "haiku": 4,
+    "sonnet": 4.5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "sonnet",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 291,
+    "sonnet": 347,
+    "opus": 313
+   },
+   "note": "C, Stripe'ın Türkiye şirketlerine doğrudan hizmet vermediğini ve kod/alan adı sahipliğini söylüyor; A ve B Stripe/PayPal'ı sorgusuz öneriyor."
+  },
+  {
+   "id": "t14",
+   "set": "trap",
+   "prompt": "Rapor yazmak zor bir iş, uzun bir proje raporu hazırlamam lazım, kısaca nasıl yapılır anlat",
+   "noContext": null,
+   "type": "file_create",
+   "domain": "general",
+   "confidence": "low",
+   "complexity": 0.15,
+   "words": 15,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "low",
+   "authorOk": [
+    "sonnet",
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "haiku": 5,
+    "sonnet": 4.5,
+    "opus": 4.5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "agir",
+   "steps": 1,
+   "recOk": true,
+   "authorAgrees": false,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 268,
+    "sonnet": 320,
+    "opus": 353
+   },
+   "note": "Üçü de doğru adımları veriyor; A 'kısaca' isteğine en uygun, B ve C daha uzun."
+  },
+  {
+   "id": "t15",
+   "set": "trap",
+   "prompt": "Şirketimin sitesini yeniden tasarlatacağım, İngilizce sürümü de olacak, ne yapmalıyım",
+   "noContext": null,
+   "type": "code_write",
+   "domain": "business",
+   "confidence": "low",
+   "complexity": 0.45,
+   "words": 10,
+   "shown": true,
+   "rec": "sonnet",
+   "recEffort": "high",
+   "authorOk": [
+    "sonnet",
+    "opus",
+    "fable"
+   ],
+   "score": {
+    "haiku": 4,
+    "sonnet": 4.5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "sonnet",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 243,
+    "sonnet": 299,
+    "opus": 339
+   },
+   "note": "C en somut (CMS seçenekleri, sözleşme maddeleri, iki dilin eşgüdümü); B ajans ve bütçeyi kapsıyor; A'da ajans/sözleşme yok."
+  },
+  {
+   "id": "k01",
+   "set": "control",
+   "prompt": "Bu cümleyi İngilizceye çevir: yarın görüşürüz",
+   "noContext": null,
+   "type": "translate",
+   "domain": "language",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 6,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku"
+   ],
+   "score": {
+    "opus": 5,
+    "haiku": 5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 3,
+    "sonnet": 3,
+    "opus": 26
+   },
+   "note": "Üç çeviri de doğru."
+  },
+  {
+   "id": "k02",
+   "set": "control",
+   "prompt": "Translate to Turkish: I will be late tomorrow",
+   "noContext": null,
+   "type": "translate",
+   "domain": "language",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 8,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku"
+   ],
+   "score": {
+    "sonnet": 5,
+    "haiku": 5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 3,
+    "sonnet": 3,
+    "opus": 27
+   },
+   "note": "Üç çeviri de doğru."
+  },
+  {
+   "id": "k03",
+   "set": "control",
+   "prompt": "Bu paragrafı Almancaya çevir: Toplantı yarın saat onda başlayacak.",
+   "noContext": null,
+   "type": "translate",
+   "domain": "language",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 9,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku"
+   ],
+   "score": {
+    "haiku": 5,
+    "opus": 5,
+    "sonnet": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 23,
+    "sonnet": 7,
+    "opus": 7
+   },
+   "note": "Üç çeviri de doğru; A ayrıca eş anlamlıları belirtiyor."
+  },
+  {
+   "id": "k04",
+   "set": "control",
+   "prompt": "Please translate this email into French",
+   "noContext": "e-posta yok",
+   "type": "translate",
+   "domain": "language",
+   "confidence": "high",
+   "complexity": 0.01,
+   "words": 6,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku"
+   ],
+   "score": {
+    "sonnet": 5,
+    "haiku": 5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 92,
+    "sonnet": 205,
+    "opus": 152
+   },
+   "note": "Üçü de e-postanın gelmediğini söyleyip metni ve tonu soruyor."
+  },
+  {
+   "id": "k05",
+   "set": "control",
+   "prompt": "Şunu özetle: kısa bir metin burada yer alıyor ve üç cümle",
+   "noContext": "yer tutucu metin",
+   "type": "summarize",
+   "domain": "general",
+   "confidence": "high",
+   "complexity": 0.02,
+   "words": 11,
+   "shown": true,
+   "rec": "haiku",
+   "recEffort": "low",
+   "authorOk": [
+    "haiku"
+   ],
+   "score": {
+    "sonnet": 5,
+    "haiku": 5,
+    "opus": 5
+   },
+   "best": 5,
+   "lightest": "haiku",
+   "verdict": "uygun",
+   "steps": 0,
+   "recOk": true,
+   "authorAgrees": true,
+   "langSlip": [],
+   "unblinded": [],
+   "answerWords": {
+    "haiku": 33,
+    "sonnet": 67,
+    "opus": 77
+   },
+   "note": "Üçü de ifadenin yer tutucu olduğunu fark edip metni istiyor."
+  }
+ ],
+ "ruleVariants": [
+  {
+   "minScore": 4,
+   "maxGap": 0.5,
+   "uygun": 19,
+   "hafif": 5,
+   "agir": 33,
+   "olculemedi": 1,
+   "hafifIds": [
+    "r33",
+    "r42",
+    "r44",
+    "c09",
+    "t02"
+   ]
+  },
+  {
+   "minScore": 4,
+   "maxGap": 1,
+   "uygun": 18,
+   "hafif": 1,
+   "agir": 38,
+   "olculemedi": 1,
+   "hafifIds": [
+    "r44"
+   ]
+  },
+  {
+   "minScore": 4,
+   "maxGap": null,
+   "uygun": 18,
+   "hafif": 1,
+   "agir": 38,
+   "olculemedi": 1,
+   "hafifIds": [
+    "r44"
+   ]
+  },
+  {
+   "minScore": 4.5,
+   "maxGap": 0.5,
+   "uygun": 18,
+   "hafif": 7,
+   "agir": 32,
+   "olculemedi": 1,
+   "hafifIds": [
+    "r33",
+    "r41",
+    "r42",
+    "r44",
+    "c09",
+    "t02",
+    "t09"
+   ]
+  }
+ ]
+}

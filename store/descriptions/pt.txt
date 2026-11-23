@@ -22,6 +22,12 @@ APRENDE NO SEU DISPOSITIVO
 • Calibração pessoal do tamanho do seu plano e do comprimento típico das respostas, a partir do seu próprio uso.
 • Um pequeno modelo de tarefas no dispositivo que aprende com as suas correções.
 
+TIKO
+• Um pequeno robô de pixels que vive ao lado da caixa de mensagem. Ele se esforça quando a previsão é pesada, acena com a cabeça quando um modelo mais leve basta, senta em cima da resposta enquanto ela chega e fica preocupado quando seu limite enche. Não lê nenhum texto e pode ser desativado nas configurações.
+
+ÁGUA E ENERGIA QUE VOCÊ ECONOMIZOU
+• No relatório semanal: o equivalente em água e energia da computação que você evitou nas mensagens em que mudou para a configuração mais leve sugerida, em gotas, copos e cargas de celular. Tudo são estimativas com faixas; as fontes estão no relatório.
+
 PRIVACIDADE
 Tudo é calculado no seu navegador. Suas mensagens, anexos e chats nunca saem do seu dispositivo. Sem servidor, sem análise, sem rastreamento. Funciona apenas no claude.ai com a sua própria sessão e nunca envia mensagens nem altera configurações por você. Pede o seu consentimento antes de ler qualquer coisa.
 

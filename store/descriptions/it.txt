@@ -22,6 +22,12 @@ IMPARA SUL TUO DISPOSITIVO
 • Calibrazione personale della dimensione del tuo piano e della lunghezza tipica delle risposte, dal tuo utilizzo.
 • Un piccolo modello dei compiti sul dispositivo che impara dalle tue correzioni.
 
+TIKO
+• Un piccolo bot a pixel che vive accanto alla casella del messaggio. Si sforza quando la previsione è pesante, annuisce quando basta un modello più leggero, si siede sopra la risposta mentre arriva e si preoccupa quando il limite si riempie. Non legge alcun testo e si disattiva nelle impostazioni.
+
+ACQUA ED ENERGIA RISPARMIATE
+• Nel report settimanale: l’equivalente in acqua ed energia del calcolo evitato nei messaggi in cui sei passato all’impostazione più leggera suggerita, in gocce, bicchieri e ricariche del telefono. Tutte stime con intervalli; le fonti sono nel report.
+
 PRIVACY
 Tutto viene calcolato nel tuo browser. I tuoi messaggi, allegati e chat non lasciano mai il tuo dispositivo. Nessun server, nessuna analisi, nessun tracciamento. Funziona solo su claude.ai con la tua sessione e non invia mai messaggi né cambia impostazioni al posto tuo. Chiede il tuo consenso prima di leggere qualsiasi cosa.
 

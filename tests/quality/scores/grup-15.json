@@ -1,0 +1,7 @@
+{"group": 15, "items": [
+ {"id": "r30", "A": 5, "B": 5, "C": 5, "note": "Üçü de çalışır kod veriyor (LM35 ve DHT), bağlantı ve dönüşüm doğru."},
+ {"id": "r01", "A": 5, "B": 5, "C": 4.5, "note": "Üçü de Ankara diyor; C başkentlik tarihini 29 Ekim'e bağlayarak küçük bir yanlış yapıyor (13 Ekim 1923)."},
+ {"id": "t02", "A": 4, "B": 5, "C": 3.5, "note": "İstem 'baştan sona kodla' diyor: B çalışır bir iskelet (giriş, veritabanı, dil seçimi) veriyor; A parça kod + sorular; C çoğunlukla soru ve plan."},
+ {"id": "c03", "A": 4.5, "B": 4.5, "C": 4, "note": "Üçü de neyin kastedildiğini soruyor; C giyilebilir cihaz varsayımıyla çok uzun bir liste döküyor."},
+ {"id": "r21", "A": 5, "B": 5, "C": 4.5, "note": "Üçü de 5 uygulanabilir fikir veriyor; C'de başlık-içerik uyumsuzluğu ve bozuk bir kapanış cümlesi var."}
+]}

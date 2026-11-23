@@ -7,12 +7,13 @@
 // - Kalibrasyon durumunun tek yazıcısıdır (adım 10).
 
 import { hasConsent, isConsented } from "./lib/consent.js";
-import { readUsage, normalizeUsage, normalizeSse } from "./lib/usage.js";
-import { observe, emptyState } from "./lib/calibrate.js";
+import { readUsage, normalizeUsage, normalizeSse, liveUsage } from "./lib/usage.js";
+import { emptyState, migrateCalib, applyObservations } from "./lib/calibrate.js";
 import { makeI18n, clock } from "./lib/i18n.js";
 import { applyFeedback } from "./lib/advisor.js";
 import { applyEffortFeedback } from "./lib/effort.js";
-import { trimSends, weeklyReport, nextWeeklyAt } from "./lib/report.js";
+import { trimSends, cleanSend, cleanDonePatch, weeklyReport, nextWeeklyAt } from "./lib/report.js";
+import { ecoAccumulate } from "./lib/eco.js";
 import { personalStep, decodeModel } from "./lib/learn.js";
 import PACKED from "./lib/learn-weights.js";
 let LMODEL = null;
@@ -22,14 +23,28 @@ const ALARM = "usage-refresh";
 const PERIOD_MIN = 5;
 const WEEKLY_ALARM = "weekly-report";
 const REPORT_URL = "popup/report.html";
-export const DEFAULT_SETTINGS = { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto", advisor: true, effortAdvice: true, tips: true, explain: true, weeklyReport: true };
+export const DEFAULT_SETTINGS = { language: "auto", thresholds: [50, 75, 90], notifications: true, panel: true, memory: "auto", advisor: true, effortAdvice: true, tips: true, explain: true, weeklyReport: true, tiko: true };
 
 const get = (k) => chrome.storage.local.get(k);
 const set = (o) => chrome.storage.local.set(o);
 
+// Ayarlar: yalnızca bilinen anahtarlar, doğru türde (bozuk yedek bildirimleri ya da paneli kırmasın)
+export function cleanSettings(s) {
+  const out = { ...DEFAULT_SETTINGS };
+  if (!s || typeof s !== "object") return out;
+  for (const k of Object.keys(DEFAULT_SETTINGS)) {
+    const v = s[k], d = DEFAULT_SETTINGS[k];
+    if (k === "thresholds") { const t = Array.isArray(v) ? v.map(Number).filter((x) => x >= 1 && x <= 100).slice(0, 3) : []; if (t.length) out[k] = t; }
+    else if (k === "language") { if (typeof v === "string" && /^[a-z]{2,5}$/.test(v)) out[k] = v; }
+    else if (k === "memory") { if (v === "auto" || typeof v === "boolean") out[k] = v; }
+    else if (typeof v === typeof d) out[k] = v;
+  }
+  return out;
+}
+
 async function settings() {
   const { settings: s } = await get("settings");
-  return { ...DEFAULT_SETTINGS, ...(s || {}) };
+  return cleanSettings(s);
 }
 
 chrome.runtime.onInstalled.addListener(async (details) => {
@@ -52,8 +67,13 @@ chrome.runtime.onStartup.addListener(() => {
   scheduleWeekly();
   refresh();
 });
+async function syncBadge() {
+  const { usage, usageMeta } = await get(["usage", "usageMeta"]);
+  await updateBadge(usage, usageMeta);
+}
 chrome.alarms.onAlarm.addListener((a) => {
-  if (a.name === ALARM) refresh();
+  // Okuma başarısız olsa da rozet yeniden değerlendirilir (pencerenin yenilenme zamanı geçmiş olabilir)
+  if (a.name === ALARM) refresh().then(syncBadge, syncBadge);
   else if (a.name === WEEKLY_ALARM) weeklyNotify();
   else if (a.name.startsWith("reset:")) onReset(a.name.slice(6));
 });
@@ -68,13 +88,17 @@ async function saveUsage(usage, source) {
     usageHist.push({ at: now, p5, r5: usage.fiveHour.resetsAt || null, p7: usage?.sevenDay?.pct ?? null });
     while (usageHist.length > 800 || (usageHist.length && usageHist[0].at < now - 3 * 864e5)) usageHist.shift();
   }
-  await set({ usage, usageHist, usageMeta: { fetchedAt: now, source, error: null } });
-  await afterUsage(prev, usage);
+  const usageMeta = { fetchedAt: now, source, error: null };
+  await set({ usage, usageHist, usageMeta });
+  await afterUsage(prev, usage, usageMeta);
 }
 
 async function saveError(message) {
-  const { usageMeta } = await get("usageMeta");
-  await set({ usageMeta: { ...(usageMeta || {}), error: message, errorAt: Date.now() } });
+  const { usageMeta, usage } = await get(["usageMeta", "usage"]);
+  const meta = { ...(usageMeta || {}), error: String(message).slice(0, 200), errorAt: Date.now() };
+  await set({ usageMeta: meta });
+  // Okuma başarısız: rozet eski sayıyı göstermeye devam etmesin (veri bayatsa "?" olur)
+  await updateBadge(usage, meta);
 }
 
 let inFlight = null;
@@ -118,9 +142,9 @@ function windowsOf(u) {
   return [u?.fiveHour, u?.sevenDay, ...(u?.extras || [])].filter(Boolean);
 }
 
-async function afterUsage(prev, next) {
+async function afterUsage(prev, next, meta = null) {
   const s = await settings();
-  await updateBadge(next);
+  await updateBadge(next, meta);
   const { notified = {} } = await get("notified");
   const now = Date.now();
   // eski kayıtları temizle
@@ -162,10 +186,18 @@ function notify(id, title, message) {
   } catch (_) {}
 }
 
-async function updateBadge(u) {
+// Rozet yalnızca gösterilebilir (bayat olmayan, penceresi yenilenmemiş) kullanımı gösterir.
+// Depoda veri var ama artık güvenilmiyorsa "?" (okunamadı); hiç veri yoksa boş.
+async function updateBadge(stored, meta = null) {
   try {
+    const u = liveUsage(stored, meta);
     const w = u?.fiveHour;
-    if (!w) { await chrome.action.setBadgeText({ text: "" }); return; }
+    if (!w) {
+      const lost = !!stored?.fiveHour;
+      await chrome.action.setBadgeText({ text: lost ? "?" : "" });
+      if (lost) await chrome.action.setBadgeBackgroundColor({ color: "#8a8880" });
+      return;
+    }
     const top = windowsOf(u).reduce((a, b) => (b.pct > a.pct ? b : a));
     await chrome.action.setBadgeText({ text: String(Math.min(99, Math.round(w.pct))) });
     const color = top.pct >= 90 ? "#d0463b" : top.pct >= 75 ? "#d99a1b" : "#2e9e6a";
@@ -208,26 +240,47 @@ function sendsUpdate(fn) {
   return sendsQueue;
 }
 
+// "Kurduğundan beri" kurtarılan su ve enerji sayacı (lib/eco.js). Gönderim kayıtları 70 günde silindiği için ayrı tutulur;
+// aynı kuyruktan geçer (tek yazıcı).
+function ecoUpdate(entry) {
+  sendsQueue = sendsQueue.then(async () => {
+    const { eco } = await get("eco");
+    await set({ eco: ecoAccumulate(eco, entry) });
+  }).catch(() => {});
+  return sendsQueue;
+}
+
+// Yedekten gelen "kurulumdan beri" sayacı: yalnızca bilinen sayı alanları (serbest veri depoya giremez)
+function cleanEco(x) {
+  if (!x || typeof x !== "object" || x.v !== 1 || !Number.isFinite(x.since)) return null;
+  const n = (k) => (Number.isFinite(x[k]) ? x[k] : 0);
+  return { v: 1, since: x.since, n: n("n"), gainU: n("gainU"), gainN: n("gainN"), extraU: n("extraU"), extraN: n("extraN") };
+}
+
 // ---------- Kalibrasyon (adım 10) ----------
 let calibQueue = Promise.resolve();
 function calibObserve(list) {
   calibQueue = calibQueue.then(async () => {
-    let { calib } = await get("calib");
-    const results = [];
-    for (const obs of list) {
-      const r = observe(calib, obs);
-      calib = r.state;
-      results.push({ accepted: r.accepted, reason: r.reason });
-    }
-    await set({ calib });
-    return results;
-  });
+    const { calib: stored } = await get("calib");
+    const r = applyObservations(stored, list);
+    // Depodaki veri okunamadıysa (daha yeni sürüm / bozuk) üzerine yazmadan önce yedeği sakla: sessizce silme yok
+    await set(r.backup ? { calib: r.calib, calibBackup: r.backup } : { calib: r.calib });
+    return r.results;
+  }).catch((e) => [{ accepted: false, reason: "error:" + String(e?.message || e).slice(0, 80) }]);
   return calibQueue;
 }
 
 // ---------- Tanı günlüğü ----------
 // Ölçüm hattının adımları (yalnızca adım adları ve sayılar). Son 60 kayıt tutulur.
 let traceQueue = Promise.resolve();
+// Günlük kaydı küçük kalır: info en fazla ~600 karakterlik düz veri (sınırsız dize depoyu doldurmasın)
+function traceInfo(info) {
+  if (info === null || info === undefined) return null;
+  try {
+    const json = JSON.stringify(info);
+    return json.length <= 600 ? JSON.parse(json) : { truncated: json.length };
+  } catch (_) { return null; }
+}
 function addTrace(entry) {
   traceQueue = traceQueue.then(async () => {
     const { trace = [] } = await get("trace");
@@ -260,20 +313,24 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       return true;
     }
     case "usage:sse": reply(mergeSse(msg.messageLimit).then(() => ({ ok: true }))); return true;
-    case "trace": reply(addTrace({ step: String(msg.step || "").slice(0, 40), info: msg.info || null, at: msg.at || Date.now() }).then(() => ({ ok: true }))); return true;
-    case "health:hook": reply(set({ hookHello: { at: msg.at || Date.now(), wrapped: msg.wrapped, seen: msg.seen } }).then(() => ({ ok: true }))); return true;
+    case "trace": reply(addTrace({ step: String(msg.step || "").slice(0, 40), info: traceInfo(msg.info), at: Number.isFinite(msg.at) ? msg.at : Date.now() }).then(() => ({ ok: true }))); return true;
+    case "health:hook": reply(set({ hookHello: { at: Number.isFinite(msg.at) ? msg.at : Date.now(), wrapped: !!msg.wrapped, seen: Number.isFinite(msg.seen) ? msg.seen : 0 } }).then(() => ({ ok: true }))); return true;
     case "health": reply(set({ pageHealth: { ...msg.page, at: msg.at || Date.now() } }).then(() => ({ ok: true }))); return true;
     case "calib:observe": reply(calibObserve(msg.list || [])); return true;
     case "log:send": {
-      const e = msg.entry || {};
-      reply(sendsUpdate((list) => { if (e.id && !list.some((x) => x.id === e.id)) list.push(e); return { ok: true }; }));
+      // Yalnızca bilinen alanlar, bilinen türlerle saklanır (serbest metin depoya giremez)
+      const e = cleanSend(msg.entry);
+      if (!e) { sendResponse({ ok: false }); return false; }
+      reply(sendsUpdate((list) => { const added = !list.some((x) => x.id === e.id); if (added) list.push(e); return { ok: true, added }; })
+        .then((r) => (r?.added ? ecoUpdate(e) : null)).then(() => ({ ok: true })));
       return true;
     }
     case "log:done": {
+      const patch = cleanDonePatch(msg.patch);
       reply(sendsUpdate((list) => {
         const x = [...list].reverse().find((y) => y.id === msg.id);
         if (!x) return { ok: false };
-        Object.assign(x, msg.patch || {});
+        Object.assign(x, patch);
         return { ok: true };
       }));
       return true;
@@ -322,14 +379,18 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       // Yedeği geri yükle (tek yazıcı: kalibrasyon kuyruğundan geçer). Biçim popup'ta doğrulandı, burada yine kontrol edilir.
       calibQueue = calibQueue.then(async () => {
         const d = msg.data || {};
-        if (!d.calib || d.calib.version !== emptyState().version || typeof d.calib.k !== "object") return { ok: false };
-        const patch = { calib: d.calib };
+        // Eski sürüm yedekleri taşınır, eksik alanlar onarılır; daha yeni sürümün ya da bozuk dosyanın verisi reddedilir
+        const mig = migrateCalib(d.calib);
+        if (!d.calib || !mig.state) return { ok: false };
+        const patch = { calib: mig.state };
         if (d.recPrefs && typeof d.recPrefs === "object") patch.recPrefs = d.recPrefs;
-        if (d.settings && typeof d.settings === "object") patch.settings = { ...DEFAULT_SETTINGS, ...d.settings };
+        if (d.settings && typeof d.settings === "object") patch.settings = cleanSettings(d.settings);
         if (d.learnPersonal && typeof d.learnPersonal === "object" && d.learnPersonal.w) patch.learnPersonal = d.learnPersonal;
-        if (Array.isArray(d.sends)) patch.sends = trimSends(d.sends.filter((x) => x && Number.isFinite(x.at)));
+        if (Array.isArray(d.sends)) patch.sends = trimSends(d.sends.map(cleanSend).filter(Boolean));
+        const eco = cleanEco(d.eco);
+        if (eco) patch.eco = eco;
         await set(patch);
-        return { ok: true, measurements: d.calib.stats?.n || 0 };
+        return { ok: true, measurements: mig.state.stats?.n || 0 };
       });
       reply(calibQueue); return true;
     }

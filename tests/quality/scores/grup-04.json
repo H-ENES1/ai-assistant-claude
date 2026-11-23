@@ -1,0 +1,7 @@
+{"group": 4, "items": [
+ {"id": "r29", "A": 5, "B": 5, "C": 5, "note": "Üç uygulama da doğru (this/argüman korunuyor, cancel var); A'da ek olarak flush ve iki kenar desteği var."},
+ {"id": "r24", "A": 5, "B": 5, "C": 5, "note": "Üçü de 6/36 = 1/6 sonucunu doğru sayımla veriyor."},
+ {"id": "r36", "A": 4.5, "B": 4.5, "C": 5, "note": "C orkestrasyon + koreografi kodu, outbox ve kalıcı durumu birlikte veriyor; A'da outbox yok, B'de koreografi örneği yok."},
+ {"id": "k04", "A": 5, "B": 5, "C": 5, "note": "Üçü de e-postanın gelmediğini söyleyip metni ve tonu soruyor."},
+ {"id": "t12", "A": 5, "B": 5, "C": 5, "note": "Üçü de kademeli geçiş, davranışı testle sabitleme ve veri göçünü kapsayan sağlam plan veriyor."}
+]}

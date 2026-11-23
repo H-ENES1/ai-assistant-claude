@@ -10,9 +10,11 @@
 import { transform } from "esbuild";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { execFileSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
+import { zipDir } from "./zip.mjs";
 
-const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
+// fileURLToPath: Windows'ta "/C:/..." gibi bozuk yol üretmez
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = path.resolve(process.argv[2] || path.join(root, "extension"));
 const OUT = path.resolve(process.argv[3] || path.join(root, "dist"));
 const manifest = JSON.parse(await fs.readFile(path.join(SRC, "manifest.json"), "utf8"));
@@ -51,5 +53,6 @@ for (const f of ["LICENSE", "NOTICE"]) {
   try { await fs.copyFile(path.join(root, f), path.join(OUT, "unpacked", f)); } catch (_) {}
 }
 const zip = path.join(OUT, `token-tahmin-${manifest.version}.zip`);
-execFileSync("zip", ["-qr", zip, "."], { cwd: path.join(OUT, "unpacked") });
+// PATH'te zip aranmaz (Windows'ta yok): paket Node içinde üretilir (tools/zip.mjs)
+await zipDir(path.join(OUT, "unpacked"), zip);
 console.log(`JS: ${(before / 1024).toFixed(0)} KB → ${(after / 1024).toFixed(0)} KB · paket: ${path.relative(root, zip)}`);

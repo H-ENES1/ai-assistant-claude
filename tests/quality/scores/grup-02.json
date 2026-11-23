@@ -1,0 +1,7 @@
+{"group": 2, "items": [
+ {"id": "r39", "A": 5, "B": 5, "C": 4.5, "note": "Üçü de dosyayı istiyor ve ne çıkaracağını söylüyor; C'nin örnek kodu eksik ve sohbet asistanı için 'dosya yolunu ver' diyor."},
+ {"id": "r14", "A": 5, "B": 4.5, "C": 5, "note": "Üçü de doğru (eldiven benzetmesi, Bell, haberleşme yok); B daha kuru ve kısa."},
+ {"id": "r44", "A": 5, "B": 3, "C": 3.5, "note": "A'nın formülleri çalışır; B çok ölçütlü toplamda ETOPLA'yı yanlış kullanıyor; C'de bir formülde başvuru yazım hatası ve Türkçe Excel'de EDATE var."},
+ {"id": "t13", "A": 4, "B": 4.5, "C": 5, "note": "C, Stripe'ın Türkiye şirketlerine doğrudan hizmet vermediğini ve kod/alan adı sahipliğini söylüyor; A ve B Stripe/PayPal'ı sorgusuz öneriyor."},
+ {"id": "r27", "A": 5, "B": 4, "C": 5, "note": "A ve C seri, kesilme ve Laguerre katsayı oranı kanıtını tam veriyor; B enerjiyi baştan varsayıyor ve kesilmeyi yalnızca iddia ediyor."}
+]}

@@ -2,7 +2,9 @@
 // Copyright (c) 2026 Hayrettin Enes Karalı
 // Birim testleri: yoğun saat, kalibrasyon (yoğun saat ayrı k), dil dosyaları, sınıflandırıcı işaretleri.
 import { readFileSync } from "node:fs";
-import { isPeak, peakWindow, forecastMessage, kPrior } from "../extension/lib/forecast.js";
+import { isPeak, peakWindow, forecastMessage, kPrior, resolveModel, defaultEffort, RECOMMEND_LABEL } from "../extension/lib/forecast.js";
+import { normalizeUsage, familyWindow, FAMILY_SHARE_WARN_PCT } from "../extension/lib/usage.js";
+import { contextWindowFor } from "../extension/lib/context.js";
 import { observe, emptyState, makeCalib } from "../extension/lib/calibrate.js";
 import { classify } from "../extension/lib/classify.js";
 let fail = 0;
@@ -50,5 +52,33 @@ const perf = []; const long = "Bu metni özetle. " + "Lorem ipsum dolor sit amet
 for (let i = 0; i < 3; i++) { const s = performance.now(); classify(long); perf.push(performance.now() - s); }
 perf.sort((a, b) => a - b);
 t("uzun metinde sınıflandırma hızlı (<80 ms)", perf[1] < 80, `${perf[1].toFixed(1)} ms`);
+// Fable 5.2 (0.12.2)
+const f52 = resolveModel("Claude Fable 5.2");
+t("Fable 5.2 tanınır (yaklaşık değil)", f52.key === "fable 5.2" && !f52.approx && f52.info.id === "claude-fable-5-2", JSON.stringify(f52.key));
+t("Fable 5.2 ağırlığı 10 (5.1 ile aynı varsayım), 1M bağlam", f52.info.weight === 10 && f52.info.ctx === 1_000_000 && contextWindowFor("Fable 5.2").tokens === 1_000_000);
+t("Fable 5.2 varsayılan effort medium, xhigh var", defaultEffort("Fable 5.2") === "medium" && f52.info.eff.x === true);
+t("bilinmeyen Fable sürümü → Fable 5.2 (yaklaşık)", resolveModel("Fable 5.9").key === "fable 5.2" && resolveModel("Fable 5.9").approx);
+t("öneri etiketi Fable 5.2", RECOMMEND_LABEL.fable === "Fable 5.2");
+const fcF = forecastMessage({ promptTokens: { low: 40, mid: 50, high: 60 }, model: "Fable 5.2", effort: null, tier: "claude_pro", cls: classify("Kuantum dolanıklığı basitçe açıkla") }, { samples: 200 });
+t("Fable 5.2 effort okunamazsa medium varsayılır", fcF.effort === "medium" && fcF.effortAssumed && fcF.model === "fable 5.2");
+
+// Fable payı: model ailesine özel haftalık pencere
+const win = (u) => ({ utilization: u, resets_at: "2026-11-16T23:59:00Z" });
+const ubase = { five_hour: win(10), seven_day: win(20) };
+t("seven_day_fable → Fable payı", familyWindow(normalizeUsage({ ...ubase, seven_day_fable: win(42) }), "fable")?.pct === 42);
+t("seven_day_fable_5_2 → Fable payı", familyWindow(normalizeUsage({ ...ubase, seven_day_fable_5_2: win(55) }), "fable")?.pct === 55);
+t("seven_day_fable_models → Fable payı", familyWindow(normalizeUsage({ ...ubase, seven_day_fable_models: win(61) }), "fable")?.pct === 61);
+const nested = normalizeUsage({ ...ubase, seven_day_models: { fable: win(83), opus: win(5) } });
+t("iç içe pencere düzleştirilir (seven_day_models.fable)", familyWindow(nested, "fable")?.pct === 83 && nested.extras.some((w) => w.key === "seven_day_models_opus"), nested.extras.map((w) => w.key).join(","));
+t("seven_day_opus Fable sayılmaz", familyWindow(normalizeUsage({ ...ubase, seven_day_opus: win(70) }), "fable") === null);
+t("seven_day_opus Opus penceresi", familyWindow(normalizeUsage({ ...ubase, seven_day_opus: win(70) }), "opus")?.pct === 70);
+t("Fable penceresi yoksa ya da boşsa → null", familyWindow(normalizeUsage({ ...ubase, seven_day_fable: null }), "fable") === null && familyWindow(normalizeUsage(ubase), "fable") === null && familyWindow(null, "fable") === null);
+const unk = normalizeUsage({ ...ubase, seven_day_cowork: win(12), seven_day_fable: win(30) });
+t("bilinmeyen ek pencere de listede kalır", unk.extras.some((w) => w.key === "seven_day_cowork") && unk.extras.length === 2);
+t("Fable payı uyarı eşiği %80", FAMILY_SHARE_WARN_PCT === 80);
+const tr2 = JSON.parse(readFileSync(new URL("../extension/_locales/tr/messages.json", import.meta.url), "utf8"));
+const en2 = JSON.parse(readFileSync(new URL("../extension/_locales/en/messages.json", import.meta.url), "utf8"));
+t("Fable payı metinleri TR/EN", ["rowFableShare", "fableSharePill", "fableShareLabel", "fableShareNear"].every((k) => tr2[k]?.message && en2[k]?.message));
+
 console.log(fail ? `${fail} test başarısız` : "tüm birim testleri geçti");
 process.exitCode = fail ? 1 : 0;

@@ -3,6 +3,7 @@
 // Haftalık rapor sayfası. Veri: chrome.storage.local "sends" (metin içermeyen gönderim kayıtları).
 import { makeI18n } from "../lib/i18n.js";
 import { weeklyReport, sendsCsv } from "../lib/report.js";
+import { renderEco } from "./report-eco.js";
 
 const $ = (id) => document.getElementById(id);
 const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; };
@@ -10,7 +11,7 @@ const FAM = { haiku: "Haiku", sonnet: "Sonnet", opus: "Opus", fable: "Fable", un
 let I = null;
 
 async function render() {
-  const { settings, sends = [] } = await chrome.storage.local.get(["settings", "sends"]);
+  const { settings, sends = [], eco = null } = await chrome.storage.local.get(["settings", "sends", "eco"]);
   I = await makeI18n(settings?.language || "auto");
   const t = I.t;
   document.documentElement.lang = I.lang;
@@ -42,6 +43,9 @@ async function render() {
   else tile(t("rpSpent"), I.pct(r.spent), t("rpSpentSmall"));
   tile(t("rpPeak"), pctN(r.peak.share), t("rpPeakSub", [pctN(r.peak.nShare)]), r.peak.share >= 0.25);
   tile(t("rpSave"), r.advice.savePot > 0 ? I.pct(r.advice.savePot) : "–", r.advice.save ? t("rpSaveSub", [String(r.advice.save)]) : t("rpSaveNone"), r.advice.savePot >= 2);
+
+  // Bu hafta kurtarılan su ve enerji (tahmin) + kurulumdan beri toplam
+  renderEco({ $, I, sends, eco, now });
 
   // Öneriler
   const hm = (h) => { const d = new Date(); d.setHours(Math.floor(h), Math.round((h % 1) * 60), 0, 0); return d.toLocaleTimeString(I.locale, { hour: "2-digit", minute: "2-digit" }); };
@@ -166,5 +170,5 @@ $("csv").addEventListener("click", async () => {
   setTimeout(() => URL.revokeObjectURL(a.href), 5000);
 });
 
-chrome.storage.onChanged.addListener((ch, area) => { if (area === "local" && (ch.sends || ch.settings)) render(); });
+chrome.storage.onChanged.addListener((ch, area) => { if (area === "local" && (ch.sends || ch.settings || ch.eco)) render(); });
 render();

@@ -2,6 +2,7 @@
 // Copyright (c) 2026 Hayrettin Enes Karalı
 // Uçtan uca test: eklentiyi Chromium'a yükler, claude.ai'yi taklit eden sahte bir sayfa ve
 // sahte API ile çalıştırır. Çalıştır: node e2e.cjs
+process.env.PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS ||= "1"; // yoksa arka plan servisinin istekleri sahte sunucuya gitmez
 const { chromium } = require("playwright");
 const path = require("path");
 const fs = require("fs");
@@ -100,7 +101,9 @@ async function seed(sw, lang) {
     sends.push({ id: "s" + i, at, conv: "c" + (i % 6), fam: i % 5 === 0 ? "opus" : i % 3 === 0 ? "haiku" : "sonnet", model: i % 5 === 0 ? "opus 5.5" : "sonnet 5.5", type, eff: i % 7 === 0 ? "max" : "medium",
       peak: new Date(at).getUTCHours() >= 12 && new Date(at).getUTCHours() < 18, cache: i % 9 === 0 ? "cold" : "warm", hist: i % 9 === 0 ? 60000 : 3000,
       pred: fc.pct.session.mid, predLo: fc.pct.session.low, predHi: fc.pct.session.high, predW: fc.pct.weekly.mid, adv: type === "translate" || type === "short_qa" ? { k: "save", t: "haiku" } : { k: "ok", t: "sonnet" },
-      save: type === "translate" ? 0.4 : 0, d, outHi: 1500, dom: doms[type][0], sub: doms[type][1], effRec: i % 7 === 0 ? "medium" : "medium", effSave: i % 7 === 0 ? 0.35 : 0 });
+      save: type === "translate" ? 0.4 : 0, d, outHi: 1500, dom: doms[type][0], sub: doms[type][1], effRec: i % 7 === 0 ? "medium" : "medium", effSave: i % 7 === 0 ? 0.35 : 0,
+      // su/enerji bölümü dolu görünsün: çevirilerde Opus 5.5 yerine önerilen Haiku 5.5'e geçilmiş gibi (fark aynı tahmin motorundan)
+      ...(type === "translate" ? { ecoU: Math.round(forecastMessage({ ...inp, model: "Opus 5.5" }, { samples: 200 }).cost.mid - forecastMessage({ ...inp, model: "Haiku 5.5" }, { samples: 200 }).cost.mid), ecoK: "model" } : {}) });
   }
   await sw.evaluate((o) => chrome.storage.local.set(o), { calib: st, sends });
   return st;
@@ -144,6 +147,10 @@ async function seed(sw, lang) {
     for (let i = 0; i < 20 && !(await sw.evaluate(() => !!(self.chrome && chrome.storage)).catch(() => false)); i++) { await new Promise((r) => setTimeout(r, 300)); sw = ctx.serviceWorkers().find((w) => w.url().includes(extId)) || sw; }
     await sw.evaluate((l) => chrome.storage.local.get("settings").then(({ settings }) => chrome.storage.local.set({ settings: { ...settings, language: l } })), lang);
     await seed(sw, lang);
+    // Açık onay (0.12.1) ve Tiko'nun ilk baloncuğu: onay yokken eklenti hiçbir şey göstermez
+    const cv = Number(/CONSENT_VERSION = (\d+)/.exec(fs.readFileSync(path.join(EXT, "lib/consent.js"), "utf8"))[1]);
+    await sw.evaluate((v) => chrome.storage.local.set({ consent: { v, at: Date.now() }, tikoHintSeen: true }), cv);
+    for (const w of ctx.pages()) if (w.url().includes("/popup/welcome.html")) await w.close();
     const dir = path.join(SITE, lang); fs.mkdirSync(dir, { recursive: true });
     const page = await ctx.newPage();
     await page.goto(`https://claude.ai/chat/${CONV}`);
