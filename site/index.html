@@ -3,21 +3,21 @@
 <meta name="description" content="Claude.ai'de mesajını göndermeden önce limitinin ne kadarını harcayacağını gösteren ücretsiz tarayıcı eklentisi.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"></noscript>
 <style>
 /* Düzen: bir ölçü aletinin ekranı — üstte tek bir canlı gösterge (demo), altında sakin bir teknik kılavuz.
    Renk ve yazı: Claude'un kendi görünümüne yakın (krem yüzey, sıcak gri çizgi, turuncu vurgu, serif başlık). */
 /* Web yazı tipi gelene kadar kullanılan yedekler, aynı genişliğe ayarlı (size-adjust, sayfa metniyle ölçüldü:
    Newsreader/Georgia başlık boyutunda 0,94 × 1,034 ≈ 0,97 (optik boyut ekseni yüzünden) · Inter/Arial 1,062 · IBM Plex Mono/Consolas 1,091). Yazı tipi değişince satırlar kırılmaz, sayfa kaymaz. */
-@font-face { font-family: "Newsreader fb"; src: local("Georgia"); size-adjust: 97%; }
+@font-face { font-family: "Grotesk fb"; src: local("Arial"), local("Arimo"), local("Liberation Sans"); size-adjust: 104%; }
 @font-face { font-family: "Inter fb"; src: local("Arial"), local("Arimo"), local("Liberation Sans"); size-adjust: 106.2%; }
 @font-face { font-family: "Plex fb"; src: local("Consolas"); size-adjust: 109.1%; }
 :root {
   --bg: #faf9f5; --surface: #ffffff; --sunk: #f0eee6; --ink: #141413; --muted: #6b6a64; --line: #e8e6dc;
   --accent: #b5502f; --accent-ink: #ffffff; --meter: #d97757; --used: #a8a69d;
   --water: #2f7fb5; --ok: #2f7d57; --warn: #a8680f; --crit: #b9382a;
-  --f-display: "Newsreader", "Newsreader fb", ui-serif, Georgia, "Times New Roman", serif;
+  --f-display: "Space Grotesk", "Grotesk fb", "Segoe UI", system-ui, sans-serif;
   --f-body: "Inter", "Inter fb", "Segoe UI", system-ui, -apple-system, sans-serif;
   --f-mono: "IBM Plex Mono", "Plex fb", ui-monospace, "SFMono-Regular", Consolas, monospace;
   --r: 12px;
@@ -484,6 +484,77 @@ footer .langs a[aria-current] { color: var(--ink); font-weight: 600; text-decora
 .rv { opacity: 0; transform: translateY(14px); transition: opacity .5s ease-out, transform .5s ease-out; transition-delay: var(--rd, 0ms); }
 .rv.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; } }
+
+/* ===== Yön A · "Ölç, sonra gönder" (23.11.2026): deney föyü görünümü =====
+   Kareli kâğıt zemin, keskin çerçeve ve düz gölge, lacivert mürekkep, turuncu ölçer.
+   Yalnız görünüm katmanı: yerleşim ve metin aynı, böylece 10 dil ve testler etkilenmez. */
+:root {
+  --bg: #f6f7f2; --surface: #ffffff; --sunk: #eef1f4; --ink: #15202e; --muted: #4a5666; --line: #c9d1db;
+  --accent: #1d3a8a; --accent-ink: #ffffff; --meter: #f28c28; --used: #9aa6b5; --hot: #b4560a;
+  --grid: rgba(21, 32, 46, .07); --shadow: #15202e; --cta: #f28c28; --cta-ink: #1b1007;
+  --water: #1f6fa3; --ok: #2c6a43; --warn: #8f5a0c; --crit: #b0321f;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #10161f; --surface: #172130; --sunk: #1f2b3b; --ink: #eef2f6; --muted: #a5b1bf; --line: #34445a;
+    --accent: #9cb8ff; --accent-ink: #10161f; --meter: #f5a04a; --used: #5d6b7d; --hot: #f5a04a;
+    --grid: rgba(238, 242, 246, .05); --shadow: #2a3a52; --cta: #f5a04a; --cta-ink: #1b1007;
+    --water: #7fc1ea; --ok: #6fcf8a; --warn: #e0a24a; --crit: #ef7d6d;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #10161f; --surface: #172130; --sunk: #1f2b3b; --ink: #eef2f6; --muted: #a5b1bf; --line: #34445a;
+  --accent: #9cb8ff; --accent-ink: #10161f; --meter: #f5a04a; --used: #5d6b7d; --hot: #f5a04a;
+  --grid: rgba(238, 242, 246, .05); --shadow: #2a3a52; --cta: #f5a04a; --cta-ink: #1b1007;
+  --water: #7fc1ea; --ok: #6fcf8a; --warn: #e0a24a; --crit: #ef7d6d;
+}
+body { background-color: var(--bg); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 24px 24px; }
+h1, h2, h3 { letter-spacing: -0.02em; font-weight: 600; }
+h2 { font-weight: 700; }
+.brand { font-weight: 700; letter-spacing: -0.01em; }
+.hero h1 { font-weight: 700; letter-spacing: -0.04em; line-height: .95; }
+.hero h1 em { font-style: normal; color: var(--hot); }
+.eyebrow { color: var(--accent); font-weight: 500; text-transform: uppercase; letter-spacing: .08em; }
+/* Her bölüm bir deney: başlığın üstünde sıra numarası (dilden bağımsız) */
+/* (CSS sayacı kullanılamıyor: content-visibility stil sınırlaması sayacı bölüm içine hapsediyor) */
+.sec-head .eyebrow::before { color: var(--muted); }
+main > section:nth-of-type(2) .sec-head .eyebrow::before { content: "01 / "; }
+main > section:nth-of-type(3) .sec-head .eyebrow::before { content: "02 / "; }
+main > section:nth-of-type(4) .sec-head .eyebrow::before { content: "03 / "; }
+main > section:nth-of-type(5) .sec-head .eyebrow::before { content: "04 / "; }
+main > section:nth-of-type(6) .sec-head .eyebrow::before { content: "05 / "; }
+main > section:nth-of-type(7) .sec-head .eyebrow::before { content: "06 / "; }
+main > section:nth-of-type(8) .sec-head .eyebrow::before { content: "07 / "; }
+main > section:nth-of-type(9) .sec-head .eyebrow::before { content: "08 / "; }
+main > section:nth-of-type(10) .sec-head .eyebrow::before { content: "09 / "; }
+main > section:nth-of-type(11) .sec-head .eyebrow::before { content: "10 / "; }
+main > section:nth-of-type(12) .sec-head .eyebrow::before { content: "11 / "; }
+main > section:nth-of-type(13) .sec-head .eyebrow::before { content: "12 / "; }
+main > section:nth-of-type(14) .sec-head .eyebrow::before { content: "13 / "; }
+main > section:nth-of-type(15) .sec-head .eyebrow::before { content: "14 / "; }
+main > section:nth-of-type(16) .sec-head .eyebrow::before { content: "15 / "; }
+main > section:nth-of-type(17) .sec-head .eyebrow::before { content: "16 / "; }
+main > section:nth-of-type(18) .sec-head .eyebrow::before { content: "17 / "; }
+main > section:nth-of-type(19) .sec-head .eyebrow::before { content: "18 / "; }
+main > section:nth-of-type(20) .sec-head .eyebrow::before { content: "19 / "; }
+main > section:nth-of-type(21) .sec-head .eyebrow::before { content: "20 / "; }
+section.band { border-top: 2px solid var(--ink); }
+header.top { border-bottom: 2px solid var(--ink); background: var(--bg); }
+.btn { border-radius: 10px; border-width: 2px; }
+.btn.primary { background: var(--cta); color: var(--cta-ink); box-shadow: 3px 3px 0 var(--shadow); }
+.btn.primary:hover { filter: none; transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--shadow); }
+.btn.ghost { border-color: var(--ink); background: transparent; }
+.trust span::before { content: "■"; font-size: .7em; vertical-align: .15em; }
+/* Ölçüm kutuları: keskin çerçeve, düz gölge */
+.stage, .demo { border: 2px solid var(--ink); border-radius: 16px; box-shadow: 6px 6px 0 var(--shadow); }
+.feat, .stat, .mtile, .banner, .model { border: 1.5px solid var(--line); border-radius: 12px; }
+.feat:hover, .stat:hover { border-color: var(--ink); }
+/* Ölçer: cetvel çentikleri, her %10'da bir */
+.meter, .st-meter { background-color: var(--sunk); background-image: repeating-linear-gradient(90deg, transparent 0 calc(10% - 1px), var(--line) calc(10% - 1px) 10%); }
+.big, .stat .v, .sc-big, .mtile b, .st-pl b { font-family: var(--f-mono); font-weight: 500; letter-spacing: -0.03em; }
+textarea#prompt, .sc-comp { border: 1.5px solid var(--line); }
+textarea#prompt:focus { border-color: var(--accent); outline: none; }
+footer { border-top: 2px solid var(--ink); }
 </style>
 <header class="top">
   <div class="wrap">

@@ -256,7 +256,7 @@ wr(os.path.join(DOCS, 'sitemap.xml'), sm)
 subprocess.run([node, os.path.join(HERE, 'prerender.cjs'), DOCS], check=True)
 
 # 3e. yazı tipleri. Ölçüm (Lighthouse, telefon): tüm aileler Google'dan 406 KB idi (tr) ve ilk boyamayı geciktiriyordu.
-#     Şimdi Google Fonts'tan yalnızca sayfada geçen harfler istenir (text= alt kümesi, tr: 148 KB): Newsreader (başlık yazısı)
+#     Şimdi Google Fonts'tan yalnızca sayfada geçen harfler istenir (text= alt kümesi, tr: 148 KB): Space Grotesk (başlık yazısı)
 #     başlık/rakam harfleriyle, Inter ve IBM Plex Mono sayfanın (ve sayfa verisinin) tüm harfleriyle. Japonca/Çince gibi
 #     bu yazı tiplerinde olmayan harfler zaten sistem yazı tipine düşer, listeye girmez. Yükleme sayfa sonundaki
 #     betikle, ilk içerikli boyamadan sonra (LOADER_JS).
@@ -274,7 +274,7 @@ def font_urls(page):
     disp = html.unescape(re.sub(r'<[^>]+>', ' ', disp)) + 'Token TahminiForecast 0123456789%.,:;<>≈×→–-+()/ '
     allc = html.unescape(re.sub(r'<[^>]+>', ' ', page)) + ASCII
     cs = lambda t: quote(''.join(sorted({c for c in t if in_font(c)})), safe='')
-    return [GF + f'family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap&text={cs(disp)}',
+    return [GF + f'family=Space+Grotesk:wght@500;600;700&display=swap&text={cs(disp)}',
             GF + f'family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap&text={cs(allc)}']
 
 

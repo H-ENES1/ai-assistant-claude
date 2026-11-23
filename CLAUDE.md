@@ -198,3 +198,9 @@ npm run perf   # ölçüm (test değil): 60 ve 600 mesajlık sohbette boşta ve 
 - **`tests/site-shots.cjs` onarıldı:** açık onay (0.12.1) geldiğinden beri zaman aşımına düşüyordu; artık onayı depoya yazıyor. `site/img/{tr,en}` yeniden üretildi.
 - **Mağaza açıklamaları** (`store/descriptions/*.txt`, 10 dil, ve `store/LISTING.md`): Tiko ve "kurtarılan su ve enerji" bölümleri eklendi; metinler sitedeki özellik kartlarıyla aynı.
 - **Doğrulanmadı:** müziği insan dinlemedi (yalnız ses düzeyi ölçüldü: ortalama ≈ −16…−17 dB, tepe ≈ −2 dB); videolar bu makinenin sistem yazı tipleriyle (Segoe UI Variable, Cascadia Mono) çizildi, başka makinede görünüm biraz değişir; Lighthouse laboratuvar ölçümüdür, gerçek telefonda ölçülmedi.
+
+## Site görünümü: Yön A "Ölç, sonra gönder" (23.11.2026, dal `yayin-0-13`)
+- Üç tasarım yönü arasından seçildi. Yalnız görünüm katmanı: `index.src.html` `<style>` sonundaki "Yön A" bloğu (renk belirteçleri, kareli kâğıt zemin, 2 px çerçeve + düz gölge, cetvel çentikli ölçer, büyük sayılar IBM Plex Mono'da, bölüm başlıklarında "01 /" sırası). Yerleşim ve metinler değişmedi, 10 dil etkilenmedi.
+- Başlık yazı tipi Newsreader → Space Grotesk (`index.src.html`, `build.py` yazı tipi alt kümesi, `prerender.cjs` paylaşım görseli; paylaşım görseli de açık renkli kareli kâğıda geçti).
+- Bölüm sırası CSS sayacıyla değil `nth-of-type` kurallarıyla: `content-visibility: auto` stil sınırlaması sayacı bölüm içine hapsediyor. Bölüm ekleyip çıkarırsan numaralar kendiliğinden kayar.
+- Testler: site-test ve multilang-test geçti; site-test'teki "5 görsel yüklendi" kontrolü yavaş makinede zaman aşımıyla kırmızı olabiliyor (görseller daha uzun beklemeyle yükleniyor, bu değişiklikle ilgisiz). Lighthouse yeniden ölçülmedi.

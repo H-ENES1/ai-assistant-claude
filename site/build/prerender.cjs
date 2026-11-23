@@ -19,30 +19,30 @@ const OG = {
   en: { brand: "Token Forecast", sub: "Claude usage limit · token counter · model suggestion", foot: "Free Chrome extension · open source · your messages stay on your device", meter: "5-hour limit", used: "used", msg: "this message" },
 };
 const ogHtml = (o, h1, bot) => `<!doctype html><html><head><meta charset="utf-8">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:1200px;height:630px;overflow:hidden}
-body{background:#262624;color:#faf9f5;font-family:Inter,"Segoe UI",sans-serif;position:relative}
-.grid{position:absolute;inset:0;background-image:linear-gradient(#30302e 1px,transparent 1px),linear-gradient(90deg,#30302e 1px,transparent 1px);background-size:40px 40px;opacity:.55}
+body{background:#f6f7f2;color:#15202e;font-family:Inter,"Segoe UI",sans-serif;position:relative}
+.grid{position:absolute;inset:0;background-image:linear-gradient(#dfe4ea 1px,transparent 1px),linear-gradient(90deg,#dfe4ea 1px,transparent 1px);background-size:30px 30px;opacity:1}
 .l{position:absolute;left:72px;top:64px;width:780px}
-.brand{display:flex;align-items:center;gap:14px;font:600 34px Newsreader,Georgia,serif}
-h1{font:500 88px/1.02 Newsreader,Georgia,serif;letter-spacing:-.015em;margin:42px 0 22px}
-h1 em{color:#e8896a}
-.sub{font-size:27px;color:#d6d4cb;font-weight:500}
-.card{position:absolute;left:72px;top:448px;width:700px;background:#30302e;border:2px solid #44433f;border-radius:18px;padding:20px 24px}
-.card .t{display:flex;justify-content:space-between;font:500 19px "IBM Plex Mono",monospace;color:#b0aea5;letter-spacing:.04em}
-.bar{margin-top:14px;height:22px;border-radius:11px;background:#3d3d3a;overflow:hidden;display:flex}
+.brand{display:flex;align-items:center;gap:14px;font:700 34px "Space Grotesk",Arial,sans-serif}
+h1{font:700 90px/.98 "Space Grotesk",Arial,sans-serif;letter-spacing:-.04em;margin:42px 0 22px}
+h1 em{color:#b4560a;font-style:normal}
+.sub{font-size:27px;color:#3a4757;font-weight:500}
+.card{position:absolute;left:72px;top:448px;width:700px;background:#ffffff;border:3px solid #15202e;border-radius:16px;box-shadow:8px 8px 0 #15202e;padding:20px 24px}
+.card .t{display:flex;justify-content:space-between;font:500 19px "IBM Plex Mono",monospace;color:#4a5666;letter-spacing:.04em}
+.bar{margin-top:14px;height:22px;border-radius:11px;background:#e6eaef;overflow:hidden;display:flex}
 .bar i{display:block;height:100%}
-.foot{position:absolute;left:72px;bottom:26px;font-size:19px;color:#b0aea5}
+.foot{position:absolute;left:72px;bottom:26px;font-size:19px;color:#4a5666}
 .bot{position:absolute;right:96px;bottom:118px;width:252px;height:306px}
 .bot svg{width:100%;height:100%;shape-rendering:crispEdges;overflow:visible}
 .bot .lgB{display:none}.bot .lid{opacity:0}
-.shadow{position:absolute;right:120px;bottom:104px;width:204px;height:22px;border-radius:50%;background:rgba(0,0,0,.35)}
-.plat{position:absolute;right:56px;bottom:84px;width:332px;height:20px;border-radius:10px;background:#3d3d3a;border:2px solid #44433f}
+.shadow{position:absolute;right:120px;bottom:104px;width:204px;height:22px;border-radius:50%;background:rgba(21,32,46,.18)}
+.plat{position:absolute;right:56px;bottom:84px;width:332px;height:20px;border-radius:10px;background:#ffffff;border:3px solid #15202e}
 </style></head><body><div class="grid"></div>
-<div class="l"><div class="brand"><svg width="44" height="44" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11.5" fill="none" stroke="#faf9f5" stroke-width="2"/><path d="M13 13 L19.5 7.5" stroke="#d97757" stroke-width="2.6" stroke-linecap="round"/><circle cx="13" cy="13" r="2" fill="#faf9f5"/></svg>${o.brand}</div>
+<div class="l"><div class="brand"><svg width="44" height="44" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11.5" fill="none" stroke="#15202e" stroke-width="2"/><path d="M13 13 L19.5 7.5" stroke="#f28c28" stroke-width="2.6" stroke-linecap="round"/><circle cx="13" cy="13" r="2" fill="#15202e"/></svg>${o.brand}</div>
 <h1>${h1}</h1><div class="sub">${o.sub}</div></div>
-<div class="card"><div class="t"><span>${o.meter}</span><span>▮ ${o.used} &nbsp; <span style="color:#d97757">▮ ${o.msg}</span></span></div><div class="bar"><i style="width:58%;background:#77756d"></i><i style="width:9%;background:#d97757"></i></div></div>
+<div class="card"><div class="t"><span>${o.meter}</span><span>▮ ${o.used} &nbsp; <span style="color:#b4560a">▮ ${o.msg}</span></span></div><div class="bar"><i style="width:58%;background:#9aa6b5"></i><i style="width:9%;background:#f28c28"></i></div></div>
 <div class="plat"></div><div class="shadow"></div><div class="bot">${bot}</div>
 <div class="foot">${o.foot}</div></body></html>`;
 
